@@ -3,54 +3,92 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
 class DesaController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = Desa::query();
-
-        // Fitur Pencarian Nama Desa
-        if ($request->filled('search')) {
-            $query->where('nama_desa', 'like', '%' . $request->search . '%');
-        }
-
-        // Fitur Filter per Kecamatan
-        if ($request->filled('kecamatan') && $request->kecamatan != 'Semua') {
-            $query->where('kecamatan', $request->kecamatan);
-        }
-
-        $desas = $query->orderBy('nama_desa', 'asc')->get();
-
-        // Daftar Kecamatan di Kabupaten Tuban untuk tombol filter
-        $kecamatanList = [
-            'Bancar', 'Bangilan', 'Grabagan', 'Jatirogo', 'Jenu', 
-            'Kenduruan', 'Kerek', 'Merakurak', 'Montong', 'Palang', 
-            'Parengan', 'Plumpang', 'Rengel', 'Semanding', 'Senori', 
-            'Singgahan', 'Soko', 'Tambakboyo', 'Tuban', 'Widang'
-        ];
-
-        return view('desa.index', compact('desas', 'kecamatanList'));
+        $desas = Desa::with('kecamatan')->latest()->paginate(10);
+        return view('desa.index', compact('desas'));
     }
 
     public function create()
     {
-        return view('desa.create');
+        $kecamatans = Kecamatan::all();
+        return view('desa.create', compact('kecamatans'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_desa' => 'required|string|max:255',
-            'kecamatan' => 'required|string|max:255',
-            'populasi' => 'required|numeric',
-            'luas_wilayah' => 'nullable|string',
-            'url_website' => 'nullable|url',
+        $validated = $request->validate([
+            'nama_desa' => 'required|string|max:100',
+            'kecamatan_id' => 'required|exists:kecamatan,id',
+            'kode_desa' => 'required|string|max:20|unique:desa,kode_desa',
+            'luas_wilayah' => 'nullable|numeric',
+            'jumlah_penduduk' => 'nullable|integer',
+            'jumlah_kk' => 'nullable|integer',
+            'sejarah' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
+            'alamat_kantor' => 'nullable|string',
+            'telepon' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:100',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'foto_url' => 'nullable|string|max:255',
         ]);
 
-        Desa::create($request->all());
+        Desa::create($validated);
 
-        return redirect()->route('desa.index')->with('success', 'Data desa berhasil ditambahkan!');
+        return redirect()->route('desa.index')
+            ->with('success', 'Desa berhasil ditambahkan!');
+    }
+
+    public function show(Desa $desa)
+    {
+        $desa->load(['kecamatan', 'dusun', 'wisata', 'pasar', 'wifi', 'bumdes', 'kkdmp']);
+        return view('desa.show', compact('desa'));
+    }
+
+    public function edit(Desa $desa)
+    {
+        $kecamatans = Kecamatan::all();
+        return view('desa.edit', compact('desa', 'kecamatans'));
+    }
+
+    public function update(Request $request, Desa $desa)
+    {
+        $validated = $request->validate([
+            'nama_desa' => 'required|string|max:100',
+            'kecamatan_id' => 'required|exists:kecamatan,id',
+            'kode_desa' => 'required|string|max:20|unique:desa,kode_desa,' . $desa->id,
+            'luas_wilayah' => 'nullable|numeric',
+            'jumlah_penduduk' => 'nullable|integer',
+            'jumlah_kk' => 'nullable|integer',
+            'sejarah' => 'nullable|string',
+            'visi' => 'nullable|string',
+            'misi' => 'nullable|string',
+            'alamat_kantor' => 'nullable|string',
+            'telepon' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:100',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'foto_url' => 'nullable|string|max:255',
+        ]);
+
+        $desa->update($validated);
+
+        return redirect()->route('desa.index')
+            ->with('success', 'Desa berhasil diupdate!');
+    }
+
+    public function destroy(Desa $desa)
+    {
+        $desa->delete();
+
+        return redirect()->route('desa.index')
+            ->with('success', 'Desa berhasil dihapus!');
     }
 }

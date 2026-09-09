@@ -693,7 +693,7 @@
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="#" class="active">Home <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a></li>
+            <li><a href="#" class="active">Dashboard <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a></li>
             <li><a href="#">Layanan</a></li>
             <li><a href="#">Tentang Kami</a></li>
             <li><a href="#">Hubungi Kami</a></li>
