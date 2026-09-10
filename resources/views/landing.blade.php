@@ -114,7 +114,7 @@
         }
         .tag:hover { background: var(--primary); border-color: var(--primary); }
 
-        /* 2. SECTION PROFIL GEOGRAFIS & VIDEO TUBAN */
+        /* 2. PROFIL GEOGRAFIS & VIDEO TUBAN */
         .blue-hero {
             background: linear-gradient(135deg, #00224f 0%, #004b99 100%);
             padding: 80px 5%; color: white; display: grid; grid-template-columns: 1.15fr 1fr;
@@ -275,7 +275,6 @@
         .footer-col ul li a { color: #94a3b8; text-decoration: none; }
         .footer-col ul li a:hover { color: #ffffff; }
 
-        /* RESPONSIVE */
         @media (max-width: 992px) {
             .blue-hero { grid-template-columns: 1fr; }
             .cards-grid, .alur-grid, .testi-grid-modern, .news-grid-modern { grid-template-columns: repeat(2, 1fr); }
@@ -305,7 +304,7 @@
         </div>
     </header>
 
-    <!-- NAVBAR TUNGGAL TERSTRUKTUR & TAUTAN PRESISI -->
+    <!-- NAVBAR DENGAN TAUTAN PRESISI -->
     <nav class="navbar">
         <ul class="nav-links">
             <li>
@@ -341,7 +340,6 @@
         <h1 class="hero-title">Desa Digital Kabupaten Tuban</h1>
         <p class="hero-desc">Digitalisasi Pemerintahan Desa di Kabupaten Tuban untuk pelayanan publik yang cepat, transparan, dan mandiri hingga ke tingkat dusun</p>
 
-        <!-- Search Box -->
         <form class="search-box" action="{{ url('/desa') }}" method="GET">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="search" placeholder="Cari layanan, informasi dusun, regulasi desa...">
@@ -396,7 +394,7 @@
             </div>
         </div>
 
-        <!-- VIDEO EMBED RESMI KABUPATEN TUBAN (DISKOMINFO) -->
+        <!-- VIDEO EMBED RESMI KABUPATEN TUBAN -->
         <div style="position: relative; width: 100%;">
             <div style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
                 
@@ -437,7 +435,6 @@
         <p class="section-subtitle">Portal terlengkap dalam melayani kebutuhan administrasi warga dan memajukan potensi desa sampai tingkat dusun secara terpadu.</p>
 
         <div class="cards-grid">
-            <!-- 1. Website Desa & Dusun -->
             <div class="feature-card">
                 <div>
                     <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
@@ -447,7 +444,6 @@
                 <a href="{{ url('/desa') }}">Buka Katalog Desa &rarr;</a>
             </div>
 
-            <!-- 2. Layanan Digital Warga -->
             <div class="feature-card">
                 <div>
                     <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
@@ -457,7 +453,6 @@
                 <a href="javascript:void(0)" onclick="openLayananModal()">Pilih Layanan &rarr;</a>
             </div>
 
-            <!-- 3. Akses Internet Balai Dusun -->
             <div class="feature-card">
                 <div>
                     <div class="icon-box"><i class="fa-solid fa-wifi"></i></div>
@@ -467,7 +462,6 @@
                 <a href="{{ url('/webgis') }}">Cek Sebaran Hotspot &rarr;</a>
             </div>
 
-            <!-- 4. Anjungan Pelayanan Mandiri (Kiosk) -->
             <div class="feature-card">
                 <div>
                     <div class="icon-box"><i class="fa-solid fa-desktop"></i></div>
