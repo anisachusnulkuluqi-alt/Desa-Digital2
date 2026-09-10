@@ -1,51 +1,84 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KecamatanController;
-use App\Http\Controllers\DesaController;
-use App\Http\Controllers\DusunController;
-use App\Http\Controllers\WisataDesaController;
-use App\Http\Controllers\PasarDesaController;
-use App\Http\Controllers\WifiDesaController;
-use App\Http\Controllers\BumdesController;
-use App\Http\Controllers\KkdmpController;
 use Illuminate\Support\Facades\Route;
 
-// Landing Page (tidak perlu login)
-Route::get('/', function () {
-    return view('landing');
-})->name('home');
+// ==========================================
+// 1. IMPORT CONTROLLER FRONTEND (PUBLIK)
+// ==========================================
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\KecamatanController;
 
-// Authentication routes (dari Laravel Breeze)
+// ==========================================
+// 2. IMPORT CONTROLLER BACKEND (ADMIN)
+// ==========================================
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
+use App\Http\Controllers\Admin\DesaController as AdminDesaController;
+use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
+
+/*
+|--------------------------------------------------------------------------
+| FRONTEND ROUTES (Tampilan untuk Masyarakat Umum)
+|--------------------------------------------------------------------------
+*/
+
+// Halaman Utama
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tentang', [HomeController::class, 'tentang'])->name('tentang');
+Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
+
+// Layanan
+Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
+Route::get('/layanan/{id}', [LayananController::class, 'show'])->name('layanan.show');
+
+// Berita & Acara (Publik)
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+
+// Kecamatan (Publik)
+Route::get('/kecamatan', [KecamatanController::class, 'index'])->name('kecamatan');
+Route::get('/kecamatan/{slug}', [KecamatanController::class, 'show'])->name('kecamatan.show');
+
+
+/*
+|--------------------------------------------------------------------------
+| AUTHENTICATION ROUTES (Login, Register, Lupa Password)
+|--------------------------------------------------------------------------
+*/
 require __DIR__.'/auth.php';
 
-// Dashboard & CRUD (HARUS LOGIN)
-Route::middleware(['auth', 'verified'])->group(function () {
+
+/*
+|--------------------------------------------------------------------------
+| BACKEND ADMIN ROUTES (Wajib Login)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
     
-    // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Dashboard Admin (dengan nama route 'admin.dashboard')
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     
-    // CRUD Kecamatan
-    Route::resource('kecamatan', KecamatanController::class);
+    // Dashboard biasa (untuk backward compatibility)
+    Route::get('/dashboard', function() {
+        return redirect()->route('admin.dashboard');
+    })->name('dashboard');
     
-    // CRUD Desa
-    Route::resource('desa', DesaController::class);
-    
-    // CRUD Dusun
-    Route::resource('dusun', DusunController::class);
-    
-    // CRUD Wisata Desa
-    Route::resource('wisata', WisataDesaController::class);
-    
-    // CRUD Pasar Desa
-    Route::resource('pasar', PasarDesaController::class);
-    
-    // CRUD WiFi Desa
-    Route::resource('wifi', WifiDesaController::class);
-    
-    // CRUD BUMDes
-    Route::resource('bumdes', BumdesController::class);
-    
-    // CRUD KKDMP
-    Route::resource('kkdmp', KkdmpController::class);
+    // Group dengan prefix '/admin' dan nama route 'admin.'
+    Route::prefix('admin')->name('admin.')->group(function () {
+        
+        // Dashboard Admin (alias)
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        
+        // CRUD Berita
+        Route::resource('berita', AdminBeritaController::class);
+        
+        // CRUD Desa
+        Route::resource('desa', AdminDesaController::class);
+        
+        // CRUD Kecamatan
+        Route::resource('kecamatan', AdminKecamatanController::class);
+        
+    });
 });
