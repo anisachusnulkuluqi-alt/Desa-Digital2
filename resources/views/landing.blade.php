@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -6,404 +6,784 @@
     <title>Desa Digital - Kabupaten Tuban</title>
     
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --primary-light: #38bdf8;
-            --secondary: #0d9488;
-            --dark-navy: #080d1a;
-            --dark-card: #0f172a;
-            --light-bg: #f8fafc;
+            /* PALET TEKNOLOGI PEMERINTAHAN CERAH & DINAMIS */
+            --primary-blue: #0284c7;
+            --primary-blue-dark: #0369a1;
+            --tech-cyan: #0ea5e9;
+            --tech-cyan-glow: #38bdf8;
+            --royal-indigo: #4f46e5;
+            
+            /* VARIASI WARNA MODUL EKOSISTEM */
+            --var-emerald: #10b981;
+            --var-amber: #f59e0b;
+            --var-violet: #8b5cf6;
+            --var-rose: #f43f5e;
+            --var-teal: #0d9488;
+            
+            /* BACKGROUND ELEGAN & TIDAK TERLALU GELAP */
+            --header-dark: #0f172a;
+            --nav-dark: #1e293b;
+            --bg-light-soft: #f8fafc;
+            --bg-tech-gradient: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+            --bg-hub-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            
+            /* TEKS & BORDER */
             --text-dark: #0f172a;
             --text-gray: #64748b;
+            --border-ui: #e2e8f0;
         }
 
         html { scroll-behavior: smooth; }
-        section[id], footer[id] { scroll-margin-top: 75px; }
+        section[id], footer[id] { scroll-margin-top: 85px; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: #ffffff; color: var(--text-dark); overflow-x: hidden; }
 
-        /* TOP HEADER */
+        /* 1. TOP HEADER */
         .top-header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 5%; background: #080d1a; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 12px 6%; 
+            background: var(--header-dark); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .logo-area { display: flex; align-items: center; gap: 12px; }
-        .logo-icon {
-            width: 38px; height: 38px; background: var(--primary); border-radius: 8px;
-            display: flex; align-items: center; justify-content: center; font-size: 20px; color: white;
+        .logo-area { display: flex; align-items: center; gap: 14px; }
+        .logo-tuban-img {
+            width: 38px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(14, 165, 233, 0.4));
         }
-        .logo-text h2 { font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.1; }
-        .logo-text p { font-size: 0.65rem; color: var(--primary-light); font-weight: 600; letter-spacing: 0.5px; }
+        .logo-text h2 { font-size: 1.15rem; font-weight: 800; color: #ffffff; line-height: 1.2; letter-spacing: -0.01em; }
+        .logo-text p { font-size: 0.68rem; color: var(--tech-cyan-glow); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 
-        .auth-buttons { display: flex; gap: 10px; align-items: center; }
+        .auth-buttons { display: flex; gap: 12px; align-items: center; }
         .btn-login {
-            background: #334155; color: #ffffff; text-decoration: none; padding: 7px 18px;
-            font-size: 0.85rem; font-weight: 500; border-radius: 6px; transition: 0.3s;
-            display: inline-flex; align-items: center; gap: 6px;
+            background: transparent; 
+            color: #f1f5f9; 
+            text-decoration: none; 
+            padding: 8px 20px;
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.25s ease;
         }
-        .btn-login:hover { background: #475569; }
+        .btn-login:hover { 
+            background: rgba(255, 255, 255, 0.1); 
+            color: var(--tech-cyan-glow);
+            border-color: var(--tech-cyan);
+        }
 
         .btn-daftar {
-            background: var(--primary); color: white; text-decoration: none; padding: 7px 18px;
-            font-size: 0.85rem; font-weight: 500; border-radius: 6px; transition: 0.3s;
-            display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--tech-cyan) 100%); 
+            color: #ffffff; 
+            text-decoration: none; 
+            padding: 8px 22px;
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            transition: all 0.25s ease;
         }
-        .btn-daftar:hover { background: var(--primary-dark); }
+        .btn-daftar:hover { 
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+            transform: translateY(-1px);
+        }
 
-        /* NAVBAR */
+        /* 2. NAVBAR BERURUTAN */
         .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 5%; background: #0f172a; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: sticky; top: 0; z-index: 100;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 12px 6%; 
+            background: var(--nav-dark); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky; 
+            top: 0; 
+            z-index: 100;
+            backdrop-filter: blur(12px);
         }
-        .nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.84rem; font-weight: 600; transition: 0.3s; }
-        .nav-links a.active, .nav-links a:hover { color: #ffffff; }
+        .nav-links { display: flex; list-style: none; gap: 24px; align-items: center; }
+        .nav-links a { 
+            color: #94a3b8; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: color 0.2s ease; 
+        }
+        .nav-links a.active, .nav-links a:hover { color: var(--tech-cyan-glow); }
 
         .status-badge {
-            font-size: 0.75rem; color: var(--primary-light); display: flex; align-items: center; gap: 6px; font-weight: 500;
+            font-size: 0.74rem; 
+            color: #7dd3fc; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            font-weight: 700;
+            background: rgba(2, 132, 199, 0.15);
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
         }
-        .status-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
+        .status-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; }
 
-        /* 1. HERO UTAMA */
+        /* 3. HERO UTAMA DENGAN JUDUL ATAS BAWAH */
         .hero-tuban {
-            position: relative; min-height: 560px; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; text-align: center; padding: 80px 20px;
-            background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(2, 132, 199, 0.32)),
-                        url('{{ asset("images/alun-alun-tuban.jpg") }}'),
-                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Alun_Alun_Tuban.jpg/1200px-Alun_Alun_Tuban.jpg') center/cover no-repeat;
-            background-size: cover; background-position: center; background-attachment: fixed; color: #ffffff;
+            position: relative; 
+            min-height: 590px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 95px 24px;
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            color: #ffffff;
+            overflow: hidden;
         }
-        .hero-subtitle {
-            font-size: 0.95rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85); margin-bottom: 10px;
+
+        .hero-welcome-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 6px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
-        .hero-title {
-            font-size: 3rem; font-weight: 800; margin-bottom: 14px; line-height: 1.2;
-            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95);
+        .hero-welcome-badge span {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #7dd3fc;
         }
+
+        /* JUDUL ATAS & BAWAH */
+        .hero-title-wrap {
+            margin-bottom: 18px;
+            line-height: 1.15;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+        .title-top {
+            display: block;
+            font-size: 3.3rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        .title-bottom {
+            display: block;
+            font-size: 2.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 50%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
         .hero-desc {
-            font-size: 1.05rem; color: #f8fafc; max-width: 680px; margin: 0 auto 30px auto; line-height: 1.6;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+            font-size: 1.05rem; 
+            color: #f1f5f9; 
+            max-width: 680px; 
+            margin: 0 auto 34px auto; 
+            line-height: 1.65;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            font-weight: 400;
         }
 
         .search-box {
-            display: flex; align-items: center; background: #ffffff; border-radius: 50px;
-            padding: 6px 8px 6px 20px; width: 100%; max-width: 580px; margin: 0 auto 20px auto;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            display: flex; 
+            align-items: center; 
+            background: #ffffff; 
+            border-radius: 50px;
+            padding: 6px 8px 6px 20px; 
+            width: 100%; 
+            max-width: 580px; 
+            margin: 0 auto 24px auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
         .search-box i { color: #64748b; margin-right: 12px; }
         .search-box input { border: none; outline: none; width: 100%; font-size: 0.9rem; color: #1e293b; }
         .search-box button {
-            background: var(--primary); color: white; border: none; padding: 10px 26px;
-            border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--tech-cyan) 100%); 
+            color: white; 
+            border: none; 
+            padding: 11px 26px;
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 0.85rem;
+            cursor: pointer; 
+            transition: all 0.2s ease;
         }
-        .search-box button:hover { background: var(--primary-dark); }
+        .search-box button:hover { 
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            transform: translateY(-1px);
+        }
 
         .popular-tags { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        .popular-tags span { font-size: 0.85rem; color: #ffffff; font-weight: 700; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
+        .popular-tags span { font-size: 0.82rem; color: #ffffff; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
         .tag {
-            background: rgba(15, 23, 42, 0.75); color: #ffffff; font-weight: 600; text-decoration: none;
-            font-size: 0.8rem; padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(6px); transition: 0.3s;
+            background: rgba(15, 23, 42, 0.75); 
+            color: #ffffff; 
+            font-weight: 600; 
+            text-decoration: none;
+            font-size: 0.78rem; 
+            padding: 6px 16px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px); 
+            transition: all 0.2s ease;
         }
-        .tag:hover { background: var(--primary); border-color: var(--primary); }
+        .tag:hover { 
+            background: var(--primary-blue); 
+            border-color: var(--tech-cyan-glow);
+        }
 
-        /* 2. PROFIL GEOGRAFIS & VIDEO TUBAN */
+        /* 4. PROFIL GEOGRAFIS */
         .blue-hero {
-            background: linear-gradient(135deg, #00224f 0%, #004b99 100%);
-            padding: 80px 5%; color: white; display: grid; grid-template-columns: 1.15fr 1fr;
-            gap: 40px; align-items: center;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
+            padding: 85px 6%; 
+            color: white; 
+            display: grid; 
+            grid-template-columns: 1.15fr 1fr;
+            gap: 48px; 
+            align-items: center;
         }
         .badge-pill {
             display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.15);
-            color: #7dd3fc; padding: 6px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px;
+            color: #7dd3fc; padding: 6px 16px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
-        .blue-hero h2 { font-size: 2.5rem; line-height: 1.2; font-weight: 800; margin-bottom: 18px; }
-        .blue-hero h2 span { color: #38bdf8; }
-        .blue-hero p { font-size: 0.95rem; color: #e0f2fe; line-height: 1.65; margin-bottom: 24px; }
+        .blue-hero h2 { font-size: 2.35rem; line-height: 1.25; font-weight: 800; margin-bottom: 18px; letter-spacing: -0.01em; }
+        .blue-hero h2 span { color: #7dd3fc; }
+        .blue-hero p { font-size: 0.95rem; color: #f0f9ff; line-height: 1.7; margin-bottom: 26px; }
 
         .btn-group { display: flex; gap: 14px; }
         .btn-white {
-            background: #0ea5e9; color: white; text-decoration: none; padding: 11px 22px;
-            border-radius: 8px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
+            background: #ffffff; 
+            color: var(--primary-blue-dark); 
+            text-decoration: none; 
+            padding: 11px 22px;
+            border-radius: 8px; 
+            font-weight: 800; 
+            font-size: 0.85rem; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+            transition: 0.25s;
         }
-        .btn-white:hover { background: #0284c7; }
+        .btn-white:hover { background: #f8fafc; transform: translateY(-1px); }
         .btn-outline {
-            background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255, 255, 255, 0.1); 
+            color: white; 
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 11px 22px; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            text-decoration: none;
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            transition: 0.25s;
         }
-        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.2); }
 
-        /* 3. RUANG PELAYANAN UNGGULAN */
-        .section-padding { padding: 80px 5%; text-align: center; }
+        /* 5. DIREKTORI 9 MODUL DENGAN VARIASI WARNA SEGAR */
+        .section-padding { padding: 90px 6%; text-align: center; }
         .section-label {
-            color: var(--primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+            color: var(--primary-blue); font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1.5px; margin-bottom: 10px;
         }
-        .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 12px; color: var(--text-dark); }
-        .section-subtitle { font-size: 0.95rem; color: var(--text-gray); max-width: 650px; margin: 0 auto 50px auto; }
+        .section-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; color: var(--text-dark); letter-spacing: -0.02em; }
+        .section-subtitle { font-size: 0.94rem; color: var(--text-gray); max-width: 650px; margin: 0 auto 52px auto; line-height: 1.65; }
         
-        .cards-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left;
+        .premium-services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
         }
-        .feature-card {
-            background: #ffffff; padding: 30px 24px; border-radius: 12px; border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08); }
-        .icon-box {
-            width: 48px; height: 48px; border-radius: 10px; background: #e0f2fe; color: var(--primary);
-            display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px;
-        }
-        .feature-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
-        .feature-card p { font-size: 0.85rem; color: var(--text-gray); line-height: 1.5; margin-bottom: 20px; }
-        .feature-card a { color: var(--primary); font-size: 0.85rem; font-weight: 700; text-decoration: none; }
-        .feature-card a:hover { text-decoration: underline; }
 
-        /* 4. STRIP STATISTIK HITAM DI BAWAH LAYANAN */
+        .premium-menu-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border-ui);
+            border-radius: 16px;
+            padding: 24px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .premium-menu-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px -4px rgba(2, 132, 199, 0.12);
+        }
+
+        .card-icon-wrap {
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body-wrap { flex: 1; }
+        .card-tag-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .premium-menu-card h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-utama {
+            background: var(--primary-blue);
+            color: white;
+            font-size: 0.62rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .premium-menu-card p {
+            font-size: 0.82rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* 6. STRIP STATISTIK - ELEGAN TIDAK TERLALU GELAP */
         .stats-strip {
-            background: #060a14; padding: 40px 5%; display: grid; grid-template-columns: repeat(4, 1fr);
-            text-align: center; color: white; border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
+            padding: 48px 6%; 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center; 
+            color: white; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .stat-item { text-decoration: none; color: inherit; display: block; transition: 0.2s; }
-        .stat-item:hover { transform: translateY(-3px); }
-        .stat-item h3 { font-size: 2.8rem; font-weight: 800; color: var(--primary-light); }
-        .stat-item p { font-size: 0.88rem; color: #94a3b8; margin-top: 6px; font-weight: 600; }
+        .stat-item { text-decoration: none; color: inherit; display: block; }
+        .stat-item h3 { font-size: 2.8rem; font-weight: 900; color: #38bdf8; }
+        .stat-item p { font-size: 0.88rem; color: #cbd5e1; margin-top: 6px; font-weight: 600; }
 
-        /* 5. ALUR PANDUAN PELAYANAN */
-        .alur-layanan-section { background: #f8fafc; padding: 75px 5%; text-align: center; }
-        .alur-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; text-align: left; }
-        .alur-card {
-            background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 26px 20px;
-            position: relative; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03); transition: 0.2s;
+        /* 7. HUB EKOSISTEM LAYANAN DENGAN BACKGROUND LEBIH CERAH & BERVARIAI */
+        .hub-section-modern {
+            background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+            padding: 95px 6%;
+            position: relative;
         }
-        .alur-card:hover { transform: translateY(-4px); border-color: var(--primary); }
-        .step-num {
-            position: absolute; top: -14px; left: 20px; background: var(--primary); color: white;
-            font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 20px;
-        }
-        .alur-card h5 { font-size: 1.05rem; font-weight: 800; margin: 12px 0 8px 0; color: var(--text-dark); }
-        .alur-card p { font-size: 0.82rem; color: var(--text-gray); line-height: 1.5; }
 
-        /* 6. BERITA TERKINI MODERN */
+        .portal-hub-card {
+            background: #ffffff;
+            border: 1.5px solid var(--border-ui);
+            border-radius: 18px;
+            padding: 26px 18px;
+            text-decoration: none;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .portal-hub-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 30px -4px rgba(0, 0, 0, 0.08);
+        }
+
+        .hub-icon-wrap {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .portal-hub-card h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .portal-hub-card p {
+            font-size: 0.78rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        .hub-link-tag {
+            font-size: 0.74rem;
+            font-weight: 800;
+        }
+
+        /* 8. ALUR STEP CARDS */
+        .step-card-modern {
+            background: #ffffff;
+            border: 1.5px solid var(--border-ui);
+            border-radius: 16px;
+            padding: 26px 20px;
+            position: relative;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+
+        .step-card-modern:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.12);
+        }
+
+        .step-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .step-icon-area {
+            font-size: 1.85rem;
+            margin: 8px 0 14px 0;
+        }
+
+        .step-card-modern h5 {
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .step-card-modern p {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            line-height: 1.55;
+        }
+
+        /* 9. BERITA */
         .news-grid-modern {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 36px; text-align: left;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 36px; text-align: left;
         }
         .news-card-modern {
-            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
+            background: #ffffff; border: 1.5px solid var(--border-ui); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04); transition: all 0.25s ease;
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .news-card-modern:hover {
-            transform: translateY(-6px); box-shadow: 0 16px 30px -6px rgba(0, 0, 0, 0.1); border-color: #cbd5e1;
+            transform: translateY(-5px); box-shadow: 0 16px 30px -4px rgba(2, 132, 199, 0.12); border-color: var(--tech-cyan);
         }
-        .news-thumb-wrap { position: relative; height: 200px; overflow: hidden; }
-        .news-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .news-card-modern:hover .news-thumb-wrap img { transform: scale(1.06); }
+        .news-thumb-wrap { position: relative; height: 190px; overflow: hidden; }
+        .news-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
         .news-date-badge {
             position: absolute; bottom: 12px; right: 12px; background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(6px); color: #f8fafc; font-size: 0.72rem; font-weight: 700;
+            backdrop-filter: blur(6px); color: #f8fafc; font-size: 0.7rem; font-weight: 700;
             padding: 4px 10px; border-radius: 20px;
         }
         .news-body-modern { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
         .news-tag-badge {
-            font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 6px;
             display: inline-block; width: fit-content; margin-bottom: 12px;
         }
         .news-card-modern h4 {
-            font-size: 1.08rem; font-weight: 800; color: #0f172a; line-height: 1.4; margin-bottom: 10px; transition: color 0.2s;
+            font-size: 1.05rem; font-weight: 800; color: var(--text-dark); line-height: 1.4; margin-bottom: 10px;
         }
-        .news-card-modern:hover h4 { color: var(--primary); }
         .news-card-modern p {
             font-size: 0.84rem; color: var(--text-gray); line-height: 1.6; margin-bottom: 18px; flex-grow: 1;
         }
         .news-link-btn {
-            font-size: 0.84rem; font-weight: 700; color: var(--primary); text-decoration: none;
+            font-size: 0.84rem; font-weight: 700; color: var(--primary-blue); text-decoration: none;
             display: inline-flex; align-items: center; gap: 6px;
         }
-        .news-link-btn:hover { text-decoration: underline; }
+        .news-link-btn:hover { text-decoration: underline; color: var(--tech-cyan); }
 
-        /* 7. ASPIRASI MASYARAKAT */
+        /* 10. TESTIMONI */
         .testi-grid-modern {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; text-align: left;
         }
         .testi-card-modern {
-            background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03); position: relative; transition: all 0.3s ease;
+            background: #ffffff; border: 1.5px solid var(--border-ui); border-radius: 16px; padding: 28px 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03); position: relative; transition: all 0.25s ease;
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .testi-card-modern:hover {
-            transform: translateY(-4px); box-shadow: 0 14px 25px -4px rgba(0, 0, 0, 0.08); border-color: #38bdf8;
+            transform: translateY(-4px); box-shadow: 0 14px 24px -4px rgba(2, 132, 199, 0.1); border-color: var(--tech-cyan);
         }
         .quote-icon-bg {
             position: absolute; top: 20px; right: 20px; font-size: 2.2rem; color: #e2e8f0; opacity: 0.5;
         }
         .stars-row { color: #f59e0b; font-size: 0.8rem; margin-bottom: 14px; display: flex; gap: 3px; }
         .testi-card-modern p {
-            font-size: 0.88rem; color: #334155; line-height: 1.6; font-style: italic; position: relative; z-index: 1; margin-bottom: 22px;
+            font-size: 0.88rem; color: #334155; line-height: 1.65; font-style: italic; position: relative; z-index: 1; margin-bottom: 22px;
         }
         .user-meta-modern {
             display: flex; align-items: center; gap: 14px; border-top: 1px solid #f1f5f9; padding-top: 16px;
         }
         .user-meta-modern img {
-            width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-light);
+            width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--tech-cyan);
         }
-        .user-meta-modern h5 { font-size: 0.9rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+        .user-meta-modern h5 { font-size: 0.9rem; font-weight: 800; color: var(--text-dark); line-height: 1.2; }
         .user-meta-modern span { font-size: 0.74rem; color: var(--text-gray); margin-top: 2px; display: block; }
 
-        /* CTA & FOOTER */
-        .cta-banner {
-            background: linear-gradient(135deg, #0284c7 0%, #0f766e 100%);
-            padding: 60px 20px; text-align: center; color: white;
+        /* 11. MAP LOKASI DISKOMINFO TUBAN */
+        .location-section {
+            background: #ffffff;
+            padding: 85px 6%;
         }
-        .cta-banner h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
-        .cta-banner p { font-size: 0.95rem; margin-bottom: 25px; opacity: 0.9; }
+        .location-card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+        .location-info-card {
+            background: #f8fafc;
+            border: 1.5px solid var(--border-ui);
+            border-radius: 20px;
+            padding: 34px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .map-frame-box {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-ui);
+            box-shadow: 0 12px 30px rgba(2, 132, 199, 0.08);
+            min-height: 380px;
+        }
 
-        footer { background: #0b1325; color: #94a3b8; padding: 60px 5% 30px 5%; font-size: 0.85rem; }
+        /* 12. FOOTER ELEGAN & TIDAK MONOTON */
+        footer { 
+            background: #0f172a; 
+            color: #94a3b8; 
+            padding: 70px 6% 30px 6%; 
+            font-size: 0.85rem; 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
+        }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
-        .footer-col h5 { color: white; font-size: 0.95rem; margin-bottom: 16px; }
+        .footer-col h5 { color: white; font-size: 0.95rem; margin-bottom: 18px; font-weight: 800; }
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #94a3b8; text-decoration: none; }
-        .footer-col ul li a:hover { color: #ffffff; }
+        .footer-col ul li { margin-bottom: 11px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
+        .footer-col ul li a:hover { color: var(--tech-cyan-glow); }
 
-        @media (max-width: 992px) {
-            .blue-hero { grid-template-columns: 1fr; }
-            .cards-grid, .alur-grid, .testi-grid-modern, .news-grid-modern { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+        .social-media-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
         }
+        .btn-sosmed {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .btn-sosmed:hover {
+            transform: translateY(-3px);
+            background: var(--primary-blue);
+            border-color: var(--tech-cyan-glow);
+            color: #ffffff;
+        }
+
+        @media (max-width: 1024px) {
+            .blue-hero { grid-template-columns: 1fr; }
+            .premium-services-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-grid-modern, .testi-grid-modern { grid-template-columns: repeat(2, 1fr); }
+            .location-card-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            #alur-layanan .portal-hub-card-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            #alur-layanan .step-grid-row { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
         @media (max-width: 640px) {
             .navbar { display: none; }
-            .hero-title { font-size: 2rem; }
-            .cards-grid, .alur-grid, .stats-strip, .testi-grid-modern, .news-grid-modern, .footer-grid { grid-template-columns: 1fr; }
+            .title-top { font-size: 2.3rem; }
+            .title-bottom { font-size: 1.9rem; }
+            .premium-services-grid, .stats-strip, .news-grid-modern, .testi-grid-modern, .footer-grid { grid-template-columns: 1fr; }
+            #alur-layanan .portal-hub-card-grid { grid-template-columns: 1fr !important; }
+            #alur-layanan .step-grid-row { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP HEADER -->
+    <!-- 1. TOP HEADER RESMI -->
     <header class="top-header">
         <div class="logo-area">
-            <div class="logo-icon"><i class="fa-solid fa-globe"></i></div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png" 
+                 alt="Logo Kabupaten Tuban" 
+                 class="logo-tuban-img"
+                 onerror="this.onerror=null; this.src='https://tubankab.go.id/images/logo.png';">
             <div class="logo-text">
                 <h2>Desa Digital</h2>
-                <p>KABUPATEN TUBAN - JAWA TIMUR</p>
+                <p>Kabupaten Tuban</p>
             </div>
         </div>
         <div class="auth-buttons">
-            <a href="{{ url('/login') }}" class="btn-login">Login</a>
-            <a href="{{ url('/register') }}" class="btn-daftar">Daftar</a>
+            <a href="{{ url('/login') }}" class="btn-login">Masuk</a>
+            <a href="{{ url('/register') }}" class="btn-daftar">Daftar Akun</a>
         </div>
     </header>
 
-    <!-- NAVBAR DENGAN TAUTAN PRESISI -->
+    <!-- 2. NAVBAR BERURUTAN -->
     <nav class="navbar">
         <ul class="nav-links">
-            <li>
-                <a href="#hero-tuban" class="active">
-                    <i class="fa-solid fa-house" style="font-size: 0.8rem; margin-right: 4px;"></i> Home
-                </a>
-            </li>
+            <li><a href="#hero-tuban" class="active">Beranda</a></li>
             <li><a href="#profil-wilayah">Profil Tuban</a></li>
-            <li><a href="#layanan-unggulan">Layanan</a></li>
-            <li><a href="#alur-layanan">Alur Warga</a></li>
-            <li><a href="#tentang-kami">Tentang Kami</a></li>
-            <li><a href="#berita-acara">Berita Terkini</a></li>
-            <li><a href="#aspirasi-warga">Aspirasi</a></li>
-            <li>
-                <a href="{{ url('/webgis') }}" style="color: #38bdf8; font-weight: 700;">
-                    <i class="fa-solid fa-map-location-dot"></i> Peta Spasial (GIS)
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/desa') }}">
-                    <i class="fa-solid fa-table-list" style="font-size: 0.8rem; margin-right: 4px;"></i> Katalog Desa
-                </a>
-            </li>
+            <li><a href="#layanan-unggulan">Layanan & Data</a></li>
+            <li><a href="#statistik-wilayah">Statistik Wilayah</a></li>
+            <li><a href="#alur-layanan">Layanan Terpadu</a></li>
+            <li><a href="#berita-acara">Kabar Daerah</a></li>
+            <li><a href="#aspirasi-warga">Aspirasi Warga</a></li>
+            <li><a href="#lokasi-kominfo">Lokasi Kominfo</a></li>
+            <li><a href="#hubungi-kami">Hubungi Kami</a></li>
         </ul>
         <div class="status-badge">
-            <span class="status-dot"></span> SISTEM INFORMASI DESA AKTIF
+            <span class="status-dot"></span> Sistem Aktif
         </div>
     </nav>
 
-    <!-- 1. HERO UTAMA -->
-    <section id="hero-tuban" class="hero-tuban">
-        <p class="hero-subtitle">SELAMAT DATANG DI</p>
-        <h1 class="hero-title">Desa Digital Kabupaten Tuban</h1>
-        <p class="hero-desc">Digitalisasi Pemerintahan Desa di Kabupaten Tuban untuk pelayanan publik yang cepat, transparan, dan mandiri hingga ke tingkat dusun</p>
+    <!-- 3. HERO UTAMA DENGAN JUDUL ATAS & BAWAH -->
+    <section id="hero-tuban" class="hero-tuban" style="background-image: linear-gradient(rgba(15, 23, 42, 0.65), rgba(2, 132, 199, 0.35)), url('{{ asset('images/alun-alun-tuban.jpg') }}');">
+        
+        <!-- Badge Elegan Modern -->
+        <div class="hero-welcome-badge">
+            <i class="fa-solid fa-circle-nodes" style="color: var(--tech-cyan-glow); font-size: 0.85rem;"></i>
+            <span>Selamat Datang di Portal Resmi</span>
+        </div>
+
+        <!-- JUDUL ATAS & BAWAH SESUAI PERMINTAAN -->
+        <div class="hero-title-wrap">
+            <span class="title-top">Desa Digital</span>
+            <span class="title-bottom">Kabupaten Tuban</span>
+        </div>
+
 
         <form class="search-box" action="{{ url('/desa') }}" method="GET">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="search" placeholder="Cari layanan, informasi dusun, regulasi desa...">
-            <button type="submit">Cari</button>
+            <input type="text" name="search" placeholder="Cari layanan administrasi, regulasi desa, atau informasi fasilitas publik...">
+            <button type="submit">Telusuri</button>
         </form>
 
         <div class="popular-tags">
-            <span>Layanan Terpopuler:</span>
-            <a href="javascript:void(0)" onclick="openLayananModal()" class="tag">Surat Keterangan</a>
-            <a href="{{ url('/webgis') }}" class="tag">Peta Dusun</a>
-            <a href="#layanan-unggulan" class="tag">Portal UMKM</a>
-            <a href="#hubungi-kami" class="tag">Pengaduan Warga</a>
-            <a href="#layanan-unggulan" class="tag">Bantuan Sosial</a>
+            <span>Akses Cepat:</span>
+            <a href="javascript:void(0)" onclick="openLayananModal()" class="tag">Pengurusan Surat</a>
+            <a href="{{ url('/data-spasial') }}" class="tag">Peta Spasial (GIS)</a>
+            <a href="{{ url('/desa') }}" class="tag">Katalog Desa</a>
+            <a href="javascript:void(0)" onclick="openBansosModal()" class="tag">Cek Bansos NIK</a>
+            <a href="javascript:void(0)" onclick="openPbbModal()" class="tag">Bayar e-PBB</a>
         </div>
     </section>
 
-    <!-- 2. PROFIL GEOGRAFIS & VIDEO PROFIL TUBAN -->
+    <!-- 4. PROFIL KABUPATEN TUBAN -->
     <section id="profil-wilayah" class="blue-hero">
         <div>
             <span class="badge-pill">
-                <i class="fa-solid fa-map-location-dot"></i> PROFIL GEOGRAFIS DAERAH
+                <i class="fa-solid fa-compass"></i> PROFIL KABUPATEN TUBAN
             </span>
             <h2>
-                Mengenal Kabupaten Tuban: <span>Bumi Ronggolawe</span> di Gerbang Pesisir Jawa Timur
+                Mengenal Kabupaten Tuban: <span>Bumi Ronggolawe</span> di Gerbang Pesisir Pantura
             </h2>
             <p>
-                Secara geografis, Kabupaten Tuban terletak di pantai utara Jawa Timur pada koordinat 6°40′ - 7°18′ LS dan 111°30′ - 112°00′ BT dengan bentang garis pantai sepanjang 65 km. Wilayah ini menghubungkan sentra ekonomi pesisir pantura, perbukitan kapur karst, hingga kawasan agraris subur di lembah Bengawan Solo yang menaungi 20 kecamatan dan 328 desa/kelurahan.
+                Terbentang di pesisir utara Jawa Timur dengan garis laut sepanjang 65 km, Kabupaten Tuban menghubungkan simpul strategis maritim, kawasan perbukitan kapur, hingga wilayah agraris lembah Bengawan Solo yang menaungi 20 kecamatan dan 328 desa/kelurahan.
             </p>
 
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px;">
-                <div style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12);">
-                    <small style="color: #7dd3fc; font-weight: 700; font-size: 0.7rem; text-transform: uppercase;">Luas Daratan</small>
-                    <h5 style="font-size: 1.05rem; font-weight: 800; margin-top: 2px;">1.839,94 km²</h5>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <small style="color: #7dd3fc; font-weight: 700; font-size: 0.7rem; text-transform: uppercase;">Luas Wilayah</small>
+                    <h5 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px;">1.839,94 km²</h5>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12);">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
                     <small style="color: #7dd3fc; font-weight: 700; font-size: 0.7rem; text-transform: uppercase;">Panjang Pantai</small>
-                    <h5 style="font-size: 1.05rem; font-weight: 800; margin-top: 2px;">65 Km Laut</h5>
+                    <h5 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px;">65 Km Laut</h5>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12);">
-                    <small style="color: #7dd3fc; font-weight: 700; font-size: 0.7rem; text-transform: uppercase;">Batas Wilayah</small>
-                    <h5 style="font-size: 0.95rem; font-weight: 800; margin-top: 2px;">Laut Jawa & Jateng</h5>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <small style="color: #7dd3fc; font-weight: 700; font-size: 0.7rem; text-transform: uppercase;">Administrasi</small>
+                    <h5 style="font-size: 1.05rem; font-weight: 800; margin-top: 4px;">20 Kecamatan</h5>
                 </div>
             </div>
 
             <div class="btn-group">
-                <a href="{{ url('/webgis') }}" class="btn-white">
+                <a href="{{ url('/data-spasial') }}" class="btn-white">
                     <i class="fa-solid fa-map"></i> Buka Peta Spasial Tuban
                 </a>
                 <a href="https://tubankab.go.id" target="_blank" class="btn-outline">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Portal Pemkab Tuban
+                    Portal Resmi Pemkab Tuban
                 </a>
             </div>
         </div>
 
-        <!-- VIDEO EMBED RESMI KABUPATEN TUBAN -->
         <div style="position: relative; width: 100%;">
-            <div style="background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);">
-                
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding: 0 4px;">
-                    <span style="font-size: 0.75rem; color: #7dd3fc; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                        <i class="fa-brands fa-youtube" style="color: #ef4444; font-size: 0.95rem;"></i> Diskominfo-SP Tuban Official
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 14px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+                    <span style="font-size: 0.78rem; color: #7dd3fc; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-brands fa-youtube" style="color: #ef4444; font-size: 1rem;"></i> Diskominfo-SP Tuban Official
                     </span>
-                    <span style="font-size: 0.7rem; color: rgba(255,255,255,0.8); background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 6px;">
-                        Video Profil Daerah
+                    <span style="font-size: 0.7rem; color: #ffffff; background: rgba(0,0,0,0.35); padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15);">
+                        Profil Daerah
                     </span>
                 </div>
 
@@ -411,251 +791,301 @@
                     <iframe 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
                         src="https://www.youtube.com/embed/gPCZo6dKDWM?rel=0" 
-                        title="Video Profil Resmi Kabupaten Tuban - Diskominfo SP Tuban" 
+                        title="Video Profil Resmi Kabupaten Tuban" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
                 </div>
-
-                <div style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.85); padding: 0 4px;">
-                    <span><i class="fa-solid fa-play-circle" style="color: #38bdf8;"></i> Putar langsung profil Bumi Ronggolawe</span>
-                    <a href="https://www.youtube.com/@diskominfotuban865" target="_blank" style="color: #7dd3fc; text-decoration: none; font-weight: 700;">
-                        Kanal Diskominfo &rarr;
-                    </a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 3. RUANG PELAYANAN UNGGULAN -->
-    <section id="layanan-unggulan" class="section-padding">
-        <p class="section-label">LAYANAN UNGGULAN</p>
-        <h3 class="section-title">Solusi Terintegrasi – Untuk Kemajuan Ekosistem Desa</h3>
-        <p class="section-subtitle">Portal terlengkap dalam melayani kebutuhan administrasi warga dan memajukan potensi desa sampai tingkat dusun secara terpadu.</p>
+    <!-- 5. DIREKTORI 9 MODUL LAYANAN ATAU DATA -->
+    <section id="layanan-unggulan" class="section-padding" style="background: var(--bg-tech-gradient);">
+        <p class="section-label">LAYANAN & DATA WILAYAH</p>
+        <h3 class="section-title">Direktori Data & Layanan Administrasi</h3>
+        <p class="section-subtitle">Akses cepat ke pusat data kelembagaan desa, fasilitas umum, sentra komoditas ekonomi, dan infrastruktur wilayah.</p>
 
-        <div class="cards-grid">
-            <div class="feature-card">
-                <div>
-                    <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
-                    <h4>Website Desa & Dusun</h4>
-                    <p>Kanal informasi resmi profil kelurahan, data rukun tetangga/dusun, transparansi anggaran, serta potensi lokal warga.</p>
+        <div class="premium-services-grid">
+            
+            <!-- 1. Desa Utama (Biru Tech) -->
+            <a href="{{ url('/desa') }}" class="premium-menu-card" style="border-left: 4px solid var(--primary-blue);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--tech-cyan) 100%);">
+                    <i class="fa-solid fa-location-dot"></i>
                 </div>
-                <a href="{{ url('/desa') }}">Buka Katalog Desa &rarr;</a>
-            </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--primary-blue);">Master Data</span>
+                    <h4>DESA <span class="badge-utama">UTAMA</span></h4>
+                    <p>Profil umum, data geografis, sejarah, dan struktur kepengurusan desa.</p>
+                </div>
+            </a>
 
-            <div class="feature-card">
-                <div>
-                    <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
-                    <h4>Layanan Digital Warga</h4>
-                    <p>Permohonan surat domisili, SKU, dan pengantar nikah langsung dari rumah warga tingkat RT/RW tanpa perlu antre lama.</p>
+            <!-- 2. Dusun (Teal) -->
+            <a href="{{ url('/desa') }}" class="premium-menu-card" style="border-left: 4px solid var(--var-teal);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);">
+                    <i class="fa-solid fa-house-chimney-window"></i>
                 </div>
-                <a href="javascript:void(0)" onclick="openLayananModal()">Pilih Layanan &rarr;</a>
-            </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--var-teal);">Kewilayahan</span>
+                    <h4>DUSUN</h4>
+                    <p>Data kewilayahan dusun, rukun tetangga (RT), dan demografi lokal.</p>
+                </div>
+            </a>
 
-            <div class="feature-card">
-                <div>
-                    <div class="icon-box"><i class="fa-solid fa-wifi"></i></div>
-                    <h4>Akses Internet Balai Dusun</h4>
-                    <p>Penyediaan jaringan internet gratis di balai warga dan pos dusun untuk menunjang sarana belajar serta UMKM pedesaan.</p>
+            <!-- 3. Kecamatan (Indigo) -->
+            <a href="{{ url('/desa') }}" class="premium-menu-card" style="border-left: 4px solid var(--royal-indigo);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);">
+                    <i class="fa-solid fa-building-columns"></i>
                 </div>
-                <a href="{{ url('/webgis') }}">Cek Sebaran Hotspot &rarr;</a>
-            </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--royal-indigo);">Distrik</span>
+                    <h4>KECAMATAN</h4>
+                    <p>Informasi terintegrasi dengan distrik wilayah administratif Tuban.</p>
+                </div>
+            </a>
 
-            <div class="feature-card">
-                <div>
-                    <div class="icon-box"><i class="fa-solid fa-desktop"></i></div>
-                    <h4>Anjungan Mandiri (Kiosk)</h4>
-                    <p>Mesin pencetak surat pintar di balai desa berbasis NIK untuk kemudahan warga yang belum memiliki ponsel cerdas.</p>
+            <!-- 4. Wisata Desa (Emerald) -->
+            <a href="{{ url('/data-spasial') }}" class="premium-menu-card" style="border-left: 4px solid var(--var-emerald);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                    <i class="fa-solid fa-mountain-sun"></i>
                 </div>
-                <a href="#tentang-kami">Informasi Fasilitas &rarr;</a>
-            </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--var-emerald);">Potensi Alam</span>
+                    <h4>WISATA DESA</h4>
+                    <p>Eksplorasi potensi pariwisata daerah, kebudayaan, dan cagar alam.</p>
+                </div>
+            </a>
+
+            <!-- 5. Pasar Desa (Amber) -->
+            <a href="{{ url('/data-spasial') }}" class="premium-menu-card" style="border-left: 4px solid var(--var-amber);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--var-amber);">Perekonomian</span>
+                    <h4>PASAR DESA</h4>
+                    <p>Daftar pasar rakyat, komoditas utama, pelaku usaha mikro (UMKM).</p>
+                </div>
+            </a>
+
+            <!-- 6. Kantor Desa (Cyan Tech) -->
+            <a href="javascript:void(0)" onclick="openLayananModal()" class="premium-menu-card" style="border-left: 4px solid var(--tech-cyan);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
+                    <i class="fa-solid fa-file-signature"></i>
+                </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--tech-cyan);">Administrasi</span>
+                    <h4>KANTOR DESA</h4>
+                    <p>Sistem layanan administrasi surat menyurat dan perizinan terpadu.</p>
+                </div>
+            </a>
+
+            <!-- 7. WiFi Desa (Sky Blue) -->
+            <a href="{{ url('/data-spasial') }}" class="premium-menu-card" style="border-left: 4px solid #0ea5e9;">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);">
+                    <i class="fa-solid fa-wifi"></i>
+                </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: #0ea5e9;">Infrastruktur</span>
+                    <h4>WIFI DESA</h4>
+                    <p>Pemantauan akses internet publik gratis dan jaringan desa digital.</p>
+                </div>
+            </a>
+
+            <!-- 8. BUMDes (Violet) -->
+            <a href="{{ url('/data-spasial') }}" class="premium-menu-card" style="border-left: 4px solid var(--var-violet);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--var-violet);">Badan Usaha</span>
+                    <h4>BUMDES</h4>
+                    <p>Manajemen unit usaha bersama, keuangan, dan aset milik desa.</p>
+                </div>
+            </a>
+
+            <!-- 9. KKDMP (Rose/Pink) -->
+            <a href="{{ url('/desa') }}" class="premium-menu-card" style="border-left: 4px solid var(--var-rose);">
+                <div class="card-icon-wrap" style="background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <div class="card-body-wrap">
+                    <span class="card-tag-badge" style="color: var(--var-rose);">Perencanaan</span>
+                    <h4>KKDMP</h4>
+                    <p>Rencana Pembangunan Jangka Menengah desa dan dokumen strategis.</p>
+                </div>
+            </a>
+
         </div>
     </section>
 
-    <!-- 4. STRIP STATISTIK HITAM DI BAWAH LAYANAN -->
-    <section class="stats-strip">
+    <!-- 6. ANGKA STATISTIK KESELURUHAN DATA -->
+    <section id="statistik-wilayah" class="stats-strip">
         <div class="stat-item">
             <h3>{{ $totalWifi ?? 448 }}</h3>
-            <p>WiFi Desa & Dusun</p>
+            <p>Titik WiFi Aktif</p>
         </div>
         <a href="{{ url('/desa') }}" class="stat-item">
             <h3>{{ $totalWebDesa ?? 328 }}</h3>
-            <p>Website Desa</p>
+            <p>Portal Desa Terhubung</p>
         </a>
         <div class="stat-item">
             <h3>{{ $totalWisata ?? 35 }}</h3>
-            <p>Wisata Desa</p>
+            <p>Destinasi Wisata</p>
         </div>
         <div class="stat-item">
             <h3>{{ $totalDesaTerdaftar ?? 328 }}</h3>
-            <p>Kantor Desa Terhubung</p>
+            <p>Balai Pelayanan Terdaftar</p>
         </div>
     </section>
 
-    <!-- 5. ALUR PANDUAN PELAYANAN DESA & DUSUN -->
-    <section id="alur-layanan" class="alur-layanan-section">
-        <p class="section-label">PANDUAN PRAKTIS WARGA</p>
-        <h3 class="section-title">Alur Pengurusan Dokumen Cepat Dari Rumah</h3>
-        <p class="section-subtitle">Empat tahapan mudah mengurus administrasi kependudukan tanpa harus berulang kali datang ke balai desa.</p>
-
-        <div class="alur-grid">
-            <div class="alur-card">
-                <span class="step-num">Langkah 1</span>
-                <i class="fa-solid fa-fingerprint" style="font-size: 1.8rem; color: #0284c7;"></i>
-                <h5>Pilih Format Dokumen</h5>
-                <p>Buka portal Desa Digital dan pilih jenis permohonan surat (SKU, Domisili, SKCK, atau SKTM).</p>
-            </div>
-            <div class="alur-card">
-                <span class="step-num">Langkah 2</span>
-                <i class="fa-solid fa-file-circle-check" style="font-size: 1.8rem; color: #0d9488;"></i>
-                <h5>Lengkapi Persyaratan</h5>
-                <p>Siapkan berkas fotokopi KTP, KK, dan pengantar RT/RW setempat sesuai instruksi panduan.</p>
-            </div>
-            <div class="alur-card">
-                <span class="step-num">Langkah 3</span>
-                <i class="fa-solid fa-user-check" style="font-size: 1.8rem; color: #f59e0b;"></i>
-                <h5>Validasi Operator</h5>
-                <p>Petugas balai desa memeriksa kelengkapan data secara terpadu melalui sistem satu pintu.</p>
-            </div>
-            <div class="alur-card">
-                <span class="step-num">Langkah 4</span>
-                <i class="fa-solid fa-print" style="font-size: 1.8rem; color: #10b981;"></i>
-                <h5>Ambil / Cetak Mandiri</h5>
-                <p>Dokumen bertanda barcode resmi siap diambil di balai desa atau dicetak langsung lewat Kiosk mesin pintar.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. SECTION TENTANG KAMI -->
-    <section id="tentang-kami" class="about-section-wrap" style="padding: 85px 5%; background: #ffffff;">
-        <div style="text-align: center; max-width: 750px; margin: 0 auto 50px auto;">
-            <p class="section-label">PROFIL & TATA KELOLA WILAYAH</p>
-            <h3 class="section-title">Pemerataan Digital Bumi Ronggolawe</h3>
-            <p style="font-size: 0.95rem; color: #64748b; line-height: 1.6;">
-                Inisiatif terpadu Pemerintah Kabupaten Tuban dalam menyatukan sebaran geografis pesisir utara, perbukitan kapur, hingga bantaran Bengawan Solo dalam satu integrasi data kependudukan dan pelayanan publik.
-            </p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 24px; text-align: left; align-items: stretch;">
+    <!-- 7. HUB EKOSISTEM LAYANAN & ALUR PENGURUSAN DOKUMEN -->
+    <section id="alur-layanan" class="hub-section-modern">
+        
+        <div style="max-width: 1240px; margin: 0 auto;">
             
-            <!-- KARTU 1: FUNGSI DISKOMINFO SP KABUPATEN TUBAN -->
-            <div style="background: #0f172a; color: white; border-radius: 16px; padding: 32px 26px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);">
-                <div>
-                    <div style="width: 48px; height: 48px; background: rgba(2, 132, 199, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: #38bdf8; margin-bottom: 20px;">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
-                    <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Peran & Otoritas</span>
-                    <h4 style="font-size: 1.25rem; font-weight: 800; margin: 6px 0 14px 0; line-height: 1.3;">Diskominfo SP Kabupaten Tuban</h4>
-                    <p style="font-size: 0.84rem; color: #94a3b8; line-height: 1.6; margin-bottom: 18px;">
-                        Dinas Komunikasi dan Informatika, Statistik dan Persandian berperan sebagai tulang punggung arsitektur SPBE, pengelola integrasi satu data daerah, keamanan siber persandian, serta penyedia infrastruktur jaringan fiber optic dan WiFi gratis hingga balai warga.
-                    </p>
-                    <ul style="list-style: none; padding: 0; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 8px;">
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e; margin-right: 8px;"></i> Tata Kelola Satu Data Tuban Terpadu</li>
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e; margin-right: 8px;"></i> Jaringan Internet & WiFi Publik Pelosok</li>
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e; margin-right: 8px;"></i> Keamanan Data Kependudukan & Siber</li>
-                    </ul>
-                </div>
-
-                <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 18px; margin-top: 24px; font-size: 0.78rem; color: #94a3b8;">
-                    <i class="fa-solid fa-location-dot" style="color: #38bdf8; margin-right: 6px;"></i> Kantor: Jl. Kartini No. 2, Kabupaten Tuban
-                </div>
+            <div style="text-align: center; max-width: 720px; margin: 0 auto 52px auto;">
+                <span style="background: #e0f2fe; color: var(--primary-blue-dark); padding: 6px 18px; border-radius: 30px; font-size: 0.74rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; display: inline-block; margin-bottom: 12px; border: 1px solid #bae6fd;">
+                    Inovasi Pelayanan Terpadu
+                </span>
+                <h2 style="font-size: 2.3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 12px; color: var(--text-dark);">
+                    Ekosistem Layanan Publik Terintegrasi
+                </h2>
+                <p style="font-size: 0.94rem; color: var(--text-gray); line-height: 1.65;">
+                    Portal terpadu pengurusan berkas kependudukan mandiri, pemetaan geospasial, pemantauan CCTV publik, dan kemudahan pembayaran pajak daerah.
+                </p>
             </div>
 
-            <!-- KARTU 2: GEOGRAFIS & CAKUPAN LOKASI -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                    <div style="width: 48px; height: 48px; background: #e0f2fe; color: #0284c7; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px;">
+            <!-- 5 Hub Pilihan Dengan Desain Terang & Ikon Berwarna -->
+            <div class="portal-hub-card-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 55px;">
+                
+                <!-- 1. Website Desa -->
+                <a href="{{ url('/desa') }}" class="portal-hub-card">
+                    <div class="hub-icon-wrap" style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--tech-cyan) 100%);">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h4>Website Desa</h4>
+                    <p>Katalog profil kelurahan dan transparansi informasi publik desa.</p>
+                    <span class="hub-link-tag" style="color: var(--primary-blue);">Buka Katalog &rarr;</span>
+                </a>
+
+                <!-- 2. Data Spasial -->
+                <a href="{{ url('/data-spasial') }}" class="portal-hub-card">
+                    <div class="hub-icon-wrap" style="background: linear-gradient(135deg, #0d9488 0%, #10b981 100%);">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
-                    <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Geospasial Wilayah</span>
-                    <h4 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 6px 0 12px 0;">Cakupan Administrasi</h4>
-                    <p style="font-size: 0.84rem; color: #64748b; line-height: 1.6; margin-bottom: 18px;">
-                        Kabupaten Tuban memiliki bentang geografis pesisir sepanjang 65 km di utara Jawa serta kawasan agraris subur, menaungi ratusan titik pemerintahan lokal.
-                    </p>
-
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <div style="background: #f8fafc; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.8rem; color: #475569; font-weight: 600;">Luas Wilayah Daratan</span>
-                            <strong style="font-size: 0.88rem; color: #0f172a;">1.839,94 km²</strong>
-                        </div>
-                        <div style="background: #f8fafc; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.8rem; color: #475569; font-weight: 600;">Jumlah Kecamatan</span>
-                            <strong style="font-size: 0.88rem; color: #0f172a;">20 Kecamatan</strong>
-                        </div>
-                        <div style="background: #f8fafc; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.8rem; color: #475569; font-weight: 600;">Desa & Kelurahan</span>
-                            <strong style="font-size: 0.88rem; color: #0f172a;">311 Desa / 17 Kelurahan</strong>
-                        </div>
-                        <div style="background: #f8fafc; padding: 10px 14px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 0.8rem; color: #475569; font-weight: 600;">Sebaran Wilayah Dusun</span>
-                            <strong style="font-size: 0.88rem; color: #0284c7;">1.142 Dusun</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="{{ url('/webgis') }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.84rem; font-weight: 700; color: #0284c7; text-decoration: none; margin-top: 20px;">
-                    Jelajahi Peta Spasial Tuban &rarr;
+                    <h4>Data Spasial</h4>
+                    <p>Peta geospasial sebaran WiFi, pasar, kantor desa, dan BUMDes.</p>
+                    <span class="hub-link-tag" style="color: #0d9488;">Jelajahi Peta &rarr;</span>
                 </a>
+
+                <!-- 3. Surat Desa -->
+                <a href="javascript:void(0)" onclick="openLayananModal()" class="portal-hub-card">
+                    <div class="hub-icon-wrap" style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h4>Surat Desa</h4>
+                    <p>Permohonan SKU, domisili, dan pengantar nikah mandiri.</p>
+                    <span class="hub-link-tag" style="color: #d97706;">Ajukan Surat &rarr;</span>
+                </a>
+
+                <!-- 4. CCTV Wilayah -->
+                <a href="javascript:void(0)" onclick="openCctvModal()" class="portal-hub-card">
+                    <div class="hub-icon-wrap" style="background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <h4>CCTV Wilayah</h4>
+                    <p>Pantauan langsung titik keramaian publik dan keamanan balai warga.</p>
+                    <span class="hub-link-tag" style="color: #e11d48;">Live Pantau &rarr;</span>
+                </a>
+
+                <!-- 5. e-PBB Desa -->
+                <a href="javascript:void(0)" onclick="openPbbModal()" class="portal-hub-card">
+                    <div class="hub-icon-wrap" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <h4>e-PBB Desa</h4>
+                    <p>Cek tagihan dan pembayaran pajak PBB-P2 secara nontunai.</p>
+                    <span class="hub-link-tag" style="color: #7c3aed;">Cek Tagihan &rarr;</span>
+                </a>
+
             </div>
 
-            <!-- KARTU 3: STATISTIK POPULASI & STATUS DOMISILI WARGA -->
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                    <div style="width: 48px; height: 48px; background: #ccfbf1; color: #0d9488; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 20px;">
-                        <i class="fa-solid fa-users-rectangle"></i>
+            <!-- Alur Pengurusan Dokumen Terang & Bersih -->
+            <div style="background: #ffffff; border: 1.5px solid var(--border-ui); border-radius: 20px; padding: 40px 32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; border-bottom: 1px solid var(--border-ui); padding-bottom: 18px;">
+                    <div>
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-dark);">Alur Pengurusan Dokumen Kependudukan</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-gray); margin-top: 4px;">Empat langkah ringkas mengurus administrasi desa tanpa perlu antre lama.</p>
                     </div>
-                    <span style="font-size: 0.72rem; color: #0d9488; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Demografi Penduduk</span>
-                    <h4 style="font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 6px 0 12px 0;">Populasi & Domisili</h4>
-                    <p style="font-size: 0.84rem; color: #64748b; line-height: 1.6; margin-bottom: 18px;">
-                        Monitoring kepadatan penduduk dan kepemilikan dokumen administrasi kependudukan (KTP-el/KK) warga Kabupaten Tuban.
-                    </p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: center;">
-                            <span style="font-size: 0.7rem; color: #64748b; font-weight: 700;">Total Populasi</span>
-                            <h5 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-top: 4px;">1,25 Juta</h5>
-                            <span style="font-size: 0.65rem; color: #0d9488;">Jiwa Penduduk</span>
-                        </div>
-                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: center;">
-                            <span style="font-size: 0.7rem; color: #64748b; font-weight: 700;">Kepala Keluarga</span>
-                            <h5 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-top: 4px;">412.000+</h5>
-                            <span style="font-size: 0.65rem; color: #0d9488;">Kartu Keluarga (KK)</span>
-                        </div>
-                    </div>
-
-                    <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 12px 14px; font-size: 0.78rem; color: #065f46; line-height: 1.5;">
-                        <i class="fa-solid fa-id-card" style="margin-right: 6px;"></i>
-                        <strong>Layanan Domisili Cepat:</strong> Pengurusan surat pindah domisili, permohonan akta, dan keterangan kependudukan terhubung dengan Disdukcapil Tuban secara daring.
-                    </div>
+                    <span style="font-size: 0.78rem; color: var(--primary-blue-dark); background: #e0f2fe; padding: 6px 14px; border-radius: 20px; font-weight: 700;">
+                        Proses: 5–15 Menit
+                    </span>
                 </div>
 
-                <a href="javascript:void(0)" onclick="openLayananModal()" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.84rem; font-weight: 700; color: #0d9488; text-decoration: none; margin-top: 20px;">
-                    Cek Persyaratan Surat Domisili &rarr;
-                </a>
+                <div class="step-grid-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+                    
+                    <div class="step-card-modern">
+                        <div class="step-badge" style="background: var(--primary-blue);">Langkah 1</div>
+                        <div class="step-icon-area" style="color: var(--primary-blue);">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h5>Pilih Dokumen</h5>
+                        <p>Tentukan jenis surat (SKU, Keterangan Domisili, Pengantar SKCK, atau SKTM).</p>
+                    </div>
+
+                    <div class="step-card-modern">
+                        <div class="step-badge" style="background: var(--var-teal);">Langkah 2</div>
+                        <div class="step-icon-area" style="color: var(--var-teal);">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <h5>Unggah Persyaratan</h5>
+                        <p>Lampirkan foto KTP, Kartu Keluarga, dan surat pengantar RT/RW setempat.</p>
+                    </div>
+
+                    <div class="step-card-modern">
+                        <div class="step-badge" style="background: var(--var-amber);">Langkah 3</div>
+                        <div class="step-icon-area" style="color: var(--var-amber);">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <h5>Validasi Data</h5>
+                        <p>Operator balai desa memeriksa keabsahan berkas melalui dashboard terpadu.</p>
+                    </div>
+
+                    <div class="step-card-modern">
+                        <div class="step-badge" style="background: var(--var-emerald);">Langkah 4</div>
+                        <div class="step-icon-area" style="color: var(--var-emerald);">
+                            <i class="fa-solid fa-print"></i>
+                        </div>
+                        <h5>Cetak Mandiri</h5>
+                        <p>Dokumen ber-barcode resmi siap diunduh dari rumah atau diambil di balai desa.</p>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
+
     </section>
 
-    <!-- 7. SECTION BERITA TERKINI MODERN -->
-    <section id="berita-acara" class="section-padding" style="background: #f8fafc;">
-        <p class="section-label">KABAR TERKINI</p>
-        <h3 class="section-title">Berita & Informasi Seputar Desa Digital</h3>
-        <p class="section-subtitle">Kilas perkembangan transformasi pelayanan digital, penguatan jaringan, serta potensi komoditas wilayah Kabupaten Tuban.</p>
+    <!-- 8. BERITA ACARA ATAU INFORMASI DAERAH TUBAN -->
+    <section id="berita-acara" class="section-padding" style="background: #ffffff;">
+        <p class="section-label">PUBLIKASI RESMI DAERAH</p>
+        <h3 class="section-title">Kabar Terkini Bumi Ronggolawe</h3>
+        <p class="section-subtitle">Kilas perkembangan transformasi layanan digital, infrastruktur pedesaan, serta perekonomian Kabupaten Tuban.</p>
 
         <div class="news-grid-modern">
             <div class="news-card-modern">
                 <div class="news-thumb-wrap">
                     <img src="https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?q=80&w=600&auto=format&fit=crop" alt="Perluasan Fiber Optik">
-                    <span class="news-date-badge"><i class="fa-regular fa-clock" style="margin-right: 4px;"></i> 07 Sep 2026</span>
+                    <span class="news-date-badge">07 Sep 2026</span>
                 </div>
                 <div class="news-body-modern">
-                    <span class="news-tag-badge" style="background: #e0f2fe; color: #0284c7;">
-                        <i class="fa-solid fa-tower-broadcast"></i> Infrastruktur
-                    </span>
-                    <h4>Perluasan Jaringan Fiber Optik ke Wilayah Pesisir Pantura</h4>
-                    <p>Pemerintah daerah mempercepat integrasi koneksi pita lebar untuk mendukung digitalisasi transaksi nelayan dan kantor pelayanan desa pesisir.</p>
+                    <span class="news-tag-badge" style="background: #e0f2fe; color: var(--primary-blue);">Infrastruktur</span>
+                    <h4>Perluasan Jaringan Fiber Optik ke Pesisir Pantura</h4>
+                    <p>Pemerintah daerah mempercepat integrasi koneksi pita lebar untuk mendukung digitalisasi transaksi nelayan dan kantor desa.</p>
                     <a href="{{ url('/desa') }}" class="news-link-btn">Baca Selengkapnya &rarr;</a>
                 </div>
             </div>
@@ -663,14 +1093,12 @@
             <div class="news-card-modern">
                 <div class="news-thumb-wrap">
                     <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop" alt="Bimtek Literasi Digital">
-                    <span class="news-date-badge"><i class="fa-regular fa-clock" style="margin-right: 4px;"></i> 04 Sep 2026</span>
+                    <span class="news-date-badge">04 Sep 2026</span>
                 </div>
                 <div class="news-body-modern">
-                    <span class="news-tag-badge" style="background: #ccfbf1; color: #0d9488;">
-                        <i class="fa-solid fa-chalkboard-user"></i> Pelatihan SDM
-                    </span>
-                    <h4>Bimtek Literasi Digital untuk Seluruh Operator Balai Desa</h4>
-                    <p>Peningkatan kecakapan operasional sistem administrasi persuratan mandiri guna memastikan efisiensi pelayanan tanpa hambatan teknis.</p>
+                    <span class="news-tag-badge" style="background: #ccfbf1; color: var(--var-teal);">Pelatihan SDM</span>
+                    <h4>Bimtek Pengelolaan Sistem Informasi Aparatur Desa</h4>
+                    <p>Peningkatan kecakapan operasional aparatur balai desa guna memastikan efisiensi pelayanan administrasi mandiri.</p>
                     <a href="{{ url('/desa') }}" class="news-link-btn">Baca Selengkapnya &rarr;</a>
                 </div>
             </div>
@@ -678,42 +1106,36 @@
             <div class="news-card-modern">
                 <div class="news-thumb-wrap">
                     <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=600&auto=format&fit=crop" alt="Wisata dan QRIS">
-                    <span class="news-date-badge"><i class="fa-regular fa-clock" style="margin-right: 4px;"></i> 01 Sep 2026</span>
+                    <span class="news-date-badge">01 Sep 2026</span>
                 </div>
                 <div class="news-body-modern">
-                    <span class="news-tag-badge" style="background: #fef3c7; color: #d97706;">
-                        <i class="fa-solid fa-qrcode"></i> Perekonomian
-                    </span>
-                    <h4>Wisata Alam Terpadu Manfaatkan Tiket Masuk Berbasis QRIS</h4>
-                    <p>Penerapan pembayaran nontunai sukses meningkatkan transparansi pendapatan asli desa dari destinasi wisata unggulan masyarakat.</p>
+                    <span class="news-tag-badge" style="background: #fef3c7; color: var(--var-amber);">Perekonomian</span>
+                    <h4>Destinasi Wisata Desa Adopsi Tiket Non-Tunai QRIS</h4>
+                    <p>Penerapan transaksi nontunai meningkatkan transparansi penerimaan pendapatan asli desa dari sektor pariwisata lokal.</p>
                     <a href="{{ url('/desa') }}" class="news-link-btn">Baca Selengkapnya &rarr;</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. SECTION ASPIRASI MASYARAKAT MODERN -->
-    <section id="aspirasi-warga" class="section-padding" style="background: #ffffff;">
-        <p class="section-label">ASPIRASI MASYARAKAT</p>
-        <h3 class="section-title">Apa Kata Mereka Tentang Desa Digital?</h3>
-        <p class="section-subtitle">Kepuasan masyarakat desa atas keterbukaan informasi dan kecepatan pengurusan dokumen mandiri.</p>
+    <!-- 9. ASPIRASI DAN TANGGAPAN WARGA -->
+    <section id="aspirasi-warga" class="section-padding" style="background: #f8fafc;">
+        <p class="section-label">SUARA MASYARAKAT</p>
+        <h3 class="section-title">Aspirasi & Tanggapan Warga</h3>
+        <p class="section-subtitle">Testimoni langsung masyarakat Kabupaten Tuban dalam memanfaatkan ekosistem digital terpadu.</p>
 
         <div class="testi-grid-modern">
             <div class="testi-card-modern">
                 <i class="fa-solid fa-quote-right quote-icon-bg"></i>
                 <div class="stars-row">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <p>"Pengurusan surat keterangan domisili usaha UMKM saya selesai dalam hitungan menit tanpa perlu izin meninggalkan pekerjaan seharian ke balai desa."</p>
+                <p>"Pengurusan surat izin domisili usaha saya selesai dalam hitungan menit tanpa perlu meninggalkan warung seharian."</p>
                 <div class="user-meta-modern">
                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=120&auto=format&fit=crop" alt="H. Dwi Santoso">
                     <div>
                         <h5>H. Dwi Santoso</h5>
-                        <span>Pelaku UMKM Kerajinan Pesisir</span>
+                        <span>Pelaku UMKM Pesisir</span>
                     </div>
                 </div>
             </div>
@@ -721,18 +1143,14 @@
             <div class="testi-card-modern">
                 <i class="fa-solid fa-quote-right quote-icon-bg"></i>
                 <div class="stars-row">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <p>"Portal website ini sangat transparan dalam menampilkan rincian realisasi dana desa dan progres pengerjaan jalan paving antar dusun secara gamblang."</p>
+                <p>"Transparansi anggaran desa dan progres paving jalan dusun kini bisa dipantau secara terbuka oleh seluruh warga."</p>
                 <div class="user-meta-modern">
                     <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=120&auto=format&fit=crop" alt="Eko Susanto">
                     <div>
                         <h5>Eko Susanto</h5>
-                        <span>Tokoh Warga Dusun Krajan</span>
+                        <span>Tokoh Warga Dusun</span>
                     </div>
                 </div>
             </div>
@@ -740,129 +1158,251 @@
             <div class="testi-card-modern">
                 <i class="fa-solid fa-quote-right quote-icon-bg"></i>
                 <div class="stars-row">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <p>"Anak-anak sekolah di pelosok dusun kini dapat menikmati akses WiFi gratis di balai warga untuk mengerjakan tugas dan belajar pelajaran daring."</p>
+                <p>"Akses WiFi gratis di balai warga sangat meringankan biaya kuota untuk anak-anak kami saat belajar daring."</p>
                 <div class="user-meta-modern">
                     <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=120&auto=format&fit=crop" alt="Siti Rahmawati">
                     <div>
                         <h5>Siti Rahmawati</h5>
-                        <span>Tenaga Pendidik Pedesaan</span>
+                        <span>Pendidik Pedesaan</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 9. BANNER CTA -->
-    <section class="cta-banner">
-        <h2>Siap Membawa Desa Anda Menuju Era Digital Cerdas?</h2>
-        <p>Gabungkan layanan administrasi kependudukan dan transparansi publik dalam satu genggaman tangan.</p>
-        <div class="btn-group" style="justify-content: center;">
-            <a href="{{ url('/desa') }}" class="btn-white" style="background: white; color: var(--primary); font-weight: 700;">Lihat Katalog Desa</a>
-            <a href="#tentang-kami" class="btn-outline">Panduan Layanan</a>
+    <!-- 10. ALOKASI LOKASI DISKOMINFO SP TUBAN -->
+    <section id="lokasi-kominfo" class="location-section">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 48px auto;">
+            <p class="section-label">LOKASI KEDINASAN</p>
+            <h3 class="section-title">Kantor Diskominfo SP Kabupaten Tuban</h3>
+            <p class="section-subtitle">Pusat tata kelola teknologi informasi, statistik daerah, persandian, dan pengelolaan ekosistem Desa Digital Kabupaten Tuban.</p>
+        </div>
+
+        <div class="location-card-grid">
+            <div class="location-info-card">
+                <div>
+                    <span style="font-size: 0.72rem; color: var(--primary-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Alamat Kantor</span>
+                    <h4 style="font-size: 1.28rem; font-weight: 800; color: var(--text-dark); margin: 6px 0 14px 0;">Dinas Komunikasi, Informatika, Statistik dan Persandian</h4>
+                    
+                    <p style="font-size: 0.88rem; color: #475569; line-height: 1.6; margin-bottom: 20px;">
+                        <i class="fa-solid fa-location-dot" style="color: var(--primary-blue); margin-right: 8px;"></i>
+                        Jl. Kartini No. 2, Kutorejo, Kec. Tuban, Kabupaten Tuban, Jawa Timur 62311
+                    </p>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.84rem; color: #334155; margin-bottom: 24px;">
+                        <div><i class="fa-regular fa-clock" style="color: var(--primary-blue); margin-right: 8px;"></i> <strong>Jam Operasional:</strong> Senin – Jumat (07.30 – 16.00 WIB)</div>
+                        <div><i class="fa-solid fa-phone" style="color: var(--primary-blue); margin-right: 8px;"></i> <strong>Telepon:</strong> (0356) 321522</div>
+                        <div><i class="fa-solid fa-envelope" style="color: var(--primary-blue); margin-right: 8px;"></i> <strong>Email:</strong> diskominfo@tubankab.go.id</div>
+                    </div>
+                </div>
+
+                <a href="https://maps.google.com/?q=Dinas+Komunikasi+dan+Informatika+Kabupaten+Tuban" target="_blank" class="btn-white" style="background: var(--primary-blue); color: white; justify-content: center; width: 100%;">
+                    <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Rute Google Maps
+                </a>
+            </div>
+
+            <!-- Google Maps Embed Diskominfo Tuban -->
+            <div class="map-frame-box">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2783857500585!2d112.06014457499708!3d-6.893196993106037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e779a528e57929d%3A0x6bce98799bb52f75!2sDinas%20Komunikasi%20dan%20Informatika%20Kabupaten%20Tuban!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; min-height: 380px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
     </section>
 
-    <!-- 10. FOOTER -->
+    <!-- 11. HUBUNGI KAMI & SOSIAL MEDIA -->
     <footer id="hubungi-kami">
         <div class="footer-grid">
             <div>
-                <h5 style="font-size: 1.2rem; margin-bottom: 12px; color: white;">Desa Digital Kabupaten Tuban</h5>
-                <p>Inisiatif terpadu menuju tata kelola pemerintahan desa yang akuntabel, efisien, dan melayani masyarakat seutuhnya.</p>
+                <h5 style="font-size: 1.2rem; color: white;">Desa Digital Kabupaten Tuban</h5>
+                <p style="line-height: 1.6; margin-bottom: 16px;">
+                    Portal pemerintahan terpadu yang memadukan layanan administrasi kependudukan, pengawasan digital, dan penyebarluasan potensi desa demi kemakmuran bersama masyarakat Kabupaten Tuban.
+                </p>
+
+                <div class="social-media-pills">
+                    <a href="https://www.instagram.com/diskominfosp_tuban" target="_blank" class="btn-sosmed" title="Instagram Resmi">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@diskominfotuban" target="_blank" class="btn-sosmed" title="TikTok Resmi">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@diskominfotuban865" target="_blank" class="btn-sosmed" title="YouTube Resmi">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://twitter.com/kominfotuban" target="_blank" class="btn-sosmed" title="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20Desa%20Digital%20Tuban..." target="_blank" class="btn-sosmed" title="WhatsApp Siaga">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
             </div>
+
             <div class="footer-col">
-                <h5>Menu Pintas</h5>
+                <h5>Navigasi Halaman</h5>
                 <ul>
-                    <li><a href="{{ url('/') }}">Beranda</a></li>
-                    <li><a href="{{ url('/desa') }}">Data Desa</a></li>
-                    <li><a href="{{ url('/webgis') }}">Peta WebGIS</a></li>
-                    <li><a href="#layanan-unggulan">Layanan Administrasi</a></li>
+                    <li><a href="#hero-tuban">Beranda Utama</a></li>
+                    <li><a href="#profil-wilayah">Profil Kabupaten</a></li>
+                    <li><a href="#layanan-unggulan">Direktori Layanan</a></li>
+                    <li><a href="#statistik-wilayah">Statistik Wilayah</a></li>
+                    <li><a href="{{ url('/data-spasial') }}">Peta Data Spasial</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
-                <h5>Informasi Publik</h5>
+                <h5>Layanan Publik</h5>
                 <ul>
-                    <li><a href="#">Regulasi & Perdes</a></li>
-                    <li><a href="#">Maklumat Pelayanan</a></li>
-                    <li><a href="#hubungi-kami">Pengaduan Online</a></li>
+                    <li><a href="javascript:void(0)" onclick="openLayananModal()">E-Surat Mandiri</a></li>
+                    <li><a href="javascript:void(0)" onclick="openBansosModal()">Cek Penerima Bansos</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPbbModal()">Pelunasan e-PBB</a></li>
+                    <li><a href="https://www.lapor.go.id" target="_blank">Aduan SP4N LAPOR!</a></li>
+                    <li><a href="{{ url('/desa') }}">Katalog Profil Desa</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
-                <h5>Kontak Resmi</h5>
-                <p><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> (0356) 123456</p>
-                <p style="margin-top: 8px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> halo@tubankab.go.id</p>
+                <h5>Kontak Kedinasan</h5>
+                <p><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> (0356) 321522</p>
+                <p style="margin-top: 8px;"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> diskominfo@tubankab.go.id</p>
+                <p style="margin-top: 8px;"><i class="fa-solid fa-building" style="margin-right: 8px;"></i> Gedung Pemkab Tuban Lt. 2</p>
+                <p style="margin-top: 8px;"><i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i> Jl. Kartini No. 2, Tuban 62311</p>
             </div>
         </div>
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 20px; text-align: center;">
-            <p>&copy; 2026 Pemerintah Desa Digital Kabupaten Tuban. Seluruh hak cipta dilindungi.</p>
+
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 22px; text-align: center; font-size: 0.82rem;">
+            <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
         </div>
     </footer>
 
-    <!-- MODAL LAYANAN PERSURATAN RAMAH WARGA (BEBAS LOGIN) -->
-    <div id="layananModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
-        <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35); position: relative; max-height: 90vh; overflow-y: auto;">
-            <button onclick="closeLayananModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; color: #64748b; font-size: 1.1rem;">
+    <!-- MODAL 1: LAYANAN PERSURATAN -->
+    <div id="layananModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: white; border-radius: 18px; max-width: 580px; width: 100%; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35); position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeLayananModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #64748b;">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div style="text-align: center; margin-bottom: 20px;">
-                <div style="width: 52px; height: 52px; background: #e0f2fe; color: var(--primary); border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 10px;">
-                    <i class="fa-solid fa-file-pen"></i>
-                </div>
-                <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a;">Layanan Surat Desa Mandiri</h3>
-                <p style="font-size: 0.85rem; color: #64748b;">Pilih jenis surat di bawah untuk menyiapkan persyaratan:</p>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Layanan Surat Desa Mandiri</h3>
+                <p style="font-size: 0.84rem; color: #64748b; margin-top: 4px;">Pilih format permohonan surat kependudukan di bawah ini:</p>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
-                <!-- SKU -->
                 <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
-                        <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">Surat Keterangan Usaha (SKU)</h4>
-                        <p style="font-size: 0.78rem; color: #64748b;">Syarat: KTP, KK, & Bukti Usaha UMKM</p>
+                        <h4 style="font-size: 0.92rem; font-weight: 700; color: #0f172a;">Surat Keterangan Usaha (SKU)</h4>
+                        <p style="font-size: 0.76rem; color: #64748b;">Syarat: Fotokopi KTP, KK & Foto Tempat Usaha</p>
                     </div>
-                    <button onclick="pilihSurat('Surat Keterangan Usaha (SKU)')" style="background: #0284c7; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Pilih Layanan</button>
+                    <button onclick="pilihSurat('Surat Keterangan Usaha (SKU)')" style="background: var(--primary-blue); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">Pilih</button>
                 </div>
 
-                <!-- Domisili -->
                 <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
-                        <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">Surat Keterangan Domisili</h4>
-                        <p style="font-size: 0.78rem; color: #64748b;">Syarat: Pengantar RT/RW Dusun & Fotokopi KTP</p>
+                        <h4 style="font-size: 0.92rem; font-weight: 700; color: #0f172a;">Surat Keterangan Domisili</h4>
+                        <p style="font-size: 0.76rem; color: #64748b;">Syarat: Pengantar RT/RW Setempat & Fotokopi KTP</p>
                     </div>
-                    <button onclick="pilihSurat('Surat Keterangan Domisili')" style="background: #0d9488; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Pilih Layanan</button>
+                    <button onclick="pilihSurat('Surat Keterangan Domisili')" style="background: var(--var-teal); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">Pilih</button>
                 </div>
 
-                <!-- SKCK -->
                 <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
-                        <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a;">Pengantar SKCK Desa</h4>
-                        <p style="font-size: 0.78rem; color: #64748b;">Syarat: Fotokopi KK, KTP, & Pas Foto 4x6</p>
+                        <h4 style="font-size: 0.92rem; font-weight: 700; color: #0f172a;">Pengantar SKCK Desa</h4>
+                        <p style="font-size: 0.76rem; color: #64748b;">Syarat: Fotokopi KK, KTP & Pas Foto 4x6</p>
                     </div>
-                    <button onclick="pilihSurat('Pengantar SKCK Desa')" style="background: #d97706; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Pilih Layanan</button>
+                    <button onclick="pilihSurat('Pengantar SKCK Desa')" style="background: var(--var-amber); color: white; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">Pilih</button>
                 </div>
             </div>
 
-            <!-- Bantuan WA Petugas Desa -->
-            <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 12px; padding: 14px; display: flex; align-items: center; justify-content: space-between;">
-                <div>
-                    <h5 style="font-size: 0.88rem; font-weight: 700; color: #065f46;">Butuh Bantuan Operator Balai Desa?</h5>
-                    <p style="font-size: 0.75rem; color: #047857;">Tanyakan syarat surat langsung ke petugas pelayanan via WhatsApp.</p>
-                </div>
-                <a href="https://wa.me/6281234567890?text=Halo%20Petugas%20Desa,%20saya%20warga%20ingin%20menanyakan%20pengurusan%20surat..." target="_blank" style="background: #10b981; color: white; text-decoration: none; padding: 8px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; white-space: nowrap;">Tanya Petugas</a>
-            </div>
-
-            <div id="feedbackPilih" style="display: none; margin-top: 14px; padding: 10px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; font-size: 0.8rem; color: #1e40af; text-align: center;">
+            <div id="feedbackPilih" style="display: none; padding: 10px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; font-size: 0.8rem; color: #1e40af; text-align: center;">
                 <span id="txtFeedback"></span>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT MODAL -->
+    <!-- MODAL 2: CEK BANSOS -->
+    <div id="bansosModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: white; border-radius: 18px; max-width: 500px; width: 100%; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35); position: relative;">
+            <button onclick="closeBansosModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #64748b;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div style="text-align: center; margin-bottom: 18px;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Pengecekan Bantuan Sosial</h3>
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;">Periksa status kepesertaan PKH, BPNT, atau BLT Dana Desa</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); cekNikBansos();" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Nomor Induk Kependudukan (16 Digit NIK)</label>
+                    <input type="text" id="inputNikBansos" placeholder="3523xxxxxxxxxxxx" maxlength="16" required style="width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; font-size: 0.88rem;">
+                </div>
+                <button type="submit" style="background: var(--var-emerald); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.84rem; cursor: pointer;">
+                    Periksa Status NIK
+                </button>
+            </form>
+
+            <div id="hasilBansos" style="display: none; margin-top: 14px; padding: 12px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 0.82rem; color: #166534;">
+                <strong>Data Terverifikasi:</strong> NIK terdaftar sebagai penerima manfaat bantuan aktif di balai desa Anda.
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: CCTV WILAYAH -->
+    <div id="cctvModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: white; border-radius: 18px; max-width: 560px; width: 100%; padding: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35); position: relative;">
+            <button onclick="closeCctvModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #64748b;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div style="text-align: center; margin-bottom: 16px;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Pantauan CCTV Wilayah</h3>
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;">Kamera pemantauan arus lalu lintas dan titik kumpul publik</p>
+            </div>
+
+            <div style="background: #0f172a; border-radius: 12px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; margin-bottom: 14px;">
+                <i class="fa-solid fa-video" style="font-size: 2.2rem; color: var(--tech-cyan-glow); margin-bottom: 8px;"></i>
+                <p style="font-size: 0.85rem; font-weight: 700;">Simpang Alun-Alun Tuban - Titik 01</p>
+                <span style="font-size: 0.74rem; color: #94a3b8;">Status: Sinyal Aktif Normal</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: E-PBB DESA -->
+    <div id="pbbModal" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: white; border-radius: 18px; max-width: 500px; width: 100%; padding: 26px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35); position: relative;">
+            <button onclick="closePbbModal()" style="position: absolute; top: 18px; right: 18px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #64748b;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div style="text-align: center; margin-bottom: 18px;">
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Pelayanan Pajak e-PBB Desa</h3>
+                <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;">Pengecekan tagihan PBB-P2 terhubung Bapenda Tuban</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); cekPbbTagihan();" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 6px;">Nomor Objek Pajak (NOP 18 Digit)</label>
+                    <input type="text" id="inputNop" placeholder="35.23.xxx.xxx.xxx-xxxx.x" maxlength="22" required style="width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; outline: none; font-size: 0.88rem;">
+                </div>
+                <button type="submit" style="background: var(--var-violet); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.84rem; cursor: pointer;">
+                    Cek Tagihan
+                </button>
+            </form>
+
+            <div id="hasilPbb" style="display: none; margin-top: 14px; padding: 12px; background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; font-size: 0.82rem; color: #581c87;">
+                <strong>Tagihan Terverifikasi:</strong> Tahun Pajak 2026 berstatus <strong>Lunas / Bebas Denda</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         function openLayananModal() {
             document.getElementById('layananModal').style.display = 'flex';
@@ -873,8 +1413,37 @@
         }
         function pilihSurat(nama) {
             const fb = document.getElementById('feedbackPilih');
-            document.getElementById('txtFeedback').innerHTML = `Format <strong>${nama}</strong> siap diurus. Silakan bawa berkas persyaratan ke Balai Desa Anda.`;
+            document.getElementById('txtFeedback').innerHTML = `Format <strong>${nama}</strong> dipilih. Silakan siapkan berkas ke balai desa.`;
             fb.style.display = 'block';
+        }
+
+        function openBansosModal() {
+            document.getElementById('bansosModal').style.display = 'flex';
+            document.getElementById('hasilBansos').style.display = 'none';
+        }
+        function closeBansosModal() {
+            document.getElementById('bansosModal').style.display = 'none';
+        }
+        function cekNikBansos() {
+            document.getElementById('hasilBansos').style.display = 'block';
+        }
+
+        function openCctvModal() {
+            document.getElementById('cctvModal').style.display = 'flex';
+        }
+        function closeCctvModal() {
+            document.getElementById('cctvModal').style.display = 'none';
+        }
+
+        function openPbbModal() {
+            document.getElementById('pbbModal').style.display = 'flex';
+            document.getElementById('hasilPbb').style.display = 'none';
+        }
+        function closePbbModal() {
+            document.getElementById('pbbModal').style.display = 'none';
+        }
+        function cekPbbTagihan() {
+            document.getElementById('hasilPbb').style.display = 'block';
         }
     </script>
 </body>
