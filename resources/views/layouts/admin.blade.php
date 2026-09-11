@@ -3,190 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Panel - Portal Desa Digital')</title>
+    <title>@yield('title', 'Portal Desa Digital')</title>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Header */
+        .admin-header {
+            background: linear-gradient(135deg, #1e88e5 0%, #00897b 100%);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+        }
+        
+        .header-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .header-logo-text h4 {
+            margin: 0;
+            font-weight: 800;
+            font-size: 18px;
+            color: white;
+        }
+        
+        .header-logo-text small {
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
+        }
+        
+        .header-search {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+        
+        .header-search input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .header-search-wrapper {
+            position: relative;
+        }
+        
+        .header-search-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .header-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .header-user-info {
+            text-align: right;
+        }
+        
+        .header-user-info strong {
+            display: block;
+            font-size: 14px;
+        }
+        
+        .header-user-info small {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+        
+        /* User Dropdown */
+        .user-dropdown {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            min-width: 280px;
+            display: none;
+            overflow: hidden;
+        }
+        
+        .user-dropdown.show {
+            display: block;
+        }
+        
+        .user-dropdown-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .user-dropdown-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .user-dropdown-header strong {
+            display: block;
+            color: #0f1e3d;
+            font-size: 15px;
+        }
+        
+        .user-dropdown-header small {
+            color: #6b7280;
+            font-size: 12px;
+        }
+        
+        .user-dropdown-menu {
+            padding: 10px 0;
+        }
+        
+        .user-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #1f2937;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .user-dropdown-menu a:hover {
+            background: #f3f4f6;
+        }
+        
+        .user-dropdown-menu a i {
+            color: #6b7280;
+            width: 20px;
+        }
+        
+        .user-dropdown-menu .logout {
+            color: #ef4444;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 5px;
+            padding-top: 12px;
+        }
+        
+        .user-dropdown-menu .logout i {
+            color: #ef4444;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Welcome Section */
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .welcome-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 137, 123, 0.1);
+            color: #00897b;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0f1e3d;
+            margin-bottom: 15px;
+        }
+        
+        .welcome-section p {
+            color: #6b7280;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Menu Cards */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: #1e88e5;
+        }
+        
+        .menu-card.active {
+            border-color: #1e88e5;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.05), rgba(0, 137, 123, 0.05));
+        }
+        
+        .menu-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.1), rgba(0, 137, 123, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .menu-icon i {
+            font-size: 24px;
+            color: #00897b;
+        }
+        
+        .menu-card.active .menu-icon {
+            background: linear-gradient(135deg, #1e88e5, #00897b);
+        }
+        
+        .menu-card.active .menu-icon i {
+            color: white;
+        }
+        
+        .menu-info h5 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f1e3d;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-info p {
+            font-size: 13px;
+            color: #6b7280;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .badge-utama {
+            background: #1e88e5;
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .admin-footer {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 50px;
+        }
+        
+        .admin-footer small {
+            color: #6b7280;
+        }
+        
+        .admin-footer-links a {
+            color: #00897b;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+        
+        .floating-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #6b7280;
+            font-size: 20px;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            color: #1e88e5;
+        }
+        
+        .floating-btn.primary {
+            background: #1e88e5;
+            color: white;
+        }
+        
+        .floating-btn.primary:hover {
+            background: #1565c0;
+        }
+        
+        @media (max-width: 992px) {
+            .menu-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-    </script>
-    
-    @stack('styles')
-</head>
-<body class="bg-gray-100 font-sans antialiased">
-
-    <div class="flex h-screen overflow-hidden">
         
-        <!-- SIDEBAR -->
-        <aside class="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
-            <!-- Logo -->
-            <div class="p-6 border-b border-slate-800">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-blue-600 p-2 rounded-lg">
-                        <i class="fas fa-building-columns text-xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg">Admin Panel</h1>
-                        <p class="text-xs text-slate-400">Desa Digital Tuban</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="flex-1 overflow-y-auto py-4">
-                <div class="px-4 mb-2 text-xs font-semibold text-slate-400 uppercase">Menu Utama</div>
-                
-                <a href="{{ url('/admin/dashboard') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }} transition">
-                    <i class="fas fa-tachometer-alt w-6"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <div class="px-4 mt-6 mb-2 text-xs font-semibold text-slate-400 uppercase">Manajemen Data</div>
-                
-                <a href="{{ route('admin.kecamatan.index') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('admin.kecamatan.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }} transition">
-                    <i class="fas fa-map w-6"></i>
-                    <span>Kecamatan</span>
-                </a>
-
-                <a href="{{ route('admin.desa.index') }}" class="flex items-center px-6 py-3 {{ request()->routeIs('admin.desa.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }} transition">
-                    <i class="fas fa-village w-6"></i>
-                    <span>Desa</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-home w-6"></i>
-                    <span>Dusun</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-mountain-sun w-6"></i>
-                    <span>Wisata Desa</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-store w-6"></i>
-                    <span>Pasar Desa</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-wifi w-6"></i>
-                    <span>WiFi Desa</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-briefcase w-6"></i>
-                    <span>BUMDes</span>
-                </a>
-
-                <a href="#" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-clipboard-list w-6"></i>
-                    <span>KKDMP</span>
-                </a>
-
-                <div class="px-4 mt-6 mb-2 text-xs font-semibold text-slate-400 uppercase">Lainnya</div>
-                
-                <a href="/" class="flex items-center px-6 py-3 text-slate-300 hover:bg-slate-800 transition">
-                    <i class="fas fa-external-link-alt w-6"></i>
-                    <span>Lihat Frontend</span>
-                </a>
-            </nav>
-
-            <!-- User Info -->
-            <div class="p-4 border-t border-slate-800">
-                <div class="flex items-center space-x-3">
-                    <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name ?? 'Admin' }}&background=3B82F6&color=fff" class="w-10 h-10 rounded-full">
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium text-white truncate">{{ Auth::user()->name ?? 'Administrator' }}</p>
-                        <p class="text-xs text-slate-400 truncate">{{ Auth::user()->email ?? 'admin@tuban.go.id' }}</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <div class="flex-1 flex flex-col overflow-hidden">
+        @media (max-width: 576px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
             
-            <!-- TOP BAR -->
-            <header class="bg-white shadow-sm border-b border-gray-200">
-                <div class="flex items-center justify-between px-6 py-4">
-                    <div class="flex items-center space-x-4">
-                        <button class="md:hidden text-gray-600 hover:text-gray-900">
-                            <i class="fas fa-bars text-xl"></i>
-                        </button>
-                        <h2 class="text-xl font-semibold text-gray-800">@yield('page-title', 'Dashboard')</h2>
-                    </div>
-
-                    <div class="flex items-center space-x-4">
-                        <!-- Notifications -->
-                        <button class="relative text-gray-600 hover:text-gray-900">
-                            <i class="fas fa-bell text-xl"></i>
-                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                        </button>
-
-                        <!-- User Dropdown -->
-                        <div class="relative" id="userDropdown">
-                            <button onclick="toggleDropdown()" class="flex items-center space-x-2 focus:outline-none">
-                                <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name ?? 'Admin' }}&background=3B82F6&color=fff" class="w-9 h-9 rounded-full">
-                                <i class="fas fa-chevron-down text-xs text-gray-600"></i>
-                            </button>
-
-                            <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50 border border-gray-100">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                    <i class="fas fa-user mr-2"></i> Profil Saya
-                                </a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                                    <i class="fas fa-cog mr-2"></i> Pengaturan
-                                </a>
-                                <div class="border-t border-gray-100 my-1"></div>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+            .header-search {
+                display: none;
+            }
+            
+            .welcome-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="header-logo">
+            <div class="header-logo-icon">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+            </div>
+            <div class="header-logo-text">
+                <h4>PORTAL DESA DIGITAL</h4>
+                <small>KABUPATEN TUBAN</small>
+            </div>
+        </div>
+        
+        <div class="header-search">
+            <div class="header-search-wrapper">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Cari data cepat...">
+            </div>
+        </div>
+        
+        <div class="header-user" onclick="toggleUserDropdown()">
+            <div class="header-user-info">
+                <strong>{{ auth()->user()->name ?? 'Administrator' }}</strong>
+                <small>Operator Kabupaten</small>
+            </div>
+            <div class="header-user-avatar">
+                {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
+            </div>
+            <i class="bi bi-chevron-down"></i>
+            
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="userDropdown">
+                <div class="user-dropdown-header">
+                    <img src="https://via.placeholder.com/50" alt="Avatar">
+                    <div>
+                        <strong>{{ auth()->user()->name ?? 'Administrator' }}</strong>
+                        <small>{{ auth()->user()->email ?? 'admin@tuban.go.id' }}</small>
                     </div>
                 </div>
-            </header>
-
-            <!-- PAGE CONTENT -->
-            <main class="flex-1 overflow-y-auto bg-gray-50 p-6">
-                @yield('content')
-            </main>
+                <div class="user-dropdown-menu">
+                    <a href="{{ route('profile.edit') ?? '#' }}">
+                        <i class="bi bi-person"></i> Profil Saya
+                    </a>
+                    <a href="#">
+                        <i class="bi bi-lock"></i> Ubah Password
+                    </a>
+                    <a href="{{ route('logout') }}" class="logout"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bi bi-box-arrow-right"></i> Keluar Sesi (Logout)
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </div>
         </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        @yield('content')
+    </main>
+    
+    <!-- Footer -->
+    <footer class="admin-footer">
+        <small>© 2026 Pemerintah Kabupaten Tuban. Hak Cipta Dilindungi.</small>
+        <div class="admin-footer-links">
+            <a href="#">Syarat & Ketentuan</a>
+            <a href="#">Kebijakan Privasi</a>
+        </div>
+    </footer>
+    
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button class="floating-btn primary" title="Tambah Data Baru">
+            <i class="bi bi-plus"></i>
+        </button>
+        <button class="floating-btn" title="Pengaturan">
+            <i class="bi bi-gear"></i>
+        </button>
+        <button class="floating-btn" title="Bantuan">
+            <i class="bi bi-question-circle"></i>
+        </button>
     </div>
-
+    
     <script>
-        function toggleDropdown() {
-            document.getElementById('dropdownMenu').classList.toggle('hidden');
+        function toggleUserDropdown() {
+            document.getElementById('userDropdown').classList.toggle('show');
         }
-
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('userDropdown');
-            const menu = document.getElementById('dropdownMenu');
-            if (!dropdown.contains(event.target)) {
-                menu.classList.add('hidden');
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.header-user')) {
+                document.getElementById('userDropdown').classList.remove('show');
             }
         });
     </script>
-
-    @stack('scripts')
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

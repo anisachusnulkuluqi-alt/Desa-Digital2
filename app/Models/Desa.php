@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Desa extends Model
 {
     use HasFactory;
 
-    protected $table = 'desa';
+    protected $table = 'desa'; // Nama tabel
 
     protected $fillable = [
         'nama_desa',
@@ -29,47 +28,49 @@ class Desa extends Model
         'latitude',
         'longitude',
         'foto_url',
+        'status',
     ];
 
-    // Desa milik satu kecamatan
-    public function kecamatan(): BelongsTo
+    protected $casts = [
+        'luas_wilayah' => 'decimal:2',
+        'jumlah_penduduk' => 'integer',
+        'jumlah_kk' => 'integer',
+        'latitude' => 'decimal:7',
+        'longitude' => 'decimal:7',
+    ];
+
+    // Auto generate slug
+    protected static function boot()
     {
-        return $this->belongsTo(Kecamatan::class);
+        parent::boot();
+        static::creating(function ($desa) {
+            if (empty($desa->slug)) {
+                $desa->slug = Str::slug($desa->nama_desa) . '-' . time();
+            }
+        });
     }
 
-    // Satu desa punya banyak dusun
-    public function dusun(): HasMany
+    // Relasi ke Kecamatan
+    public function kecamatan()
     {
-        return $this->hasMany(Dusun::class);
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id');
     }
 
-    // Satu desa punya banyak wisata
-    public function wisata(): HasMany
+    // Relasi ke Layanan
+    public function layanans()
     {
-        return $this->hasMany(WisataDesa::class);
+        return $this->hasMany(Layanan::class);
     }
 
-    // Satu desa punya banyak pasar
-    public function pasar(): HasMany
+    // Relasi ke Berita
+    public function beritas()
     {
-        return $this->hasMany(PasarDesa::class);
+        return $this->hasMany(Berita::class);
     }
 
-    // Satu desa punya banyak WiFi
-    public function wifi(): HasMany
+    // Accessor untuk nama kecamatan
+    public function getNamaKecamatanAttribute()
     {
-        return $this->hasMany(WifiDesa::class);
-    }
-
-    // Satu desa punya banyak BUMDes
-    public function bumdes(): HasMany
-    {
-        return $this->hasMany(Bumdes::class);
-    }
-
-    // Satu desa punya banyak KKDMP
-    public function kkdmp(): HasMany
-    {
-        return $this->hasMany(Kkdmp::class);
+        return $this->kecamatan ? $this->kecamatan->nama_kecamatan : '-';
     }
 }

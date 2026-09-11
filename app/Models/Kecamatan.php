@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Kecamatan extends Model
 {
@@ -14,12 +14,40 @@ class Kecamatan extends Model
 
     protected $fillable = [
         'nama_kecamatan',
+        'slug',
         'kode_wilayah',
+        'kabupaten',
+        'deskripsi',
+        'telepon',
+        'email',
+        'alamat',
+        'jumlah_desa',
     ];
 
-    // Satu kecamatan punya banyak desa
-    public function desa(): HasMany
+    protected $casts = [
+        'jumlah_desa' => 'integer',
+    ];
+
+    protected static function boot()
     {
-        return $this->hasMany(Desa::class);
+        parent::boot();
+        
+        static::creating(function ($kecamatan) {
+            if (empty($kecamatan->slug)) {
+                $kecamatan->slug = Str::slug($kecamatan->nama_kecamatan) . '-' . time();
+            }
+        });
+    }
+
+    // Relasi ke Desa
+    public function desas()
+    {
+        return $this->hasMany(Desa::class, 'kecamatan_id');
+    }
+
+    // Accessor untuk nama kecamatan (huruf kapital)
+    public function getNamaKecamatanAttribute($value)
+    {
+        return ucfirst($value);
     }
 }
