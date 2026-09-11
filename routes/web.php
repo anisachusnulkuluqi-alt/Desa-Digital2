@@ -2,25 +2,29 @@
 
 use Illuminate\Support\Facades\Route;
 
-// ==========================================
-// 1. IMPORT CONTROLLER FRONTEND (PUBLIK)
-// ==========================================
+/*
+|--------------------------------------------------------------------------
+| IMPORT CONTROLLERS
+|--------------------------------------------------------------------------
+*/
+
+// Frontend Controllers
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KecamatanController;
 
-// ==========================================
-// 2. IMPORT CONTROLLER BACKEND (ADMIN)
-// ==========================================
+// Admin Controllers
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
-| FRONTEND ROUTES (Tampilan untuk Masyarakat Umum)
+| FRONTEND ROUTES (Publik - Tanpa Login)
 |--------------------------------------------------------------------------
 */
 
@@ -28,6 +32,7 @@ use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [HomeController::class, 'tentang'])->name('tentang');
 Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 // Layanan
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
@@ -52,24 +57,32 @@ require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
+| PROFILE ROUTES (Wajib Login)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | BACKEND ADMIN ROUTES (Wajib Login)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
     
-    // Dashboard Admin (dengan nama route 'admin.dashboard')
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    // Dashboard Admin (URL: /dashboard)
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
-    // Dashboard biasa (untuk backward compatibility)
-    Route::get('/dashboard', function() {
-        return redirect()->route('admin.dashboard');
-    })->name('dashboard');
-    
-    // Group dengan prefix '/admin' dan nama route 'admin.'
+    // Admin Panel dengan prefix '/admin'
     Route::prefix('admin')->name('admin.')->group(function () {
         
-        // Dashboard Admin (alias)
+        // Dashboard Admin (URL: /admin)
         Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         
         // CRUD Berita
         Route::resource('berita', AdminBeritaController::class);
@@ -79,6 +92,18 @@ Route::middleware(['auth'])->group(function () {
         
         // CRUD Kecamatan
         Route::resource('kecamatan', AdminKecamatanController::class);
+        
+        // ==========================================
+        // PLACEHOLDER UNTUK FITUR MASA DEPAN
+        // (Hapus tanda komentar // saat controllernya sudah dibuat)
+        // ==========================================
+        // Route::resource('dusun', AdminDusunController::class);
+        // Route::resource('wisata', AdminWisataController::class);
+        // Route::resource('pasar', AdminPasarController::class);
+        // Route::resource('wifi', AdminWifiController::class);
+        // Route::resource('bumdes', AdminBumdesController::class);
+        // Route::resource('kkdmp', AdminKkdmpController::class);
+        // Route::resource('kantor', AdminKantorController::class);
         
     });
 });
