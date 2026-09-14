@@ -135,16 +135,16 @@
         }
         .status-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; }
 
-        /* 3. HERO UTAMA DENGAN JUDUL ATAS BAWAH */
+        /* 3. HERO UTAMA: NAIK LEBIH TINGGI KE ATAS DENGAN JARAK PENCARIAN LEGA */
         .hero-tuban {
             position: relative; 
             min-height: 590px; 
             display: flex; 
             flex-direction: column;
             align-items: center; 
-            justify-content: center; 
+            justify-content: flex-start; /* Mengangkat orientasi konten ke atas */
             text-align: center; 
-            padding: 95px 24px;
+            padding: 50px 24px 85px 24px; /* Padding atas dirampingkan agar judul lebih terangkat */
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat;
@@ -162,7 +162,7 @@
             border: 1px solid rgba(56, 189, 248, 0.4);
             padding: 6px 20px;
             border-radius: 30px;
-            margin-bottom: 20px;
+            margin-bottom: 12px; /* Jarak rapat ke judul */
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
         .hero-welcome-badge span {
@@ -173,9 +173,9 @@
             color: #7dd3fc;
         }
 
-        /* JUDUL ATAS & BAWAH */
+        /* JUDUL ATAS & BAWAH LEBIH TINGGI & MEMBERI JARAK BAWAH KE SEARCH */
         .hero-title-wrap {
-            margin-bottom: 18px;
+            margin-bottom: 58px; /* MEMBERIKAN JARAK LEGA ANTARA JUDUL DENGAN KOLOM PENCARIAN */
             line-height: 1.15;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
@@ -194,16 +194,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 0.5px;
-        }
-
-        .hero-desc {
-            font-size: 1.05rem; 
-            color: #f1f5f9; 
-            max-width: 680px; 
-            margin: 0 auto 34px auto; 
-            line-height: 1.65;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-            font-weight: 400;
+            margin-top: 4px;
         }
 
         .search-box {
@@ -297,7 +288,7 @@
             border-radius: 8px; 
             font-weight: 600; 
             font-size: 0.85rem; 
-            text-decoration: none;
+            text-decoration: none; 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
@@ -305,7 +296,7 @@
         }
         .btn-outline:hover { background: rgba(255, 255, 255, 0.2); }
 
-        /* 5. DIREKTORI 9 MODUL DENGAN VARIASI WARNA SEGAR */
+        /* 5. DIREKTORI 9 MODUL */
         .section-padding { padding: 90px 6%; text-align: center; }
         .section-label {
             color: var(--primary-blue); font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
@@ -390,7 +381,7 @@
             line-height: 1.5;
         }
 
-        /* 6. STRIP STATISTIK - ELEGAN TIDAK TERLALU GELAP */
+        /* 6. STRIP STATISTIK */
         .stats-strip {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); 
             padding: 48px 6%; 
@@ -405,7 +396,7 @@
         .stat-item h3 { font-size: 2.8rem; font-weight: 900; color: #38bdf8; }
         .stat-item p { font-size: 0.88rem; color: #cbd5e1; margin-top: 6px; font-weight: 600; }
 
-        /* 7. HUB EKOSISTEM LAYANAN DENGAN BACKGROUND LEBIH CERAH & BERVARIAI */
+        /* 7. HUB EKOSISTEM LAYANAN */
         .hub-section-modern {
             background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
             padding: 95px 6%;
@@ -606,7 +597,7 @@
             min-height: 380px;
         }
 
-        /* 12. FOOTER ELEGAN & TIDAK MONOTON */
+        /* 12. FOOTER ELEGAN */
         footer { 
             background: #0f172a; 
             color: #94a3b8; 
@@ -660,6 +651,8 @@
 
         @media (max-width: 640px) {
             .navbar { display: none; }
+            .hero-tuban { padding-top: 40px; }
+            .hero-title-wrap { margin-bottom: 38px; }
             .title-top { font-size: 2.3rem; }
             .title-bottom { font-size: 1.9rem; }
             .premium-services-grid, .stats-strip, .news-grid-modern, .testi-grid-modern, .footer-grid { grid-template-columns: 1fr; }
@@ -670,13 +663,13 @@
 </head>
 <body>
 
-    <!-- 1. TOP HEADER RESMI -->
+    <!-- 1. TOP HEADER RESMI (DENGAN FALLBACK LOGO LOKAL & ONLINE ANTI-RUSAK) -->
     <header class="top-header">
         <div class="logo-area">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png" 
+            <img src="{{ asset('images/logo-tuban.png') }}" 
                  alt="Logo Kabupaten Tuban" 
                  class="logo-tuban-img"
-                 onerror="this.onerror=null; this.src='https://tubankab.go.id/images/logo.png';">
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
             <div class="logo-text">
                 <h2>Desa Digital</h2>
                 <p>Kabupaten Tuban</p>
@@ -706,7 +699,7 @@
         </div>
     </nav>
 
-    <!-- 3. HERO UTAMA DENGAN JUDUL ATAS & BAWAH -->
+    <!-- 3. HERO UTAMA DENGAN POSISI JUDUL NAIK KE ATAS & BERJARAK LEGA KE SEARCH -->
     <section id="hero-tuban" class="hero-tuban" style="background-image: linear-gradient(rgba(15, 23, 42, 0.65), rgba(2, 132, 199, 0.35)), url('{{ asset('images/alun-alun-tuban.jpg') }}');">
         
         <!-- Badge Elegan Modern -->
@@ -715,13 +708,13 @@
             <span>Selamat Datang di Portal Resmi</span>
         </div>
 
-        <!-- JUDUL ATAS & BAWAH SESUAI PERMINTAAN -->
+        <!-- JUDUL ATAS & BAWAH LEBIH KE ATAS DAN BERJARAK DENGAN SEARCH -->
         <div class="hero-title-wrap">
             <span class="title-top">Desa Digital</span>
             <span class="title-bottom">Kabupaten Tuban</span>
         </div>
 
-
+        <!-- KOLOM PENCARIAN -->
         <form class="search-box" action="{{ url('/desa') }}" method="GET">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" name="search" placeholder="Cari layanan administrasi, regulasi desa, atau informasi fasilitas publik...">
@@ -941,7 +934,6 @@
 
     <!-- 7. HUB EKOSISTEM LAYANAN & ALUR PENGURUSAN DOKUMEN -->
     <section id="alur-layanan" class="hub-section-modern">
-        
         <div style="max-width: 1240px; margin: 0 auto;">
             
             <div style="text-align: center; max-width: 720px; margin: 0 auto 52px auto;">
@@ -956,7 +948,7 @@
                 </p>
             </div>
 
-            <!-- 5 Hub Pilihan Dengan Desain Terang & Ikon Berwarna -->
+            <!-- 5 Hub Pilihan -->
             <div class="portal-hub-card-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 55px;">
                 
                 <!-- 1. Website Desa -->
@@ -1011,7 +1003,7 @@
 
             </div>
 
-            <!-- Alur Pengurusan Dokumen Terang & Bersih -->
+            <!-- Alur Pengurusan Dokumen -->
             <div style="background: #ffffff; border: 1.5px solid var(--border-ui); border-radius: 20px; padding: 40px 32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);">
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; border-bottom: 1px solid var(--border-ui); padding-bottom: 18px;">
@@ -1067,7 +1059,6 @@
             </div>
 
         </div>
-
     </section>
 
     <!-- 8. BERITA ACARA ATAU INFORMASI DAERAH TUBAN -->
@@ -1227,6 +1218,7 @@
                     Portal pemerintahan terpadu yang memadukan layanan administrasi kependudukan, pengawasan digital, dan penyebarluasan potensi desa demi kemakmuran bersama masyarakat Kabupaten Tuban.
                 </p>
 
+                <!-- Ikon Sosial Media Lengkap -->
                 <div class="social-media-pills">
                     <a href="https://www.instagram.com/diskominfosp_tuban" target="_blank" class="btn-sosmed" title="Instagram Resmi">
                         <i class="fa-brands fa-instagram"></i>

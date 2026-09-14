@@ -12,7 +12,7 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Tampilkan halaman login.
      */
     public function create(): View
     {
@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Tangani autentikasi login dan arahkan sesuai role admin.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -28,11 +28,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        // Alur pembagian dashboard backend sesuai role admin
+        if ($user->role === 'kominfo') {
+            return redirect()->intended(route('admin.kominfo.dashboard', absolute: false));
+        } elseif ($user->role === 'kecamatan') {
+            return redirect()->intended(route('admin.kecamatan.dashboard', absolute: false));
+        } else {
+            // Default untuk admin tingkat desa / kelurahan
+            return redirect()->intended(route('admin.desa.dashboard', absolute: false));
+        }
     }
 
     /**
-     * Destroy an authenticated session.
+     * Proses keluar (logout) dan kembali ke beranda landing page.
      */
     public function destroy(Request $request): RedirectResponse
     {

@@ -454,7 +454,7 @@
                     </div>
                 </div>
                 <div class="user-dropdown-menu">
-                    <a href="{{ route('profile.edit') ?? '#' }}">
+                    <a href="{{ Route::has('profile.edit') ? route('profile.edit') : '#' }}">
                         <i class="bi bi-person"></i> Profil Saya
                     </a>
                     <a href="#">
