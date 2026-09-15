@@ -342,11 +342,12 @@
             <div class="header-user-dropdown">
                 <button class="header-user-trigger" onclick="toggleDropdown()">
                     <div class="header-user-info">
-                        <strong>{{ auth()->user()->name ?? 'Admin Tuban' }}</strong>
+                        <strong><?php echo e(auth()->user()->name ?? 'Admin Tuban'); ?></strong>
                         <small>Operator Kabupaten</small>
                     </div>
                     <div class="header-user-avatar">
-                        {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
+                        <?php echo e(substr(auth()->user()->name ?? 'A', 0, 1)); ?>
+
                     </div>
                     <i class="bi bi-chevron-down" style="font-size: 12px; color: #94a3b8;"></i>
                 </button>
@@ -354,23 +355,23 @@
                 <!-- Dropdown Menu -->
                 <div class="user-dropdown" id="userDropdown">
                     <div class="dropdown-header">
-                        <strong>{{ auth()->user()->name ?? 'Admin Tuban' }}</strong>
-                        <small>{{ auth()->user()->email ?? 'admin@desadigital.tuban.go.id' }}</small>
+                        <strong><?php echo e(auth()->user()->name ?? 'Admin Tuban'); ?></strong>
+                        <small><?php echo e(auth()->user()->email ?? 'admin@desadigital.tuban.go.id'); ?></small>
                     </div>
                     
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                    <a href="<?php echo e(route('profile.edit')); ?>" class="dropdown-item">
                         <i class="bi bi-person"></i>
                         Profil Saya
                     </a>
-                    <a href="{{ route('admin.settings.index') }}" class="dropdown-item">
+                    <a href="<?php echo e(route('admin.settings.index')); ?>" class="dropdown-item">
                         <i class="bi bi-gear"></i>
                         Pengaturan
                     </a>
                     
                     <div class="dropdown-divider"></div>
                     
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+                    <form method="POST" action="<?php echo e(route('logout')); ?>">
+                        <?php echo csrf_field(); ?>
                         <button type="submit" class="dropdown-item logout" style="width: 100%; border: none; background: none; cursor: pointer; text-align: left; font-family: inherit;">
                             <i class="bi bi-box-arrow-right"></i>
                             Keluar / Logout
@@ -397,7 +398,7 @@
         <div class="section-label">Wilayah & Data Utama</div>
         <div class="menu-grid">
             <!-- 1. KECAMATAN -->
-            <a href="{{ route('admin.kecamatan.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.kecamatan.index')); ?>" class="menu-card">
                 <div class="menu-icon indigo">
                     <i class="bi bi-building"></i>
                 </div>
@@ -410,7 +411,7 @@
             </a>
             
             <!-- 2. DESA -->
-            <a href="{{ route('admin.desa.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.desa.index')); ?>" class="menu-card">
                 <div class="menu-icon blue">
                     <i class="bi bi-geo-alt-fill"></i>
                 </div>
@@ -423,7 +424,7 @@
             </a>
             
             <!-- 3. DUSUN -->
-            <a href="{{ route('admin.dusun.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.dusun.index')); ?>" class="menu-card">
                 <div class="menu-icon teal">
                     <i class="bi bi-house-door"></i>
                 </div>
@@ -440,7 +441,7 @@
         <div class="section-label">Layanan & Potensi Desa</div>
         <div class="menu-grid">
             <!-- 4. KANTOR DESA -->
-            <a href="{{ route('admin.kantor.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.kantor.index')); ?>" class="menu-card">
                 <div class="menu-icon sky">
                     <i class="bi bi-briefcase"></i>
                 </div>
@@ -453,7 +454,7 @@
             </a>
             
             <!-- 5. WISATA DESA -->
-            <a href="{{ route('admin.wisata.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.wisata.index')); ?>" class="menu-card">
                 <div class="menu-icon teal">
                     <i class="bi bi-map"></i>
                 </div>
@@ -466,7 +467,7 @@
             </a>
             
             <!-- 6. PASAR DESA -->
-            <a href="{{ route('admin.pasar.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.pasar.index')); ?>" class="menu-card">
                 <div class="menu-icon cyan">
                     <i class="bi bi-shop"></i>
                 </div>
@@ -483,7 +484,7 @@
         <div class="section-label">Infrastruktur & Perencanaan</div>
         <div class="menu-grid">
             <!-- 7. WIFI DESA -->
-            <a href="{{ route('admin.wifi.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.wifi.index')); ?>" class="menu-card">
                 <div class="menu-icon blue">
                     <i class="bi bi-wifi"></i>
                 </div>
@@ -496,7 +497,7 @@
             </a>
             
             <!-- 8. BUMDES -->
-            <a href="{{ route('admin.bumdes.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.bumdes.index')); ?>" class="menu-card">
                 <div class="menu-icon slate">
                     <i class="bi bi-briefcase-fill"></i>
                 </div>
@@ -509,7 +510,7 @@
             </a>
             
             <!-- 9. KKDMP -->
-            <a href="{{ route('admin.kkdmp.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.kkdmp.index')); ?>" class="menu-card">
                 <div class="menu-icon indigo">
                     <i class="bi bi-clipboard-data"></i>
                 </div>
@@ -526,7 +527,7 @@
         <div class="section-label">Informasi & Sistem</div>
         <div class="menu-grid">
             <!-- 10. BERITA -->
-            <a href="{{ route('admin.berita.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.berita.index')); ?>" class="menu-card">
                 <div class="menu-icon orange">
                     <i class="bi bi-newspaper"></i>
                 </div>
@@ -539,7 +540,7 @@
             </a>
             
             <!-- 11. PENGATURAN -->
-            <a href="{{ route('admin.settings.index') }}" class="menu-card">
+            <a href="<?php echo e(route('admin.settings.index')); ?>" class="menu-card">
                 <div class="menu-icon slate">
                     <i class="bi bi-gear-fill"></i>
                 </div>
@@ -581,4 +582,4 @@
         }
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\Users\DELL\Desa-Digital2\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

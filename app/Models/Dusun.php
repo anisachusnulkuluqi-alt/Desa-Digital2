@@ -4,23 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Dusun extends Model
 {
     use HasFactory;
 
+    // PENTING: Nama tabel sesuai database
     protected $table = 'dusun';
 
     protected $fillable = [
         'nama_dusun',
         'desa_id',
+        'kepala_dusun',
         'jumlah_rt',
+        'jumlah_rw',
+        'jumlah_kk',
         'jumlah_penduduk',
+        'alamat',
     ];
 
-    public function desa(): BelongsTo
+    protected $casts = [
+        'jumlah_rt' => 'integer',
+        'jumlah_rw' => 'integer',
+        'jumlah_kk' => 'integer',
+        'jumlah_penduduk' => 'integer',
+    ];
+
+    public function desa()
     {
-        return $this->belongsTo(Desa::class);
+        return $this->belongsTo(Desa::class, 'desa_id');
     }
 }

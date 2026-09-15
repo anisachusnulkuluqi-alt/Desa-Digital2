@@ -5,19 +5,21 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
+use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
+use App\Http\Controllers\Admin\DusunController as AdminDusunController;
 
 /*
 |--------------------------------------------------------------------------
-| ROUTES PORTAL PUBLIK DESA DIGITAL KABUPATEN TUBAN
+| 1. ROUTES PORTAL PUBLIK (TANPA LOGIN)
 |--------------------------------------------------------------------------
 */
 
-// 1. Beranda Utama (Landing Page)
+// Beranda Utama (Landing Page)
 Route::get('/', function () {
     return view('landing');
 })->name('home');
 
-// 2. Modul Data Spasial Terpadu (Peta GIS Ekosistem Desa)
+// Modul Data Spasial Terpadu (Peta GIS)
 Route::get('/data-spasial', function () {
     return view('data-spasial');
 })->name('data.spasial');
@@ -25,17 +27,17 @@ Route::get('/data-spasial', function () {
 // Alias route webgis
 Route::get('/webgis', function () {
     return redirect()->route('data.spasial');
-});
+})->name('webgis');
 
-// 3. Katalog Desa Publik
-Route::get('/desa', function () {
-    if (view()->exists('desa')) {
-        return view('desa');
+// Katalog Desa Publik
+Route::get('/desa-publik', function () {
+    if (view()->exists('desa-publik')) {
+        return view('desa-publik');
     }
     return redirect('/#layanan-unggulan');
-})->name('desa.index');
+})->name('desa.publik');
 
-// 4. Halaman Informasi Publik
+// Halaman Informasi Publik
 Route::get('/tentang', function () {
     if (view()->exists('tentang')) {
         return view('tentang');
@@ -53,59 +55,98 @@ Route::get('/kontak', function () {
 
 /*
 |--------------------------------------------------------------------------
-| ROUTES BACKEND ADMIN & USER TERAUTENTIKASI (MEMERLUKAN LOGIN)
+| 2. ROUTES SISTEM AUTENTIKASI (LARAVEL BREEZE)
+|--------------------------------------------------------------------------
+*/
+require __DIR__.'/auth.php';
+
+
+/*
+|--------------------------------------------------------------------------
+| 3. ROUTES BACKEND ADMIN (MEMERLUKAN LOGIN)
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
 
-    // Gerbang Pengalihan Dashboard Sesuai Role
+    // Dashboard Utama
     Route::get('/dashboard', function () {
-        $user = auth()->user();
-
-        if ($user->role === 'kominfo') {
-            return redirect()->route('admin.kominfo.dashboard');
-        } elseif ($user->role === 'kecamatan') {
-            return redirect()->route('admin.kecamatan.dashboard');
-        } else {
-            return redirect()->route('admin.desa.dashboard');
-        }
+        return view('admin.dashboard');
     })->name('dashboard');
 
-    // Dashboard 3 Tingkat Admin
-    Route::get('/admin/kominfo/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.kominfo.dashboard');
+    // Dashboard 3 Tingkat Admin (Kompatibilitas)
+    Route::get('/admin/kominfo/dashboard', [DashboardController::class, 'index'])->name('admin.kominfo.dashboard');
+    Route::get('/admin/kecamatan/dashboard', [DashboardController::class, 'index'])->name('admin.kecamatan.dashboard');
+    Route::get('/admin/desa/dashboard', [DashboardController::class, 'index'])->name('admin.desa.dashboard');
 
-    Route::get('/admin/kecamatan/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.kecamatan.dashboard');
-
-    Route::get('/admin/desa/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.desa.dashboard');
-
-    // CRUD Resource Backend (Desa & Kecamatan)
+    // Group Route Admin
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::resource('desa', AdminDesaController::class);
+        
+        // ==========================================
+        // A. RESOURCE CRUD (Controller Lengkap)
+        // ==========================================
         Route::resource('kecamatan', AdminKecamatanController::class);
+        Route::resource('desa', AdminDesaController::class);
+        Route::resource('berita', AdminBeritaController::class);
+        Route::resource('dusun', AdminDusunController::class);
+
+        // ==========================================
+        // B. ROUTE PLACEHOLDER (Modul Belum Ada Controller)
+        // ==========================================
+        
+        // Kantor Desa
+        Route::get('/kantor-desa', function () { 
+            return view('admin.dashboard'); 
+        })->name('kantor.index');
+        
+        // Wisata Desa
+        Route::get('/wisata', function () { 
+            return view('admin.dashboard'); 
+        })->name('wisata.index');
+        
+        // Pasar Desa
+        Route::get('/pasar', function () { 
+            return view('admin.dashboard'); 
+        })->name('pasar.index');
+        
+        // WiFi Desa
+        Route::get('/wifi', function () { 
+            return view('admin.dashboard'); 
+        })->name('wifi.index');
+        
+        // BUMDes
+        Route::get('/bumdes', function () { 
+            return view('admin.dashboard'); 
+        })->name('bumdes.index');
+        
+        // KKDMP
+        Route::get('/kkdmp', function () { 
+            return view('admin.dashboard'); 
+        })->name('kkdmp.index');
+        
+        // Settings / Pengaturan
+        Route::get('/settings', function () { 
+            return view('admin.settings.index'); 
+        })->name('settings.index');
     });
 
-    // Route Profile (Mengatasi Error: Route [profile.edit] not defined)
+    // ==========================================
+    // C. ROUTE PROFILE PENGGUNA (Fallback Aman)
+    // ==========================================
     if (class_exists(ProfileController::class)) {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     } else {
         Route::get('/profile', function () {
-            if (view()->exists('profile.edit')) {
-                return view('profile.edit', ['user' => auth()->user()]);
-            }
             return redirect()->route('dashboard');
         })->name('profile.edit');
+        
+        Route::patch('/profile', function () {
+            return redirect()->route('dashboard');
+        })->name('profile.update');
+        
+        Route::delete('/profile', function () {
+            return redirect()->route('dashboard');
+        })->name('profile.destroy');
     }
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| ROUTES SISTEM AUTENTIKASI (LARAVEL BREEZE)
-|--------------------------------------------------------------------------
-*/
-require __DIR__.'/auth.php';

@@ -396,11 +396,12 @@
         
         <div class="header-user">
             <div class="header-user-info">
-                <strong>{{ auth()->user()->name ?? 'Admin Desa' }}</strong>
+                <strong><?php echo e(auth()->user()->name ?? 'Admin Desa'); ?></strong>
                 <small>Operator Kabupaten</small>
             </div>
             <div class="header-user-avatar">
-                {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
+                <?php echo e(substr(auth()->user()->name ?? 'A', 0, 1)); ?>
+
             </div>
         </div>
     </header>
@@ -408,13 +409,14 @@
     <!-- Breadcrumb Bar -->
     <div class="breadcrumb-bar">
         <div>
-            <a href="{{ route('dashboard') }}"><i class="bi bi-house-door"></i> Home</a>
+            <a href="<?php echo e(route('dashboard')); ?>"><i class="bi bi-house-door"></i> Home</a>
             <span class="separator">/</span>
             <span class="active">Data Desa</span>
         </div>
         <div class="breadcrumb-date">
             <i class="bi bi-calendar"></i>
-            {{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+            <?php echo e(now()->locale('id')->isoFormat('dddd, D MMMM YYYY')); ?>
+
         </div>
     </div>
     
@@ -427,65 +429,67 @@
         <p>Kelola data desa di Kabupaten Tuban</p>
     </div>
     <div>
-        <a href="{{ route('admin.desa.create') }}" class="btn btn-add">
+        <a href="<?php echo e(route('admin.desa.create')); ?>" class="btn btn-add">
             <i class="bi bi-plus-lg"></i> Tambah Desa
         </a>
     </div>
 </div>
         
         <!-- Alert Success -->
-        @if(session('success'))
+        <?php if(session('success')): ?>
         <div class="alert alert-success alert-custom alert-dismissible fade show">
-            <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
+            <i class="bi bi-check-circle-fill me-2"></i><?php echo e(session('success')); ?>
+
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
-        @endif
+        <?php endif; ?>
         
         <!-- Stats Grid -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon blue"><i class="bi bi-geo-alt-fill"></i></div>
                 <div>
-                    <div class="stat-value">{{ $totalDesa ?? 0 }}</div>
+                    <div class="stat-value"><?php echo e($totalDesa ?? 0); ?></div>
                     <div class="stat-label">Total Desa</div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon teal"><i class="bi bi-building"></i></div>
                 <div>
-                    <div class="stat-value">{{ $totalKecamatan ?? 0 }}</div>
+                    <div class="stat-value"><?php echo e($totalKecamatan ?? 0); ?></div>
                     <div class="stat-label">Total Kecamatan</div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon purple"><i class="bi bi-people"></i></div>
                 <div>
-                    <div class="stat-value">{{ number_format($desas->sum('jumlah_penduduk') ?? 0) }}</div>
+                    <div class="stat-value"><?php echo e(number_format($desas->sum('jumlah_penduduk') ?? 0)); ?></div>
                     <div class="stat-label">Total Penduduk</div>
                 </div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon cyan"><i class="bi bi-house-heart"></i></div>
                 <div>
-                    <div class="stat-value">{{ number_format($desas->sum('jumlah_kk') ?? 0) }}</div>
+                    <div class="stat-value"><?php echo e(number_format($desas->sum('jumlah_kk') ?? 0)); ?></div>
                     <div class="stat-label">Total KK</div>
                 </div>
             </div>
         </div>
         
         <!-- Filter Bar -->
-        <form method="GET" action="{{ route('admin.desa.index') }}" class="filter-bar">
+        <form method="GET" action="<?php echo e(route('admin.desa.index')); ?>" class="filter-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" name="search" placeholder="Cari nama desa..." value="{{ request('search') }}">
+                <input type="text" name="search" placeholder="Cari nama desa..." value="<?php echo e(request('search')); ?>">
             </div>
             <select name="kecamatan_id" class="filter-select">
                 <option value="">-- Semua Kecamatan --</option>
-                @foreach($kecamatans as $kec)
-                    <option value="{{ $kec->id }}" {{ request('kecamatan_id') == $kec->id ? 'selected' : '' }}>
-                        {{ $kec->nama_kecamatan }}
+                <?php $__currentLoopData = $kecamatans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kec): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($kec->id); ?>" <?php echo e(request('kecamatan_id') == $kec->id ? 'selected' : ''); ?>>
+                        <?php echo e($kec->nama_kecamatan); ?>
+
                     </option>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
             <button type="submit" class="btn btn-filter">
                 <i class="bi bi-funnel"></i> Filter
@@ -496,7 +500,7 @@
         <div class="table-card">
             <div class="table-header">
                 <h5><i class="bi bi-list-ul"></i> Daftar Desa</h5>
-                <span class="badge-count">{{ $desas->total() }} Desa</span>
+                <span class="badge-count"><?php echo e($desas->total()); ?> Desa</span>
             </div>
             
             <div style="overflow-x: auto;">
@@ -514,60 +518,62 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($desas as $index => $desa)
+                        <?php $__empty_1 = true; $__currentLoopData = $desas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $desa): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
-                            <td class="no-cell">{{ $desas->firstItem() + $index }}</td>
+                            <td class="no-cell"><?php echo e($desas->firstItem() + $index); ?></td>
                             <td class="nama-cell">
                                 <i class="bi bi-geo-alt-fill"></i>
-                                {{ $desa->nama_desa }}
+                                <?php echo e($desa->nama_desa); ?>
+
                             </td>
-                            <td class="kecamatan-cell">{{ $desa->kecamatan->nama_kecamatan ?? '-' }}</td>
-                            <td class="kecamatan-cell">{{ $desa->kode_desa ?? '-' }}</td>
-                            <td class="number-cell">{{ number_format($desa->jumlah_penduduk ?? 0) }}</td>
-                            <td class="number-cell">{{ number_format($desa->jumlah_kk ?? 0) }}</td>
-                            <td class="number-cell">{{ $desa->luas_wilayah ?? '-' }}</td>
+                            <td class="kecamatan-cell"><?php echo e($desa->kecamatan->nama_kecamatan ?? '-'); ?></td>
+                            <td class="kecamatan-cell"><?php echo e($desa->kode_desa ?? '-'); ?></td>
+                            <td class="number-cell"><?php echo e(number_format($desa->jumlah_penduduk ?? 0)); ?></td>
+                            <td class="number-cell"><?php echo e(number_format($desa->jumlah_kk ?? 0)); ?></td>
+                            <td class="number-cell"><?php echo e($desa->luas_wilayah ?? '-'); ?></td>
                             <td style="text-align: center;">
-                                <a href="{{ route('admin.desa.show', $desa->id) }}" class="btn-action btn-detail" title="Detail">
+                                <a href="<?php echo e(route('admin.desa.show', $desa->id)); ?>" class="btn-action btn-detail" title="Detail">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a href="{{ route('admin.desa.edit', $desa->id) }}" class="btn-action btn-edit" title="Edit">
+                                <a href="<?php echo e(route('admin.desa.edit', $desa->id)); ?>" class="btn-action btn-edit" title="Edit">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form action="{{ route('admin.desa.destroy', $desa->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus desa {{ $desa->nama_desa }}?')">
-                                    @csrf
-                                    @method('DELETE')
+                                <form action="<?php echo e(route('admin.desa.destroy', $desa->id)); ?>" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus desa <?php echo e($desa->nama_desa); ?>?')">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
                                     <button type="submit" class="btn-action btn-delete" title="Hapus">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </td>
                         </tr>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="8" class="text-center py-5 text-muted">
                                 <i class="bi bi-inbox" style="font-size: 48px; display: block; margin-bottom: 12px; color: #cbd5e1;"></i>
                                 <p style="font-size: 14px; margin: 0;">Belum ada data desa yang terdaftar.</p>
                             </td>
                         </tr>
-                        @endforelse
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
             
             <!-- Pagination -->
-            @if($desas->hasPages())
+            <?php if($desas->hasPages()): ?>
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-top: 1px solid #e2e8f0;">
                 <small style="color: #64748b; font-size: 12px;">
-                    Menampilkan {{ $desas->firstItem() }} - {{ $desas->lastItem() }} dari {{ $desas->total() }} data
+                    Menampilkan <?php echo e($desas->firstItem()); ?> - <?php echo e($desas->lastItem()); ?> dari <?php echo e($desas->total()); ?> data
                 </small>
                 <div style="display: flex; gap: 4px;">
-                    {{ $desas->links() }}
+                    <?php echo e($desas->links()); ?>
+
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+</html><?php /**PATH C:\Users\DELL\Desa-Digital2\resources\views/admin/desa/index.blade.php ENDPATH**/ ?>
