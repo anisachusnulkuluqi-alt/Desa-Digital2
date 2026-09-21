@@ -10,15 +10,17 @@ return new class extends Migration
     {
         Schema::create('wisata_desa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_wisata', 150);
-            $table->foreignId('desa_id')->constrained('desa')->onDelete('cascade');
-            $table->string('kategori', 50)->nullable(); // Alam, Budaya, Sejarah
+            $table->string('nama_wisata');
+            $table->string('desa')->nullable();
+            $table->string('jam_operasional')->nullable();
+            $table->string('htm')->nullable();
+            $table->string('reservasi')->nullable();
             $table->text('deskripsi')->nullable();
-            $table->decimal('harga_tiket', 10, 2)->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->string('foto_url', 255)->nullable();
-            $table->enum('status', ['Aktif', 'Non-Aktif'])->default('Aktif');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('alt')->nullable();
+            $table->string('jenis_wisata')->nullable();
             $table->timestamps();
         });
     }

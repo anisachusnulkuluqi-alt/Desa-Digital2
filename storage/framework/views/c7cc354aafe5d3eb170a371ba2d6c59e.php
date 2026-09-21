@@ -501,11 +501,11 @@
 
         <ul class="sidebar-menu">
             <li><a href="#" class="active"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
-            <li><a href="{{ route('admin.kecamatan.index') }}"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
-            <li><a href="{{ route('admin.desa.index') }}"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
+            <li><a href="<?php echo e(route('admin.kecamatan.index')); ?>"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
+            <li><a href="<?php echo e(route('admin.desa.index')); ?>"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
             
             <!-- ✅ DIPERBAIKI: Link Wisata Desa sekarang mengarah ke route yang benar -->
-            <li><a href="{{ route('admin.wisata.index') }}"><i class="bi bi-image-fill"></i><span>Wisata Desa</span></a></li>
+            <li><a href="<?php echo e(route('admin.wisata.index')); ?>"><i class="bi bi-image-fill"></i><span>Wisata Desa</span></a></li>
             
             <li><a href="#"><i class="bi bi-shop"></i><span>Pasar Desa</span></a></li>
             <li><a href="#"><i class="bi bi-building"></i><span>Kantor Desa</span></a></li>
@@ -551,7 +551,8 @@
                     </div>
                     <div class="welcome-date">
                         <i class="bi bi-calendar-event"></i>
-                        {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+                        <?php echo e(\Carbon\Carbon::now()->translatedFormat('l, d F Y')); ?>
+
                     </div>
                 </div>
             </div>
@@ -665,4 +666,4 @@
         </div>
     </div>
 </body>
-</html>
+</html><?php /**PATH C:\Users\DELL\Desa-Digital2\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

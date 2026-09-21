@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kecamatan extends Model
 {
@@ -14,30 +13,7 @@ class Kecamatan extends Model
 
     protected $fillable = [
         'nama_kecamatan',
-        'slug',
-        'kode_wilayah',
-        'kabupaten',
-        'deskripsi',
-        'telepon',
-        'email',
-        'alamat',
-        'jumlah_desa',
     ];
-
-    protected $casts = [
-        'jumlah_desa' => 'integer',
-    ];
-
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($kecamatan) {
-            if (empty($kecamatan->slug)) {
-                $kecamatan->slug = Str::slug($kecamatan->nama_kecamatan) . '-' . time();
-            }
-        });
-    }
 
     // Relasi ke Desa
     public function desas()
@@ -45,9 +21,8 @@ class Kecamatan extends Model
         return $this->hasMany(Desa::class, 'kecamatan_id');
     }
 
-    // Accessor untuk nama kecamatan (huruf kapital)
-    public function getNamaKecamatanAttribute($value)
+    public function getTotalDesaAttribute()
     {
-        return ucfirst($value);
+        return $this->desas()->count();
     }
 }

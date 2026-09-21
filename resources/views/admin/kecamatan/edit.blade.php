@@ -10,505 +10,249 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
-        body { background: #f8f9fa; margin: 0; }
+        * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #f8fafc; }
         
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #1e88e5 0%, #00897b 100%);
-            padding: 15px 30px;
+        .page-header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .header-logo { display: flex; align-items: center; gap: 12px; }
-        .header-logo-icon {
-            width: 45px; height: 45px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 24px;
-        }
-        .header-logo-text h5 { margin: 0; font-weight: 800; font-size: 18px; color: white; }
-        .header-logo-text small { color: rgba(255,255,255,0.9); font-size: 11px; }
-        
-        .header-search { flex: 1; max-width: 500px; margin: 0 30px; }
-        .header-search input {
-            width: 100%; padding: 12px 20px 12px 45px;
-            border: none; border-radius: 25px;
-            font-size: 14px; background: white;
-        }
-        .header-search-wrapper { position: relative; }
-        .header-search-wrapper i {
-            position: absolute; left: 18px; top: 50%;
-            transform: translateY(-50%); color: #9ca3af;
         }
         
-        .header-user { display: flex; align-items: center; gap: 12px; color: white; cursor: pointer; }
-        .header-user-avatar {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700;
-        }
-        .header-user-info strong { display: block; font-size: 14px; }
-        .header-user-info small { font-size: 11px; opacity: 0.9; }
+        .breadcrumb { margin: 0; font-size: 13px; }
+        .breadcrumb a { color: #64748b; text-decoration: none; }
+        .breadcrumb a:hover { color: #1e3a8a; }
+        .breadcrumb-item.active { color: #1e3a8a; font-weight: 600; }
         
-        /* Breadcrumb */
-        .breadcrumb-bar {
-            background: white; padding: 15px 30px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .breadcrumb { margin: 0; background: none; padding: 0; }
-        .breadcrumb-item a { color: #6b7280; text-decoration: none; }
-        .breadcrumb-item.active { color: #1e88e5; font-weight: 600; }
-        .breadcrumb-date { color: #6b7280; font-size: 14px; }
-        .breadcrumb-date i { margin-right: 5px; }
-        
-        /* Main */
-        .main-content { padding: 30px; max-width: 1200px; margin: 0 auto; }
-        
-        /* Page Header */
-        .page-header { margin-bottom: 25px; }
-        .page-header h2 { 
-            font-size: 24px; font-weight: 700; color: #1e3a8a; 
-            margin-bottom: 8px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .page-header p { color: #6b7280; font-size: 14px; margin-bottom: 0; }
-        
-        /* Info Card */
-        .info-card {
-            background: #e0f2fe;
-            border-left: 4px solid #1e88e5;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-        .info-card-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1e3a8a;
-            margin-bottom: 5px;
+        .date-display {
+            font-size: 12px;
+            color: #64748b;
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-        .info-card-text {
-            font-size: 13px;
-            color: #374151;
-            margin: 0;
+            gap: 6px;
         }
         
-        /* Form Card */
-        .form-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #e5e7eb;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
+        .main-content { padding: 30px; max-width: 800px; margin: 0 auto; }
         
-        .form-card-header {
-            background: linear-gradient(135deg, #1e3a8a, #00897b);
-            color: white;
-            padding: 20px 25px;
-        }
-        
-        .form-card-header h5 {
-            margin: 0;
-            font-weight: 700;
-            font-size: 16px;
+        .page-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .form-card-header small {
-            display: block;
-            margin-top: 5px;
-            opacity: 0.9;
-            font-size: 13px;
-        }
+        .page-title i { color: #1e3a8a; }
+        .page-subtitle { color: #64748b; font-size: 13px; margin-bottom: 24px; }
         
-        .form-card-body { padding: 30px; }
-        
-        /* Form Group */
-        .form-group { margin-bottom: 20px; }
-        
-        .form-label-custom {
-            font-size: 13px;
-            font-weight: 600;
-            color: #374151;
-            margin-bottom: 8px;
-            display: block;
-        }
-        
-        .form-label-custom .required {
-            color: #ef4444;
-            margin-left: 3px;
-        }
-        
-        .form-control-custom {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
+        .form-card {
             background: white;
-            color: #1f2937;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
         }
         
-        .form-control-custom:focus {
+        .form-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            padding: 20px 24px;
+            color: white;
+        }
+        
+        .form-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-header p { font-size: 12px; margin: 0; opacity: 0.9; }
+        .form-body { padding: 30px; }
+        .form-group { margin-bottom: 24px; }
+        
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .form-label .required { color: #dc2626; margin-left: 2px; }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            transition: all 0.2s;
+            background: #f8fafc;
+        }
+        
+        .form-input:focus {
             outline: none;
-            border-color: #1e88e5;
-            box-shadow: 0 0 0 3px rgba(30,136,229,0.1);
+            border-color: #1e3a8a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
         }
         
-        textarea.form-control-custom {
-            min-height: 100px;
-            resize: vertical;
-        }
+        .form-input::placeholder { color: #94a3b8; font-weight: 500; }
+        .form-input.is-invalid { border-color: #dc2626; background: #fef2f2; }
         
-        .form-text {
+        .error-message {
+            color: #dc2626;
             font-size: 12px;
-            color: #6b7280;
-            margin-top: 5px;
+            margin-top: 6px;
+            font-weight: 500;
         }
         
-        /* Form Row */
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .form-hint {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         
-        /* Action Buttons - TERPISAH */
+        .form-hint i { font-size: 14px; color: #94a3b8; }
+        
         .form-actions {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-end;
             gap: 12px;
-            padding: 20px 25px;
-            background: #f9fafb;
-            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-decoration: none;
         }
         
         .btn-cancel {
             background: white;
-            color: #6b7280;
-            border: 1px solid #d1d5db;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
         }
         
         .btn-cancel:hover {
-            background: #f3f4f6;
-            color: #374151;
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: #1e293b;
         }
         
-        .btn-submit {
-            background: linear-gradient(135deg, #1e88e5, #00897b);
+        .btn-save {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
             color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
         }
         
-        .btn-submit:hover {
+        .btn-save:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(30,136,229,0.3);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
             color: white;
         }
-        
-        /* Alert */
-        .alert-custom {
-            border-radius: 8px;
-            border: none;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-        }
-        
-        /* Footer */
-        .footer {
-            background: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 50px;
-        }
-        .footer small { color: #6b7280; }
-        .footer a { color: #00897b; text-decoration: none; margin-left: 20px; font-size: 14px; }
         
         @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
+            .main-content { padding: 16px; }
+            .form-body { padding: 20px; }
             .form-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-logo">
-            <div class="header-logo-icon">
-                <i class="bi bi-grid-3x3-gap-fill"></i>
-            </div>
-            <div class="header-logo-text">
-                <h5>PORTAL DESA DIGITAL</h5>
-                <small>KABUPATEN TUBAN</small>
-            </div>
-        </div>
-        
-        <div class="header-search">
-            <div class="header-search-wrapper">
-                <i class="bi bi-search"></i>
-                <input type="text" placeholder="Cari data cepat...">
-            </div>
-        </div>
-        
-        <div class="header-user">
-            <div class="header-user-info">
-                <strong>{{ auth()->user()->name ?? 'Admin Desa' }}</strong>
-                <small>Operator Kabupaten</small>
-            </div>
-            <div class="header-user-avatar">
-                {{ substr(auth()->user()->name ?? 'A', 0, 1) }}
-            </div>
-            <i class="bi bi-chevron-down"></i>
-        </div>
-    </header>
-    
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-bar">
+    <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i></a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.kecamatan.index') }}">Kecamatan</a></li>
-                <li class="breadcrumb-item active">Edit</li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.kecamatan.index') }}">Data Kecamatan</a></li>
+                <li class="breadcrumb-item active">Edit Data</li>
             </ol>
         </nav>
-        <div class="breadcrumb-date">
-            <i class="bi bi-calendar"></i> {{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}
+        <div class="date-display">
+            <i class="bi bi-calendar"></i>
+            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
         </div>
     </div>
-    
-    <!-- Main Content -->
+
     <div class="main-content">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h2><i class="bi bi-pencil-square"></i> Edit Kecamatan</h2>
-            <p>Perbarui informasi kecamatan di Kabupaten Tuban</p>
-        </div>
-        
-        <!-- Alert Success -->
-        @if(session('success'))
-        <div class="alert alert-success alert-custom alert-dismissible fade show">
-            <i class="bi bi-check-circle-fill me-2"></i>{{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        @endif
-        
-        <!-- Alert Error -->
-        @if($errors->any())
-        <div class="alert alert-danger alert-custom alert-dismissible fade show">
-            <h6 class="fw-bold mb-2"><i class="bi bi-exclamation-triangle-fill me-2"></i>Ada kesalahan:</h6>
-            <ul class="mb-0 ps-3">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        @endif
-        
-        <!-- Info Card -->
-        <div class="info-card">
-            <div class="info-card-title">
-                <i class="bi bi-info-circle"></i> Informasi Kecamatan
-            </div>
-            <p class="info-card-text mb-0">
-                Anda sedang mengedit data kecamatan <strong>{{ $kecamatan->nama_kecamatan }}</strong>. 
-                Pastikan semua informasi yang diisi sudah benar sebelum menyimpan perubahan.
-            </p>
-        </div>
-        
-        <!-- Form Card -->
+        <h1 class="page-title">
+            <i class="bi bi-pencil-square"></i>
+            Edit Kecamatan
+        </h1>
+        <p class="page-subtitle">Ubah nama kecamatan {{ $kecamatan->nama_kecamatan }}</p>
+
         <div class="form-card">
-            <div class="form-card-header">
-                <h5>
-                    <i class="bi bi-building"></i> Data Kecamatan
-                </h5>
-                <small>Formulir edit data kecamatan</small>
+            <div class="form-header">
+                <h3>
+                    <i class="bi bi-building"></i>
+                    Data Kecamatan
+                </h3>
+                <p>Edit nama kecamatan</p>
             </div>
             
-            <!-- FORM EDIT - HANYA UNTUK UPDATE -->
-            <form action="{{ route('admin.kecamatan.update', $kecamatan->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                
-                <div class="form-card-body">
-                    <!-- Row 1: Nama & Kode Wilayah -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label-custom">
-                                Nama Kecamatan <span class="required">*</span>
-                            </label>
-                            <input type="text" 
-                                   name="nama_kecamatan" 
-                                   class="form-control-custom" 
-                                   value="{{ old('nama_kecamatan', $kecamatan->nama_kecamatan) }}" 
-                                   placeholder="Masukkan nama kecamatan"
-                                   required>
-                            <div class="form-text">Nama kecamatan yang akan ditampilkan</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label-custom">
-                                Kode Wilayah <span class="required">*</span>
-                            </label>
-                            <input type="text" 
-                                   name="kode_wilayah" 
-                                   class="form-control-custom" 
-                                   value="{{ old('kode_wilayah', $kecamatan->kode_wilayah) }}" 
-                                   placeholder="Contoh: 352301"
-                                   required>
-                            <div class="form-text">Kode wilayah administratif BPS</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Row 2: Kabupaten & Jumlah Desa -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label-custom">Kabupaten</label>
-                            <input type="text" 
-                                   name="kabupaten" 
-                                   class="form-control-custom" 
-                                   value="{{ old('kabupaten', $kecamatan->kabupaten ?? 'Tuban') }}" 
-                                   placeholder="Nama kabupaten">
-                            <div class="form-text">Nama kabupaten tempat kecamatan berada</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label-custom">Jumlah Desa</label>
-                            <input type="number" 
-                                   name="jumlah_desa" 
-                                   class="form-control-custom" 
-                                   value="{{ old('jumlah_desa', $kecamatan->jumlah_desa ?? 0) }}" 
-                                   placeholder="0"
-                                   min="0">
-                            <div class="form-text">Total desa dalam kecamatan ini</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Row 3: Telepon & Email -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label-custom">Telepon</label>
-                            <input type="text" 
-                                   name="telepon" 
-                                   class="form-control-custom" 
-                                   value="{{ old('telepon', $kecamatan->telepon) }}" 
-                                   placeholder="0356-xxxxxx">
-                            <div class="form-text">Nomor telepon kecamatan</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label-custom">Email</label>
-                            <input type="email" 
-                                   name="email" 
-                                   class="form-control-custom" 
-                                   value="{{ old('email', $kecamatan->email) }}" 
-                                   placeholder="kecamatan@tuban.go.id">
-                            <div class="form-text">Alamat email resmi</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Alamat -->
-                    <div class="form-group">
-                        <label class="form-label-custom">Alamat Kantor</label>
-                        <textarea name="alamat" 
-                                  class="form-control-custom" 
-                                  placeholder="Masukkan alamat lengkap kantor kecamatan">{{ old('alamat', $kecamatan->alamat) }}</textarea>
-                        <div class="form-text">Alamat lengkap kantor kecamatan</div>
-                    </div>
-                    
-                    <!-- Deskripsi -->
-                    <div class="form-group">
-                        <label class="form-label-custom">Deskripsi</label>
-                        <textarea name="deskripsi" 
-                                  class="form-control-custom" 
-                                  rows="4"
-                                  placeholder="Tuliskan deskripsi singkat tentang kecamatan ini">{{ old('deskripsi', $kecamatan->deskripsi) }}</textarea>
-                        <div class="form-text">Deskripsi umum kecamatan (opsional)</div>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons - HANYA Batal & Simpan -->
-                <div class="form-actions">
-                    <a href="{{ route('admin.kecamatan.index') }}" class="btn-cancel">
-                        <i class="bi bi-x"></i> Batal
-                    </a>
-                    <button type="submit" class="btn-submit">
-                        <i class="bi bi-save"></i> Simpan Perubahan
-                    </button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Tombol Hapus TERPISAH di luar form -->
-        <div class="form-card">
-            <div class="form-card-header" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
-                <h5>
-                    <i class="bi bi-exclamation-triangle"></i> Zona Berbahaya
-                </h5>
-                <small>Hapus data kecamatan secara permanen</small>
-            </div>
-            
-            <div class="form-card-body">
-                <p class="text-muted mb-3">
-                    <i class="bi bi-info-circle text-danger"></i>
-                    Setelah dihapus, data kecamatan <strong>{{ $kecamatan->nama_kecamatan }}</strong> tidak dapat dikembalikan.
-                </p>
-                
-                <form action="{{ route('admin.kecamatan.destroy', $kecamatan->id) }}" method="POST" onsubmit="return confirm('⚠️ PERINGATAN!\n\nYakin ingin menghapus kecamatan {{ $kecamatan->nama_kecamatan }}?\n\nData yang sudah dihapus TIDAK BISA dikembalikan!')">
+            <div class="form-body">
+                <form action="{{ route('admin.kecamatan.update', $kecamatan->id) }}" method="POST">
                     @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                        <i class="bi bi-trash"></i> Hapus Kecamatan Ini
-                    </button>
+                    @method('PUT')
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="nama_kecamatan">
+                            Nama Kecamatan <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nama_kecamatan"
+                            name="nama_kecamatan" 
+                            class="form-input @error('nama_kecamatan') is-invalid @enderror" 
+                            value="{{ old('nama_kecamatan', $kecamatan->nama_kecamatan) }}" 
+                            placeholder="Masukkan nama kecamatan"
+                            required
+                            autofocus
+                        >
+                        @error('nama_kecamatan')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                        <div class="form-hint">
+                            <i class="bi bi-info-circle"></i>
+                            Nama kecamatan yang akan ditampilkan di sistem
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="{{ route('admin.kecamatan.index') }}" class="btn btn-cancel">
+                            <i class="bi bi-x-lg"></i>
+                            Batal
+                        </a>
+                        <button type="submit" class="btn btn-save">
+                            <i class="bi bi-check-lg"></i>
+                            Simpan Perubahan
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <small>© 2026 Pemerintah Kabupaten Tuban. Hak Cipta Dilindungi.</small>
-        <div>
-            <a href="#">Syarat & Ketentuan</a>
-            <a href="#">Kebijakan Privasi</a>
-        </div>
-    </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

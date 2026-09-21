@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Desa - Portal Desa Digital</title>
+    <title>Data Kecamatan - Portal Desa Digital</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -75,7 +75,7 @@
         }
         
         .stat-icon.blue { background: linear-gradient(135deg, #3b82f6, #1e40af); }
-        .stat-icon.green { background: linear-gradient(135deg, #10b981, #059669); }
+        .stat-icon.purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
         
         .stat-info h3 { font-size: 28px; font-weight: 800; color: #1e293b; margin: 0; line-height: 1; }
         .stat-info p { font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
@@ -159,11 +159,23 @@
             text-decoration: none;
         }
         
-        .btn-import { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
-        .btn-import:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3); color: white; }
+        .btn-import {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        }
+        .btn-import:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            color: white;
+        }
         
-        .btn-add { background: linear-gradient(135deg, #14b8a6, #0f766e); }
-        .btn-add:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); color: white; }
+        .btn-add {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
+        }
+        .btn-add:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            color: white;
+        }
         
         .table-simple { width: 100%; border-collapse: collapse; }
         .table-simple thead { background: #f8fafc; }
@@ -189,15 +201,30 @@
         .table-simple tbody tr:last-child td { border-bottom: none; }
         .table-simple tbody tr:hover { background: #f8fafc; }
         
-        .badge-jenis {
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 600;
+        .kecamatan-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1e40af;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.2s;
         }
         
-        .badge-desa { background: #dbeafe; color: #1e40af; }
-        .badge-kelurahan { background: #fef3c7; color: #d97706; }
+        .kecamatan-link:hover {
+            color: #1e3a8a;
+            transform: translateX(4px);
+        }
+        
+        .kecamatan-sub {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
         
         .btn-action {
             padding: 6px 12px;
@@ -233,6 +260,20 @@
             font-weight: 600;
         }
         
+        .alert-error-custom {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
         .empty-state { text-align: center; padding: 48px; color: #94a3b8; }
         .empty-state i { font-size: 36px; display: block; margin-bottom: 12px; }
         
@@ -252,34 +293,31 @@
         
         .form-label-custom { display: block; font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
         .form-label-custom .required { color: #ef4444; margin-left: 2px; }
-        .form-input-custom, .form-select-custom {
+        .form-input-custom {
             width: 100%; padding: 12px 16px; border: 1.5px solid #e2e8f0; border-radius: 10px;
             font-size: 14px; font-weight: 500; color: #1e293b; background: #f8fafc; transition: all 0.25s;
         }
-        .form-input-custom:focus, .form-select-custom:focus {
-            outline: none; border-color: #3b82f6; background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
-        }
+        .form-input-custom:focus { outline: none; border-color: #3b82f6; background: white; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08); }
         .form-hint { font-size: 11px; color: #64748b; margin-top: 6px; display: flex; align-items: center; gap: 4px; }
         
         .btn-modal-cancel {
             background: white; color: #64748b; border: 1.5px solid #e2e8f0; padding: 10px 20px;
-            border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+            border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
         }
         .btn-modal-cancel:hover { background: #f8fafc; border-color: #cbd5e1; color: #1e293b; }
         
         .btn-modal-save {
-            background: linear-gradient(135deg, #10b981, #059669); color: white; border: none;
-            padding: 10px 24px; border-radius: 10px; font-size: 13px; font-weight: 600;
-            cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+            background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 10px 24px;
+            border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 6px;
         }
         .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35); color: white; }
-        .btn-modal-save:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
             .main-content { padding: 18px; }
+            .table-header { flex-direction: column; gap: 12px; align-items: flex-start; }
         }
     </style>
 </head>
@@ -287,48 +325,58 @@
     <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item active">Data Desa</li>
+                <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item active">Data Kecamatan</li>
             </ol>
         </nav>
         <div class="date-display">
             <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+            <?php echo e(\Carbon\Carbon::now()->translatedFormat('l, d F Y')); ?>
+
         </div>
     </div>
 
     <div class="main-content">
-        @if(session('success'))
+        <?php if(session('success')): ?>
         <div class="alert-success-custom">
             <i class="bi bi-check-circle-fill"></i>
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
         </div>
-        @endif
+        <?php endif; ?>
+
+        <?php if(session('error')): ?>
+        <div class="alert-error-custom">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <?php echo e(session('error')); ?>
+
+        </div>
+        <?php endif; ?>
 
         <h1 class="page-title">
-            <i class="bi bi-houses-fill"></i>
-            Data Desa/Kelurahan
+            <i class="bi bi-geo-alt-fill"></i>
+            Data Kecamatan
         </h1>
-        <p class="page-subtitle">Kelola data desa dan kelurahan di Kabupaten Tuban</p>
+        <p class="page-subtitle">Kelola data kecamatan di Kabupaten Tuban</p>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon blue">
-                    <i class="bi bi-houses-fill"></i>
+                    <i class="bi bi-geo-alt-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalDesa }}</h3>
-                    <p>Total Desa</p>
+                    <h3><?php echo e($totalKecamatan); ?></h3>
+                    <p>Total Kecamatan</p>
                 </div>
             </div>
             
             <div class="stat-card">
-                <div class="stat-icon green">
-                    <i class="bi bi-geo-alt-fill"></i>
+                <div class="stat-icon purple">
+                    <i class="bi bi-houses-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalKecamatan }}</h3>
-                    <p>Total Kecamatan</p>
+                    <h3><?php echo e($kecamatans->sum('desas_count')); ?></h3>
+                    <p>Total Desa</p>
                 </div>
             </div>
         </div>
@@ -336,7 +384,7 @@
         <div class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama desa...">
+                <input type="text" id="searchInput" placeholder="Cari nama kecamatan...">
             </div>
         </div>
 
@@ -344,15 +392,15 @@
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
-                    Daftar Desa
-                    <span class="badge-count">{{ $desas->count() }} Desa</span>
+                    Daftar Kecamatan
+                    <span class="badge-count"><?php echo e($kecamatans->count()); ?> Kecamatan</span>
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <button type="button" class="btn-action-header btn-import" data-bs-toggle="modal" data-bs-target="#modalImport">
                         <i class="bi bi-file-earmark-excel"></i>
                         Import Excel
                     </button>
-                    <button type="button" class="btn-action-header btn-add" data-bs-toggle="modal" data-bs-target="#modalDesa" onclick="openModalTambah()">
+                    <button type="button" class="btn-action-header btn-add" data-bs-toggle="modal" data-bs-target="#modalKecamatan" onclick="openModalTambah()">
                         <i class="bi bi-plus-lg"></i>
                         Tambah
                     </button>
@@ -363,104 +411,82 @@
                 <thead>
                     <tr>
                         <th style="width: 60px;">NO</th>
-                        <th>NAMA DESA</th>
-                        <th>KECAMATAN</th>
-                        <th>KODE DESA</th>
-                        <th>JENIS</th>
-                        <th style="width: 150px;">AKSI</th>
+                        <th>NAMA KECAMATAN</th>
+                        <th style="width: 200px;">AKSI</th>
                     </tr>
                 </thead>
-                <tbody id="desaTable">
-                    @forelse($desas as $index => $desa)
-                    <tr data-id="{{ $desa->id }}">
-                        <td>{{ $index + 1 }}</td>
-                        <td><strong>{{ $desa->nama_desa }}</strong></td>
-                        <td>{{ $desa->kecamatan->nama_kecamatan }}</td>
-                        <td>{{ $desa->kode_desa ?? '-' }}</td>
+                <tbody id="kecamatanTable">
+                    <?php $__empty_1 = true; $__currentLoopData = $kecamatans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $kecamatan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <tr data-id="<?php echo e($kecamatan->id); ?>">
+                        <td><?php echo e($index + 1); ?></td>
                         <td>
-                            <span class="badge-jenis {{ $desa->jenis == 'Desa' ? 'badge-desa' : 'badge-kelurahan' }}">
-                                {{ $desa->jenis }}
-                            </span>
+                            <!-- ✅ KLIK NAMA KECAMATAN UNTUK LIHAT DESA -->
+                            <a href="<?php echo e(route('admin.kecamatan.show', $kecamatan->id)); ?>" class="kecamatan-link">
+                                <i class="bi bi-folder2-open"></i>
+                                <?php echo e($kecamatan->nama_kecamatan); ?>
+
+                            </a>
+                            <div class="kecamatan-sub">
+                                <i class="bi bi-houses"></i> <?php echo e($kecamatan->desas_count); ?> desa
+                            </div>
                         </td>
                         <td>
-                            <button type="button" class="btn-action btn-edit" onclick="openModalEdit({{ $desa->id }}, '{{ $desa->nama_desa }}', {{ $desa->kecamatan_id }}, '{{ $desa->kode_desa }}', '{{ $desa->jenis }}')">
+                            <button type="button" class="btn-action btn-edit" onclick="openModalEdit(<?php echo e($kecamatan->id); ?>, '<?php echo e($kecamatan->nama_kecamatan); ?>')">
                                 <i class="bi bi-pencil"></i> Edit
                             </button>
-                            <button type="button" class="btn-action btn-delete" onclick="hapusDesa({{ $desa->id }}, '{{ $desa->nama_desa }}')">
+                            <button type="button" class="btn-action btn-delete" onclick="hapusKecamatan(<?php echo e($kecamatan->id); ?>, '<?php echo e($kecamatan->nama_kecamatan); ?>')">
                                 <i class="bi bi-trash"></i> Hapus
                             </button>
                         </td>
                     </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="3">
                             <div class="empty-state">
                                 <i class="bi bi-inbox"></i>
-                                Belum ada data desa
+                                Belum ada data kecamatan
                             </div>
                         </td>
                     </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- ===== MODAL TAMBAH/EDIT DESA ===== -->
-    <div class="modal fade" id="modalDesa" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <!-- ===== MODAL TAMBAH/EDIT KECAMATAN ===== -->
+    <div class="modal fade" id="modalKecamatan" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">
                         <i class="bi bi-plus-circle-fill"></i>
-                        <span id="modalTitleText">Tambah Desa</span>
+                        <span id="modalTitleText">Tambah Kecamatan</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formDesa">
-                    @csrf
-                    <input type="hidden" id="desaId" name="id">
+                <form id="formKecamatan">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" id="kecamatanId" name="id">
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Nama Desa/Kelurahan <span class="required">*</span>
-                                </label>
-                                <input type="text" id="namaDesa" name="nama_desa" class="form-input-custom" placeholder="Masukkan nama desa" required autofocus>
+                        <div class="mb-3">
+                            <label class="form-label-custom">
+                                Nama Kecamatan <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="namaKecamatan" 
+                                name="nama_kecamatan" 
+                                class="form-input-custom" 
+                                placeholder="Masukkan nama kecamatan"
+                                required
+                                autofocus
+                            >
+                            <div class="form-hint">
+                                <i class="bi bi-info-circle"></i>
+                                Nama kecamatan yang akan ditampilkan di sistem
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Kode Desa
-                                </label>
-                                <input type="text" id="kodeDesa" name="kode_desa" class="form-input-custom" placeholder="Contoh: 3523010001">
-                                <div class="form-hint">
-                                    <i class="bi bi-info-circle"></i>
-                                    Kode unik desa (opsional)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Kecamatan <span class="required">*</span>
-                                </label>
-                                <select id="kecamatanId" name="kecamatan_id" class="form-select-custom" required>
-                                    <option value="">-- Pilih Kecamatan --</option>
-                                    @foreach(\App\Models\Kecamatan::orderBy('nama_kecamatan')->get() as $kec)
-                                    <option value="{{ $kec->id }}">{{ $kec->nama_kecamatan }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Jenis <span class="required">*</span>
-                                </label>
-                                <select id="jenis" name="jenis" class="form-select-custom" required>
-                                    <option value="">-- Pilih Jenis --</option>
-                                    <option value="Desa">Desa</option>
-                                    <option value="Kelurahan">Kelurahan</option>
-                                </select>
-                            </div>
+                            <div id="errorNama" style="color: #ef4444; font-size: 11px; margin-top: 6px; display: none;"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -469,7 +495,7 @@
                         </button>
                         <button type="submit" class="btn-modal-save" id="btnSubmit">
                             <i class="bi bi-check-lg"></i>
-                            <span id="btnSubmitText">Simpan Desa</span>
+                            <span id="btnSubmitText">Simpan Kecamatan</span>
                         </button>
                     </div>
                 </form>
@@ -484,26 +510,32 @@
                 <div class="modal-header">
                     <h5 class="modal-title">
                         <i class="bi bi-file-earmark-excel"></i>
-                        Import Desa dari Excel
+                        Import Kecamatan dari Excel
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.desa.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <form action="<?php echo e(route('admin.kecamatan.import')); ?>" method="POST" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label-custom">
                                 Pilih File Excel <span class="required">*</span>
                             </label>
-                            <input type="file" name="file_excel" class="form-input-custom" accept=".xlsx,.xls,.csv" required>
+                            <input 
+                                type="file" 
+                                name="file_excel" 
+                                class="form-input-custom" 
+                                accept=".xlsx,.xls,.csv"
+                                required
+                            >
                             <div class="form-hint">
                                 <i class="bi bi-info-circle"></i>
                                 Format: XLSX, XLS, atau CSV (Maks. 10MB)
                             </div>
                             <div style="margin-top: 12px; padding: 12px; background: #eff6ff; border-radius: 8px; font-size: 12px; color: #1e40af;">
                                 <strong>Format Excel yang benar:</strong><br>
-                                Kolom: <strong>NAMA KECAMATAN</strong>, <strong>NAMA DESA</strong>, <strong>KODE DESA</strong>, <strong>JENIS</strong><br><br>
-                                <a href="{{ route('admin.desa.download-template') }}" style="color: #1e40af; text-decoration: underline; font-weight: 600;">
+                                Header kolom harus: <strong>Nama Kecamatan</strong><br><br>
+                                <a href="<?php echo e(route('admin.kecamatan.download-template')); ?>" style="color: #1e40af; text-decoration: underline; font-weight: 600;">
                                     <i class="bi bi-download"></i> Download Template Excel
                                 </a>
                             </div>
@@ -524,20 +556,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let modalDesa;
+        let modalKecamatan;
         let isEditMode = false;
 
         document.addEventListener('DOMContentLoaded', function() {
-            modalDesa = new bootstrap.Modal(document.getElementById('modalDesa'));
+            modalKecamatan = new bootstrap.Modal(document.getElementById('modalKecamatan'));
             
-            document.getElementById('formDesa').addEventListener('submit', function(e) {
+            document.getElementById('formKecamatan').addEventListener('submit', function(e) {
                 e.preventDefault();
                 submitForm();
             });
 
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
-                const rows = document.querySelectorAll('#desaTable tr[data-id]');
+                const rows = document.querySelectorAll('#kecamatanTable tr[data-id]');
                 rows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(filter) ? '' : 'none';
@@ -547,27 +579,23 @@
 
         function openModalTambah() {
             isEditMode = false;
-            document.getElementById('modalTitleText').textContent = 'Tambah Desa';
-            document.getElementById('btnSubmitText').textContent = 'Simpan Desa';
-            document.getElementById('desaId').value = '';
-            document.getElementById('namaDesa').value = '';
-            document.getElementById('kodeDesa').value = '';
+            document.getElementById('modalTitleText').textContent = 'Tambah Kecamatan';
+            document.getElementById('btnSubmitText').textContent = 'Simpan Kecamatan';
             document.getElementById('kecamatanId').value = '';
-            document.getElementById('jenis').value = '';
-            document.getElementById('formDesa').action = "{{ route('admin.desa.store') }}";
+            document.getElementById('namaKecamatan').value = '';
+            document.getElementById('errorNama').style.display = 'none';
+            document.getElementById('formKecamatan').action = "<?php echo e(route('admin.kecamatan.store')); ?>";
         }
 
-        function openModalEdit(id, nama, kecamatanId, kodeDesa, jenis) {
+        function openModalEdit(id, nama) {
             isEditMode = true;
-            document.getElementById('modalTitleText').textContent = 'Edit Desa';
-            document.getElementById('btnSubmitText').textContent = 'Update Desa';
-            document.getElementById('desaId').value = id;
-            document.getElementById('namaDesa').value = nama;
-            document.getElementById('kodeDesa').value = kodeDesa || '';
-            document.getElementById('kecamatanId').value = kecamatanId;
-            document.getElementById('jenis').value = jenis;
-            document.getElementById('formDesa').action = `/admin/desa/${id}`;
-            modalDesa.show();
+            document.getElementById('modalTitleText').textContent = 'Edit Kecamatan';
+            document.getElementById('btnSubmitText').textContent = 'Update Kecamatan';
+            document.getElementById('kecamatanId').value = id;
+            document.getElementById('namaKecamatan').value = nama;
+            document.getElementById('errorNama').style.display = 'none';
+            document.getElementById('formKecamatan').action = `/admin/kecamatan/${id}`;
+            modalKecamatan.show();
         }
 
         function submitForm() {
@@ -577,8 +605,8 @@
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Menyimpan...';
             
-            const formData = new FormData(document.getElementById('formDesa'));
-            const url = document.getElementById('formDesa').action;
+            const formData = new FormData(document.getElementById('formKecamatan'));
+            const url = document.getElementById('formKecamatan').action;
             const method = isEditMode ? 'POST' : 'POST';
             
             if (isEditMode) {
@@ -597,7 +625,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    modalDesa.hide();
+                    modalKecamatan.hide();
                     showToast(data.message, 'success');
                     setTimeout(() => { window.location.reload(); }, 800);
                 } else {
@@ -614,9 +642,9 @@
             });
         }
 
-        function hapusDesa(id, nama) {
-            if (confirm(`Yakin ingin menghapus desa "${nama}"?`)) {
-                fetch(`/admin/desa/${id}`, {
+        function hapusKecamatan(id, nama) {
+            if (confirm(`Yakin ingin menghapus kecamatan "${nama}"? Data desa di dalamnya tidak akan terhapus, tapi kecamatan ini akan hilang.`)) {
+                fetch(`/admin/kecamatan/${id}`, {
                     method: 'POST',
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest',
@@ -642,8 +670,9 @@
         }
 
         function showToast(message, type = 'success') {
-            alert(message); // Fallback sederhana
+            // Implementasi toast sederhana bisa ditambahkan di sini jika diperlukan
+            alert(message); // Fallback sementara
         }
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\Users\DELL\Desa-Digital2\resources\views/admin/kecamatan/index.blade.php ENDPATH**/ ?>

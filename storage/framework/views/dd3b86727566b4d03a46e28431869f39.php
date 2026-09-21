@@ -287,23 +287,25 @@
     <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><i class="bi bi-house"></i> Home</a></li>
                 <li class="breadcrumb-item active">Data Desa</li>
             </ol>
         </nav>
         <div class="date-display">
             <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+            <?php echo e(\Carbon\Carbon::now()->translatedFormat('l, d F Y')); ?>
+
         </div>
     </div>
 
     <div class="main-content">
-        @if(session('success'))
+        <?php if(session('success')): ?>
         <div class="alert-success-custom">
             <i class="bi bi-check-circle-fill"></i>
-            {{ session('success') }}
+            <?php echo e(session('success')); ?>
+
         </div>
-        @endif
+        <?php endif; ?>
 
         <h1 class="page-title">
             <i class="bi bi-houses-fill"></i>
@@ -317,7 +319,7 @@
                     <i class="bi bi-houses-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalDesa }}</h3>
+                    <h3><?php echo e($totalDesa); ?></h3>
                     <p>Total Desa</p>
                 </div>
             </div>
@@ -327,7 +329,7 @@
                     <i class="bi bi-geo-alt-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalKecamatan }}</h3>
+                    <h3><?php echo e($totalKecamatan); ?></h3>
                     <p>Total Kecamatan</p>
                 </div>
             </div>
@@ -345,7 +347,7 @@
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Desa
-                    <span class="badge-count">{{ $desas->count() }} Desa</span>
+                    <span class="badge-count"><?php echo e($desas->count()); ?> Desa</span>
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <button type="button" class="btn-action-header btn-import" data-bs-toggle="modal" data-bs-target="#modalImport">
@@ -371,27 +373,28 @@
                     </tr>
                 </thead>
                 <tbody id="desaTable">
-                    @forelse($desas as $index => $desa)
-                    <tr data-id="{{ $desa->id }}">
-                        <td>{{ $index + 1 }}</td>
-                        <td><strong>{{ $desa->nama_desa }}</strong></td>
-                        <td>{{ $desa->kecamatan->nama_kecamatan }}</td>
-                        <td>{{ $desa->kode_desa ?? '-' }}</td>
+                    <?php $__empty_1 = true; $__currentLoopData = $desas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $desa): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <tr data-id="<?php echo e($desa->id); ?>">
+                        <td><?php echo e($index + 1); ?></td>
+                        <td><strong><?php echo e($desa->nama_desa); ?></strong></td>
+                        <td><?php echo e($desa->kecamatan->nama_kecamatan); ?></td>
+                        <td><?php echo e($desa->kode_desa ?? '-'); ?></td>
                         <td>
-                            <span class="badge-jenis {{ $desa->jenis == 'Desa' ? 'badge-desa' : 'badge-kelurahan' }}">
-                                {{ $desa->jenis }}
+                            <span class="badge-jenis <?php echo e($desa->jenis == 'Desa' ? 'badge-desa' : 'badge-kelurahan'); ?>">
+                                <?php echo e($desa->jenis); ?>
+
                             </span>
                         </td>
                         <td>
-                            <button type="button" class="btn-action btn-edit" onclick="openModalEdit({{ $desa->id }}, '{{ $desa->nama_desa }}', {{ $desa->kecamatan_id }}, '{{ $desa->kode_desa }}', '{{ $desa->jenis }}')">
+                            <button type="button" class="btn-action btn-edit" onclick="openModalEdit(<?php echo e($desa->id); ?>, '<?php echo e($desa->nama_desa); ?>', <?php echo e($desa->kecamatan_id); ?>, '<?php echo e($desa->kode_desa); ?>', '<?php echo e($desa->jenis); ?>')">
                                 <i class="bi bi-pencil"></i> Edit
                             </button>
-                            <button type="button" class="btn-action btn-delete" onclick="hapusDesa({{ $desa->id }}, '{{ $desa->nama_desa }}')">
+                            <button type="button" class="btn-action btn-delete" onclick="hapusDesa(<?php echo e($desa->id); ?>, '<?php echo e($desa->nama_desa); ?>')">
                                 <i class="bi bi-trash"></i> Hapus
                             </button>
                         </td>
                     </tr>
-                    @empty
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <tr>
                         <td colspan="6">
                             <div class="empty-state">
@@ -400,7 +403,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforelse
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -418,7 +421,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="formDesa">
-                    @csrf
+                    <?php echo csrf_field(); ?>
                     <input type="hidden" id="desaId" name="id">
                     <div class="modal-body">
                         <div class="row">
@@ -446,9 +449,9 @@
                                 </label>
                                 <select id="kecamatanId" name="kecamatan_id" class="form-select-custom" required>
                                     <option value="">-- Pilih Kecamatan --</option>
-                                    @foreach(\App\Models\Kecamatan::orderBy('nama_kecamatan')->get() as $kec)
-                                    <option value="{{ $kec->id }}">{{ $kec->nama_kecamatan }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = \App\Models\Kecamatan::orderBy('nama_kecamatan')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kec): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($kec->id); ?>"><?php echo e($kec->nama_kecamatan); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -488,8 +491,8 @@
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.desa.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <form action="<?php echo e(route('admin.desa.import')); ?>" method="POST" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label-custom">
@@ -503,7 +506,7 @@
                             <div style="margin-top: 12px; padding: 12px; background: #eff6ff; border-radius: 8px; font-size: 12px; color: #1e40af;">
                                 <strong>Format Excel yang benar:</strong><br>
                                 Kolom: <strong>NAMA KECAMATAN</strong>, <strong>NAMA DESA</strong>, <strong>KODE DESA</strong>, <strong>JENIS</strong><br><br>
-                                <a href="{{ route('admin.desa.download-template') }}" style="color: #1e40af; text-decoration: underline; font-weight: 600;">
+                                <a href="<?php echo e(route('admin.desa.download-template')); ?>" style="color: #1e40af; text-decoration: underline; font-weight: 600;">
                                     <i class="bi bi-download"></i> Download Template Excel
                                 </a>
                             </div>
@@ -554,7 +557,7 @@
             document.getElementById('kodeDesa').value = '';
             document.getElementById('kecamatanId').value = '';
             document.getElementById('jenis').value = '';
-            document.getElementById('formDesa').action = "{{ route('admin.desa.store') }}";
+            document.getElementById('formDesa').action = "<?php echo e(route('admin.desa.store')); ?>";
         }
 
         function openModalEdit(id, nama, kecamatanId, kodeDesa, jenis) {
@@ -646,4 +649,4 @@
         }
     </script>
 </body>
-</html>
+</html><?php /**PATH C:\Users\DELL\Desa-Digital2\resources\views/admin/desa/index.blade.php ENDPATH**/ ?>

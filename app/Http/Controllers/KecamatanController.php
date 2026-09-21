@@ -1,72 +1,79 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Kecamatan;
+use App\Models\Desa;
 use Illuminate\Http\Request;
 
 class KecamatanController extends Controller
 {
-    // Tampilkan daftar kecamatan
     public function index()
     {
-        $kecamatans = Kecamatan::withCount('desa')->latest()->paginate(10);
-        return view('kecamatan.index', compact('kecamatans'));
+        $kecamatans = Kecamatan::orderBy('nama_kecamatan', 'asc')->get();
+        $totalKecamatan = Kecamatan::count();
+        $totalDesa = Desa::count();
+
+        return view('admin.kecamatan.index', compact(
+            'kecamatans',
+            'totalKecamatan',
+            'totalDesa'
+        ));
     }
 
-    // Tampilkan form tambah kecamatan
     public function create()
     {
-        return view('kecamatan.create');
+        return view('admin.kecamatan.create');
     }
 
-    // Simpan kecamatan baru
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_kecamatan' => 'required|string|max:100',
-            'kode_wilayah' => 'required|string|max:20|unique:kecamatan,kode_wilayah',
+        $request->validate([
+            'nama_kecamatan' => 'required|string|max:255|unique:kecamatan,nama_kecamatan',
+        ], [
+            'nama_kecamatan.required' => 'Nama kecamatan wajib diisi',
+            'nama_kecamatan.unique' => 'Nama kecamatan sudah ada',
         ]);
 
-        Kecamatan::create($validated);
+        Kecamatan::create([
+            'nama_kecamatan' => $request->nama_kecamatan,
+        ]);
 
-        return redirect()->route('kecamatan.index')
+        return redirect()
+            ->route('admin.kecamatan.index')
             ->with('success', 'Kecamatan berhasil ditambahkan!');
     }
 
-    // Tampilkan detail kecamatan
-    public function show(Kecamatan $kecamatan)
-    {
-        $kecamatan->load('desa');
-        return view('kecamatan.show', compact('kecamatan'));
-    }
-
-    // Tampilkan form edit kecamatan
     public function edit(Kecamatan $kecamatan)
     {
-        return view('kecamatan.edit', compact('kecamatan'));
+        return view('admin.kecamatan.edit', compact('kecamatan'));
     }
 
-    // Update kecamatan
     public function update(Request $request, Kecamatan $kecamatan)
     {
-        $validated = $request->validate([
-            'nama_kecamatan' => 'required|string|max:100',
-            'kode_wilayah' => 'required|string|max:20|unique:kecamatan,kode_wilayah,' . $kecamatan->id,
+        $request->validate([
+            'nama_kecamatan' => 'required|string|max:255|unique:kecamatan,nama_kecamatan,' . $kecamatan->id,
+        ], [
+            'nama_kecamatan.required' => 'Nama kecamatan wajib diisi',
+            'nama_kecamatan.unique' => 'Nama kecamatan sudah digunakan',
         ]);
 
-        $kecamatan->update($validated);
+        $kecamatan->update([
+            'nama_kecamatan' => $request->nama_kecamatan,
+        ]);
 
-        return redirect()->route('kecamatan.index')
-            ->with('success', 'Kecamatan berhasil diupdate!');
+        return redirect()
+            ->route('admin.kecamatan.index')
+            ->with('success', 'Kecamatan berhasil diperbarui!');
     }
 
-    // Hapus kecamatan
     public function destroy(Kecamatan $kecamatan)
     {
         $kecamatan->delete();
 
-        return redirect()->route('kecamatan.index')
+        return redirect()
+            ->route('admin.kecamatan.index')
             ->with('success', 'Kecamatan berhasil dihapus!');
     }
 }

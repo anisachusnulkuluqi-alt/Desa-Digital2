@@ -48,7 +48,7 @@ class DesaController extends Controller
 
     public function show(Desa $desa)
     {
-        $desa->load(['kecamatan', 'dusun', 'wisata', 'pasar', 'wifi', 'bumdes', 'kkdmp']);
+        $desa->load(['kecamatan', 'wisata', 'pasar', 'wifi', 'bumdes', 'kkdmp']);
         return view('desa.show', compact('desa'));
     }
 

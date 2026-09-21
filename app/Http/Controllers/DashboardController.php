@@ -9,7 +9,6 @@ use App\Models\PasarDesa;
 use App\Models\WifiDesa;
 use App\Models\Bumdes;
 use App\Models\Kkdmp;
-use App\Models\Dusun;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,7 +18,6 @@ class DashboardController extends Controller
         // Hitung total data untuk statistik dashboard
         $totalKecamatan = Kecamatan::count();
         $totalDesa = Desa::count();
-        $totalDusun = Dusun::count();
         $totalWisata = WisataDesa::count();
         $totalPasar = PasarDesa::count();
         $totalWifi = WifiDesa::count();
@@ -33,7 +31,6 @@ class DashboardController extends Controller
         return view('dashboard', compact(
             'totalKecamatan',
             'totalDesa',
-            'totalDusun',
             'totalWisata',
             'totalPasar',
             'totalWifi',

@@ -5,223 +5,149 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Kecamatan;
 use App\Models\Desa;
+use App\Imports\DesaKecamatanImport; // <-- PASTIKAN INI BENAR
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromArray;
 
 class KecamatanController extends Controller
 {
-    /**
-     * Tampilkan daftar kecamatan dengan statistik
-     */
-    public function index(Request $request)
+    public function index()
     {
-        // Query dengan relasi desa dan hitung jumlah desa
-        $query = Kecamatan::withCount('desas');
-        
-        // Search berdasarkan nama kecamatan
-        if ($request->has('search') && $request->search) {
-            $query->where('nama_kecamatan', 'like', '%' . $request->search . '%');
-        }
-        
-        // Filter berdasarkan kabupaten
-        if ($request->has('kabupaten') && $request->kabupaten) {
-            $query->where('kabupaten', $request->kabupaten);
-        }
-        
-        // Pagination
-        $kecamatans = $query->orderBy('nama_kecamatan')->paginate(10);
-        
-        // Statistik
+        $kecamatans = Kecamatan::withCount('desas')->orderBy('nama_kecamatan', 'asc')->get();
         $totalKecamatan = Kecamatan::count();
-        $totalDesa = Desa::count();
-        $avgDesa = $totalKecamatan > 0 ? round($totalDesa / $totalKecamatan, 1) : 0;
-        
-        // Data untuk chart
-        $chartLabels = Kecamatan::orderBy('nama_kecamatan')->pluck('nama_kecamatan');
-        $chartData = Kecamatan::withCount('desas')->orderBy('nama_kecamatan')->get()->pluck('desas_count');
-        
-        return view('admin.kecamatan.index', compact(
-            'kecamatans',
-            'totalKecamatan',
-            'totalDesa',
-            'avgDesa',
-            'chartLabels',
-            'chartData'
-        ));
+
+        return view('admin.kecamatan.index', compact('kecamatans', 'totalKecamatan'));
     }
 
-    /**
-     * Tampilkan form tambah kecamatan
-     */
+    public function show(Kecamatan $kecamatan)
+    {
+        $kecamatan->load('desas');
+        $totalDesa = $kecamatan->desas->count();
+        
+        return view('admin.kecamatan.show', compact('kecamatan', 'totalDesa'));
+    }
+
     public function create()
     {
         return view('admin.kecamatan.create');
     }
 
-    /**
-     * Simpan kecamatan baru ke database
-     */
     public function store(Request $request)
     {
-        // Validasi input
-        $validated = $request->validate([
-            'nama_kecamatan' => 'required|string|max:100',
-            'kode_wilayah' => 'nullable|string|max:20|unique:kecamatan,kode_wilayah',
-            'kabupaten' => 'nullable|string|max:100',
-            'deskripsi' => 'nullable|string',
-            'telepon' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:100',
-            'alamat' => 'nullable|string',
-            'jumlah_desa' => 'nullable|integer|min:0',
+        $request->validate([
+            'nama_kecamatan' => 'required|string|max:255|unique:kecamatan,nama_kecamatan',
         ]);
 
-        // Generate slug otomatis
-        $validated['slug'] = Str::slug($validated['nama_kecamatan']) . '-' . time();
-        
-        // Set default kabupaten jika kosong
-        if (!isset($validated['kabupaten']) || empty($validated['kabupaten'])) {
-            $validated['kabupaten'] = 'Tuban';
+        $kecamatan = Kecamatan::create([
+            'nama_kecamatan' => $request->nama_kecamatan,
+        ]);
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Kecamatan berhasil ditambahkan!',
+                'data' => $kecamatan
+            ]);
         }
 
-        // Simpan ke database
-        Kecamatan::create($validated);
-
-        return redirect()->route('admin.kecamatan.index')
-            ->with('success', 'Kecamatan berhasil ditambahkan!');
+        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil ditambahkan!');
     }
 
-    /**
-     * Tampilkan detail kecamatan
-     */
-    public function show($id)
+    public function edit(Kecamatan $kecamatan)
     {
-        $kecamatan = Kecamatan::with('desas')->findOrFail($id);
-        return view('admin.kecamatan.show', compact('kecamatan'));
-    }
-
-    /**
-     * Tampilkan form edit kecamatan
-     */
-    public function edit($id)
-    {
-        $kecamatan = Kecamatan::findOrFail($id);
         return view('admin.kecamatan.edit', compact('kecamatan'));
     }
 
-    /**
-     * Update kecamatan di database
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kecamatan $kecamatan)
     {
-        $kecamatan = Kecamatan::findOrFail($id);
-
-        // Validasi input
-        $validated = $request->validate([
-            'nama_kecamatan' => 'required|string|max:100',
-            'kode_wilayah' => 'nullable|string|max:20|unique:kecamatan,kode_wilayah,' . $id,
-            'kabupaten' => 'nullable|string|max:100',
-            'deskripsi' => 'nullable|string',
-            'telepon' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:100',
-            'alamat' => 'nullable|string',
-            'jumlah_desa' => 'nullable|integer|min:0',
+        $request->validate([
+            'nama_kecamatan' => 'required|string|max:255|unique:kecamatan,nama_kecamatan,' . $kecamatan->id,
         ]);
 
-        // Update slug jika nama berubah
-        if ($kecamatan->nama_kecamatan !== $validated['nama_kecamatan']) {
-            $validated['slug'] = Str::slug($validated['nama_kecamatan']) . '-' . time();
+        $kecamatan->update([
+            'nama_kecamatan' => $request->nama_kecamatan,
+        ]);
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Kecamatan berhasil diperbarui!',
+                'data' => $kecamatan
+            ]);
         }
 
-        // Update data
-        $kecamatan->update($validated);
-
-        return redirect()->route('admin.kecamatan.index')
-            ->with('success', 'Kecamatan berhasil diupdate!');
+        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil diperbarui!');
     }
 
-    /**
-     * Hapus kecamatan dari database
-     */
-    public function destroy($id)
+    public function destroy(Kecamatan $kecamatan)
     {
-        $kecamatan = Kecamatan::findOrFail($id);
-        
-        // Cek apakah masih ada desa yang menggunakan kecamatan ini
         if ($kecamatan->desas()->count() > 0) {
-            return redirect()->route('admin.kecamatan.index')
-                ->with('error', 'Kecamatan tidak dapat dihapus karena masih memiliki ' . $kecamatan->desas()->count() . ' desa.');
+            if (request()->ajax() || request()->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Kecamatan tidak dapat dihapus karena masih memiliki ' . $kecamatan->desas()->count() . ' desa.'
+                ], 422);
+            }
+            return redirect()->route('admin.kecamatan.index')->with('error', 'Kecamatan tidak dapat dihapus karena masih memiliki desa.');
         }
-        
-        // Hapus data
+
         $kecamatan->delete();
 
-        return redirect()->route('admin.kecamatan.index')
-            ->with('success', 'Kecamatan berhasil dihapus!');
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Kecamatan berhasil dihapus!'
+            ]);
+        }
+
+        return redirect()->route('admin.kecamatan.index')->with('success', 'Kecamatan berhasil dihapus!');
     }
 
-    /**
-     * Export data kecamatan (JSON)
-     */
-    public function export(Request $request)
+    public function import(Request $request)
     {
-        $kecamatans = Kecamatan::withCount('desas')
-            ->orderBy('nama_kecamatan')
-            ->get();
-        
-        return response()->json([
-            'success' => true,
-            'data' => $kecamatans,
-            'total' => $kecamatans->count(),
-            'exported_at' => now()->toDateTimeString()
+        $request->validate([
+            'file_excel' => 'required|mimes:xlsx,xls,csv|max:10240',
         ]);
+
+        try {
+            // <-- PANGGIL CLASS YANG BENAR DI SINI
+            Excel::import(new DesaKecamatanImport, $request->file('file_excel'));
+
+            $kecamatanCount = Kecamatan::count();
+            $desaCount = Desa::count();
+
+            $message = "Import berhasil! Total Kecamatan: {$kecamatanCount}, Total Desa: {$desaCount}.";
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json(['success' => true, 'message' => $message]);
+            }
+
+            return redirect()->route('admin.kecamatan.index')->with('success', $message);
+            
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $errors = [];
+            foreach ($failures as $failure) {
+                $errors[] = "Baris " . $failure->row() . ": " . implode(', ', $failure->errors());
+            }
+            return redirect()->route('admin.kecamatan.index')->with('error', 'Validasi gagal: ' . implode('; ', $errors));
+            
+        } catch (\Exception $e) {
+            \Log::error("Import Excel Error: " . $e->getMessage());
+            return redirect()->route('admin.kecamatan.index')->with('error', 'Import gagal: ' . $e->getMessage());
+        }
     }
 
-    /**
-     * Get statistik kecamatan (JSON)
-     */
-    public function statistik()
+    public function downloadTemplate()
     {
-        $totalKecamatan = Kecamatan::count();
-        $totalDesa = Desa::count();
-        $kecamatanDenganDesa = Kecamatan::has('desas')->count();
-        $kecamatanTanpaDesa = Kecamatan::doesntHave('desas')->count();
-        $rataRataDesa = $totalKecamatan > 0 ? round($totalDesa / $totalKecamatan, 2) : 0;
-        
-        // Top 5 kecamatan dengan desa terbanyak
-        $topKecamatan = Kecamatan::withCount('desas')
-            ->orderBy('desas_count', 'desc')
-            ->take(5)
-            ->get();
-        
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'total_kecamatan' => $totalKecamatan,
-                'total_desa' => $totalDesa,
-                'kecamatan_dengan_desa' => $kecamatanDenganDesa,
-                'kecamatan_tanpa_desa' => $kecamatanTanpaDesa,
-                'rata_rata_desa_per_kecamatan' => $rataRataDesa,
-                'top_5_kecamatan' => $topKecamatan
-            ]
-        ]);
-    }
+        $data = [
+            ['NAMA KECAMATAN', 'DESA', 'KODE'],
+            ['Kenduruan', 'Jlodro', '3523012001'],
+            ['Kenduruan', 'Sokogunung', '3523012002'],
+            ['Jatirogo', 'Kebonharjo', '3523022001'],
+        ];
 
-    /**
-     * Cari kecamatan (untuk autocomplete/search)
-     */
-    public function search(Request $request)
-    {
-        $query = $request->get('q', '');
-        
-        $kecamatans = Kecamatan::where('nama_kecamatan', 'like', '%' . $query . '%')
-            ->orWhere('kode_wilayah', 'like', '%' . $query . '%')
-            ->limit(10)
-            ->get();
-        
-        return response()->json([
-            'success' => true,
-            'data' => $kecamatans
-        ]);
+        return Excel::download(new FromArray($data), 'template_import_kecamatan_desa.xlsx');
     }
 }
