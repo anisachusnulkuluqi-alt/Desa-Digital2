@@ -29,6 +29,29 @@ Route::get('/webgis', function () {
     return redirect()->route('data.spasial');
 })->name('webgis');
 
+Route::get('/website', function () {
+    return view('website');
+});
+
+Route::get('/surat', function () {
+    return view('surat');
+});
+
+Route::get('/epbb', function () {
+    return view('epbb');
+});
+
+// 4. Modul Live Monitoring CCTV Wilayah (Murni Data Dinamis Backend)
+Route::get('/cctv', function (Request $request) {
+    // Ambil data langsung dari Database / Model jika sudah ada
+    // Jika belum ada data atau tabel belum dibuat, kirim array kosong
+    $cctvList = class_exists(\App\Models\Cctv::class)
+        ? \App\Models\Cctv::all()
+        : [];
+
+    return view('cctv', compact('cctvList'));
+})->name('cctv.index');
+
 // Katalog Desa Publik
 Route::get('/desa-publik', function () {
     if (view()->exists('desa-publik')) {
@@ -51,7 +74,18 @@ Route::get('/kontak', function () {
     }
     return redirect('/#hubungi-kami');
 })->name('kontak');
+Route::get('/kecamatan', function () {
+    // Mengambil data dari tabel kecamatans (jika model sudah ada di backend)
+    $kecamatans = class_exists(\App\Models\Kecamatan::class) 
+        ? \App\Models\Kecamatan::with('desas')->get() 
+        : collect([]);
 
+    // Cek apakah user sedang mengklik/memilih salah satu kecamatan tertentu
+    $selectedId = request('id');
+    $selectedKecamatan = $kecamatans->firstWhere('id', $selectedId);
+
+    return view('kecamatan', compact('kecamatans', 'selectedKecamatan'));
+})->name('kecamatan.index');
 
 /*
 |--------------------------------------------------------------------------
