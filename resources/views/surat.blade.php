@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Surat Mandiri - Desa Digital Tuban</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Layanan Surat Mandiri - Desa Digital Kabupaten Tuban</title>
 
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +20,7 @@
             --amber: #f59e0b;
             --amber-dark: #d97706;
             --emerald: #10b981;
+            --rose: #e11d48;
             --bg-body: #f8fafc;
             --card-bg: #ffffff;
             --text-dark: #0f172a;
@@ -27,7 +29,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-dark); min-height: 100vh; }
+        body { background-color: var(--bg-body); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
         /* Header Navbar */
         .site-header {
@@ -56,7 +58,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 20px;
             list-style: none;
         }
         .nav-menu a {
@@ -74,7 +76,7 @@
         .surat-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
             color: #ffffff;
-            padding: 60px 7% 70px 7%;
+            padding: 60px 7% 75px 7%;
             text-align: center;
             position: relative;
         }
@@ -107,6 +109,21 @@
             line-height: 1.6;
         }
 
+        /* Flash Message Alert */
+        .alert-banner {
+            max-width: 1240px;
+            margin: 20px auto 0 auto;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .alert-success { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+        .alert-error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
         /* Container & Cards Grid */
         .content-wrap {
             max-width: 1240px;
@@ -116,7 +133,7 @@
             z-index: 10;
         }
 
-        /* Fitur Pencarian Cepat Permohonan */
+        /* Tracking Bar */
         .tracking-bar {
             background: #ffffff;
             border-radius: 16px;
@@ -177,7 +194,7 @@
         }
         .btn-track:hover { background: var(--primary); }
 
-        /* Pilihan Jenis Surat */
+        /* Grid Katalog Surat */
         .section-title {
             font-size: 1.4rem;
             font-weight: 800;
@@ -272,7 +289,7 @@
             border-color: transparent;
         }
 
-        /* Modal Form Pengajuan */
+        /* Modal Overlay */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -299,7 +316,7 @@
         }
         .modal-header {
             background: #f8fafc;
-            padding: 20px 24px;
+            padding: 18px 24px;
             border-bottom: 1px solid var(--border-soft);
             display: flex;
             justify-content: space-between;
@@ -355,10 +372,18 @@
         }
         .btn-submit:hover { background: var(--primary-dark); }
 
-        /* Responsive */
-        @media (max-width: 960px) {
-            .surat-grid { grid-template-columns: repeat(2, 1fr); }
+        /* Modal Tracking Box */
+        .tracking-result-box {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid var(--border-soft);
         }
+
+        /* Responsive */
+        @media (max-width: 960px) { .surat-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) {
             .surat-grid { grid-template-columns: 1fr; }
             .tracking-bar { flex-direction: column; align-items: stretch; }
@@ -371,8 +396,8 @@
 
     <!-- Header Navbar -->
     <header class="site-header">
-        <a href="{{ url('/') }}" class="brand-link">
-            <img src="{{ asset('images/desa-digital.png') }}" 
+        <a href="<?= url('/'); ?>" class="brand-link">
+            <img src="<?= asset('images/desa-digital.png'); ?>" 
                  alt="Logo Desa Digital" 
                  class="brand-logo-img"
                  onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
@@ -380,20 +405,40 @@
         </a>
 
         <ul class="nav-menu">
-            <li><a href="{{ url('/') }}">Beranda</a></li>
-            <li><a href="{{ url('/website') }}">Website Desa</a></li>
-            <li><a href="{{ url('/data-spasial') }}">Peta Spasial</a></li>
-            <li><a href="{{ url('/#lokasi-kami') }}">Hubungi Kami</a></li>
+            <li><a href="<?= url('/'); ?>">Beranda</a></li>
+            <li><a href="<?= url('/website'); ?>">Website Desa</a></li>
+            <li><a href="<?= url('/data-spasial'); ?>">Peta Spasial</a></li>
+            <li><a href="<?= url('/cctv'); ?>">CCTV Tuban</a></li>
+            <li><a href="<?= url('/epbb'); ?>">e-PBB</a></li>
         </ul>
     </header>
+
+    <!-- Flash Message Notification -->
+    <?php if (session('success')): ?>
+        <div class="alert-banner alert-success">
+            <i class="fa-solid fa-circle-check" style="font-size: 1.3rem;"></i>
+            <div><?= session('success'); ?></div>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($errors->any()): ?>
+        <div class="alert-banner alert-error">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.3rem;"></i>
+            <div>
+                <?php foreach ($errors->all() as$err): ?>
+                    <div>• <?= $err; ?></div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <!-- Hero Banner -->
     <section class="surat-hero">
         <div class="hero-badge">
-            <i class="fa-solid fa-signature"></i> Pelayanan Administrasi Cepat & Mandiri
+            <i class="fa-solid fa-signature"></i> Pelayanan Administrasi Mandiri Kabupaten Tuban
         </div>
         <h1>Portal Layanan Surat Desa</h1>
-        <p>Ajukan permohonan surat administrasi kependudukan Anda secara online langsung ke balai desa tanpa perlu mengantre.</p>
+        <p>Ajukan permohonan surat administrasi kependudukan Anda secara online langsung ke balai desa tanpa perlu mengantre lama.</p>
     </section>
 
     <!-- Main Content -->
@@ -405,11 +450,11 @@
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <div>
                     <h4>Lacak Status Pengajuan Surat</h4>
-                    <p>Masukkan nomor resi / NIK pemohon untuk melihat proses verifikasi.</p>
+                    <p>Masukkan nomor resi resmi Anda untuk melihat proses verifikasi pihak desa.</p>
                 </div>
             </div>
             <div class="tracking-input-group">
-                <input type="text" id="trackInput" placeholder="Masukkan No. Resi / NIK...">
+                <input type="text" id="trackInput" placeholder="Contoh: SRT-202609-XXXX">
                 <button type="button" class="btn-track" onclick="trackStatus()">Cek Resi</button>
             </div>
         </div>
@@ -429,7 +474,7 @@
                         <div class="card-icon"><i class="fa-solid fa-store"></i></div>
                         <h3>Surat Keterangan Usaha (SKU)</h3>
                     </div>
-                    <p>Digunakan sebagai bukti legalitas kepemilikan usaha lokal untuk pengajuan pinjaman bank, KUR, atau verifikasi legalitas.</p>
+                    <p>Bukti legalitas kepemilikan usaha lokal warga untuk pengajuan pinjaman perbankan, KUR, atau verifikasi mitra dagang.</p>
                 </div>
                 <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Usaha (SKU)')">
                     <span>Ajukan Sekarang</span>
@@ -444,7 +489,7 @@
                         <div class="card-icon"><i class="fa-solid fa-house-user"></i></div>
                         <h3>Surat Keterangan Domisili</h3>
                     </div>
-                    <p>Surat keterangan bukti tempat tinggal warga sementara atau tetap untuk keperluan pendaftaran kerja dan dokumen resmi.</p>
+                    <p>Surat keterangan bukti tempat tinggal warga sementara atau tetap untuk keperluan pendaftaran kerja dan urusan hukum.</p>
                 </div>
                 <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Domisili')">
                     <span>Ajukan Sekarang</span>
@@ -474,7 +519,7 @@
                         <div class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
                         <h3>Surat Tidak Mampu (SKTM)</h3>
                     </div>
-                    <p>Surat verifikasi kelayakan bantuan sosial, beasiswa pendidikan siswa, dan keringanan biaya perawatan kesehatan.</p>
+                    <p>Surat verifikasi kelayakan bantuan sosial, beasiswa pendidikan siswa/mahasiswa, dan keringanan biaya perawatan medis.</p>
                 </div>
                 <button type="button" class="btn-apply" onclick="openApplyModal('Surat Tidak Mampu (SKTM)')">
                     <span>Ajukan Sekarang</span>
@@ -482,7 +527,7 @@
                 </button>
             </div>
 
-            <!-- 5. Surat Kelahiran -->
+            <!-- 5. Pengantar Akta Kelahiran -->
             <div class="surat-card" style="--card-accent: #8b5cf6; --icon-bg: #ede9fe;">
                 <div>
                     <div class="card-top">
@@ -497,14 +542,14 @@
                 </button>
             </div>
 
-            <!-- 6. Surat Keterangan Kematian -->
+            <!-- 6. Surat Kematian -->
             <div class="surat-card" style="--card-accent: #475569; --icon-bg: #f1f5f9;">
                 <div>
                     <div class="card-top">
                         <div class="card-icon"><i class="fa-solid fa-ribbon"></i></div>
                         <h3>Surat Keterangan Kematian</h3>
                     </div>
-                    <p>Penerbitan surat akta kematian warga untuk perapian administrasi kartu keluarga, perbankan, dan waris.</p>
+                    <p>Penerbitan surat akta kematian warga untuk perapian administrasi kartu keluarga, perbankan, dan dokumen waris.</p>
                 </div>
                 <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Kematian')">
                     <span>Ajukan Sekarang</span>
@@ -515,7 +560,7 @@
         </div>
     </main>
 
-    <!-- Modal Form Pengajuan -->
+    <!-- Modal Form Pengajuan Berkas -->
     <div class="modal-overlay" id="formModal" onclick="closeModalOutside(event)">
         <div class="modal-content">
             <div class="modal-header">
@@ -523,39 +568,71 @@
                 <button type="button" class="btn-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="formPengajuanSurat" onsubmit="submitSurat(event)">
+                <form action="<?= route('surat.kirim'); ?>" method="POST" enctype="multipart/form-data">
+                    <?= csrf_field(); ?>
+
                     <div class="form-group">
                         <label>Jenis Surat</label>
-                        <input type="text" id="inputJenisSurat" readonly style="background: #f8fafc; font-weight: 700; color: var(--primary);">
+                        <input type="text" name="jenis_surat" id="inputJenisSurat" readonly style="background: #f8fafc; font-weight: 700; color: var(--primary);">
                     </div>
+
                     <div class="form-group">
-                        <label>Nomor Induk Kependudukan (NIK)</label>
-                        <input type="number" required placeholder="Contoh: 3523xxxxxxxxxxxx">
+                        <label>Nomor Induk Kependudukan (NIK 16 Digit)</label>
+                        <input type="text" name="nik" maxlength="16" minlength="16" required placeholder="Contoh: 3523xxxxxxxxxxxx" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
                     </div>
+
                     <div class="form-group">
                         <label>Nama Lengkap (Sesuai KTP)</label>
-                        <input type="text" required placeholder="Masukkan nama lengkap">
+                        <input type="text" name="nama_lengkap" required placeholder="Masukkan nama lengkap pemohon">
                     </div>
+
                     <div class="form-group">
-                        <label>Kecamatan</label>
-                        <select required>
-                            <option value="">Pilih Kecamatan</option>
+                        <label>Nomor WhatsApp Aktif</label>
+                        <input type="text" name="no_wa" required placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9+]/g,'')">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kecamatan di Kabupaten Tuban</label>
+                        <select name="kecamatan" required>
+                            <option value="">-- Pilih Kecamatan --</option>
                             <option value="Bancar">Kecamatan Bancar</option>
-                            <option value="Merakurak">Kecamatan Merakurak</option>
-                            <option value="Tuban">Kecamatan Tuban</option>
+                            <option value="Bangilan">Kecamatan Bangilan</option>
+                            <option value="Grabagan">Kecamatan Grabagan</option>
+                            <option value="Jatirogo">Kecamatan Jatirogo</option>
                             <option value="Jenu">Kecamatan Jenu</option>
                             <option value="Kenduruan">Kecamatan Kenduruan</option>
+                            <option value="Kerek">Kecamatan Kerek</option>
+                            <option value="Merakurak">Kecamatan Merakurak</option>
+                            <option value="Montong">Kecamatan Montong</option>
+                            <option value="Palang">Kecamatan Palang</option>
+                            <option value="Parengan">Kecamatan Parengan</option>
+                            <option value="Plumpang">Kecamatan Plumpang</option>
+                            <option value="Rengel">Kecamatan Rengel</option>
                             <option value="Semanding">Kecamatan Semanding</option>
+                            <option value="Senori">Kecamatan Senori</option>
+                            <option value="Singgahan">Kecamatan Singgahan</option>
+                            <option value="Soko">Kecamatan Soko</option>
+                            <option value="Tambakboyo">Kecamatan Tambakboyo</option>
+                            <option value="Tuban">Kecamatan Tuban</option>
+                            <option value="Widang">Kecamatan Widang</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label>Nama Desa / Kelurahan</label>
-                        <input type="text" required placeholder="Contoh: Desa Boncong">
+                        <input type="text" name="desa" required placeholder="Contoh: Desa Sugiharjo / Kelurahan Latsari">
                     </div>
+
                     <div class="form-group">
                         <label>Keperluan Permohonan</label>
-                        <textarea rows="3" required placeholder="Jelaskan kebutuhan pengajuan surat ini..."></textarea>
+                        <textarea name="keperluan" rows="3" required placeholder="Jelaskan kebutuhan pengajuan surat ini secara ringkas..."></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label>Lampiran Berkas Pendukung (KTP/KK dalam format PDF, JPG, PNG - Maks 3MB)</label>
+                        <input type="file" name="berkas_syarat" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+
                     <button type="submit" class="btn-submit">
                         <i class="fa-solid fa-paper-plane"></i> Kirim Permohonan Surat
                     </button>
@@ -564,11 +641,24 @@
         </div>
     </div>
 
+    <!-- Modal Status Pelacakan Resi -->
+    <div class="modal-overlay" id="trackingModal" onclick="closeModalOutside(event)">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Hasil Pelacakan Surat</h3>
+                <button type="button" class="btn-close" onclick="closeTrackingModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="trackingModalBody">
+                <!-- Konten dinamis dari AJAX -->
+            </div>
+        </div>
+    </div>
+
     <!-- Script Interaktif -->
     <script>
         function openApplyModal(namaSurat) {
             document.getElementById('inputJenisSurat').value = namaSurat;
-            document.getElementById('modalSuratTitle').innerText = `Pengajuan ${namaSurat}`;
+            document.getElementById('modalSuratTitle').innerText = 'Pengajuan ' + namaSurat;
             document.getElementById('formModal').style.display = 'flex';
         }
 
@@ -576,26 +666,69 @@
             document.getElementById('formModal').style.display = 'none';
         }
 
-        function closeModalOutside(e) {
-            if (e.target.id === 'formModal') {
-                closeModal();
-            }
+        function closeTrackingModal() {
+            document.getElementById('trackingModal').style.display = 'none';
         }
 
-        function submitSurat(e) {
-            e.preventDefault();
-            const resi = 'REG-' + Math.floor(100000 + Math.random() * 900000);
-            alert(`Permohonan surat berhasil dikirim ke balai desa!\nSimpan Nomor Resi Anda: ${resi}`);
-            closeModal();
+        function closeModalOutside(e) {
+            if (e.target.id === 'formModal') closeModal();
+            if (e.target.id === 'trackingModal') closeTrackingModal();
         }
 
         function trackStatus() {
             const input = document.getElementById('trackInput').value.trim();
             if (!input) {
-                alert('Silakan masukkan nomor resi atau NIK terlebih dahulu.');
+                alert('Silakan masukkan nomor resi terlebih dahulu.');
                 return;
             }
-            alert(`Status Berkas [${input}]:\nSedang diverifikasi oleh operator kantor desa setempat.`);
+
+            const body = document.getElementById('trackingModalBody');
+            body.innerHTML = '<div style="text-align:center; padding: 20px;"><i class="fa-solid fa-spinner fa-spin" style="font-size:2rem; color:var(--primary);"></i><p style="margin-top:10px;">Mengecek data di server desa...</p></div>';
+            document.getElementById('trackingModal').style.display = 'flex';
+
+            fetch("<?= url('/surat/lacak'); ?>?resi=" + encodeURIComponent(input))
+                .then(res => res.json())
+                .then(res => {
+                    if (res.found && res.data) {
+                        const d = res.data;
+                        let statusColor = '#f59e0b';
+                        if (d.status === 'Selesai') statusColor = '#10b981';
+                        if (d.status === 'Ditolak') statusColor = '#e11d48';
+
+                        body.innerHTML = `
+                            <div style="font-size: 0.88rem;">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+                                    <span style="font-weight:800; color:#475569;">NOMOR RESI:</span>
+                                    <span style="font-weight:800; color:var(--primary);">${d.nomor_resi}</span>
+                                </div>
+                                <div style="background:#f8fafc; border:1px solid var(--border-soft); border-radius:12px; padding:14px; margin-bottom:14px;">
+                                    <div style="margin-bottom:6px;"><strong>Nama:</strong> ${d.nama_lengkap}</div>
+                                    <div style="margin-bottom:6px;"><strong>Surat:</strong> ${d.jenis_surat}</div>
+                                    <div style="margin-bottom:6px;"><strong>Lokasi:</strong> Kec. ${d.kecamatan}, Desa ${d.desa}</div>
+                                    <div><strong>Status Saat Ini:</strong> 
+                                        <span style="background:${statusColor}; color:white; padding:3px 10px; border-radius:12px; font-weight:800; font-size:0.75rem;">
+                                            ${d.status}
+                                        </span>
+                                    </div>
+                                </div>
+                                <p style="font-size:0.8rem; color:#64748b; line-height:1.4;">
+                                    ${d.catatan_petugas || 'Berkas Anda telah diterima sistem dan sedang dalam antrean verifikasi petugas kantor desa.'}
+                                </p>
+                            </div>
+                        `;
+                    } else {
+                        body.innerHTML = `
+                            <div style="text-align:center; padding:16px;">
+                                <i class="fa-solid fa-circle-question" style="font-size:2.5rem; color:#f59e0b; margin-bottom:10px;"></i>
+                                <h4 style="margin-bottom:6px;">Resi Tidak Ditemukan</h4>
+                                <p style="font-size:0.82rem; color:#64748b;">Nomor resi <strong>"${input}"</strong> belum terdaftar di sistem. Pastikan nomor yang dimasukkan sudah sesuai.</p>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(err => {
+                    body.innerHTML = '<p style="color:#e11d48; text-align:center;">Gagal menghubungi server. Periksa koneksi lokal Anda.</p>';
+                });
         }
     </script>
 </body>
