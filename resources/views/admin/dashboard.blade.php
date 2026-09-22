@@ -218,6 +218,12 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .user-profile:hover {
+            border-color: var(--primary-light);
+            background: #f8fafc;
         }
 
         .user-avatar {
@@ -242,6 +248,65 @@
         .user-info small {
             font-size: 9px;
             color: var(--text-secondary);
+        }
+
+        /* ===== CUSTOM DROPDOWN PROFILE ===== */
+        .custom-dropdown {
+            position: absolute;
+            top: 115%;
+            right: 0;
+            width: 200px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            padding: 6px;
+            display: none;
+            z-index: 1050;
+            animation: fadeIn 0.15s ease-out;
+        }
+
+        .custom-dropdown.show {
+            display: block;
+        }
+
+        .custom-dropdown .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .custom-dropdown .dropdown-item:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .custom-dropdown .dropdown-item.text-danger:hover {
+            background: #fef2f2;
+            color: var(--danger);
+        }
+
+        .custom-dropdown .dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 6px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== PAGE BODY ===== */
@@ -313,14 +378,13 @@
             white-space: nowrap;
         }
 
-        /* ===== STATS GRID - SIMPEL & MODERN ===== */
+        /* ===== STATS GRID ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 14px;
         }
 
-        /* CARD SERAGAM - PUTIH DENGAN BORDER TIPIS */
         .stat-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -337,7 +401,6 @@
             border-color: var(--primary-light);
         }
 
-        /* Garis aksen tipis di atas */
         .stat-card::before {
             content: '';
             position: absolute;
@@ -361,7 +424,6 @@
             margin-bottom: 12px;
         }
 
-        /* ICON SERAGAM - BIRU */
         .stat-icon {
             width: 36px;
             height: 36px;
@@ -432,7 +494,6 @@
             font-weight: 500;
         }
 
-        /* Progress bar tipis */
         .stat-bar {
             height: 3px;
             background: #f1f5f9;
@@ -500,18 +561,15 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li><a href="#" class="active"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
+            <li><a href="{{ route('dashboard') }}" class="active"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
             <li><a href="{{ route('admin.kecamatan.index') }}"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
             <li><a href="{{ route('admin.desa.index') }}"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
-            
-            <!-- ✅ DIPERBAIKI: Link Wisata Desa sekarang mengarah ke route yang benar -->
             <li><a href="{{ route('admin.wisata.index') }}"><i class="bi bi-image-fill"></i><span>Wisata Desa</span></a></li>
-            
-            <li><a href="#"><i class="bi bi-shop"></i><span>Pasar Desa</span></a></li>
-            <li><a href="#"><i class="bi bi-building"></i><span>Kantor Desa</span></a></li>
-            <li><a href="#"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
-            <li><a href="#"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
-            <li><a href="#"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
+            <li><a href="{{ route('admin.pasar.index') }}"><i class="bi bi-shop"></i><span>Pasar Desa</span></a></li>
+            <li><a href="{{ route('admin.kantor.index') }}"><i class="bi bi-building"></i><span>Kantor Desa</span></a></li>
+            <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
+            <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
+            <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
         </ul>
     </aside>
 
@@ -529,14 +587,35 @@
                     <span class="badge-dot"></span>
                 </button>
 
-                <div class="user-profile">
-                    <div class="user-avatar">A</div>
-                    <div class="user-info">
-                        <strong>Admin Desa</strong>
-                        <small>Administrator</small>
+                <!-- ✅ BAGIAN PROFIL & DROPDOWN LOGOUT -->
+                <div class="position-relative">
+                    <div class="user-profile" id="userProfileBtn">
+                        <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
+                        <div class="user-info">
+                            <strong>{{ Auth::user()->name ?? 'Admin Desa' }}</strong>
+                            <small>Administrator</small>
+                        </div>
+                        <i class="bi bi-chevron-down" style="color: var(--text-secondary); font-size: 10px;"></i>
                     </div>
-                    <i class="bi bi-chevron-down" style="color: var(--text-secondary); font-size: 10px;"></i>
+
+                    <!-- Dropdown Menu -->
+                    <div class="custom-dropdown" id="userDropdown">
+                        <a href="{{ route('profile.show') }}" class="dropdown-item">
+                            <i class="bi bi-person"></i> Lihat Profil
+                        </a>
+                        <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                            <i class="bi bi-gear"></i> Pengaturan
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                    </div>
                 </div>
+                <!-- ✅ AKHIR BAGIAN PROFIL -->
             </div>
         </header>
 
@@ -664,5 +743,26 @@
             </div>
         </div>
     </div>
+
+    <!-- ✅ JAVASCRIPT UNTUK DROPDOWN -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('userProfileBtn');
+            const dropdown = document.getElementById('userDropdown');
+
+            // Toggle dropdown saat tombol profil diklik
+            profileBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Mencegah event bubbling
+                dropdown.classList.toggle('show');
+            });
+
+            // Tutup dropdown saat mengklik di luar area dropdown
+            document.addEventListener('click', function(e) {
+                if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
