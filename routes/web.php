@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
@@ -50,20 +52,103 @@ Route::get('/website', function () {
     return view('website');
 })->name('website');
 
+/* --- MODUL SURAT DESA --- */
 Route::get('/surat', function () {
     if (view()->exists('surat')) return view('surat');
     return view('surat-desa');
-})->name('surat');
+})->name('surat.index');
 
+Route::post('/surat/kirim', function (Request $request) {
+    $validated = $request->validate([
+        'nik'           => 'required|digits:16',
+        'nama_lengkap'  => 'required|string|max:150',
+        'no_wa'         => 'required|string|max:20',
+        'kecamatan'     => 'required|string',
+        'desa'          => 'required|string',
+        'jenis_surat'   => 'required|string',
+        'keperluan'     => 'required|string',
+        'berkas_syarat' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:3072',
+    ]);
+
+    $nomorResi = 'SRT-' . date('Ymd') . '-' . strtoupper(Str::random(4));
+
+    if (class_exists(\App\Models\SuratPermohonan::class)) {
+        $path = $request->hasFile('berkas_syarat') 
+            ? $request->file('berkas_syarat')->store('berkas_surat', 'public') 
+            : null;
+
+        \App\Models\SuratPermohonan::create(array_merge($validated, [
+            'nomor_resi'    => $nomorResi,
+            'berkas_syarat' => $path,
+            'status'        => 'Menunggu',
+        ]));
+    }
+
+    return back()->with('success', "Permohonan berhasil dikirim! Simpan Nomor Resi Anda: {$nomorResi}");
+})->name('surat.kirim');
+
+Route::get('/surat/lacak', function (Request $request) {
+    $resi = $request->query('resi');
+    $data = null;
+
+    if (class_exists(\App\Models\SuratPermohonan::class)) {
+        $data = \App\Models\SuratPermohonan::where('nomor_resi', $resi)->first();
+    }
+
+    return response()->json([
+        'found' => (bool)$data,
+        'data'  => $data
+    ]);
+})->name('surat.lacak');
+
+
+/* --- MODUL CCTV --- */
 Route::get('/cctv', function () {
-    if (view()->exists('cctv')) return view('cctv');
-    return view('monitoring-cctv');
-})->name('cctv');
+    $cctvList = [];
+    if (class_exists(\App\Models\Cctv::class)) {
+        $cctvList = \App\Models\Cctv::all();
+    }
+    
+    if (view()->exists('cctv')) return view('cctv', compact('cctvList'));
+    return view('monitoring-cctv', compact('cctvList'));
+})->name('cctv.index');
 
+
+/* --- MODUL e-PBB --- */
 Route::get('/epbb', function () {
     if (view()->exists('epbb')) return view('epbb');
     return view('e-pbb');
-})->name('epbb');
+})->name('epbb.index');
+
+Route::post('/epbb/kirim', function (Request $request) {
+    $validated = $request->validate([
+        'nama_pemohon'       => 'required|string|max:150',
+        'nik_pemohon'        => 'required|digits:16',
+        'no_telp'            => 'required|string|max:20',
+        'kecamatan_op'       => 'required|string',
+        'desa_op'            => 'required|string',
+        'jenis_pelayanan'    => 'required|string',
+        'alamat_objek_pajak' => 'required|string',
+        'nop'                => 'nullable|string|max:25',
+        'lampiran_berkas'    => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:4096',
+    ]);
+
+    $nomorTiket = 'PBB-' . date('Ymd') . '-' . strtoupper(Str::random(4));
+
+    if (class_exists(\App\Models\EpbbPermohonan::class)) {
+        $path = $request->hasFile('lampiran_berkas') 
+            ? $request->file('lampiran_berkas')->store('berkas_pbb', 'public') 
+            : null;
+
+        \App\Models\EpbbPermohonan::create(array_merge($validated, [
+            'nomor_tiket'     => $nomorTiket,
+            'lampiran_berkas' => $path,
+            'status'          => 'Verifikasi Berkas',
+        ]));
+    }
+
+    return back()->with('success', "Permohonan e-PBB terkirim! Simpan Nomor Tiket Anda: {$nomorTiket}");
+})->name('epbb.kirim');
 
 
 /*
@@ -107,7 +192,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'wisata' => 'wisata'
         ]);
 
-        // Placeholder
+        // Layanan & Modul Internal
         Route::get('/kantor-desa', function () { return view('admin.dashboard'); })->name('kantor.index');
         Route::get('/pasar', function () { return view('admin.dashboard'); })->name('pasar.index');
         Route::get('/wifi', function () { return view('admin.dashboard'); })->name('wifi.index');
@@ -122,12 +207,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Profile
     if (class_exists(ProfileController::class)) {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::get('/profile/show', [ProfileController::class, 'edit'])->name('profile.show'); // ✅ DIPERBAIKI: Menambahkan route show
+        Route::get('/profile/show', [ProfileController::class, 'edit'])->name('profile.show');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     } else {
         Route::get('/profile', function () { return redirect()->route('dashboard'); })->name('profile.edit');
-        Route::get('/profile/show', function () { return redirect()->route('dashboard'); })->name('profile.show'); // ✅ DIPERBAIKI: Fallback route show
+        Route::get('/profile/show', function () { return redirect()->route('dashboard'); })->name('profile.show');
         Route::patch('/profile', function () { return redirect()->route('dashboard'); })->name('profile.update');
         Route::delete('/profile', function () { return redirect()->route('dashboard'); })->name('profile.destroy');
     }
