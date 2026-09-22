@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Desa - Portal Desa Digital</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #f8fafc; }
@@ -111,6 +109,30 @@
             font-size: 16px;
         }
         
+        .filter-alert {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 14px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .filter-alert a {
+            background: #1e3a8a;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
         .table-card {
             background: white;
             border-radius: 12px;
@@ -170,7 +192,7 @@
         
         .table-simple th {
             padding: 14px 24px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             color: #64748b;
             text-transform: uppercase;
@@ -187,37 +209,19 @@
         }
         
         .table-simple tbody tr:last-child td { border-bottom: none; }
-        .table-simple tbody tr:hover { background: #f8fafc; }
+        .table-simple tbody tr { cursor: pointer; transition: all 0.2s; }
+        .table-simple tbody tr:hover { background: #f1f5f9; }
         
-        .badge-jenis {
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 11px;
+        .desa-name {
             font-weight: 600;
-        }
-        
-        .badge-desa { background: #dbeafe; color: #1e40af; }
-        .badge-kelurahan { background: #fef3c7; color: #d97706; }
-        
-        .btn-action {
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
+            color: #1e293b;
+            font-size: 15px;
+            display: flex;
             align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
-            text-decoration: none;
+            gap: 10px;
         }
         
-        .btn-edit { background: #dbeafe; color: #1e40af; }
-        .btn-edit:hover { background: #1e40af; color: white; }
-        
-        .btn-delete { background: #fee2e2; color: #dc2626; }
-        .btn-delete:hover { background: #dc2626; color: white; }
+        .desa-name i { color: #10b981; font-size: 16px; }
         
         .alert-success-custom {
             background: #d1fae5;
@@ -236,7 +240,6 @@
         .empty-state { text-align: center; padding: 48px; color: #94a3b8; }
         .empty-state i { font-size: 36px; display: block; margin-bottom: 12px; }
         
-        /* Modal Styles */
         .modal-content { border-radius: 14px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
         .modal-header {
             background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
@@ -249,6 +252,51 @@
         .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
         .modal-body { padding: 28px 24px; }
         .modal-footer { border-top: 1px solid #e2e8f0; padding: 16px 24px; background: #f8fafc; border-radius: 0 0 14px 14px; }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        
+        .detail-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 120px;
+            flex-shrink: 0;
+        }
+        
+        .detail-value {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .badge-jenis {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .badge-desa { background: #dbeafe; color: #1e40af; }
+        .badge-kelurahan { background: #fef3c7; color: #d97706; }
+        
+        .badge-status {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .badge-aktif { background: #d1fae5; color: #065f46; }
         
         .form-label-custom { display: block; font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
         .form-label-custom .required { color: #ef4444; margin-left: 2px; }
@@ -333,6 +381,18 @@
             </div>
         </div>
 
+        @if($selectedKecamatan)
+        <div class="filter-alert">
+            <div>
+                <i class="bi bi-funnel-fill"></i>
+                <strong>Filter:</strong> Menampilkan desa di Kecamatan <strong>{{ $selectedKecamatan->nama_kecamatan }}</strong>
+            </div>
+            <a href="{{ route('admin.desa.index') }}">
+                <i class="bi bi-x-lg"></i> Hapus Filter
+            </a>
+        </div>
+        @endif
+
         <div class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
@@ -362,38 +422,24 @@
             <table class="table-simple">
                 <thead>
                     <tr>
-                        <th style="width: 60px;">NO</th>
+                        <th style="width: 80px;">NO</th>
                         <th>NAMA DESA</th>
-                        <th>KECAMATAN</th>
-                        <th>KODE DESA</th>
-                        <th>JENIS</th>
-                        <th style="width: 150px;">AKSI</th>
                     </tr>
                 </thead>
                 <tbody id="desaTable">
                     @forelse($desas as $index => $desa)
-                    <tr data-id="{{ $desa->id }}">
-                        <td>{{ $index + 1 }}</td>
-                        <td><strong>{{ $desa->nama_desa }}</strong></td>
-                        <td>{{ $desa->kecamatan->nama_kecamatan }}</td>
-                        <td>{{ $desa->kode_desa ?? '-' }}</td>
+                    <tr data-id="{{ $desa->id }}" onclick="window.location.href='{{ route('admin.desa.detail', $desa->id) }}'">
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
                         <td>
-                            <span class="badge-jenis {{ $desa->jenis == 'Desa' ? 'badge-desa' : 'badge-kelurahan' }}">
-                                {{ $desa->jenis }}
-                            </span>
-                        </td>
-                        <td>
-                            <button type="button" class="btn-action btn-edit" onclick="openModalEdit({{ $desa->id }}, '{{ $desa->nama_desa }}', {{ $desa->kecamatan_id }}, '{{ $desa->kode_desa }}', '{{ $desa->jenis }}')">
-                                <i class="bi bi-pencil"></i> Edit
-                            </button>
-                            <button type="button" class="btn-action btn-delete" onclick="hapusDesa({{ $desa->id }}, '{{ $desa->nama_desa }}')">
-                                <i class="bi bi-trash"></i> Hapus
-                            </button>
+                            <div class="desa-name">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                {{ $desa->nama_desa }}
+                            </div>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6">
+                        <td colspan="2">
                             <div class="empty-state">
                                 <i class="bi bi-inbox"></i>
                                 Belum ada data desa
@@ -406,9 +452,9 @@
         </div>
     </div>
 
-    <!-- ===== MODAL TAMBAH/EDIT DESA ===== -->
+    <!-- Modal Tambah/Edit -->
     <div class="modal fade" id="modalDesa" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">
@@ -423,27 +469,17 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Nama Desa/Kelurahan <span class="required">*</span>
-                                </label>
-                                <input type="text" id="namaDesa" name="nama_desa" class="form-input-custom" placeholder="Masukkan nama desa" required autofocus>
+                                <label class="form-label-custom">Nama Desa/Kelurahan <span class="required">*</span></label>
+                                <input type="text" id="namaDesa" name="nama_desa" class="form-input-custom" placeholder="Masukkan nama desa" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Kode Desa
-                                </label>
+                                <label class="form-label-custom">Kode Desa</label>
                                 <input type="text" id="kodeDesa" name="kode_desa" class="form-input-custom" placeholder="Contoh: 3523010001">
-                                <div class="form-hint">
-                                    <i class="bi bi-info-circle"></i>
-                                    Kode unik desa (opsional)
-                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Kecamatan <span class="required">*</span>
-                                </label>
+                                <label class="form-label-custom">Kecamatan <span class="required">*</span></label>
                                 <select id="kecamatanId" name="kecamatan_id" class="form-select-custom" required>
                                     <option value="">-- Pilih Kecamatan --</option>
                                     @foreach(\App\Models\Kecamatan::orderBy('nama_kecamatan')->get() as $kec)
@@ -452,14 +488,47 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Jenis <span class="required">*</span>
-                                </label>
+                                <label class="form-label-custom">Jenis <span class="required">*</span></label>
                                 <select id="jenis" name="jenis" class="form-select-custom" required>
-                                    <option value="">-- Pilih Jenis --</option>
                                     <option value="Desa">Desa</option>
                                     <option value="Kelurahan">Kelurahan</option>
                                 </select>
+                            </div>
+                        </div>
+                        
+                        <hr style="margin: 20px 0; border-color: #e2e8f0;">
+                        <h6 style="font-weight: 700; color: #1e293b; margin-bottom: 16px;">
+                            <i class="bi bi-share-fill"></i> Media Sosial & Website
+                        </h6>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-globe"></i> Website</label>
+                                <input type="url" id="website" name="website" class="form-input-custom" placeholder="https://desa.go.id">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-whatsapp"></i> WhatsApp</label>
+                                <input type="url" id="whatsappUrl" name="whatsapp_url" class="form-input-custom" placeholder="https://wa.me/628xxx">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-youtube"></i> YouTube</label>
+                                <input type="url" id="youtubeUrl" name="youtube_url" class="form-input-custom" placeholder="https://youtube.com/@desa">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-instagram"></i> Instagram</label>
+                                <input type="url" id="instagramUrl" name="instagram_url" class="form-input-custom" placeholder="https://instagram.com/desa">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-facebook"></i> Facebook</label>
+                                <input type="url" id="facebookUrl" name="facebook_url" class="form-input-custom" placeholder="https://facebook.com/desa">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom"><i class="bi bi-tiktok"></i> TikTok</label>
+                                <input type="url" id="tiktokUrl" name="tiktok_url" class="form-input-custom" placeholder="https://tiktok.com/@desa">
                             </div>
                         </div>
                     </div>
@@ -477,7 +546,7 @@
         </div>
     </div>
 
-    <!-- ===== MODAL IMPORT EXCEL ===== -->
+    <!-- Modal Import -->
     <div class="modal fade" id="modalImport" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -492,27 +561,18 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label-custom">
-                                Pilih File Excel <span class="required">*</span>
-                            </label>
+                            <label class="form-label-custom">Pilih File Excel <span class="required">*</span></label>
                             <input type="file" name="file_excel" class="form-input-custom" accept=".xlsx,.xls,.csv" required>
-                            <div class="form-hint">
-                                <i class="bi bi-info-circle"></i>
-                                Format: XLSX, XLS, atau CSV (Maks. 10MB)
-                            </div>
                             <div style="margin-top: 12px; padding: 12px; background: #eff6ff; border-radius: 8px; font-size: 12px; color: #1e40af;">
-                                <strong>Format Excel yang benar:</strong><br>
-                                Kolom: <strong>NAMA KECAMATAN</strong>, <strong>NAMA DESA</strong>, <strong>KODE DESA</strong>, <strong>JENIS</strong><br><br>
+                                <strong>Format Excel:</strong> NAMA KECAMATAN, DESA, KODE<br>
                                 <a href="{{ route('admin.desa.download-template') }}" style="color: #1e40af; text-decoration: underline; font-weight: 600;">
-                                    <i class="bi bi-download"></i> Download Template Excel
+                                    <i class="bi bi-download"></i> Download Template
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
-                            <i class="bi bi-x-lg"></i> Batal
-                        </button>
+                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn-modal-save">
                             <i class="bi bi-upload"></i> Import Data
                         </button>
@@ -549,25 +609,10 @@
             isEditMode = false;
             document.getElementById('modalTitleText').textContent = 'Tambah Desa';
             document.getElementById('btnSubmitText').textContent = 'Simpan Desa';
+            document.getElementById('formDesa').reset();
             document.getElementById('desaId').value = '';
-            document.getElementById('namaDesa').value = '';
-            document.getElementById('kodeDesa').value = '';
-            document.getElementById('kecamatanId').value = '';
-            document.getElementById('jenis').value = '';
+            document.getElementById('jenis').value = 'Desa';
             document.getElementById('formDesa').action = "{{ route('admin.desa.store') }}";
-        }
-
-        function openModalEdit(id, nama, kecamatanId, kodeDesa, jenis) {
-            isEditMode = true;
-            document.getElementById('modalTitleText').textContent = 'Edit Desa';
-            document.getElementById('btnSubmitText').textContent = 'Update Desa';
-            document.getElementById('desaId').value = id;
-            document.getElementById('namaDesa').value = nama;
-            document.getElementById('kodeDesa').value = kodeDesa || '';
-            document.getElementById('kecamatanId').value = kecamatanId;
-            document.getElementById('jenis').value = jenis;
-            document.getElementById('formDesa').action = `/admin/desa/${id}`;
-            modalDesa.show();
         }
 
         function submitForm() {
@@ -579,14 +624,9 @@
             
             const formData = new FormData(document.getElementById('formDesa'));
             const url = document.getElementById('formDesa').action;
-            const method = isEditMode ? 'POST' : 'POST';
-            
-            if (isEditMode) {
-                formData.append('_method', 'PUT');
-            }
 
             fetch(url, {
-                method: method,
+                method: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'application/json',
@@ -598,51 +638,20 @@
             .then(data => {
                 if (data.success) {
                     modalDesa.hide();
-                    showToast(data.message, 'success');
+                    alert(data.message);
                     setTimeout(() => { window.location.reload(); }, 800);
                 } else {
-                    showToast(data.message || 'Terjadi kesalahan', 'error');
+                    alert(data.message || 'Terjadi kesalahan');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showToast('Gagal menyimpan data', 'error');
+                alert('Gagal menyimpan data');
             })
             .finally(() => {
                 btnSubmit.disabled = false;
                 btnSubmit.innerHTML = originalText;
             });
-        }
-
-        function hapusDesa(id, nama) {
-            if (confirm(`Yakin ingin menghapus desa "${nama}"?`)) {
-                fetch(`/admin/desa/${id}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-                    },
-                    body: new URLSearchParams({ '_method': 'DELETE' })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showToast(data.message, 'success');
-                        setTimeout(() => { window.location.reload(); }, 800);
-                    } else {
-                        showToast(data.message || 'Gagal menghapus', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showToast('Gagal menghapus data', 'error');
-                });
-            }
-        }
-
-        function showToast(message, type = 'success') {
-            alert(message); // Fallback sederhana
         }
     </script>
 </body>

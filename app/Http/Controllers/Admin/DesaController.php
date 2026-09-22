@@ -12,30 +12,34 @@ use Maatwebsite\Excel\Concerns\FromArray;
 
 class DesaController extends Controller
 {
-    /**
-     * Tampilkan daftar desa
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $desas = Desa::with('kecamatan')->orderBy('nama_desa', 'asc')->get();
+        $query = Desa::with('kecamatan');
+        
+        // Filter berdasarkan kecamatan
+        if ($request->filled('kecamatan_id')) {
+            $query->where('kecamatan_id', $request->kecamatan_id);
+        }
+        
+        // Filter pencarian
+        if ($request->filled('search')) {
+            $query->where('nama_desa', 'like', '%' . $request->search . '%');
+        }
+        
+        $desas = $query->orderBy('nama_desa', 'asc')->get();
         $totalDesa = Desa::count();
         $totalKecamatan = Kecamatan::count();
+        $selectedKecamatan = $request->kecamatan_id ? Kecamatan::find($request->kecamatan_id) : null;
 
-        return view('admin.desa.index', compact('desas', 'totalDesa', 'totalKecamatan'));
+        return view('admin.desa.index', compact('desas', 'totalDesa', 'totalKecamatan', 'selectedKecamatan'));
     }
 
-    /**
-     * Tampilkan form tambah desa
-     */
     public function create()
     {
         $kecamatans = Kecamatan::orderBy('nama_kecamatan', 'asc')->get();
         return view('admin.desa.create', compact('kecamatans'));
     }
 
-    /**
-     * Simpan desa baru
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -43,6 +47,12 @@ class DesaController extends Controller
             'kecamatan_id' => 'required|exists:kecamatan,id',
             'kode_desa' => 'nullable|string|max:20',
             'jenis' => 'required|in:Desa,Kelurahan',
+            'website' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
+            'instagram_url' => 'nullable|url|max:255',
+            'facebook_url' => 'nullable|url|max:255',
+            'tiktok_url' => 'nullable|url|max:255',
+            'whatsapp_url' => 'nullable|url|max:255',
         ]);
 
         $desa = Desa::create($request->all());
@@ -58,27 +68,23 @@ class DesaController extends Controller
         return redirect()->route('admin.desa.index')->with('success', 'Desa berhasil ditambahkan!');
     }
 
-    /**
-     * Tampilkan detail desa
-     */
     public function show(Desa $desa)
     {
-        $desa->load('kecamatan');
-        return view('admin.desa.show', compact('desa'));
+        return $this->showDetail($desa);
     }
 
-    /**
-     * Tampilkan form edit desa
-     */
+    public function showDetail(Desa $desa)
+    {
+        $desa->load('kecamatan');
+        return view('admin.desa.detail', compact('desa'));
+    }
+
     public function edit(Desa $desa)
     {
         $kecamatans = Kecamatan::orderBy('nama_kecamatan', 'asc')->get();
         return view('admin.desa.edit', compact('desa', 'kecamatans'));
     }
 
-    /**
-     * Update desa
-     */
     public function update(Request $request, Desa $desa)
     {
         $request->validate([
@@ -86,6 +92,12 @@ class DesaController extends Controller
             'kecamatan_id' => 'required|exists:kecamatan,id',
             'kode_desa' => 'nullable|string|max:20',
             'jenis' => 'required|in:Desa,Kelurahan',
+            'website' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
+            'instagram_url' => 'nullable|url|max:255',
+            'facebook_url' => 'nullable|url|max:255',
+            'tiktok_url' => 'nullable|url|max:255',
+            'whatsapp_url' => 'nullable|url|max:255',
         ]);
 
         $desa->update($request->all());
@@ -101,9 +113,6 @@ class DesaController extends Controller
         return redirect()->route('admin.desa.index')->with('success', 'Desa berhasil diperbarui!');
     }
 
-    /**
-     * Hapus desa
-     */
     public function destroy(Desa $desa)
     {
         $desa->delete();
@@ -118,9 +127,6 @@ class DesaController extends Controller
         return redirect()->route('admin.desa.index')->with('success', 'Desa berhasil dihapus!');
     }
 
-    /**
-     * Import Excel - dengan statistik detail
-     */
     public function import(Request $request)
     {
         $request->validate([
@@ -128,10 +134,8 @@ class DesaController extends Controller
         ]);
 
         try {
-            // Import menggunakan class DesaImport
             Excel::import(new DesaImport, $request->file('file_excel'));
 
-            // Ambil statistik dari session
             $stats = session('import_stats', [
                 'inserted' => 0,
                 'skipped' => 0,
@@ -140,22 +144,17 @@ class DesaController extends Controller
 
             $desaCount = Desa::count();
 
-            // Buat pesan yang informatif
             $message = "Import selesai! ";
             $message .= "Data masuk: {$stats['inserted']}, ";
             $message .= "Dilewati: {$stats['skipped']}. ";
             $message .= "Total Desa sekarang: {$desaCount}.";
 
-            // Tampilkan error jika ada (maksimal 5 error)
             if (!empty($stats['errors'])) {
                 $message .= "\n\nError: " . implode("; ", array_slice($stats['errors'], 0, 5));
             }
 
             if ($request->ajax() || $request->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => $message
-                ]);
+                return response()->json(['success' => true, 'message' => $message]);
             }
 
             return redirect()->route('admin.desa.index')->with('success', $message);
@@ -174,9 +173,6 @@ class DesaController extends Controller
         }
     }
 
-    /**
-     * Download Template Excel
-     */
     public function downloadTemplate()
     {
         $data = [

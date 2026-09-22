@@ -13,6 +13,7 @@ class Desa extends Model
 
     protected $fillable = [
         'nama_desa',
+        'status',
         'kecamatan_id',
         'kode_desa',
         'jenis',
