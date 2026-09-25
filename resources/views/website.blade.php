@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Website Desa / Kelurahan - Desa Digital Kabupaten Tuban</title>
+    <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
 
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,30 +33,43 @@
 
         /* 1. Header Navbar */
         .site-header {
-            background: var(--dark-header);
-            padding: 14px 7%;
+            background: rgba(51, 65, 85, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; }
-        .nav-menu { display: flex; align-items: center; gap: 20px; list-style: none; }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; display: block; }
+        .brand-text-logo { font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
+        .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
+        .nav-menu { display: flex; align-items: center; gap: 22px; list-style: none; }
         .nav-menu a {
-            color: #ffffff;
+            color: #e2e8f0;
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
+            letter-spacing: 0.6px;
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.2s ease;
         }
-        .nav-menu a:hover { opacity: 0.8; }
+        .nav-menu a:hover { color: #ffffff; }
         .nav-menu a.active { color: #38bdf8; }
+        .nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #38bdf8; border-radius: 2px; }
+        .search-pill-nav { display: flex; align-items: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 5px 14px; width: 190px; transition: all 0.25s ease; }
+        .search-pill-nav:focus-within { width: 230px; background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
+        .search-pill-nav input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.8rem; width: 100%; }
+        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .search-pill-nav button { background: transparent; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer; font-size: 0.8rem; }
 
         /* 2. Hero Banner Sesuai Halaman Surat */
         .website-hero {
@@ -514,17 +528,22 @@
                  alt="Logo Desa Digital" 
                  class="brand-logo-img"
                  onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
-            <span style="font-size: 1.25rem; font-weight: 800; color: #ffffff;">Desa<span style="color: #38bdf8;">Digital</span></span>
+            <div class="brand-text-logo">Desa<span>Digital</span></div>
         </a>
 
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>">Beranda</a></li>
-            <li><a href="<?= url('/website'); ?>" class="active">Website Desa</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">Peta Spasial</a></li>
-            <li><a href="<?= url('/cctv'); ?>">CCTV Tuban</a></li>
-            <li><a href="<?= url('/surat'); ?>">Surat Mandiri</a></li>
-            <li><a href="<?= url('/epbb'); ?>">e-PBB</a></li>
+            <li><a href="<?= url('/'); ?>">BERANDA</a></li>
+            <li><a href="<?= url('/website'); ?>" class="active">WEBSITE DESA</a></li>
+            <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
+            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
+            <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
+            <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
         </ul>
+
+        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET">
+            <input type="text" name="search" placeholder="Cari kecamatan...">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </header>
 
     <!-- Hero Banner -->

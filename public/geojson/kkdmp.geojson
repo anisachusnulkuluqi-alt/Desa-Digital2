@@ -311,28 +311,6 @@
     },
     {
       "type": "Feature",
-      "id": 14,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.63562,
-          -6.908851
-        ]
-      },
-      "properties": {
-        "FID": 14,
-        "nama": "Sidohasri",
-        "desa_kelur": "Sidohasri",
-        "jenis": "desa",
-        "alamat": "Jl. Blora RT 02 RW 03 Dsn. Tanjungrejo, Desa Sidohasri, Kecamatan Kenduruan",
-        "no_ahu": "AHU-35334.AH.01.29.TAHUN 2025",
-        "unit_usaha": "Gerai Sembako, Pupuk Pertanian, LPJ",
-        "ketua": "SUGIHARTONO",
-        "foto": " "
-      }
-    },
-    {
-      "type": "Feature",
       "id": 15,
       "geometry": {
         "type": "Point",
@@ -465,28 +443,6 @@
     },
     {
       "type": "Feature",
-      "id": 21,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          112.19997,
-          7.074645
-        ]
-      },
-      "properties": {
-        "FID": 21,
-        "nama": "Bandungrejo",
-        "desa_kelur": "Bandungrejo",
-        "jenis": "desa",
-        "alamat": "Jl. Widang-Rengel, Desa Bandungrejo Kecamatan Plumpang",
-        "no_ahu": "AHU-0057558.AH.01.29.TAHUN 2025",
-        "unit_usaha": "Perdagangan Umum, Unit Simpan Pinjam (USP), Klinik",
-        "ketua": "Ali Makrus",
-        "foto": " "
-      }
-    },
-    {
-      "type": "Feature",
       "id": 22,
       "geometry": {
         "type": "Point",
@@ -570,28 +526,6 @@
         "no_ahu": "AHU-0011111.AH.01.29.TAHUN 2025",
         "unit_usaha": "Gerai Sembako",
         "ketua": "Nur Rohmat",
-        "foto": " "
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 26,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          112.075365,
-          -6
-        ]
-      },
-      "properties": {
-        "FID": 26,
-        "nama": "Genaharjo",
-        "desa_kelur": "Genaharjo",
-        "jenis": "desa",
-        "alamat": "Jl. Gemanting - Genaharjo",
-        "no_ahu": "AHU. 0024337.AH.01.29.TAHUN 2025",
-        "unit_usaha": "Gerai Sembako & Pangkalan LPG",
-        "ketua": "MUHAMMAD AGUS SHOLIHUDDIN",
         "foto": " "
       }
     },
@@ -724,28 +658,6 @@
         "no_ahu": "AHU-0031726.AH.01.29.Tahun 2025",
         "unit_usaha": "Perdagangan Eceran",
         "ketua": "Si'in",
-        "foto": " "
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 33,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          112.083248,
-          7.047662
-        ]
-      },
-      "properties": {
-        "FID": 33,
-        "nama": "Kepohagung",
-        "desa_kelur": "Kepohagung",
-        "jenis": "desa",
-        "alamat": "Jln. Kepohagung-Cangkring.Dsn. Grebegan, Desa Kepohagung, Kecamatan Plumpang",
-        "no_ahu": "AHU-0054400.AH.01.29.TAHUN 2025",
-        "unit_usaha": "Gerai Sembako, Pupuk Pertanian, LPG",
-        "ketua": "Khoirul Huda",
         "foto": " "
       }
     },
@@ -1714,28 +1626,6 @@
         "no_ahu": "AHU-0022333.AH.01.29.TAHUN 2025",
         "unit_usaha": "toko sembako, apotik, klinik obat, toko atk perkantoran, simpan pinjam, pergudangan",
         "ketua": "Subambang Priyanto",
-        "foto": " "
-      }
-    },
-    {
-      "type": "Feature",
-      "id": 78,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          111.770698,
-          7.005532
-        ]
-      },
-      "properties": {
-        "FID": 78,
-        "nama": "Tanjungrejo",
-        "desa_kelur": "Tanjungrejo",
-        "jenis": "desa",
-        "alamat": "RT 01/ RW 01  Desa Tanjungrejo Kecamatan Singgahan",
-        "no_ahu": "0052599.AH.01.29.TAHUN 2025",
-        "unit_usaha": "toko sembako,apotik,klinik obat,LPG, Pupuk",
-        "ketua": "M.RIDLWAN",
         "foto": " "
       }
     },

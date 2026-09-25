@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desa Digital - Pemerintah Kabupaten Tuban</title>
+    <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
     
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1211,7 +1212,7 @@
                     </div>
                 </div>
 
-                <a href="https://maps.google.com/?q=Dinas+Komunikasi+dan+Informatika+Kabupaten+Tuban" target="_blank" rel="noopener noreferrer" class="btn-maps-route">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=-6.901873934235668,112.0440727763729" target="_blank" rel="noopener noreferrer" class="btn-maps-route">
                     <i class="fa-solid fa-diamond-turn-right"></i>
                     <span>Buka Rute di Google Maps</span>
                 </a>
@@ -1228,7 +1229,7 @@
 
             <div class="map-viewport-frame">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2783857500585!2d112.06014457499708!3d-6.893196993106037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e779a528e57929d%3A0x6bce98799bb52f75!2sDinas%20Komunikasi%20dan%20Informatika%20Kabupaten%20Tuban!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid"
+                    src="https://www.google.com/maps?q=-6.901873934235668,112.0440727763729&z=17&output=embed"
                     title="Google Maps Dinas Komunikasi dan Informatika Kabupaten Tuban"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">

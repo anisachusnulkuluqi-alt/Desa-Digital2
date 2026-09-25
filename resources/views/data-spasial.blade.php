@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geoportal Spasial Modern - Desa Digital Tuban</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/desa-digital.png') }}">
 
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,92 +49,35 @@
             background: #0f172a;
         }
 
-        .main-navbar {
-            position: fixed;
-            inset: 0 0 auto;
-            height: 82px;
-            z-index: 1100;
-            background: #ffffff;
-            padding: 14px 7%;
+        .site-header {
+            background: rgba(51, 65, 85, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 7%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .navbar-brand-link {
-            display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .brand-logo-img {
-            width: auto;
-            height: 40px;
-            max-width: 140px;
-            object-fit: contain;
-        }
-
-        .brand-title-text {
-            color: #0f172a;
-            font-size: 1.28rem;
-            font-weight: 800;
-        }
-
-        .brand-title-text span { color: #0284c7; }
-
-        .navbar-nav-cluster {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-links-menu {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-links-menu a {
-            color: #475569;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .nav-links-menu a:hover,
-        .nav-links-menu a.active { color: #0284c7; }
-
-        .search-pill-nav {
-            display: flex;
-            align-items: center;
-            width: 220px;
-            padding: 6px 14px;
-            background: #f1f5f9;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 40px;
-        }
-
-        .search-pill-nav input {
-            width: 100%;
-            border: none;
-            outline: none;
-            background: transparent;
-            color: #0f172a;
-            font-size: 0.82rem;
-        }
-
-        .search-pill-nav button {
-            border: none;
-            background: transparent;
-            color: #64748b;
-            cursor: pointer;
-        }
+        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; display: block; }
+        .brand-text-logo { font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
+        .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
+        .nav-menu { display: flex; align-items: center; gap: 22px; list-style: none; }
+        .nav-menu a { color: #e2e8f0; text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; position: relative; padding: 6px 0; transition: color 0.2s ease; }
+        .nav-menu a:hover { color: #ffffff; }
+        .nav-menu a.active { color: #38bdf8; }
+        .nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #38bdf8; border-radius: 2px; }
+        .search-pill-nav { display: flex; align-items: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 5px 14px; width: 190px; transition: all 0.25s ease; }
+        .search-pill-nav:focus-within { width: 230px; background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
+        .search-pill-nav input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.8rem; width: 100%; }
+        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
+        .search-pill-nav button { background: transparent; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer; font-size: 0.8rem; }
 
         .site-footer {
             position: fixed;
@@ -228,7 +172,7 @@
             display: flex;
             flex-direction: column;
             gap: 7px;
-            padding: 0;
+            padding: 0 4px;
             pointer-events: auto;
             order: 5;
         }
@@ -244,6 +188,7 @@
             pointer-events: auto;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         .location-filter-title {
@@ -273,12 +218,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 8px;
+            padding: 0;
             border-radius: 8px;
             color: #1e293b;
             cursor: pointer;
             font-size: 0.76rem;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .location-filter-option:hover { background: #f1f5f9; }
@@ -328,7 +273,7 @@
         /* 2. MAP CANVAS */
         #map {
             position: absolute;
-            inset: 82px 0 40px;
+            inset: 82px 0 90px;
             z-index: 1;
         }
 
@@ -342,16 +287,24 @@
             flex-direction: column;
             gap: 12px;
             align-items: flex-end;
+            width: min(260px, calc(100vw - 32px));
         }
 
         .map-tool-row {
             display: flex;
             align-items: center;
             gap: 8px;
+            width: 100%;
         }
 
         .map-tool-row .control-bubble {
             flex-direction: row;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .map-tool-row .tool-btn {
+            width: 34px;
         }
 
         .control-bubble {
@@ -394,7 +347,7 @@
         .layer-control-panel {
             width: 100%;
             order: 3;
-            padding: 0 4px 0;
+            padding: 0 4px 5px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -679,39 +632,38 @@
 
         @media (max-width: 768px) {
             .gmaps-floating-header { max-width: calc(100% - 32px); }
-            .main-navbar { padding: 14px 5%; }
-            .navbar-nav-cluster { display: none; }
+            .site-header { padding: 12px 5%; }
+            .nav-menu { display: none; }
+            .search-pill-nav { display: none; }
             .site-footer { padding: 10px 4%; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="main-navbar">
-        <a href="{{ url('/') }}" class="navbar-brand-link">
+    <header class="site-header">
+        <a href="{{ url('/') }}" class="brand-link">
             <img src="{{ asset('images/desa-digital.png') }}"
                  alt="Logo Desa Digital"
                  class="brand-logo-img"
-                 onerror="this.onerror=null; this.style.display='none'; document.getElementById('altLogoText').style.display='inline';">
-            <span id="altLogoText" class="brand-title-text" style="display: none;">Desa<span>Digital</span></span>
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
+            <div class="brand-text-logo">Desa<span>Digital</span></div>
         </a>
 
-        <div class="navbar-nav-cluster">
-            <ul class="nav-links-menu">
-                <li><a href="{{ url('/') }}">Beranda</a></li>
-                <li><a href="{{ url('/#tentang-kami') }}">Tentang Kami</a></li>
-                <li><a href="{{ url('/#statistik-wilayah') }}">Statistik</a></li>
-                <li><a href="{{ url('/#layanan-digital') }}">Layanan</a></li>
-                <li><a href="{{ url('/data-spasial') }}" class="active">Peta Spasial</a></li>
-                <li><a href="{{ url('/#lokasi-kami') }}">Hubungi Kami</a></li>
-            </ul>
+        <ul class="nav-menu">
+            <li><a href="{{ url('/') }}">BERANDA</a></li>
+            <li><a href="{{ url('/website') }}">WEBSITE DESA</a></li>
+            <li><a href="{{ url('/data-spasial') }}" class="active">DATA SPASIAL</a></li>
+            <li><a href="{{ url('/cctv') }}">CCTV TUBAN</a></li>
+            <li><a href="{{ url('/surat') }}">SURAT MANDIRI</a></li>
+            <li><a href="{{ url('/epbb') }}">E-PBB</a></li>
+        </ul>
 
-            <form class="search-pill-nav" action="{{ url('/desa') }}" method="GET">
-                <input type="text" name="search" placeholder="Cari desa / modul...">
-                <button type="submit" title="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-    </nav>
+        <form class="search-pill-nav" action="{{ url('/website') }}" method="GET">
+            <input type="text" name="search" placeholder="Cari kecamatan...">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </header>
 
     <!-- TOP BAR -->
     <div class="gmaps-floating-header">
@@ -793,31 +745,27 @@
 
             <div class="category-chips-row">
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-all" checked onchange="filterOnlyCategory('all', this)">
-                    <i class="fa-solid fa-layer-group"></i> Semua Data
-                </label>
-                <label class="location-filter-option">
-                    <input type="checkbox" id="chip-wifi" onchange="filterOnlyCategory('wifi', this)">
+                    <input type="checkbox" id="chip-wifi" checked onchange="filterOnlyCategory('wifi', this)">
                     <span class="chip-dot" style="background: var(--primary-vivid);"></span> WiFi Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-kantor" onchange="filterOnlyCategory('kantor', this)">
+                    <input type="checkbox" id="chip-kantor" checked onchange="filterOnlyCategory('kantor', this)">
                     <span class="chip-dot" style="background: var(--amber);"></span> Kantor Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-pasar" onchange="filterOnlyCategory('pasar', this)">
+                    <input type="checkbox" id="chip-pasar" checked onchange="filterOnlyCategory('pasar', this)">
                     <span class="chip-dot" style="background: var(--emerald);"></span> Pasar Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-wisata" onchange="filterOnlyCategory('wisata', this)">
+                    <input type="checkbox" id="chip-wisata" checked onchange="filterOnlyCategory('wisata', this)">
                     <span class="chip-dot" style="background: var(--cyan);"></span> Wisata Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-bumdes" onchange="filterOnlyCategory('bumdes', this)">
+                    <input type="checkbox" id="chip-bumdes" checked onchange="filterOnlyCategory('bumdes', this)">
                     <span class="chip-dot" style="background: var(--violet);"></span> BUMDes
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-kkdmp" onchange="filterOnlyCategory('kkdmp', this)">
+                    <input type="checkbox" id="chip-kkdmp" checked onchange="filterOnlyCategory('kkdmp', this)">
                     <span class="chip-dot" style="background: var(--rose);"></span> KKDMP
                 </label>
             </div>
@@ -884,7 +832,11 @@
     <script>
         // Inisialisasi Peta Tuban
         const tubanCenter = [-6.9150, 111.9500];
-        const map = L.map('map', { zoomControl: false }).setView(tubanCenter, 11);
+        const map = L.map('map', {
+            zoomControl: false,
+            minZoom: 10,
+            maxZoom: 19
+        }).setView(tubanCenter, 11);
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         // Tile Base Layer
@@ -1072,7 +1024,7 @@
         }
 
         let activeMarkers = [];
-        let currentFilterType = 'all';
+        let currentFilterTypes = ['wifi', 'kantor', 'pasar', 'wisata', 'bumdes', 'kkdmp'];
         let currentSearchQuery = '';
         let currentKecFilter = '';
 
@@ -1097,7 +1049,7 @@
             let matchedCount = 0;
 
             databaseSpasial.forEach(item => {
-                if (currentFilterType !== 'all' && item.type !== currentFilterType) return;
+                if (!currentFilterTypes.includes(item.type)) return;
                 if (currentKecFilter && item.kec !== currentKecFilter) return;
 
                 if (currentSearchQuery) {
@@ -1174,11 +1126,9 @@
         }
 
         function filterOnlyCategory(type, element) {
-            document.querySelectorAll('.category-chips-row input[type="checkbox"]').forEach(input => {
-                input.checked = false;
-            });
-            if (element) element.checked = true;
-            currentFilterType = type;
+            currentFilterTypes = Array.from(
+                document.querySelectorAll('.category-chips-row input[type="checkbox"]:checked')
+            ).map(input => input.id.replace('chip-', ''));
             loadSpatialData()
                 .then(renderPointsAndTable)
                 .catch(error => {
@@ -1220,17 +1170,27 @@
         }
 
         // Deteksi parameter URL dari Beranda (?filter=wifi, dsb.)
-        document.addEventListener("DOMContentLoaded", function () {
-            renderPointsAndTable();
-
+        document.addEventListener("DOMContentLoaded", async function () {
             const urlParams = new URLSearchParams(window.location.search);
             const filter = urlParams.get('filter');
 
             if (filter) {
                 const targetBtn = document.getElementById(`chip-${filter}`);
                 if (targetBtn) {
-                    targetBtn.click();
+                    document.querySelectorAll('.category-chips-row input[type="checkbox"]').forEach(input => {
+                        input.checked = false;
+                    });
+                    targetBtn.checked = true;
+                    currentFilterTypes = [filter];
                 }
+            }
+
+            try {
+                await loadSpatialData();
+                renderPointsAndTable();
+            } catch (error) {
+                console.error('Gagal memuat data titik GeoJSON:', error);
+                document.getElementById('tableCounterBadge').innerText = 'Data gagal dimuat';
             }
         });
     </script>

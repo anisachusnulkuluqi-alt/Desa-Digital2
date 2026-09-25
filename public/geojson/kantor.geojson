@@ -4867,15 +4867,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          113.6701817843381,
-          -8.296685102788278
+          112.08973599375368, 
+          -7.049111076356711
         ]
       },
       "properties": {
         "FID": 270,
         "nama_ssid": "BALAI DESA CANGKRING",
         "alamat": "Jl. Raya Desa Cangkring No.01 Kode Pos 62382",
-        "link_maps": "https://maps.app.goo.gl/c1RoCKdgGXdR9MQt9",
+        "link_maps": "https://maps.app.goo.gl/tdx6iCGZR9PeZxPJ6",
         "foto": " "
       }
     },
