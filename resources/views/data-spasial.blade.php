@@ -48,10 +48,108 @@
             background: #0f172a;
         }
 
+        .main-navbar {
+            position: fixed;
+            inset: 0 0 auto;
+            height: 82px;
+            z-index: 1100;
+            background: #ffffff;
+            padding: 14px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            width: auto;
+            height: 40px;
+            max-width: 140px;
+            object-fit: contain;
+        }
+
+        .brand-title-text {
+            color: #0f172a;
+            font-size: 1.28rem;
+            font-weight: 800;
+        }
+
+        .brand-title-text span { color: #0284c7; }
+
+        .navbar-nav-cluster {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links-menu {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links-menu a {
+            color: #475569;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links-menu a:hover,
+        .nav-links-menu a.active { color: #0284c7; }
+
+        .search-pill-nav {
+            display: flex;
+            align-items: center;
+            width: 220px;
+            padding: 6px 14px;
+            background: #f1f5f9;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 40px;
+        }
+
+        .search-pill-nav input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #0f172a;
+            font-size: 0.82rem;
+        }
+
+        .search-pill-nav button {
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .site-footer {
+            position: fixed;
+            inset: auto 0 0;
+            z-index: 1100;
+            padding: 12px 7%;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.72rem;
+            text-align: center;
+        }
+
         /* 1. TOP FLOATING APP BAR */
         .gmaps-floating-header {
             position: absolute;
-            top: 16px;
+            top: 98px;
             left: 16px;
             z-index: 1000;
             display: flex;
@@ -128,13 +226,69 @@
 
         .category-chips-row {
             display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 4px;
+            flex-direction: column;
+            gap: 7px;
+            padding: 0;
             pointer-events: auto;
-            scrollbar-width: none;
+            order: 5;
         }
-        .category-chips-row::-webkit-scrollbar { display: none; }
+
+        .map-filter-panel {
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.2);
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .location-filter-title {
+            order: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #475569;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .location-section-title {
+            padding: 10px 4px 6px;
+            border-top: 1px solid #cbd5e1;
+            color: #64748b;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .location-filter-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            color: #1e293b;
+            cursor: pointer;
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        .location-filter-option:hover { background: #f1f5f9; }
+
+        .location-filter-option input {
+            width: 15px;
+            height: 15px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
 
         .chip-btn {
             background: var(--card-glass);
@@ -173,21 +327,31 @@
 
         /* 2. MAP CANVAS */
         #map {
-            width: 100vw;
-            height: 100vh;
+            position: absolute;
+            inset: 82px 0 40px;
             z-index: 1;
         }
 
         /* 3. FLOATING CONTROLS */
         .gmaps-controls-right {
             position: absolute;
-            top: 16px;
+            top: 100px;
             right: 16px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             gap: 12px;
             align-items: flex-end;
+        }
+
+        .map-tool-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .map-tool-row .control-bubble {
+            flex-direction: row;
         }
 
         .control-bubble {
@@ -228,18 +392,17 @@
         }
 
         .layer-control-panel {
-            width: 250px;
-            background: var(--card-glass);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 14px;
-            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
+            width: 100%;
+            order: 3;
+            padding: 0 4px 0;
             display: flex;
             flex-direction: column;
             gap: 10px;
             font-size: 0.78rem;
         }
+
+        .location-filter-title + .location-section-title { order: 2; }
+        .layer-control-panel + .location-section-title { order: 4; }
 
         .layer-panel-title {
             font-size: 0.72rem;
@@ -285,7 +448,7 @@
         /* 4. BOTTOM DRAWER */
         .bottom-table-drawer {
             position: absolute;
-            bottom: 0;
+            bottom: 40px;
             left: 0;
             right: 0;
             background: rgba(255, 255, 255, 0.97);
@@ -516,11 +679,39 @@
 
         @media (max-width: 768px) {
             .gmaps-floating-header { max-width: calc(100% - 32px); }
-            .layer-control-panel { display: none; }
+            .main-navbar { padding: 14px 5%; }
+            .navbar-nav-cluster { display: none; }
+            .site-footer { padding: 10px 4%; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
+
+    <nav class="main-navbar">
+        <a href="{{ url('/') }}" class="navbar-brand-link">
+            <img src="{{ asset('images/desa-digital.png') }}"
+                 alt="Logo Desa Digital"
+                 class="brand-logo-img"
+                 onerror="this.onerror=null; this.style.display='none'; document.getElementById('altLogoText').style.display='inline';">
+            <span id="altLogoText" class="brand-title-text" style="display: none;">Desa<span>Digital</span></span>
+        </a>
+
+        <div class="navbar-nav-cluster">
+            <ul class="nav-links-menu">
+                <li><a href="{{ url('/') }}">Beranda</a></li>
+                <li><a href="{{ url('/#tentang-kami') }}">Tentang Kami</a></li>
+                <li><a href="{{ url('/#statistik-wilayah') }}">Statistik</a></li>
+                <li><a href="{{ url('/#layanan-digital') }}">Layanan</a></li>
+                <li><a href="{{ url('/data-spasial') }}" class="active">Peta Spasial</a></li>
+                <li><a href="{{ url('/#lokasi-kami') }}">Hubungi Kami</a></li>
+            </ul>
+
+            <form class="search-pill-nav" action="{{ url('/desa') }}" method="GET">
+                <input type="text" name="search" placeholder="Cari desa / modul...">
+                <button type="submit" title="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </nav>
 
     <!-- TOP BAR -->
     <div class="gmaps-floating-header">
@@ -537,30 +728,6 @@
             </button>
         </div>
 
-        <!-- Filter Chips Kategori -->
-        <div class="category-chips-row">
-            <button class="chip-btn active" id="chip-all" data-type="all" onclick="filterOnlyCategory('all', this)">
-                <i class="fa-solid fa-layer-group"></i> Semua Data
-            </button>
-            <button class="chip-btn" id="chip-wifi" data-type="wifi" onclick="filterOnlyCategory('wifi', this)">
-                <span class="chip-dot" style="background: var(--primary-vivid);"></span> Hanya WiFi Desa
-            </button>
-            <button class="chip-btn" id="chip-kantor" data-type="kantor" onclick="filterOnlyCategory('kantor', this)">
-                <span class="chip-dot" style="background: var(--amber);"></span> Hanya Kantor Desa
-            </button>
-            <button class="chip-btn" id="chip-pasar" data-type="pasar" onclick="filterOnlyCategory('pasar', this)">
-                <span class="chip-dot" style="background: var(--emerald);"></span> Hanya Pasar Desa
-            </button>
-            <button class="chip-btn" id="chip-wisata" data-type="wisata" onclick="filterOnlyCategory('wisata', this)">
-                <span class="chip-dot" style="background: var(--cyan);"></span> Hanya Wisata Desa
-            </button>
-            <button class="chip-btn" id="chip-bumdes" data-type="bumdes" onclick="filterOnlyCategory('bumdes', this)">
-                <span class="chip-dot" style="background: var(--violet);"></span> Hanya BUMDes
-            </button>
-            <button class="chip-btn" id="chip-dusun" data-type="dusun" onclick="filterOnlyCategory('dusun', this)">
-                <span class="chip-dot" style="background: var(--rose);"></span> Hanya Dusun
-            </button>
-        </div>
     </div>
 
     <!-- MAP CONTAINER -->
@@ -568,55 +735,95 @@
 
     <!-- FLOATING CONTROLS (KANAN) -->
     <div class="gmaps-controls-right">
-        <div class="control-bubble">
-            <button class="tool-btn active" id="btnOsm" onclick="setBaseMap('osm')" title="Peta Vektor Standar">
-                <i class="fa-solid fa-map"></i>
-            </button>
-            <button class="tool-btn" id="btnSat" onclick="setBaseMap('sat')" title="Citra Satelit Google">
-                <i class="fa-solid fa-earth-asia"></i>
-            </button>
-            <button class="tool-btn" id="btnDark" onclick="setBaseMap('dark')" title="Mode Malam">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </div>
-
-        <div class="control-bubble">
-            <button class="tool-btn" onclick="geoLocateMe()" title="Lokasi Saya Saat Ini">
-                <i class="fa-solid fa-crosshairs"></i>
-            </button>
-            <button class="tool-btn" onclick="resetViewTuban()" title="Fokuskan ke Kabupaten Tuban">
-                <i class="fa-solid fa-compress"></i>
-            </button>
-            <button class="tool-btn" onclick="toggleDrawer()" title="Tampilkan Tabel Data">
-                <i class="fa-solid fa-list-check"></i>
-            </button>
-        </div>
-
-        <!-- PANEL CHECKBOX LAYER POLIGON -->
-        <div class="layer-control-panel">
-            <div class="layer-panel-title">
-                <span>Layer Poligon Wilayah</span>
-                <i class="fa-solid fa-draw-polygon" style="color: var(--primary);"></i>
+        <div class="map-tool-row">
+            <div class="control-bubble">
+                <button class="tool-btn active" id="btnOsm" onclick="setBaseMap('osm')" title="Peta Vektor Standar">
+                    <i class="fa-solid fa-map"></i>
+                </button>
+                <button class="tool-btn" id="btnSat" onclick="setBaseMap('sat')" title="Citra Satelit Google">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </button>
+                <button class="tool-btn" id="btnDark" onclick="setBaseMap('dark')" title="Mode Malam">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </div>
 
-            <div class="layer-checkbox-group">
-                <label class="layer-checkbox-row">
-                    <input type="checkbox" id="layerKabupaten" checked onchange="toggleLayer('kabupaten', this.checked)">
-                    <span class="color-badge-preview" style="background: #dc2626;"></span>
-                    <span>Batas Kabupaten</span>
-                </label>
-                <label class="layer-checkbox-row">
-                    <input type="checkbox" id="layerKecamatan" checked onchange="toggleLayer('kecamatan', this.checked)">
-                    <span class="color-badge-preview" style="background: #0284c7;"></span>
-                    <span>Layer Kecamatan</span>
-                </label>
-                <label class="layer-checkbox-row">
-                    <input type="checkbox" id="layerDesa" checked onchange="toggleLayer('desa', this.checked)">
-                    <span class="color-badge-preview" style="background: #10b981;"></span>
-                    <span>Layer Desa / Kelurahan</span>
-                </label>
+            <div class="control-bubble">
+                <button class="tool-btn" onclick="geoLocateMe()" title="Lokasi Saya Saat Ini">
+                    <i class="fa-solid fa-crosshairs"></i>
+                </button>
+                <button class="tool-btn" onclick="resetViewTuban()" title="Fokuskan ke Kabupaten Tuban">
+                    <i class="fa-solid fa-compress"></i>
+                </button>
+                <button class="tool-btn" onclick="toggleDrawer()" title="Tampilkan Tabel Data">
+                    <i class="fa-solid fa-list-check"></i>
+                </button>
             </div>
         </div>
+
+        <div class="map-filter-panel">
+            <div class="location-filter-title">
+                <span>Legenda</span>
+                <i class="fa-solid fa-map-pin" style="color: var(--primary);"></i>
+            </div>
+
+            <div class="location-section-title">Batas Wilayah</div>
+
+            <div class="layer-control-panel">
+                <div class="layer-checkbox-group">
+                    <label class="layer-checkbox-row">
+                        <input type="checkbox" id="layerKabupaten" checked onchange="toggleLayer('kabupaten', this.checked)">
+                        <span class="color-badge-preview" style="background: #dc2626;"></span>
+                        <span>Batas Kabupaten</span>
+                    </label>
+                    <label class="layer-checkbox-row">
+                        <input type="checkbox" id="layerKecamatan" checked onchange="toggleLayer('kecamatan', this.checked)">
+                        <span class="color-badge-preview" style="background: #0284c7;"></span>
+                        <span>Layer Kecamatan</span>
+                    </label>
+                    <label class="layer-checkbox-row">
+                        <input type="checkbox" id="layerDesa" checked onchange="toggleLayer('desa', this.checked)">
+                        <span class="color-badge-preview" style="background: #10b981;"></span>
+                        <span>Layer Desa / Kelurahan</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="location-section-title">Lokasi</div>
+
+            <div class="category-chips-row">
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-all" checked onchange="filterOnlyCategory('all', this)">
+                    <i class="fa-solid fa-layer-group"></i> Semua Data
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-wifi" onchange="filterOnlyCategory('wifi', this)">
+                    <span class="chip-dot" style="background: var(--primary-vivid);"></span> WiFi Desa
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-kantor" onchange="filterOnlyCategory('kantor', this)">
+                    <span class="chip-dot" style="background: var(--amber);"></span> Kantor Desa
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-pasar" onchange="filterOnlyCategory('pasar', this)">
+                    <span class="chip-dot" style="background: var(--emerald);"></span> Pasar Desa
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-wisata" onchange="filterOnlyCategory('wisata', this)">
+                    <span class="chip-dot" style="background: var(--cyan);"></span> Wisata Desa
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-bumdes" onchange="filterOnlyCategory('bumdes', this)">
+                    <span class="chip-dot" style="background: var(--violet);"></span> BUMDes
+                </label>
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-kkdmp" onchange="filterOnlyCategory('kkdmp', this)">
+                    <span class="chip-dot" style="background: var(--rose);"></span> KKDMP
+                </label>
+            </div>
+
+        </div>
+
     </div>
 
     <!-- BOTTOM DRAWER TABLE -->
@@ -669,6 +876,10 @@
             </table>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
+    </footer>
 
     <script>
         // Inisialisasi Peta Tuban
@@ -728,6 +939,9 @@
             desa: L.layerGroup().addTo(map)
         };
 
+        map.createPane('desaPane');
+        map.getPane('desaPane').style.zIndex = 450;
+
         function toggleLayer(name, isChecked) {
             if (isChecked) {
                 map.addLayer(layers[name]);
@@ -780,6 +994,7 @@
             .then(res => res.json())
             .then(data => {
                 L.geoJSON(data, {
+                    pane: 'desaPane',
                     style: {
                         color: '#10b981',
                         weight: 1.2,
@@ -790,29 +1005,71 @@
                     onEachFeature: (feature, layer) => {
                         const desa = feature.properties?.nm_kelurahan || 'Desa';
                         layer.bindPopup(`<b>Desa/Kelurahan:</b> ${desa}`);
+                        layer.on({
+                            mouseover: event => {
+                                event.target.setStyle({
+                                    color: '#047857',
+                                    weight: 3,
+                                    fillColor: '#34d399',
+                                    fillOpacity: 0.45
+                                });
+                                event.target.bringToFront();
+                            },
+                            mouseout: event => {
+                                event.target.setStyle({
+                                    color: '#10b981',
+                                    weight: 1.2,
+                                    fillColor: '#10b981',
+                                    fillOpacity: 0.2
+                                });
+                            }
+                        });
                     }
                 }).addTo(layers.desa);
             }).catch(e => console.error("Gagal muat desa.geojson:", e));
 
-        // Data Titik Marker Fasilitas
-        const databaseSpasial = [
-            { id: 1, type: 'wifi', name: 'WiFi Publik Alun-Alun Tuban', kec: 'Tuban', desa: 'Kutorejo', lat: -6.8945, lng: 112.0625, status: 'Online 100 Mbps', desc: 'Hotspot kecepatan tinggi di Alun-Alun Tuban.' },
-            { id: 2, type: 'wifi', name: 'WiFi Balai Desa Sugiharjo', kec: 'Tuban', desa: 'Sugiharjo', lat: -6.8860, lng: 112.0280, status: 'Online Aktif', desc: 'Fasilitas internet kependudukan warga desa.' },
-            { id: 3, type: 'wifi', name: 'WiFi Pesisir Dusun Dasin', kec: 'Jenu', desa: 'Sugihwaras', lat: -6.8590, lng: 111.9800, status: 'Online Aktif', desc: 'Jaringan internet masyarakat nelayan pesisir.' },
-            { id: 4, type: 'wifi', name: 'WiFi Balai Desa Rengel', kec: 'Rengel', desa: 'Rengel', lat: -7.0540, lng: 111.9870, status: 'Online Aktif', desc: 'Internet publik posko pelayanan desa.' },
-            { id: 5, type: 'kantor', name: 'Kantor Balai Desa Tasikharjo', kec: 'Jenu', desa: 'Tasikharjo', lat: -6.8480, lng: 111.9450, status: 'Buka (08.00 - 15.30)', desc: 'Pusat pengurusan surat keterangan dan domisili terpadu.' },
-            { id: 6, type: 'kantor', name: 'Kantor Kecamatan Jenu', kec: 'Jenu', desa: 'Beji', lat: -6.8520, lng: 111.9650, status: 'Buka Kedinasan', desc: 'Pusat koordinasi wilayah pesisir barat Kabupaten Tuban.' },
-            { id: 7, type: 'kantor', name: 'Kantor Balai Desa Prunggahan', kec: 'Semanding', desa: 'Prunggahan', lat: -6.9150, lng: 112.0300, status: 'Buka Pelayanan', desc: 'Pelayanan administrasi kependudukan satu pintu.' },
-            { id: 8, type: 'pasar', name: 'Pasar Tradisional Merakurak', kec: 'Merakurak', desa: 'Sambonggede', lat: -6.9020, lng: 111.9950, status: 'Aktivitas Ramai', desc: 'Sentra komoditas pangan segar hasil bumi petani lokal.' },
-            { id: 9, type: 'pasar', name: 'Pasar Ikan Asap Karangagung', kec: 'Palang', desa: 'Karangagung', lat: -6.9150, lng: 112.1450, status: 'Buka Harian', desc: 'Sentra grosir olahan perikanan laut khas Tuban timur.' },
-            { id: 10, type: 'wisata', name: 'Air Terjun Nglirip', kec: 'Singgahan', desa: 'Mulyoagung', lat: -6.9605, lng: 111.8320, status: 'Destinasi Terbuka', desc: 'Air terjun alami berair toska di perbukitan Tuban.' },
-            { id: 11, type: 'wisata', name: 'Pantai Pasir Putih Remen', kec: 'Jenu', desa: 'Remen', lat: -6.8120, lng: 111.9540, status: 'Wisata Pesisir', desc: 'Wisata pantai dan telaga laguna berpasir putih.' },
-            { id: 12, type: 'wisata', name: 'Pemandian Alami Bektiharjo', kec: 'Semanding', desa: 'Bektiharjo', lat: -6.9450, lng: 112.0450, status: 'Wisata Sejarah', desc: 'Sumber mata air alami bersejarah di perbukitan Semanding.' },
-            { id: 13, type: 'bumdes', name: 'BUMDes Tirta Kencana', kec: 'Semanding', desa: 'Bektiharjo', lat: -6.9280, lng: 112.0520, status: 'Operasional', desc: 'Pengelolaan saluran air bersih mandiri desa.' },
-            { id: 14, type: 'bumdes', name: 'BUMDes Karya Makmur Sugiharjo', kec: 'Tuban', desa: 'Sugiharjo', lat: -6.8810, lng: 112.0320, status: 'Operasional', desc: 'Pengeringan gabah modern & loket bayar digital.' },
-            { id: 15, type: 'dusun', name: 'Sentra Dusun Krajan', kec: 'Tuban', desa: 'Sugiharjo', lat: -6.8890, lng: 112.0250, status: '1.450 Jiwa', desc: 'Kawasan pemukiman warga terpadu 4 RT.' },
-            { id: 16, type: 'dusun', name: 'Sentra Dusun Dasin', kec: 'Jenu', desa: 'Sugihwaras', lat: -6.8580, lng: 111.9750, status: '820 Jiwa', desc: 'Pemukiman rukun warga pesisir utara.' }
-        ];
+        const spatialSources = {
+            wifi: '{{ asset('geojson/wifi.geojson') }}',
+            kantor: '{{ asset('geojson/kantor.geojson') }}',
+            pasar: '{{ asset('geojson/pasar.geojson') }}',
+            wisata: '{{ asset('geojson/wisata.geojson') }}',
+            bumdes: '{{ asset('geojson/bumdes.geojson') }}',
+            kkdmp: '{{ asset('geojson/kkdmp.geojson') }}'
+        };
+
+        let databaseSpasial = [];
+
+        function normalizeSpatialFeature(feature, type) {
+            const properties = feature.properties || {};
+            const [lng, lat] = feature.geometry?.coordinates || [];
+            const address = properties.alamat || '';
+            const kecMatch = address.match(/\bKec(?:amatan)?\.?\s+([^,]+)/i);
+
+            return {
+                id: `${type}-${feature.id ?? properties.FID}`,
+                type,
+                name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama || 'Lokasi tanpa nama',
+                kec: properties.kecamatan || (kecMatch ? kecMatch[1].trim() : ''),
+                desa: properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || '',
+                lat,
+                lng,
+                status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
+                desc: properties.deskripsi || address || 'Tidak ada deskripsi lokasi.'
+            };
+        }
+
+        async function loadSpatialData() {
+            const entries = await Promise.all(Object.entries(spatialSources).map(async ([type, source]) => {
+                const response = await fetch(source);
+                if (!response.ok) throw new Error(`HTTP ${response.status} saat memuat ${source}`);
+                const data = await response.json();
+                return data.features
+                    .filter(feature => feature.geometry?.type === 'Point')
+                    .map(feature => normalizeSpatialFeature(feature, type));
+            }));
+
+            databaseSpasial = entries.flat().filter(item => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+        }
 
         let activeMarkers = [];
         let currentFilterType = 'all';
@@ -826,7 +1083,7 @@
                 case 'pasar': return { label: 'Pasar & UMKM', color: '#10b981', bg: '#d1fae5', icon: 'fa-store' };
                 case 'wisata': return { label: 'Pariwisata', color: '#06b6d4', bg: '#cffafe', icon: 'fa-mountain-sun' };
                 case 'bumdes': return { label: 'Unit BUMDes', color: '#8b5cf6', bg: '#ede9fe', icon: 'fa-briefcase' };
-                case 'dusun': return { label: 'Sentra Dusun', color: '#f43f5e', bg: '#ffe4e6', icon: 'fa-house-chimney' };
+                case 'kkdmp': return { label: 'KKDMP', color: '#f43f5e', bg: '#ffe4e6', icon: 'fa-people-group' };
                 default: return { label: 'Fasilitas', color: '#64748b', bg: '#f1f5f9', icon: 'fa-location-dot' };
             }
         }
@@ -917,10 +1174,17 @@
         }
 
         function filterOnlyCategory(type, element) {
-            document.querySelectorAll('.category-chips-row .chip-btn').forEach(b => b.classList.remove('active'));
-            if (element) element.classList.add('active');
+            document.querySelectorAll('.category-chips-row input[type="checkbox"]').forEach(input => {
+                input.checked = false;
+            });
+            if (element) element.checked = true;
             currentFilterType = type;
-            renderPointsAndTable();
+            loadSpatialData()
+                .then(renderPointsAndTable)
+                .catch(error => {
+                    console.error('Gagal memuat data titik GeoJSON:', error);
+                    document.getElementById('tableCounterBadge').innerText = 'Data gagal dimuat';
+                });
         }
 
         function handleSearch(val) {

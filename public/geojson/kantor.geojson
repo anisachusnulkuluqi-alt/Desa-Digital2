@@ -1,0 +1,5909 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.58542700532297,
+          -6.927450894314938
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "nama_ssid": "BALAI DESA JLODRO",
+        "alamat": "Jl. Demak, Krajan, Jlodro",
+        "link_maps": "https://maps.app.goo.gl/pGJp2f2r6uG2HmrS7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.594679,
+          -6.943272
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "nama_ssid": "BALAI DESA SOKOGUNUNG",
+        "alamat": "Jl. Towo No. 111 Krajan, Sokogunung",
+        "link_maps": "https://maps.app.goo.gl/77kkUDXG3qbKYA6U7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6175462,
+          -6.9599445
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "nama_ssid": "BALAI DESA JAMPRONG",
+        "alamat": "Jl. Abiyasa, Krajan, Jamprong",
+        "link_maps": "https://maps.app.goo.gl/JgrAzQ1yVc6tdBL29",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6124094,
+          -6.9090206
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "nama_ssid": "BALAI DESA TAWARAN",
+        "alamat": "Jl. Blora - Kenduruan, Tawaran",
+        "link_maps": "https://maps.app.goo.gl/hm9rzwfn1K9kVDg46",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6248237,
+          -6.9160326
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "nama_ssid": "BALAI DESA SIDOMUKTI",
+        "alamat": "Jl. Diponegoro, Sidomukti, Kec. Kenduruan",
+        "link_maps": "https://maps.app.goo.gl/sUZp8fJyYsVn5xi77",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6434194,
+          -6.9560454
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "nama_ssid": "BALAI DESA BENDONGLATENG",
+        "alamat": "Jl. Bendonglateng No.53, Nglanteng, Bendonglateng",
+        "link_maps": "https://maps.app.goo.gl/uJvzmg1zP7RDs7Lw6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.661003,
+          -6.91224
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "nama_ssid": "BALAI DESA SIDOHASRI",
+        "alamat": "Jl. Ahmad Yani No.63, Balong, Sidohasri",
+        "link_maps": "https://maps.app.goo.gl/ZqSBoNcyzVAB4d5c7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.673481,
+          -6.937419
+        ]
+      },
+      "properties": {
+        "FID": 7,
+        "nama_ssid": "BALAI DESA SIDOREJO",
+        "alamat": "Karanggeneng, Sidorejo, Kec. Kenduruan",
+        "link_maps": "https://maps.app.goo.gl/n5WY4SQ9d9EuCYtq5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.667236,
+          -6.922638
+        ]
+      },
+      "properties": {
+        "FID": 8,
+        "nama_ssid": "BALAI DESA SOKOGRENJENG",
+        "alamat": "Jl. Raya Srinoto, Ngancar, Sokogrenjeng",
+        "link_maps": "https://maps.app.goo.gl/xCEE2kUzeW48TWvH6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.625956,
+          -6.865157
+        ]
+      },
+      "properties": {
+        "FID": 9,
+        "nama_ssid": "BALAI DESA KEBONHARJO",
+        "alamat": "Jl. Raya Lasem Nomor 332 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/RKpSespUXrL2q6S29",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6307019,
+          -6.8566832
+        ]
+      },
+      "properties": {
+        "FID": 10,
+        "nama_ssid": "BALAI DESA WANGI",
+        "alamat": "Jl. Raya Wangi No. 15 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/FqeKw42y6ZoWJA7R6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.640812,
+          -6.850764
+        ]
+      },
+      "properties": {
+        "FID": 11,
+        "nama_ssid": "BALAI DESA KETODAN",
+        "alamat": "Jl. Raya Ketodan No. 30 Ketodan Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/qA9L4sFpAxg9zfcV8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.633744,
+          -6.874248
+        ]
+      },
+      "properties": {
+        "FID": 12,
+        "nama_ssid": "BALAI DESA KARANGTENGAH",
+        "alamat": "Jl. Jombok Nomor 152 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/yxYrcRFyuNDm4Pp27",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6552384,
+          -6.8683604
+        ]
+      },
+      "properties": {
+        "FID": 13,
+        "nama_ssid": "BALAI DESA BADER",
+        "alamat": "Jl. Raya Bulu - Jatirogo No 21 Bader Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/33DxLxqewiwDM7NF8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6443993,
+          -6.8750289
+        ]
+      },
+      "properties": {
+        "FID": 14,
+        "nama_ssid": "BALAI DESA PASEYAN",
+        "alamat": "Jl. Raya Lasem No. 20 Desa Paseyan Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/Nc1pLKtWdzu1JV749",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6551198,
+          -6.8516707
+        ]
+      },
+      "properties": {
+        "FID": 15,
+        "nama_ssid": "BALAI DESA BESOWO",
+        "alamat": "Jl. Kemenjing No. 63 Desa Besowo Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/dJBEbEvMCScVaUPy8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6409119,
+          -6.8817178
+        ]
+      },
+      "properties": {
+        "FID": 16,
+        "nama_ssid": "BALAI DESA JOMBOK",
+        "alamat": "Jl. Karangtengah No. 08 Jombok-Jatirogo Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/cN7xFmdWT9NNTy6XA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.659893,
+          -6.880676
+        ]
+      },
+      "properties": {
+        "FID": 17,
+        "nama_ssid": "BALAI DESA SADANG",
+        "alamat": "Jl. Panglima Sudirman No. 603 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/Afcbt6x2Uxmrc6BR9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6517091,
+          -6.8871736
+        ]
+      },
+      "properties": {
+        "FID": 18,
+        "nama_ssid": "BALAI DESA WOTSOGO",
+        "alamat": "Jl. Jombok No. 1241 Jatirogo Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/SETZSXPERKY9anGW7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6789724,
+          -6.8288056
+        ]
+      },
+      "properties": {
+        "FID": 19,
+        "nama_ssid": "BALAI DESA NGEPON",
+        "alamat": "Jl. Raya Bulu - Jatirogo No. 04 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/4B1BJ7y2q757B2u68",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6632611,
+          -6.8886218
+        ]
+      },
+      "properties": {
+        "FID": 20,
+        "nama_ssid": "BALAI DESA SUGIHAN",
+        "alamat": "Jl. Raya Timur No. 116 Sugihan Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/2Af9XHFGWF9fubVD8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.676308,
+          -6.912454
+        ]
+      },
+      "properties": {
+        "FID": 21,
+        "nama_ssid": "BALAI DESA SIDOMULYO",
+        "alamat": "Ds. Sidomulyo - Kec.Jatirogo Kode Pos 62362",
+        "link_maps": "ttps://maps.app.goo.gl/DdbS8Xb61qvJgTwh8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6866126,
+          -6.8615044
+        ]
+      },
+      "properties": {
+        "FID": 22,
+        "nama_ssid": "BALAI DESA KEDUNGMAKAM",
+        "alamat": "Jl. Kedungmakam Rt.002 Rw.001 Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/QnYm5SQXs1nQKRBp8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6903612,
+          -6.892217
+        ]
+      },
+      "properties": {
+        "FID": 23,
+        "nama_ssid": "BALAI DESA DEMIT",
+        "alamat": "Jl. Raya Desa Demit Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/wVHR2bTSY7cjuYES7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.68664163539825,
+          -6.9184434572716835
+        ]
+      },
+      "properties": {
+        "FID": 24,
+        "nama_ssid": "BALAI DESA JATIKLABANG",
+        "alamat": "Jl. Raya Timur Nomor 256 Jatiklabang Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/nwG4a9kmtRNRFssZ9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.71687,
+          -6.869002
+        ]
+      },
+      "properties": {
+        "FID": 25,
+        "nama_ssid": "BALAI DESA SEKARAN",
+        "alamat": "Jl. Poros Desa Sekaran Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/WM4xWTQeiT2GN4Zq8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.70724,
+          -6.904073
+        ]
+      },
+      "properties": {
+        "FID": 26,
+        "nama_ssid": "BALAI DESA DINGIL",
+        "alamat": "Jl. Raya Dingil No. 1 Desa Dingil Kode Pos 62362",
+        "link_maps": "https://maps.app.goo.gl/dt1uo2RaxsedCznG7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6868907,
+          -6.9782075
+        ]
+      },
+      "properties": {
+        "FID": 27,
+        "nama_ssid": "BALAI DESA KLAKEH",
+        "alamat": "Jl. Raya Klakeh No 01 Desa Klakeh Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/t9pzvkd12WFrPCkX9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6896196,
+          -6.9938273
+        ]
+      },
+      "properties": {
+        "FID": 28,
+        "nama_ssid": "BALAI DESA BATE",
+        "alamat": "Desa Bate RT. 02 RW. 05 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/RaB6ixZfRi7BMLCq9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6857735,
+          -6.9709946
+        ]
+      },
+      "properties": {
+        "FID": 29,
+        "nama_ssid": "BALAI DESA SIDOTENTREM",
+        "alamat": "Jl. Sidotentrem Kec. Bangilan Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/7ZEyWDLWXK2tN1eA8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.692471,
+          -6.935775
+        ]
+      },
+      "properties": {
+        "FID": 30,
+        "nama_ssid": "BALAI DESA KEDUNGJAMBANGAN",
+        "alamat": "Jl. Ponco-Jatirogo Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/3X6X5D8rqHGaKGuR7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.71085775653431,
+          -6.981904612545209
+        ]
+      },
+      "properties": {
+        "FID": 31,
+        "nama_ssid": "BALAI DESA KABLUKAN",
+        "alamat": "Jl. Raya Ngrojo - Sidotentrem No. 40 Kablukan Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/X1RuJReJLtwgjkmu7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.710588,
+          -6.977095
+        ]
+      },
+      "properties": {
+        "FID": 32,
+        "nama_ssid": "BALAI DESA SIDOKUMPUL",
+        "alamat": "Jl. Raya Sidokumpul RT 03 RW 03 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/AqJ2a9Z3DfFAGRWw7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.715561,
+          -6.964739
+        ]
+      },
+      "properties": {
+        "FID": 33,
+        "nama_ssid": "BALAI DESA BANGILAN",
+        "alamat": "Jl. Raya Bangilan No. 555 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/CEW3a5yCRUyVkNju7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.707622,
+          -6.954793
+        ]
+      },
+      "properties": {
+        "FID": 34,
+        "nama_ssid": "BALAI DESA SIDODADI",
+        "alamat": "Jl. Raya Sidodadi No. 292 Bangilan Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/2yDRAfw936PWQpZc8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7391902,
+          -6.9151398
+        ]
+      },
+      "properties": {
+        "FID": 35,
+        "nama_ssid": "BALAI DESA KUMPULREJO",
+        "alamat": "Jl. Poros Kumpulrejo No. 53 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/kj8KBziNjCN4xobq7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.714488,
+          -6.956333
+        ]
+      },
+      "properties": {
+        "FID": 36,
+        "nama_ssid": "BALAI DESA BANJARWORO",
+        "alamat": "Jl. KH. Abdurrohman No. 99 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/VUxT6gdtNny1viqc8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.716182,
+          -6.9840866
+        ]
+      },
+      "properties": {
+        "FID": 37,
+        "nama_ssid": "BALAI DESA NGROJO",
+        "alamat": "Jl. Raya Bangilan-Senori Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/YUKs2spYJujmQiDP7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 38,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7190127,
+          -6.9786535
+        ]
+      },
+      "properties": {
+        "FID": 38,
+        "nama_ssid": "BALAI DESA WEDEN",
+        "alamat": "Jl. Raya Weden No. 82 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/iSMBQkBfKgaNn8sS8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.72214114897703,
+          -6.977111438578834
+        ]
+      },
+      "properties": {
+        "FID": 39,
+        "nama_ssid": "BALAI DESA KEDUNGHARJO",
+        "alamat": "Jl. Desa Kedungharjo No 88 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/mGvFQHx686JAW8zx8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 40,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.71888239599632,
+          -6.956899202523502
+        ]
+      },
+      "properties": {
+        "FID": 40,
+        "nama_ssid": "BALAI DESA KEDUNGMULYO",
+        "alamat": "Jl. Raya Kedungmulyo No. 14 Kode Pos 62364",
+        "link_maps": "https://maps.app.goo.gl/ZVsesc5gPsp6KSot6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 41,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6660634,
+          -6.7779165
+        ]
+      },
+      "properties": {
+        "FID": 41,
+        "nama_ssid": "BALAI DESA TLOGOAGUNG",
+        "alamat": "Jl. Desa Tlogoagung No. 01 Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/P9p2ocEdn9Vyy7C17",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 42,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6934665,
+          -6.8235168
+        ]
+      },
+      "properties": {
+        "FID": 42,
+        "nama_ssid": "BALAI DESA NGUJURAN",
+        "alamat": "Jl. Desa Ngujuran Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/xmLeWVsKeeU3UaUq5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 43,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7125372,
+          -6.7675972
+        ]
+      },
+      "properties": {
+        "FID": 43,
+        "nama_ssid": "BALAI DESA SUKOLILO",
+        "alamat": "Jl. Desa Sukolilo Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/RRXmCgVCGUWSZMHy5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7129498,
+          -6.7915391
+        ]
+      },
+      "properties": {
+        "FID": 44,
+        "nama_ssid": "BALAI DESA TENGGERKULON",
+        "alamat": "Jl. Desa Tenggerkulon Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/BkP5hadbncc7Zuog7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 45,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7192826,
+          -6.7710163
+        ]
+      },
+      "properties": {
+        "FID": 45,
+        "nama_ssid": "BALAI DESA BULUJOWO",
+        "alamat": "Jalan Desa No. 4 Bulujowo Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/KuVAXGGBhNeyNWv89",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 46,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7265366,
+          -6.7959656
+        ]
+      },
+      "properties": {
+        "FID": 46,
+        "nama_ssid": "BALAI DESA SIDING",
+        "alamat": " Jl. Raya Desa Siding Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/mGdxwzFQ38x7YNQ67",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 47,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7273931,
+          -6.7805272
+        ]
+      },
+      "properties": {
+        "FID": 47,
+        "nama_ssid": "BALAI DESA TERGAMBANG",
+        "alamat": "Jl. Dusun Klabang Rt 05 Rw 02 Tergambang Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/X6YAEmAMZVqv8DnE6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 48,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7234463,
+          -6.7712303
+        ]
+      },
+      "properties": {
+        "FID": 48,
+        "nama_ssid": "BALAI DESA BULUMEDURO",
+        "alamat": "Jl. Raya Bulumeduro no.10 Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/ZaNYiBomFZEJR6Kn9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 49,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.725325,
+          -6.773132
+        ]
+      },
+      "properties": {
+        "FID": 49,
+        "nama_ssid": "BALAI DESA BANJARJO",
+        "alamat": "Jl. Pasar Layur No. 731 Banjarjo Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/3qMFNHScqawPAXLm9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 50,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7358896,
+          -6.7724807
+        ]
+      },
+      "properties": {
+        "FID": 50,
+        "nama_ssid": "BALAI DESA BONCONG",
+        "alamat": "Jl. Raya Desa Boncong Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/N6d6joFHbQym75o89",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 51,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.738365,
+          -6.8257183
+        ]
+      },
+      "properties": {
+        "FID": 51,
+        "nama_ssid": "BALAI DESA JATISARI",
+        "alamat": "Jl. Desa Jatisari Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/b84vv2ADMfYHcFMn9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 52,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7438603,
+          -6.8088863
+        ]
+      },
+      "properties": {
+        "FID": 52,
+        "nama_ssid": "BALAI DESA SUMBERAN",
+        "alamat": "Jl. Desa Sumberan Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/vQqmBitdxxBA4Lun7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 53,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7415639,
+          -6.8259505
+        ]
+      },
+      "properties": {
+        "FID": 53,
+        "nama_ssid": "BALAI DESA KAYEN",
+        "alamat": "Jl. Desa Kayen No. 01 Kayen Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/uaMLoMNbDKGwSHL3A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7649358,
+          -6.7801254
+        ]
+      },
+      "properties": {
+        "FID": 54,
+        "nama_ssid": "BALAI DESA BOGOREJO",
+        "alamat": "Jl. Raya Desa Bogorejo Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/CrXbC7xgxeGTWVEj7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 55,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.752161,
+          -6.798076
+        ]
+      },
+      "properties": {
+        "FID": 55,
+        "nama_ssid": "BALAI DESA SEMBUNGIN",
+        "alamat": "Jl. Desa sembungin Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/C57ybFF8rp14poh39",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 56,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7643148,
+          -6.8157534
+        ]
+      },
+      "properties": {
+        "FID": 56,
+        "nama_ssid": "BALAI DESA KARANGREJO",
+        "alamat": "Senandang Desa Karangrejo - Bancar",
+        "link_maps": "https://maps.app.goo.gl/nb2osiAT5zM5HvS78",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 57,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.773272,
+          -6.820587
+        ]
+      },
+      "properties": {
+        "FID": 57,
+        "nama_ssid": "BALAI DESA SUKOHARJO",
+        "alamat": "Jl. Desa Sukoharjo Kecamatan Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/UrjW15zsf3XCbPvn9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 58,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7670771,
+          -6.8100643
+        ]
+      },
+      "properties": {
+        "FID": 58,
+        "nama_ssid": "BALAI DESA PUGOH",
+        "alamat": "Jl. Desa Pugoh Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/z7pG7E2eVqTnYHDD9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78163,
+          -6.783479
+        ]
+      },
+      "properties": {
+        "FID": 59,
+        "nama_ssid": "BALAI DESA BANCAR",
+        "alamat": "Jl. Raya Bancar - Tuban KM 37 Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/JgjKZxJBss2FWPJH6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.779604,
+          -6.810197
+        ]
+      },
+      "properties": {
+        "FID": 60,
+        "nama_ssid": "BALAI DESA NGAMPELREJO",
+        "alamat": "Jl. Raya Ngampelrejo Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/S89xBAXCpghHF91A8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 61,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7933016,
+          -6.8246454
+        ]
+      },
+      "properties": {
+        "FID": 61,
+        "nama_ssid": "BALAI DESA SIDOMULYO",
+        "alamat": "Jl. Desa Sidomulyo Kecamatan Bancar Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/xXH8EhyH5XUhnU5d9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8084957,
+          -6.8069276
+        ]
+      },
+      "properties": {
+        "FID": 62,
+        "nama_ssid": "BALAI DESA MARGOSUKO",
+        "alamat": "Jl. Desa Margosuko-Cingklung Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/7oncjqo1udq5DF8N9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.810427,
+          -6.812596
+        ]
+      },
+      "properties": {
+        "FID": 63,
+        "nama_ssid": "BALAI DESA CINGKLUNG",
+        "alamat": "Jl. Desa Cingklung No. 01 Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/LKdptnCfNdSYTtmM7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.713125,
+          -7.002027
+        ]
+      },
+      "properties": {
+        "FID": 64,
+        "nama_ssid": "BALAI DESA MEDALEM",
+        "alamat": "Jl. Sunan Kalijogo No. 01 Medalem Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/wVWkoTkJFGavNy9w6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.721297,
+          -7.012407
+        ]
+      },
+      "properties": {
+        "FID": 65,
+        "nama_ssid": "BALAI DESA JATISARI",
+        "alamat": "Jl. Ahmad Yani No. 62 Jatisari Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/ueRbpWL3RYYVZevNA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7016346,
+          -7.0309791
+        ]
+      },
+      "properties": {
+        "FID": 66,
+        "nama_ssid": "BALAI DESA KALIGEDE",
+        "alamat": "Jl. Raya Kaligede Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/8xMV1tsijjKeV2HXA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6958387,
+          -7.0624437
+        ]
+      },
+      "properties": {
+        "FID": 67,
+        "nama_ssid": "BALAI DESA BANYUURIP",
+        "alamat": "Jl. Raya Banyuurip Senori No. 1 Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/vxuGYzALGALMnPaF6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7141956,
+          -7.0226392
+        ]
+      },
+      "properties": {
+        "FID": 68,
+        "nama_ssid": "BALAI DESA LERAN",
+        "alamat": "Jl. Pawiro Sadir No. 126 Desa Leran Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/C4B5m2BEUBS26p9r6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7114921,
+          -7.0746906
+        ]
+      },
+      "properties": {
+        "FID": 69,
+        "nama_ssid": "BALAI DESA WONOSARI",
+        "alamat": "Jl. Poros Desa Wonosari Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/FYdPnbSkCE8WsNPw9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7263966,
+          -7.0052395
+        ]
+      },
+      "properties": {
+        "FID": 70,
+        "nama_ssid": "BALAI DESA SENDANG",
+        "alamat": "Jl. Letnan Sucipto No. 22 Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/CRKD2sRNw3XrMtKU7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.730436,
+          -7.019661
+        ]
+      },
+      "properties": {
+        "FID": 71,
+        "nama_ssid": "BALAI DESA WANGLUKULON",
+        "alamat": "Jl. K. Djonet No. 97 Wanglukulon Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/Ni4MKwZMhAPQQLgj7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7328015,
+          -7.0232459
+        ]
+      },
+      "properties": {
+        "FID": 72,
+        "nama_ssid": "BALAI DESA WANGLUWETAN",
+        "alamat": "Jl. Mbah Jogo No 59 Desa Wangluwetan (62365) Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/ikHvsDk3V3bVpTCc8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.73980803443767,
+          -7.038778350954703
+        ]
+      },
+      "properties": {
+        "FID": 73,
+        "nama_ssid": "BALAI DESA SIDOHARJO",
+        "alamat": "Jl. Raya Sidoharjo No.220 Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/QrDc59ASirxT6fo18",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7717574,
+          -7.053807
+        ]
+      },
+      "properties": {
+        "FID": 74,
+        "nama_ssid": "BALAI DESA RAYUNG",
+        "alamat": "Jl. Raya Rayung-Senori KM. 9 Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/JYPBW7WNtADhDsJY6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7740421,
+          -7.0588372
+        ]
+      },
+      "properties": {
+        "FID": 75,
+        "nama_ssid": "BALAI DESA KATERBAN",
+        "alamat": "Jl. WR. Supratman No 39 Kode Pos 62365",
+        "link_maps": "https://maps.app.goo.gl/9KGR3WhetQLneG3N7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7796451,
+          -6.871386
+        ]
+      },
+      "properties": {
+        "FID": 76,
+        "nama_ssid": "BALAI DESA DIKIR",
+        "alamat": "Jl. Manunggal No.05 Dikir Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/JydMtGTYe1azaxPt9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7821,
+          -6.87683
+        ]
+      },
+      "properties": {
+        "FID": 77,
+        "nama_ssid": "BALAI DESA NGULAHAN",
+        "alamat": "Jl. Pemuda No. 01 Ngulahan Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/NKwzD5FfrSKuTScTA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7712659,
+          -6.8535704
+        ]
+      },
+      "properties": {
+        "FID": 78,
+        "nama_ssid": "BALAI DESA PLAJAN",
+        "alamat": "Jl. Dusun Plajan RT 05 RW 02 Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/JwiWR7W75NPpzwZcA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8003116,
+          -6.858408
+        ]
+      },
+      "properties": {
+        "FID": 79,
+        "nama_ssid": "BALAI DESA MANDER",
+        "alamat": "Jl. Basuki Rahmat No 10 Tambakboyo Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/tZBDWJJu5GhTsWZv5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 80,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8085932,
+          -6.82911
+        ]
+      },
+      "properties": {
+        "FID": 80,
+        "nama_ssid": "BALAI DESA BELIKANGET",
+        "alamat": "Jl. Sendang Nganget No. 02 Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/itazjG9wSojCUew37",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 81,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.814301,
+          -6.82597
+        ]
+      },
+      "properties": {
+        "FID": 81,
+        "nama_ssid": "BALAI DESA COKROWATI",
+        "alamat": "Jl. Gunung Sredek No. 01 Cokrowati Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/185YzJ8m2qbfRUFD6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 82,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8220745,
+          -6.80847
+        ]
+      },
+      "properties": {
+        "FID": 82,
+        "nama_ssid": "BALAI DESA PULOGEDE",
+        "alamat": "RT. 01 RW. 02 Dusun Tanjang Kode Pos 35253",
+        "link_maps": "https://maps.app.goo.gl/ru8krppbRFpgLExQ7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 83,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8321857,
+          -6.80206
+        ]
+      },
+      "properties": {
+        "FID": 83,
+        "nama_ssid": "BALAI DESA GADON",
+        "alamat": "Jl. Raya Gadon No. 25 Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/cVyphjPVp5NGk1N9A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 84,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.822962,
+          -6.81989
+        ]
+      },
+      "properties": {
+        "FID": 84,
+        "nama_ssid": "BALAI DESA SOTANG",
+        "alamat": "Jl. RT 01 RW 02 Desa Sotang Kode Pos 62353",
+        "link_maps": "'https://maps.app.goo.gl/Amt1EGpLnsDLtFJR8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 85,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8365375081182,
+          -6.802308282974078
+        ]
+      },
+      "properties": {
+        "FID": 85,
+        "nama_ssid": "BALAI DESA PABEYAN",
+        "alamat": "Jl. Raya Pabeyan No. 352 Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/6ntEqXpgkK5LkhUL9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 86,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8391944,
+          -6.81702
+        ]
+      },
+      "properties": {
+        "FID": 86,
+        "nama_ssid": "BALAI DESA KLUTUK",
+        "alamat": "Jl. Wiroguno No. 8 Klutuk Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/yuMFBR5Uh2ggEbBPA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 87,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8447092,
+          -6.80247
+        ]
+      },
+      "properties": {
+        "FID": 87,
+        "nama_ssid": "BALAI DESA TAMBAKBOYO",
+        "alamat": "Jl. Raya Tuban - Semarang KM 30 Tambakboyo Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/dUqeGAdsnbhs1m7c7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 88,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8436947,
+          -6.81343
+        ]
+      },
+      "properties": {
+        "FID": 88,
+        "nama_ssid": "BALAI DESA DASIN",
+        "alamat": "Gg. 01 RT.01 / RW.01 No. 05 Dasin Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/uLPiMkJaUXbvPdJA8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 89,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.85005,
+          -6.80166
+        ]
+      },
+      "properties": {
+        "FID": 89,
+        "nama_ssid": "BALAI DESA KENANTI",
+        "alamat": "Jl. Raya Kenanti No. 25 Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/FPxeVfV7x4EU32Ei6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 90,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.868418,
+          -6.81058
+        ]
+      },
+      "properties": {
+        "FID": 90,
+        "nama_ssid": "BALAI DESA SAWIR",
+        "alamat": "Jl. Sawir - Merkawang No. 01 Sawir Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/ybkwB46q52vSfA8E7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 91,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8614893,
+          -6.80151
+        ]
+      },
+      "properties": {
+        "FID": 91,
+        "nama_ssid": "BALAI DESA SOBONTORO",
+        "alamat": "Jl. Raya Sobontoro Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/iwsGWcCEL3cUVKmn7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 92,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8902335,
+          -6.80682
+        ]
+      },
+      "properties": {
+        "FID": 92,
+        "nama_ssid": "BALAI DESA MERKAWANG",
+        "alamat": "Jl. Maulana Ishaq No. 1 Merkawang Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/SkN7iJLiVtgyM66G6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 93,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89295,
+          -6.79357
+        ]
+      },
+      "properties": {
+        "FID": 93,
+        "nama_ssid": "BALAI DESA GLODONGGEDE",
+        "alamat": "Jl. Glondong - Kerek No. 3 Glondonggede Kode Pos 62353",
+        "link_maps": "https://maps.app.goo.gl/jFGanjHYynCJGQE3A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 94,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7504897,
+          -6.97067
+        ]
+      },
+      "properties": {
+        "FID": 94,
+        "nama_ssid": "BALAI DESA LAJO KIDUL",
+        "alamat": "Jl. Raya Lajo No 01 Lajo Kidul Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/zEMxeVMVaZTdpaAP6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 95,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7500697,
+          -6.96995
+        ]
+      },
+      "properties": {
+        "FID": 95,
+        "nama_ssid": "BALAI DESA LAJO LOR",
+        "alamat": "Jl. Diponegoro No. 108 Lajo Lor Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/C5Pa9bh1VGVy8nzx8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 96,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7585577,
+          -6.97955
+        ]
+      },
+      "properties": {
+        "FID": 96,
+        "nama_ssid": "BALAI DESA TANGGIR",
+        "alamat": "Jl. Raya Tanggir No. 01 Tanggir Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/cwAdE9m6SGqJz5MD6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 97,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7701842,
+          -7.00526
+        ]
+      },
+      "properties": {
+        "FID": 97,
+        "nama_ssid": "BALAI DESA TANJUNGREJO",
+        "alamat": "Jl. Raya Singonolo No. 1 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/gv56PquVdzP1E11B8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 98,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7752965,
+          -7.02442
+        ]
+      },
+      "properties": {
+        "FID": 98,
+        "nama_ssid": "BALAI DESA BINANGUN",
+        "alamat": "Jl. Manunggal No. 201 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/HFsd6Sdi2roUm5sx5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 99,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7742443,
+          -6.99683
+        ]
+      },
+      "properties": {
+        "FID": 99,
+        "nama_ssid": "BALAI DESA MERGOSARI",
+        "alamat": " Jl. Masjid Al Haq No. 01 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/goBYRFoKpJY6Y8RGA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 100,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7852826,
+          -6.97176
+        ]
+      },
+      "properties": {
+        "FID": 100,
+        "nama_ssid": "BALAI DESA MULYOAGUNG",
+        "alamat": "Jl. Panglima Sudirman No.74 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/GntQxnJchw8V3N3a6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 101,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7860814,
+          -7.00993
+        ]
+      },
+      "properties": {
+        "FID": 101,
+        "nama_ssid": "BALAI DESA TUNGGULREJO",
+        "alamat": "Jl. Mawar No. 32 Desa Tunggulrejo Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/2EuS7vRguQqewRCu5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 102,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7936502,
+          -6.97489
+        ]
+      },
+      "properties": {
+        "FID": 102,
+        "nama_ssid": "BALAI DESA TINGKIS",
+        "alamat": "Jl. Panglima Sudirman No. 01 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/CHvqjwqqA7P4jHn47",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 103,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7916124,
+          -6.9977
+        ]
+      },
+      "properties": {
+        "FID": 103,
+        "nama_ssid": "BALAI DESA MULYOREJO",
+        "alamat": "Jl. RA. Kartini No 5 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/d7jiggzeBpg8KjPm8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 104,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7857513,
+          -7.02747
+        ]
+      },
+      "properties": {
+        "FID": 104,
+        "nama_ssid": "BALAI DESA SARINGEMBAT",
+        "alamat": "Jl. RA. Kartini No. 102 Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/26FafbjcZk7vHNRB9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 105,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7904765,
+          -7.00793
+        ]
+      },
+      "properties": {
+        "FID": 105,
+        "nama_ssid": "BALAI DESA KEDUNGJAMBE",
+        "alamat": "Jl. A. Yani No. 194 Kedungjambe Kode Pos 62361",
+        "link_maps": "https://maps.app.goo.gl/oYDAP91wwKYi6JKfA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 106,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.80807959925441,
+          -6.877867398976062
+        ]
+      },
+      "properties": {
+        "FID": 106,
+        "nama_ssid": "BALAI DESA GEMULUNG",
+        "alamat": "Jl. Raya Desa Gemulung Kerek Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/2kpFU56xGJjQyT6bA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 107,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8215064402429,
+          -6.919597422049134
+        ]
+      },
+      "properties": {
+        "FID": 107,
+        "nama_ssid": "BALAI DESA SIDONGANTI",
+        "alamat": "Jl. Raya Sidonganti Kerek Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/QvsfVD58xaFvoN2a7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 108,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.81517980412596,
+          -6.89065308511998
+        ]
+      },
+      "properties": {
+        "FID": 108,
+        "nama_ssid": "BALAI DESA TRANTANG",
+        "alamat": "Jl. Sumur Gede No. 01 Trantang Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/YLFLSXbMEmUz2g7S8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 109,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8414089298714,
+          -6.871403406339796
+        ]
+      },
+      "properties": {
+        "FID": 109,
+        "nama_ssid": "BALAI DESA WOLUTENGAH",
+        "alamat": "Jl. Raya Wolutengah No. 333 Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/UuNTamJBCkERToWm6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 110,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84814208897915,
+          -6.916827720816078
+        ]
+      },
+      "properties": {
+        "FID": 110,
+        "nama_ssid": "BALAI DESA TENGGERWETAN",
+        "alamat": "Jl. Raya Tenggerwetan No.569 Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/XHviSP5Ngyv5qXvu6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 111,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8608454455236,
+          -6.875446971868099
+        ]
+      },
+      "properties": {
+        "FID": 111,
+        "nama_ssid": "BALAI DESA GAJI",
+        "alamat": "Jalan Raya Gaji No. 982 A Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/m5waLhpX9n7sEjDs7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 112,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87689630996933,
+          -6.9321214580914265
+        ]
+      },
+      "properties": {
+        "FID": 112,
+        "nama_ssid": "BALAI DESA HARGORETNO",
+        "alamat": "Jl. Raya Kerek - Montong KM. 4 Hargoretno Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/xaCjfde1jLL9ZXV69",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 113,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87715423923181,
+          -6.889256913240873
+        ]
+      },
+      "properties": {
+        "FID": 113,
+        "nama_ssid": "BALAI DESA MARGOREJO",
+        "alamat": "Jl. Raya Tikung Rejo No. 2007 Margorejo Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/9XgqUvn4JgZGrGiJ8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 114,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87509524336157,
+          -6.8791138192925745
+        ]
+      },
+      "properties": {
+        "FID": 114,
+        "nama_ssid": "BALAI DESA KEDUNGREJO",
+        "alamat": "Jl. Raya Desa Kedungrejo",
+        "link_maps": "https://maps.app.goo.gl/LpKVx19ToZgamdnq6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 115,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88529138617012,
+          -6.899186982073752
+        ]
+      },
+      "properties": {
+        "FID": 115,
+        "nama_ssid": "BALAI DESA JAROREJO",
+        "alamat": "Jl. Raya kerek montong Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/mzoHzW1rR8fhgeQr7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 116,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88992359596553,
+          -6.834226065252108
+        ]
+      },
+      "properties": {
+        "FID": 116,
+        "nama_ssid": "BALAI DESA MLIWANG",
+        "alamat": "Jl. Sendang Manunggal No. 400 Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/Fruq77rgMZnx4ZdEA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 117,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8855895771315,
+          -6.873761787436096
+        ]
+      },
+      "properties": {
+        "FID": 117,
+        "nama_ssid": "BALAI DESA KASIMAN",
+        "alamat": "Jl. Sumur Gede Nomor 33 Kasiman Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/9KZ2etzazekdtTRr9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 118,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88846051346374,
+          -6.895339019103297
+        ]
+      },
+      "properties": {
+        "FID": 118,
+        "nama_ssid": "BALAI DESA MARGOMULYO",
+        "alamat": "Jl. Semeru No. 650 Margomulyo Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/vhLXLbfWjHDt5iMo7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 119,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89065724210002,
+          -6.903421554555401
+        ]
+      },
+      "properties": {
+        "FID": 119,
+        "nama_ssid": "BALAI DESA TEMAYANG",
+        "alamat": "Jl. Pemuda No. 01 Temayang Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/qXFEqhB6eD3ocawPA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 120,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89466267649502,
+          -6.878326287890833
+        ]
+      },
+      "properties": {
+        "FID": 120,
+        "nama_ssid": "BALAI DESA SUMBERARUM",
+        "alamat": "Jl. Raya No. 1 Desa Sumberarum Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/jVH3Gjsfqrxe3TVHA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 121,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90708625931633,
+          -6.888881573047261
+        ]
+      },
+      "properties": {
+        "FID": 121,
+        "nama_ssid": "BALAI DESA KARANGLO",
+        "alamat": "Jl. Pemuda Nomor 28 Karanglo Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/Ph8cT7XogKfrcUcQA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 122,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9041393933193,
+          -6.901376119701931
+        ]
+      },
+      "properties": {
+        "FID": 122,
+        "nama_ssid": "BALAI DESA PADASAN",
+        "alamat": "Jl. Kesadaran No. 1 Desa Padasan Kode Pos 62356",
+        "link_maps": "https://maps.app.goo.gl/U6HG2N9NkngdBKD29",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 123,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78741268815455,
+          -7.047829509752521
+        ]
+      },
+      "properties": {
+        "FID": 123,
+        "nama_ssid": "BALAI DESA SEMBUNG",
+        "alamat": "Jl. Diponegoro Nomor 48 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/3tTY3i99Qi2hhv2F8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 124,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.80019253914777,
+          -7.057764433429905
+        ]
+      },
+      "properties": {
+        "FID": 124,
+        "nama_ssid": "BALAI DESA KEMLATEN",
+        "alamat": "Jl. Raya Brangkal - Sembung KM. 10 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/iU31hqroH7Ri16e49",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 125,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8142012398337,
+          -7.0605371151424965
+        ]
+      },
+      "properties": {
+        "FID": 125,
+        "nama_ssid": "BALAI DESA SUKOREJO",
+        "alamat": "Jl. Jendral Sudirman No. 27 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/ti61F5R1foHck7sH8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 126,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.80742638195946,
+          -7.034963734408016
+        ]
+      },
+      "properties": {
+        "FID": 126,
+        "nama_ssid": "BALAI DESA NGAWUN",
+        "alamat": "Jl. Raya Bojonegoro-Jatirogo KM 21 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/hgo3yqYgvaohbRqMA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 127,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.80852414302443,
+          -7.061331332869184
+        ]
+      },
+      "properties": {
+        "FID": 127,
+        "nama_ssid": "BALAI DESA MERGOASRI",
+        "alamat": "Jalan Raya Sembung Brangkal No. 001 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/57uGTyxU4RBcowQK7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 128,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.82421620562805,
+          -7.071134357784818
+        ]
+      },
+      "properties": {
+        "FID": 128,
+        "nama_ssid": "BALAI DESA KUMPULREJO",
+        "alamat": "Jl. Darmabakti No 76 Kumpulrejo Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/ccfSB6uiwdeeE3jX8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 129,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84478622106032,
+          -7.069615482334689
+        ]
+      },
+      "properties": {
+        "FID": 129,
+        "nama_ssid": "BALAI DESA PARANGBATU",
+        "alamat": "Jl. Cokrokusumo No. 20 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/aBfPr5VSoWc3rTf98",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 130,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8683125796781,
+          -7.035343321931638
+        ]
+      },
+      "properties": {
+        "FID": 130,
+        "nama_ssid": "BALAI DESA WUKIRHARJO",
+        "alamat": "Jl. Kiyai Girik No. 267 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/fM6xvSAqMRf9yrAC7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 131,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84319209674142,
+          -7.080778053741796
+        ]
+      },
+      "properties": {
+        "FID": 131,
+        "nama_ssid": "BALAI DESA CENGKONG",
+        "alamat": "Jl. Buyut Lanjar No. 05 Cengkong Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/XwFspCPKBNxSuUwp8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 132,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84615474182638,
+          -7.085607748445672
+        ]
+      },
+      "properties": {
+        "FID": 132,
+        "nama_ssid": "BALAI DESA BRANGKAL",
+        "alamat": "Jl. Veteran No.279 Brangkal Parengan Tuban Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/c7MJieCiM9HeiJnZA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 133,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.85124652072355,
+          -7.098683916183305
+        ]
+      },
+      "properties": {
+        "FID": 133,
+        "nama_ssid": "BALAI DESA MARGOREJO",
+        "alamat": "Jl. Sawahan Nomor 01 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/dRAAL8SkLbKGidXL9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 134,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88866898078781,
+          -7.020527052124285
+        ]
+      },
+      "properties": {
+        "FID": 134,
+        "nama_ssid": "BALAI DESA DAGANGAN",
+        "alamat": "Jl. Tumenggung Aryo Tedjo 18 Dagangan Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/1Kez2GQj6rhMJhFG7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 135,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.86103154085858,
+          -7.104946369187776
+        ]
+      },
+      "properties": {
+        "FID": 135,
+        "nama_ssid": "BALAI DESA SUCIHARJO",
+        "alamat": "Jl. Raya Ponco Soko No. 02 Suciharjo Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/CDpXjGdjtziPzcoh7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 136,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8697761537831,
+          -7.057300853874984
+        ]
+      },
+      "properties": {
+        "FID": 136,
+        "nama_ssid": "BALAI DESA PACING",
+        "alamat": "Jl. Raya Imam Bonjol No. 07 Pacing Parengan Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/BiSEiDLexbhqXuUd6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 137,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88099736055696,
+          -7.097109742905029
+        ]
+      },
+      "properties": {
+        "FID": 137,
+        "nama_ssid": "BALAI DESA SUGIHWARAS",
+        "alamat": "Jl. Poros Mojomalang - Jati KM.01 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/yQcK96WhgALouPWL9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 138,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.86049362197215,
+          -7.112338704152821
+        ]
+      },
+      "properties": {
+        "FID": 138,
+        "nama_ssid": "BALAI DESA SELOGABUS",
+        "alamat": "Jl. Prapatan Pasar Pulo No. 01 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/ygHJ75ReL7Mn2r3T6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 139,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.876325,
+          -7.12896
+        ]
+      },
+      "properties": {
+        "FID": 139,
+        "nama_ssid": "BALAI DESA SENDANGREJO",
+        "alamat": "Jl. Raya Bojonegoro - Jatirogo No. 115 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/hCEtP7z2riuPj2bx8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 140,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.878394921914,
+          -7.1082782109755565
+        ]
+      },
+      "properties": {
+        "FID": 140,
+        "nama_ssid": "BALAI DESA MOJOMALANG",
+        "alamat": "Jl. Raya Ponco-Soko km 1 Kode Pos 62366",
+        "link_maps": "https://maps.app.goo.gl/Gc4T2uTQTuTaD1hx5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 141,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.83480631337494,
+          -6.951881574671088
+        ]
+      },
+      "properties": {
+        "FID": 141,
+        "nama_ssid": "BALAI DESA GUWOTERUS",
+        "alamat": "Jl. Raya Montong - Jojogan No. 162 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/6GBBoUpHwbqyBFsH7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 142,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8378660784893,
+          -6.978211873049371
+        ]
+      },
+      "properties": {
+        "FID": 142,
+        "nama_ssid": "BALAI DESA NGULUHAN",
+        "alamat": "Jl. Kedungjero No.84 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/kr8CKBZ6jvsEYqZp8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 143,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.85113831295455,
+          -6.995092084996766
+        ]
+      },
+      "properties": {
+        "FID": 143,
+        "nama_ssid": "BALAI DESA TANGGULANGIN",
+        "alamat": "Jl. Raya Tanggulangin No. 354 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/mA4yDGUTC7h7r3Xu9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 144,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84012630835308,
+          -7.017389640126326
+        ]
+      },
+      "properties": {
+        "FID": 144,
+        "nama_ssid": "BALAI DESA MANJUNG",
+        "alamat": "Jl. Raya Manjung - Montong No. 1 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/SK177f775ZuG41G37",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 145,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.85924085533827,
+          -6.9584422561014145
+        ]
+      },
+      "properties": {
+        "FID": 145,
+        "nama_ssid": "BALAI DESA TALANGKEMBAR",
+        "alamat": "Jl. Raya Montong, Krajan, Talangkembar Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/3iQqHTMGcozT43Fn7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 146,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.88107461287821,
+          -6.9496097256232146
+        ]
+      },
+      "properties": {
+        "FID": 146,
+        "nama_ssid": "BALAI DESA MONTONGSEKAR",
+        "alamat": "Jl. Raya Montong No.129 Montongsekar Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/8rzithaqPc7vETJa9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 147,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89369652241433,
+          -6.95561985310922
+        ]
+      },
+      "properties": {
+        "FID": 147,
+        "nama_ssid": "BALAI DESA PAKEL",
+        "alamat": "Jl. Raya Pakel - Montong No 38 Pakel Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/eAByKd71sW2gPfTP7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 148,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90581351567471,
+          -6.961221384573875
+        ]
+      },
+      "properties": {
+        "FID": 148,
+        "nama_ssid": "BALAI DESA SUMURGUNG",
+        "alamat": "Jl. KH. Marzuki No. 01 Sumurgung Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/6VBqrhA5f3RWfqg99",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 149,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90335958937715,
+          -7.006522848908527
+        ]
+      },
+      "properties": {
+        "FID": 149,
+        "nama_ssid": "BALAI DESA BRINGIN",
+        "alamat": "Jl. Raya Desa Bringin Montong Tuban Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/Xoqvge7GaJRST6Ef8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 150,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90271969128597,
+          -6.944012658964837
+        ]
+      },
+      "properties": {
+        "FID": 150,
+        "nama_ssid": "BALAI DESA PUCANGAN",
+        "alamat": "Jl. Raya Joyo Taruno No. 271 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/QdZJtJ19dqGrEQWn9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 151,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.92873972061078,
+          -7.004547698318362
+        ]
+      },
+      "properties": {
+        "FID": 151,
+        "nama_ssid": "BALAI DESA MAINDU",
+        "alamat": "Jl. Raya Desa Maindu Bringin No 08 Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/26Qcw1kDSo2KF9A68",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 152,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90586540804703,
+          -6.955529002765408
+        ]
+      },
+      "properties": {
+        "FID": 152,
+        "nama_ssid": "BALAI DESA JETAK",
+        "alamat": "Jl. KH. Chusnan Aly No. 01 Jetak Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/EdxoNdyNVR4BfHGq5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 153,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91937387402078,
+          -6.952658602401817
+        ]
+      },
+      "properties": {
+        "FID": 153,
+        "nama_ssid": "BALAI DESA TALUN",
+        "alamat": "Jl. Pemuda No. 99 Talun Kode Pos 62357",
+        "link_maps": "https://maps.app.goo.gl/RSnnSYBChW8NFXocA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 154,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90565330233215,
+          -7.064320325465309
+        ]
+      },
+      "properties": {
+        "FID": 154,
+        "nama_ssid": "BALAI DESA TLUWE",
+        "alamat": "Jl. Raya Resi Joyo No. 01 Desa Tluwe Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/vCcTxaibxy467Ai18",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 155,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90787557977085,
+          -7.052290038099715
+        ]
+      },
+      "properties": {
+        "FID": 155,
+        "nama_ssid": "BALAI DESA WADUNG",
+        "alamat": "Jl. Buyut Bener No. 26 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/RzYP4sfaaPEkpq6r9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 156,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90724832629427,
+          -7.089628886676353
+        ]
+      },
+      "properties": {
+        "FID": 156,
+        "nama_ssid": "BALAI DESA JATI",
+        "alamat": "l. Sarimulyo No. 55 Jati Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/wh7GCz8E7morEH8P9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 157,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91029104791177,
+          -7.135796987398577
+        ]
+      },
+      "properties": {
+        "FID": 157,
+        "nama_ssid": "BALAI DESA MENILO",
+        "alamat": "Jl. Masjid No. 9 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/ZS4YV1itew4q7U7B8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 158,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91565598778973,
+          -7.081656869684105
+        ]
+      },
+      "properties": {
+        "FID": 158,
+        "nama_ssid": "BALAI DESA CEKALANG",
+        "alamat": "Jl. Raya Manunggal No. 01 Cekalang Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/9invZ9HCpBiQaTXn6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 159,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91823521243943,
+          -7.106732575559708
+        ]
+      },
+      "properties": {
+        "FID": 159,
+        "nama_ssid": "BALAI DESA PANDANAGUNG",
+        "alamat": "Jl. Lapangan No 01 Pandanagung Soko Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/F236UUp1quB95gLt5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 160,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.92006213607715,
+          -7.095620905828602
+        ]
+      },
+      "properties": {
+        "FID": 160,
+        "nama_ssid": "BALAI DESA PRAMBONTERGAYANG",
+        "alamat": "Jl. Ringin Gedhe No. 19 Prambontergayang Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/SgFWwSZNHM7Qdawk6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 161,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91967820439024,
+          -7.059897983102563
+        ]
+      },
+      "properties": {
+        "FID": 161,
+        "nama_ssid": "BALAI DESA KLUMPIT",
+        "alamat": "Jalan Raya Klumpit No. 12 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/P7LEZdadwC7uPrNz6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 162,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.93137664772198,
+          -7.130247789443097
+        ]
+      },
+      "properties": {
+        "FID": 162,
+        "nama_ssid": "BALAI DESA SIMO",
+        "alamat": "Jl. Raya Simo-Soko Tuban No 32 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/4bjYw4hoQmQfFoe3A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 163,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9324109432976,
+          -7.109124423988523
+        ]
+      },
+      "properties": {
+        "FID": 163,
+        "nama_ssid": "BALAI DESA MENTORO",
+        "alamat": "Jl. Pringgodani No. 288 Desa Mentoro Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/8BLvh9ctPTUGSWES9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 164,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94030140711101,
+          -7.1556743147047985
+        ]
+      },
+      "properties": {
+        "FID": 164,
+        "nama_ssid": "BALAI DESA KENDALREJO",
+        "alamat": "Jl. Raya Desa Kendalrejo Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/eFJvvaYpt8tPeNgL8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 165,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9472255805876,
+          -7.076772485764324
+        ]
+      },
+      "properties": {
+        "FID": 165,
+        "nama_ssid": "BALAI DESA NGURUAN",
+        "alamat": "Jl. Trunojoyo No. 12 Nguruan Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/PeXXMjngaGXr4VRt5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 166,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.95939067407201,
+          -7.075417049129838
+        ]
+      },
+      "properties": {
+        "FID": 166,
+        "nama_ssid": "BALAI DESA JEGULO",
+        "alamat": "Jl.Raya Jegulo No. 94 Jegulo Kode Pos : 62372",
+        "link_maps": "https://maps.app.goo.gl/YgXBVbRJRqDjTGM69",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 167,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94802554223031,
+          -7.11320758871646
+        ]
+      },
+      "properties": {
+        "FID": 167,
+        "nama_ssid": "BALAI DESA SOKOSARI",
+        "alamat": "Jl. Raya Soko No. 01 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/uKQbwBx5NkgFV4bu8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 168,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.95353022699369,
+          -7.105719337996767
+        ]
+      },
+      "properties": {
+        "FID": 168,
+        "nama_ssid": "BALAI DESA BANGUNREJO",
+        "alamat": "Jl. Raya Bangunrejo No. 01 Kode Pos : 62372",
+        "link_maps": "https://maps.app.goo.gl/NDkGSuoXc95PEUd27",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 169,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94505852564724,
+          -7.137621882758889
+        ]
+      },
+      "properties": {
+        "FID": 169,
+        "nama_ssid": "BALAI DESA MOJOAGUNG",
+        "alamat": "Jl. Raya Mojoagung No. 79 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/ctL17gGXe1AktJX96",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 170,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9602705376746,
+          -7.06600945832737
+        ]
+      },
+      "properties": {
+        "FID": 170,
+        "nama_ssid": "BALAI DESA GUNUNGANYAR",
+        "alamat": "Jl. Masjid No. 01 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/mcTByGvPnNhuk8waA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 171,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96069603654824,
+          -7.096799045609567
+        ]
+      },
+      "properties": {
+        "FID": 171,
+        "nama_ssid": "BALAI DESA SUMURCINDE",
+        "alamat": "Jl. Raya Sumurcinde No. 01 Sumurcinde Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/6wvw6wp9wvqwDkzm7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 172,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96370983590323,
+          -7.131659654413982
+        ]
+      },
+      "properties": {
+        "FID": 172,
+        "nama_ssid": "BALAI DESA PANDANWANGI",
+        "alamat": "Jl. Raya Desa Pandanwangi Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/YDPhSqmHhngbMLrG8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 173,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96863500495208,
+          -7.118122793374347
+        ]
+      },
+      "properties": {
+        "FID": 173,
+        "nama_ssid": "BALAI DESA SANDINGROWO",
+        "alamat": "Jl. Raya Sundulan No 2 Desa Sandingrowo Kode Pos : 62372",
+        "link_maps": "https://maps.app.goo.gl/AA5fVCGvoCg8n1cZ7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 174,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96787419128746,
+          -7.105006882492911
+        ]
+      },
+      "properties": {
+        "FID": 174,
+        "nama_ssid": "BALAI DESA RAHAYU",
+        "alamat": "Jl. Lingkar Pertamina No. 413 Rahayu Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/Gz7vhCkkKqj6Ring6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 175,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98190535449523,
+          -7.147448688108691
+        ]
+      },
+      "properties": {
+        "FID": 175,
+        "nama_ssid": "BALAI DESA GLAGAHSARI",
+        "alamat": "Jl. Raya Desa Glagahsari No. 001 Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/UiX3Z57uihxuhU3z8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 176,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.99122127278225,
+          -7.128705492528239
+        ]
+      },
+      "properties": {
+        "FID": 176,
+        "nama_ssid": "BALAI DESA KENONGOSARI",
+        "alamat": "Jl. Bengawan Desa Kenongosari Kode Pos 62372",
+        "link_maps": "https://maps.app.goo.gl/Ljcke9xLF54GNrAy9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 177,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89256299509643,
+          -6.806189163431075
+        ]
+      },
+      "properties": {
+        "FID": 177,
+        "nama_ssid": "BALAI DESA KARANGASEM",
+        "alamat": "Jl. Poros Desa No. 1 Karangasem Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/JSpqqAwve7zfjzqHA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 178,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89711040714344,
+          -6.7901909148611335
+        ]
+      },
+      "properties": {
+        "FID": 178,
+        "nama_ssid": "BALAI DESA SOCOREJO",
+        "alamat": "Jl Raya Socorejo No. 201 Desa Socorejo Kode Pos : 62352",
+        "link_maps": "https://maps.app.goo.gl/QmbRMgdZsRh9XCtb8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 179,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91688287399727,
+          -6.792654396521655
+        ]
+      },
+      "properties": {
+        "FID": 179,
+        "nama_ssid": "BALAI DESA TEMAJI",
+        "alamat": "Jl. Tirtonadi No. 01 Desa Temaji Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/SG8UosXdrwdxByPB7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 180,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.92310960315278,
+          -6.787588033105276
+        ]
+      },
+      "properties": {
+        "FID": 180,
+        "nama_ssid": "BALAI DESA PURWOREJO",
+        "alamat": "Jl. Raya Tuban - Semarang KM. 21 Purworejo Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/1yFnbebkjQrVhW4d8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 181,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.936580514042,
+          -6.772362646584325
+        ]
+      },
+      "properties": {
+        "FID": 181,
+        "nama_ssid": "BALAI DESA TASIKHARJO",
+        "alamat": "Jl. Syech Subakir No. 1 Tasikharjo Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/E47GWTNbN6whBbNM8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 182,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96484162528864,
+          -6.799679872361317
+        ]
+      },
+      "properties": {
+        "FID": 182,
+        "nama_ssid": "BALAI DESA SUMURGENENG",
+        "alamat": "Jl. Desa Sumurgeneng, Jenu - Tuban Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/2sJAS7qZysJs7xCP6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 183,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98194398930521,
+          -6.839908555717849
+        ]
+      },
+      "properties": {
+        "FID": 183,
+        "nama_ssid": "BALAI DESA SUWALAN",
+        "alamat": "Jl. Raya Desa Suwalan",
+        "link_maps": "https://maps.app.goo.gl/ykEYiZ1jwSX9D2Ku5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 184,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9630152793534,
+          -6.775427183006961
+        ]
+      },
+      "properties": {
+        "FID": 184,
+        "nama_ssid": "BALAI DESA REMEN",
+        "alamat": "Jl. Tanjung Awar-Awar Remen Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/pCBmKavZzQ69Chtv7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 185,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00079557865479,
+          -6.831414290480403
+        ]
+      },
+      "properties": {
+        "FID": 185,
+        "nama_ssid": "BALAI DESA BEJI",
+        "alamat": "Jl. Raya Jenu - Semarang Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/AbeQyTngRfqc9MF4A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 186,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9861692940644,
+          -6.815037727673599
+        ]
+      },
+      "properties": {
+        "FID": 186,
+        "nama_ssid": "BALAI DESA WADUNG",
+        "alamat": "Jl. Raya Desa Wadung Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/TnKcDRqieV8ftQ1T6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 187,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97881354324328,
+          -6.796902079836044
+        ]
+      },
+      "properties": {
+        "FID": 187,
+        "nama_ssid": "BALAI DESA RAWASAN",
+        "alamat": "Jl. Syekh Achmad Kholil Rawasan Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/6PNhUNMtz5dBTGNS9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 188,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98361166451313,
+          -6.791730126744474
+        ]
+      },
+      "properties": {
+        "FID": 188,
+        "nama_ssid": "BALAI DESA MENTOSO",
+        "alamat": "Jl. Raya Desa Mentoso Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/Tk9apzGgQ3d4DLq98",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 189,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00253981209129,
+          -6.837183166645036
+        ]
+      },
+      "properties": {
+        "FID": 189,
+        "nama_ssid": "BALAI DESA JENGGOLO",
+        "alamat": "Jl. Raden Panji No. 05 Jenggolo Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/cjs3JSC1xVJEYhH7A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 190,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00682415253264,
+          -6.8276031210539685
+        ]
+      },
+      "properties": {
+        "FID": 190,
+        "nama_ssid": "BALAI DESA KALIUNTU",
+        "alamat": "Jl. Laut Utara Desa Kaliuntu Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/4GbkkgrVLBCkPXqY9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 191,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00200048346372,
+          -6.841196636425929
+        ]
+      },
+      "properties": {
+        "FID": 191,
+        "nama_ssid": "BALAI DESA SEKARDADI",
+        "alamat": "Jl. Jenu - Merakurak No. 123 Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/yCfSP3ETXtwbndFt8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 192,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.01054542450007,
+          -6.840638105239362
+        ]
+      },
+      "properties": {
+        "FID": 192,
+        "nama_ssid": "BALAI DESA JENU",
+        "alamat": "Jl. Balai Desa Jenu Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/rqgMPmUyEFoL1VAY8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 193,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.02437212993843,
+          -6.862734427155773
+        ]
+      },
+      "properties": {
+        "FID": 193,
+        "nama_ssid": "BALAI DESA SUGIHWARAS",
+        "alamat": "Jl. Tuban Semarang KM. 6 Sugihwaras Kode Pos 62352",
+        "link_maps": "https://maps.app.goo.gl/CJ8AsPCJF6LwnLcc9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 194,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.92445875212957,
+          -6.854072036923238
+        ]
+      },
+      "properties": {
+        "FID": 194,
+        "nama_ssid": "BALAI DESA TLOGOWARU",
+        "alamat": "Jl. Raya Tlogowaru No. 99 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/cPHe49Z5UBVLpEiP6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 195,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.93390823210169,
+          -6.838959100827222
+        ]
+      },
+      "properties": {
+        "FID": 195,
+        "nama_ssid": "BALAI DESA TOBO",
+        "alamat": "Jl. Raya Tobo - Tlogowaru No. 01 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/BUsS7ZMqo1cttAcw9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 196,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.93546867507405,
+          -6.863627506179218
+        ]
+      },
+      "properties": {
+        "FID": 196,
+        "nama_ssid": "BALAI DESA TEMANDANG",
+        "alamat": "Jl. Raya Temandang No. 345 Kode Pos : 62355",
+        "link_maps": "https://maps.app.goo.gl/6EbK9Q1JdXscLs9r6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 197,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98118931659486,
+          -6.877288389937333
+        ]
+      },
+      "properties": {
+        "FID": 197,
+        "nama_ssid": "BALAI DESA TUWIRI WETAN",
+        "alamat": "Jalan Raya Merakurak - Montong Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/8xMHZw8XVBbcC1az5",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 198,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94663892123097,
+          -6.871713894370879
+        ]
+      },
+      "properties": {
+        "FID": 198,
+        "nama_ssid": "BALAI DESA PONGPONGAN",
+        "alamat": "Jl. Desa Pongpongan No 07 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/QBKYvu3NpFgcmQVU9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 199,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9711297386561,
+          -6.873498122132556
+        ]
+      },
+      "properties": {
+        "FID": 199,
+        "nama_ssid": "BALAI DESA TUWIRI KULON",
+        "alamat": "Jl. Raya Merakurak - Kerek No. 80 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/cEEqGs517gJcE3AV8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 200,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94865617765998,
+          -6.840406888971188
+        ]
+      },
+      "properties": {
+        "FID": 200,
+        "nama_ssid": "BALAI DESA SUGIHAN",
+        "alamat": "Jl. Sugihan - Tobo Desa Desa Sugihan Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/SYZ7WBsqkoo3BCBJA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 201,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96035942779311,
+          -6.870685174251157
+        ]
+      },
+      "properties": {
+        "FID": 201,
+        "nama_ssid": "BALAI DESA SENORI",
+        "alamat": "Jl. Raya Merakurak-Kerek No.267 Senori Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/aEP6WKFXsk838cQU6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 202,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.95661130244046,
+          -6.862875179044237
+        ]
+      },
+      "properties": {
+        "FID": 202,
+        "nama_ssid": "BALAI DESA SEMBUNGREJO",
+        "alamat": "Jl. Raya Senori - Sugihan Desa Sembungrejo Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/hsCqMq4kPchq1r2J9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 203,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9884499146028,
+          -6.889844828017843
+        ]
+      },
+      "properties": {
+        "FID": 203,
+        "nama_ssid": "BALAI DESA KAPU",
+        "alamat": "Jl. Raya Kapu Merakurak Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/eqPEgT3FXu3ZQBbZA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 204,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.99210700357301,
+          -6.895593417135135
+        ]
+      },
+      "properties": {
+        "FID": 204,
+        "nama_ssid": "BALAI DESA TAHULU",
+        "alamat": "Jl. Gunojoyo No 01 Tahulu Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/cyhMVED7W35c9hbQ9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 205,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00474942541135,
+          -6.9032439140015605
+        ]
+      },
+      "properties": {
+        "FID": 205,
+        "nama_ssid": "BALAI DESA TEGALREJO",
+        "alamat": "Jl. Balai Desa No. 264 Tegalrejo Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/vNhwyLgN5RbWMWYS6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 206,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97218564203605,
+          -6.86953663051072
+        ]
+      },
+      "properties": {
+        "FID": 206,
+        "nama_ssid": "BALAI DESA BOREHBANGLE",
+        "alamat": "Jl. Desa Borehbangle Kec. Merakurak Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/Cnjm1BAgCaATz9vC6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 207,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98492759600646,
+          -6.879941766163054
+        ]
+      },
+      "properties": {
+        "FID": 207,
+        "nama_ssid": "BALAI DESA SAMBONGGEDE",
+        "alamat": "Jl. Pemuda Desa Sambonggede Merakurak",
+        "link_maps": "https://maps.app.goo.gl/WvBxwGTfEXkp2ZSb7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 208,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98445245351544,
+          -6.860079153423813
+        ]
+      },
+      "properties": {
+        "FID": 208,
+        "nama_ssid": "BALAI DESA SUMBER",
+        "alamat": "Jl. Raya Desa Sumber No.8 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/fUHiopx1n3dRqTZj7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 209,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.99502368601658,
+          -6.881019608529434
+        ]
+      },
+      "properties": {
+        "FID": 209,
+        "nama_ssid": "BALAI DESA MANDIREJO",
+        "alamat": "Jl. Prof. Dr. KH. Fatkhurrahman Kafrawi No. 09 Mandirejo Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/sNH6nNFoxB5hagoY8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 210,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0016586085694,
+          -6.87517026279556
+        ]
+      },
+      "properties": {
+        "FID": 210,
+        "nama_ssid": "BALAI DESA SENDANGHAJI",
+        "alamat": "Jl. Desa Sendanghaji RT 02 RW 01 Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/qr4xxkboxTofWvze7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 211,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.01600412256964,
+          -6.8807516387232885
+        ]
+      },
+      "properties": {
+        "FID": 211,
+        "nama_ssid": "BALAI DESA BOGOREJO",
+        "alamat": "Jl. Bogorejo I Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/dkrGc4PrWVCdJnvW6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 212,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00785148347317,
+          -6.86759299973855
+        ]
+      },
+      "properties": {
+        "FID": 212,
+        "nama_ssid": "BALAI DESA SUMBERJO",
+        "alamat": "Jl. Sumberjo 5 Desa Sumberjo Kode Pos 62355",
+        "link_maps": "https://maps.app.goo.gl/5SBUKAksYxQ6JEyL6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 213,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9698055845433,
+          -7.087127194166126
+        ]
+      },
+      "properties": {
+        "FID": 213,
+        "nama_ssid": "BALAI DESA KEBONAGUNG",
+        "alamat": "Jl. Masjid At-Taqwa No. 03 Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/Nowws3SCX6GheDASA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 214,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97537682076376,
+          -7.071683515036488
+        ]
+      },
+      "properties": {
+        "FID": 214,
+        "nama_ssid": "BALAI DESA PEKUWON",
+        "alamat": "Jl. Nggatang no. 17 Pekuwon Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/NTKywAcW8Uet3uzUA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 215,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00816899498408,
+          -7.062624377439922
+        ]
+      },
+      "properties": {
+        "FID": 215,
+        "nama_ssid": "BALAI DESA RENGEL",
+        "alamat": "Jl. A. Yani No. 35 Kecamatan Rengel Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/pq1YNdkMdorM32XK6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 216,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98408191303996,
+          -7.071945167664657
+        ]
+      },
+      "properties": {
+        "FID": 216,
+        "nama_ssid": "BALAI DESA MAIBIT",
+        "alamat": "Jl. Diponegoro No. 100 Kode Pos 26371",
+        "link_maps": "https://maps.app.goo.gl/PVEcDPh2EfBcDDyN9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 217,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97604611699002,
+          -7.089954033758841
+        ]
+      },
+      "properties": {
+        "FID": 217,
+        "nama_ssid": "BALAI DESA BULUREJO",
+        "alamat": "Jl. Utama Desa Bulurejo Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/uz6QyuZkNmHo72Vg8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 218,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98872741589581,
+          -7.109804731700667
+        ]
+      },
+      "properties": {
+        "FID": 218,
+        "nama_ssid": "BALAI DESA KARANGTINOTO",
+        "alamat": "Jl. Desa Karangtinoto Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/THuhEUr6VDSjMZFg7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 219,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00566184098729,
+          -7.067659278281332
+        ]
+      },
+      "properties": {
+        "FID": 219,
+        "nama_ssid": "BALAI DESA SAWAHAN",
+        "alamat": "Jl. Dewi Sartika No. 47 Sawahan Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/6ZDkFt6cbBnTCYe27",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 220,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00198115221092,
+          -7.094170655398041
+        ]
+      },
+      "properties": {
+        "FID": 220,
+        "nama_ssid": "BALAI DESA KANOREJO",
+        "alamat": "Jl. Raya Kanorejo No. 0001 Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/AX3VZ8NYQdQdhUoL6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 221,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00141255993017,
+          -7.124277289667548
+        ]
+      },
+      "properties": {
+        "FID": 221,
+        "nama_ssid": "BALAI DESA TAMBAKREJO",
+        "alamat": "Jl. Klubuk Mbatu No.01 Tambakrejo Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/aAym5KUJmo8uue8Q9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 222,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.01331736179189,
+          -7.070956119992018
+        ]
+      },
+      "properties": {
+        "FID": 222,
+        "nama_ssid": "BALAI DESA NGADIREJO",
+        "alamat": "Jl. Tambangan No 01 Gembloraseh Desa Ngadirejo Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/fSAvWbBR66vvP6RW6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 223,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.01055253965106,
+          -7.062702654265914
+        ]
+      },
+      "properties": {
+        "FID": 223,
+        "nama_ssid": "BALAI DESA SUMBEREJO",
+        "alamat": "Jl. Lampah No. 264 Sumberejo Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/5SWUa45ZNTeZVGSf9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 224,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.02885515816604,
+          -7.050490838700779
+        ]
+      },
+      "properties": {
+        "FID": 224,
+        "nama_ssid": "BALAI DESA PUNGGULREJO",
+        "alamat": "Jl. Raya Beron No. 01 Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/TQjEkW8HjTzSVwjCA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 225,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.04451738516936,
+          -7.066114327216568
+        ]
+      },
+      "properties": {
+        "FID": 225,
+        "nama_ssid": "BALAI DESA CAMPUREJO",
+        "alamat": "Jl. Sawunggaling No. 2 Campurejo Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/WWAquLrg87HbGE3h6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 226,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.04921351027367,
+          -7.040053884573961
+        ]
+      },
+      "properties": {
+        "FID": 226,
+        "nama_ssid": "BALAI DESA BANJARAGUNG",
+        "alamat": "Jl. Raya Banjaragung No. 5 Banjaragung Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/QmzQYhod3ShQtwFN7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 227,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0572873557346,
+          -7.066354986685977
+        ]
+      },
+      "properties": {
+        "FID": 227,
+        "nama_ssid": "BALAI DESA BANJARARUM",
+        "alamat": "Jl. Veteran No.54 Desa Banjararum Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/tNR9ugsTZ6tYbh2KA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 228,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07154756074173,
+          -7.062691449467754
+        ]
+      },
+      "properties": {
+        "FID": 228,
+        "nama_ssid": "BALAI DESA PRAMBONWETAN",
+        "alamat": "Jl. Raya No. 358 Kode Pos 62371",
+        "link_maps": "https://maps.app.goo.gl/1txSDTVjmUGsBH8U8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 229,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05483997570933,
+          -6.912047160344018
+        ]
+      },
+      "properties": {
+        "FID": 229,
+        "nama_ssid": "BALAI KELURAHAN KARANG",
+        "alamat": "Jl. Mojopahit No. 107 A Telp. (0356) 7008184 Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/JgMC8E2Xq2VXXs58A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 230,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06434954527116,
+          -6.906481301892303
+        ]
+      },
+      "properties": {
+        "FID": 230,
+        "nama_ssid": "BALAI KELURAHAN GEDONGOMBO",
+        "alamat": "Jl. Hayam Wuruk No. 02 Kode Pos 62381 Telp. (0356) 323326",
+        "link_maps": "https://maps.app.goo.gl/LQgkDGs65r7qhwQi9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 231,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.99674296552372,
+          -6.936662034163045
+        ]
+      },
+      "properties": {
+        "FID": 231,
+        "nama_ssid": "BALAI DESA JADI",
+        "alamat": "Jl. Jadi-Grabagan No.02 Jadi Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/GvPRz3xdHQV9eYEh8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 232,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00199830479151,
+          -6.916620594554275
+        ]
+      },
+      "properties": {
+        "FID": 232,
+        "nama_ssid": "BALAI DESA BOTO",
+        "alamat": "Jl. Banyulangse No. 55 Desa Boto Kode Pos : 62381",
+        "link_maps": "https://maps.app.goo.gl/Nw5yoH6MgKm2rv3VA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 233,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05182806184007,
+          -6.923920302116188
+        ]
+      },
+      "properties": {
+        "FID": 233,
+        "nama_ssid": "BALAI DESA PRUNGGAHAN KULON",
+        "alamat": "Jl. Kadipaten No. 1 Kode pos : 62381",
+        "link_maps": "https://maps.app.goo.gl/4a85Dg67UmThrgax8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 234,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05183745173046,
+          -6.914040512548153
+        ]
+      },
+      "properties": {
+        "FID": 234,
+        "nama_ssid": "BALAI DESA TEGALAGUNG",
+        "alamat": "Jl. Majapahit Tegalagung 1 Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/hk1Mh3YDzafviD1o7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 235,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.04898217595601,
+          -6.941903127051958
+        ]
+      },
+      "properties": {
+        "FID": 235,
+        "nama_ssid": "BALAI DESA BEKTIHARJO",
+        "alamat": "Jl. Raya Bektiharjo No. 100 Bektiharjo Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/195RniRgFAf7wkzKA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 236,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06468928822562,
+          -6.994638778121981
+        ]
+      },
+      "properties": {
+        "FID": 236,
+        "nama_ssid": "BALAI DESA NGINO",
+        "alamat": "Jl. Dermawuharjo No.19 Desa Ngino Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/zoUHGt7H8CKE1ttR8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 237,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05476436858606,
+          -6.926923116986842
+        ]
+      },
+      "properties": {
+        "FID": 237,
+        "nama_ssid": "BALAI DESA PRUNGGAHAN WETAN",
+        "alamat": "Jl. Mertoyudho No.07 Prunggahan Wetan Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/Gs9eNKCtxQybgzsx8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 238,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06105041409505,
+          -6.974978361726202
+        ]
+      },
+      "properties": {
+        "FID": 238,
+        "nama_ssid": "BALAI DESA SAMBONGREJO",
+        "alamat": "JL. Kedung Ireng No 14 Sambongrejo Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/u7XUd45Uit7NWscQ9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 239,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06304345573248,
+          -6.923737814899274
+        ]
+      },
+      "properties": {
+        "FID": 239,
+        "nama_ssid": "BALAI DESA SEMANDING",
+        "alamat": "Jl. Hayam Wuruk No. 5B Desa Semanding Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/DfKfyB51xhntknmMA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 240,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06373438577587,
+          -6.914039121464983
+        ]
+      },
+      "properties": {
+        "FID": 240,
+        "nama_ssid": "BALAI DESA BEJAGUNG",
+        "alamat": "Jl. Hayam Wuruk No.87 Bejagung Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/N9SdyKcjpPVERxe1A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 241,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06079625593611,
+          -6.94416882715171
+        ]
+      },
+      "properties": {
+        "FID": 241,
+        "nama_ssid": "BALAI DESA PENAMBANGAN",
+        "alamat": "Jl. Raya Penambangan - Semanding Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/WpumsqcppXAbzHNG7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 242,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.08446869006558,
+          -6.960687879951386
+        ]
+      },
+      "properties": {
+        "FID": 242,
+        "nama_ssid": "BALAI DESA GENAHARJO",
+        "alamat": "Jl.Raya Gemanting - Genaharjo Kode pos : 62381",
+        "link_maps": "https://maps.app.goo.gl/av4VWaUe3ehera2s9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 243,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.08563860601613,
+          -6.9449464176500495
+        ]
+      },
+      "properties": {
+        "FID": 243,
+        "nama_ssid": "BALAI DESA KOWANG",
+        "alamat": "Jl. Sumur Selatan No. 10 Desa Kowang Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/Pj2LQbTiDW3mEDdX8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 244,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0997884557903,
+          -6.94098343172243
+        ]
+      },
+      "properties": {
+        "FID": 244,
+        "nama_ssid": "BALAI DESA TUNAH",
+        "alamat": "Jl. Raya Tuban-Babat KM.07 Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/EsGHti2whqYjAZb88",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 245,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10850173791277,
+          -6.964669406447066
+        ]
+      },
+      "properties": {
+        "FID": 245,
+        "nama_ssid": "BALAI DESA GESING",
+        "alamat": "Jl. Poros Desa Gesing Kode Pos 62381",
+        "link_maps": "https://maps.app.goo.gl/X4jjWkopvAzdWoAK9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 246,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0237535231076,
+          -6.883660747189186
+        ]
+      },
+      "properties": {
+        "FID": 246,
+        "nama_ssid": "BALAI KELURAHAN MONDOKAN",
+        "alamat": "Jl. Letda Sucipto No. 81 Tuban Kode Pos 62351 Telp. (0356) 8831656",
+        "link_maps": "https://maps.app.goo.gl/WzV4jAXms6kwQLnn7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 247,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.03837405070428,
+          -6.884925836134813
+        ]
+      },
+      "properties": {
+        "FID": 247,
+        "nama_ssid": "BALAI KELURAHAN PERBON",
+        "alamat": "Jl. Delima No. 17 Tuban Kode Pos 62351 Telp. (0356) 8833267",
+        "link_maps": "https://maps.app.goo.gl/6DvoAQTs8fNU3ety8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 248,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.04520490990885,
+          -6.893467984158218
+        ]
+      },
+      "properties": {
+        "FID": 248,
+        "nama_ssid": "BALAI KELURAHAN LATSARI",
+        "alamat": "Jl. Sunan Kalijogo No. 35 Tuban Kode Pos 62314",
+        "link_maps": "https://maps.app.goo.gl/Acv17yB53jaoQcmg9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 249,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05182218335841,
+          -6.887658748989781
+        ]
+      },
+      "properties": {
+        "FID": 249,
+        "nama_ssid": "BALAI KELURAHAN KARANGSARI",
+        "alamat": "Jl. Diponegoro No. 8 Tuban Kode Pos 62314 Telp. (0356) 323615",
+        "link_maps": "https://maps.app.goo.gl/RaTYRdcXnFhHyEb79",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 250,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05274726496317,
+          -6.888596130837142
+        ]
+      },
+      "properties": {
+        "FID": 250,
+        "nama_ssid": "BALAI KELURAHAN KINGKING",
+        "alamat": "Jl. Mbah Bali No. 12 A Tuban Kode Pos 62313 Telp. (0356) 323122",
+        "link_maps": "https://maps.app.goo.gl/zVhPPR2cAvm9uGD36",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 251,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05210895765794,
+          -6.894367943340032
+        ]
+      },
+      "properties": {
+        "FID": 251,
+        "nama_ssid": "BALAI KELURAHAN RONGGOMULYO",
+        "alamat": "Jl. P. Diponegoro Gg. Wijaya Kusuma II No. 47 Kode Pos 62313 Telp. (0356) 323262",
+        "link_maps": "https://maps.app.goo.gl/jxs7wVBNwCGbuo9T9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 252,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05051437645456,
+          -6.902114095080561
+        ]
+      },
+      "properties": {
+        "FID": 252,
+        "nama_ssid": "BALAI KELURAHAN SIDOREJO",
+        "alamat": "Jl. Dr. Wahidin SH Gg. Yudistira No. 03 Kode Pos 62315 Telp. (0356) 8834274",
+        "link_maps": "https://maps.app.goo.gl/UjjaShKXye5zQ1KRA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 253,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05576004282217,
+          -6.90197835227807
+        ]
+      },
+      "properties": {
+        "FID": 253,
+        "nama_ssid": "BALAI KELURAHAN DOROMUKTI",
+        "alamat": "Jl. Gajahmada No. 118 Tuban Telp. (0356) 322968 Kode Pos 62316",
+        "link_maps": "https://maps.app.goo.gl/EHJ3jyRZuLnAQsBXA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 254,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05894132131459,
+          -6.8936427263386575
+        ]
+      },
+      "properties": {
+        "FID": 254,
+        "nama_ssid": "BALAI KELURAHAN SIDOMULYO",
+        "alamat": "Jl. Untung Suropati No. 35 Tuban Kode Pos 62312 Telp. (0356) 323178",
+        "link_maps": "https://maps.app.goo.gl/DpSEYpTfrYTEbBFE7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 255,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0647086817059,
+          -6.892813225185975
+        ]
+      },
+      "properties": {
+        "FID": 255,
+        "nama_ssid": "BALAI KELURAHAN KUTOREJO",
+        "alamat": "Jl. Sumur Srumbung No. 07 Tuban Kode Pos 62311 Telp. (0356) 322991",
+        "link_maps": "https://maps.app.goo.gl/VEmbviGe9iTk49gz8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 256,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06462758615196,
+          -6.904839875208959
+        ]
+      },
+      "properties": {
+        "FID": 256,
+        "nama_ssid": "BALAI KELURAHAN KEBONSARI",
+        "alamat": "Jl. Gajah Mada No. 2 Tuban Kode Pos 62317 Telp. (0356) 324357",
+        "link_maps": "https://maps.app.goo.gl/LBGMxKAxs9cy6V3F7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 257,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0677880854698,
+          -6.893743977771764
+        ]
+      },
+      "properties": {
+        "FID": 257,
+        "nama_ssid": "BALAI KELURAHAN SENDANGHARJO",
+        "alamat": "Jl. Pasar Sore No. 1 Kode Pos 62319 Telp. (0356) 8834912",
+        "link_maps": "https://maps.app.goo.gl/YPRXkm26U3ZDPZUJ8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 258,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0697315931953,
+          -6.898494697761373
+        ]
+      },
+      "properties": {
+        "FID": 258,
+        "nama_ssid": "BALAI KELURAHAN BATURETNO",
+        "alamat": "Jl. WR. Supratman GG. II No. 437 Baturetno Kode Pos 62318 Telp. (0356) 323174",
+        "link_maps": "https://maps.app.goo.gl/UsxKBvFUBvmgSdSdA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 259,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0751704935865,
+          -6.896760684812026
+        ]
+      },
+      "properties": {
+        "FID": 259,
+        "nama_ssid": "BALAI KELURAHAN SUKOLILO",
+        "alamat": "Jl. Panglima Sudirman No. 59 Tuban Kode Pos 62318 Telp. (0356) 323169",
+        "link_maps": "https://maps.app.goo.gl/6bc9cK5jPGmBHKsWA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 260,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00960298911941,
+          -6.901011611077865
+        ]
+      },
+      "properties": {
+        "FID": 260,
+        "nama_ssid": "BALAI DESA SUMURGUNG",
+        "alamat": "Jl. Al-Mutamakkin No. 01 Sumurgung Kode Pos 62319",
+        "link_maps": "https://maps.app.goo.gl/fKFYZ1aFXcF7zC1q6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 261,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.01591752504693,
+          -6.901763369773758
+        ]
+      },
+      "properties": {
+        "FID": 261,
+        "nama_ssid": "BALAI DESA SUGIHARJO",
+        "alamat": "Jl. Desa Sugiharjo Tuban Kode Pos 62319",
+        "link_maps": "https://maps.app.goo.gl/Vi9FnLM2HKPV5c8j9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 262,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.02937326000117,
+          -6.901258967546912
+        ]
+      },
+      "properties": {
+        "FID": 262,
+        "nama_ssid": "BALAI DESA KEMBANGBILO",
+        "alamat": "Jl. Raya Kembangbilo No. 02 Kode Pos 62319",
+        "link_maps": "https://maps.app.goo.gl/pznmNeZYo56XDQ1ZA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 263,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.06141050459122,
+          -7.035265045862046
+        ]
+      },
+      "properties": {
+        "FID": 263,
+        "nama_ssid": "BALAI DESA TRUTUP",
+        "alamat": "Jl. Raya Plumpang - Rengel No. 01 Desa Trutup Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/PvxPQ2y9UPc3wEs47",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 264,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07108496798782,
+          -7.034005874132204
+        ]
+      },
+      "properties": {
+        "FID": 264,
+        "nama_ssid": "BALAI DESA KESAMBEN",
+        "alamat": "Jl. Raya Kesamben No.382 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/XEyDGngZRovfjMss7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 265,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07681631232545,
+          -7.048054708020578
+        ]
+      },
+      "properties": {
+        "FID": 265,
+        "nama_ssid": "BALAI DESA KEPOHAGUNG",
+        "alamat": "Jl. Raya Kepohagung -Cangkring Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/mZnAYWQn5hrGWN6s8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 266,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07646444650933,
+          -7.0606752505204895
+        ]
+      },
+      "properties": {
+        "FID": 266,
+        "nama_ssid": "BALAI DESA KEDUNGROJO",
+        "alamat": "Jl. Raya Kedungrojo Nomor 01 Kedungrojo Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/mekU1ZWsGSQR7xtq8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 267,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.09605001344003,
+          -7.014427196646605
+        ]
+      },
+      "properties": {
+        "FID": 267,
+        "nama_ssid": "BALAI DESA SUMURJALAK",
+        "alamat": "Jl. Raya Plumpang - Rengel No.01 Sumurjalak Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/mdV8HkNxHqsTR47aA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 268,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.08896475916534,
+          -7.071141901387175
+        ]
+      },
+      "properties": {
+        "FID": 268,
+        "nama_ssid": "BALAI DESA SEMBUNGREJO",
+        "alamat": "Jl. Raya Desa Sembungrejo No. 1 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/8HTJajLtEaLgxD6V6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 269,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.11011099544876,
+          -7.001634425169789
+        ]
+      },
+      "properties": {
+        "FID": 269,
+        "nama_ssid": "BALAI DESA SUMBERAGUNG",
+        "alamat": "Jl. Raya Pakah Plumpang No. 12 Sumberagung Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/vBnAf1uJ4dASf1qT9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 270,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.6701817843381,
+          -8.296685102788278
+        ]
+      },
+      "properties": {
+        "FID": 270,
+        "nama_ssid": "BALAI DESA CANGKRING",
+        "alamat": "Jl. Raya Desa Cangkring No.01 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/c1RoCKdgGXdR9MQt9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 271,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10183745510477,
+          -7.030891282347489
+        ]
+      },
+      "properties": {
+        "FID": 271,
+        "nama_ssid": "BALAI DESA PLUMPANG",
+        "alamat": "Jl. Raya Plumpang-Bandungrejo No. 1 Kode Pos 82382",
+        "link_maps": "https://maps.app.goo.gl/3u4XxVndgpxzRZ849",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 272,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0913376175664,
+          -7.081245010122539
+        ]
+      },
+      "properties": {
+        "FID": 272,
+        "nama_ssid": "BALAI DESA PLANDIREJO",
+        "alamat": "Jl. Raya Desa Plandirejo No. 01 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/cQRVWYwJUc2jLUMf6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 273,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10309046001468,
+          -7.017415172163263
+        ]
+      },
+      "properties": {
+        "FID": 273,
+        "nama_ssid": "BALAI DESA NGRAYUNG",
+        "alamat": "Jl. Raya Ngrayung No 09 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/CuK2WEvXDjswMbnZ6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 274,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10881224712182,
+          -7.083300609003209
+        ]
+      },
+      "properties": {
+        "FID": 274,
+        "nama_ssid": "BALAI DESA BANDUNGREJO",
+        "alamat": "Jl. Raya Bandungrejo No. 01 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/oeHnUWys7xWL4Nmi8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 275,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.114220984538,
+          -7.0287946761741935
+        ]
+      },
+      "properties": {
+        "FID": 275,
+        "nama_ssid": "BALAI DESA JATIMULYO",
+        "alamat": "Jl. Sebojoyo No. 40 Jatimulyo Kode Pos 62882",
+        "link_maps": "https://maps.app.goo.gl/CWn8XewMDFrSvytL7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 276,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.12221019773578,
+          -7.0770931640834664
+        ]
+      },
+      "properties": {
+        "FID": 276,
+        "nama_ssid": "BALAI DESA KLOTOK",
+        "alamat": "Jl. Raya PU Rengel-Widang No 001 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/g8ZGtGMdxTNp8CPY6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 277,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.12602940816262,
+          -7.030152361045548
+        ]
+      },
+      "properties": {
+        "FID": 277,
+        "nama_ssid": "BALAI DESA MAGERSARI",
+        "alamat": "Jl. Plumpang-Compreng No 273 Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/TGVFYbCwQnjTZyuM7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 278,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1265365213474,
+          -7.093906218207161
+        ]
+      },
+      "properties": {
+        "FID": 278,
+        "nama_ssid": "BALAI DESA KEBOMLATI",
+        "alamat": "Jl. Balai Desa No. 01 Kebomlati Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/8J2q1A2AyDEK9hDj7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 279,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.13515270786472,
+          -7.029191253170909
+        ]
+      },
+      "properties": {
+        "FID": 279,
+        "nama_ssid": "BALAI DESA PENIDON",
+        "alamat": "Jl. Raya Plumpang - Compreng No. 90 Penidon Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/95boJYu5ibmstv3o8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 280,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.13358941962696,
+          -7.085327442745909
+        ]
+      },
+      "properties": {
+        "FID": 280,
+        "nama_ssid": "BALAI DESA KEDUNGSOKO",
+        "alamat": "Jl. Pendidikan No. 02 Sisir-Kedungsoko Kode Pos 62382",
+        "link_maps": "https://maps.app.goo.gl/yYZRvcoQMpsc5f6G6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 281,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.088015488493,
+          -6.8964651164404325
+        ]
+      },
+      "properties": {
+        "FID": 281,
+        "nama_ssid": "BALAI KELURAHAN PANYURAN",
+        "alamat": "Jl. Gresik Panyuran No. 97 Palang Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/wYGrVnK4ur6eVSRG6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 282,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.09532482012106,
+          -6.898159305947174
+        ]
+      },
+      "properties": {
+        "FID": 282,
+        "nama_ssid": "BALAI DESA TASIKMADU",
+        "alamat": "Jl. Nyai Ageng Manyuro No. 06 Tasikmadu Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/j8bf5w22C5jwV3xb6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 283,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.09873580601852,
+          -6.927686218325524
+        ]
+      },
+      "properties": {
+        "FID": 283,
+        "nama_ssid": "BALAI DESA TEGALBANG",
+        "alamat": "Dusun Banjarsari RT. 03 RW. 01 Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/keC22skyyiDK3kHDA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 284,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10724971582347,
+          -6.908183644037699
+        ]
+      },
+      "properties": {
+        "FID": 284,
+        "nama_ssid": "BALAI DESA SUMURGUNG",
+        "alamat": "Jl. Masjid No. 38 Telp. 085303560144 Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/gS2642hHvyxqpfvJ6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 285,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.12042450893856,
+          -6.90204081870979
+        ]
+      },
+      "properties": {
+        "FID": 285,
+        "nama_ssid": "BALAI DESA KRADENAN",
+        "alamat": "Jl. Gresik No. 156 Kradenan Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/5rXqBneqNivMWL4f6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 286,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.11290173559486,
+          -6.9290102440516375
+        ]
+      },
+      "properties": {
+        "FID": 286,
+        "nama_ssid": "BALAI DESA DAWUNG",
+        "alamat": "Jl. Krajan RT 01 RW 02 Desa Dawung Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/PstKgbzKnYe8QJ678",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 287,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.13630433764452,
+          -6.927842448058547
+        ]
+      },
+      "properties": {
+        "FID": 287,
+        "nama_ssid": "BALAI DESA CENDORO",
+        "alamat": "Jl. Raya Cendoro No. 32 Cendoro",
+        "link_maps": "https://maps.app.goo.gl/4iFjzK8JLzdYhCw87",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 288,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14464746151017,
+          -6.962730987631151
+        ]
+      },
+      "properties": {
+        "FID": 288,
+        "nama_ssid": "BALAI DESA NGIMBANG",
+        "alamat": "Jl. Pendopo No.01 Desa Ngimbang Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/HZuN2skqEsNLmt3NA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 289,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14126910692126,
+          -6.920570702097705
+        ]
+      },
+      "properties": {
+        "FID": 289,
+        "nama_ssid": "BALAI DESA PUCANGAN",
+        "alamat": "Jl. Argopuro No. 01 Pucangan Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/11pnC2JjFmzrciG56",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 290,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.13663226737886,
+          -6.902849790961555
+        ]
+      },
+      "properties": {
+        "FID": 290,
+        "nama_ssid": "BALAI DESA GESIKHARJO",
+        "alamat": "Jl. Raya Gresik No. 51 Belakang Tugu Peringatan Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/DPGB4QHYtkG6yrSv7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 291,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14087882742707,
+          -6.9019993965376845
+        ]
+      },
+      "properties": {
+        "FID": 291,
+        "nama_ssid": "BALAI DESA PALANG",
+        "alamat": "Jl. Raya Gresik No. 102 Palang Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/Ft6HCbzQr8bVuJNh7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 292,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14814100546121,
+          -6.908508178599335
+        ]
+      },
+      "properties": {
+        "FID": 292,
+        "nama_ssid": "BALAI DESA GLODOG",
+        "alamat": "Jl. Keprabon No. 56 Glodog Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/oT6BtBr4XTUtF1ah8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 293,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14878585263027,
+          -6.922252756992421
+        ]
+      },
+      "properties": {
+        "FID": 293,
+        "nama_ssid": "BALAI DESA LERAN KULON",
+        "alamat": "Jl. Argopuro Nomor 114 Lerankulon Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/YHX1fQx9tzxKrw9k6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 294,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.15730423313443,
+          -6.9248271041936915
+        ]
+      },
+      "properties": {
+        "FID": 294,
+        "nama_ssid": "BALAI DESA LERAN WETAN",
+        "alamat": "Jl. Argopuro No. 10 Desa Leranwetan Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/e9YtZL5ZDGdh3gA2A",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 295,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.16733653114247,
+          -6.926908489482686
+        ]
+      },
+      "properties": {
+        "FID": 295,
+        "nama_ssid": "BALAI DESA WANGUN",
+        "alamat": "Jl. Goa Suci Desa Wangun Palang",
+        "link_maps": "https://maps.app.goo.gl/qHokSb6J4qkTiDVX6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 296,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.16653007148048,
+          -6.900230851918515
+        ]
+      },
+      "properties": {
+        "FID": 296,
+        "nama_ssid": "BALAI DESA KARANGAGUNG",
+        "alamat": "Jl. Raya Gresik No. 92 Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/JnSYr8d4tRUbK4QK9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 297,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.17227834264749,
+          -6.902977013159513
+        ]
+      },
+      "properties": {
+        "FID": 297,
+        "nama_ssid": "BALAI DESA PLIWETAN",
+        "alamat": "Pliwetan, Kec. Palang, Kabupaten Tuban, Jawa Timur 62391",
+        "link_maps": "https://maps.app.goo.gl/JBWP7iXj4CgquTH99",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 298,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.16940144991717,
+          -6.9197367154216565
+        ]
+      },
+      "properties": {
+        "FID": 298,
+        "nama_ssid": "BALAI DESA CEPOKOREJO",
+        "alamat": "Jl. Krajan No. 73 Palang Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/WBAAafVHxP6QAkhX9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 299,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.18866512134632,
+          -6.9252994364696185
+        ]
+      },
+      "properties": {
+        "FID": 299,
+        "nama_ssid": "BALAI DESA KETAMBUL",
+        "alamat": "Jl. Krajan No. 27 Desa ketambul Kode Pos 62391",
+        "link_maps": "https://maps.app.goo.gl/8h3w1kH7pgMzrz8N7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 300,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.13718159618728,
+          -7.096312044426141
+        ]
+      },
+      "properties": {
+        "FID": 300,
+        "nama_ssid": "BALAI DESA PATIHAN",
+        "alamat": "Jalan Rajawali No. 97 Patihan Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/nPDbWofGiw6turGy7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 301,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.12546739067838,
+          -6.993086019471966
+        ]
+      },
+      "properties": {
+        "FID": 301,
+        "nama_ssid": "BALAI DESA MINOHOREJO",
+        "alamat": "Jl. Masuk Desa Minohorejo No. 01 Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/2YoL6GxQ6cPFW8Gm9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 302,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.15620236695221,
+          -7.015679377571352
+        ]
+      },
+      "properties": {
+        "FID": 302,
+        "nama_ssid": "BALAI DESA MRUTUK",
+        "alamat": "Jl. Brawijaya No 321 Mrutuk Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/SzTs8V58eBUNk1aP7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 303,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.14551747274157,
+          -7.028035759002211
+        ]
+      },
+      "properties": {
+        "FID": 303,
+        "nama_ssid": "BALAI DESA COMPRENG",
+        "alamat": "Jl. Raya Widang Tuban Nomor 15 Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/9QUJcrNT3Hx6ZH5fA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 304,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1672444944424,
+          -6.998270828493746
+        ]
+      },
+      "properties": {
+        "FID": 304,
+        "nama_ssid": "BALAI DESA SUMBERJO",
+        "alamat": "Jl. K.H. Agus Salim No. 07 Desa Sumberjo Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/ni4fDXoXNLsAKSoP9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 305,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.15827982073635,
+          -7.099494960015037
+        ]
+      },
+      "properties": {
+        "FID": 305,
+        "nama_ssid": "BALAI DESA NGADIPURO",
+        "alamat": "Jl. Pendidikan NO. 107 Ngadipuro Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/Jg3Kb7ZE3AhS1ShX9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 306,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.16425048669267,
+          -7.095498373313766
+        ]
+      },
+      "properties": {
+        "FID": 306,
+        "nama_ssid": "BALAI DESA NGADIREJO",
+        "alamat": "Jl. Olah Raga No. 149 Ngadirejo Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/62kgi3zohET8bMzv9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 307,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.15823104726205,
+          -7.08177961039763
+        ]
+      },
+      "properties": {
+        "FID": 307,
+        "nama_ssid": "BALAI DESA BUNUT",
+        "alamat": "Jl. Raya Bunut No. 171 Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/Xa4iWzhQrrQ7KTMB9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 308,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.17227211628953,
+          -7.083763342164123
+        ]
+      },
+      "properties": {
+        "FID": 308,
+        "nama_ssid": "BALAI DESA WIDANG",
+        "alamat": "Jl. Lingkar Lapangan Kotagara RT. 1 RW. 6 Dsn. Widang Ds. Widang Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/KtettosamKdHG8Hz6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 309,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1772836852251,
+          -7.076457567558002
+        ]
+      },
+      "properties": {
+        "FID": 309,
+        "nama_ssid": "BALAI DESA BANJAR",
+        "alamat": "Jl. Pendidikan No. 5 Desa Banjar - Widang",
+        "link_maps": "https://maps.app.goo.gl/h1Ky6KfPAc5FVdfq7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 310,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1918291379015,
+          -7.07847422682594
+        ]
+      },
+      "properties": {
+        "FID": 310,
+        "nama_ssid": "BALAI DESA TEGALSARI",
+        "alamat": "Jl. Pendidikan No. 3 A Tegalsari, Widang",
+        "link_maps": " https://maps.app.goo.gl/pjBVTMXQAHGKfUBg9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 311,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.18252107233317,
+          -6.997974066520182
+        ]
+      },
+      "properties": {
+        "FID": 311,
+        "nama_ssid": "BALAI DESA MLANGI",
+        "alamat": "Jl. Nusa Damai No. 1 Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/FrisKi1rjprKx1Qw7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 312,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.21357342583511,
+          -7.041088051487465
+        ]
+      },
+      "properties": {
+        "FID": 312,
+        "nama_ssid": "BALAI DESA SIMOREJO",
+        "alamat": "Jl. Pendowo No. 27 Simorejo Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/nwXVHbB3GT3gDBGd9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 313,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.19703547917935,
+          -6.988046052161205
+        ]
+      },
+      "properties": {
+        "FID": 313,
+        "nama_ssid": "BALAI DESA KUJUNG",
+        "alamat": "Jl. Pemuda No. 15 Kujung Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/5Qk4vD5WCyH34A956",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 314,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.21653271058514,
+          -7.067307413131121
+        ]
+      },
+      "properties": {
+        "FID": 314,
+        "nama_ssid": "BALAI DESA TEGALREJO",
+        "alamat": "Jl. Balai Desa RT.05/RW.01 Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/ztT45jdnmZ6bYq6b7",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 315,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.93605267968141,
+          -7.036445122077904
+        ]
+      },
+      "properties": {
+        "FID": 315,
+        "nama_ssid": "BALAI DESA NGARUM",
+        "alamat": "Jl. Raya Ngarum No 17 Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/kPaoaYETb5r6EhwR6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 316,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94642175303485,
+          -7.0284068288215105
+        ]
+      },
+      "properties": {
+        "FID": 316,
+        "nama_ssid": "BALAI DESA NGREJENG",
+        "alamat": "Jl. Raya Ngrejeng-Geneng No 088 Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/zFFx6ALVSZJvXrVMA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 317,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98176393696835,
+          -7.01150805463481
+        ]
+      },
+      "properties": {
+        "FID": 317,
+        "nama_ssid": "BALAI DESA GRABAGAN",
+        "alamat": "Jl. Raya Pasar Wage No. 257 Desa Grabagan Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/9S4Mw52FWBgsESJ16",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 318,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.96453752637588,
+          -7.001234924640569
+        ]
+      },
+      "properties": {
+        "FID": 318,
+        "nama_ssid": "BALAI DESA WALERAN",
+        "alamat": "Jl. Raya Waleran No.01 Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/cFHhSfV7KykM6Z7CA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 319,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9598816543868,
+          -7.048845437415242
+        ]
+      },
+      "properties": {
+        "FID": 319,
+        "nama_ssid": "BALAI DESA BANYUBANG",
+        "alamat": "Jl. Raya Banyubang No 79 Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/T6c6YkVxtXkMTimSA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 320,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98651291582416,
+          -6.999292652984488
+        ]
+      },
+      "properties": {
+        "FID": 320,
+        "nama_ssid": "BALAI DESA GESIKAN",
+        "alamat": "Jl. Raya Nomor 339 Desa Gesikan Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/s9vsEsRo4L4ockoMA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 321,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00892657755375,
+          -7.024924104889833
+        ]
+      },
+      "properties": {
+        "FID": 321,
+        "nama_ssid": "BALAI DESA NGANDONG",
+        "alamat": "Jl. Relay TVRI Ngandong Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/eqkt5GKS7ceV9ocf8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 322,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.02406069999023,
+          -7.020892400004901
+        ]
+      },
+      "properties": {
+        "FID": 322,
+        "nama_ssid": "BALAI DESA DAHOR",
+        "alamat": "Jl. Beji No. 03 Desa Dahor Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/q1BySDj2Jy8qdMMH6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 323,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.031774525039,
+          -7.007230534192845
+        ]
+      },
+      "properties": {
+        "FID": 323,
+        "nama_ssid": "BALAI DESA DERMAWUHARJO",
+        "alamat": "Jl. Raya Sekar Tanjung No.02 Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/VsSYRPbEKWYoBFDA8",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 324,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.03593693736354,
+          -7.020383831477764
+        ]
+      },
+      "properties": {
+        "FID": 324,
+        "nama_ssid": "BALAI DESA MENYUNYUR",
+        "alamat": "Jl. Saringembat No.15 Ds. Menyunyur Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/w3Ryv6raTPoPRxHZ9",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 325,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0506462,
+          -7.0229337
+        ]
+      },
+      "properties": {
+        "FID": 325,
+        "nama_ssid": "BALAI DESA PAKIS",
+        "alamat": "Jl. Sendang Telo No. 37 Pakis Kode Pos 62373",
+        "link_maps": "https://maps.app.goo.gl/Je7ibAqr4A6wa9kT6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 326,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6922323,
+          -6.7750782
+        ]
+      },
+      "properties": {
+        "FID": 326,
+        "nama_ssid": "BALAI DESA LATSARI",
+        "alamat": "Jl. Lestari Desa Latsari Kode Pos 62354",
+        "link_maps": "https://maps.app.goo.gl/LbixxVpsZGtiqQ1V6",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 327,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.20459293401225,
+          -7.0701915208407495
+        ]
+      },
+      "properties": {
+        "FID": 327,
+        "nama_ssid": "BALAI DESA KEDUNGHARJO",
+        "alamat": "Jl. Teuku Umar No. 177 Kedungharjo Kode Pos 62383",
+        "link_maps": "https://maps.app.goo.gl/3L4P9hNoyVimJFVz5",
+        "foto": " "
+      }
+    }
+  ]
+}

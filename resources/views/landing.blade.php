@@ -555,24 +555,24 @@
 
         /* 6. LOKASI KEDINASAN */
         .section-location-clean {
-            padding: 95px 7%;
+            padding: 72px 0;
             background: #f8fafc;
             border-top: 1px solid var(--border-soft);
         }
 
         .location-grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 36px;
-            max-width: 1240px;
-            margin: 0 auto;
+            grid-template-columns: minmax(280px, 0.9fr) minmax(420px, 2fr) minmax(300px, 1.25fr);
+            gap: 0;
+            width: 100%;
+            margin: 0;
             align-items: stretch;
         }
 
         .location-info-card {
             background: #ffffff;
             border: 1.5px solid var(--border-soft);
-            border-radius: 18px;
+            border-radius: 0;
             padding: 38px 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             display: flex;
@@ -647,16 +647,17 @@
         }
 
         .map-viewport-frame {
-            border-radius: 18px;
+            border-radius: 0;
             border: 1.5px solid var(--border-soft);
+            border-left: 0;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            min-height: 400px;
+            min-height: 500px;
         }
         .map-viewport-frame iframe {
             width: 100%;
             height: 100%;
-            min-height: 400px;
+            min-height: 500px;
             border: none;
         }
 
@@ -675,6 +676,7 @@
             .stats-cards-grid { grid-template-columns: repeat(2, 1fr); }
             .services-cards-cluster { grid-template-columns: repeat(3, 1fr); }
             .location-grid-layout { grid-template-columns: 1fr; }
+            .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
         @media (max-width: 768px) {
@@ -1102,9 +1104,20 @@
 
             <div class="map-viewport-frame">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2783857500585!2d112.06014457499708!3d-6.893196993106037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e779a528e57929d%3A0x6bce98799bb52f75!2sDinas%20Komunikasi%20dan%20Informatika%20Kabupaten%20Tuban!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
-                    allowfullscreen="" 
-                    loading="lazy" 
+                    src="https://www.google.com/maps/embed?pb=!4v1790305660366!6m8!1m7!1szab-FoOpFkmJVJ79X0G0Pw!2m2!1d-6.901873934235668!2d112.0440727763729!3f119.96725389059543!4f-2.7866853560054636!5f0.7820865974627469"
+                    width="800"
+                    height="600"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+            </div>
+
+            <div class="map-viewport-frame">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.2783857500585!2d112.06014457499708!3d-6.893196993106037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e779a528e57929d%3A0x6bce98799bb52f75!2sDinas%20Komunikasi%20dan%20Informatika%20Kabupaten%20Tuban!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid"
+                    title="Google Maps Dinas Komunikasi dan Informatika Kabupaten Tuban"
+                    loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>

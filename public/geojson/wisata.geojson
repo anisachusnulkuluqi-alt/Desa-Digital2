@@ -1,0 +1,950 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0883282,
+          -6.8956877
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "nama_wisat": "Makam Andong Wilis",
+        "jenis_wisa": "Wisata Religi",
+        "desa": "Panyuran",
+        "jam_operas": "24 Jam",
+        "htm": "0",
+        "deskripsi": "Makam Andong Wilis merupakan situs religi yang sering dikunjungi masyarakat untuk ziarah. Lingkungannya tenang sehingga mendukung aktivitas ibadah dan refleksi spiritual.",
+        "foto": " ",
+        "reservasi": "-",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0891825,
+          -6.8963009
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "nama_wisat": "Pantai Kelapa",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Panyuran",
+        "jam_operas": "08.00â€“18.00",
+        "htm": "5.000",
+        "deskripsi": "Pantai Kelapa memiliki garis pantai landai yang dikelilingi deretan pohon kelapa, memberikan suasana teduh khas pesisir. Destinasi ini populer sebagai tempat menikmati panorama laut dan aktivitas keluarga.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Pantai Kelapa",
+        "wa_pengelo": "085745410187",
+        "website": "https://www.pantaikelapa.com/",
+        "instagram": "https://www.instagram.com/wisatapantaikelapa/",
+        "facebook": " ",
+        "tiktok": "https://www.tiktok.com/@wisatapantaikelapa"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.99619190388879,
+          -6.8834153213420715
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "nama_wisat": "Wisata Pelang",
+        "jenis_wisa": " ",
+        "desa": "Tahulu",
+        "jam_operas": "08.00â€“18.00",
+        "htm": "5.000",
+        "deskripsi": "Wisata Pelang dikenal dengan aliran sungai jernih dan area hutan hijau yang menciptakan suasana alami dan sejuk. Tempat ini menjadi tujuan rekreasi warga karena keindahan alamnya yang masih terjaga.",
+        "foto": " ",
+        "reservasi": " ",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": "https://www.instagram.com/wisatapelangofficial/",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0619872,
+          -6.9140164
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "nama_wisat": "Makam Sunan Bejagung",
+        "jenis_wisa": "Wisata Religi",
+        "desa": "Bektiharjo",
+        "jam_operas": "24 Jam",
+        "htm": "0",
+        "deskripsi": "Makam Sunan Bejagung adalah salah satu tujuan ziarah terkenal di Tuban dengan nilai sejarah yang kuat. Area makam dirawat dengan baik dan ramai pada hari-hari besar keagamaan.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Syech Asyari",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0665745,
+          -6.9941501
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "nama_wisat": "Wisata Sendang Asmoro",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Ngino",
+        "jam_operas": "08.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Sendang Asmoro menawarkan area kolam alami yang tertata rapi dengan suasana teduh. Lingkungan yang bersih menjadikannya lokasi favorit untuk bersantai dan menikmati kesejukan air.",
+        "foto": " ",
+        "reservasi": "Subur Raharjo",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9353682,
+          -6.7727201
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "nama_wisat": "Pantai Tanjung Awar Awar",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Tasikharjo",
+        "jam_operas": " ",
+        "htm": "5000",
+        "deskripsi": "Pantai ini memiliki panorama laut dengan ombak yang relatif tenang serta area pesisir yang luas. Lokasinya sering dimanfaatkan untuk rekreasi keluarga dan menikmati suasana pantai alami.",
+        "foto": " ",
+        "reservasi": "Tanjung Asri",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7940355,
+          -6.9683272
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "nama_wisat": "Air Terjun Nglirip",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Mulyoagung",
+        "jam_operas": "07.00â€“16.30",
+        "htm": "5000",
+        "deskripsi": "Air Terjun Nglirip merupakan air terjun setinggi sekitar 25 meter dengan aliran air hijau kebiruan yang sangat khas. Tempat ini menjadi ikon wisata alam Tuban dan ramai dikunjungi wisatawan.",
+        "foto": " ",
+        "reservasi": "Wisata Air Terjun Putri Nglirip",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6674963,
+          -6.901596
+        ]
+      },
+      "properties": {
+        "FID": 7,
+        "nama_wisat": "Agrowisata",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Sidomulyo",
+        "jam_operas": " ",
+        "htm": "5000",
+        "deskripsi": "Agrowisata ini menampilkan kegiatan pertanian lokal sebagai daya tarik edukatif. Pengunjung dapat melihat berbagai tanaman dan belajar mengenai proses budidaya masyarakat setempat.",
+        "foto": " ",
+        "reservasi": "Argo Purung Lestari",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0214361,
+          -6.8461371
+        ]
+      },
+      "properties": {
+        "FID": 8,
+        "nama_wisat": "Pantai Cemara",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Sugihwaras",
+        "jam_operas": "07.00â€“18.00",
+        "htm": "5000",
+        "deskripsi": "Pantai Cemara terkenal dengan deretan pohon cemara yang memberikan keteduhan alami di sepanjang garis pantai. Suasananya cocok untuk kegiatan santai dan menikmati angin laut.",
+        "foto": " ",
+        "reservasi": "Pantai Cemara Sugihwaras",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6812942,
+          -6.9548799
+        ]
+      },
+      "properties": {
+        "FID": 9,
+        "nama_wisat": "Pemandian Nganget",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Sidorejo",
+        "jam_operas": "Buka 24 jam'",
+        "htm": "5000",
+        "deskripsi": "Pemandian Nganget merupakan pemandian air hangat alami yang dipercaya memberikan efek relaksasi. Lingkungan sekitar masih asri sehingga menambah kenyamanan pengunjung.",
+        "foto": " ",
+        "reservasi": "Wono Rejo",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6630018,
+          -6.9374918
+        ]
+      },
+      "properties": {
+        "FID": 10,
+        "nama_wisat": "Wisata Gunung UCENG",
+        "jenis_wisa": "Wisata Religi",
+        "desa": "Bendonglateng",
+        "jam_operas": "Buka 24 jam",
+        "htm": "0",
+        "deskripsi": "Wisata Gunung UCENG merupakan lokasi bernuansa religi yang sering digunakan untuk kegiatan ziarah dan doa. Lingkungannya alami dan memberikan suasana tenang di tengah perbukitan.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Gunung UCeng",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8992562,
+          -6.8185899
+        ]
+      },
+      "properties": {
+        "FID": 11,
+        "nama_wisat": "Makam Sayyid Abdullah",
+        "jenis_wisa": "Wisata Religi",
+        "desa": "Mliwang",
+        "jam_operas": "Buka 24 jam",
+        "htm": "0",
+        "deskripsi": "Makam Sayyid Abdullah menjadi tujuan ziarah masyarakat karena nilai sejarah dan spiritualnya. Area makam dijaga dengan baik dan memiliki suasana yang damai.",
+        "foto": " ",
+        "reservasi": "Sendang Cokro",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.895916,
+          -6.8780601
+        ]
+      },
+      "properties": {
+        "FID": 12,
+        "nama_wisat": "Sumber Arum Park",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Sumberarum",
+        "jam_operas": "07.00â€“22.00",
+        "htm": "5000",
+        "deskripsi": "Sumber Arum Park adalah destinasi buatan yang memanfaatkan sumber air sebagai daya tarik utama. Fasilitasnya membuat lokasi ini cocok untuk rekreasi keluarga dan kegiatan luar ruang.",
+        "foto": " ",
+        "reservasi": "Pengelola Unit Wisata Sumberarum Park",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.985498,
+          -6.8799923
+        ]
+      },
+      "properties": {
+        "FID": 13,
+        "nama_wisat": "Kampung Wisata Air Sambonggede",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Sambonggede",
+        "jam_operas": "09.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Kampung wisata ini menawarkan pengalaman wisata air dengan suasana pedesaan yang tertata rapi. Pengunjung dapat menikmati aliran air yang jernih dan lingkungan yang sejuk.",
+        "foto": " ",
+        "reservasi": "Sambonggede Indah",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9713402,
+          -6.9398052
+        ]
+      },
+      "properties": {
+        "FID": 14,
+        "nama_wisat": "Kedung Sumurup",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Tegalrejo",
+        "jam_operas": "09.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Kedung Sumurup merupakan kolam alami yang dikelilingi pepohonan dan perbukitan ringan. Suasananya yang damai menjadikan lokasi ini tempat rekreasi yang menenangkan.",
+        "foto": " ",
+        "reservasi": "Selo Mustiko Tegalrejo",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9462323,
+          -6.839555
+        ]
+      },
+      "properties": {
+        "FID": 15,
+        "nama_wisat": "Agro Wisata Klengkeng",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Sugihan",
+        "jam_operas": "09.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Destinasi ini menawarkan pengalaman melihat langsung kebun klengkeng dan proses budidayanya. Lingkungannya yang hijau memberikan suasana segar bagi pengunjung.",
+        "foto": " ",
+        "reservasi": "Buluh Raya",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9854675,
+          -6.8824497
+        ]
+      },
+      "properties": {
+        "FID": 16,
+        "nama_wisat": "Wisata Silowo",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Mandirejo",
+        "jam_operas": "08.00â€“15.30",
+        "htm": "5000",
+        "deskripsi": "Wisata Silowo menghadirkan panorama pedesaan dengan udara sejuk dan lingkungan hijau. Tempat ini cocok dikunjungi untuk mencari ketenangan dan menikmati suasana alami.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Silowo",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9403094,
+          -6.9852111
+        ]
+      },
+      "properties": {
+        "FID": 17,
+        "nama_wisat": "Wisata Desa Jetak Air Terjun Bongok",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Jetak",
+        "jam_operas": "07.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Air Terjun Bongok menampilkan aliran air yang jatuh dari tebing alami dengan suasana yang masih asri. Lokasi ini menjadi daya tarik alam Desa Jetak yang sering dikunjungi wisatawan.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Singonegoro",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8982897,
+          -7.0073946
+        ]
+      },
+      "properties": {
+        "FID": 18,
+        "nama_wisat": "Agro Wisata Durian",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Bringin",
+        "jam_operas": "09.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Agrowisata ini menonjolkan budidaya durian sebagai daya tarik utamanya. Pengunjung dapat melihat perkebunan sekaligus belajar mengenai proses pengelolaannya.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Bringin",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9391115,
+          -7.0139452
+        ]
+      },
+      "properties": {
+        "FID": 19,
+        "nama_wisat": "Agro Wisata Jeruk",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Maindu",
+        "jam_operas": " ",
+        "htm": "5000",
+        "deskripsi": "Tempat ini menawarkan kebun jeruk yang dikembangkan sebagai wisata edukatif. Suasananya yang rapi menjadikannya cocok untuk rekreasi ringan bersama keluarga.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Maindu",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0934644,
+          -6.9020173
+        ]
+      },
+      "properties": {
+        "FID": 20,
+        "nama_wisat": "Agrowisata Belimbing Madu",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Tasikmadu",
+        "jam_operas": " ",
+        "htm": "5000",
+        "deskripsi": "Agrowisata ini menghadirkan kebun belimbing madu yang menjadi keunggulan lokal. Pengunjung dapat melihat langsung proses budidaya serta menikmati suasana perkebunan.",
+        "foto": " ",
+        "reservasi": "Lintang Tresno",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1445805,
+          -6.9663853
+        ]
+      },
+      "properties": {
+        "FID": 21,
+        "nama_wisat": "Wisata Gunung Dingklik",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Ngimbang",
+        "jam_operas": "Buka 24 jam",
+        "htm": "5000",
+        "deskripsi": "Wisata Gunung Dingklik menyajikan pemandangan alam dari ketinggian dengan udara yang sejuk. Tempat ini sering dijadikan lokasi rekreasi keluarga maupun swafoto.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Gunung Dingklik",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.86091,
+          -7.0456361
+        ]
+      },
+      "properties": {
+        "FID": 22,
+        "nama_wisat": "Desa Wisata Seni Budaya",
+        "jenis_wisa": "Wisata Budaya",
+        "desa": "Sukoharjo",
+        "jam_operas": " ",
+        "htm": "5000",
+        "deskripsi": "Destinasi ini menampilkan berbagai aktivitas seni dan budaya masyarakat setempat. Pengunjung dapat menyaksikan kerajinan tradisional dan kegiatan budaya lainnya.",
+        "foto": " ",
+        "reservasi": "Suko Sandya",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8325219,
+          -7.0745304
+        ]
+      },
+      "properties": {
+        "FID": 23,
+        "nama_wisat": "Wisata Agro Kandangan Park",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Kumpulrejo",
+        "jam_operas": "08.00â€“16.00",
+        "htm": "5000",
+        "deskripsi": "Kandangan Park merupakan perpaduan area hijau dan fasilitas edukasi pertanian. Lingkungannya yang tertata menjadikan tempat ini cocok untuk wisata keluarga.",
+        "foto": " ",
+        "reservasi": "Kandangan Park",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8887812,
+          -7.0329143
+        ]
+      },
+      "properties": {
+        "FID": 24,
+        "nama_wisat": "Wisata Bukit Surotongko",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Wukiharjo",
+        "jam_operas": "04.00â€“18.00",
+        "htm": "5000",
+        "deskripsi": "Bukit Surotongko menyediakan panorama alam dari kawasan perbukitan dengan udara segar. Tempat ini populer untuk menikmati pemandangan sekitar dan berfoto.",
+        "foto": " ",
+        "reservasi": "Wisata Bukit Surotongko",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8050192,
+          -7.0290564
+        ]
+      },
+      "properties": {
+        "FID": 25,
+        "nama_wisat": "Rest Area Ngawun",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Ngawun",
+        "jam_operas": "Buka 24 jam",
+        "htm": "5000",
+        "deskripsi": "Rest area ini menyediakan fasilitas untuk beristirahat bagi pengunjung yang melintas di kawasan tersebut. Suasananya tertata sehingga nyaman untuk digunakan sebagai tempat singgah.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Desa Ngawun",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1274406,
+          -7.0910996
+        ]
+      },
+      "properties": {
+        "FID": 26,
+        "nama_wisat": "Wisata Edukasi Anyaman Bambu",
+        "jenis_wisa": "Wisata Budaya",
+        "desa": "Kebomlati",
+        "jam_operas": "07.30â€“16.00",
+        "htm": "5000",
+        "deskripsi": "Wisata ini memamerkan kerajinan anyaman bambu yang menjadi warisan budaya lokal. Pengunjung dapat melihat proses pembuatannya sekaligus mengenal nilai budaya desa.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Wisata Edukasi Anyaman Bambu",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9797246,
+          -7.0683424
+        ]
+      },
+      "properties": {
+        "FID": 27,
+        "nama_wisat": "Sendang Maibit",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Maibit",
+        "jam_operas": "Buka 24 jam",
+        "htm": "5000",
+        "deskripsi": "Sendang Maibit memiliki kolam alami dengan air jernih yang dikelilingi pepohonan. Tempat ini sering menjadi tujuan rekreasi warga karena suasananya yang sejuk.",
+        "foto": " ",
+        "reservasi": "Lanjar Maibit",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0245037,
+          -7.0507394
+        ]
+      },
+      "properties": {
+        "FID": 28,
+        "nama_wisat": "Sendang Beron",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Punggulrejo",
+        "jam_operas": "08.00â€“15.00",
+        "htm": "5000",
+        "deskripsi": "Sendang Beron merupakan sumber air alami yang memberikan suasana teduh dan damai. Area ini banyak dikunjungi untuk bersantai dan menikmati lingkungan pedesaan.",
+        "foto": " ",
+        "reservasi": "Taâ€™isa Sendang Beron",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0701984,
+          -7.0295347
+        ]
+      },
+      "properties": {
+        "FID": 29,
+        "nama_wisat": "Wisata Embung",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Bulurejo",
+        "jam_operas": "07.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Wisata Embung menawarkan pemandangan waduk kecil yang berguna sebagai penampung air desa. Area sekitarnya dimanfaatkan sebagai ruang terbuka untuk rekreasi masyarakat.",
+        "foto": " ",
+        "reservasi": " ",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0045253,
+          -6.9188346
+        ]
+      },
+      "properties": {
+        "FID": 30,
+        "nama_wisat": "Air Terjun Banyulangse",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Boto",
+        "jam_operas": "07.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Air Terjun Banyulangse memiliki aliran air yang jatuh dari tebing bebatuan dengan lingkungan yang masih alami. Tempat ini cocok bagi wisatawan yang ingin menikmati suasana pedesaan yang tenang.",
+        "foto": " ",
+        "reservasi": "Bhakti Lestari",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0493534,
+          -6.9406424
+        ]
+      },
+      "properties": {
+        "FID": 31,
+        "nama_wisat": "Bektiharjo (Wisata Watu Ondo)",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Bektiharjo",
+        "jam_operas": "07.00â€“17.00",
+        "htm": "5000",
+        "deskripsi": "Wisata Watu Ondo adalah area dengan aliran air terjun kecil yang mengalir di antara batuan alami. Suasananya yang sejuk dan hijau menjadikannya tempat rekreasi favorit masyarakat.",
+        "foto": " ",
+        "reservasi": "Ngabekti Luhur",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7945519,
+          -6.9690188
+        ]
+      },
+      "properties": {
+        "FID": 32,
+        "nama_wisat": "Batu Van Tuban",
+        "jenis_wisa": "Wisata Alam",
+        "desa": "Tingkis",
+        "jam_operas": "Buka 24 jam",
+        "htm": "5000",
+        "deskripsi": "Batu Van Tuban menawarkan pemandangan perbukitan dengan tebing batu yang unik. Lokasi ini menjadi daya tarik bagi pengunjung yang menyukai wisata alam dan fotografi.",
+        "foto": " ",
+        "reservasi": "Batu Van Tuban",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7859725,
+          -6.7805807
+        ]
+      },
+      "properties": {
+        "FID": 33,
+        "nama_wisat": "Sentono Water Park",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Bancar",
+        "jam_operas": "Weekday 09.00â€“16.00, Weekend 08.30â€“16.30",
+        "htm": "10000",
+        "deskripsi": "Sentono Water Park menyediakan kolam renang dan wahana permainan air untuk keluarga. Fasilitasnya mendukung berbagai aktivitas rekreasi dalam suasana yang nyaman.",
+        "foto": " ",
+        "reservasi": "Tirta Lestari",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9409776,
+          -7.063474
+        ]
+      },
+      "properties": {
+        "FID": 34,
+        "nama_wisat": "Sumber Air dan Kolam Jegulo",
+        "jenis_wisa": "Wisata Buatan",
+        "desa": "Jegulo",
+        "jam_operas": "Buka 24 jam",
+        "htm": "5000",
+        "deskripsi": "Destinasi ini memanfaatkan sumber air alami yang kemudian dijadikan kolam rekreasi. Lingkungannya tenang dan cocok untuk bersantai bersama keluarga.",
+        "foto": " ",
+        "reservasi": "Pokdarwis Sumedang Kawis",
+        "wa_pengelo": " ",
+        "website": " ",
+        "instagram": " ",
+        "facebook": " ",
+        "tiktok": " "
+      }
+    }
+  ]
+}

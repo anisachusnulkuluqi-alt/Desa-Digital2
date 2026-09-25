@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8902335,
+          -6.80682
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "nama": "MAJU SEJAHTERA",
+        "alamat": "Jl. Glondong - Kerek (Stand Pasar Merkawang)",
+        "jenis_usah": "Bidang Sampah, Sewa Sound System, Sewa Peralatan Lainnya, Dagang Peternakan, Brilink, Agen 46, PPOB, Toko/Kios",
+        "nama_ketua": "Mohamad Hamim, S.Pd",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.61679839375783,
+          -6.95997002733568
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "nama": " MERAK JAMPRONG SEJAHTERA",
+        "alamat": "-",
+        "jenis_usah": "  Dagang Pertanian, Dagang Sembako, Simpan Pinjam, Brilink, Agen 46, PPOB, Toko/Kios, Percetakan, Photo Copy",
+        "nama_ketua": "-",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87798050749471,
+          -6.887997921920565
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "nama": "MARGO MAKMUR MANDIRI",
+        "alamat": "-",
+        "jenis_usah": "Air Bersih, Dagang Pertanian, Dagang Peternakan, Wisata Desa",
+        "nama_ketua": "-",
+        "foto": " "
+      }
+    }
+  ]
+}

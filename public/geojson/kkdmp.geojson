@@ -1,0 +1,1809 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.891613,
+          -6.79965
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "nama": "Merkawang",
+        "desa_kelur": "Merkawang",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Glondong-Kerek KM 1 Merkawang",
+        "no_ahu": "AHU-0034209.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Supriyono",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.881744,
+          -7.036407
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "nama": "Wukirharjo",
+        "desa_kelur": "Wukirharjo",
+        "jenis": "desa",
+        "alamat": "Dsn. Gebalan RT 05 RW 03 Ds. Wukirharjo Kec. Parengan Kab. Tuban",
+        "no_ahu": "AHU-0057492. AH. 01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "KHOIRUL ANISAH",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0539501,
+          -6.9140082
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "nama": "Tegalagung",
+        "desa_kelur": "Tegalagung",
+        "jenis": "desa",
+        "alamat": "Jl. Majapahit 2 No. 1 Ds. Tegalagung",
+        "no_ahu": "AHU. 0046180.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Hariyati",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.68389,
+          -6.894134
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "nama": "Demit",
+        "desa_kelur": "Demit",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Desa Demit Rt 05 Rw 02 Kode Post 62362",
+        "no_ahu": "AHU-0040382.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "HUDIYONO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.08621092,
+          -7.03331742
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "nama": "Sumurjalak",
+        "desa_kelur": "Sumurjalak",
+        "jenis": "desa",
+        "alamat": "Gg. Jalak Balu, Sumurgung - Sumurjalak",
+        "no_ahu": "AHU.0028411.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Santik",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0596582,
+          -6.9724866
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "nama": "Sambongrejo",
+        "desa_kelur": "Sambongrejo",
+        "jenis": "desa",
+        "alamat": "Jl. Kedung Ireng No  14, Desa Sambongrejo Kecamatan Semanding",
+        "no_ahu": "AHU-0055119.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Pemasaran",
+        "ketua": "Cipto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0579013,
+          -6.9248489
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "nama": "Prunggahan Wetan",
+        "desa_kelur": "Prunggahan Wetan",
+        "jenis": "desa",
+        "alamat": "Jl. Mintaraga No  09, Taragan, Desa Prunggahan Wetan, Kecamatan Semanding",
+        "no_ahu": "AHU-0045993.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Pemasaran",
+        "ketua": "Jamaluddin S.H, M.H",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.062012,
+          -6.929069
+        ]
+      },
+      "properties": {
+        "FID": 7,
+        "nama": "Semanding",
+        "desa_kelur": "Semanding",
+        "jenis": "desa",
+        "alamat": "Jl. Hayam Wuruk, Desa Semanding, Kecamatan Semanding",
+        "no_ahu": "AHU-0022206.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Henri Winarno",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.035423,
+          -7.020096
+        ]
+      },
+      "properties": {
+        "FID": 8,
+        "nama": "Kebomlati",
+        "desa_kelur": "Kebomlati",
+        "jenis": "desa",
+        "alamat": "Dusun Sendang Wetan RT 01 RW 01 Desa Menyunyur Kec. Grabagan",
+        "no_ahu": "AHU-0025203.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Jatmiko",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.882773,
+          -6.950644
+        ]
+      },
+      "properties": {
+        "FID": 9,
+        "nama": "Montongsekar",
+        "desa_kelur": "Montongsekar",
+        "jenis": "desa",
+        "alamat": "Jl. Raya Montong-Pakel RT 08 RW 01 Montongsekar Montong Tuban",
+        "no_ahu": "AHU - 0058143.AH.01.29 Tahun 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "A.M.Miftah Anshori",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.73987,
+          -7.038816
+        ]
+      },
+      "properties": {
+        "FID": 10,
+        "nama": "Sidoharjo",
+        "desa_kelur": "Sidoharjo",
+        "jenis": "desa",
+        "alamat": "Jln. Raya Sidoharjo No 220 Dusun Banaran RT 01 RW 05 Desa Sidoharjo",
+        "no_ahu": "AHU-0010083.AH.29. Tahun 2025",
+        "unit_usaha": "Simpan pinjam, Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Darsono",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.030542,
+          -6.901282
+        ]
+      },
+      "properties": {
+        "FID": 11,
+        "nama": "Kembangbilo",
+        "desa_kelur": "Kembangbilo",
+        "jenis": "desa",
+        "alamat": "Jl. Lapangan Desa No. 2 Kembangbilo Tuban",
+        "no_ahu": "0059362.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Hartini",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.09102,
+          -7.051095
+        ]
+      },
+      "properties": {
+        "FID": 12,
+        "nama": "Cangkring",
+        "desa_kelur": "Cangkring",
+        "jenis": "desa",
+        "alamat": "Dusun Cangkring Desa Cangkring Kecamatan Plumpang",
+        "no_ahu": "AHU-0058953.AН.01.29.TAHUN 2025",
+        "unit_usaha": " Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "M. BAKTIYAR PRAYOGA ADIHUTOMO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.887234992998,
+          -6.889401663
+        ]
+      },
+      "properties": {
+        "FID": 13,
+        "nama": "Margomulyo",
+        "desa_kelur": "Margomulyo",
+        "jenis": "desa",
+        "alamat": "RT 02 RW 01 Desa Margomulyo Kecamatan Kerek",
+        "no_ahu": "AHU-0058703.AH.01.20.TAHUN.2025",
+        "unit_usaha": "Perdagangan Eceran Gas Elpiji, Pupuk Pertanian",
+        "ketua": "Wijanarko",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.63562,
+          -6.908851
+        ]
+      },
+      "properties": {
+        "FID": 14,
+        "nama": "Sidohasri",
+        "desa_kelur": "Sidohasri",
+        "jenis": "desa",
+        "alamat": "Jl. Blora RT 02 RW 03 Dsn. Tanjungrejo, Desa Sidohasri, Kecamatan Kenduruan",
+        "no_ahu": "AHU-35334.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako, Pupuk Pertanian, LPJ",
+        "ketua": "SUGIHARTONO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.713515,
+          -6.777219
+        ]
+      },
+      "properties": {
+        "FID": 15,
+        "nama": "Sukolilo",
+        "desa_kelur": "Sukolilo",
+        "jenis": "desa",
+        "alamat": "Dsn. Kradenan RT 002 / RW 001 Desa Sukolilo Kecamatan Bancar",
+        "no_ahu": "AHU-0034930.AH.01.29.Tahun 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Abdul Manan",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.995128,
+          -6.826161
+        ]
+      },
+      "properties": {
+        "FID": 16,
+        "nama": "Beji",
+        "desa_kelur": "Beji",
+        "jenis": "desa",
+        "alamat": "DUSUN KRAJAN RT.001/RW.001 DESA BEJI KEC JENU",
+        "no_ahu": "0009541.AH.01.29.TAHUN 2025",
+        "unit_usaha": "PERTOKOAN DAN PERGUDANGAN",
+        "ketua": "MINANURROHMAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.736287,
+          -6.773418
+        ]
+      },
+      "properties": {
+        "FID": 17,
+        "nama": "Boncong",
+        "desa_kelur": "Boncong",
+        "jenis": "desa",
+        "alamat": "Ds. Boncong RT 001 / RW 001 Desa Boncong Kecamatan Bancar",
+        "no_ahu": "AHU-0021660.AH.01.29.Tahun 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Moh. Hasyim",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.900542,
+          -6.793058
+        ]
+      },
+      "properties": {
+        "FID": 18,
+        "nama": "Socorejo",
+        "desa_kelur": "Socorejo",
+        "jenis": "desa",
+        "alamat": "Dsn Socorejo, Desa Socorejo, Kecamatan Jenu",
+        "no_ahu": "AHU-0010579.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum, unit simpan pinjam (USP)",
+        "ketua": "NANANG ZUBAIDI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.808363,
+          -6.868888
+        ]
+      },
+      "properties": {
+        "FID": 19,
+        "nama": "Gemulung",
+        "desa_kelur": "Gemulung",
+        "jenis": "desa",
+        "alamat": "RT 04 RW 01 Dusun Gandu Desa Gemulung Kecamatan Kerek",
+        "no_ahu": "AHU-0010491.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan,Pertanian,Kesehatan,Jasa,Logistik",
+        "ketua": "Eko Soefyanto Alamsyah",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.665442,
+          -6.92426
+        ]
+      },
+      "properties": {
+        "FID": 20,
+        "nama": "Sokogrenjeng",
+        "desa_kelur": "Sokogrenjeng",
+        "jenis": "desa",
+        "alamat": "Jl Srinoto No 261 Dusun Ngancar",
+        "no_ahu": "AHU-0041403.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Berbagai Macam Barang Yang Utamanya Makanan, Minuman Atau Sembako Bukan Di Minimarket/Supermarket/Hypermarket (Tradisional)",
+        "ketua": "Ahmad Najib",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.19997,
+          7.074645
+        ]
+      },
+      "properties": {
+        "FID": 21,
+        "nama": "Bandungrejo",
+        "desa_kelur": "Bandungrejo",
+        "jenis": "desa",
+        "alamat": "Jl. Widang-Rengel, Desa Bandungrejo Kecamatan Plumpang",
+        "no_ahu": "AHU-0057558.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum, Unit Simpan Pinjam (USP), Klinik",
+        "ketua": "Ali Makrus",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.923918,
+          -6.782393
+        ]
+      },
+      "properties": {
+        "FID": 22,
+        "nama": "Purworejo",
+        "desa_kelur": "Purworejo",
+        "jenis": "desa",
+        "alamat": "Dusun Brangkal, Desa Purworejo, Kecamatan Jenu",
+        "no_ahu": "AHU-0060883.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan",
+        "ketua": "Siswanto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78589415235956,
+          -6.853126851717317
+        ]
+      },
+      "properties": {
+        "FID": 23,
+        "nama": "Plajan",
+        "desa_kelur": "Plajan",
+        "jenis": "desa",
+        "alamat": "RT 005/ RW 002 Desa Plajan Kec. Tambakboyo",
+        "no_ahu": "AHU-0021379.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Pupuk Dan Pemberantas Hama, Perdagangan Eceran Berbagai Macam Barang Yang Utamanya Makanan, Minuman, Atau Tembakau Bukan Di Minimarket/Supermarket/Hypermarket (Tradisional)",
+        "ketua": "KASTURI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.167403,
+          -6.923606
+        ]
+      },
+      "properties": {
+        "FID": 24,
+        "nama": "Wangun",
+        "desa_kelur": "Wangun",
+        "jenis": "desa",
+        "alamat": "Jl. Goa Suci, RT 01/ RW 01, Dusun Wangun Timur, Desa Wangun, Kecamatan Palang",
+        "no_ahu": "AHU-0062748.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik, Klinik Desa, Apotik Desa",
+        "ketua": "Rokhim",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90573888,
+          -6.96168121
+        ]
+      },
+      "properties": {
+        "FID": 25,
+        "nama": "Sumurgung",
+        "desa_kelur": "Sumurgung",
+        "jenis": "desa",
+        "alamat": "Jl. KH. Marzuki, Desa Sumurgung - Montong",
+        "no_ahu": "AHU-0011111.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Nur Rohmat",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.075365,
+          -6
+        ]
+      },
+      "properties": {
+        "FID": 26,
+        "nama": "Genaharjo",
+        "desa_kelur": "Genaharjo",
+        "jenis": "desa",
+        "alamat": "Jl. Gemanting - Genaharjo",
+        "no_ahu": "AHU. 0024337.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako & Pangkalan LPG",
+        "ketua": "MUHAMMAD AGUS SHOLIHUDDIN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97802526687403,
+          -7.110464214364225
+        ]
+      },
+      "properties": {
+        "FID": 27,
+        "nama": "Rahayu",
+        "desa_kelur": "Rahayu",
+        "jenis": "desa",
+        "alamat": "Dusun Nggandu RT. 002 RW. 006 Desa Rahayu, Kecamatan Soko",
+        "no_ahu": "AHU-0009811.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "PARNJANI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.6782919,
+          -6.904426
+        ]
+      },
+      "properties": {
+        "FID": 28,
+        "nama": "Sidomulyo",
+        "desa_kelur": "Sidomulyo",
+        "jenis": "desa",
+        "alamat": "Jl. Raya Jatirogo - Bangilan, Desa Sidomulyo - Jatirogo",
+        "no_ahu": "AHU-0056570.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdangan Eceran Berbagai Macar Barang Yang Utamananya Makanan, Minuman, Atau Tembakau Bukan Di Minimarket/ Supermarket/ Hypermarket (Tradisional)",
+        "ketua": "Kurdi",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.692887,
+          -6.774393
+        ]
+      },
+      "properties": {
+        "FID": 29,
+        "nama": "Latsari",
+        "desa_kelur": "Latsari",
+        "jenis": "desa",
+        "alamat": "Jl. Lestari Desa Latsari Kec. Bancar",
+        "no_ahu": "AHU-0058401.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan",
+        "ketua": "Syahri",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.965212,
+          -7.094326
+        ]
+      },
+      "properties": {
+        "FID": 30,
+        "nama": "Sumurcinde",
+        "desa_kelur": "Sumurcinde",
+        "jenis": "desa",
+        "alamat": "Dusun Plumpung, Desa Sumurcinde Kecamatan Soko",
+        "no_ahu": "AHU-0058401.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "Aminuddin",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.894235,
+          -6.878702
+        ]
+      },
+      "properties": {
+        "FID": 31,
+        "nama": "Sumberarum",
+        "desa_kelur": "Sumberarum",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Merakurak - Kerek",
+        "no_ahu": "AHU-01860.AH.02.01.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Pertanian, Jasa",
+        "ketua": "Zaky Widodo",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.668847,
+          -6.777252
+        ]
+      },
+      "properties": {
+        "FID": 32,
+        "nama": "Tlogoagung",
+        "desa_kelur": "Tlogoagung",
+        "jenis": "desa",
+        "alamat": "Jl. Tlogoagung Kec. Bancar",
+        "no_ahu": "AHU-0031726.AH.01.29.Tahun 2025",
+        "unit_usaha": "Perdagangan Eceran",
+        "ketua": "Si'in",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.083248,
+          7.047662
+        ]
+      },
+      "properties": {
+        "FID": 33,
+        "nama": "Kepohagung",
+        "desa_kelur": "Kepohagung",
+        "jenis": "desa",
+        "alamat": "Jln. Kepohagung-Cangkring.Dsn. Grebegan, Desa Kepohagung, Kecamatan Plumpang",
+        "no_ahu": "AHU-0054400.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako, Pupuk Pertanian, LPG",
+        "ketua": "Khoirul Huda",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97807829043653,
+          -6.885482774906172
+        ]
+      },
+      "properties": {
+        "FID": 34,
+        "nama": "Tuwiri Wetan",
+        "desa_kelur": "Tuwiri Wetan",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Merakurak - Montong No. 33 Dusun Kedungsari RT 04 RW 05 Desa Tuwiri Wetan Kecamatan Merakurak",
+        "no_ahu": "AHU-0022121.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Tri Indra Dewi Purnaningtyas",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.655355,
+          -6.869644
+        ]
+      },
+      "properties": {
+        "FID": 35,
+        "nama": "Bader",
+        "desa_kelur": "Bader",
+        "jenis": "desa",
+        "alamat": "Jln. Raya Bulu - Jatirogo, Desa Bader Kecamatan Jatirogo",
+        "no_ahu": "AHU-01444.AH.02.01.Tahun2025",
+        "unit_usaha": "Perdagangan Umum, Angkutan Bermotor untuk Barang Umum, Aktivitas Cold Storage, Rumah / Warung Makan, Unit Simpan Pinjam Koperasi Primer, Jasa",
+        "ketua": "Ahmad Afandi",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.703996,
+          -6.940163
+        ]
+      },
+      "properties": {
+        "FID": 36,
+        "nama": "Sidodadi",
+        "desa_kelur": "Sidodadi",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Bojonegoro-Jatirogo  Dusun Bamban RT 01 RW 02 Desa Sidodadi Kecamatan Bangilan",
+        "no_ahu": "AHU-0059937.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Burhanuddin",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.15469,
+          -6.899445
+        ]
+      },
+      "properties": {
+        "FID": 37,
+        "nama": "Leran Kulon",
+        "desa_kelur": "Leran Kulon",
+        "jenis": "desa",
+        "alamat": "Jalan Raya Gresik -Palang No 10 Dusun Kedaton Rt:03 Rw:10 Desa Leran Kulon",
+        "no_ahu": "AHU-0055861.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik, Klinik Desa, Apotik Desa, Kios Pertanian",
+        "ketua": "SUDIRMAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 38,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.980778,
+          -7.157461
+        ]
+      },
+      "properties": {
+        "FID": 38,
+        "nama": "Glagahsari",
+        "desa_kelur": "Glagahsari",
+        "jenis": "desa",
+        "alamat": "Dusun Siwalan Desa Glagahsari Kec.  Soko",
+        "no_ahu": " AHU-0058472.AH.01.29.TAHUN2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "NGASRIPAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.893889,
+          -6.805046
+        ]
+      },
+      "properties": {
+        "FID": 39,
+        "nama": "Karangasem",
+        "desa_kelur": "Karangasem",
+        "jenis": "desa",
+        "alamat": "Desa Karangasem Kecamatan Jenu",
+        "no_ahu": "AHU-0057127.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "Zakki Abdillah",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 40,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.156586,
+          -6.924254
+        ]
+      },
+      "properties": {
+        "FID": 40,
+        "nama": "Leranwetan",
+        "desa_kelur": "Leranwetan",
+        "jenis": "desa",
+        "alamat": "Jalan Argopuro RT.04/01 Desa Leranwetan, Kecamatan Palang",
+        "no_ahu": "AHU-0057430.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "RUSMINI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 41,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1337719,
+          -7.0802286
+        ]
+      },
+      "properties": {
+        "FID": 41,
+        "nama": "Kedungsoko",
+        "desa_kelur": "Kedungsoko",
+        "jenis": "desa",
+        "alamat": "Jl Kedungsoko-Widang, Kedungsoko, Plumpang",
+        "no_ahu": "AHU-0024932.AH.01.29,Tahun 2025",
+        "unit_usaha": "-",
+        "ketua": "Anang Wahyu Prayoga",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 42,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8005727,
+          -6.8590039
+        ]
+      },
+      "properties": {
+        "FID": 42,
+        "nama": "Mander",
+        "desa_kelur": "Mander",
+        "jenis": "desa",
+        "alamat": "Desa Mander Kec. Tambakboyo",
+        "no_ahu": "AHU-15806.AH.01.33.TAHUN 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Achmad Suhud",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 43,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8919846,
+          -6.7960132
+        ]
+      },
+      "properties": {
+        "FID": 43,
+        "nama": "Glondonggede",
+        "desa_kelur": "Glondonggede",
+        "jenis": "desa",
+        "alamat": "Jl. Glondong - Kerek Desa Glondonggede Kecamatan Tambakboyo",
+        "no_ahu": "AHU-0060916.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Pemasaran",
+        "ketua": "Khoirum Muyasaroh",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.003858,
+          -6.842775
+        ]
+      },
+      "properties": {
+        "FID": 44,
+        "nama": "Sekardadi",
+        "desa_kelur": "Sekardadi",
+        "jenis": "desa",
+        "alamat": "Dusun Kandangan  Desa Sekardadi Kecamatan Jenu",
+        "no_ahu": "AHU-0060947.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran (Hasil pertanian & peternakan), Gerai Sembako, Simpan Pinjam",
+        "ketua": "Abd. Basith Hafash",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 45,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.92985277411304,
+          -7.135135135135135
+        ]
+      },
+      "properties": {
+        "FID": 45,
+        "nama": "Simo",
+        "desa_kelur": "Simo",
+        "jenis": "desa",
+        "alamat": "Jl. Poros Desa Simo - Mojoagung Rt.01/Rw.02 Desa Simo Kecamatan Soko",
+        "no_ahu": "AHU-0043558.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Pemasaran",
+        "ketua": "Mustofa",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 46,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1355,
+          -6.909152
+        ]
+      },
+      "properties": {
+        "FID": 46,
+        "nama": "Gesikharjo",
+        "desa_kelur": "Gesikharjo",
+        "jenis": "desa",
+        "alamat": "Dusun Gemulung, Desa Gesikharjo, Kec.  Palang",
+        "no_ahu": "AHU-0047900.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "Yohan Agus Susanto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 47,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.723958,
+          -6.775702
+        ]
+      },
+      "properties": {
+        "FID": 47,
+        "nama": "Bulujowo",
+        "desa_kelur": "Bulujowo",
+        "jenis": "desa",
+        "alamat": "Jl. Desa Bulujowo, Dusun Karangcandi RT 4 RW 5, Desa Bulujowo",
+        "no_ahu": "AHU-0054051-AH.01.29 Tahun 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Syamsuri.S.P.d.I",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 48,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.788338,
+          -6.823776
+        ]
+      },
+      "properties": {
+        "FID": 48,
+        "nama": "Sidomulyo",
+        "desa_kelur": "Sidomulyo",
+        "jenis": "desa",
+        "alamat": "Jl. Desa Sidomulyo, Dusun Sriwing RT 7 RW 2, Desa Sidomulyo",
+        "no_ahu": "AHU-0035027.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Sudarwanto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 49,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.627967,
+          -6.865571
+        ]
+      },
+      "properties": {
+        "FID": 49,
+        "nama": "Kebonharjo",
+        "desa_kelur": "Kebonharjo",
+        "jenis": "desa",
+        "alamat": "Jl. Raya Lasem Dusun Jambean RT 2 RW 3 Desa Kebonharjo",
+        "no_ahu": "AHU-0031012.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "IBNU SULAIM",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 50,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00286,
+          -6.912034
+        ]
+      },
+      "properties": {
+        "FID": 50,
+        "nama": "Boto",
+        "desa_kelur": "Boto",
+        "jenis": "desa",
+        "alamat": "Dusun Krajan RT.02/RW.01 - Desa Boto - Kec. Semanding",
+        "no_ahu": "AHU-0030740.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Padi dan Palawija, Perdagangan Eceran Pupuk dan Pemberantas Hama.",
+        "ketua": "AHMAD MUSLIH",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 51,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.840367,
+          -7.017675
+        ]
+      },
+      "properties": {
+        "FID": 51,
+        "nama": "Manjung",
+        "desa_kelur": "Manjung",
+        "jenis": "desa",
+        "alamat": "Dusun Krajan RT.01/RW.03 - Desa Manjung - Kec. Montong",
+        "no_ahu": "AHU-0045751.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran, Komuditi Hasil Peternakan, Jasa Pemanenan, PertanianJagung, Pembibitan dan Budidaya Sapi Potong, Perdagangan Eceran Bahan (BBM, BBG, LPG)",
+        "ketua": "BUNAYA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 52,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9875,
+          -7.12889
+        ]
+      },
+      "properties": {
+        "FID": 52,
+        "nama": "Kenongosari",
+        "desa_kelur": "Kenongosari",
+        "jenis": "desa",
+        "alamat": "Jl. Poros Desa Glagahwangi, Dsn. Kenongo Kidul RT 02 RW 02 , Desa Kenongosari Kec.Soko",
+        "no_ahu": "AHU-0058526.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "ANDIKA OKTOROHANA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 53,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.006403,
+          -6.823684
+        ]
+      },
+      "properties": {
+        "FID": 53,
+        "nama": "Kaliuntu",
+        "desa_kelur": "Kaliuntu",
+        "jenis": "desa",
+        "alamat": "Jl. Dukuh Tajungrejo Dsn. Krajan RT 01 RW 02, Desa Kaliuntu Kec. Jenu",
+        "no_ahu": "AHU-0065464.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "SUPRAPTO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.089867,
+          -7.066935
+        ]
+      },
+      "properties": {
+        "FID": 54,
+        "nama": "Sembungrejo",
+        "desa_kelur": "Sembungrejo",
+        "jenis": "desa",
+        "alamat": "Dsn. Banguran  RT 03 RW 02 , Desa Sembungrejo Kec. Plumpang",
+        "no_ahu": "AHU-0054742.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "ALFIAN EKA ADITYA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 55,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.662624,
+          -6.887828
+        ]
+      },
+      "properties": {
+        "FID": 55,
+        "nama": "Sugihan",
+        "desa_kelur": "Sugihan",
+        "jenis": "desa",
+        "alamat": "Dsn. Purwosari, Desa Sugihan",
+        "no_ahu": "AHU-01444.AH.02.01.Tahun 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Dalimin, S.Pd",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 56,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.882958,
+          -6.928045
+        ]
+      },
+      "properties": {
+        "FID": 56,
+        "nama": "Hargoretno",
+        "desa_kelur": "Hargoretno",
+        "jenis": "desa",
+        "alamat": "Dusun Bawi Wetan RT 003 RW 002",
+        "no_ahu": "AHU-0057263.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Gerai Sembako",
+        "ketua": "Nur Mochamad Arifin",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 57,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.9235,
+          -7.10266
+        ]
+      },
+      "properties": {
+        "FID": 57,
+        "nama": "Prambontergayang",
+        "desa_kelur": "Prambontergayang",
+        "jenis": "desa",
+        "alamat": "Jl. Sawahan  RT 02 RW 03 Desa Prambontergayang Kecamatan Soko",
+        "no_ahu": "AHU-0058356. AH. 01. 29. TAHUN 2025",
+        "unit_usaha": "Perdagangan & Jasa",
+        "ketua": "MUHLISIN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 58,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.642115,
+          -6.851557
+        ]
+      },
+      "properties": {
+        "FID": 58,
+        "nama": "Ketodan",
+        "desa_kelur": "Ketodan",
+        "jenis": "desa",
+        "alamat": "Dsn. Sampurno  RT 01 RW 021 , Desa Ketodan Kec. Jatirogo",
+        "no_ahu": "AHU-0030559.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "ROHMAD YASIN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87582,
+          -6.872977
+        ]
+      },
+      "properties": {
+        "FID": 59,
+        "nama": "Kedungrejo",
+        "desa_kelur": "Kedungrejo",
+        "jenis": "desa",
+        "alamat": "Desa Kedungrejo Kecamatan Kerek",
+        "no_ahu": "AHU-0058460.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Ria Rahmawati",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1540879,
+          -7.0997601
+        ]
+      },
+      "properties": {
+        "FID": 60,
+        "nama": "Ngadipuro",
+        "desa_kelur": "Ngadipuro",
+        "jenis": "desa",
+        "alamat": "Dusun Nguleg RT 01 RW 02 Desa Ngadipuro Kecamatan Widang",
+        "no_ahu": "AHU-0021448.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Makanan dan Minuman(47112), Perdagangan Eceran Pupuk dan pemberantasan Hama (47763), Perdagangan Eceran Gas Elpiji (47772)",
+        "ketua": "Tahyudi",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 61,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97366,
+          -7.08739
+        ]
+      },
+      "properties": {
+        "FID": 61,
+        "nama": "Bulurejo",
+        "desa_kelur": "Bulurejo",
+        "jenis": "desa",
+        "alamat": "Dusun Goreng Desa Bulurejo Kecamatan Rengel",
+        "no_ahu": "AHU-0029539.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Sonar",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78642999999998,
+          -6.994145
+        ]
+      },
+      "properties": {
+        "FID": 62,
+        "nama": "Mulyorejo",
+        "desa_kelur": "Mulyorejo",
+        "jenis": "desa",
+        "alamat": "Dsn Pandean RT 3 RW 1 Ds. Mulyorejo",
+        "no_ahu": "AHU-0056393.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "Rokib",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.18173314513054,
+          -6.9980022502175805
+        ]
+      },
+      "properties": {
+        "FID": 63,
+        "nama": "Mlangi",
+        "desa_kelur": "Mlangi",
+        "jenis": "desa",
+        "alamat": "Dusun Mlangi RT 06 RW 02 Desa Mlangi Kecamatan Widang",
+        "no_ahu": "AHU-0058164.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "ACHMAD SYARIFUDDIN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07516751252115,
+          -7.058404013519
+        ]
+      },
+      "properties": {
+        "FID": 64,
+        "nama": "Kedungrojo",
+        "desa_kelur": "Kedungrojo",
+        "jenis": "desa",
+        "alamat": "Dsn Kedungrojo Desa Kedungrojo RT 04/01 Kec. Plumpang",
+        "no_ahu": "0056695.AH.01.29 Tahun 2025",
+        "unit_usaha": "Simpan Pinjam, Perdagangan Eceran Sembako dan Pupuk",
+        "ketua": "Sudarso, S.Pd., M.Pd.",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.0077121,
+          -6.9014207
+        ]
+      },
+      "properties": {
+        "FID": 65,
+        "nama": "Sumurgung",
+        "desa_kelur": "Sumurgung",
+        "jenis": "desa",
+        "alamat": "Dusun Bongkol 1 RT 05 RW 01 Desa Sumurgung Kecamatan Tuban",
+        "no_ahu": "AHU-0058532.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Makanan dan Minuman(47112), Perdagangan Eceran Pupuk dan pemberantasan Hama (47763), Perdagangan Eceran Gas Elpiji (47772)",
+        "ketua": "ZUL QURNAIN, SH",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.098525,
+          -6.910812
+        ]
+      },
+      "properties": {
+        "FID": 66,
+        "nama": "Tasikmadu",
+        "desa_kelur": "Tasikmadu",
+        "jenis": "desa",
+        "alamat": "RT 01/ RW 02, Dusun Dukoh, Desa Tasikmadu, Kecamatan Palang",
+        "no_ahu": "AHU-0062748.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan",
+        "ketua": "Sunarya",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.719171,
+          -6.999348
+        ]
+      },
+      "properties": {
+        "FID": 67,
+        "nama": "Medalem",
+        "desa_kelur": "Medalem",
+        "jenis": "desa",
+        "alamat": "Desa Medalem RT 02 RW 01 Kecamatan: Senori",
+        "no_ahu": "0026195.AH.01.29.Tahun 2025",
+        "unit_usaha": "perdagangan sembako dan jasa",
+        "ketua": "M. ADIL A'LA",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.016817,
+          -7.066512
+        ]
+      },
+      "properties": {
+        "FID": 68,
+        "nama": "Sumberejo",
+        "desa_kelur": "Sumberejo",
+        "jenis": "desa",
+        "alamat": "Dsn. Lampah Ds. Sumberejo Kec. Rengel",
+        "no_ahu": "0059855. AH.01.29. TAHUN 2025",
+        "unit_usaha": "Perdagangan, Jasa, Kesehatan, Logistik",
+        "ketua": "Achmad Winarto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.121696,
+          -7.035006
+        ]
+      },
+      "properties": {
+        "FID": 69,
+        "nama": "Magersari",
+        "desa_kelur": "Magersari",
+        "jenis": "desa",
+        "alamat": "Dsn. Kajangan Ds. Magersari Kec. Plumpang",
+        "no_ahu": "0010438.AH.01.29 Tahun 2025",
+        "unit_usaha": "Simpan Pinjam, Perdagangan Sembako, Toko Pertanian, Apotik",
+        "ketua": "EDI SUSILO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.904394,
+          -6.901749
+        ]
+      },
+      "properties": {
+        "FID": 70,
+        "nama": "Padasan",
+        "desa_kelur": "Padasan",
+        "jenis": "desa",
+        "alamat": "Desa Padasan RT 03/ RW 01 Kecamatan Kerek",
+        "no_ahu": "AHU-0058301.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan",
+        "ketua": "ASMANI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.864929,
+          -7.106486
+        ]
+      },
+      "properties": {
+        "FID": 71,
+        "nama": "Suciharjo",
+        "desa_kelur": "Suciharjo",
+        "jenis": "desa",
+        "alamat": "Dsn. Wonorejo Ds. Suciharjo Kec. Parengan",
+        "no_ahu": "0057183.AH.01.29 Tahun 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "RANDY FURQON WIDYANTO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1652704,
+          -7.0860202
+        ]
+      },
+      "properties": {
+        "FID": 72,
+        "nama": "Ngadirejo",
+        "desa_kelur": "Ngadirejo",
+        "jenis": "desa",
+        "alamat": "Dsn. Nawangan Ds. Ngadirejo Kec. Widang",
+        "no_ahu": "0041255.AH.01.29 Tahun 2025",
+        "unit_usaha": "Simpan Pinjam, Perdagangan Sembako, Toko Pertanian dan Apotik",
+        "ketua": "BUDI HARTOKO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.19155,
+          -7.07839
+        ]
+      },
+      "properties": {
+        "FID": 73,
+        "nama": "Tegalsari",
+        "desa_kelur": "Tegalsari",
+        "jenis": "desa",
+        "alamat": " Jl. Pendidikan No 3 A Desa Tegalsari Kecamatan Widang",
+        "no_ahu": "0032923, AH.01.29.Tahun 2025",
+        "unit_usaha": "Pengadaan air mineral (kesan), pembayaran listrik, tarik tunai.",
+        "ketua": "Siti Masitoh",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.600119,
+          -6.947712
+        ]
+      },
+      "properties": {
+        "FID": 74,
+        "nama": "Sokogunung",
+        "desa_kelur": "Sokogunung",
+        "jenis": "desa",
+        "alamat": "Jl. Raya Glangsing RT 03 RW 03 Desa Sokogunung Kecamatan Kenduruan",
+        "no_ahu": "0041005, AH.01.29.Tahun 2025",
+        "unit_usaha": " Penyedia Pupuk, Obat-obat Pertanian, LPG, Tarik tunai",
+        "ketua": "Siti Syaidah",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.726408,
+          -6.789615
+        ]
+      },
+      "properties": {
+        "FID": 75,
+        "nama": "Tergambang",
+        "desa_kelur": "Tergambang",
+        "jenis": "desa",
+        "alamat": "Jl. Raya Tergambang, Gambang, Tergambang",
+        "no_ahu": "AHU-0028726.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan",
+        "ketua": "Ahmad Sukamdi",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.164305,
+          -7.016788
+        ]
+      },
+      "properties": {
+        "FID": 76,
+        "nama": "Mrutuk",
+        "desa_kelur": "Mrutuk",
+        "jenis": "desa",
+        "alamat": "Dusun Mrutuk Utara RT 01 RW 01 Desa Mrutuk Kecamatan Widang",
+        "no_ahu": "AHU-0028593.AH.01.29 TAHUN 2025",
+        "unit_usaha": "Perdagangan Umum",
+        "ketua": "A. Gatot Prayitno",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.093306,
+          -6.943159
+        ]
+      },
+      "properties": {
+        "FID": 77,
+        "nama": "Kowang",
+        "desa_kelur": "Kowang",
+        "jenis": "desa",
+        "alamat": "RT 01/ RW 02,  Desa Kowang, Kecamatan Semanding",
+        "no_ahu": "AHU-0022333.AH.01.29.TAHUN 2025",
+        "unit_usaha": "toko sembako, apotik, klinik obat, toko atk perkantoran, simpan pinjam, pergudangan",
+        "ketua": "Subambang Priyanto",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.770698,
+          7.005532
+        ]
+      },
+      "properties": {
+        "FID": 78,
+        "nama": "Tanjungrejo",
+        "desa_kelur": "Tanjungrejo",
+        "jenis": "desa",
+        "alamat": "RT 01/ RW 01  Desa Tanjungrejo Kecamatan Singgahan",
+        "no_ahu": "0052599.AH.01.29.TAHUN 2025",
+        "unit_usaha": "toko sembako,apotik,klinik obat,LPG, Pupuk",
+        "ketua": "M.RIDLWAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00292949939939,
+          -6.9359792678016134
+        ]
+      },
+      "properties": {
+        "FID": 79,
+        "nama": "Jadi",
+        "desa_kelur": "Jadi",
+        "jenis": "desa",
+        "alamat": "Dusun Jadi RT 001 RW 010 , Desa Jadi Kecamatan Semanding",
+        "no_ahu": "AHU-0045883.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Gerai/Toko Kebutuhan Pokok, Perdagangan Umum",
+        "ketua": "Karjono",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 80,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.87965015598573,
+          -7.128661772677173
+        ]
+      },
+      "properties": {
+        "FID": 80,
+        "nama": "Sendangrejo",
+        "desa_kelur": "Sendangrejo",
+        "jenis": "desa",
+        "alamat": "Dsn. Kepoh RT 005 RW 003 , Desa Sendangrejo Kecamatan Parengan",
+        "no_ahu": "AHU-0057623.AH.01.29.TAHUN 2025",
+        "unit_usaha": "Perdagangan Eceran Berbagai Macam Barang yang Utamanya Makanan, Minuman atau Tembakau",
+        "ketua": "Nur Mustain",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 81,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.000704,
+          -7.097625
+        ]
+      },
+      "properties": {
+        "FID": 81,
+        "nama": " ",
+        "desa_kelur": "Kanorejo",
+        "jenis": "Desa",
+        "alamat": "Jl. Raya Kanorejo No. 0001, Desa Kanorejo, Kec. Rengel, Kab. Tuban, Provinsi Jawa Timur, Kode Pos 62371",
+        "no_ahu": "AHU-0054751. AH. 01.29.TAHUN 2025",
+        "unit_usaha": " ",
+        "ketua": "Abdul Rohman",
+        "foto": " "
+      }
+    }
+  ]
+}

@@ -1,0 +1,689 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 0,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.10754069544828,
+          -7.084268157776756
+        ]
+      },
+      "properties": {
+        "FID": 0,
+        "nama_pasar": "Pasar Bandungrejo",
+        "alamat": "Jl. Raya Bandungrejo, Bandungrejo",
+        "kelurahan": "Bandungrejo",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.21029079091646,
+          -7.045184512535467
+        ]
+      },
+      "properties": {
+        "FID": 1,
+        "nama_pasar": "Pasar Baru Simorejo",
+        "alamat": "Pasar, Gilis, Simorejo",
+        "kelurahan": "SIMOREJO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.71600573136107,
+          -6.965223586504439
+        ]
+      },
+      "properties": {
+        "FID": 2,
+        "nama_pasar": "Pasar Baru Ngrojo",
+        "alamat": "Jl. Raya Bangilan, ','NGROJO',-6.965223586504439,111.71600573136107,'psr.jpg",
+        "kelurahan": "Ngrojo, Bangilan",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.00020780610222,
+          -6.831004922309697
+        ]
+      },
+      "properties": {
+        "FID": 3,
+        "nama_pasar": "Pasar Beji",
+        "alamat": "Jl. Raya Tuban-Semarang Ds. Beji",
+        "kelurahan": "BEJI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.81406013270858,
+          -6.827505917471979
+        ]
+      },
+      "properties": {
+        "FID": 4,
+        "nama_pasar": "Pasar Belikanget",
+        "alamat": "Jl. Raya Ds. Belikanget",
+        "kelurahan": "BELIKANGET",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84358527164039,
+          -7.08338213136451
+        ]
+      },
+      "properties": {
+        "FID": 5,
+        "nama_pasar": "Pasar Brangkal",
+        "alamat": "Kedungbanteng Brangkal Parengan",
+        "kelurahan": "BRANGKAL",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.72530836243199,
+          -6.775328505208921
+        ]
+      },
+      "properties": {
+        "FID": 6,
+        "nama_pasar": "Pasar Bulujowo',",
+        "alamat": "Jl. Pasar Layur No.16, Banjarjo",
+        "kelurahan": "BULUJOWO',",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.136050016487,
+          -6.92553043755575
+        ]
+      },
+      "properties": {
+        "FID": 7,
+        "nama_pasar": "Pasar Cendoro",
+        "alamat": "Cendoro Utara Cendoro",
+        "kelurahan": "CENDORO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.72325248053568,
+          -7.014672964407011
+        ]
+      },
+      "properties": {
+        "FID": 8,
+        "nama_pasar": "Pasar Desa Senori",
+        "alamat": "Jl. Raya Senori No.79 RT. 05 Gumuntur Senori",
+        "kelurahan": "SENORI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.97822427553399,
+          -7.006523393713766
+        ]
+      },
+      "properties": {
+        "FID": 9,
+        "nama_pasar": "Pasar Wage Grabagan",
+        "alamat": "Jl. Pasar Wage No.18, Klampeyan, Grabagan",
+        "kelurahan": "GRABAGAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.67424765838994,
+          -6.897415944770777
+        ]
+      },
+      "properties": {
+        "FID": 10,
+        "nama_pasar": "Pasar Hewan",
+        "alamat": "Jl. Raya Tim No.867, RT.01 Muruni, Sidomulyo, Jatirogo",
+        "kelurahan": "SUGIHAN (JATIROGO)",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.05564918946789,
+          -6.888797317262422
+        ]
+      },
+      "properties": {
+        "FID": 11,
+        "nama_pasar": "Pasar Ikan",
+        "alamat": "Jl. Tuban-Gresik No. 312, Karangsari",
+        "kelurahan": "KARANGSARI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.90788891932037,
+          -6.95687045033792
+        ]
+      },
+      "properties": {
+        "FID": 12,
+        "nama_pasar": "Pasar Jetak",
+        "alamat": "Sumurgung, Montong",
+        "kelurahan": "JETAK",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.76420506842874,
+          -6.814850315468546
+        ]
+      },
+      "properties": {
+        "FID": 13,
+        "nama_pasar": "Pasar Karangrejo",
+        "alamat": "Senandang, Karangrejo",
+        "kelurahan": "KARANGREJO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1210308995042,
+          -7.0835553030923615
+        ]
+      },
+      "properties": {
+        "FID": 14,
+        "nama_pasar": "Pasar Klotok",
+        "alamat": "Jl. Raya Klotok No.21 RW.04, Landean, Klotok",
+        "kelurahan": "KLOTOK",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.69268705080779,
+          -6.775896932718745
+        ]
+      },
+      "properties": {
+        "FID": 15,
+        "nama_pasar": "Pasar Krempyeng",
+        "alamat": "Jl. Merakurak No.25A, Tlogoagung, Temandang",
+        "kelurahan": "TEMANDANG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7500933429929,
+          -6.969977945890917
+        ]
+      },
+      "properties": {
+        "FID": 16,
+        "nama_pasar": "Pasar Lajulor",
+        "alamat": "Jl. Raya Laju Lor No. 07, Krajan, Laju Kidul, Singgahan",
+        "kelurahan": "LAJO LOR",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.8031909570952,
+          -6.858933133901935
+        ]
+      },
+      "properties": {
+        "FID": 17,
+        "nama_pasar": "Pasar Mander",
+        "alamat": "Jl. Raya Ds. Mander, Ds. Mander",
+        "kelurahan": "MANDER",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.65888264825229,
+          -6.879135155431004
+        ]
+      },
+      "properties": {
+        "FID": 18,
+        "nama_pasar": "Pasar Manyaran",
+        "alamat": "Jl. Jatirogo No.3, Blandong, Paseyan, Jatirogo",
+        "kelurahan": "PASEYAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.80673416735631,
+          -7.060771529566669
+        ]
+      },
+      "properties": {
+        "FID": 19,
+        "nama_pasar": "Pasar Mergoasri",
+        "alamat": "Jl. Raya Brangkal, Kemoro, Mergoasri, Parengan",
+        "kelurahan": "'MERGOASRI (PARENGAN)",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89027803698102,
+          -6.806554431248989
+        ]
+      },
+      "properties": {
+        "FID": 20,
+        "nama_pasar": "Pasar Merkawang",
+        "alamat": "Jl. Raya Merkawang Ds. Merkawang Gede",
+        "kelurahan": "MERKAWANG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.1641335041662,
+          -7.017040363769246
+        ]
+      },
+      "properties": {
+        "FID": 21,
+        "nama_pasar": "Pasar Mrutuk",
+        "alamat": "JL. Brawijaya, Mrutuk Utara, Mrutuk",
+        "kelurahan": "MRUTUK",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78620085931323,
+          -6.971791322713855
+        ]
+      },
+      "properties": {
+        "FID": 22,
+        "nama_pasar": "Pasar Mulyoagung",
+        "alamat": "Jl. Panglima Sudirman Stand Pasar No.2, Jojogan, Mulyoagung, Singgahan",
+        "kelurahan": "MULYOAGUNG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.89685332944605,
+          -6.955192724034542
+        ]
+      },
+      "properties": {
+        "FID": 23,
+        "nama_pasar": "Pasar Pakel",
+        "alamat": "Jl. Raya Pakel, Area Kebun/Hutan, Pakel, Montong",
+        "kelurahan": "PAKEL",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84532510304405,
+          -7.07013385997622
+        ]
+      },
+      "properties": {
+        "FID": 24,
+        "nama_pasar": "Pasar Parangbatu",
+        "alamat": "Pas Gapura Pasar, Dolok, Parangbatu, Parengan",
+        "kelurahan": "PARANGBATU",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.09711919767962,
+          -7.029017678986074
+        ]
+      },
+      "properties": {
+        "FID": 25,
+        "nama_pasar": "Pasar Plumpang",
+        "alamat": "Jalan Raya, Tanggungan, Plumpang, Tuban",
+        "kelurahan": "PLUMPANG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.07261371146961,
+          -7.063992267512436
+        ]
+      },
+      "properties": {
+        "FID": 26,
+        "nama_pasar": "Pasar Prambon Wetan",
+        "alamat": "Jl. Pahlawan Dsn Gading, Prambonwetan, Rengel",
+        "kelurahan": "PRAMBONWETAN",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.91748432727451,
+          -7.096464197915592
+        ]
+      },
+      "properties": {
+        "FID": 27,
+        "nama_pasar": "Pasar Prambontergayang",
+        "alamat": "Prambontergayang, Soko",
+        "kelurahan": "PRAMBONTERGAYANG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.76890467716537,
+          -6.809247261052787
+        ]
+      },
+      "properties": {
+        "FID": 28,
+        "nama_pasar": "Pasar Pugoh",
+        "alamat": "Jl. Pugoh Bancar, Sendang, Pugoh",
+        "kelurahan": "PUGOH",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.65890633767792,
+          -6.879131838430108
+        ]
+      },
+      "properties": {
+        "FID": 29,
+        "nama_pasar": "Pasar Sadang",
+        "alamat": "Jl. Ronggolawe, Sadang, Jatirogo",
+        "kelurahan": "SADANG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.98548411018504,
+          -6.877729806734484
+        ]
+      },
+      "properties": {
+        "FID": 30,
+        "nama_pasar": "Pasar Sambonggede",
+        "alamat": "Jl. Raya Merakurak-Tuban No.100, Krajan, Sambonggede",
+        "kelurahan": "SAMBONGGEDE",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7830641068408,
+          -7.044564384754016
+        ]
+      },
+      "properties": {
+        "FID": 31,
+        "nama_pasar": "Pasar Sembung",
+        "alamat": "Jl. Raya Sembung, Krajan, Sembung, Parengan",
+        "kelurahan": "SEMBUNG",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.73212987966015,
+          -6.799136616498303
+        ]
+      },
+      "properties": {
+        "FID": 32,
+        "nama_pasar": "Pasar Siding",
+        "alamat": "Jl. Raya Siding, Tanah Bengkok, Siding",
+        "kelurahan": "SIDING",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.94530286778136,
+          -7.116089666310782
+        ]
+      },
+      "properties": {
+        "FID": 33,
+        "nama_pasar": "Pasar Sokosari",
+        "alamat": "Jl. Raya Soko, Sokosari, Soko",
+        "kelurahan": "SOKOSARI",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.84176439492339,
+          -6.802645771530886
+        ]
+      },
+      "properties": {
+        "FID": 34,
+        "nama_pasar": "Pasar Tambakboyo",
+        "alamat": "Jl. Raya Semarang-Tuban Ds. Tambakboyo",
+        "kelurahan": "TAMBAKBOYO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78743521267103,
+          -7.006426502473863
+        ]
+      },
+      "properties": {
+        "FID": 35,
+        "nama_pasar": "Pasar Tunggulrejo",
+        "alamat": "Dsn Singgahan, Tunggulrejo, Singgahan",
+        "kelurahan": "TUNGGULREJO",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.78246491836043,
+          -7.028559094791086
+        ]
+      },
+      "properties": {
+        "FID": 36,
+        "nama_pasar": "Pasar Wage",
+        "alamat": "Dsn Demakan, Saringembat, Singgahan",
+        "kelurahan": "SARINGEMBAT",
+        "foto": " "
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          111.7156102,
+          -6.7719498
+        ]
+      },
+      "properties": {
+        "FID": 37,
+        "nama_pasar": "Pasar Rakyat Bulu",
+        "alamat": "Jl. Raya Bulu-Jatirogo No.50, Karanganyar, Sukolilo, Kec. Bancar",
+        "kelurahan": "SUKOLILO",
+        "foto": " "
+      }
+    }
+  ]
+}
