@@ -420,7 +420,6 @@
         .stat-top {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             margin-bottom: 12px;
         }
 
@@ -441,27 +440,6 @@
             background: var(--primary);
             color: white;
             transform: scale(1.05);
-        }
-
-        .stat-trend {
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            background: #f1f5f9;
-            color: var(--text-secondary);
-        }
-
-        .stat-trend.up { 
-            background: rgba(16, 185, 129, 0.08); 
-            color: var(--success); 
-        }
-        .stat-trend.down { 
-            background: rgba(239, 68, 68, 0.08); 
-            color: var(--danger); 
         }
 
         .stat-label {
@@ -636,16 +614,15 @@
                 </div>
             </div>
 
-            <!-- Stats Grid -->
+            <!-- Stats Grid (TANDA PANAH SUDAH DIHAPUS) -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-houses-fill"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +1</span>
                     </div>
                     <div class="stat-label">Total Desa</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">8</div>
+                        <div class="stat-value"><?php echo e($totalDesa ?? 0); ?></div>
                         <div class="stat-unit">desa</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 80%;"></div></div>
@@ -654,11 +631,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-geo-alt-fill"></i></div>
-                        <span class="stat-trend"><i class="bi bi-dash"></i> Tetap</span>
                     </div>
                     <div class="stat-label">Kecamatan</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">4</div>
+                        <div class="stat-value"><?php echo e($totalKecamatan ?? 0); ?></div>
                         <div class="stat-unit">kec.</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 40%;"></div></div>
@@ -667,11 +643,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-image-fill"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +1</span>
                     </div>
                     <div class="stat-label">Wisata Desa</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">5</div>
+                        <div class="stat-value"><?php echo e($totalWisata ?? 0); ?></div>
                         <div class="stat-unit">objek</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 50%;"></div></div>
@@ -680,11 +655,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-shop"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +2</span>
                     </div>
                     <div class="stat-label">Pasar Desa</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">6</div>
+                        <div class="stat-value"><?php echo e($totalPasar ?? 0); ?></div>
                         <div class="stat-unit">pasar</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 60%;"></div></div>
@@ -693,11 +667,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-building-fill"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +1</span>
                     </div>
                     <div class="stat-label">Kantor Desa</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">7</div>
+                        <div class="stat-value"><?php echo e($totalKantorDesa ?? 0); ?></div>
                         <div class="stat-unit">kantor</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 70%;"></div></div>
@@ -706,11 +679,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-wifi"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +3</span>
                     </div>
                     <div class="stat-label">WiFi Desa</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">12</div>
+                        <div class="stat-value"><?php echo e($totalWifiDesa ?? 0); ?></div>
                         <div class="stat-unit">titik</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 90%;"></div></div>
@@ -719,11 +691,10 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-briefcase-fill"></i></div>
-                        <span class="stat-trend up"><i class="bi bi-arrow-up-right"></i> +1</span>
                     </div>
                     <div class="stat-label">BUMDes</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">3</div>
+                        <div class="stat-value"><?php echo e($totalBumdes ?? 0); ?></div>
                         <div class="stat-unit">unit</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 30%;"></div></div>
@@ -732,12 +703,11 @@
                 <div class="stat-card">
                     <div class="stat-top">
                         <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-                        <span class="stat-trend down"><i class="bi bi-arrow-down-right"></i> -1</span>
                     </div>
                     <div class="stat-label">KKDMP</div>
                     <div class="stat-value-row">
-                        <div class="stat-value">9</div>
-                        <div class="stat-unit">orang</div>
+                        <div class="stat-value"><?php echo e($totalKkdmp ?? 0); ?></div>
+                        <div class="stat-unit">kelompok</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 75%;"></div></div>
                 </div>

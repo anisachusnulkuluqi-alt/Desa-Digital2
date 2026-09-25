@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Bumdes extends Model
 {
@@ -13,17 +12,18 @@ class Bumdes extends Model
     protected $table = 'bumdes';
 
     protected $fillable = [
-        'nama_bumdes',
         'desa_id',
+        'nama_bumdes',    
         'jenis_usaha',
+        'nama_ketua',
         'alamat',
-        'telepon',
-        'tahun_berdiri',
-        'status',
+        'latitude',
+        'longitude',
+        'foto',
     ];
 
-    public function desa(): BelongsTo
+    public function desa()
     {
-        return $this->belongsTo(Desa::class);
+        return $this->belongsTo(Desa::class, 'desa_id');
     }
 }

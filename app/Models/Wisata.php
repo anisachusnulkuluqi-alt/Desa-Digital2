@@ -13,7 +13,8 @@ class Wisata extends Model
 
     protected $fillable = [
         'nama_wisata',
-        'desa',
+        'desa_id',
+        'jenis',
         'jam_operasional',
         'htm',
         'reservasi',
@@ -21,7 +22,10 @@ class Wisata extends Model
         'latitude',
         'longitude',
         'foto',
-        'alt',
-        'jenis_wisata',
     ];
+
+    public function desa()
+    {
+        return $this->belongsTo(Desa::class, 'desa_id');
+    }
 }

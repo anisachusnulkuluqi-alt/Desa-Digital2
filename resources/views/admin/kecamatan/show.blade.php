@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $kecamatan->nama_kecamatan }} - Portal Desa Digital</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #f8fafc; }
@@ -32,65 +31,44 @@
         .main-content { padding: 28px 36px; max-width: 1200px; margin: 0 auto; }
         
         .page-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             color: #1e293b;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
+        .page-title i { color: #1e3a8a; font-size: 26px; }
         .page-subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: white;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 10px;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            transition: all 0.2s;
-        }
-        
-        .back-button:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-            color: #1e293b;
-        }
         
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin-bottom: 26px;
+            gap: 16px;
+            margin-bottom: 22px;
         }
         
         .stat-card {
             background: white;
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 10px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
             border-left: 4px solid #1e3a8a;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         
         .stat-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 20px;
             color: white;
             flex-shrink: 0;
         }
@@ -98,18 +76,49 @@
         .stat-icon.blue { background: linear-gradient(135deg, #3b82f6, #1e40af); }
         .stat-icon.green { background: linear-gradient(135deg, #10b981, #059669); }
         
-        .stat-info h3 { font-size: 32px; font-weight: 800; color: #1e293b; margin: 0; line-height: 1; }
-        .stat-info p { font-size: 12px; color: #64748b; margin: 4px 0 0 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+        .stat-info h3 { font-size: 24px; font-weight: 800; color: #1e293b; margin: 0; line-height: 1; }
+        .stat-info p { font-size: 11px; color: #64748b; margin: 4px 0 0 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+        
+        .search-bar {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .search-box { position: relative; }
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px 10px 40px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
+        }
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 15px;
+        }
         
         .table-card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             overflow: hidden;
         }
         
         .table-header {
-            padding: 20px 24px;
+            padding: 16px 20px;
             border-bottom: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
@@ -117,7 +126,7 @@
         }
         
         .table-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             color: #1e293b;
             display: flex;
@@ -129,16 +138,34 @@
             background: #1e3a8a;
             color: white;
             font-size: 11px;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 10px;
             font-weight: 600;
         }
+        
+        .btn-action-header {
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .btn-add { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+        .btn-add:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); color: white; }
         
         .table-simple { width: 100%; border-collapse: collapse; }
         .table-simple thead { background: #f8fafc; }
         
         .table-simple th {
-            padding: 14px 24px;
+            padding: 12px 20px;
             font-size: 11px;
             font-weight: 700;
             color: #64748b;
@@ -149,59 +176,51 @@
         }
         
         .table-simple td {
-            padding: 16px 24px;
+            padding: 14px 20px;
             font-size: 14px;
             color: #1e293b;
             border-bottom: 1px solid #f1f5f9;
         }
         
         .table-simple tbody tr:last-child td { border-bottom: none; }
-        .table-simple tbody tr:hover { background: #f8fafc; }
+        .table-simple tbody tr { cursor: pointer; transition: all 0.2s; }
+        .table-simple tbody tr:hover { background: #f1f5f9; }
         
-        .desa-link {
-            display: inline-flex;
+        .desa-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 14px;
+            display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
-            color: #1e293b;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: all 0.2s;
         }
         
-        .desa-link:hover {
-            background: #eff6ff;
-            color: #1e40af;
-            transform: translateX(4px);
-        }
-        
-        .desa-icon {
-            width: 34px;
-            height: 34px;
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            border-radius: 8px;
+        .desa-name-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: #dbeafe;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #1e40af;
-            font-size: 15px;
+            font-size: 14px;
             flex-shrink: 0;
         }
         
         .badge-jenis {
-            padding: 5px 12px;
-            border-radius: 8px;
+            padding: 4px 10px;
+            border-radius: 6px;
             font-size: 11px;
             font-weight: 600;
         }
         
         .badge-desa { background: #dbeafe; color: #1e40af; }
-        .badge-kelurahan { background: #fef3c7; color: #d97706; }
+        .badge-kelurahan { background: #fef3c7; color: #92400e; }
         
-        .empty-state { text-align: center; padding: 60px; color: #94a3b8; }
-        .empty-state i { font-size: 48px; display: block; margin-bottom: 16px; }
-        
+        .empty-state { text-align: center; padding: 40px; color: #94a3b8; }
+        .empty-state i { font-size: 32px; display: block; margin-bottom: 10px; }
+
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
             .main-content { padding: 16px; }
@@ -224,11 +243,6 @@
     </div>
 
     <div class="main-content">
-        <a href="{{ route('admin.kecamatan.index') }}" class="back-button">
-            <i class="bi bi-arrow-left"></i>
-            Kembali ke Daftar Kecamatan
-        </a>
-
         <h1 class="page-title">
             <i class="bi bi-geo-alt-fill"></i>
             {{ $kecamatan->nama_kecamatan }}
@@ -238,22 +252,29 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon blue">
-                    <i class="bi bi-geo-alt-fill"></i>
+                    <i class="bi bi-houses-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalDesa }}</h3>
-                    <p>Total Desa</p>
+                    <h3>{{ $desas->count() }}</h3>
+                    <p>TOTAL DESA</p>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-icon green">
-                    <i class="bi bi-houses-fill"></i>
+                    <i class="bi bi-geo-alt-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $kecamatan->desas->where('jenis', 'Desa')->count() }}</h3>
-                    <p>Desa</p>
+                    <h3>{{ $kecamatan->nama_kecamatan }}</h3>
+                    <p>KECAMATAN</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" id="searchInput" placeholder="Cari nama desa...">
             </div>
         </div>
 
@@ -262,7 +283,13 @@
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Desa
-                    <span class="badge-count">{{ $totalDesa }} Desa</span>
+                    <span class="badge-count">{{ $desas->count() }} Desa</span>
+                </div>
+                <div>
+                    <button type="button" class="btn-action-header btn-add" onclick="window.location.href='{{ route('admin.desa.index') }}'">
+                        <i class="bi bi-plus-lg"></i>
+                        Tambah Desa
+                    </button>
                 </div>
             </div>
 
@@ -270,36 +297,36 @@
                 <thead>
                     <tr>
                         <th style="width: 60px;">NO</th>
-                        <th>NAMA DESA/KELURAHAN</th>
-                        <th>KODE DESA</th>
+                        <th>NAMA DESA</th>
                         <th>JENIS</th>
+                        <th>KODE DESA</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @forelse($kecamatan->desas as $index => $desa)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
+                <tbody id="desaTable">
+                    @forelse($desas as $index => $desa)
+                    <tr data-id="{{ $desa->id }}" onclick="window.location.href='{{ route('admin.desa.index') }}'">
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
                         <td>
-                            <a href="{{ route('admin.desa.show', $desa->id) }}" class="desa-link">
-                                <div class="desa-icon">
-                                    <i class="bi bi-geo-alt"></i>
+                            <div class="desa-name">
+                                <div class="desa-name-icon">
+                                    <i class="bi bi-geo-alt-fill"></i>
                                 </div>
-                                <span>{{ $desa->nama_desa }}</span>
-                            </a>
+                                {{ $desa->nama_desa }}
+                            </div>
                         </td>
-                        <td>{{ $desa->kode_desa ?? '-' }}</td>
                         <td>
-                            <span class="badge-jenis {{ $desa->jenis == 'Desa' ? 'badge-desa' : 'badge-kelurahan' }}">
-                                {{ $desa->jenis ?? '-' }}
+                            <span class="badge-jenis {{ ($desa->jenis ?? 'Desa') === 'Kelurahan' ? 'badge-kelurahan' : 'badge-desa' }}">
+                                {{ $desa->jenis ?? 'Desa' }}
                             </span>
                         </td>
+                        <td>{{ $desa->kode_desa ?? '-' }}</td>
                     </tr>
                     @empty
                     <tr>
                         <td colspan="4">
                             <div class="empty-state">
                                 <i class="bi bi-inbox"></i>
-                                Belum ada desa di kecamatan ini
+                                Belum ada data desa
                             </div>
                         </td>
                     </tr>
@@ -308,5 +335,19 @@
             </table>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('searchInput').addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                const rows = document.querySelectorAll('#desaTable tr[data-id]');
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(filter) ? '' : 'none';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kkdmp extends Model
 {
@@ -13,16 +12,19 @@ class Kkdmp extends Model
     protected $table = 'kkdmp';
 
     protected $fillable = [
-        'judul_dokumen',
         'desa_id',
-        'tahun',
-        'deskripsi',
-        'file_url',
-        'status',
+        'nama_desa',
+        'jenis',
+        'nama_ketua',
+        'no_ahu',
+        'alamat',
+        'latitude',
+        'longitude',
+        'foto',
     ];
 
-    public function desa(): BelongsTo
+    public function desa()
     {
-        return $this->belongsTo(Desa::class);
+        return $this->belongsTo(Desa::class, 'desa_id');
     }
 }

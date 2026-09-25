@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class WifiDesa extends Model
+class KantorDesa extends Model
 {
     use HasFactory;
 
-    protected $table = 'wifi_desa';
+    protected $table = 'kantor_desa';
 
     protected $fillable = [
-        'desa_id',
-        'nama_ssid',
-        'fasilitator',
+        'nama_kantor',
         'alamat',
+        'link_maps',
         'latitude',
         'longitude',
+        'desa_id',
         'foto',
     ];
 

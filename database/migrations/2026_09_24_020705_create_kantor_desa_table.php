@@ -8,16 +8,14 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('kkdmp', function (Blueprint $table) {
+        Schema::create('kantor_desa', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('desa_id')->nullable();
-            $table->string('nama_desa');
-            $table->string('jenis')->nullable();
-            $table->string('nama_ketua')->nullable();
-            $table->string('no_ahu')->nullable();
+            $table->string('nama_kantor');
             $table->text('alamat')->nullable();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->unsignedBigInteger('desa_id')->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('email')->nullable();
+            $table->string('jam_operasional')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
             
@@ -27,6 +25,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('kkdmp');
+        Schema::dropIfExists('kantor_desa');
     }
 };

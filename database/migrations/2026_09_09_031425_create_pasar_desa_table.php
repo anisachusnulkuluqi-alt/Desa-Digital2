@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('pasar_desa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pasar', 150);
-            $table->foreignId('desa_id')->constrained('desa')->onDelete('cascade');
+            $table->string('nama_pasar');
             $table->text('alamat')->nullable();
-            $table->string('hari_operasional', 100)->nullable();
-            $table->text('komoditas_utama')->nullable();
-            $table->integer('jumlah_pedagang')->nullable();
+            $table->string('desa_kelurahan')->nullable();
+            $table->string('latitude', 20)->nullable();
+            $table->string('longitude', 20)->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

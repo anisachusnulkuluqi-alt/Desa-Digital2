@@ -15,14 +15,11 @@ class Kecamatan extends Model
         'nama_kecamatan',
     ];
 
-    // Relasi ke Desa
-    public function desas()
+    /**
+     * Relasi ke tabel desa (hasMany)
+     */
+    public function desa()
     {
         return $this->hasMany(Desa::class, 'kecamatan_id');
-    }
-
-    public function getTotalDesaAttribute()
-    {
-        return $this->desas()->count();
     }
 }

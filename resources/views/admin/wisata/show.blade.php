@@ -3,246 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Wisata - {{ $wisata->nama_wisata }} - Portal Desa Digital</title>
-    
+    <title>Detail Wisata - {{ $wisata->nama_wisata ?? 'Wisata' }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #f8fafc; }
+        body { background: #f8fafc; color: #1e293b; font-size: 13px; }
         
-        .page-header {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 12px 36px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .breadcrumb { margin: 0; font-size: 14px; }
+        .page-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; }
+        .breadcrumb { margin: 0; font-size: 13px; }
         .breadcrumb a { color: #64748b; text-decoration: none; }
-        .breadcrumb a:hover { color: #1e3a8a; }
         .breadcrumb-item.active { color: #1e3a8a; font-weight: 600; }
+        .date-display { font-size: 12px; color: #64748b; display: flex; align-items: center; gap: 6px; }
+        .main-content { padding: 22px 28px; max-width: 1200px; margin: 0 auto; }
+        .page-title { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .page-title i { color: #1e3a8a; font-size: 22px; }
+        .page-subtitle { color: #64748b; font-size: 12px; margin-bottom: 20px; }
         
-        .date-display {
-            font-size: 13px;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .wisata-header-card { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); border-radius: 12px; padding: 20px 24px; color: white; margin-bottom: 18px; }
+        .wisata-header-card h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .wisata-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+        .badge-jenis { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
         
-        .main-content { padding: 28px 36px; max-width: 1200px; margin: 0 auto; }
+        .foto-section { background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 18px; }
+        .foto-section h4 { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .foto-container { max-width: 450px; border-radius: 10px; overflow: hidden; background: #f1f5f9; }
+        .foto-container img { width: 100%; height: auto; max-height: 280px; object-fit: cover; display: block; }
         
-        .page-title {
-            font-size: 26px;
-            font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .info-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
+        .info-card-box { background: white; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-left: 3px solid #1e3a8a; }
+        .info-card-box .label { font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+        .info-card-box .value { font-size: 16px; font-weight: 700; color: #1e293b; }
         
-        .page-title i { color: #1e3a8a; font-size: 28px; }
-        .page-subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+        .section-title { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .section-title i { color: #1e3a8a; }
+        .deskripsi-box { background: white; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); margin-bottom: 18px; border-left: 3px solid #1e3a8a; }
+        .deskripsi-text { font-size: 13px; line-height: 1.6; color: #475569; }
         
-        .detail-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+        .koordinat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px; }
+        .koordinat-box { background: white; border-radius: 10px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-left: 3px solid #1e3a8a; }
+        .koordinat-box .label { font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 6px; }
+        .koordinat-box .value { font-size: 16px; font-weight: 700; color: #1e293b; }
         
-        .detail-header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            padding: 28px 34px;
-            color: white;
-        }
+        .btn-maps { background: white; color: #1e3a8a; border: 1.5px solid #e2e8f0; padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 12px; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; margin-bottom: 18px; }
+        .btn-maps:hover { background: #eff6ff; border-color: #1e3a8a; }
         
-        .detail-header h2 {
-            font-size: 26px;
-            font-weight: 800;
-            margin: 0 0 8px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .action-buttons { display: flex; gap: 10px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+        .btn-action { padding: 9px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s; text-decoration: none; border: none; }
+        .btn-edit { background: linear-gradient(135deg, #14b8a6, #0f766e); color: white; }
+        .btn-edit:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(20, 184, 166, 0.3); color: white; }
+        .btn-delete { background: #fee2e2; color: #dc2626; }
+        .btn-delete:hover { background: #fecaca; color: #dc2626; }
         
-        .detail-header p { margin: 0; opacity: 0.9; font-size: 15px; }
-        
-        .detail-body { padding: 32px 34px; }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-            margin-bottom: 28px;
-        }
-        
-        .info-item {
-            padding: 18px 22px;
-            background: #f8fafc;
-            border-radius: 10px;
-            border-left: 4px solid #1e3a8a;
-        }
-        
-        .info-label {
-            font-size: 11px;
-            color: #64748b;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-        
-        .info-value {
-            font-size: 17px;
-            font-weight: 700;
-            color: #1e293b;
-        }
-        
-        .info-value.text-muted {
-            color: #94a3b8;
-            font-style: italic;
-        }
-        
-        .badge-jenis {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            background: rgba(255,255,255,0.2);
-            color: white;
-        }
-        
-        .foto-section { margin-bottom: 28px; }
-        
-        .foto-container {
-            width: 100%;
-            max-height: 500px;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .foto-container img {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-        }
-        
-        .foto-placeholder {
-            padding: 80px 20px;
-            text-align: center;
-            color: #94a3b8;
-        }
-        
-        .foto-placeholder i {
-            font-size: 64px;
-            margin-bottom: 16px;
-            display: block;
-        }
-        
-        .deskripsi-section { margin-bottom: 28px; }
-        
-        .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .deskripsi-content {
-            padding: 22px 24px;
-            background: #f8fafc;
-            border-radius: 10px;
-            border-left: 4px solid #1e3a8a;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #1e293b;
-        }
-        
-        .koordinat-section { margin-bottom: 28px; }
-        
-        .koordinat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            padding-top: 24px;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 28px;
-        }
-        
-        .btn {
-            padding: 11px 24px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            text-decoration: none;
-        }
-        
-        .btn-back {
-            background: white;
-            color: #64748b;
-            border: 1.5px solid #e2e8f0;
-        }
-        
-        .btn-back:hover {
-            background: #f8fafc;
-            border-color: #cbd5e1;
-            color: #1e293b;
-        }
-        
-        .btn-edit {
-            background: linear-gradient(135deg, #14b8a6, #0f766e);
-            color: white;
-            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.25);
-        }
-        
-        .btn-edit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(20, 184, 166, 0.35);
-            color: white;
-        }
-        
-        .btn-delete {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        
-        .btn-delete:hover {
-            background: #dc2626;
-            color: white;
-        }
+        /* MODAL STYLES */
+        .modal-content { border-radius: 14px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .modal-header-form { background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%); color: white; border-radius: 14px 14px 0 0; padding: 18px 22px; border: none; }
+        .modal-header-form .modal-title { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .modal-header-form .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
+        .modal-body-form { padding: 20px 22px; }
+        .modal-footer-form { border-top: 1px solid #e2e8f0; padding: 14px 22px; background: #f8fafc; border-radius: 0 0 14px 14px; }
+        .form-label-custom { font-size: 11px; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
+        .form-input-custom { padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; width: 100%; }
+        .form-input-custom:focus { outline: none; border-color: #1e3a8a; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08); }
+        .btn-modal-cancel { background: white; color: #64748b; border: 1.5px solid #e2e8f0; padding: 8px 18px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .btn-modal-save { background: linear-gradient(135deg, #14b8a6, #0f766e); color: white; border: none; padding: 8px 20px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
         
         @media (max-width: 768px) {
-            .info-grid { grid-template-columns: 1fr; }
-            .koordinat-grid { grid-template-columns: 1fr; }
-            .main-content { padding: 16px; }
+            .info-cards-grid, .koordinat-grid { grid-template-columns: 1fr; }
+            .main-content { padding: 14px; }
         }
     </style>
 </head>
@@ -262,147 +91,187 @@
     </div>
 
     <div class="main-content">
-        <h1 class="page-title">
-            <i class="bi bi-image-fill"></i>
-            Detail Wisata
-        </h1>
+        <h1 class="page-title"><i class="bi bi-image-fill"></i> Detail Wisata</h1>
         <p class="page-subtitle">Informasi lengkap {{ $wisata->nama_wisata }}</p>
 
-        <div class="detail-card">
-            <div class="detail-header">
-                <h2>
-                    <i class="bi bi-image-fill"></i>
-                    {{ $wisata->nama_wisata }}
-                </h2>
-                <p>
-                    <i class="bi bi-geo-alt-fill"></i>
-                    Desa {{ $wisata->desa ?? '-' }}
-                    @if($wisata->jenis_wisata)
-                        • <span class="badge-jenis">{{ $wisata->jenis_wisata }}</span>
-                    @endif
-                </p>
+        <div class="wisata-header-card">
+            <h2><i class="bi bi-image-fill"></i> {{ $wisata->nama_wisata }}</h2>
+            <div class="wisata-meta">
+                <span><i class="bi bi-geo-alt-fill"></i> {{ $wisata->desa ? 'Desa ' . $wisata->desa : '-' }}</span>
+                @if($wisata->jenis_wisata)
+                <span class="badge-jenis">{{ $wisata->jenis_wisata }}</span>
+                @endif
             </div>
+        </div>
+
+        @if($wisata->foto)
+        <div class="foto-section">
+            <h4><i class="bi bi-camera-fill"></i> Foto Wisata</h4>
+            <div class="foto-container">
+                <img src="{{ asset('storage/' . $wisata->foto) }}" alt="{{ $wisata->nama_wisata }}">
+            </div>
+        </div>
+        @endif
+
+        <div class="info-cards-grid">
+            <div class="info-card-box">
+                <div class="label">JAM OPERASIONAL</div>
+                <div class="value">{{ $wisata->jam_operasional ?? '-' }}</div>
+            </div>
+            <div class="info-card-box">
+                <div class="label">HARGA TIKET MASUK</div>
+                <div class="value">{{ $wisata->htm ? 'Rp ' . number_format($wisata->htm, 0, ',', '.') : '-' }}</div>
+            </div>
+            <div class="info-card-box">
+                <div class="label">RESERVASI</div>
+                <div class="value" style="font-size: 14px;">{{ $wisata->reservasi ?? '-' }}</div>
+            </div>
+        </div>
+
+        <h4 class="section-title"><i class="bi bi-file-text-fill"></i> Deskripsi</h4>
+        <div class="deskripsi-box">
+            <div class="deskripsi-text">{{ $wisata->deskripsi ?? 'Belum ada deskripsi.' }}</div>
+        </div>
+
+        @if($wisata->latitude || $wisata->longitude)
+        <h4 class="section-title"><i class="bi bi-geo-alt-fill"></i> Koordinat Lokasi</h4>
+        <div class="koordinat-grid">
+            <div class="koordinat-box">
+                <div class="label">LATITUDE</div>
+                <div class="value">{{ $wisata->latitude ?? '-' }}</div>
+            </div>
+            <div class="koordinat-box">
+                <div class="label">LONGITUDE</div>
+                <div class="value">{{ $wisata->longitude ?? '-' }}</div>
+            </div>
+        </div>
+        @if($wisata->latitude && $wisata->longitude)
+        <a href="https://www.google.com/maps?q={{ $wisata->latitude }},{{ $wisata->longitude }}" target="_blank" class="btn-maps">
+            <i class="bi bi-map-fill"></i> Buka di Google Maps
+        </a>
+        @endif
+        @endif
+
+        <div class="action-buttons">
+            {{-- TOMBOL EDIT MEMBUKA MODAL --}}
+            <button type="button" class="btn-action btn-edit" data-bs-toggle="modal" data-bs-target="#modalEditWisata">
+                <i class="bi bi-pencil-fill"></i> Edit Data
+            </button>
             
-            <div class="detail-body">
-                {{-- Foto --}}
-                @if($wisata->foto)
-                <div class="foto-section">
-                    <h3 class="section-title">
-                        <i class="bi bi-camera-fill"></i>
-                        Foto Wisata
-                    </h3>
-                    <div class="foto-container">
-                        <img src="{{ asset('storage/' . $wisata->foto) }}" alt="{{ $wisata->alt ?? $wisata->nama_wisata }}">
-                    </div>
-                    @if($wisata->alt)
-                    <p style="margin-top: 10px; font-size: 12px; color: #64748b; font-style: italic;">
-                        <i class="bi bi-info-circle"></i> {{ $wisata->alt }}
-                    </p>
-                    @endif
-                </div>
-                @else
-                <div class="foto-section">
-                    <h3 class="section-title">
-                        <i class="bi bi-camera-fill"></i>
-                        Foto Wisata
-                    </h3>
-                    <div class="foto-container">
-                        <div class="foto-placeholder">
-                            <i class="bi bi-image"></i>
-                            <p>Belum ada foto</p>
-                        </div>
-                    </div>
-                </div>
-                @endif
+            <form action="{{ route('admin.wisata.destroy', $wisata->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-action btn-delete">
+                    <i class="bi bi-trash-fill"></i> Hapus
+                </button>
+            </form>
+        </div>
+    </div>
 
-                {{-- Informasi Dasar --}}
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-label">Jam Operasional</div>
-                        <div class="info-value">
-                            {{ $wisata->jam_operasional ?? '-' }}
-                        </div>
+    <!-- MODAL EDIT WISATA -->
+    <div class="modal fade" id="modalEditWisata" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-form">
+                    <div>
+                        <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Edit Data Wisata</h5>
+                        <p style="font-size: 11px; margin: 2px 0 0 0; opacity: 0.9;">Ubah data {{ $wisata->nama_wisata }}</p>
                     </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Harga Tiket Masuk</div>
-                        <div class="info-value">
-                            {{ $wisata->htm ? 'Rp ' . number_format($wisata->htm) : '-' }}
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-label">Reservasi</div>
-                        <div class="info-value">
-                            {{ $wisata->reservasi ?? '-' }}
-                        </div>
-                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+                
+                <form action="{{ route('admin.wisata.update', $wisata->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body modal-body-form">
+                        <div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px;">
+                            <div style="font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                                <i class="bi bi-info-circle-fill"></i> Informasi Dasar
+                            </div>
+                        </div>
 
-                {{-- Deskripsi --}}
-                @if($wisata->deskripsi)
-                <div class="deskripsi-section">
-                    <h3 class="section-title">
-                        <i class="bi bi-file-text-fill"></i>
-                        Deskripsi
-                    </h3>
-                    <div class="deskripsi-content">
-                        {{ $wisata->deskripsi }}
-                    </div>
-                </div>
-                @endif
-
-                {{-- Koordinat --}}
-                @if($wisata->latitude || $wisata->longitude)
-                <div class="koordinat-section">
-                    <h3 class="section-title">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        Koordinat Lokasi
-                    </h3>
-                    <div class="koordinat-grid">
-                        <div class="info-item">
-                            <div class="info-label">Latitude</div>
-                            <div class="info-value">{{ $wisata->latitude ?? '-' }}</div>
+                        <div class="row">
+                            <div class="col-md-8 mb-3">
+                                <label class="form-label-custom">NAMA WISATA *</label>
+                                <input type="text" name="nama_wisata" class="form-control form-input-custom" value="{{ $wisata->nama_wisata }}" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label-custom">DESA</label>
+                                <input type="text" name="desa" class="form-control form-input-custom" value="{{ $wisata->desa }}">
+                            </div>
                         </div>
-                        <div class="info-item">
-                            <div class="info-label">Longitude</div>
-                            <div class="info-value">{{ $wisata->longitude ?? '-' }}</div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label-custom">JAM OPERASIONAL</label>
+                                <input type="text" name="jam_operasional" class="form-control form-input-custom" value="{{ $wisata->jam_operasional }}">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label-custom">HTM (RP)</label>
+                                <input type="number" name="htm" class="form-control form-input-custom" value="{{ $wisata->htm }}">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label-custom">RESERVASI</label>
+                                <input type="text" name="reservasi" class="form-control form-input-custom" value="{{ $wisata->reservasi }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label-custom">JENIS WISATA</label>
+                            <select name="jenis_wisata" class="form-select form-input-custom">
+                                <option value="">Pilih jenis</option>
+                                <option value="Wisata Alam" {{ $wisata->jenis_wisata == 'Wisata Alam' ? 'selected' : '' }}>Wisata Alam</option>
+                                <option value="Wisata Budaya" {{ $wisata->jenis_wisata == 'Wisata Budaya' ? 'selected' : '' }}>Wisata Budaya</option>
+                                <option value="Wisata Edukasi" {{ $wisata->jenis_wisata == 'Wisata Edukasi' ? 'selected' : '' }}>Wisata Edukasi</option>
+                                <option value="Wisata Kuliner" {{ $wisata->jenis_wisata == 'Wisata Kuliner' ? 'selected' : '' }}>Wisata Kuliner</option>
+                                <option value="Wisata Sejarah" {{ $wisata->jenis_wisata == 'Wisata Sejarah' ? 'selected' : '' }}>Wisata Sejarah</option>
+                                <option value="Wisata Buatan" {{ $wisata->jenis_wisata == 'Wisata Buatan' ? 'selected' : '' }}>Wisata Buatan</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label-custom">DESKRIPSI</label>
+                            <textarea name="deskripsi" class="form-control form-input-custom" rows="3">{{ $wisata->deskripsi }}</textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom">KOORDINAT (Lat, Long)</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" name="latitude" class="form-control form-input-custom" value="{{ $wisata->latitude }}" placeholder="Latitude">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" name="longitude" class="form-control form-input-custom" value="{{ $wisata->longitude }}" placeholder="Longitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom">FOTO UTAMA</label>
+                                <input type="file" name="foto" class="form-control form-input-custom" accept="image/*">
+                                @if($wisata->foto)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . $wisata->foto) }}" style="max-width: 120px; border-radius: 6px;">
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label-custom">GALERI (Opsional)</label>
+                            <input type="file" name="galeri[]" class="form-control form-input-custom" accept="image/*" multiple>
                         </div>
                     </div>
-                    @if($wisata->latitude && $wisata->longitude)
-                    <div style="margin-top: 14px;">
-                        <a href="https://www.google.com/maps?q={{ $wisata->latitude }},{{ $wisata->longitude }}" target="_blank" class="btn btn-back" style="font-size: 12px; padding: 8px 16px;">
-                            <i class="bi bi-map-fill"></i>
-                            Buka di Google Maps
-                        </a>
-                    </div>
-                    @endif
-                </div>
-                @endif
 
-                {{-- ✅ ACTION BUTTONS (SUDAH DIPERBAIKI 100%) --}}
-                <div class="action-buttons">
-                    <a href="{{ route('admin.wisata.index') }}" class="btn btn-back">
-                        <i class="bi bi-arrow-left"></i>
-                        Kembali
-                    </a>
-                    
-                    <a href="{{ route('admin.wisata.edit', $wisata->id) }}" class="btn btn-edit">
-                        <i class="bi bi-pencil"></i>
-                        Edit Data
-                    </a>
-                    
-                    <form action="{{ route('admin.wisata.destroy', $wisata->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus wisata ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-delete">
-                            <i class="bi bi-trash"></i>
-                            Hapus
-                        </button>
-                    </form>
-                </div>
+                    <div class="modal-footer modal-footer-form">
+                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn-modal-save">Simpan Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

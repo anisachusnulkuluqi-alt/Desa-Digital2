@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Wisata Desa - Portal Desa Digital</title>
+    <title>Kantor Desa - Portal Desa Digital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -186,7 +186,7 @@
         .table-simple tbody tr { cursor: pointer; transition: all 0.2s; }
         .table-simple tbody tr:hover { background: #f1f5f9; }
         
-        .wisata-name {
+        .kantor-name {
             font-weight: 600;
             color: #1e293b;
             font-size: 14px;
@@ -195,7 +195,7 @@
             gap: 10px;
         }
         
-        .wisata-name-icon {
+        .kantor-name-icon {
             width: 32px;
             height: 32px;
             border-radius: 6px;
@@ -208,15 +208,7 @@
             flex-shrink: 0;
         }
         
-        .badge-jenis {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
+        /* NOTIFIKASI BANNER */
         .alert-banner {
             background: #dcfce7;
             border: 1px solid #86efac;
@@ -233,7 +225,10 @@
             box-shadow: 0 2px 8px rgba(22, 101, 52, 0.08);
         }
         
-        .alert-banner i { font-size: 18px; color: #16a34a; }
+        .alert-banner i {
+            font-size: 18px;
+            color: #16a34a;
+        }
         
         .alert-banner .close-btn {
             margin-left: auto;
@@ -247,7 +242,9 @@
             transition: opacity 0.2s;
         }
         
-        .alert-banner .close-btn:hover { opacity: 1; }
+        .alert-banner .close-btn:hover {
+            opacity: 1;
+        }
         
         @keyframes slideDown {
             from { opacity: 0; transform: translateY(-10px); }
@@ -285,7 +282,7 @@
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            width: 140px;
+            width: 130px;
             flex-shrink: 0;
         }
         
@@ -293,6 +290,15 @@
             font-size: 14px;
             color: #1e293b;
             font-weight: 600;
+        }
+        
+        .detail-value a {
+            color: #1e40af;
+            text-decoration: none;
+        }
+        
+        .detail-value a:hover {
+            text-decoration: underline;
         }
         
         .detail-foto {
@@ -344,17 +350,6 @@
             color: #0369a1;
             border-left: 3px solid #0ea5e9;
         }
-        
-        .section-divider {
-            font-size: 11px;
-            font-weight: 700;
-            color: #1e3a8a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 16px 0 10px 0;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #e2e8f0;
-        }
 
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
@@ -367,7 +362,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item active">Wisata Desa</li>
+                <li class="breadcrumb-item active">Kantor Desa</li>
             </ol>
         </nav>
         <div class="date-display">
@@ -377,7 +372,7 @@
     </div>
 
     <div class="main-content">
-        {{-- ✅ NOTIFIKASI BANNER --}}
+        <!-- NOTIFIKASI BANNER -->
         <div id="notifBanner" style="display: none;">
             <div class="alert-banner">
                 <i class="bi bi-check-circle-fill"></i>
@@ -389,19 +384,19 @@
         </div>
 
         <h1 class="page-title">
-            <i class="bi bi-image-fill"></i>
-            Wisata Desa
+            <i class="bi bi-building"></i>
+            Kantor Desa
         </h1>
-        <p class="page-subtitle">Kelola data wisata desa di Kabupaten Tuban</p>
+        <p class="page-subtitle">Kelola data kantor desa di Kabupaten Tuban</p>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon blue">
-                    <i class="bi bi-image-fill"></i>
+                    <i class="bi bi-building"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalWisata ?? 0 }}</h3>
-                    <p>TOTAL WISATA</p>
+                    <h3>{{ $totalKantor ?? 0 }}</h3>
+                    <p>Total Kantor</p>
                 </div>
             </div>
             
@@ -419,7 +414,7 @@
         <div class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama wisata...">
+                <input type="text" id="searchInput" placeholder="Cari nama kantor...">
             </div>
         </div>
 
@@ -427,13 +422,13 @@
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
-                    Daftar Wisata
-                    <span class="badge-count">{{ $wisatas->count() }} Wisata</span>
+                    Daftar Kantor Desa
+                    <span class="badge-count">{{ $kantors->count() }} Kantor</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
                         <i class="bi bi-plus-lg"></i>
-                        Tambah Wisata
+                        Tambah Kantor
                     </button>
                 </div>
             </div>
@@ -441,32 +436,31 @@
             <table class="table-simple">
                 <thead>
                     <tr>
-                        <th style="width: 60px;">NO</th>
-                        <th>NAMA WISATA</th>
+                        <th style="width: 50px;">NO</th>
+                        <th>NAMA KANTOR</th>
                         <th>DESA</th>
                     </tr>
                 </thead>
-                <tbody id="wisataTable">
-                    @forelse($wisatas as $index => $wisata)
-                    <tr data-id="{{ $wisata->id }}" 
-                        onclick="showDetail('{{ $wisata->id }}', '{{ addslashes($wisata->nama_wisata) }}', '{{ addslashes($wisata->desa->nama_desa ?? '-') }}', '{{ addslashes($wisata->jenis ?? '') }}', '{{ addslashes($wisata->jam_operasional ?? '') }}', '{{ addslashes($wisata->htm ?? '') }}', '{{ addslashes($wisata->reservasi ?? '') }}', '{{ addslashes($wisata->deskripsi ?? '') }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ $wisata->foto ?? '' }}')">
+                <tbody id="kantorTable">
+                    @forelse($kantors as $index => $kantor)
+                    <tr data-id="{{ $kantor->id }}" onclick="showDetail({{ $kantor->id }}, '{{ addslashes($kantor->nama_kantor) }}', '{{ addslashes($kantor->alamat ?? '-') }}', '{{ addslashes($kantor->desa->nama_desa ?? '-') }}', '{{ addslashes($kantor->link_maps ?? '') }}', '{{ $kantor->latitude ?? '-' }}', '{{ $kantor->longitude ?? '-' }}', '{{ $kantor->foto ?? '' }}')">
                         <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
                         <td>
-                            <div class="wisata-name">
-                                <div class="wisata-name-icon">
-                                    <i class="bi bi-image-fill"></i>
+                            <div class="kantor-name">
+                                <div class="kantor-name-icon">
+                                    <i class="bi bi-building"></i>
                                 </div>
-                                {{ $wisata->nama_wisata }}
+                                {{ $kantor->nama_kantor }}
                             </div>
                         </td>
-                        <td>{{ $wisata->desa->nama_desa ?? '-' }}</td>
+                        <td>{{ $kantor->desa->nama_desa ?? '-' }}</td>
                     </tr>
                     @empty
                     <tr>
                         <td colspan="3">
                             <div class="empty-state">
                                 <i class="bi bi-inbox"></i>
-                                Belum ada data wisata
+                                Belum ada data kantor desa
                             </div>
                         </td>
                     </tr>
@@ -476,52 +470,40 @@
         </div>
     </div>
 
-    <!-- Modal Detail Wisata -->
+    <!-- Modal Detail Kantor -->
     <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="bi bi-image-fill"></i>
-                        <span id="detailNamaWisata">Detail Wisata</span>
+                        <i class="bi bi-building"></i>
+                        <span id="detailNamaKantor">Detail Kantor</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="detail-row">
-                        <div class="detail-label">Nama Wisata</div>
+                        <div class="detail-label">Nama Kantor</div>
                         <div class="detail-value" id="detailNama"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Alamat</div>
+                        <div class="detail-value" id="detailAlamat"></div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Desa/Kelurahan</div>
                         <div class="detail-value" id="detailDesa"></div>
                     </div>
                     <div class="detail-row">
-                        <div class="detail-label">Jenis Wisata</div>
-                        <div class="detail-value" id="detailJenis"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Jam Operasional</div>
-                        <div class="detail-value" id="detailJam"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">HTM</div>
-                        <div class="detail-value" id="detailHtm"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Reservasi</div>
-                        <div class="detail-value" id="detailReservasi"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Deskripsi</div>
-                        <div class="detail-value" id="detailDeskripsi"></div>
+                        <div class="detail-label">Link Maps</div>
+                        <div class="detail-value" id="detailMaps"></div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Koordinat</div>
                         <div class="detail-value" id="detailKoordinat"></div>
                     </div>
                     <div class="detail-row" style="flex-direction: column; align-items: flex-start;">
-                        <div class="detail-label" style="margin-bottom: 8px;">Foto</div>
+                        <div class="detail-label" style="margin-bottom: 8px;">Foto Kantor</div>
                         <div class="detail-value" id="detailFotoContainer" style="width: 100%;">
                             <span style="color: #94a3b8;">Tidak ada foto</span>
                         </div>
@@ -539,27 +521,47 @@
         </div>
     </div>
 
-    <!-- Modal Tambah/Edit Wisata -->
+    <!-- Modal Tambah/Edit Kantor -->
     <div class="modal fade" id="modalForm" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFormTitle">
                         <i class="bi bi-plus-circle"></i>
-                        Tambah Wisata
+                        Tambah Kantor
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formWisata" enctype="multipart/form-data">
+                <form id="formKantor" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="wisataId" name="id">
+                    <input type="hidden" id="kantorId" name="id">
                     <div class="modal-body">
-                        <div class="section-divider">Informasi Dasar</div>
                         <div class="mb-3">
                             <label class="form-label-custom">
-                                Nama Wisata <span class="required">*</span>
+                                Nama Kantor <span class="required">*</span>
                             </label>
-                            <input type="text" id="namaWisata" name="nama_wisata" class="form-input-custom" required>
+                            <input type="text" id="namaKantor" name="nama_kantor" class="form-input-custom" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label-custom">Alamat Lengkap</label>
+                            <textarea id="alamat" name="alamat" class="form-input-custom" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label-custom">Link Google Maps</label>
+                            <input type="url" id="linkMaps" name="link_maps" class="form-input-custom">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom">Latitude</label>
+                                <input type="text" id="latitude" name="latitude" class="form-input-custom">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom">Longitude</label>
+                                <input type="text" id="longitude" name="longitude" class="form-input-custom">
+                            </div>
                         </div>
 
                         <div class="row">
@@ -573,56 +575,17 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Jenis Wisata</label>
-                                <input type="text" id="jenis" name="jenis" class="form-input-custom">
+                                <label class="form-label-custom">Foto Kantor</label>
+                                <input type="file" id="foto" name="foto" class="form-input-custom" accept="image/*">
+                                <div id="currentFoto"></div>
                             </div>
-                        </div>
-
-                        <div class="section-divider">Informasi Kunjungan</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Jam Operasional</label>
-                                <input type="text" id="jamOperasional" name="jam_operasional" class="form-input-custom">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">HTM</label>
-                                <input type="text" id="htm" name="htm" class="form-input-custom">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label-custom">Reservasi</label>
-                            <input type="text" id="reservasi" name="reservasi" class="form-input-custom">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label-custom">Deskripsi</label>
-                            <textarea id="deskripsi" name="deskripsi" class="form-input-custom" rows="3"></textarea>
-                        </div>
-
-                        <div class="section-divider">Lokasi</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Latitude</label>
-                                <input type="text" id="latitude" name="latitude" class="form-input-custom">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Longitude</label>
-                                <input type="text" id="longitude" name="longitude" class="form-input-custom">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label-custom">Foto</label>
-                            <input type="file" id="foto" name="foto" class="form-input-custom" accept="image/*">
-                            <div id="currentFoto"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
                             <i class="bi bi-x-lg"></i> Batal
                         </button>
-                        <button type="button" id="btnHapusWisata" class="btn-modal-delete" onclick="hapusDariModal()" style="display: none;">
+                        <button type="button" id="btnHapusKantor" class="btn-modal-delete" onclick="hapusDariModal()" style="display: none;">
                             <i class="bi bi-trash"></i> Hapus
                         </button>
                         <button type="submit" class="btn-modal-save">
@@ -637,28 +600,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let modalDetail, modalForm;
-        let currentWisataId = null;
+        let currentKantorId = null;
         let currentFotoPath = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             modalDetail = new bootstrap.Modal(document.getElementById('modalDetail'));
             modalForm = new bootstrap.Modal(document.getElementById('modalForm'));
             
-            // ✅ CEK NOTIFIKASI DARI sessionStorage
-            const notifMessage = sessionStorage.getItem('wisataNotif');
+            const notifMessage = sessionStorage.getItem('kantorNotif');
             if (notifMessage) {
                 showNotif(notifMessage);
-                sessionStorage.removeItem('wisataNotif');
+                sessionStorage.removeItem('kantorNotif');
             }
             
-            document.getElementById('formWisata').addEventListener('submit', function(e) {
+            document.getElementById('formKantor').addEventListener('submit', function(e) {
                 e.preventDefault();
                 submitForm();
             });
 
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
-                const rows = document.querySelectorAll('#wisataTable tr[data-id]');
+                const rows = document.querySelectorAll('#kantorTable tr[data-id]');
                 rows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(filter) ? '' : 'none';
@@ -666,14 +628,12 @@
             });
         });
 
-        // ✅ FUNGSI TAMPILKAN NOTIFIKASI BANNER
         function showNotif(message) {
             const banner = document.getElementById('notifBanner');
             const text = document.getElementById('notifText');
             text.textContent = message;
             banner.style.display = 'block';
             
-            // Auto hide setelah 4 detik
             setTimeout(() => {
                 closeNotif();
             }, 4000);
@@ -684,31 +644,28 @@
         }
 
         function openTambahModal() {
-            currentWisataId = null;
+            currentKantorId = null;
             currentFotoPath = null;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah Wisata';
-            document.getElementById('formWisata').reset();
-            document.getElementById('wisataId').value = '';
-            document.getElementById('btnHapusWisata').style.display = 'none';
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah Kantor';
+            document.getElementById('formKantor').reset();
+            document.getElementById('kantorId').value = '';
+            document.getElementById('btnHapusKantor').style.display = 'none';
             document.getElementById('currentFoto').innerHTML = '';
             modalForm.show();
         }
 
-        function openEditModal(id, nama, desaId, jenis, jamOperasional, htm, reservasi, deskripsi, latitude, longitude, foto) {
-            currentWisataId = id;
+        function openEditModal(id, nama, alamat, desaId, linkMaps, latitude, longitude, foto) {
+            currentKantorId = id;
             currentFotoPath = foto;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Wisata';
-            document.getElementById('wisataId').value = id;
-            document.getElementById('namaWisata').value = nama || '';
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Kantor';
+            document.getElementById('kantorId').value = id;
+            document.getElementById('namaKantor').value = nama;
+            document.getElementById('alamat').value = alamat;
             document.getElementById('desaId').value = desaId || '';
-            document.getElementById('jenis').value = jenis || '';
-            document.getElementById('jamOperasional').value = jamOperasional || '';
-            document.getElementById('htm').value = htm || '';
-            document.getElementById('reservasi').value = reservasi || '';
-            document.getElementById('deskripsi').value = deskripsi || '';
+            document.getElementById('linkMaps').value = linkMaps || '';
             document.getElementById('latitude').value = latitude || '';
             document.getElementById('longitude').value = longitude || '';
-            document.getElementById('btnHapusWisata').style.display = 'inline-flex';
+            document.getElementById('btnHapusKantor').style.display = 'inline-flex';
             
             if (foto) {
                 document.getElementById('currentFoto').innerHTML = `
@@ -725,14 +682,12 @@
         }
 
         function openEditFromDetail() {
-            const id = currentWisataId;
+            const id = currentKantorId;
             const nama = document.getElementById('detailNama').textContent;
+            const alamat = document.getElementById('detailAlamat').textContent;
             const desa = document.getElementById('detailDesa').textContent;
-            const jenis = document.getElementById('detailJenis').textContent;
-            const jam = document.getElementById('detailJam').textContent;
-            const htm = document.getElementById('detailHtm').textContent;
-            const reservasi = document.getElementById('detailReservasi').textContent;
-            const deskripsi = document.getElementById('detailDeskripsi').textContent;
+            const mapsEl = document.getElementById('detailMaps');
+            const linkMaps = mapsEl.querySelector('a') ? mapsEl.querySelector('a').href : '';
             const koordinat = document.getElementById('detailKoordinat').textContent;
             
             const latMatch = koordinat.match(/Lat: ([\d.-]+)/);
@@ -744,29 +699,32 @@
             let desaId = '';
             for (let option of desaSelect.options) {
                 if (option.text === desa) {
-                    option.selected = true;
+                    desaId = option.value;
                     break;
                 }
             }
             
             modalDetail.hide();
             setTimeout(() => {
-                openEditModal(id, nama, desaId, jenis, jam, htm, reservasi, deskripsi, latitude, longitude, currentFotoPath || '');
+                openEditModal(id, nama, alamat, desaId, linkMaps, latitude, longitude, currentFotoPath || '');
             }, 300);
         }
 
-        function showDetail(id, nama, desa, jenis, jam, htm, reservasi, deskripsi, latitude, longitude, foto) {
-            currentWisataId = id;
+        function showDetail(id, nama, alamat, desa, linkMaps, latitude, longitude, foto) {
+            currentKantorId = id;
             currentFotoPath = foto;
-            document.getElementById('detailNamaWisata').textContent = nama;
+            document.getElementById('detailNamaKantor').textContent = nama;
             document.getElementById('detailNama').textContent = nama;
+            document.getElementById('detailAlamat').textContent = alamat;
             document.getElementById('detailDesa').textContent = desa;
-            document.getElementById('detailJenis').textContent = jenis || '-';
-            document.getElementById('detailJam').textContent = jam || '-';
-            document.getElementById('detailHtm').textContent = htm || '-';
-            document.getElementById('detailReservasi').textContent = reservasi || '-';
-            document.getElementById('detailDeskripsi').textContent = deskripsi || '-';
-            document.getElementById('detailKoordinat').textContent = `Lat: ${latitude || '-'}, Long: ${longitude || '-'}`;
+            
+            if (linkMaps) {
+                document.getElementById('detailMaps').innerHTML = `<a href="${linkMaps}" target="_blank"><i class="bi bi-geo-alt-fill"></i> Buka di Google Maps</a>`;
+            } else {
+                document.getElementById('detailMaps').innerHTML = '<span style="color: #94a3b8;">Tidak ada link maps</span>';
+            }
+            
+            document.getElementById('detailKoordinat').textContent = `Lat: ${latitude}, Long: ${longitude}`;
             
             if (foto) {
                 document.getElementById('detailFotoContainer').innerHTML = `
@@ -780,11 +738,11 @@
         }
 
         function hapusDariModal() {
-            const id = document.getElementById('wisataId').value;
-            const nama = document.getElementById('namaWisata').value;
+            const id = document.getElementById('kantorId').value;
+            const nama = document.getElementById('namaKantor').value;
             
-            if (confirm(`Yakin ingin menghapus wisata "${nama}"?`)) {
-                fetch(`/admin/wisata/${id}`, {
+            if (confirm(`Yakin ingin menghapus kantor "${nama}"?`)) {
+                fetch(`/admin/kantor-desa/${id}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -796,7 +754,7 @@
                 .then(data => {
                     if (data.success) {
                         modalForm.hide();
-                        sessionStorage.setItem('wisataNotif', 'Data wisata berhasil dihapus!');
+                        sessionStorage.setItem('kantorNotif', 'Data kantor berhasil dihapus!');
                         location.reload();
                     } else {
                         alert(data.message || 'Gagal menghapus data');
@@ -810,9 +768,9 @@
         }
 
         function submitForm() {
-            const formData = new FormData(document.getElementById('formWisata'));
-            const id = document.getElementById('wisataId').value;
-            const url = id ? `/admin/wisata/${id}` : '/admin/wisata';
+            const formData = new FormData(document.getElementById('formKantor'));
+            const id = document.getElementById('kantorId').value;
+            const url = id ? `/admin/kantor-desa/${id}` : '/admin/kantor-desa';
             
             if (id) {
                 formData.append('_method', 'PUT');
@@ -830,9 +788,8 @@
             .then(data => {
                 if (data.success) {
                     modalForm.hide();
-                    // ✅ SIMPAN PESAN KE sessionStorage SEBELUM RELOAD
-                    const pesan = id ? 'Data wisata berhasil diperbarui!' : 'Data wisata berhasil ditambahkan!';
-                    sessionStorage.setItem('wisataNotif', pesan);
+                    const pesan = id ? 'Data kantor berhasil diperbarui!' : 'Data kantor berhasil ditambahkan!';
+                    sessionStorage.setItem('kantorNotif', pesan);
                     location.reload();
                 } else {
                     let errorMsg = 'Gagal menyimpan data';

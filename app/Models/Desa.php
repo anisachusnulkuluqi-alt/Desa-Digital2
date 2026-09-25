@@ -9,12 +9,11 @@ class Desa extends Model
 {
     use HasFactory;
 
-    protected $table = 'desa';
+    protected $table = 'desa'; // ✅ Nama tabel di database
 
     protected $fillable = [
-        'nama_desa',
-        'status',
         'kecamatan_id',
+        'nama_desa',
         'kode_desa',
         'jenis',
         'website',
@@ -23,10 +22,7 @@ class Desa extends Model
         'facebook',
         'tiktok',
         'whatsapp',
-        'deskripsi',
     ];
-
-    public $timestamps = true;
 
     public function kecamatan()
     {

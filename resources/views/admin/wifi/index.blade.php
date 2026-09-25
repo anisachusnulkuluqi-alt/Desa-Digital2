@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Wisata Desa - Portal Desa Digital</title>
+    <title>WiFi Desa - Portal Desa Digital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -186,7 +186,7 @@
         .table-simple tbody tr { cursor: pointer; transition: all 0.2s; }
         .table-simple tbody tr:hover { background: #f1f5f9; }
         
-        .wisata-name {
+        .wifi-name {
             font-weight: 600;
             color: #1e293b;
             font-size: 14px;
@@ -195,7 +195,7 @@
             gap: 10px;
         }
         
-        .wisata-name-icon {
+        .wifi-name-icon {
             width: 32px;
             height: 32px;
             border-radius: 6px;
@@ -208,15 +208,7 @@
             flex-shrink: 0;
         }
         
-        .badge-jenis {
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
+        /* NOTIFIKASI BANNER */
         .alert-banner {
             background: #dcfce7;
             border: 1px solid #86efac;
@@ -233,7 +225,10 @@
             box-shadow: 0 2px 8px rgba(22, 101, 52, 0.08);
         }
         
-        .alert-banner i { font-size: 18px; color: #16a34a; }
+        .alert-banner i {
+            font-size: 18px;
+            color: #16a34a;
+        }
         
         .alert-banner .close-btn {
             margin-left: auto;
@@ -285,7 +280,7 @@
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            width: 140px;
+            width: 130px;
             flex-shrink: 0;
         }
         
@@ -344,17 +339,6 @@
             color: #0369a1;
             border-left: 3px solid #0ea5e9;
         }
-        
-        .section-divider {
-            font-size: 11px;
-            font-weight: 700;
-            color: #1e3a8a;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin: 16px 0 10px 0;
-            padding-bottom: 6px;
-            border-bottom: 1px solid #e2e8f0;
-        }
 
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
@@ -367,7 +351,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item active">Wisata Desa</li>
+                <li class="breadcrumb-item active">WiFi Desa</li>
             </ol>
         </nav>
         <div class="date-display">
@@ -377,7 +361,7 @@
     </div>
 
     <div class="main-content">
-        {{-- ✅ NOTIFIKASI BANNER --}}
+        <!-- NOTIFIKASI BANNER -->
         <div id="notifBanner" style="display: none;">
             <div class="alert-banner">
                 <i class="bi bi-check-circle-fill"></i>
@@ -389,19 +373,19 @@
         </div>
 
         <h1 class="page-title">
-            <i class="bi bi-image-fill"></i>
-            Wisata Desa
+            <i class="bi bi-wifi"></i>
+            WiFi Desa
         </h1>
-        <p class="page-subtitle">Kelola data wisata desa di Kabupaten Tuban</p>
+        <p class="page-subtitle">Kelola data WiFi desa di Kabupaten Tuban</p>
 
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon blue">
-                    <i class="bi bi-image-fill"></i>
+                    <i class="bi bi-wifi"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $totalWisata ?? 0 }}</h3>
-                    <p>TOTAL WISATA</p>
+                    <h3>{{ $totalWifi ?? 0 }}</h3>
+                    <p>Total WiFi</p>
                 </div>
             </div>
             
@@ -419,7 +403,7 @@
         <div class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama wisata...">
+                <input type="text" id="searchInput" placeholder="Cari nama WiFi...">
             </div>
         </div>
 
@@ -427,13 +411,13 @@
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
-                    Daftar Wisata
-                    <span class="badge-count">{{ $wisatas->count() }} Wisata</span>
+                    Daftar WiFi Desa
+                    <span class="badge-count">{{ $wifis->count() }} WiFi</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
                         <i class="bi bi-plus-lg"></i>
-                        Tambah Wisata
+                        Tambah WiFi
                     </button>
                 </div>
             </div>
@@ -441,32 +425,33 @@
             <table class="table-simple">
                 <thead>
                     <tr>
-                        <th style="width: 60px;">NO</th>
-                        <th>NAMA WISATA</th>
+                        <th style="width: 50px;">NO</th>
+                        <th>NAMA SSID</th>
                         <th>DESA</th>
+                        <th>FASILITATOR</th>
                     </tr>
                 </thead>
-                <tbody id="wisataTable">
-                    @forelse($wisatas as $index => $wisata)
-                    <tr data-id="{{ $wisata->id }}" 
-                        onclick="showDetail('{{ $wisata->id }}', '{{ addslashes($wisata->nama_wisata) }}', '{{ addslashes($wisata->desa->nama_desa ?? '-') }}', '{{ addslashes($wisata->jenis ?? '') }}', '{{ addslashes($wisata->jam_operasional ?? '') }}', '{{ addslashes($wisata->htm ?? '') }}', '{{ addslashes($wisata->reservasi ?? '') }}', '{{ addslashes($wisata->deskripsi ?? '') }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ $wisata->foto ?? '' }}')">
+                <tbody id="wifiTable">
+                    @forelse($wifis as $index => $wifi)
+                    <tr data-id="{{ $wifi->id }}" onclick="showDetail({{ $wifi->id }}, '{{ addslashes($wifi->desa->nama_desa ?? '-') }}', '{{ addslashes($wifi->nama_ssid) }}', '{{ addslashes($wifi->fasilitator ?? '-') }}', '{{ addslashes($wifi->alamat ?? '-') }}', '{{ $wifi->latitude ?? '-' }}', '{{ $wifi->longitude ?? '-' }}', '{{ $wifi->foto ?? '' }}')">
                         <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
                         <td>
-                            <div class="wisata-name">
-                                <div class="wisata-name-icon">
-                                    <i class="bi bi-image-fill"></i>
+                            <div class="wifi-name">
+                                <div class="wifi-name-icon">
+                                    <i class="bi bi-wifi"></i>
                                 </div>
-                                {{ $wisata->nama_wisata }}
+                                {{ $wifi->nama_ssid }}
                             </div>
                         </td>
-                        <td>{{ $wisata->desa->nama_desa ?? '-' }}</td>
+                        <td>{{ $wifi->desa->nama_desa ?? '-' }}</td>
+                        <td>{{ $wifi->fasilitator ?? '-' }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <div class="empty-state">
                                 <i class="bi bi-inbox"></i>
-                                Belum ada data wisata
+                                Belum ada data WiFi desa
                             </div>
                         </td>
                     </tr>
@@ -476,45 +461,33 @@
         </div>
     </div>
 
-    <!-- Modal Detail Wisata -->
+    <!-- Modal Detail WiFi -->
     <div class="modal fade" id="modalDetail" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="bi bi-image-fill"></i>
-                        <span id="detailNamaWisata">Detail Wisata</span>
+                        <i class="bi bi-wifi"></i>
+                        <span id="detailNamaWifi">Detail WiFi</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="detail-row">
-                        <div class="detail-label">Nama Wisata</div>
-                        <div class="detail-value" id="detailNama"></div>
+                        <div class="detail-label">Nama SSID</div>
+                        <div class="detail-value" id="detailSSID"></div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Desa/Kelurahan</div>
                         <div class="detail-value" id="detailDesa"></div>
                     </div>
                     <div class="detail-row">
-                        <div class="detail-label">Jenis Wisata</div>
-                        <div class="detail-value" id="detailJenis"></div>
+                        <div class="detail-label">Fasilitator</div>
+                        <div class="detail-value" id="detailFasilitator"></div>
                     </div>
                     <div class="detail-row">
-                        <div class="detail-label">Jam Operasional</div>
-                        <div class="detail-value" id="detailJam"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">HTM</div>
-                        <div class="detail-value" id="detailHtm"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Reservasi</div>
-                        <div class="detail-value" id="detailReservasi"></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Deskripsi</div>
-                        <div class="detail-value" id="detailDeskripsi"></div>
+                        <div class="detail-label">Alamat</div>
+                        <div class="detail-value" id="detailAlamat"></div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Koordinat</div>
@@ -539,33 +512,27 @@
         </div>
     </div>
 
-    <!-- Modal Tambah/Edit Wisata -->
+    <!-- Modal Tambah/Edit WiFi -->
     <div class="modal fade" id="modalForm" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFormTitle">
                         <i class="bi bi-plus-circle"></i>
-                        Tambah Wisata
+                        Tambah WiFi
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="formWisata" enctype="multipart/form-data">
+                <form id="formWifi" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" id="wisataId" name="id">
+                    <input type="hidden" id="wifiId" name="id">
                     <div class="modal-body">
-                        <div class="section-divider">Informasi Dasar</div>
-                        <div class="mb-3">
-                            <label class="form-label-custom">
-                                Nama Wisata <span class="required">*</span>
-                            </label>
-                            <input type="text" id="namaWisata" name="nama_wisata" class="form-input-custom" required>
-                        </div>
-
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Desa/Kelurahan</label>
-                                <select id="desaId" name="desa_id" class="form-select-custom">
+                                <label class="form-label-custom">
+                                    Desa/Kelurahan <span class="required">*</span>
+                                </label>
+                                <select id="desaId" name="desa_id" class="form-select-custom" required>
                                     <option value="">-- Pilih Desa/Kelurahan --</option>
                                     @foreach(\App\Models\Desa::orderBy('nama_desa')->get() as $desa)
                                         <option value="{{ $desa->id }}">{{ $desa->nama_desa }}</option>
@@ -573,34 +540,27 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Jenis Wisata</label>
-                                <input type="text" id="jenis" name="jenis" class="form-input-custom">
+                                <label class="form-label-custom">
+                                    Nama SSID <span class="required">*</span>
+                                </label>
+                                <input type="text" id="namaSSID" name="nama_ssid" class="form-input-custom" required>
                             </div>
                         </div>
-
-                        <div class="section-divider">Informasi Kunjungan</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Jam Operasional</label>
-                                <input type="text" id="jamOperasional" name="jam_operasional" class="form-input-custom">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">HTM</label>
-                                <input type="text" id="htm" name="htm" class="form-input-custom">
-                            </div>
-                        </div>
-
+                        
                         <div class="mb-3">
-                            <label class="form-label-custom">Reservasi</label>
-                            <input type="text" id="reservasi" name="reservasi" class="form-input-custom">
+                             <label class="form-label-custom">Fasilitator</label>
+                             <select id="fasilitator" name="fasilitator" class="form-select-custom">
+                             <option value="">-- Pilih Fasilitator --</option>
+                              <option value="Pemerintah Desa">Pemerintah Desa</option>
+                              <option value="Pemerintah Kabupaten">Pemerintah Kabupaten</option>
+                          </select>
                         </div>
-
+                        
                         <div class="mb-3">
-                            <label class="form-label-custom">Deskripsi</label>
-                            <textarea id="deskripsi" name="deskripsi" class="form-input-custom" rows="3"></textarea>
+                            <label class="form-label-custom">Alamat</label>
+                            <textarea id="alamat" name="alamat" class="form-input-custom" rows="2"></textarea>
                         </div>
 
-                        <div class="section-divider">Lokasi</div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label-custom">Latitude</label>
@@ -622,7 +582,7 @@
                         <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
                             <i class="bi bi-x-lg"></i> Batal
                         </button>
-                        <button type="button" id="btnHapusWisata" class="btn-modal-delete" onclick="hapusDariModal()" style="display: none;">
+                        <button type="button" id="btnHapusWifi" class="btn-modal-delete" onclick="hapusDariModal()" style="display: none;">
                             <i class="bi bi-trash"></i> Hapus
                         </button>
                         <button type="submit" class="btn-modal-save">
@@ -637,28 +597,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         let modalDetail, modalForm;
-        let currentWisataId = null;
+        let currentWifiId = null;
         let currentFotoPath = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             modalDetail = new bootstrap.Modal(document.getElementById('modalDetail'));
             modalForm = new bootstrap.Modal(document.getElementById('modalForm'));
             
-            // ✅ CEK NOTIFIKASI DARI sessionStorage
-            const notifMessage = sessionStorage.getItem('wisataNotif');
+            const notifMessage = sessionStorage.getItem('wifiNotif');
             if (notifMessage) {
                 showNotif(notifMessage);
-                sessionStorage.removeItem('wisataNotif');
+                sessionStorage.removeItem('wifiNotif');
             }
             
-            document.getElementById('formWisata').addEventListener('submit', function(e) {
+            document.getElementById('formWifi').addEventListener('submit', function(e) {
                 e.preventDefault();
                 submitForm();
             });
 
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
-                const rows = document.querySelectorAll('#wisataTable tr[data-id]');
+                const rows = document.querySelectorAll('#wifiTable tr[data-id]');
                 rows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(filter) ? '' : 'none';
@@ -666,14 +625,12 @@
             });
         });
 
-        // ✅ FUNGSI TAMPILKAN NOTIFIKASI BANNER
         function showNotif(message) {
             const banner = document.getElementById('notifBanner');
             const text = document.getElementById('notifText');
             text.textContent = message;
             banner.style.display = 'block';
             
-            // Auto hide setelah 4 detik
             setTimeout(() => {
                 closeNotif();
             }, 4000);
@@ -684,31 +641,36 @@
         }
 
         function openTambahModal() {
-            currentWisataId = null;
+            currentWifiId = null;
             currentFotoPath = null;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah Wisata';
-            document.getElementById('formWisata').reset();
-            document.getElementById('wisataId').value = '';
-            document.getElementById('btnHapusWisata').style.display = 'none';
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah WiFi';
+            document.getElementById('formWifi').reset();
+            document.getElementById('wifiId').value = '';
+            document.getElementById('btnHapusWifi').style.display = 'none';
             document.getElementById('currentFoto').innerHTML = '';
             modalForm.show();
         }
 
-        function openEditModal(id, nama, desaId, jenis, jamOperasional, htm, reservasi, deskripsi, latitude, longitude, foto) {
-            currentWisataId = id;
+        function openEditModal(id, desa, ssid, fasilitator, alamat, latitude, longitude, foto) {
+            currentWifiId = id;
             currentFotoPath = foto;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Wisata';
-            document.getElementById('wisataId').value = id;
-            document.getElementById('namaWisata').value = nama || '';
-            document.getElementById('desaId').value = desaId || '';
-            document.getElementById('jenis').value = jenis || '';
-            document.getElementById('jamOperasional').value = jamOperasional || '';
-            document.getElementById('htm').value = htm || '';
-            document.getElementById('reservasi').value = reservasi || '';
-            document.getElementById('deskripsi').value = deskripsi || '';
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit WiFi';
+            document.getElementById('wifiId').value = id;
+            document.getElementById('namaSSID').value = ssid;
+            document.getElementById('fasilitator').value = fasilitator || '';
+            document.getElementById('alamat').value = alamat || '';
             document.getElementById('latitude').value = latitude || '';
             document.getElementById('longitude').value = longitude || '';
-            document.getElementById('btnHapusWisata').style.display = 'inline-flex';
+            document.getElementById('btnHapusWifi').style.display = 'inline-flex';
+            
+            // Set desa
+            const desaSelect = document.getElementById('desaId');
+            for (let option of desaSelect.options) {
+                if (option.text === desa) {
+                    option.selected = true;
+                    break;
+                }
+            }
             
             if (foto) {
                 document.getElementById('currentFoto').innerHTML = `
@@ -725,14 +687,11 @@
         }
 
         function openEditFromDetail() {
-            const id = currentWisataId;
-            const nama = document.getElementById('detailNama').textContent;
+            const id = currentWifiId;
+            const ssid = document.getElementById('detailSSID').textContent;
             const desa = document.getElementById('detailDesa').textContent;
-            const jenis = document.getElementById('detailJenis').textContent;
-            const jam = document.getElementById('detailJam').textContent;
-            const htm = document.getElementById('detailHtm').textContent;
-            const reservasi = document.getElementById('detailReservasi').textContent;
-            const deskripsi = document.getElementById('detailDeskripsi').textContent;
+            const fasilitator = document.getElementById('detailFasilitator').textContent;
+            const alamat = document.getElementById('detailAlamat').textContent;
             const koordinat = document.getElementById('detailKoordinat').textContent;
             
             const latMatch = koordinat.match(/Lat: ([\d.-]+)/);
@@ -740,37 +699,25 @@
             const latitude = latMatch ? latMatch[1] : '';
             const longitude = longMatch ? longMatch[1] : '';
             
-            const desaSelect = document.getElementById('desaId');
-            let desaId = '';
-            for (let option of desaSelect.options) {
-                if (option.text === desa) {
-                    option.selected = true;
-                    break;
-                }
-            }
-            
             modalDetail.hide();
             setTimeout(() => {
-                openEditModal(id, nama, desaId, jenis, jam, htm, reservasi, deskripsi, latitude, longitude, currentFotoPath || '');
+                openEditModal(id, desa, ssid, fasilitator, alamat, latitude, longitude, currentFotoPath || '');
             }, 300);
         }
 
-        function showDetail(id, nama, desa, jenis, jam, htm, reservasi, deskripsi, latitude, longitude, foto) {
-            currentWisataId = id;
+        function showDetail(id, desa, ssid, fasilitator, alamat, latitude, longitude, foto) {
+            currentWifiId = id;
             currentFotoPath = foto;
-            document.getElementById('detailNamaWisata').textContent = nama;
-            document.getElementById('detailNama').textContent = nama;
+            document.getElementById('detailNamaWifi').textContent = ssid;
+            document.getElementById('detailSSID').textContent = ssid;
             document.getElementById('detailDesa').textContent = desa;
-            document.getElementById('detailJenis').textContent = jenis || '-';
-            document.getElementById('detailJam').textContent = jam || '-';
-            document.getElementById('detailHtm').textContent = htm || '-';
-            document.getElementById('detailReservasi').textContent = reservasi || '-';
-            document.getElementById('detailDeskripsi').textContent = deskripsi || '-';
-            document.getElementById('detailKoordinat').textContent = `Lat: ${latitude || '-'}, Long: ${longitude || '-'}`;
+            document.getElementById('detailFasilitator').textContent = fasilitator;
+            document.getElementById('detailAlamat').textContent = alamat;
+            document.getElementById('detailKoordinat').textContent = `Lat: ${latitude}, Long: ${longitude}`;
             
             if (foto) {
                 document.getElementById('detailFotoContainer').innerHTML = `
-                    <img src="/storage/${foto}" alt="Foto ${nama}" class="detail-foto" style="max-width: 100%; border-radius: 8px; margin-top: 8px;">
+                    <img src="/storage/${foto}" alt="Foto ${ssid}" class="detail-foto" style="max-width: 100%; border-radius: 8px; margin-top: 8px;">
                 `;
             } else {
                 document.getElementById('detailFotoContainer').innerHTML = '<span style="color: #94a3b8;">Tidak ada foto</span>';
@@ -780,11 +727,11 @@
         }
 
         function hapusDariModal() {
-            const id = document.getElementById('wisataId').value;
-            const nama = document.getElementById('namaWisata').value;
+            const id = document.getElementById('wifiId').value;
+            const ssid = document.getElementById('namaSSID').value;
             
-            if (confirm(`Yakin ingin menghapus wisata "${nama}"?`)) {
-                fetch(`/admin/wisata/${id}`, {
+            if (confirm(`Yakin ingin menghapus WiFi "${ssid}"?`)) {
+                fetch(`/admin/wifi/${id}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -796,7 +743,7 @@
                 .then(data => {
                     if (data.success) {
                         modalForm.hide();
-                        sessionStorage.setItem('wisataNotif', 'Data wisata berhasil dihapus!');
+                        sessionStorage.setItem('wifiNotif', 'Data WiFi berhasil dihapus!');
                         location.reload();
                     } else {
                         alert(data.message || 'Gagal menghapus data');
@@ -810,9 +757,9 @@
         }
 
         function submitForm() {
-            const formData = new FormData(document.getElementById('formWisata'));
-            const id = document.getElementById('wisataId').value;
-            const url = id ? `/admin/wisata/${id}` : '/admin/wisata';
+            const formData = new FormData(document.getElementById('formWifi'));
+            const id = document.getElementById('wifiId').value;
+            const url = id ? `/admin/wifi/${id}` : '/admin/wifi';
             
             if (id) {
                 formData.append('_method', 'PUT');
@@ -830,9 +777,8 @@
             .then(data => {
                 if (data.success) {
                     modalForm.hide();
-                    // ✅ SIMPAN PESAN KE sessionStorage SEBELUM RELOAD
-                    const pesan = id ? 'Data wisata berhasil diperbarui!' : 'Data wisata berhasil ditambahkan!';
-                    sessionStorage.setItem('wisataNotif', pesan);
+                    const pesan = id ? 'Data WiFi berhasil diperbarui!' : 'Data WiFi berhasil ditambahkan!';
+                    sessionStorage.setItem('wifiNotif', pesan);
                     location.reload();
                 } else {
                     let errorMsg = 'Gagal menyimpan data';

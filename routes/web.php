@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 use App\Http\Controllers\Admin\WisataController as AdminWisataController;
+use App\Http\Controllers\Admin\PasarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,14 +167,15 @@ require __DIR__.'/auth.php';
 */
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/admin/kominfo/dashboard', [DashboardController::class, 'index'])->name('admin.kominfo.dashboard');
     Route::get('/admin/kecamatan/dashboard', [DashboardController::class, 'index'])->name('admin.kecamatan.dashboard');
     Route::get('/admin/desa/dashboard', [DashboardController::class, 'index'])->name('admin.desa.dashboard');
 
+    // ==========================================
+    // SEMUA ROUTE ADMIN DI DALAM PREFIX INI
+    // ==========================================
     Route::prefix('admin')->name('admin.')->group(function () {
         
         // Kecamatan
@@ -187,22 +189,66 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('desa/import', [AdminDesaController::class, 'import'])->name('desa.import');
         Route::get('desa/download-template', [AdminDesaController::class, 'downloadTemplate'])->name('desa.download-template');
         
-        // Wisata
-        Route::resource('wisata', AdminWisataController::class)->parameters([
-            'wisata' => 'wisata'
-        ]);
+        // ========================================
+        // ✅ WISATA DESA (DIPERBAIKI: name tanpa 'admin.' karena sudah ada prefix 'admin.')
+        // ========================================
+        Route::get('/wisata', [AdminWisataController::class, 'index'])->name('wisata.index');
+        Route::post('/wisata', [AdminWisataController::class, 'store'])->name('wisata.store');
+        Route::put('/wisata/{wisata}', [AdminWisataController::class, 'update'])->name('wisata.update');
+        Route::delete('/wisata/{wisata}', [AdminWisataController::class, 'destroy'])->name('wisata.destroy');
+        
+        // ==========================================
+        // LAYANAN & MODUL INTERNAL
+        // ==========================================
+        
+        // ✅ PASAR DESA
+        Route::resource('pasar', PasarController::class);
 
-        // Layanan & Modul Internal
-        Route::get('/kantor-desa', function () { return view('admin.dashboard'); })->name('kantor.index');
-        Route::get('/pasar', function () { return view('admin.dashboard'); })->name('pasar.index');
-        Route::get('/wifi', function () { return view('admin.dashboard'); })->name('wifi.index');
-        Route::get('/bumdes', function () { return view('admin.dashboard'); })->name('bumdes.index');
-        Route::get('/kkdmp', function () { return view('admin.dashboard'); })->name('kkdmp.index');
-        Route::get('/settings', function () { return view('admin.settings.index'); })->name('settings.index');
-        Route::get('/surat', function () { return view('admin.dashboard'); })->name('surat.index');
-        Route::get('/cctv', function () { return view('admin.dashboard'); })->name('cctv.index');
-        Route::get('/e-pbb', function () { return view('admin.dashboard'); })->name('e-pbb.index');
-    });
+        // Kantor Desa
+        Route::get('/kantor-desa', [App\Http\Controllers\Admin\KantorDesaController::class, 'index'])->name('kantor.index');
+        Route::post('/kantor-desa', [App\Http\Controllers\Admin\KantorDesaController::class, 'store'])->name('kantor.store');
+        Route::put('/kantor-desa/{kantor}', [App\Http\Controllers\Admin\KantorDesaController::class, 'update'])->name('kantor.update');
+        Route::delete('/kantor-desa/{kantor}', [App\Http\Controllers\Admin\KantorDesaController::class, 'destroy'])->name('kantor.destroy');
+
+        // WiFi Desa
+        Route::get('/wifi', [App\Http\Controllers\Admin\WifiController::class, 'index'])->name('wifi.index');
+        Route::post('/wifi', [App\Http\Controllers\Admin\WifiController::class, 'store'])->name('wifi.store');
+        Route::put('/wifi/{wifi}', [App\Http\Controllers\Admin\WifiController::class, 'update'])->name('wifi.update');
+        Route::delete('/wifi/{wifi}', [App\Http\Controllers\Admin\WifiController::class, 'destroy'])->name('wifi.destroy');
+
+        // BUMDes
+        Route::get('/bumdes', [App\Http\Controllers\Admin\BumdesController::class, 'index'])->name('bumdes.index');
+        Route::post('/bumdes', [App\Http\Controllers\Admin\BumdesController::class, 'store'])->name('bumdes.store');
+        Route::put('/bumdes/{bumdes}', [App\Http\Controllers\Admin\BumdesController::class, 'update'])->name('bumdes.update');
+        Route::delete('/bumdes/{bumdes}', [App\Http\Controllers\Admin\BumdesController::class, 'destroy'])->name('bumdes.destroy');
+
+        // KKDMP
+        Route::get('/kkdmp', [App\Http\Controllers\Admin\KkdmpController::class, 'index'])->name('kkdmp.index');
+        Route::post('/kkdmp', [App\Http\Controllers\Admin\KkdmpController::class, 'store'])->name('kkdmp.store');
+        Route::put('/kkdmp/{kkdmp}', [App\Http\Controllers\Admin\KkdmpController::class, 'update'])->name('kkdmp.update');
+        Route::delete('/kkdmp/{kkdmp}', [App\Http\Controllers\Admin\KkdmpController::class, 'destroy'])->name('kkdmp.destroy');
+
+        // Settings
+        Route::get('/settings', function () { 
+            return view('admin.settings.index'); 
+        })->name('settings.index');
+
+        // Surat (Admin)
+        Route::get('/surat', function () { 
+            return view('admin.surat.index'); 
+        })->name('surat.index');
+
+        // CCTV (Admin)
+        Route::get('/cctv', function () { 
+            return view('admin.cctv.index'); 
+        })->name('cctv.index');
+
+        // e-PBB (Admin)
+        Route::get('/e-pbb', function () { 
+            return view('admin.epbb.index'); 
+        })->name('e-pbb.index');
+
+    }); // ← AKHIRI prefix('admin') DI SINI
 
     // Profile
     if (class_exists(ProfileController::class)) {
