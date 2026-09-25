@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desa Digital - Pemerintah Kabupaten Tuban</title>
     
-    <!-- Google Fonts: Plus Jakarta Sans & Font Awesome Icons -->
+    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -15,27 +15,18 @@
         :root {
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
-            --header-bg: #0f172a;
+            --header-dark: #334155;
+            --header-dark-trans: rgba(51, 65, 85, 0.96);
             
-            --primary-blue: #0284c7;
-            --primary-blue-dark: #0369a1;
-            --primary-blue-light: #e0f2fe;
-            --accent-cyan: #06b6d4;
-            --accent-cyan-glow: #38bdf8;
-            
-            --color-blue: #2563eb;
-            --color-emerald: #10b981;
-            --color-amber: #f59e0b;
-            --color-rose: #f43f5e;
-            --color-violet: #8b5cf6;
-            --color-teal: #0d9488;
-            --color-indigo: #4f46e5;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --accent-cyan: #38bdf8;
             
             --text-dark: #0f172a;
             --text-gray: #475569;
             --text-muted: #64748b;
             --border-soft: #e2e8f0;
-            --border-card: #e5e7eb;
         }
 
         html { scroll-behavior: smooth; }
@@ -49,20 +40,22 @@
         }
 
         /* 1. TOP NAVBAR */
-        .main-navbar {
-            background: #ffffff;
-            padding: 14px 7%;
+        .site-header {
+            background: var(--header-dark-trans);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 12px 7%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid var(--border-soft);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .navbar-brand-link {
+        .brand-link {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -70,99 +63,102 @@
         }
 
         .brand-logo-img {
-            height: 40px;
+            height: 38px;
             width: auto;
             max-width: 140px;
             object-fit: contain;
             display: block;
         }
 
-        .brand-title-text {
-            font-size: 1.28rem;
+        .brand-text-logo {
+            font-size: 1.35rem;
             font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-        .brand-title-text span {
-            color: var(--primary-blue);
-        }
-
-        .navbar-nav-cluster {
+            color: #ffffff;
+            letter-spacing: -0.01em;
             display: flex;
             align-items: center;
-            gap: 30px;
+        }
+        .brand-text-logo span {
+            color: var(--accent-cyan);
+            margin-left: 2px;
         }
 
-        .nav-links-menu {
+        .nav-menu {
             display: flex;
+            align-items: center;
+            gap: 22px;
             list-style: none;
-            gap: 24px;
-            align-items: center;
         }
 
-        .nav-links-menu a {
-            color: var(--text-gray);
+        .nav-menu a {
+            color: #e2e8f0;
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
+            letter-spacing: 0.6px;
             position: relative;
             padding: 6px 0;
             transition: color 0.2s ease;
         }
-        .nav-links-menu a:hover, .nav-links-menu a.active {
-            color: var(--primary-blue);
+        .nav-menu a:hover { color: #ffffff; }
+        .nav-menu a.active { color: var(--accent-cyan); }
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            border-radius: 2px;
         }
 
         .search-pill-nav {
             display: flex;
             align-items: center;
-            background: #f1f5f9;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 40px;
-            padding: 6px 14px;
-            width: 220px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 5px 14px;
+            width: 190px;
             transition: all 0.25s ease;
         }
         .search-pill-nav:focus-within {
-            width: 260px;
-            background: #ffffff;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 12px rgba(2, 132, 199, 0.15);
+            width: 230px;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-cyan);
         }
         .search-pill-nav input {
             background: transparent;
             border: none;
             outline: none;
-            color: var(--text-dark);
-            font-size: 0.82rem;
+            color: #ffffff;
+            font-size: 0.8rem;
             width: 100%;
         }
-        .search-pill-nav input::placeholder { color: var(--text-muted); }
+        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
         .search-pill-nav button {
             background: transparent;
             border: none;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
-        .search-pill-nav button:hover { color: var(--primary-blue); }
 
         /* 2. HERO BANNER */
         .hero-banner-clean {
             position: relative;
-            min-height: 540px;
+            min-height: 590px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 24px;
+            padding: 90px 24px 80px 24px;
             background-size: cover;
-            background-position: center;
+            background-position: center 60%;
             background-repeat: no-repeat;
-            background-attachment: fixed;
             color: #ffffff;
             overflow: hidden;
         }
@@ -171,104 +167,134 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(2, 132, 199, 0.5) 100%);
+            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.62) 0%, rgba(15, 23, 42, 0.94) 100%);
         }
 
         .hero-content-wrap {
             position: relative;
             z-index: 2;
-            max-width: 880px;
-        }
-
-        .hero-badge-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            padding: 6px 20px;
-            border-radius: 30px;
-            font-size: 0.76rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero-main-title {
-            font-size: 3.8rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            letter-spacing: -0.025em;
-            color: #ffffff;
-            line-height: 1.15;
-            margin-bottom: 12px;
-            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+            letter-spacing: -0.04em;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #ffffff 40%, #7dd3fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 8px 30px rgba(56, 189, 248, 0.35));
         }
 
         .hero-lead-text {
-            font-size: 1.15rem;
-            color: #f1f5f9;
+            font-size: 1.2rem;
+            color: #e2e8f0;
             font-weight: 500;
-            margin-bottom: 34px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            max-width: 680px;
+            margin: 0 auto 24px auto;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         }
 
-        .btn-hero-primary {
+        .hero-info-pills {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 13px 40px;
-            border-radius: 50px;
-            background: #ffffff;
-            color: var(--primary-blue-dark);
-            font-size: 0.92rem;
-            font-weight: 800;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-            transition: all 0.25s ease;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(12px);
+            padding: 8px 22px;
+            border-radius: 40px;
+            margin-bottom: 34px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #cbd5e1;
         }
-        .btn-hero-primary:hover {
-            background: var(--primary-blue-light);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(2, 132, 199, 0.35);
+        .hero-info-pills span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-info-pills span strong {
+            color: #38bdf8;
+        }
+        .hero-info-pills .divider-dot {
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
         }
 
-        /* 3. ACCORDION & VIDEO */
+        .btn-jelajah-solo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 44px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            font-size: 0.96rem;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 12px 32px rgba(2, 132, 199, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-jelajah-solo:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+            box-shadow: 0 16px 38px rgba(56, 189, 248, 0.55);
+            color: #ffffff;
+        }
+
+        /* 3. SEKSI INOVASI EKOSISTEM DESA */
         .section-profil-accordion {
             padding: 90px 7%;
             background: #ffffff;
+            position: relative;
         }
 
         .section-header-clean {
             text-align: center;
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto 46px auto;
         }
         .header-tag-pill {
-            display: inline-block;
-            background: var(--primary-blue-light);
-            color: var(--primary-blue-dark);
-            padding: 6px 16px;
-            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            color: #0369a1;
+            padding: 6px 18px;
+            border-radius: 30px;
             font-size: 0.74rem;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            border: 1.5px solid #bae6fd;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
         }
         .section-header-clean h2 {
-            font-size: 2.25rem;
+            font-size: 2.3rem;
             font-weight: 900;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.025em;
             color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .section-header-clean p {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
         .profil-dual-layout {
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 36px;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 32px;
             max-width: 1240px;
             margin: 0 auto;
             align-items: stretch;
@@ -277,80 +303,136 @@
         .accordion-stack-clean {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
+            justify-content: center;
         }
 
         .accordion-item-clean {
             border: 1.5px solid var(--border-soft);
-            border-radius: 14px;
+            border-radius: 16px;
             background: #ffffff;
             overflow: hidden;
-            transition: all 0.25s ease;
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.02);
         }
-        .accordion-item-clean.active {
-            border-color: var(--primary-blue);
-            box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.12);
+        .accordion-item-clean::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: transparent;
+            transition: background 0.25s ease;
         }
+        
+        .accordion-item-clean.theme-blue.active {
+            border-color: #38bdf8;
+            background: #f0f9ff;
+            box-shadow: 0 10px 25px -4px rgba(2, 132, 199, 0.15);
+        }
+        .accordion-item-clean.theme-blue.active::before { background: #0284c7; }
+
+        .accordion-item-clean.theme-emerald.active {
+            border-color: #6ee7b7;
+            background: #f0fdf4;
+            box-shadow: 0 10px 25px -4px rgba(16, 185, 129, 0.15);
+        }
+        .accordion-item-clean.theme-emerald.active::before { background: #10b981; }
+
+        .accordion-item-clean.theme-amber.active {
+            border-color: #fde68a;
+            background: #fffbeb;
+            box-shadow: 0 10px 25px -4px rgba(245, 158, 11, 0.15);
+        }
+        .accordion-item-clean.theme-amber.active::before { background: #f59e0b; }
+
+        .accordion-item-clean.theme-violet.active {
+            border-color: #c4b5fd;
+            background: #f5f3ff;
+            box-shadow: 0 10px 25px -4px rgba(139, 92, 246, 0.15);
+        }
+        .accordion-item-clean.theme-violet.active::before { background: #8b5cf6; }
 
         .accordion-header-btn {
             width: 100%;
-            padding: 18px 22px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #ffffff;
+            background: transparent;
             border: none;
             cursor: pointer;
             text-align: left;
-        }
-        .accordion-item-clean.active .accordion-header-btn {
-            background: #f0f9ff;
+            user-select: none;
         }
 
         .accordion-title-wrap {
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-size: 0.95rem;
+            gap: 12px;
+            font-size: 0.94rem;
             font-weight: 800;
             color: var(--text-dark);
         }
-        .accordion-title-wrap i {
-            color: var(--primary-blue);
-            font-size: 1.15rem;
+        
+        .accordion-icon-box {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
         }
+        .theme-blue .accordion-icon-box { background: #e0f2fe; color: #0284c7; }
+        .theme-emerald .accordion-icon-box { background: #d1fae5; color: #10b981; }
+        .theme-amber .accordion-icon-box { background: #fef3c7; color: #f59e0b; }
+        .theme-violet .accordion-icon-box { background: #ede9fe; color: #8b5cf6; }
 
         .accordion-header-btn i.fa-chevron-down {
             color: var(--text-muted);
-            font-size: 0.85rem;
-            transition: transform 0.25s ease;
+            font-size: 0.8rem;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border: 1px solid var(--border-soft);
+            transition: all 0.25s ease;
         }
         .accordion-item-clean.active i.fa-chevron-down {
             transform: rotate(180deg);
-            color: var(--primary-blue);
+            background: var(--text-dark);
+            border-color: var(--text-dark);
+            color: #ffffff;
         }
 
         .accordion-content-text {
             display: none;
-            padding: 20px 24px;
+            padding: 0 24px 18px 70px;
             font-size: 0.88rem;
             color: var(--text-gray);
-            line-height: 1.75;
-            background: #ffffff;
-            border-top: 1px solid #f1f5f9;
+            line-height: 1.65;
         }
         .accordion-item-clean.active .accordion-content-text {
             display: block;
         }
 
         .video-player-frame {
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
-            border: 1.5px solid var(--border-soft);
-            box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1);
+            border: 1.5px solid #cbd5e1;
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.14);
             display: flex;
             flex-direction: column;
             background: #0f172a;
+            position: relative;
         }
         .video-top-tag {
             background: #ffffff;
@@ -358,139 +440,205 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            font-weight: 700;
-            border-bottom: 1px solid var(--border-soft);
+            border-bottom: 1.5px solid var(--border-soft);
         }
-        .video-top-tag span i { color: #ef4444; margin-right: 8px; }
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+        .channel-info i {
+            color: #ef4444;
+            font-size: 1.15rem;
+        }
+        .status-broadcast {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #15803d;
+            background: #dcfce7;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid #86efac;
+        }
+        .status-broadcast .live-pulse {
+            width: 7px;
+            height: 7px;
+            background: #16a34a;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+            animation: pulse 1.6s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        }
+
         .video-embed-box {
             position: relative;
             flex-grow: 1;
-            min-height: 380px;
-            background: #000000;
+            min-height: 350px;
+            background: #090e17;
         }
         .video-embed-box iframe {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: none;
         }
 
-        /* 4. SEKSI STATISTIK */
-        .section-stats-bright {
-            padding: 95px 7%;
-            background: #f1f5f9;
-            border-top: 1px solid var(--border-soft);
-            border-bottom: 1px solid var(--border-soft);
+        /* 4. SEKSI STATISTIK: KAPSUL BULAT TERANG */
+        .section-stats-circle {
+            padding: 45px 6%;
+            background: #f8fafc;
+            position: relative;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .stats-cards-grid {
+        .stats-grid-circles {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-            max-width: 1240px;
+            gap: 16px;
+            max-width: 1140px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .stat-card-modern {
+        .stat-circle-pod {
             background: #ffffff;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 16px;
-            padding: 24px 20px;
-            text-decoration: none;
-            color: inherit;
+            border: 1.5px solid var(--pod-border, #e2e8f0);
+            border-radius: 9999px;
+            padding: 12px 14px;
+            min-height: 112px;
+            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-            transition: all 0.25s ease;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
             position: relative;
-            overflow: hidden;
-        }
-        .stat-card-modern::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: var(--stat-accent, var(--primary-blue));
-        }
-        .stat-card-modern:hover {
-            transform: translateY(-5px);
-            border-color: var(--stat-accent, var(--primary-blue));
-            box-shadow: 0 16px 30px -4px rgba(0, 0, 0, 0.08);
         }
 
-        .stat-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
+        .stat-circle-pod:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 24px -4px var(--pod-glow, rgba(2, 132, 199, 0.18));
+            border-color: var(--pod-accent, #0284c7);
         }
-        .stat-icon-wrap {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--stat-bg, #e0f2fe);
-            color: var(--stat-accent, var(--primary-blue));
+
+        .stat-circle-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--pod-bg, #e0f2fe);
+            color: var(--pod-accent, #0284c7);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            transition: all 0.2s ease;
         }
-        .stat-badge-info {
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: var(--text-muted);
-            background: #f8fafc;
-            border: 1px solid var(--border-soft);
-            padding: 3px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
+        .stat-circle-pod:hover .stat-circle-icon {
+            background: var(--pod-accent, #0284c7);
+            color: #ffffff;
+            transform: scale(1.08);
         }
 
-        .stat-main-number {
-            font-size: 2.8rem;
+        .stat-circle-number {
+            font-size: 1.65rem;
             font-weight: 900;
-            color: var(--text-dark);
             line-height: 1;
             letter-spacing: -0.03em;
-            margin-bottom: 6px;
+            color: #0f172a;
+            margin-bottom: 3px;
+            font-variant-numeric: tabular-nums;
         }
-        .stat-title-text {
-            font-size: 0.94rem;
+
+        .stat-circle-label {
+            font-size: 0.68rem;
             font-weight: 800;
-            color: var(--primary-blue-dark);
-            margin-bottom: 14px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
         }
 
-        .stat-progress-bar {
-            height: 5px;
-            width: 100%;
-            background: #f1f5f9;
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 8px;
-        }
-        .stat-progress-val {
-            height: 100%;
-            border-radius: 6px;
-            background: var(--stat-accent, var(--primary-blue));
-        }
-
-        .stat-footer-note {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* 5. HUB LAYANAN DIGITAL */
+        /* 5. SEKSI GERBANG LAYANAN: ELEGAN, MINIMALIS & TANPA TEKS DESKRIPSI */
         .section-services-clean {
-            padding: 95px 7%;
-            background: #ffffff;
+            padding: 85px 7%;
+            background: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #f1f5f9 55%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
             text-align: center;
+        }
+
+        .section-services-clean::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 20%;
+            width: 480px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+            pointer-events: none;
+            filter: blur(40px);
+        }
+
+        .section-services-clean::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: 20%;
+            width: 480px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.14), transparent 70%);
+            pointer-events: none;
+            filter: blur(45px);
+        }
+
+        .services-header-box {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 0 auto 46px auto;
+        }
+
+        .services-tag-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--primary-dark);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1.5px solid #bae6fd;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
+            margin-bottom: 12px;
+        }
+
+        .services-header-box h2 {
+            font-size: 2.35rem;
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--text-dark);
+            margin-bottom: 0;
         }
 
         .services-cards-cluster {
@@ -499,58 +647,100 @@
             gap: 20px;
             max-width: 1240px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
+        /* Kartu Layanan Minimalis Tanpa Paragraf */
         .service-card-clean {
-            background: #ffffff;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 18px;
-            padding: 32px 18px;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 30px 18px 24px 18px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
-            transition: all 0.25s ease;
+            box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.05);
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 190px;
         }
+
+        .service-card-clean::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3.5px;
+            background: var(--service-accent, var(--primary));
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
         .service-card-clean:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 16px 30px -4px rgba(2, 132, 199, 0.12);
+            transform: translateY(-8px) scale(1.03);
+            background: #ffffff;
+            border-color: var(--service-border, #bae6fd);
+            box-shadow: 0 18px 36px -6px var(--service-glow, rgba(2, 132, 199, 0.24));
         }
 
-        /* Highlight khusus untuk kartu Data Spasial */
-        .service-card-clean.highlight-card {
-            border: 2px solid var(--color-emerald);
-            background: #f0fdf4;
+        .service-card-clean:hover::before {
+            opacity: 1;
         }
 
+        /* Ikon Dinamis */
         .service-icon-circle {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.45rem;
+            font-size: 1.55rem;
             color: #ffffff;
-            margin-bottom: 18px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            margin-bottom: 16px;
+            box-shadow: 0 10px 22px var(--icon-shadow, rgba(0, 0, 0, 0.16));
+            transition: transform 0.25s ease;
+        }
+
+        .service-card-clean:hover .service-icon-circle {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .service-card-clean h4 {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 6px;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
         }
 
-        .service-card-clean p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+        /* Indikator Panah Minimalis */
+        .service-action-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--service-pill, #f1f5f9);
+            color: var(--service-text, var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            transition: all 0.2s ease;
+        }
+
+        .service-card-clean:hover .service-action-arrow {
+            background: var(--service-accent, var(--primary));
+            color: #ffffff;
+            transform: translateX(3px);
         }
 
         /* 6. LOKASI KEDINASAN */
@@ -572,9 +762,7 @@
         .location-info-card {
             background: #ffffff;
             border: 1.5px solid var(--border-soft);
-            border-radius: 0;
             padding: 38px 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -602,7 +790,7 @@
         }
         .location-detail-item i {
             font-size: 1.2rem;
-            color: var(--primary-blue);
+            color: var(--primary);
             margin-top: 3px;
             min-width: 24px;
         }
@@ -623,7 +811,7 @@
             line-height: 1.5;
             font-weight: 600;
         }
-        .detail-texts a:hover { color: var(--primary-blue); }
+        .detail-texts a:hover { color: var(--primary); }
 
         .btn-maps-route {
             display: inline-flex;
@@ -633,7 +821,7 @@
             width: 100%;
             padding: 13px;
             border-radius: 10px;
-            background: var(--primary-blue);
+            background: var(--primary);
             color: #ffffff;
             font-size: 0.88rem;
             font-weight: 800;
@@ -641,17 +829,14 @@
             transition: all 0.2s ease;
         }
         .btn-maps-route:hover {
-            background: var(--primary-blue-dark);
-            box-shadow: 0 6px 18px rgba(2, 132, 199, 0.3);
+            background: var(--primary-dark);
             color: #ffffff;
         }
 
         .map-viewport-frame {
-            border-radius: 0;
             border: 1.5px solid var(--border-soft);
             border-left: 0;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             min-height: 500px;
         }
         .map-viewport-frame iframe {
@@ -671,19 +856,25 @@
         }
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .profil-dual-layout { grid-template-columns: 1fr; }
-            .stats-cards-grid { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 1180px) {
             .services-cards-cluster { grid-template-columns: repeat(3, 1fr); }
+            .stats-grid-circles { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            .stat-circle-number { font-size: 1.45rem; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+            .search-pill-nav { display: none; }
+            .profil-dual-layout { grid-template-columns: 1fr; }
+            .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .services-cards-cluster { grid-template-columns: repeat(2, 1fr); }
+            .hero-main-title { font-size: 2.8rem; }
+            .accordion-content-text { padding-left: 20px; }
             .location-grid-layout { grid-template-columns: 1fr; }
             .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
-        @media (max-width: 768px) {
-            .navbar-nav-cluster { display: none; }
-            .hero-main-title { font-size: 2.7rem; }
-            .hero-lead-text { font-size: 1rem; }
-            .stats-cards-grid { grid-template-columns: 1fr; }
+        @media (max-width: 580px) {
             .services-cards-cluster { grid-template-columns: 1fr; }
         }
     </style>
@@ -691,64 +882,75 @@
 <body>
 
     <!-- 1. TOP NAVBAR -->
-    <nav class="main-navbar">
-        <a href="{{ url('/') }}" class="navbar-brand-link">
-            <img src="{{ asset('images/desa-digital.png') }}" 
+    <header class="site-header">
+        <a href="<?= url('/'); ?>" class="brand-link">
+            <img src="<?= asset('images/desa-digital.png'); ?>" 
                  alt="Logo Desa Digital" 
                  class="brand-logo-img"
-                 onerror="this.onerror=null; this.src='{{ asset('images/desa-digital.png') }}'; this.onerror=function(){ this.style.display='none'; document.getElementById('altLogoText').style.display='inline'; };">
-            
-            <span id="altLogoText" class="brand-title-text" style="display: none;">
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
+            <div class="brand-text-logo">
                 Desa<span>Digital</span>
-            </span>
+            </div>
         </a>
 
-        <div class="navbar-nav-cluster">
-            <ul class="nav-links-menu">
-                <li><a href="#hero-banner" class="active">Beranda</a></li>
-                <li><a href="#tentang-kami">Tentang Kami</a></li>
-                <li><a href="#statistik-wilayah">Statistik</a></li>
-                <li><a href="#layanan-digital">Layanan</a></li>
-                <li><a href="{{ url('/data-spasial') }}">Peta Spasial</a></li>
-                <li><a href="#lokasi-kami">Hubungi Kami</a></li>
-            </ul>
+        <ul class="nav-menu">
+            <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
+            <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
+            <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
+            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
+            <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
+            <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
+        </ul>
 
-            <form class="search-pill-nav" action="{{ url('/desa') }}" method="GET">
-                <input type="text" name="search" placeholder="Cari desa / modul...">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-    </nav>
+        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET">
+            <input type="text" name="search" placeholder="Cari kecamatan...">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </header>
 
     <!-- 2. HERO BANNER -->
-    <section id="hero-banner" class="hero-banner-clean" style="background-image: url('{{ asset('images/alun-alun-tuban.jpg') }}');">
+    <section id="hero-banner" class="hero-banner-clean" style="background-image: url('<?= asset('images/alun-alun-tuban.jpg'); ?>');">
         <div class="hero-content-wrap">
-            <div class="hero-badge-pill">
-                <i class="fa-solid fa-circle-nodes"></i> PORTAL RESMI PEMERINTAH KABUPATEN TUBAN
-            </div>
+            
             <h1 class="hero-main-title">Desa Digital</h1>
-            <p class="hero-lead-text">Digitalisasi Terpadu Pemerintahan Desa Menuju Pelayanan Publik yang Efisien & Transparan</p>
-            <a href="{{ url('/data-spasial') }}" class="btn-hero-primary">
-                <span>Eksplorasi Peta Spasial</span>
-                <i class="fa-solid fa-map-location-dot"></i>
-            </a>
+            <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban Menuju Tata Kelola yang Efisien, Terpadu & Transparan</p>
+            
+            <div class="hero-info-pills">
+                <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
+                <div class="divider-dot"></div>
+                <span><i class="fa-solid fa-sitemap" style="color: #38bdf8;"></i> <strong>20</strong> Distrik Kecamatan</span>
+                <div class="divider-dot"></div>
+                <span><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Layanan Siaga Terintegrasi</span>
+            </div>
+
+            <div>
+                <a href="#layanan-digital" class="btn-jelajah-solo">
+                    <span>Mulai Jelajah</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+            </div>
+
         </div>
     </section>
 
-    <!-- 3. ACCORDION & VIDEO -->
+    <!-- 3. ACCORDION & PROFIL INOVASI -->
     <section id="tentang-kami" class="section-profil-accordion">
         <div class="section-header-clean">
-            <span class="header-tag-pill">Pilar Transformasi Digital</span>
+            <div class="header-tag-pill">
+                <i class="fa-solid fa-network-wired"></i> PILAR TRANSFORMASI DIGITAL
+            </div>
             <h2>Inovasi Ekosistem Desa</h2>
+            <p>Akselerasi tata kelola pemerintahan berbasis teknologi informasi untuk mewujudkan pelayanan desa yang responsif, transparan, dan inklusif se-Kabupaten Tuban.</p>
         </div>
 
         <div class="profil-dual-layout">
+            
             <div class="accordion-stack-clean">
                 
-                <div class="accordion-item-clean active" onclick="switchCleanAccordion(this)">
+                <div class="accordion-item-clean theme-blue active" onclick="switchCleanAccordion(this)">
                     <button type="button" class="accordion-header-btn">
                         <span class="accordion-title-wrap">
-                            <i class="fa-solid fa-globe"></i>
+                            <div class="accordion-icon-box"><i class="fa-solid fa-globe"></i></div>
                             Website Desa & Media Sosial Resmi
                         </span>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -758,10 +960,10 @@
                     </div>
                 </div>
 
-                <div class="accordion-item-clean" onclick="switchCleanAccordion(this)">
+                <div class="accordion-item-clean theme-emerald" onclick="switchCleanAccordion(this)">
                     <button type="button" class="accordion-header-btn">
                         <span class="accordion-title-wrap">
-                            <i class="fa-solid fa-laptop-code"></i>
+                            <div class="accordion-icon-box"><i class="fa-solid fa-file-signature"></i></div>
                             Layanan Digital & Administrasi Persuratan
                         </span>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -771,10 +973,10 @@
                     </div>
                 </div>
 
-                <div class="accordion-item-clean" onclick="switchCleanAccordion(this)">
+                <div class="accordion-item-clean theme-amber" onclick="switchCleanAccordion(this)">
                     <button type="button" class="accordion-header-btn">
                         <span class="accordion-title-wrap">
-                            <i class="fa-solid fa-wifi"></i>
+                            <div class="accordion-icon-box"><i class="fa-solid fa-wifi"></i></div>
                             Akses Internet & WiFi Publik Desa
                         </span>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -784,10 +986,10 @@
                     </div>
                 </div>
 
-                <div class="accordion-item-clean" onclick="switchCleanAccordion(this)">
+                <div class="accordion-item-clean theme-violet" onclick="switchCleanAccordion(this)">
                     <button type="button" class="accordion-header-btn">
                         <span class="accordion-title-wrap">
-                            <i class="fa-solid fa-desktop"></i>
+                            <div class="accordion-icon-box"><i class="fa-solid fa-desktop"></i></div>
                             Anjungan Pelayanan Mandiri (Kiosk)
                         </span>
                         <i class="fa-solid fa-chevron-down"></i>
@@ -801,8 +1003,14 @@
 
             <div class="video-player-frame">
                 <div class="video-top-tag">
-                    <span><i class="fa-brands fa-youtube"></i> Diskominfo-SP Tuban</span>
-                    <span style="color: var(--primary-blue);"><i class="fa-solid fa-circle-check"></i> Siaran Resmi</span>
+                    <div class="channel-info">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span>Diskominfo-SP Tuban</span>
+                    </div>
+                    <div class="status-broadcast">
+                        <div class="live-pulse"></div>
+                        <span>Siaran Resmi</span>
+                    </div>
                 </div>
                 <div class="video-embed-box">
                     <iframe 
@@ -813,242 +1021,149 @@
                     </iframe>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- 4. SEKSI STATISTIK (MENGHUBUNGKAN KE DATA SPASIAL & FILTER) -->
-    <section id="statistik-wilayah" class="section-stats-bright">
-        <div class="section-header-clean">
-            <span class="header-tag-pill">Data Statistik Terintegrasi</span>
-            <h2>Capaian Digitalisasi Kabupaten Tuban</h2>
-        </div>
-
-        <div class="stats-cards-grid">
+    <!-- 4. SEKSI STATISTIK: KAPSUL BULAT TERANG -->
+    <section id="statistik-wilayah" class="section-stats-circle">
+        <div class="stats-grid-circles">
             
-            <!-- 1. WiFi Desa -> Langsung membuka peta dengan filter wifi -->
-            <a href="{{ url('/data-spasial?filter=wifi') }}" class="stat-card-modern" style="--stat-accent: #0284c7; --stat-bg: #e0f2fe;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-wifi"></i></div>
-                        <span class="stat-badge-info">Peta Spasial</span>
-                    </div>
-                    <div class="stat-main-number">448</div>
-                    <div class="stat-title-text">Titik WiFi Desa</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 92%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Klik untuk lihat di Peta</span>
-                        <strong>92% Terpasang</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 1. WiFi Desa -->
+            <div class="stat-circle-pod" style="--pod-accent: #0284c7; --pod-bg: #e0f2fe; --pod-border: #bae6fd; --pod-glow: rgba(2, 132, 199, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-wifi"></i></div>
+                <div class="stat-circle-number">448</div>
+                <div class="stat-circle-label">Titik WiFi</div>
+            </div>
 
             <!-- 2. Website Desa -->
-            <a href="{{ url('/desa') }}" class="stat-card-modern" style="--stat-accent: #2563eb; --stat-bg: #dbeafe;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-globe"></i></div>
-                        <span class="stat-badge-info">Portal Resmi</span>
-                    </div>
-                    <div class="stat-main-number">328</div>
-                    <div class="stat-title-text">Website Desa Aktif</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 100%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>328 Desa & Kelurahan</span>
-                        <strong>100% Online</strong>
-                    </div>
-                </div>
-            </a>
+            <div class="stat-circle-pod" style="--pod-accent: #2563eb; --pod-bg: #dbeafe; --pod-border: #bfdbfe; --pod-glow: rgba(37, 99, 235, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-globe"></i></div>
+                <div class="stat-circle-number">328</div>
+                <div class="stat-circle-label">Website Desa</div>
+            </div>
 
-            <!-- 3. Wisata Desa -> Buka data spasial dengan filter wisata -->
-            <a href="{{ url('/data-spasial?filter=wisata') }}" class="stat-card-modern" style="--stat-accent: #10b981; --stat-bg: #d1fae5;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-mountain-sun"></i></div>
-                        <span class="stat-badge-info">Peta Spasial</span>
-                    </div>
-                    <div class="stat-main-number">35</div>
-                    <div class="stat-title-text">Wisata Desa Terdata</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 80%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Klik untuk lihat di Peta</span>
-                        <strong>Aktif Terpetakan</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 3. Wisata Desa -->
+            <div class="stat-circle-pod" style="--pod-accent: #059669; --pod-bg: #d1fae5; --pod-border: #a7f3d0; --pod-glow: rgba(5, 150, 105, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+                <div class="stat-circle-number">35</div>
+                <div class="stat-circle-label">Wisata Desa</div>
+            </div>
 
-            <!-- 4. Kantor Desa -> Buka data spasial dengan filter kantor -->
-            <a href="{{ url('/data-spasial?filter=kantor') }}" class="stat-card-modern" style="--stat-accent: #4f46e5; --stat-bg: #e0e7ff;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-building-columns"></i></div>
-                        <span class="stat-badge-info">Peta Spasial</span>
-                    </div>
-                    <div class="stat-main-number">328</div>
-                    <div class="stat-title-text">Kantor Pelayanan Desa</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 100%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>20 Kecamatan</span>
-                        <strong>Terverifikasi</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 4. Balai Desa -->
+            <div class="stat-circle-pod" style="--pod-accent: #4f46e5; --pod-bg: #e0e7ff; --pod-border: #c7d2fe; --pod-glow: rgba(79, 70, 229, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="stat-circle-number">328</div>
+                <div class="stat-circle-label">Balai Desa</div>
+            </div>
 
-            <!-- 5. Pasar Desa -> Buka data spasial dengan filter pasar -->
-            <a href="{{ url('/data-spasial?filter=pasar') }}" class="stat-card-modern" style="--stat-accent: #f59e0b; --stat-bg: #fef3c7;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-store"></i></div>
-                        <span class="stat-badge-info">Peta Spasial</span>
-                    </div>
-                    <div class="stat-main-number">38</div>
-                    <div class="stat-title-text">Pasar Rakyat Desa</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 70%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Klik untuk lihat di Peta</span>
-                        <strong>Digitalisasi Non-Tunai</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 5. Pasar Desa -->
+            <div class="stat-circle-pod" style="--pod-accent: #d97706; --pod-bg: #fef3c7; --pod-border: #fde68a; --pod-glow: rgba(217, 119, 6, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-store"></i></div>
+                <div class="stat-circle-number">38</div>
+                <div class="stat-circle-label">Pasar Rakyat</div>
+            </div>
 
-            <!-- 6. BUMDes -->
-            <a href="{{ url('/data-spasial?filter=bumdes') }}" class="stat-card-modern" style="--stat-accent: #8b5cf6; --stat-bg: #ede9fe;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-briefcase"></i></div>
-                        <span class="stat-badge-info">Peta Spasial</span>
-                    </div>
-                    <div class="stat-main-number">309</div>
-                    <div class="stat-title-text">Unit BUMDes Berjalan</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 88%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Klik untuk lihat di Peta</span>
-                        <strong>Aktif Beroperasi</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 6. Unit BUMDes -->
+            <div class="stat-circle-pod" style="--pod-accent: #7c3aed; --pod-bg: #ede9fe; --pod-border: #ddd6fe; --pod-glow: rgba(124, 58, 237, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="stat-circle-number">309</div>
+                <div class="stat-circle-label">Unit BUMDes</div>
+            </div>
 
-            <!-- 7. KKDMP -->
-            <a href="{{ url('/desa') }}" class="stat-card-modern" style="--stat-accent: #f43f5e; --stat-bg: #ffe4e6;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-chart-pie"></i></div>
-                        <span class="stat-badge-info">Perencanaan</span>
-                    </div>
-                    <div class="stat-main-number">83</div>
-                    <div class="stat-title-text">Dokumen KKDMP</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 83%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Pembangunan Desa</span>
-                        <strong>Tersinkronisasi</strong>
-                    </div>
-                </div>
-            </a>
+            <!-- 7. Dokumen KKDMP -->
+            <div class="stat-circle-pod" style="--pod-accent: #e11d48; --pod-bg: #ffe4e6; --pod-border: #fecdd3; --pod-glow: rgba(225, 29, 72, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="stat-circle-number">83</div>
+                <div class="stat-circle-label">Dokumen KKDMP</div>
+            </div>
 
             <!-- 8. Distrik Kecamatan -->
-            <a href="{{ url('/kecamatan') }}" class="stat-card-modern" style="--stat-accent: #0d9488; --stat-bg: #ccfbf1;">
-                <div>
-                    <div class="stat-card-header">
-                        <div class="stat-icon-wrap"><i class="fa-solid fa-sitemap"></i></div>
-                        <span class="stat-badge-info">Wilayah Distrik</span>
-                    </div>
-                    <div class="stat-main-number">20</div>
-                    <div class="stat-title-text">Kecamatan Penyelenggara</div>
-                </div>
-                <div>
-                    <div class="stat-progress-bar">
-                        <div class="stat-progress-val" style="width: 100%;"></div>
-                    </div>
-                    <div class="stat-footer-note">
-                        <span>Koordinasi Distrik</span>
-                        <strong>100% Terintegrasi</strong>
-                    </div>
-                </div>
-            </a>
+            <div class="stat-circle-pod" style="--pod-accent: #0d9488; --pod-bg: #ccfbf1; --pod-border: #99f6e4; --pod-glow: rgba(13, 148, 136, 0.18);">
+                <div class="stat-circle-icon"><i class="fa-solid fa-sitemap"></i></div>
+                <div class="stat-circle-number">20</div>
+                <div class="stat-circle-label">Kecamatan</div>
+            </div>
 
         </div>
     </section>
 
-    <!-- 5. HUB LAYANAN DIGITAL (OPSI DAN ATRIBUT DATA SPASIAL DIHUBUNGKAN KE GAMBAR 1) -->
+    <!-- 5. SEKSI GERBANG LAYANAN: ELEGAN, MINIMALIS & TANPA TEKS DESKRIPSI -->
     <section id="layanan-digital" class="section-services-clean">
-        <div class="section-header-clean">
-            <span class="header-tag-pill">Pusat Layanan Terpadu</span>
+        
+        <div class="services-header-box">
+            <div class="services-tag-pill">
+                <i class="fa-solid fa-layer-group"></i> PUSAT LAYANAN TERPADU
+            </div>
             <h2>Gerbang Layanan Publik Digital</h2>
         </div>
 
         <div class="services-cards-cluster">
             
             <!-- 1. Website Desa -->
-        <a href="{{ url('/website') }}" class="service-card-clean" title="Buka Direktori Website Desa">
-    <div class="service-icon-circle" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
-        <i class="fa-solid fa-globe"></i>
-    </div>
-    <h4>Website Desa</h4>
-    <p>Katalog profil kelurahan dan informasi publik desa.</p>
-        </a>
+            <a href="<?= url('/website'); ?>" class="service-card-clean" 
+               style="--service-accent: #2563eb; --service-border: #bfdbfe; --service-glow: rgba(37, 99, 235, 0.22); --service-pill: #dbeafe; --service-text: #1d4ed8;">
+                <div class="service-icon-circle" 
+                     style="background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); --icon-shadow: rgba(37, 99, 235, 0.35);">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <h4>Website Desa</h4>
+                <div class="service-action-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
 
-            <!-- 2. Data Spasial (Membuka Peta Gambar 1) -->
-            <a href="{{ url('/data-spasial') }}" class="service-card-clean highlight-card" title="Klik untuk membuka Geoportal Peta Spasial">
-                <div class="service-icon-circle" style="background: linear-gradient(135deg, #059669, #10b981);">
+            <!-- 2. Data Spasial -->
+            <a href="<?= url('/data-spasial'); ?>" class="service-card-clean"
+               style="--service-accent: #059669; --service-border: #a7f3d0; --service-glow: rgba(5, 150, 105, 0.22); --service-pill: #d1fae5; --service-text: #047857;">
+                <div class="service-icon-circle" 
+                     style="background: linear-gradient(135deg, #047857 0%, #10b981 100%); --icon-shadow: rgba(16, 185, 129, 0.35);">
                     <i class="fa-solid fa-location-dot"></i>
                 </div>
                 <h4>Data Spasial</h4>
-                <p>Peta geospasial sebaran WiFi, pasar, dan BUMDes.</p>
+                <div class="service-action-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
             </a>
 
             <!-- 3. Surat Desa -->
-<a href="{{ url('/surat') }}" class="service-card-clean" title="Pengajuan Surat Mandiri Desa">
-    <div class="service-icon-circle" style="background: linear-gradient(135deg, #d97706, #f59e0b);">
-        <i class="fa-solid fa-envelope-open-text"></i>
-    </div>
-    <h4>Surat Desa</h4>
-    <p>Permohonan SKU, domisili, dan surat mandiri.</p>
-</a>
+            <a href="<?= url('/surat'); ?>" class="service-card-clean"
+               style="--service-accent: #d97706; --service-border: #fde68a; --service-glow: rgba(217, 119, 6, 0.22); --service-pill: #fef3c7; --service-text: #b45309;">
+                <div class="service-icon-circle" 
+                     style="background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%); --icon-shadow: rgba(245, 158, 11, 0.35);">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h4>Surat Desa</h4>
+                <div class="service-action-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
 
-           <!-- 4. CCTV -->
-<a href="{{ url('/cctv') }}" class="service-card-clean" title="Pantauan Live CCTV Wilayah">
-    <div class="service-icon-circle" style="background: linear-gradient(135deg, #e11d48, #f43f5e);">
-        <i class="fa-solid fa-video"></i>
-    </div>
-    <h4>CCTV</h4>
-    <p>Pantau titik keramaian dan keamanan wilayah Tuban.</p>
-</a>
+            <!-- 4. CCTV -->
+            <a href="<?= url('/cctv'); ?>" class="service-card-clean"
+               style="--service-accent: #e11d48; --service-border: #fecdd3; --service-glow: rgba(225, 29, 72, 0.22); --service-pill: #ffe4e6; --service-text: #be123c;">
+                <div class="service-icon-circle" 
+                     style="background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%); --icon-shadow: rgba(244, 63, 94, 0.35);">
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <h4>CCTV</h4>
+                <div class="service-action-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
 
-          <!-- 5. e-PBB -->
-<a href="{{ url('/epbb') }}" class="service-card-clean" title="Layanan Pajak PBB-P2 Online">
-    <div class="service-icon-circle" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);">
-        <i class="fa-solid fa-qrcode"></i>
-    </div>
-    <h4>e-PBB</h4>
-    <p>Cek tagihan & pembayaran pajak PBB online.</p>
-</a>
+            <!-- 5. e-PBB -->
+            <a href="<?= url('/epbb'); ?>" class="service-card-clean"
+               style="--service-accent: #7c3aed; --service-border: #ddd6fe; --service-glow: rgba(124, 58, 237, 0.22); --service-pill: #ede9fe; --service-text: #6d28d9;">
+                <div class="service-icon-circle" 
+                     style="background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%); --icon-shadow: rgba(139, 92, 246, 0.35);">
+                    <i class="fa-solid fa-qrcode"></i>
+                </div>
+                <h4>e-PBB</h4>
+                <div class="service-action-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
 
         </div>
     </section>
@@ -1082,7 +1197,7 @@
                             <i class="fa-solid fa-globe"></i>
                             <div class="detail-texts">
                                 <small>Website Resmi</small>
-                                <p><a href="https://diskominfo.tubankab.go.id" target="_blank">diskominfo.tubankab.go.id</a></p>
+                                <p><a href="https://diskominfo.tubankab.go.id" target="_blank" rel="noopener noreferrer">diskominfo.tubankab.go.id</a></p>
                             </div>
                         </div>
 
@@ -1096,7 +1211,7 @@
                     </div>
                 </div>
 
-                <a href="https://maps.google.com/?q=Dinas+Komunikasi+dan+Informatika+Kabupaten+Tuban" target="_blank" class="btn-maps-route">
+                <a href="https://maps.google.com/?q=Dinas+Komunikasi+dan+Informatika+Kabupaten+Tuban" target="_blank" rel="noopener noreferrer" class="btn-maps-route">
                     <i class="fa-solid fa-diamond-turn-right"></i>
                     <span>Buka Rute di Google Maps</span>
                 </a>
@@ -1105,8 +1220,6 @@
             <div class="map-viewport-frame">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!4v1790305660366!6m8!1m7!1szab-FoOpFkmJVJ79X0G0Pw!2m2!1d-6.901873934235668!2d112.0440727763729!3f119.96725389059543!4f-2.7866853560054636!5f0.7820865974627469"
-                    width="800"
-                    height="600"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="strict-origin-when-cross-origin">
@@ -1130,7 +1243,7 @@
         <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
     </footer>
 
-    <!-- SCRIPT ACCORDION INTERAKTIF -->
+    <!-- SCRIPT AKORDEON -->
     <script>
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
