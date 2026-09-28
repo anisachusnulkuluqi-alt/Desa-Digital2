@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 use App\Http\Controllers\Admin\LokasiTitikController;
+use App\Http\Controllers\Admin\WisataController; // ✅ TAMBAHAN: Import WisataController
 use App\Http\Controllers\SpatialLocationController;
 
 /*
@@ -191,12 +192,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('desa/{desa}/detail', [AdminDesaController::class, 'showDetail'])->name('desa.detail');
         Route::post('desa/import', [AdminDesaController::class, 'import'])->name('desa.import');
         Route::get('desa/download-template', [AdminDesaController::class, 'downloadTemplate'])->name('desa.download-template');
+
+        // ==========================================
+        // ✅ WISATA DESA (ROUTE KHUSUS, BUKAN LOKASI TITIK)
+        // ==========================================
+        Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
+        Route::post('/wisata', [WisataController::class, 'store'])->name('wisata.store');
+        Route::put('/wisata/{wisata}', [WisataController::class, 'update'])->name('wisata.update');
+        Route::delete('/wisata/{wisata}', [WisataController::class, 'destroy'])->name('wisata.destroy');
         
+        // Modul lokasi lainnya (Tanpa Wisata, karena Wisata sudah punya route sendiri di atas)
         $locationModules = [
             'wifi' => ['path' => 'wifi', 'name' => 'wifi'],
             'kantor' => ['path' => 'kantor-desa', 'name' => 'kantor'],
             'pasar' => ['path' => 'pasar', 'name' => 'pasar'],
-            'wisata' => ['path' => 'wisata', 'name' => 'wisata'],
             'bumdes' => ['path' => 'bumdes', 'name' => 'bumdes'],
             'kkdmp' => ['path' => 'kkdmp', 'name' => 'kkdmp'],
         ];

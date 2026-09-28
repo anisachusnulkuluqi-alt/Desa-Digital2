@@ -200,6 +200,7 @@
     </style>
 </head>
 <body>
+    @include('admin.partials.sidebar', ['activeMenu' => 'kecamatan'])
     <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

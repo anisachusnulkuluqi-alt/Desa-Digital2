@@ -387,6 +387,7 @@
     </style>
 </head>
 <body>
+    @include('admin.partials.sidebar', ['activeMenu' => 'desa'])
     <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

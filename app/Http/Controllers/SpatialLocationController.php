@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class SpatialLocationController extends Controller
 {
@@ -20,26 +21,31 @@ class SpatialLocationController extends Controller
         abort_unless(isset(self::CATEGORIES[$kategori]), 404);
 
         $category = self::CATEGORIES[$kategori];
+        $columns = [
+            'id',
+            'feature_id',
+            'nama_lokasi',
+            'latitude',
+            'longitude',
+            'properties',
+        ];
+
+        if (Schema::hasColumn($category['table'], 'alamat')) {
+            $columns[] = 'alamat';
+        }
+
         $rows = DB::table($category['table'])
             ->whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->orderBy('id')
-            ->get([
-                'id',
-                'feature_id',
-                'nama_lokasi',
-                'alamat',
-                'latitude',
-                'longitude',
-                'properties',
-            ]);
+            ->get($columns);
 
         $features = $rows->map(function ($row) use ($category): array {
             $properties = json_decode($row->properties ?? '{}', true);
             $properties = is_array($properties) ? $properties : [];
             $properties[$category['name_property']] = $row->nama_lokasi;
 
-            if ($row->alamat !== null) {
+            if (!empty($row->alamat)) {
                 $properties['alamat'] = $row->alamat;
             }
 

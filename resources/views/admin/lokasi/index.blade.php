@@ -106,24 +106,7 @@
 </head>
 <body>
     <div class="app">
-        <aside class="sidebar">
-            <a class="brand" href="{{ route('dashboard') }}">
-                <span class="brand-mark">D</span>
-                <span class="brand-copy">Desa Digital<small>Admin pengelola data</small></span>
-            </a>
-            <div class="nav-label">Menu Admin</div>
-            <nav class="nav-list" aria-label="Navigasi admin">
-                <a href="{{ route('dashboard') }}"><span class="nav-icon">⌂</span><span class="nav-text">Beranda</span></a>
-                <a href="{{ route('admin.kecamatan.index') }}"><span class="nav-icon">⌖</span><span class="nav-text">Kecamatan</span></a>
-                <a href="{{ route('admin.desa.index') }}"><span class="nav-icon">▦</span><span class="nav-text">Desa</span></a>
-                @foreach ($categories as $key => $navCategory)
-                    <a href="{{ route('admin.'.$navCategory['route'].'.index') }}" class="{{ $key === request()->route('kategori') ? 'active' : '' }}">
-                        <span class="nav-icon">{{ ['wisata' => '▧', 'pasar' => '▤', 'kantor' => '▥', 'wifi' => '⌁', 'bumdes' => '▣', 'kkdmp' => '♧'][$key] }}</span>
-                        <span class="nav-text">{{ $navCategory['label'] }}</span>
-                    </a>
-                @endforeach
-            </nav>
-        </aside>
+        @include('admin.partials.sidebar', ['activeMenu' => request()->route('kategori')])
 
         <main class="main">
             <header class="topbar">
@@ -156,31 +139,34 @@
                     <div class="panel-toolbar">
                         <div class="count"><strong>{{ number_format($totalLocations) }}</strong> titik tersimpan</div>
                         <form method="GET" action="{{ url()->current() }}">
-                            <input class="search" type="search" name="search" value="{{ request('search') }}" placeholder="Cari nama atau alamat..." aria-label="Cari nama atau alamat">
+                            <input class="search" type="search" name="search" value="{{ request('search') }}" placeholder="Cari nama tempat atau desa..." aria-label="Cari nama tempat atau desa">
                         </form>
                     </div>
                     <div class="table-wrap">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nama lokasi</th>
-                                    <th>Alamat</th>
-                                    <th>Latitude, Longitude</th>
+                                    <th>Nama tempat</th>
+                                    <th>Desa</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($locations as $location)
+                                    @php
+                                        $locationProperties = is_array($location->properties)
+                                            ? $location->properties
+                                            : (json_decode($location->properties ?? '{}', true) ?: []);
+                                        $village = $locationProperties['nama_desa']
+                                            ?? $locationProperties['desa']
+                                            ?? $locationProperties['Desa']
+                                            ?? $locationProperties['kelurahan']
+                                            ?? $locationProperties['desa_kelur']
+                                            ?? '-';
+                                    @endphp
                                     <tr>
                                         <td><span class="name">{{ $location->nama_lokasi ?: 'Tanpa nama' }}</span></td>
-                                        <td><div class="address" title="{{ $location->alamat }}">{{ $location->alamat ?: 'Alamat belum diisi' }}</div></td>
-                                        <td class="coords">
-                                            @if ($location->latitude !== null && $location->longitude !== null)
-                                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query={{ $location->latitude }},{{ $location->longitude }}" target="_blank" rel="noopener noreferrer">{{ $location->latitude }}, {{ $location->longitude }}</a>
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
+                                        <td>{{ $village }}</td>
                                         <td>
                                             <div class="actions">
                                                 <button class="btn btn-light btn-small" type="button" data-id="{{ $location->id }}" data-name="{{ $location->nama_lokasi }}" data-address="{{ $location->alamat }}" data-latitude="{{ $location->latitude }}" data-longitude="{{ $location->longitude }}" data-properties="{{ $location->properties ?: '{}' }}" onclick="openEditModal(this)">Edit</button>
@@ -193,7 +179,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr><td class="empty" colspan="4">Belum ada titik pada kategori ini.</td></tr>
+                                    <tr><td class="empty" colspan="3">Belum ada titik pada kategori ini.</td></tr>
                                 @endforelse
                             </tbody>
                         </table>

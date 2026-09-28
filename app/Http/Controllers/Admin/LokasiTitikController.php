@@ -26,8 +26,14 @@ class LokasiTitikController extends Controller
         if ($request->filled('search')) {
             $search = $request->string('search')->toString();
             $query->where(function ($builder) use ($search): void {
-                $builder->where('nama_lokasi', 'like', "%{$search}%")
-                    ->orWhere('alamat', 'like', "%{$search}%");
+                $builder->where('nama_lokasi', 'like', "%{$search}%");
+
+                foreach (['nama_desa', 'desa', 'Desa', 'kelurahan', 'desa_kelur'] as $property) {
+                    $builder->orWhereRaw(
+                        "JSON_UNQUOTE(JSON_EXTRACT(properties, '$.{$property}')) LIKE ?",
+                        ["%{$search}%"]
+                    );
+                }
             });
         }
 
