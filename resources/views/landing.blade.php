@@ -1127,8 +1127,8 @@
                 </div>
             </a>
 
-            <!-- 3. Surat Desa -->
-            <a href="<?= url('/surat'); ?>" class="service-card-clean"
+          <!-- 3. Surat Desa (Langsung Terhubung ke APMD Tuban) -->
+            <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #d97706; --service-border: #fde68a; --service-glow: rgba(217, 119, 6, 0.22); --service-pill: #fef3c7; --service-text: #b45309;">
                 <div class="service-icon-circle" 
                      style="background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%); --icon-shadow: rgba(245, 158, 11, 0.35);">
@@ -1153,8 +1153,8 @@
                 </div>
             </a>
 
-            <!-- 5. e-PBB -->
-            <a href="<?= url('/epbb'); ?>" class="service-card-clean"
+            <!-- 5. e-PBB (Langsung Terhubung ke APMD Tuban) -->
+            <a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #7c3aed; --service-border: #ddd6fe; --service-glow: rgba(124, 58, 237, 0.22); --service-pill: #ede9fe; --service-text: #6d28d9;">
                 <div class="service-icon-circle" 
                      style="background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%); --icon-shadow: rgba(139, 92, 246, 0.35);">

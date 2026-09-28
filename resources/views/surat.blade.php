@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Layanan Surat Mandiri - Desa Digital Kabupaten Tuban</title>
+    <title>Layanan Surat Mandiri - Anjungan Pelayanan Mandiri Desa Tuban</title>
+    <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
 
-    <!-- Google Fonts & Font Awesome -->
+    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -14,722 +14,569 @@
 
     <style>
         :root {
-            --primary: #0284c7;
-            --primary-dark: #0369a1;
-            --primary-light: #e0f2fe;
-            --amber: #f59e0b;
-            --amber-dark: #d97706;
-            --emerald: #10b981;
-            --rose: #e11d48;
-            --bg-body: #f8fafc;
-            --card-bg: #ffffff;
-            --text-dark: #0f172a;
+            --bg-canvas: #f8fafc;
+            --bg-card: #ffffff;
+            --primary-apmd: #5b67e8;
+            --primary-apmd-hover: #4a54d1;
+            --text-title: #1e293b;
+            --text-subtitle: #475569;
             --text-muted: #64748b;
             --border-soft: #e2e8f0;
+            --header-slate: #283548;
+            --digital-cyan: #28b2fc;
+            --emerald: #10b981;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
+        body { background-color: var(--bg-canvas); color: var(--text-title); min-height: 100vh; overflow-x: hidden; }
 
-        /* Header Navbar */
+        /* 1. Header Navbar */
         .site-header {
-            background: #475569;
-            padding: 14px 7%;
+            background-color: var(--header-slate);
+            padding: 12px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
         }
-        .brand-link {
-            display: flex;
+
+        .brand-link-clean {
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
         }
-        .brand-logo-img {
-            height: 38px;
+
+        .brand-logo-icon {
+            height: 36px;
             width: auto;
-            max-width: 140px;
+            max-width: 48px;
             object-fit: contain;
+            display: block;
         }
-        .nav-menu {
+
+        .brand-text-logo {
+            font-size: 1.55rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
             display: flex;
-            align-items: center;
-            gap: 20px;
-            list-style: none;
+            align-items: baseline;
+            gap: 6px;
+            font-weight: 800;
+        }
+        .brand-text-logo .text-desa { color: #ffffff; font-weight: 800; }
+        .brand-text-logo .text-digital { color: var(--digital-cyan); font-weight: 800; }
+
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 28px; 
+            list-style: none; 
         }
         .nav-menu a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 700;
+            font-size: 0.84rem;
+            font-weight: 800;
+            letter-spacing: 0.6px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
-        }
-        .nav-menu a:hover { opacity: 0.8; }
-
-        /* Hero Banner */
-        .surat-hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
-            color: #ffffff;
-            padding: 60px 7% 75px 7%;
-            text-align: center;
             position: relative;
+            padding: 4px 0;
+            transition: color 0.2s ease;
         }
-        .hero-badge {
+        .nav-menu a:hover,
+        .nav-menu a.active { 
+            color: var(--digital-cyan); 
+        }
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: var(--digital-cyan);
+            border-radius: 2px;
+        }
+
+        .btn-apmd-nav {
+            background: var(--primary-apmd);
+            color: #ffffff !important;
+            padding: 7px 18px !important;
+            border-radius: 8px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            color: #fbbf24;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
+            gap: 6px;
+            transition: all 0.25s ease !important;
         }
-        .surat-hero h1 {
-            font-size: 2.6rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
+        .btn-apmd-nav:hover {
+            background: var(--primary-apmd-hover) !important;
+            transform: translateY(-1px);
         }
-        .surat-hero p {
-            font-size: 1.05rem;
-            color: #cbd5e1;
-            max-width: 680px;
-            margin: 0 auto;
-            line-height: 1.6;
+        .btn-apmd-nav::after { display: none !important; }
+
+        /* 2. Hero Section Bersih & Cerah Ala APMD */
+        .hero-apmd {
+            background: #ffffff;
+            padding: 70px 7% 90px 7%;
+            border-bottom: 1.5px solid var(--border-soft);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Flash Message Alert */
-        .alert-banner {
+        .hero-apmd-grid {
             max-width: 1240px;
-            margin: 20px auto 0 auto;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text-wrap {
+            max-width: 580px;
+        }
+
+        .greeting-tag {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 12px;
+            display: block;
+            letter-spacing: -0.01em;
+        }
+
+        .apmd-main-title {
+            font-size: 3.3rem;
+            font-weight: 900;
+            color: #1e293b;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+        }
+
+        .apmd-description {
+            font-size: 1.05rem;
+            color: var(--text-subtitle);
+            line-height: 1.7;
+            margin-bottom: 34px;
+            font-weight: 500;
+        }
+
+        .btn-buat-surat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--primary-apmd);
+            color: #ffffff;
+            font-size: 1rem;
             font-weight: 700;
+            padding: 14px 38px;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 10px 24px rgba(91, 103, 232, 0.35);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-buat-surat:hover {
+            background: var(--primary-apmd-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(91, 103, 232, 0.45);
+        }
+
+        /* Ilustrasi Grafis Kanan (SVG Presisi Sesuai Gambar APMD) */
+        .apmd-graphic-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            position: relative;
         }
-        .alert-success { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
-        .alert-error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
-        /* Container & Cards Grid */
-        .content-wrap {
+        .apmd-illustration-svg {
+            width: 100%;
+            max-width: 460px;
+            height: auto;
+            filter: drop-shadow(0 15px 35px rgba(99, 102, 241, 0.15));
+        }
+
+        /* 3. Floating Bar Lacak Pengajuan Surat */
+        .content-body-wrap {
             max-width: 1240px;
-            margin: -35px auto 60px auto;
+            margin: -35px auto 80px auto;
             padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        /* Tracking Bar */
-        .tracking-bar {
+        .tracking-box-bar {
             background: #ffffff;
+            border: 1.5px solid var(--border-soft);
             border-radius: 16px;
-            padding: 16px 22px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-            border: 1px solid var(--border-soft);
+            padding: 20px 26px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 40px;
+            gap: 20px;
+            margin-bottom: 45px;
             flex-wrap: wrap;
         }
-        .tracking-title {
+
+        .tracking-title-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .tracking-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #eef2ff;
+            color: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .tracking-title-info h4 {
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: var(--text-title);
+        }
+        .tracking-title-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .tracking-input-form {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            max-width: 520px;
+        }
+        .tracking-input-form input {
+            flex: 1;
+            border: 1.5px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 0.86rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .tracking-input-form input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.15);
+        }
+        .btn-cek-resi {
+            background: #1e293b;
+            color: #ffffff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 10px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .btn-cek-resi:hover {
+            background: #0f172a;
+        }
+
+        /* 4. Katalog Cepat Permohonan Surat Online */
+        .section-headline {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-title);
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .tracking-title i {
-            font-size: 1.4rem;
-            color: var(--amber-dark);
-        }
-        .tracking-title div h4 {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .tracking-title div p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-        .tracking-input-group {
-            display: flex;
-            gap: 8px;
-            flex: 1;
-            max-width: 440px;
-        }
-        .tracking-input-group input {
-            flex: 1;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 0.84rem;
-            font-weight: 600;
-            outline: none;
-        }
-        .tracking-input-group input:focus { border-color: var(--primary); }
-        .btn-track {
-            background: var(--text-dark);
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-track:hover { background: var(--primary); }
+        .section-headline i { color: #f59e0b; }
 
-        /* Grid Katalog Surat */
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 22px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .surat-grid {
+        .letter-options-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-bottom: 50px;
+            gap: 24px;
         }
 
-        .surat-card {
+        .letter-card-item {
             background: #ffffff;
-            border-radius: 18px;
             border: 1.5px solid var(--border-soft);
-            padding: 26px 22px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border-radius: 16px;
+            padding: 26px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.25s ease;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+            color: inherit;
             position: relative;
             overflow: hidden;
         }
-        .surat-card::before {
+        .letter-card-item::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 4px;
-            background: var(--card-accent, #0284c7);
+            background: var(--card-accent, #6366f1);
         }
-        .surat-card:hover {
+        .letter-card-item:hover {
             transform: translateY(-5px);
-            border-color: var(--card-accent, #0284c7);
-            box-shadow: 0 16px 30px rgba(0,0,0,0.08);
+            border-color: var(--card-accent, #6366f1);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
         }
 
-        .card-top {
+        .card-header-flex {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
-        .card-icon {
-            width: 48px;
-            height: 48px;
+        .card-icon-pill {
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
-            background: var(--icon-bg, #e0f2fe);
-            color: var(--card-accent, #0284c7);
+            background: var(--card-soft-bg, #eef2ff);
+            color: var(--card-accent, #6366f1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             flex-shrink: 0;
         }
-        .card-top h3 {
-            font-size: 1.08rem;
+        .card-header-flex h4 {
+            font-size: 1.05rem;
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--text-title);
+            line-height: 1.3;
         }
-        .surat-card p {
-            font-size: 0.82rem;
+
+        .letter-card-item p {
+            font-size: 0.84rem;
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
-        .btn-apply {
-            width: 100%;
-            background: #f8fafc;
-            border: 1px solid var(--border-soft);
-            color: var(--text-dark);
-            padding: 11px;
-            border-radius: 10px;
+
+        .btn-card-apmd {
             font-size: 0.84rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        .surat-card:hover .btn-apply {
-            background: var(--card-accent, #0284c7);
-            color: #ffffff;
-            border-color: transparent;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-content {
-            background: #ffffff;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 620px;
-            overflow: hidden;
-            box-shadow: 0 24px 50px rgba(0,0,0,0.25);
-            animation: zoomIn 0.2s ease-out;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .modal-header {
-            background: #f8fafc;
-            padding: 18px 24px;
-            border-bottom: 1px solid var(--border-soft);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-header h3 { font-size: 1.15rem; font-weight: 800; color: var(--text-dark); }
-        .btn-close {
-            background: transparent;
-            border: none;
-            font-size: 1.3rem;
-            color: #94a3b8;
-            cursor: pointer;
-        }
-        .modal-body {
-            padding: 24px;
-            max-height: 75vh;
-            overflow-y: auto;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            border: 1.5px solid var(--border-soft);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 0.85rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: var(--primary);
-        }
-        .btn-submit {
-            width: 100%;
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 13px;
-            border-radius: 10px;
-            font-size: 0.88rem;
             font-weight: 800;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
+            color: var(--card-accent, #6366f1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .btn-submit:hover { background: var(--primary-dark); }
+        .btn-card-apmd i { transition: transform 0.2s ease; }
+        .letter-card-item:hover .btn-card-apmd i { transform: translateX(5px); }
 
-        /* Modal Tracking Box */
-        .tracking-result-box {
-            display: none;
-            margin-top: 16px;
-            padding: 16px;
-            border-radius: 12px;
-            background: #f8fafc;
-            border: 1px solid var(--border-soft);
+        /* 5. Footer Sederhana */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 30px 6%;
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        footer a { color: var(--digital-cyan); text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .hero-apmd-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-text-wrap { max-width: 100%; margin: 0 auto; }
+            .letter-options-grid { grid-template-columns: repeat(2, 1fr); }
+            .tracking-box-bar { flex-direction: column; align-items: stretch; }
+            .tracking-input-form { max-width: 100%; }
         }
 
-        /* Responsive */
-        @media (max-width: 960px) { .surat-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) {
-            .surat-grid { grid-template-columns: 1fr; }
-            .tracking-bar { flex-direction: column; align-items: stretch; }
-            .tracking-input-group { max-width: 100%; }
+            .apmd-main-title { font-size: 2.3rem; }
+            .letter-options-grid { grid-template-columns: 1fr; }
             .nav-menu { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navbar -->
+    <!-- 1. Header Navbar Persis Gambar Referensi -->
     <header class="site-header">
-        <a href="<?= url('/'); ?>" class="brand-link">
+        <a href="<?= url('/'); ?>" class="brand-link-clean">
             <img src="<?= asset('images/desa-digital.png'); ?>" 
                  alt="Logo Desa Digital" 
-                 class="brand-logo-img"
-                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
-            <span style="font-size: 1.25rem; font-weight: 800; color: #ffffff;">Desa<span style="color: #38bdf8;">Digital</span></span>
+                 class="brand-logo-icon"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
+            
+            <div class="brand-text-logo">
+                <span class="text-desa">Desa</span>
+                <span class="text-digital">Digital</span>
+            </div>
         </a>
 
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>">Beranda</a></li>
-            <li><a href="<?= url('/website'); ?>">Website Desa</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">Peta Spasial</a></li>
-            <li><a href="<?= url('/cctv'); ?>">CCTV Tuban</a></li>
-            <li><a href="<?= url('/epbb'); ?>">e-PBB</a></li>
+            <li><a href="<?= url('/'); ?>">BERANDA</a></li>
+            <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
+            <li><a href="<?= url('/data-spasial'); ?>">PETA SPASIAL</a></li>
+            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
+            <li><a href="<?= url('/surat'); ?>" class="active">SURAT MANDIRI</a></li>
+            <li><a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="btn-apmd-nav"><i class="fa-solid fa-arrow-right-to-bracket"></i> Portal APMD</a></li>
         </ul>
     </header>
 
-    <!-- Flash Message Notification -->
-    <?php if (session('success')): ?>
-        <div class="alert-banner alert-success">
-            <i class="fa-solid fa-circle-check" style="font-size: 1.3rem;"></i>
-            <div><?= session('success'); ?></div>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($errors->any()): ?>
-        <div class="alert-banner alert-error">
-            <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.3rem;"></i>
-            <div>
-                <?php foreach ($errors->all() as$err): ?>
-                    <div>• <?= $err; ?></div>
-                <?php endforeach; ?>
+    <!-- 2. Hero Section Meniru Desain APMD Tuban (Gambar 1) -->
+    <section class="hero-apmd">
+        <div class="hero-apmd-grid">
+            
+            <!-- Sisi Kiri: Teks & Aksi Tautan Resmi -->
+            <div class="hero-text-wrap">
+                <span class="greeting-tag">Selamat datang di</span>
+                <h1 class="apmd-main-title">Anjungan Pelayanan Mandiri Desa</h1>
+                <p class="apmd-description">
+                    Layanan mandiri warga Desa untuk pengurusan surat desa dengan memanfaatkan KTP-el atau NIK.
+                </p>
+                <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="btn-buat-surat">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                    <span>Buat Surat</span>
+                </a>
             </div>
-        </div>
-    <?php endif; ?>
 
-    <!-- Hero Banner -->
-    <section class="surat-hero">
-        <div class="hero-badge">
-            <i class="fa-solid fa-signature"></i> Pelayanan Administrasi Mandiri Kabupaten Tuban
+            <!-- Sisi Kanan: Ilustrasi KTP-el, Handphone & Form APMD -->
+            <div class="apmd-graphic-container">
+                <svg class="apmd-illustration-svg" viewBox="0 0 500 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lembar Papan Dokumen Belakang -->
+                    <rect x="130" y="30" width="260" height="340" rx="14" fill="#3b4859" opacity="0.12"/>
+                    <rect x="140" y="20" width="250" height="340" rx="12" fill="#ffffff" stroke="#4f46e5" stroke-width="6"/>
+                    <rect x="155" y="35" width="220" height="290" rx="8" fill="#f8fafc"/>
+                    
+                    <!-- Bintang Dekorasi Aksen -->
+                    <path d="M375 70L382 82L395 85L384 95L387 108L375 101L363 108L366 95L355 85L368 82L375 70Z" fill="#fbbf24"/>
+                    <path d="M125 180L130 188L140 190L132 198L134 208L125 203L116 208L118 198L110 190L120 188L125 180Z" fill="#fbbf24"/>
+                    
+                    <!-- Tangan Kiri Memegang KTP-el -->
+                    <path d="M60 380C60 300 120 200 170 180L200 230L140 380H60Z" fill="#38bdf8" opacity="0.3"/>
+                    <path d="M85 360L165 210C170 200 185 195 195 200C205 205 210 218 202 230L145 360H85Z" fill="#f87171"/>
+                    
+                    <!-- Kartu KTP Elektronik -->
+                    <g transform="rotate(-5 200 210)">
+                        <rect x="160" y="190" width="130" height="85" rx="8" fill="#60a5fa" stroke="#1d4ed8" stroke-width="2"/>
+                        <rect x="170" y="202" width="30" height="36" rx="4" fill="#ffffff"/>
+                        <circle cx="185" cy="216" r="8" fill="#cbd5e1"/>
+                        <path d="M173 234C173 226 197 226 197 234H173Z" fill="#cbd5e1"/>
+                        <rect x="210" y="205" width="65" height="6" rx="3" fill="#ffffff"/>
+                        <rect x="210" y="217" width="50" height="5" rx="2.5" fill="#e0f2fe"/>
+                        <rect x="210" y="227" width="40" height="5" rx="2.5" fill="#e0f2fe"/>
+                    </g>
+                    
+                    <!-- Smartphone di Tangan Kanan -->
+                    <rect x="295" y="170" width="110" height="195" rx="18" fill="#1e293b" stroke="#cbd5e1" stroke-width="3"/>
+                    <rect x="303" y="182" width="94" height="170" rx="12" fill="#ffffff"/>
+                    <rect x="312" y="195" width="76" height="42" rx="6" fill="#6366f1"/>
+                    <rect x="312" y="245" width="76" height="20" rx="4" fill="#93c5fd"/>
+                    <rect x="312" y="272" width="76" height="20" rx="4" fill="#fde68a"/>
+                    
+                    <!-- Tangan Kanan Memegang Ponsel -->
+                    <path d="M430 380C430 310 395 220 365 210L350 250L385 380H430Z" fill="#6366f1" opacity="0.4"/>
+                    <path d="M380 360L355 240C350 228 360 215 372 218C384 220 390 234 388 248L405 360H380Z" fill="#f87171"/>
+                </svg>
+            </div>
+
         </div>
-        <h1>Portal Layanan Surat Desa</h1>
-        <p>Ajukan permohonan surat administrasi kependudukan Anda secara online langsung ke balai desa tanpa perlu mengantre lama.</p>
     </section>
 
-    <!-- Main Content -->
-    <main class="content-wrap">
+    <!-- 3. Pelacakan Status Surat & Akses Cepat -->
+    <main class="content-body-wrap">
         
-        <!-- Bar Cek Status Berkas -->
-        <div class="tracking-bar">
-            <div class="tracking-title">
-                <i class="fa-solid fa-clock-rotate-left"></i>
+        <!-- Bar Lacak Nomor Resi Permohonan -->
+        <div class="tracking-box-bar">
+            <div class="tracking-title-info">
+                <div class="tracking-icon-circle">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
                 <div>
                     <h4>Lacak Status Pengajuan Surat</h4>
-                    <p>Masukkan nomor resi resmi Anda untuk melihat proses verifikasi pihak desa.</p>
+                    <p>Periksa progres verifikasi permohonan surat administrasi desa Anda.</p>
                 </div>
             </div>
-            <div class="tracking-input-group">
-                <input type="text" id="trackInput" placeholder="Contoh: SRT-202609-XXXX">
-                <button type="button" class="btn-track" onclick="trackStatus()">Cek Resi</button>
-            </div>
+
+            <form class="tracking-input-form" onsubmit="event.preventDefault(); window.open('https://apmd.tubankab.go.id/', '_blank');">
+                <input type="text" placeholder="Contoh: SRT-202609-XXXX" required>
+                <button type="submit" class="btn-cek-resi">Cek Resi</button>
+            </form>
         </div>
 
-        <!-- Pilihan Surat Kependudukan -->
-        <h2 class="section-title">
-            <i class="fa-solid fa-folder-open" style="color: var(--amber);"></i>
-            Katalog Permohonan Surat Online
+        <!-- Katalog Pilihan Surat -->
+        <h2 class="section-headline">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Katalog Permohonan Surat Online Terpadu</span>
         </h2>
 
-        <div class="surat-grid">
+        <div class="letter-options-grid">
             
-            <!-- 1. Surat Keterangan Usaha -->
-            <div class="surat-card" style="--card-accent: #f59e0b; --icon-bg: #fef3c7;">
+            <!-- SKU -->
+            <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="letter-card-item" style="--card-accent: #f59e0b; --card-soft-bg: #fef3c7;">
                 <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-store"></i></div>
-                        <h3>Surat Keterangan Usaha (SKU)</h3>
+                    <div class="card-header-flex">
+                        <div class="card-icon-pill">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h4>Surat Keterangan Usaha (SKU)</h4>
                     </div>
                     <p>Bukti legalitas kepemilikan usaha lokal warga untuk pengajuan pinjaman perbankan, KUR, atau verifikasi mitra dagang.</p>
                 </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Usaha (SKU)')">
-                    <span>Ajukan Sekarang</span>
+                <div class="btn-card-apmd">
+                    <span>Ajukan di APMD Tuban</span>
                     <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <!-- 2. Surat Domisili -->
-            <div class="surat-card" style="--card-accent: #0284c7; --icon-bg: #e0f2fe;">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-house-user"></i></div>
-                        <h3>Surat Keterangan Domisili</h3>
-                    </div>
-                    <p>Surat keterangan bukti tempat tinggal warga sementara atau tetap untuk keperluan pendaftaran kerja dan urusan hukum.</p>
                 </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Domisili')">
-                    <span>Ajukan Sekarang</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+            </a>
 
-            <!-- 3. Surat Pengantar SKCK -->
-            <div class="surat-card" style="--card-accent: #10b981; --icon-bg: #d1fae5;">
+            <!-- Domisili -->
+            <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="letter-card-item" style="--card-accent: #0284c7; --card-soft-bg: #e0f2fe;">
                 <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>Pengantar SKCK</h3>
+                    <div class="card-header-flex">
+                        <div class="card-icon-pill">
+                            <i class="fa-solid fa-house-chimney-user"></i>
+                        </div>
+                        <h4>Surat Keterangan Domisili</h4>
                     </div>
-                    <p>Surat pengantar resmi dari desa untuk melengkapi berkas penerbitan Catatan Kepolisian di Polsek / Polres Tuban.</p>
+                    <p>Surat keterangan bukti tempat tinggal warga sementara atau tetap untuk keperluan pendaftaran kerja dan kependudukan.</p>
                 </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Pengantar SKCK')">
-                    <span>Ajukan Sekarang</span>
+                <div class="btn-card-apmd">
+                    <span>Ajukan di APMD Tuban</span>
                     <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+                </div>
+            </a>
 
-            <!-- 4. Keterangan Tidak Mampu -->
-            <div class="surat-card" style="--card-accent: #f43f5e; --icon-bg: #ffe4e6;">
+            <!-- SKCK -->
+            <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="letter-card-item" style="--card-accent: #10b981; --card-soft-bg: #d1fae5;">
                 <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                        <h3>Surat Tidak Mampu (SKTM)</h3>
+                    <div class="card-header-flex">
+                        <div class="card-icon-pill">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                        </div>
+                        <h4>Pengantar SKCK Desa</h4>
                     </div>
-                    <p>Surat verifikasi kelayakan bantuan sosial, beasiswa pendidikan siswa/mahasiswa, dan keringanan biaya perawatan medis.</p>
+                    <p>Surat pengantar resmi dari pemerintah desa untuk melengkapi berkas penerbitan Catatan Kepolisian di Polsek / Polres Tuban.</p>
                 </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Surat Tidak Mampu (SKTM)')">
-                    <span>Ajukan Sekarang</span>
+                <div class="btn-card-apmd">
+                    <span>Ajukan di APMD Tuban</span>
                     <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <!-- 5. Pengantar Akta Kelahiran -->
-            <div class="surat-card" style="--card-accent: #8b5cf6; --icon-bg: #ede9fe;">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-baby"></i></div>
-                        <h3>Pengantar Akta Kelahiran</h3>
-                    </div>
-                    <p>Dokumen awal pengantar dari pihak kelurahan/desa guna penerbitan akta kelahiran baru pada Dinas Dukcapil Tuban.</p>
                 </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Pengantar Akta Kelahiran')">
-                    <span>Ajukan Sekarang</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
-
-            <!-- 6. Surat Kematian -->
-            <div class="surat-card" style="--card-accent: #475569; --icon-bg: #f1f5f9;">
-                <div>
-                    <div class="card-top">
-                        <div class="card-icon"><i class="fa-solid fa-ribbon"></i></div>
-                        <h3>Surat Keterangan Kematian</h3>
-                    </div>
-                    <p>Penerbitan surat akta kematian warga untuk perapian administrasi kartu keluarga, perbankan, dan dokumen waris.</p>
-                </div>
-                <button type="button" class="btn-apply" onclick="openApplyModal('Surat Keterangan Kematian')">
-                    <span>Ajukan Sekarang</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </div>
+            </a>
 
         </div>
+
     </main>
 
-    <!-- Modal Form Pengajuan Berkas -->
-    <div class="modal-overlay" id="formModal" onclick="closeModalOutside(event)">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalSuratTitle">Formulir Pengajuan Surat</h3>
-                <button type="button" class="btn-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form action="<?= route('surat.kirim'); ?>" method="POST" enctype="multipart/form-data">
-                    <?= csrf_field(); ?>
+    <!-- 5. Footer -->
+    <footer>
+        <p>&copy; 2026 Pemerintah Kabupaten Tuban • Terintegrasi dengan <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener">Anjungan Pelayanan Mandiri Desa (APMD)</a>. Seluruh hak cipta dilindungi.</p>
+    </footer>
 
-                    <div class="form-group">
-                        <label>Jenis Surat</label>
-                        <input type="text" name="jenis_surat" id="inputJenisSurat" readonly style="background: #f8fafc; font-weight: 700; color: var(--primary);">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nomor Induk Kependudukan (NIK 16 Digit)</label>
-                        <input type="text" name="nik" maxlength="16" minlength="16" required placeholder="Contoh: 3523xxxxxxxxxxxx" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nama Lengkap (Sesuai KTP)</label>
-                        <input type="text" name="nama_lengkap" required placeholder="Masukkan nama lengkap pemohon">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nomor WhatsApp Aktif</label>
-                        <input type="text" name="no_wa" required placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9+]/g,'')">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Kecamatan di Kabupaten Tuban</label>
-                        <select name="kecamatan" required>
-                            <option value="">-- Pilih Kecamatan --</option>
-                            <option value="Bancar">Kecamatan Bancar</option>
-                            <option value="Bangilan">Kecamatan Bangilan</option>
-                            <option value="Grabagan">Kecamatan Grabagan</option>
-                            <option value="Jatirogo">Kecamatan Jatirogo</option>
-                            <option value="Jenu">Kecamatan Jenu</option>
-                            <option value="Kenduruan">Kecamatan Kenduruan</option>
-                            <option value="Kerek">Kecamatan Kerek</option>
-                            <option value="Merakurak">Kecamatan Merakurak</option>
-                            <option value="Montong">Kecamatan Montong</option>
-                            <option value="Palang">Kecamatan Palang</option>
-                            <option value="Parengan">Kecamatan Parengan</option>
-                            <option value="Plumpang">Kecamatan Plumpang</option>
-                            <option value="Rengel">Kecamatan Rengel</option>
-                            <option value="Semanding">Kecamatan Semanding</option>
-                            <option value="Senori">Kecamatan Senori</option>
-                            <option value="Singgahan">Kecamatan Singgahan</option>
-                            <option value="Soko">Kecamatan Soko</option>
-                            <option value="Tambakboyo">Kecamatan Tambakboyo</option>
-                            <option value="Tuban">Kecamatan Tuban</option>
-                            <option value="Widang">Kecamatan Widang</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nama Desa / Kelurahan</label>
-                        <input type="text" name="desa" required placeholder="Contoh: Desa Sugiharjo / Kelurahan Latsari">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Keperluan Permohonan</label>
-                        <textarea name="keperluan" rows="3" required placeholder="Jelaskan kebutuhan pengajuan surat ini secara ringkas..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Lampiran Berkas Pendukung (KTP/KK dalam format PDF, JPG, PNG - Maks 3MB)</label>
-                        <input type="file" name="berkas_syarat" accept=".pdf,.jpg,.jpeg,.png">
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <i class="fa-solid fa-paper-plane"></i> Kirim Permohonan Surat
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Status Pelacakan Resi -->
-    <div class="modal-overlay" id="trackingModal" onclick="closeModalOutside(event)">
-        <div class="modal-content" style="max-width: 500px;">
-            <div class="modal-header">
-                <h3>Hasil Pelacakan Surat</h3>
-                <button type="button" class="btn-close" onclick="closeTrackingModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="trackingModalBody">
-                <!-- Konten dinamis dari AJAX -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Script Interaktif -->
-    <script>
-        function openApplyModal(namaSurat) {
-            document.getElementById('inputJenisSurat').value = namaSurat;
-            document.getElementById('modalSuratTitle').innerText = 'Pengajuan ' + namaSurat;
-            document.getElementById('formModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('formModal').style.display = 'none';
-        }
-
-        function closeTrackingModal() {
-            document.getElementById('trackingModal').style.display = 'none';
-        }
-
-        function closeModalOutside(e) {
-            if (e.target.id === 'formModal') closeModal();
-            if (e.target.id === 'trackingModal') closeTrackingModal();
-        }
-
-        function trackStatus() {
-            const input = document.getElementById('trackInput').value.trim();
-            if (!input) {
-                alert('Silakan masukkan nomor resi terlebih dahulu.');
-                return;
-            }
-
-            const body = document.getElementById('trackingModalBody');
-            body.innerHTML = '<div style="text-align:center; padding: 20px;"><i class="fa-solid fa-spinner fa-spin" style="font-size:2rem; color:var(--primary);"></i><p style="margin-top:10px;">Mengecek data di server desa...</p></div>';
-            document.getElementById('trackingModal').style.display = 'flex';
-
-            fetch("<?= url('/surat/lacak'); ?>?resi=" + encodeURIComponent(input))
-                .then(res => res.json())
-                .then(res => {
-                    if (res.found && res.data) {
-                        const d = res.data;
-                        let statusColor = '#f59e0b';
-                        if (d.status === 'Selesai') statusColor = '#10b981';
-                        if (d.status === 'Ditolak') statusColor = '#e11d48';
-
-                        body.innerHTML = `
-                            <div style="font-size: 0.88rem;">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
-                                    <span style="font-weight:800; color:#475569;">NOMOR RESI:</span>
-                                    <span style="font-weight:800; color:var(--primary);">${d.nomor_resi}</span>
-                                </div>
-                                <div style="background:#f8fafc; border:1px solid var(--border-soft); border-radius:12px; padding:14px; margin-bottom:14px;">
-                                    <div style="margin-bottom:6px;"><strong>Nama:</strong> ${d.nama_lengkap}</div>
-                                    <div style="margin-bottom:6px;"><strong>Surat:</strong> ${d.jenis_surat}</div>
-                                    <div style="margin-bottom:6px;"><strong>Lokasi:</strong> Kec. ${d.kecamatan}, Desa ${d.desa}</div>
-                                    <div><strong>Status Saat Ini:</strong> 
-                                        <span style="background:${statusColor}; color:white; padding:3px 10px; border-radius:12px; font-weight:800; font-size:0.75rem;">
-                                            ${d.status}
-                                        </span>
-                                    </div>
-                                </div>
-                                <p style="font-size:0.8rem; color:#64748b; line-height:1.4;">
-                                    ${d.catatan_petugas || 'Berkas Anda telah diterima sistem dan sedang dalam antrean verifikasi petugas kantor desa.'}
-                                </p>
-                            </div>
-                        `;
-                    } else {
-                        body.innerHTML = `
-                            <div style="text-align:center; padding:16px;">
-                                <i class="fa-solid fa-circle-question" style="font-size:2.5rem; color:#f59e0b; margin-bottom:10px;"></i>
-                                <h4 style="margin-bottom:6px;">Resi Tidak Ditemukan</h4>
-                                <p style="font-size:0.82rem; color:#64748b;">Nomor resi <strong>"${input}"</strong> belum terdaftar di sistem. Pastikan nomor yang dimasukkan sudah sesuai.</p>
-                            </div>
-                        `;
-                    }
-                })
-                .catch(err => {
-                    body.innerHTML = '<p style="color:#e11d48; text-align:center;">Gagal menghubungi server. Periksa koneksi lokal Anda.</p>';
-                });
-        }
-    </script>
 </body>
 </html>
