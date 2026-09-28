@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // Memanggil AdminSeeder agar user admin selalu dibuat/diupdate
         $this->call([
             AdminSeeder::class,
+            LokasiTitikSeeder::class,
         ]);
     }
 }

@@ -14,12 +14,12 @@ class DashboardController extends Controller
     {
         $totalDesa = Desa::count();
         $totalKecamatan = Kecamatan::count();
-        $totalWisata = $this->safeCount('wisata_desa');
-        $totalPasar = $this->safeCount('pasar_desa');
-        $totalKantorDesa = $this->safeCount('kantor_desa');
-        $totalWifiDesa = $this->safeCount('wifi_desa');
-        $totalBumdes = $this->safeCount('bumdes');
-        $totalKkdmp = $this->safeCount('kkdmp');
+        $totalWisata = $this->safeCount('lokasi_wisata');
+        $totalPasar = $this->safeCount('lokasi_pasar');
+        $totalKantorDesa = $this->safeCount('lokasi_kantor');
+        $totalWifiDesa = $this->safeCount('lokasi_wifi');
+        $totalBumdes = $this->safeCount('lokasi_bumdes');
+        $totalKkdmp = $this->safeCount('lokasi_kkdmp');
 
         return view('admin.dashboard', compact(
             'totalDesa',

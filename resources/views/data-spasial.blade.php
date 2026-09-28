@@ -981,12 +981,12 @@
             }).catch(e => console.error("Gagal muat desa.geojson:", e));
 
         const spatialSources = {
-            wifi: '{{ asset('geojson/wifi.geojson') }}',
-            kantor: '{{ asset('geojson/kantor.geojson') }}',
-            pasar: '{{ asset('geojson/pasar.geojson') }}',
-            wisata: '{{ asset('geojson/wisata.geojson') }}',
-            bumdes: '{{ asset('geojson/bumdes.geojson') }}',
-            kkdmp: '{{ asset('geojson/kkdmp.geojson') }}'
+            wifi: '{{ route('data.spasial.locations', ['kategori' => 'wifi']) }}',
+            kantor: '{{ route('data.spasial.locations', ['kategori' => 'kantor']) }}',
+            pasar: '{{ route('data.spasial.locations', ['kategori' => 'pasar']) }}',
+            wisata: '{{ route('data.spasial.locations', ['kategori' => 'wisata']) }}',
+            bumdes: '{{ route('data.spasial.locations', ['kategori' => 'bumdes']) }}',
+            kkdmp: '{{ route('data.spasial.locations', ['kategori' => 'kkdmp']) }}'
         };
 
         let databaseSpasial = [];
@@ -1008,6 +1008,16 @@
                 status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
                 desc: properties.deskripsi || address || 'Tidak ada deskripsi lokasi.'
             };
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            })[character]);
         }
 
         async function loadSpatialData() {
@@ -1088,8 +1098,8 @@
                         </div>
                         <div class="card-popup-body">
                             <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
-                            <h4>${item.name}</h4>
-                            <p><strong>Desa ${item.desa}, Kec. ${item.kec}</strong><br>${item.desc}</p>
+                            <h4>${escapeHtml(item.name)}</h4>
+                            <p><strong>Desa ${escapeHtml(item.desa)}, Kec. ${escapeHtml(item.kec)}</strong><br>${escapeHtml(item.desc)}</p>
                             <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" class="popup-route-btn">
                                 <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Arah (Google Maps)
                             </a>
@@ -1109,10 +1119,10 @@
                             <i class="fa-solid ${meta.icon}"></i> ${meta.label}
                         </span>
                     </td>
-                    <td><strong>${item.name}</strong></td>
-                    <td>Kec. ${item.kec}</td>
-                    <td>Desa ${item.desa}</td>
-                    <td><span style="color: #059669; font-weight: 700;">● ${item.status}</span></td>
+                    <td><strong>${escapeHtml(item.name)}</strong></td>
+                    <td>Kec. ${escapeHtml(item.kec)}</td>
+                    <td>Desa ${escapeHtml(item.desa)}</td>
+                    <td><span style="color: #059669; font-weight: 700;">● ${escapeHtml(item.status)}</span></td>
                     <td>
                         <button class="btn-focus-map" onclick="event.stopPropagation(); flyToPoint(${item.lat}, ${item.lng}, activeMarkers[${matchedCount - 1}])">
                             <i class="fa-solid fa-location-crosshairs"></i> Lihat Peta
