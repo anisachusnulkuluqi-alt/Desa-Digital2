@@ -14,10 +14,12 @@
 
     <style>
         :root {
-            --bg-body: #f8fafc;
+            --bg-body: #eaf2fa;
             --bg-card: #ffffff;
-            --header-dark: #334155;
-            --header-dark-trans: rgba(51, 65, 85, 0.96);
+            --header-dark: #283548;
+            --header-dark-trans: rgba(40, 53, 72, 0.98);
+            --bg-section: #eaf2fa;
+            --bg-blue-gradient: radial-gradient(ellipse at 78% 92%, rgba(59, 130, 246, 0.12), transparent 38%), radial-gradient(ellipse at 18% 5%, rgba(56, 189, 248, 0.2), transparent 40%), radial-gradient(ellipse at 48% 0%, #d8efff 0%, #e9f2fb 52%, #dce8f5 100%);
             
             --primary: #0284c7;
             --primary-dark: #0369a1;
@@ -35,14 +37,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
         body { 
-            background-color: var(--bg-body); 
+            background: linear-gradient(135deg, #e3eef9 0%, #f4f8fc 48%, #dce9f6 100%);
             color: var(--text-dark); 
             overflow-x: hidden; 
         }
 
         /* 1. TOP NAVBAR */
         .site-header {
-            background: var(--header-dark-trans);
+            background: var(--header-dark);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 12px 7%;
@@ -182,8 +184,9 @@
             font-size: 4.5rem;
             font-weight: 900;
             letter-spacing: -0.04em;
-            line-height: 1.08;
-            margin-bottom: 16px;
+            line-height: 1.2;
+            padding: 0.02em 0.06em 0.1em;
+            margin-bottom: 8px;
             background: linear-gradient(180deg, #ffffff 40%, #7dd3fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -191,11 +194,11 @@
         }
 
         .hero-lead-text {
-            font-size: 1.2rem;
+            font-size: 1.08rem;
             color: #e2e8f0;
             font-weight: 500;
-            max-width: 680px;
-            margin: 0 auto 24px auto;
+            max-width: 540px;
+            margin: 0 auto 24px;
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         }
@@ -254,7 +257,7 @@
         /* 3. SEKSI INOVASI EKOSISTEM DESA */
         .section-profil-accordion {
             padding: 90px 7%;
-            background: #ffffff;
+            background: var(--bg-blue-gradient);
             position: relative;
         }
 
@@ -499,7 +502,7 @@
         /* 4. SEKSI STATISTIK: KAPSUL BULAT TERANG */
         .section-stats-circle {
             padding: 45px 6%;
-            background: #f8fafc;
+            background: linear-gradient(115deg, #e0ecf8 0%, #f2f7fc 52%, #dceaf8 100%);
             position: relative;
             border-top: 1px solid #e2e8f0;
             border-bottom: 1px solid #e2e8f0;
@@ -579,34 +582,10 @@
         /* 5. SEKSI GERBANG LAYANAN: ELEGAN, MINIMALIS & TANPA TEKS DESKRIPSI */
         .section-services-clean {
             padding: 85px 7%;
-            background: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #f1f5f9 55%, #e2e8f0 100%);
+            background: var(--bg-blue-gradient);
             position: relative;
             overflow: hidden;
             text-align: center;
-        }
-
-        .section-services-clean::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: 20%;
-            width: 480px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
-            pointer-events: none;
-            filter: blur(40px);
-        }
-
-        .section-services-clean::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            right: 20%;
-            width: 480px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.14), transparent 70%);
-            pointer-events: none;
-            filter: blur(45px);
         }
 
         .services-header-box {
@@ -747,7 +726,7 @@
         /* 6. LOKASI KEDINASAN */
         .section-location-clean {
             padding: 72px 0;
-            background: #f8fafc;
+            background: linear-gradient(125deg, #e4effa 0%, #f3f7fc 50%, #deebf8 100%);
             border-top: 1px solid var(--border-soft);
         }
 
@@ -914,10 +893,10 @@
         <div class="hero-content-wrap">
             
             <h1 class="hero-main-title">Desa Digital</h1>
-            <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban Menuju Tata Kelola yang Efisien, Terpadu & Transparan</p>
+            <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban</p>
             
             <div class="hero-info-pills">
-                <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
+                <span><i class="fa-solid fa-layer-group" styl e="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
                 <div class="divider-dot"></div>
                 <span><i class="fa-solid fa-sitemap" style="color: #38bdf8;"></i> <strong>20</strong> Distrik Kecamatan</span>
                 <div class="divider-dot"></div>
@@ -940,8 +919,7 @@
             <div class="header-tag-pill">
                 <i class="fa-solid fa-network-wired"></i> PILAR TRANSFORMASI DIGITAL
             </div>
-            <h2>Inovasi Ekosistem Desa</h2>
-            <p>Akselerasi tata kelola pemerintahan berbasis teknologi informasi untuk mewujudkan pelayanan desa yang responsif, transparan, dan inklusif se-Kabupaten Tuban.</p>
+            <h2> Desa Digital</h2>
         </div>
 
         <div class="profil-dual-layout">
@@ -1140,8 +1118,8 @@
                 </div>
             </a>
 
-            <!-- 4. CCTV -->
-            <a href="<?= url('/cctv'); ?>" class="service-card-clean"
+         <!-- 4. CCTV (Langsung Terhubung ke CCTV Tuban) -->
+            <a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #e11d48; --service-border: #fecdd3; --service-glow: rgba(225, 29, 72, 0.22); --service-pill: #ffe4e6; --service-text: #be123c;">
                 <div class="service-icon-circle" 
                      style="background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%); --icon-shadow: rgba(244, 63, 94, 0.35);">
@@ -1152,7 +1130,6 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
-
             <!-- 5. e-PBB (Langsung Terhubung ke APMD Tuban) -->
             <a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #7c3aed; --service-border: #ddd6fe; --service-glow: rgba(124, 58, 237, 0.22); --service-pill: #ede9fe; --service-text: #6d28d9;">
