@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Desa Digital</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/desa-digital.png') }}">
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -67,8 +68,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 18px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .sidebar-brand-text h5 {
@@ -530,7 +538,7 @@
     <aside class="sidebar">
         <div class="sidebar-brand">
             <div class="sidebar-brand-icon">
-                <i class="bi bi-house-heart-fill"></i>
+                <img src="{{ asset('images/desa-digital.png') }}" alt="Logo Desa Digital">
             </div>
             <div class="sidebar-brand-text">
                 <h5>Desa Digital</h5>

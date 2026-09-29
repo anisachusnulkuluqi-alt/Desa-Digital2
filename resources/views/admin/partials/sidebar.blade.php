@@ -25,7 +25,8 @@
         z-index: 100;
     }
     .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 8px 12px; margin-bottom: 30px; }
-    .sidebar-brand-icon { width: 38px; height: 38px; background: #2563eb; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
+    .sidebar-brand-icon { width: 38px; height: 38px; background: #2563eb; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .sidebar-brand-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .sidebar-brand-text h5 { color: white; font-weight: 700; font-size: 14px; margin: 0; }
     .sidebar-brand-text small { color: #64748b; font-size: 10px; }
     .sidebar-menu { list-style: none; padding: 0; }
@@ -45,7 +46,7 @@
 
 <aside class="sidebar">
     <div class="sidebar-brand">
-        <div class="sidebar-brand-icon"><i class="bi bi-house-heart-fill"></i></div>
+        <div class="sidebar-brand-icon"><img src="{{ asset('images/desa-digital.png') }}" alt="Logo Desa Digital"></div>
         <div class="sidebar-brand-text">
             <h5>Desa Digital</h5>
             <small>Admin pengelola data</small>

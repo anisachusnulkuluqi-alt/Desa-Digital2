@@ -729,12 +729,12 @@
                         <span>Batas Kabupaten</span>
                     </label>
                     <label class="layer-checkbox-row">
-                        <input type="checkbox" id="layerKecamatan" checked onchange="toggleLayer('kecamatan', this.checked)">
+                        <input type="checkbox" id="layerKecamatan" onchange="toggleLayer('kecamatan', this.checked)">
                         <span class="color-badge-preview" style="background: #0284c7;"></span>
                         <span>Layer Kecamatan</span>
                     </label>
                     <label class="layer-checkbox-row">
-                        <input type="checkbox" id="layerDesa" checked onchange="toggleLayer('desa', this.checked)">
+                        <input type="checkbox" id="layerDesa" onchange="toggleLayer('desa', this.checked)">
                         <span class="color-badge-preview" style="background: #10b981;"></span>
                         <span>Layer Desa / Kelurahan</span>
                     </label>
@@ -745,27 +745,27 @@
 
             <div class="category-chips-row">
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-wifi" checked onchange="filterOnlyCategory('wifi', this)">
+                    <input type="checkbox" id="chip-wifi" onchange="filterOnlyCategory('wifi', this)">
                     <span class="chip-dot" style="background: var(--primary-vivid);"></span> WiFi Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-kantor" checked onchange="filterOnlyCategory('kantor', this)">
+                    <input type="checkbox" id="chip-kantor" onchange="filterOnlyCategory('kantor', this)">
                     <span class="chip-dot" style="background: var(--amber);"></span> Kantor Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-pasar" checked onchange="filterOnlyCategory('pasar', this)">
+                    <input type="checkbox" id="chip-pasar" onchange="filterOnlyCategory('pasar', this)">
                     <span class="chip-dot" style="background: var(--emerald);"></span> Pasar Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-wisata" checked onchange="filterOnlyCategory('wisata', this)">
+                    <input type="checkbox" id="chip-wisata" onchange="filterOnlyCategory('wisata', this)">
                     <span class="chip-dot" style="background: var(--cyan);"></span> Wisata Desa
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-bumdes" checked onchange="filterOnlyCategory('bumdes', this)">
+                    <input type="checkbox" id="chip-bumdes" onchange="filterOnlyCategory('bumdes', this)">
                     <span class="chip-dot" style="background: var(--violet);"></span> BUMDes
                 </label>
                 <label class="location-filter-option">
-                    <input type="checkbox" id="chip-kkdmp" checked onchange="filterOnlyCategory('kkdmp', this)">
+                    <input type="checkbox" id="chip-kkdmp" onchange="filterOnlyCategory('kkdmp', this)">
                     <span class="chip-dot" style="background: var(--rose);"></span> KKDMP
                 </label>
             </div>
@@ -887,8 +887,8 @@
         // Wadah Layer Poligon GeoJSON
         const layers = {
             kabupaten: L.layerGroup().addTo(map),
-            kecamatan: L.layerGroup().addTo(map),
-            desa: L.layerGroup().addTo(map)
+            kecamatan: L.layerGroup(),
+            desa: L.layerGroup()
         };
 
         map.createPane('desaPane');
@@ -1034,7 +1034,7 @@
         }
 
         let activeMarkers = [];
-        let currentFilterTypes = ['wifi', 'kantor', 'pasar', 'wisata', 'bumdes', 'kkdmp'];
+        let currentFilterTypes = [];
         let currentSearchQuery = '';
         let currentKecFilter = '';
 

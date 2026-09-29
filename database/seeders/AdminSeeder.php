@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@desadigital.id'], 
             [
-                'name' => 'Admin Desa Digital',
+                'name' => 'Admin',
                 'password' => Hash::make('admin1234'), // Ganti password sesuka Anda
                 'email_verified_at' => now(),
             ]
