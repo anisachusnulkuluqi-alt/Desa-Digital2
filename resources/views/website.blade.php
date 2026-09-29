@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Website Desa / Kelurahan - Desa Digital Kabupaten Tuban</title>
+    <title>Website Desa & Kelurahan - Kabupaten Tuban</title>
     <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
 
     <!-- Google Fonts & Font Awesome Icons -->
@@ -14,836 +14,774 @@
 
     <style>
         :root {
+            --bg-canvas: #f8fafc;
+            --bg-card: #ffffff;
             --primary: #0284c7;
             --primary-dark: #0369a1;
             --primary-light: #e0f2fe;
-            --amber: #f59e0b;
-            --amber-dark: #d97706;
-            --emerald: #10b981;
-            --rose: #e11d48;
-            --dark-header: #475569;
             --text-dark: #0f172a;
             --text-muted: #64748b;
             --border-soft: #e2e8f0;
-            --bg-body: #f8fafc;
+            --border-hover: #7dd3fc;
+            --emerald: #10b981;
+            
+            /* WARNA HEADER & LOGO PERSIS GAMBAR */
+            --header-dark-slate: #283548;
+            --digital-cyan: #28b2fc;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-body); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
+        body { background-color: var(--bg-canvas); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* 1. Header Navbar */
+        /* 1. Header Navbar Persis Gambar Referensi */
         .site-header {
-            background: rgba(51, 65, 85, 0.96);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 12px 7%;
+            background-color: var(--header-dark-slate);
+            padding: 14px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
         }
-        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; display: block; }
-        .brand-text-logo { font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
-        .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
-        .nav-menu { display: flex; align-items: center; gap: 22px; list-style: none; }
-        .nav-menu a {
-            color: #e2e8f0;
+
+        .brand-link-clean {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+
+        /* Ikon Logo: Murni dari file gambar asli */
+        .brand-logo-icon {
+            height: 36px;
+            width: auto;
+            max-width: 48px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Teks Logo: "Desa Digital" Persis Gambar */
+        .brand-text-logo {
+            font-size: 1.6rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-weight: 800;
+        }
+        .brand-text-logo .text-desa {
+            color: #ffffff;
+            font-weight: 800;
+        }
+        .brand-text-logo .text-digital {
+            color: var(--digital-cyan);
+            font-weight: 800;
+        }
+
+        .nav-menu { 
+            display: flex; 
+            align-items: center; 
+            gap: 28px; 
+            list-style: none; 
+        }
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 800;
             letter-spacing: 0.6px;
+            text-transform: uppercase;
             position: relative;
-            padding: 6px 0;
+            padding: 4px 0;
             transition: color 0.2s ease;
         }
-        .nav-menu a:hover { color: #ffffff; }
-        .nav-menu a.active { color: #38bdf8; }
-        .nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #38bdf8; border-radius: 2px; }
-        .search-pill-nav { display: flex; align-items: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 5px 14px; width: 190px; transition: all 0.25s ease; }
-        .search-pill-nav:focus-within { width: 230px; background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
-        .search-pill-nav input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.8rem; width: 100%; }
-        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
-        .search-pill-nav button { background: transparent; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer; font-size: 0.8rem; }
+        .nav-menu a:hover,
+        .nav-menu a.active { 
+            color: var(--digital-cyan); 
+        }
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: var(--digital-cyan);
+            border-radius: 2px;
+        }
 
-        /* 2. Hero Banner Sesuai Halaman Surat */
-        .website-hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0369a1 100%);
+        /* 2. Hero Ringkas & Minimalis */
+        .hero-compact {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 60px 7% 75px 7%;
+            padding: 45px 7% 65px 7%;
             text-align: center;
             position: relative;
         }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(245, 158, 11, 0.2);
-            border: 1px solid rgba(245, 158, 11, 0.4);
-            color: #fbbf24;
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .website-hero h1 {
-            font-size: 2.6rem;
+        .hero-compact h1 {
+            font-size: 2.2rem;
             font-weight: 900;
             letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
-        .website-hero p {
-            font-size: 1.05rem;
-            color: #cbd5e1;
-            max-width: 680px;
+        .hero-compact p {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
-        /* 3. Main Container */
+        /* 3. Container & Filter Floating Bar */
         .content-wrap {
             max-width: 1240px;
-            margin: -35px auto 60px auto;
+            margin: -30px auto 70px auto;
             padding: 0 20px;
             position: relative;
             z-index: 10;
         }
 
-        /* Bilah Pencarian Melayang */
-        .filter-bar {
+        .filter-bar-minimal {
             background: #ffffff;
-            border-radius: 16px;
-            padding: 16px 22px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-            border: 1px solid var(--border-soft);
+            border-radius: 14px;
+            padding: 12px 20px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+            border: 1.5px solid var(--border-soft);
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
-        .filter-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .filter-title i {
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
-        .filter-title div h4 {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .filter-title div p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-        .filter-actions {
-            display: flex;
-            gap: 10px;
-            flex: 1;
-            max-width: 520px;
-        }
-        .filter-search-box {
+
+        .search-input-wrap {
             position: relative;
             flex: 1;
+            max-width: 480px;
         }
-        .filter-search-box input {
-            width: 100%;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 10px;
-            padding: 10px 14px 10px 36px;
-            font-size: 0.84rem;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .filter-search-box input:focus { border-color: var(--primary); }
-        .filter-search-box i {
+        .search-input-wrap i {
             position: absolute;
+            left: 14px;
             top: 50%;
-            left: 12px;
             transform: translateY(-50%);
             color: var(--text-muted);
             font-size: 0.85rem;
         }
-        .counter-pill {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .search-input-wrap input {
+            width: 100%;
+            border: 1.5px solid var(--border-soft);
+            border-radius: 30px;
+            padding: 9px 14px 9px 38px;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+        .search-input-wrap input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(2, 132, 199, 0.15);
         }
 
-        /* 4. Grid Katalog Distrik Kecamatan */
-        .section-title {
-            font-size: 1.4rem;
+        .total-distrik-pill {
+            font-size: 0.78rem;
             font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 22px;
+            color: var(--primary-dark);
+            background: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
-        .district-grid {
+
+        /* 4. Grid Kartu Kecamatan Modern */
+        .district-grid-clean {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-bottom: 50px;
+            gap: 20px;
         }
 
-        .district-card {
+        .district-item-card {
             background: #ffffff;
-            border-radius: 18px;
+            border-radius: 16px;
             border: 1.5px solid var(--border-soft);
-            padding: 24px 22px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            padding: 20px 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
-            transition: all 0.25s ease;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
-            overflow: hidden;
         }
-        .district-card::before {
+        .district-item-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: var(--card-accent, #0284c7);
+            left: 0; top: 12px; bottom: 12px;
+            width: 4px;
+            border-radius: 0 4px 4px 0;
+            background: var(--card-color, #0284c7);
         }
-        .district-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--card-accent, #0284c7);
-            box-shadow: 0 16px 30px rgba(0,0,0,0.08);
+        .district-item-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 24px -4px rgba(2, 132, 199, 0.15);
         }
 
-        .card-top {
+        .card-identity {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 14px;
         }
-        .card-icon-box {
-            width: 48px;
-            height: 48px;
+
+        /* Wadah Gambar Logo Tuban */
+        .card-icon-round {
+            width: 46px;
+            height: 46px;
             border-radius: 12px;
-            background: var(--icon-bg, #e0f2fe);
-            color: var(--card-accent, #0284c7);
+            background: #f8fafc;
+            border: 1px solid var(--border-soft);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 4px;
             flex-shrink: 0;
-            border: 1px solid var(--border-soft);
-            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
         }
-        .card-icon-box img {
-            width: 26px;
-            height: 32px;
+        .district-item-card:hover .card-icon-round {
+            transform: scale(1.1) rotate(4deg);
+            border-color: var(--border-hover);
+        }
+
+        .card-icon-round img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            display: block;
         }
-        .card-top-info h3 {
-            font-size: 1.08rem;
+
+        .card-text h3 {
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--text-dark);
             line-height: 1.2;
         }
-        .badge-code {
-            display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: var(--primary);
-            background: var(--primary-light);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-top: 4px;
-        }
-
-        .district-card p {
-            font-size: 0.82rem;
+        .card-text small {
+            font-size: 0.72rem;
+            font-weight: 700;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 18px;
+            display: inline-block;
+            margin-top: 3px;
         }
 
-        .meta-stats-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            background: #f8fafc;
-            border: 1px solid var(--border-soft);
-            padding: 10px 12px;
-            border-radius: 10px;
-            margin-bottom: 18px;
+        .card-action-cue {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
         }
-        .meta-stat-item small {
+        .badge-count {
+            background: #f1f5f9;
+            color: var(--text-dark);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-soft);
+        }
+        .btn-arrow-cue {
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-top: 4px;
+            transition: transform 0.2s ease;
+        }
+        .district-item-card:hover .btn-arrow-cue {
+            transform: translateX(4px);
+        }
+
+        /* 5. Modal Drawer Data Desa */
+        .modal-drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-drawer-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: popUp 0.25s ease-out;
+        }
+        @keyframes popUp {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-top-bar {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
+            padding: 18px 24px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-top-bar h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-top-bar h3 span { color: #38bdf8; }
+        .btn-close-modal {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .btn-close-modal:hover { background: rgba(255, 255, 255, 0.25); transform: rotate(90deg); }
+
+        .modal-body-scroll {
+            padding: 22px 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .summary-stats-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 12px 18px;
+            margin-bottom: 20px;
+        }
+        .summary-stats-box div small {
             font-size: 0.68rem;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
             display: block;
         }
-        .meta-stat-item strong {
-            font-size: 0.88rem;
+        .summary-stats-box div strong {
+            font-size: 0.95rem;
             font-weight: 800;
             color: var(--text-dark);
         }
 
-        .btn-action-view {
-            width: 100%;
-            background: #f8fafc;
-            border: 1px solid var(--border-soft);
-            color: var(--text-dark);
-            padding: 11px;
-            border-radius: 10px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        .district-card:hover .btn-action-view {
-            background: var(--card-accent, #0284c7);
-            color: #ffffff;
-            border-color: transparent;
-        }
-
-        /* 5. Modal Modern Multi-Kolom & Efisiensi Form */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .modal-container {
-            background: #ffffff;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 860px;
-            overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-            animation: zoomIn 0.2s ease-out;
-        }
-        @keyframes zoomIn {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .modal-header-bar {
-            background: #f8fafc;
-            padding: 18px 24px;
-            border-bottom: 1px solid var(--border-soft);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal-header-bar h3 { font-size: 1.15rem; font-weight: 800; color: var(--text-dark); display: flex; align-items: center; gap: 8px; }
-        .btn-modal-close {
-            background: transparent;
-            border: none;
-            font-size: 1.3rem;
-            color: #94a3b8;
-            cursor: pointer;
-        }
-        .modal-body-content {
-            padding: 24px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        /* Tab Switcher di dalam Modal */
-        .modal-nav-tabs {
-            display: flex;
-            gap: 8px;
-            border-bottom: 2px solid var(--border-soft);
-            margin-bottom: 20px;
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 10px 16px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .detail-summary-strip {
+        .village-column-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            background: #f1f5f9;
-            padding: 14px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
-        .search-mini-bar {
-            margin-bottom: 16px;
-            position: relative;
-        }
-        .search-mini-bar input {
-            width: 100%;
+        .village-row-card {
+            background: #ffffff;
             border: 1.5px solid var(--border-soft);
-            border-radius: 8px;
-            padding: 8px 12px 8px 34px;
-            font-size: 0.82rem;
-            outline: none;
-        }
-        .search-mini-bar i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .village-list-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        .village-chip-item {
-            background: #ffffff;
-            border: 1px solid var(--border-soft);
-            padding: 12px 14px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.2s;
-        }
-        .village-chip-item:hover {
-            border-color: var(--primary);
-            background: #f0f9ff;
-            transform: translateX(3px);
-        }
-        .village-chip-item a {
-            color: var(--primary);
-            font-size: 0.78rem;
-            font-weight: 800;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Form Multi-Kolom untuk Integrasi Baru */
-        .form-grid-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-        .form-group-custom {
+            border-radius: 12px;
+            padding: 14px 16px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            justify-content: space-between;
+            gap: 12px;
+            transition: all 0.2s ease;
         }
-        .form-group-custom.full-span {
-            grid-column: 1 / -1;
+        .village-row-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
         }
-        .form-group-custom label {
-            font-size: 0.78rem;
-            font-weight: 700;
+
+        .row-meta-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .row-meta-top h4 {
+            font-size: 0.98rem;
+            font-weight: 800;
             color: var(--text-dark);
         }
-        .form-group-custom input, .form-group-custom select, .form-group-custom textarea {
-            border: 1.5px solid var(--border-soft);
-            border-radius: 8px;
-            padding: 9px 12px;
-            font-size: 0.82rem;
-            outline: none;
-        }
-        .form-group-custom input:focus, .form-group-custom select:focus, .form-group-custom textarea:focus {
-            border-color: var(--primary);
-        }
-        .btn-submit-portal {
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 11px;
-            border-radius: 8px;
-            font-size: 0.84rem;
+        .row-meta-top span.code-tag {
+            font-size: 0.68rem;
             font-weight: 800;
-            cursor: pointer;
+            color: #0369a1;
+            background: #e0f2fe;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .location-info {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .location-info i { color: #f43f5e; font-size: 0.82rem; }
+
+        .row-actions-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 10px;
+        }
+
+        .link-web-desa {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #f0f9ff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .link-web-desa:hover { background: #e0f2fe; color: var(--primary-dark); }
+
+        .sosmed-pill-cluster {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-sosmed-mini {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #475569;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.2s;
         }
-        .btn-submit-portal:hover { background: var(--primary-dark); }
+        .btn-sosmed-mini:hover {
+            color: #ffffff;
+            transform: scale(1.15);
+        }
+        .btn-sosmed-mini.ig:hover { background: #e1306c; }
+        .btn-sosmed-mini.fb:hover { background: #1877f2; }
+        .btn-sosmed-mini.yt:hover { background: #ff0000; }
 
-        @media (max-width: 960px) { .district-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 960px) {
+            .district-grid-clean { grid-template-columns: repeat(2, 1fr); }
+            .village-column-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 640px) {
-            .district-grid { grid-template-columns: 1fr; }
-            .filter-bar { flex-direction: column; align-items: stretch; }
-            .filter-actions { max-width: 100%; }
-            .village-list-grid { grid-template-columns: 1fr; }
-            .form-grid-columns { grid-template-columns: 1fr; }
+            .district-grid-clean { grid-template-columns: 1fr; }
             .nav-menu { display: none; }
+            .summary-stats-box { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navbar -->
+    <!-- 1. Header Navbar Persis Gambar Referensi -->
     <header class="site-header">
-        <a href="<?= url('/'); ?>" class="brand-link">
+        <a href="<?= url('/'); ?>" class="brand-link-clean">
+            <!-- Gambar Logo Ikon Murni Dari Public -->
             <img src="<?= asset('images/desa-digital.png'); ?>" 
                  alt="Logo Desa Digital" 
-                 class="brand-logo-img"
-                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
-            <div class="brand-text-logo">Desa<span>Digital</span></div>
+                 class="brand-logo-icon"
+                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
+            
+            <!-- Font Tipografi: "Desa Digital" Persis Sesuai Gambar -->
+            <div class="brand-text-logo">
+                <span class="text-desa">Desa</span>
+                <span class="text-digital">Digital</span>
+            </div>
         </a>
 
         <ul class="nav-menu">
             <li><a href="<?= url('/'); ?>">BERANDA</a></li>
             <li><a href="<?= url('/website'); ?>" class="active">WEBSITE DESA</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
+            <li><a href="<?= url('/data-spasial'); ?>">PETA SPASIAL</a></li>
             <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
-            <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
             <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
         </ul>
-
-        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET">
-            <input type="text" name="search" placeholder="Cari kecamatan...">
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="website-hero">
-        <div class="hero-badge">
-            <i class="fa-solid fa-globe"></i> Direktori Resmi 20 Wilayah Distrik Tuban
-        </div>
-        <h1>Data Website Desa / Kelurahan</h1>
-        <p>Akses cepat portal resmi pemerintahan desa dan kelurahan di seluruh kecamatan se-Kabupaten Tuban secara terpadu dan transparan.</p>
+    <!-- 2. Hero Ringkas & Minimalis -->
+    <section class="hero-compact">
+        <h1>Direktori Website Desa & Kelurahan</h1>
+        <p>Akses cepat portal resmi dan data kewilayahan 20 distrik kecamatan Kabupaten Tuban.</p>
     </section>
 
-    <!-- Main Content -->
+    <!-- 3. Main Container -->
     <main class="content-wrap">
         
         <?php
-            // Data 20 Kecamatan Resmi Kabupaten Tuban beserta sebaran desa representatif
-            $kecamatanTuban = [
-                ['nama' => 'Bancar', 'kode' => '35.23.01', 'desa_count' => 24, 'accent' => '#f59e0b', 'bg' => '#fef3c7', 'sample' => ['Bancar', 'Boncong', 'Bogorejo', 'Bulu', 'Jatisari', 'Ngujuran', 'Margosuko', 'Sukoharjo', 'Sumberan']],
-                ['nama' => 'Bangilan', 'kode' => '35.23.02', 'desa_count' => 14, 'accent' => '#0284c7', 'bg' => '#e0f2fe', 'sample' => ['Bangilan', 'Banjarkerep', 'Kedungjambangan', 'Klampok', 'Kumpulrejo', 'Sidokumpul']],
-                ['nama' => 'Grabagan', 'kode' => '35.23.03', 'desa_count' => 11, 'accent' => '#10b981', 'bg' => '#d1fae5', 'sample' => ['Grabagan', 'Banyubang', 'Dahor', 'Dermawuharjo', 'Gesikan', 'Menyunyur', 'Ngandong', 'Ngarum']],
-                ['nama' => 'Jatirogo', 'kode' => '35.23.04', 'desa_count' => 18, 'accent' => '#8b5cf6', 'bg' => '#ede9fe', 'sample' => ['Jatirogo', 'Bader', 'Besowo', 'Dingil', 'Karangtengah', 'Kebonharjo', 'Paseyan', 'Wotsogo']],
-                ['nama' => 'Jenu', 'kode' => '35.23.05', 'desa_count' => 17, 'accent' => '#0ea5e9', 'bg' => '#e0f2fe', 'sample' => ['Beji', 'Jenu', 'Kalianyar', 'Mentoso', 'Rawasan', 'Remen', 'Socorejo', 'Sugihwaras', 'Tasikharjo']],
-                ['nama' => 'Kenduruan', 'kode' => '35.23.06', 'desa_count' => 9, 'accent' => '#f43f5e', 'bg' => '#ffe4e6', 'sample' => ['Sidohasri', 'Sokogunung', 'Jamprong', 'Jombok', 'Tawaran', 'Sidomukti', 'Bendonglateng']],
-                ['nama' => 'Kerek', 'kode' => '35.23.07', 'desa_count' => 16, 'accent' => '#d97706', 'bg' => '#fef3c7', 'sample' => ['Gaji', 'Jarorejo', 'Karanglo', 'Margomulyo', 'Padasan', 'Trantang', 'Wolutengah', 'Kasiman']],
-                ['nama' => 'Merakurak', 'kode' => '35.23.08', 'desa_count' => 19, 'accent' => '#0284c7', 'bg' => '#e0f2fe', 'sample' => ['Bogorejo', 'Kapu', 'Mandirejo', 'Sambonggede', 'Sumberejo', 'Tahulu', 'Tuwiri Wetan', 'Tuwiri Kulon']],
-                ['nama' => 'Montong', 'kode' => '35.23.09', 'desa_count' => 13, 'accent' => '#10b981', 'bg' => '#d1fae5', 'sample' => ['Montongsekar', 'Guwoterus', 'Maindu', 'Manjung', 'Pakel', 'Pucangan', 'Talangkembar']],
-                ['nama' => 'Palang', 'kode' => '35.23.10', 'desa_count' => 19, 'accent' => '#6366f1', 'bg' => '#ede9fe', 'sample' => ['Palang', 'Cepokorejo', 'Karangagung', 'Kradenan', 'Leran Kulon', 'Tasikmadu', 'Gesikharjo', 'Panyuran']],
-                ['nama' => 'Parengan', 'kode' => '35.23.11', 'desa_count' => 18, 'accent' => '#f59e0b', 'bg' => '#fef3c7', 'sample' => ['Parangbatu', 'Cengkong', 'Kemlaten', 'Mergoasri', 'Ngawun', 'Sendangrejo', 'Dagangan']],
-                ['nama' => 'Plumpang', 'kode' => '35.23.12', 'desa_count' => 18, 'accent' => '#0284c7', 'bg' => '#e0f2fe', 'sample' => ['Plumpang', 'Cangkring', 'Kedungrojo', 'Klazan', 'Magersari', 'Sembungrejo', 'Bandungrejo']],
-                ['nama' => 'Rengel', 'kode' => '35.23.13', 'desa_count' => 16, 'accent' => '#10b981', 'bg' => '#d1fae5', 'sample' => ['Rengel', 'Banjaragung', 'Campurejo', 'Kanorejo', 'Maibit', 'Pekuwon', 'Sumberejo', 'Sawahan']],
-                ['nama' => 'Semanding', 'kode' => '35.23.14', 'desa_count' => 17, 'accent' => '#e11d48', 'bg' => '#ffe4e6', 'sample' => ['Semanding', 'Bejagung', 'Genaharjo', 'Gedongombo', 'Kowang', 'Penambangan', 'Prunggahan Kulon', 'Prunggahan Wetan']],
-                ['nama' => 'Senori', 'kode' => '35.23.15', 'desa_count' => 12, 'accent' => '#8b5cf6', 'bg' => '#ede9fe', 'sample' => ['Sendang', 'Jatisari', 'Kaligede', 'Meduri', 'Rayung', 'Wanglu Kulon', 'Wonorejo']],
-                ['nama' => 'Singgahan', 'kode' => '35.23.16', 'desa_count' => 12, 'accent' => '#0ea5e9', 'bg' => '#e0f2fe', 'sample' => ['Mulyoagung', 'Binangun', 'Kedungjambe', 'Laju Kidul', 'Laju Lor', 'Tingkis', 'Tunggulrejo']],
-                ['nama' => 'Soko', 'kode' => '35.23.17', 'desa_count' => 23, 'accent' => '#f59e0b', 'bg' => '#fef3c7', 'sample' => ['Soko', 'Bangunrejo', 'Kendaldoyong', 'Menilo', 'Pandanagung', 'Sokosari', 'Wadung', 'Gladsari']],
-                ['nama' => 'Tambakboyo', 'kode' => '35.23.18', 'desa_count' => 18, 'accent' => '#0284c7', 'bg' => '#e0f2fe', 'sample' => ['Tambakboyo', 'Belikanget', 'Cokrowati', 'Dasin', 'Kenanti', 'Mabul', 'Sotang', 'Dikir']],
-                ['nama' => 'Tuban', 'kode' => '35.23.19', 'desa_count' => 17, 'accent' => '#10b981', 'bg' => '#d1fae5', 'sample' => ['Baturetno', 'Kebonsari', 'Kutorejo', 'Latsari', 'Ronggomulyo', 'Sidomulyo', 'Sukolilo', 'Kingking', 'Sugiharjo']],
-                ['nama' => 'Widang', 'kode' => '35.23.20', 'desa_count' => 16, 'accent' => '#475569', 'bg' => '#f1f5f9', 'sample' => ['Widang', 'Bunut', 'Compreng', 'Kedungharjo', 'Minohorejo', 'Ngadirejo', 'Panyuran', 'Mrutuk']]
+            // Data 20 Kecamatan dan Sampel Detail Desa/Kelurahan
+            $distrikList = [
+                ['nama' => 'Bancar', 'kode' => '35.23.01', 'total' => 24, 'color' => '#0284c7', 'villages' => [
+                    ['nama' => 'Desa Bancar', 'tipe' => 'Desa', 'kode' => '35.23.01.2001', 'lokasi' => 'Pesisir Utara Bancar', 'web' => 'https://bancar.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Boncong', 'tipe' => 'Desa', 'kode' => '35.23.01.2002', 'lokasi' => 'Jl. Pantura Boncong', 'web' => 'https://boncong.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Bulu', 'tipe' => 'Desa', 'kode' => '35.23.01.2003', 'lokasi' => 'Bulu Selatan', 'web' => 'https://bulu-tuban.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Bogorejo', 'tipe' => 'Desa', 'kode' => '35.23.01.2004', 'lokasi' => 'Bogorejo Bancar', 'web' => 'https://bogorejo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Bangilan', 'kode' => '35.23.02', 'total' => 14, 'color' => '#2563eb', 'villages' => [
+                    ['nama' => 'Desa Bangilan', 'tipe' => 'Desa', 'kode' => '35.23.02.2001', 'lokasi' => 'Sentra Bangilan', 'web' => 'https://bangilan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Kedungjambangan', 'tipe' => 'Desa', 'kode' => '35.23.02.2002', 'lokasi' => 'Kedungjambangan', 'web' => 'https://kedungjambangan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Klampok', 'tipe' => 'Desa', 'kode' => '35.23.02.2003', 'lokasi' => 'Klampok Barat', 'web' => 'https://klampok.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Grabagan', 'kode' => '35.23.03', 'total' => 11, 'color' => '#0d9488', 'villages' => [
+                    ['nama' => 'Desa Grabagan', 'tipe' => 'Desa', 'kode' => '35.23.03.2001', 'lokasi' => 'Perbukitan Grabagan', 'web' => 'https://grabagan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Dahor', 'tipe' => 'Desa', 'kode' => '35.23.03.2002', 'lokasi' => 'Dahor Lembah', 'web' => 'https://dahor.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Jatirogo', 'kode' => '35.23.04', 'total' => 18, 'color' => '#8b5cf6', 'villages' => [
+                    ['nama' => 'Desa Wotsogo', 'tipe' => 'Desa', 'kode' => '35.23.04.2001', 'lokasi' => 'Wotsogo Raya', 'web' => 'https://wotsogo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Paseyan', 'tipe' => 'Desa', 'kode' => '35.23.04.2002', 'lokasi' => 'Paseyan Timur', 'web' => 'https://paseyan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Jenu', 'kode' => '35.23.05', 'total' => 17, 'color' => '#0284c7', 'villages' => [
+                    ['nama' => 'Desa Sugihwaras', 'tipe' => 'Desa', 'kode' => '35.23.05.2001', 'lokasi' => 'Pantai Sugihwaras', 'web' => 'https://sugihwaras.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Tasikharjo', 'tipe' => 'Desa', 'kode' => '35.23.05.2002', 'lokasi' => 'Wisata Pasir Putih', 'web' => 'https://tasikharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Socorejo', 'tipe' => 'Desa', 'kode' => '35.23.05.2003', 'lokasi' => 'Kawasan Pesisir', 'web' => 'https://socorejo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Remen', 'tipe' => 'Desa', 'kode' => '35.23.05.2004', 'lokasi' => 'Danau Remen', 'web' => 'https://remen.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Kenduruan', 'kode' => '35.23.06', 'total' => 9, 'color' => '#f43f5e', 'villages' => [
+                    ['nama' => 'Desa Sidohasri', 'tipe' => 'Desa', 'kode' => '35.23.06.2001', 'lokasi' => 'Sidohasri', 'web' => 'https://sidohasri.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Kerek', 'kode' => '35.23.07', 'total' => 16, 'color' => '#d97706', 'villages' => [
+                    ['nama' => 'Desa Gaji', 'tipe' => 'Desa', 'kode' => '35.23.07.2001', 'lokasi' => 'Sentra Batik Kerek', 'web' => 'https://gaji.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Merakurak', 'kode' => '35.23.08', 'total' => 19, 'color' => '#0284c7', 'villages' => [
+                    ['nama' => 'Desa Bogorejo', 'tipe' => 'Desa', 'kode' => '35.23.08.2001', 'lokasi' => 'Kawasan Merakurak', 'web' => 'https://bogorejo-merakurak.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Sambonggede', 'tipe' => 'Desa', 'kode' => '35.23.08.2002', 'lokasi' => 'Lembah Hijau', 'web' => 'https://sambonggede.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Montong', 'kode' => '35.23.09', 'total' => 13, 'color' => '#10b981', 'villages' => [
+                    ['nama' => 'Desa Guwoterus', 'tipe' => 'Desa', 'kode' => '35.23.09.2001', 'lokasi' => 'Kawasan Gua & Hutan', 'web' => 'https://guwoterus.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Palang', 'kode' => '35.23.10', 'total' => 19, 'color' => '#4f46e5', 'villages' => [
+                    ['nama' => 'Desa Panyuran', 'tipe' => 'Desa', 'kode' => '35.23.10.2001', 'lokasi' => 'Pesisir Palang', 'web' => 'https://panyuran.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Gesikharjo', 'tipe' => 'Desa', 'kode' => '35.23.10.2002', 'lokasi' => 'Religi Asmoroqondi', 'web' => 'https://gesikharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Parengan', 'kode' => '35.23.11', 'total' => 18, 'color' => '#f59e0b', 'villages' => [
+                    ['nama' => 'Desa Parangbatu', 'tipe' => 'Desa', 'kode' => '35.23.11.2001', 'lokasi' => 'Lembah Parengan', 'web' => 'https://parangbatu.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Plumpang', 'kode' => '35.23.12', 'total' => 18, 'color' => '#0284c7', 'villages' => [
+                    ['nama' => 'Desa Plumpang', 'tipe' => 'Desa', 'kode' => '35.23.12.2001', 'lokasi' => 'Pusat Plumpang', 'web' => 'https://plumpang.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Rengel', 'kode' => '35.23.13', 'total' => 16, 'color' => '#10b981', 'villages' => [
+                    ['nama' => 'Desa Rengel', 'tipe' => 'Desa', 'kode' => '35.23.13.2001', 'lokasi' => 'Sendang Beron', 'web' => 'https://rengel.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Semanding', 'kode' => '35.23.14', 'total' => 17, 'color' => '#e11d48', 'villages' => [
+                    ['nama' => 'Kelurahan Gedongombo', 'tipe' => 'Kelurahan', 'kode' => '35.23.14.1001', 'lokasi' => 'Gedongombo Kota', 'web' => 'https://gedongombo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Prunggahan Kulon', 'tipe' => 'Desa', 'kode' => '35.23.14.2002', 'lokasi' => 'Wisata Bektiharjo', 'web' => 'https://prunggahan-kulon.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Senori', 'kode' => '35.23.15', 'total' => 12, 'color' => '#8b5cf6', 'villages' => [
+                    ['nama' => 'Desa Rayung', 'tipe' => 'Desa', 'kode' => '35.23.15.2001', 'lokasi' => 'Rayung Senori', 'web' => 'https://rayung.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Singgahan', 'kode' => '35.23.16', 'total' => 12, 'color' => '#0ea5e9', 'villages' => [
+                    ['nama' => 'Desa Mulyoagung', 'tipe' => 'Desa', 'kode' => '35.23.16.2001', 'lokasi' => 'Air Terjun Nglirip', 'web' => 'https://mulyoagung.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Soko', 'kode' => '35.23.17', 'total' => 23, 'color' => '#f59e0b', 'villages' => [
+                    ['nama' => 'Desa Sokosari', 'tipe' => 'Desa', 'kode' => '35.23.17.2001', 'lokasi' => 'Sokosari Bengawan', 'web' => 'https://sokosari.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Tambakboyo', 'kode' => '35.23.18', 'total' => 18, 'color' => '#0284c7', 'villages' => [
+                    ['nama' => 'Desa Dasin', 'tipe' => 'Desa', 'kode' => '35.23.18.2001', 'lokasi' => 'Pesisir Tambakboyo', 'web' => 'https://dasin.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Tuban', 'kode' => '35.23.19', 'total' => 17, 'color' => '#10b981', 'villages' => [
+                    ['nama' => 'Kelurahan Kutorejo', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1001', 'lokasi' => 'Pusat Alun-Alun Tuban', 'web' => 'https://kutorejo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Kelurahan Latsari', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1002', 'lokasi' => 'Kawasan Perkotaan', 'web' => 'https://latsari.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Kelurahan Sidomulyo', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1003', 'lokasi' => 'Pusat Niaga Tuban', 'web' => 'https://sidomulyo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
+                    ['nama' => 'Desa Sugiharjo', 'tipe' => 'Desa', 'kode' => '35.23.19.2004', 'lokasi' => 'Tuban Selatan', 'web' => 'https://sugiharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]],
+                ['nama' => 'Widang', 'kode' => '35.23.20', 'total' => 16, 'color' => '#475569', 'villages' => [
+                    ['nama' => 'Desa Compreng', 'tipe' => 'Desa', 'kode' => '35.23.20.2001', 'lokasi' => 'Lembah Bengawan Widang', 'web' => 'https://compreng.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
+                ]]
             ];
         ?>
 
-        <!-- Filter & Search Bar Sesuai Format Halaman Surat -->
-        <div class="filter-bar">
-            <div class="filter-title">
-                <i class="fa-solid fa-network-wired"></i>
-                <div>
-                    <h4>Eksplorasi Portal Distrik</h4>
-                    <p>Ketikkan nama kecamatan atau kode wilayah untuk mempercepat penelusuran.</p>
-                </div>
+        <!-- Filter Bar Bersih -->
+        <div class="filter-bar-minimal">
+            <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Cari nama distrik kecamatan..." oninput="handleSearch(this.value)">
             </div>
-            
-            <div class="filter-actions">
-                <div class="filter-search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="districtSearch" placeholder="Cari nama kecamatan (cth: Jenu, Rengel)..." oninput="filterDistricts(this.value)">
-                </div>
-                <div class="counter-pill" id="counterPill">
-                    <i class="fa-solid fa-building-columns"></i>
-                    <span><?= count($kecamatanTuban); ?> Distrik Terdaftar</span>
-                </div>
+            <div class="total-distrik-pill" id="counterBadge">
+                <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
+                <span>20 Distrik Kecamatan Aktif</span>
             </div>
         </div>
 
-        <!-- Section Grid Katalog Distrik -->
-        <h2 class="section-title">
-            <i class="fa-solid fa-folder-tree" style="color: var(--amber);"></i>
-            Katalog Website Kecamatan & Desa Terpadu
-        </h2>
-
-        <div class="district-grid" id="districtGrid">
-            <?php foreach ($kecamatanTuban as $kec): ?>
-                <div class="district-card" 
-                     style="--card-accent: <?= $kec['accent']; ?>; --icon-bg: <?= $kec['bg']; ?>;"
-                     data-name="<?= strtolower($kec['nama']); ?>">
-                    <div>
-                        <div class="card-top">
-                            <div class="card-icon-box">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png" 
-                                     alt="Tuban"
-                                     onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-building-columns\'></i>';">
-                            </div>
-                            <div class="card-top-info">
-                                <h3>Kecamatan <?= $kec['nama']; ?></h3>
-                                <span class="badge-code"><?= $kec['kode']; ?></span>
-                            </div>
+        <!-- Grid Kartu dengan Logo Murni Kabupaten Tuban -->
+        <div class="district-grid-clean" id="gridDistrik">
+            <?php foreach ($distrikList as $item): ?>
+                <div class="district-item-card" 
+                     style="--card-color: <?= $item['color']; ?>;"
+                     data-name="<?= strtolower($item['nama']); ?>"
+                     onclick="showVillageDrawer('<?= $item['nama']; ?>', '<?= $item['kode']; ?>', <?= $item['total']; ?>, <?= htmlspecialchars(json_encode($item['villages'])); ?>)">
+                    
+                    <div class="card-identity">
+                        <!-- Murni Memanggil Gambar Logo Asli Kabupaten Tuban -->
+                        <div class="card-icon-round">
+                            <img src="<?= asset('images/logo-tuban.png'); ?>" 
+                                 alt="Logo Kabupaten Tuban"
+                                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
                         </div>
-
-                        <p>Pusat koordinasi pelayanan publik dan keterbukaan informasi desa di wilayah Kecamatan <?= $kec['nama']; ?>.</p>
-
-                        <div class="meta-stats-row">
-                            <div class="meta-stat-item">
-                                <small>Cakupan Wilayah</small>
-                                <strong><?= $kec['desa_count']; ?> Desa / Kel</strong>
-                            </div>
-                            <div class="meta-stat-item">
-                                <small>Koneksi SIM</small>
-                                <strong style="color: var(--emerald);"><i class="fa-solid fa-circle-check"></i> Siaga</strong>
-                            </div>
+                        <div class="card-text">
+                            <h3>Kecamatan <?= $item['nama']; ?></h3>
+                            <small>Kode: <?= $item['kode']; ?></small>
                         </div>
                     </div>
 
-                    <button type="button" class="btn-action-view" onclick="openDistrictModal('<?= $kec['nama']; ?>', '<?= $kec['kode']; ?>', <?= $kec['desa_count']; ?>, <?= htmlspecialchars(json_encode($kec['sample'])); ?>)">
-                        <span>Buka Direktori Desa</span>
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <div class="card-action-cue">
+                        <span class="badge-count"><?= $item['total']; ?> Wilayah</span>
+                        <i class="fa-solid fa-arrow-right btn-arrow-cue"></i>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
-
     </main>
 
-    <!-- Modal Modern Multi-Kolom Direktori & Pendaftaran Portal Desa -->
-    <div class="modal-overlay" id="districtModal" onclick="closeModalOutside(event)">
-        <div class="modal-container">
-            <div class="modal-header-bar">
-                <h3 id="modalKecTitle"><i class="fa-solid fa-landmark" style="color: var(--primary);"></i> Direktori Desa</h3>
-                <button type="button" class="btn-modal-close" onclick="closeDistrictModal()">&times;</button>
-            </div>
+    <!-- 4. Modal Kolom Data Desa / Kelurahan Saat Kartu Diklik -->
+    <div class="modal-drawer-overlay" id="villageModal" onclick="checkCloseOutside(event)">
+        <div class="modal-drawer-card">
             
-            <div class="modal-body-content">
-                <!-- Nav Tabs Modal -->
-                <div class="modal-nav-tabs">
-                    <button type="button" class="tab-btn active" id="tabBtnList" onclick="switchModalTab('list')">
-                        <i class="fa-solid fa-list-check"></i> Daftar Portal Desa
-                    </button>
-                    <button type="button" class="tab-btn" id="tabBtnForm" onclick="switchModalTab('form')">
-                        <i class="fa-solid fa-paper-plane"></i> Ajukan Integrasi Web Baru
-                    </button>
-                </div>
+            <div class="modal-top-bar">
+                <h3 id="modalKecamatanTitle">
+                    <i class="fa-solid fa-layer-group"></i> 
+                    Kecamatan <span>-</span>
+                </h3>
+                <button type="button" class="btn-close-modal" onclick="closeVillageModal()">&times;</button>
+            </div>
 
-                <!-- Tab Content 1: Direktori Desa -->
-                <div id="tabContentList">
-                    <div class="detail-summary-strip">
-                        <div>
-                            <small style="color: var(--text-muted); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">Kode Wilayah</small>
-                            <div id="modalKecCode" style="font-size: 0.95rem; font-weight: 800; color: var(--text-dark);">-</div>
-                        </div>
-                        <div>
-                            <small style="color: var(--text-muted); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">Jumlah Balai Desa</small>
-                            <div id="modalKecCount" style="font-size: 0.95rem; font-weight: 800; color: var(--primary);">-</div>
-                        </div>
-                        <div>
-                            <small style="color: var(--text-muted); font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">Status Portal</small>
-                            <div style="font-size: 0.95rem; font-weight: 800; color: var(--emerald);"><i class="fa-solid fa-signal"></i> Terintegrasi</div>
-                        </div>
+            <div class="modal-body-scroll">
+                
+                <!-- Ringkasan Statistik -->
+                <div class="summary-stats-box">
+                    <div>
+                        <small>Kode Distrik</small>
+                        <strong id="modalKecKode">-</strong>
                     </div>
-
-                    <div class="search-mini-bar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="villageMiniSearch" placeholder="Cari nama desa di kecamatan ini..." oninput="filterVillageMini(this.value)">
+                    <div>
+                        <small>Total Wilayah</small>
+                        <strong id="modalKecTotal">-</strong>
                     </div>
-
-                    <div class="village-list-grid" id="villageListGrid">
-                        <!-- Item Desa dirender dinamis -->
+                    <div>
+                        <small>Status Integrasi</small>
+                        <strong style="color: var(--emerald);"><i class="fa-solid fa-circle-check"></i> Siaga Terpadu</strong>
                     </div>
                 </div>
 
-                <!-- Tab Content 2: Form Pengajuan Portal Baru (Multi-Kolom) -->
-                <div id="tabContentForm" style="display: none;">
-                    <form onsubmit="handlePortalSubmit(event)">
-                        <div class="form-grid-columns">
-                            <div class="form-group-custom">
-                                <label>Kecamatan Wilayah</label>
-                                <input type="text" id="formInputKec" readonly style="background: #f8fafc; font-weight: 700; color: var(--primary);">
-                            </div>
-                            <div class="form-group-custom">
-                                <label>Nama Desa / Kelurahan</label>
-                                <input type="text" required placeholder="Contoh: Desa Sugiharjo">
-                            </div>
-                            <div class="form-group-custom">
-                                <label>Nama Operator / Aparatur Pemohon</label>
-                                <input type="text" required placeholder="Nama lengkap petugas">
-                            </div>
-                            <div class="form-group-custom">
-                                <label>Nomor WhatsApp Resmi Desa</label>
-                                <input type="text" required placeholder="08xxxxxxxxxx" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                            </div>
-                            <div class="form-group-custom full-span">
-                                <label>Alamat Domain Web Desa (.desa.id / domain kustom)</label>
-                                <input type="url" required placeholder="https://namadesa.desa.id">
-                            </div>
-                            <div class="form-group-custom full-span">
-                                <label>Catatan Integrasi / Keterangan</label>
-                                <textarea rows="3" placeholder="Tuliskan catatan tambahan mengenai portal desa..."></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-submit-portal" style="width: 100%;">
-                            <i class="fa-solid fa-paper-plane"></i> Kirim Permohonan Integrasi
-                        </button>
-                    </form>
+                <!-- Kolom Daftar Desa/Kelurahan -->
+                <div class="village-column-grid" id="villageRowsGrid">
+                    <!-- Data Baris Render Otomatis -->
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- Script Filter & Interaktif Modal -->
+    <!-- Script Filter & Interaksi Klik Kolom -->
     <script>
-        let currentVillageData = [];
-
-        function filterDistricts(val) {
+        function handleSearch(val) {
             const query = val.toLowerCase().trim();
-            const cards = document.querySelectorAll('.district-card');
-            let visibleCount = 0;
+            const cards = document.querySelectorAll('.district-item-card');
+            let count = 0;
 
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
                 if (name.includes(query)) {
                     card.style.display = 'flex';
-                    visibleCount++;
+                    count++;
                 } else {
                     card.style.display = 'none';
                 }
             });
 
-            document.getElementById('counterPill').innerHTML = `
-                <i class="fa-solid fa-building-columns"></i>
-                <span>${visibleCount} Distrik Ditemukan</span>
+            document.getElementById('counterBadge').innerHTML = `
+                <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
+                <span>${count} Distrik Terpilih</span>
             `;
         }
 
-        function openDistrictModal(namaKec, kode, jumlahDesa, listDesa) {
-            document.getElementById('modalKecTitle').innerHTML = `<i class="fa-solid fa-landmark" style="color: var(--primary);"></i> Wilayah Kecamatan ${namaKec}`;
-            document.getElementById('modalKecCode').innerText = kode;
-            document.getElementById('modalKecCount').innerText = `${jumlahDesa} Desa / Kelurahan`;
-            document.getElementById('formInputKec').value = `Kecamatan ${namaKec}`;
+        function showVillageDrawer(namaKec, kodeKec, totalDesa, villageList) {
+            document.getElementById('modalKecamatanTitle').innerHTML = `
+                <i class="fa-solid fa-layer-group"></i> 
+                Kecamatan <span>${namaKec}</span>
+            `;
+            document.getElementById('modalKecKode').innerText = kodeKec;
+            document.getElementById('modalKecTotal').innerText = `${totalDesa} Desa & Kelurahan`;
 
-            currentVillageData = listDesa;
-            renderVillageList(listDesa);
-
-            switchModalTab('list');
-            document.getElementById('districtModal').style.display = 'flex';
-        }
-
-        function renderVillageList(list) {
-            const grid = document.getElementById('villageListGrid');
+            const grid = document.getElementById('villageRowsGrid');
             grid.innerHTML = '';
 
-            if (list.length === 0) {
-                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85rem;">Tidak ada desa yang cocok dengan pencarian.</div>';
-                return;
-            }
-
-            list.forEach(desa => {
-                const slug = desa.toLowerCase().replace(/\s+/g, '');
-                const chip = document.createElement('div');
-                chip.className = 'village-chip-item';
-                chip.setAttribute('data-village', desa.toLowerCase());
-                chip.innerHTML = `
-                    <div>
-                        <strong style="font-size: 0.84rem; display: block; color: var(--text-dark);">${desa}</strong>
-                        <small style="color: var(--text-muted); font-size: 0.7rem;">Portal Web Resmi Aktif</small>
+            villageList.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'village-row-card';
+                card.innerHTML = `
+                    <div class="row-meta-top">
+                        <div>
+                            <h4>${item.nama}</h4>
+                            <div class="location-info">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>${item.lokasi}</span>
+                            </div>
+                        </div>
+                        <span class="code-tag">${item.kode}</span>
                     </div>
-                    <a href="https://${slug}.desa.id" target="_blank" rel="noopener noreferrer">
-                        <span>Kunjungi</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
+
+                    <div class="row-actions-bottom">
+                        <a href="${item.web}" target="_blank" rel="noopener" class="link-web-desa">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>Buka Website</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+                        </a>
+
+                        <div class="sosmed-pill-cluster">
+                            <a href="${item.ig}" target="_blank" class="btn-sosmed-mini ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="${item.fb}" target="_blank" class="btn-sosmed-mini fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="${item.yt}" target="_blank" class="btn-sosmed-mini yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
                 `;
-                grid.appendChild(chip);
+                grid.appendChild(card);
             });
+
+            document.getElementById('villageModal').style.display = 'flex';
         }
 
-        function filterVillageMini(val) {
-            const q = val.toLowerCase().trim();
-            const filtered = currentVillageData.filter(d => d.toLowerCase().includes(q));
-            renderVillageList(filtered);
+        function closeVillageModal() {
+            document.getElementById('villageModal').style.display = 'none';
         }
 
-        function switchModalTab(tab) {
-            const btnList = document.getElementById('tabBtnList');
-            const btnForm = document.getElementById('tabBtnForm');
-            const contentList = document.getElementById('tabContentList');
-            const contentForm = document.getElementById('tabContentForm');
-
-            if (tab === 'list') {
-                btnList.classList.add('active');
-                btnForm.classList.remove('active');
-                contentList.style.display = 'block';
-                contentForm.style.display = 'none';
-            } else {
-                btnForm.classList.add('active');
-                btnList.classList.remove('active');
-                contentList.style.display = 'none';
-                contentForm.style.display = 'block';
-            }
-        }
-
-        function handlePortalSubmit(e) {
-            e.preventDefault();
-            alert('Pengajuan integrasi portal desa telah dikirimkan ke Dinas Kominfo Kabupaten Tuban untuk verifikasi.');
-            closeDistrictModal();
-        }
-
-        function closeDistrictModal() {
-            document.getElementById('districtModal').style.display = 'none';
-            document.getElementById('villageMiniSearch').value = '';
-        }
-
-        function closeModalOutside(e) {
-            if (e.target.id === 'districtModal') {
-                closeDistrictModal();
+        function checkCloseOutside(e) {
+            if (e.target.id === 'villageModal') {
+                closeVillageModal();
             }
         }
     </script>

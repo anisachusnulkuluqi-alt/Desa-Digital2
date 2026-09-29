@@ -574,7 +574,7 @@
 
         .leaflet-popup-content {
             margin: 0;
-            width: 290px !important;
+            width: min(390px, calc(100vw - 60px)) !important;
         }
 
         .card-popup-banner {
@@ -629,6 +629,75 @@
         }
 
         .popup-route-btn:hover { background: #0284c7; }
+
+        .spatial-detail-card { color: #0f172a; }
+        .spatial-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: linear-gradient(110deg, #1e40af, #3b82f6);
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+        .spatial-detail-photo-wrap {
+            height: 156px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #ffffff;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--category-color, #0284c7), #172554);
+        }
+        .spatial-detail-photo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .spatial-detail-body { padding: 16px; }
+        .spatial-detail-title {
+            margin: 0 0 4px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+        .spatial-detail-location {
+            margin-bottom: 14px;
+            color: #64748b;
+            font-size: 0.78rem;
+        }
+        .spatial-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px 16px;
+        }
+        .spatial-detail-field { min-width: 0; }
+        .spatial-detail-label {
+            margin-bottom: 3px;
+            color: #64748b;
+            font-size: 0.61rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .spatial-detail-value {
+            overflow-wrap: anywhere;
+            color: #1e293b;
+            font-size: 0.76rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .spatial-detail-description {
+            margin: 14px 0;
+            padding: 11px 12px;
+            border-radius: 8px;
+            background: #f1f5f9;
+        }
+        .spatial-detail-description .spatial-detail-value { font-weight: 500; }
 
         @media (max-width: 768px) {
             .gmaps-floating-header { max-width: calc(100% - 32px); }
@@ -996,6 +1065,39 @@
             const [lng, lat] = feature.geometry?.coordinates || [];
             const address = properties.alamat || '';
             const kecMatch = address.match(/\bKec(?:amatan)?\.?\s+([^,]+)/i);
+            const photoPath = String(properties.foto || '').trim();
+            const cleanPhotoPath = photoPath.replace(/^\/?storage\//, '').replace(/^\/+/, '');
+            const operatingHours = String(properties.jam_operas || properties.jam_operasional || '').replace(/â€“|â€”/g, '-');
+            const detailFields = {
+                wisata: [
+                    ['Jenis Wisata', properties.jenis_wisa],
+                    ['HTM', properties.htm ? (properties.htm === '0' ? 'Gratis' : `Rp ${properties.htm}`) : ''],
+                    ['Jam Operasional', operatingHours],
+                    ['Reservasi', properties.reservasi]
+                ],
+                wifi: [
+                    ['Nama WiFi', properties.nama_ssid],
+                    ['Fasilitator', properties.fasilitato || properties.fasilitator],
+                    ['Alamat', address]
+                ],
+                kantor: [['Alamat', address]],
+                pasar: [
+                    ['Kelurahan', properties.kelurahan],
+                    ['Alamat', address]
+                ],
+                bumdes: [
+                    ['Jenis Usaha', properties.jenis_usah || properties.jenis_usaha],
+                    ['Ketua', properties.nama_ketua || properties.ketua],
+                    ['Alamat', address]
+                ],
+                kkdmp: [
+                    ['Jenis', properties.jenis],
+                    ['Ketua', properties.ketua || properties.nama_ketua],
+                    ['Nomor AHU', properties.no_ahu],
+                    ['Unit Usaha', properties.unit_usaha],
+                    ['Alamat', address]
+                ]
+            };
 
             return {
                 id: `${type}-${feature.id ?? properties.FID}`,
@@ -1006,8 +1108,25 @@
                 lat,
                 lng,
                 status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
-                desc: properties.deskripsi || address || 'Tidak ada deskripsi lokasi.'
+                desc: properties.deskripsi || '',
+                kind: properties.jenis_wisa || '',
+                details: (detailFields[type] || [])
+                    .map(([label, value]) => [label, String(value ?? '').trim()])
+                    .filter(([, value]) => value && value !== '-'),
+                photo: photoPath
+                    ? (/^https?:\/\//i.test(photoPath) ? photoPath : `{{ asset('storage') }}/${cleanPhotoPath}`)
+                    : ''
             };
+        }
+
+        function escapePopupText(value) {
+            return String(value ?? '').replace(/[&<>"']/g, character => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            })[character]);
         }
 
         function escapeHtml(value) {
@@ -1091,15 +1210,33 @@
                     popupAnchor: [0, -20]
                 });
 
+                const detailFieldsHtml = [
+                    ...item.details,
+                    ['Latitude', item.lat],
+                    ['Longitude', item.lng]
+                ].map(([label, value]) => `
+                    <div class="spatial-detail-field">
+                        <div class="spatial-detail-label">${escapePopupText(label)}</div>
+                        <div class="spatial-detail-value">${escapePopupText(value)}</div>
+                    </div>
+                `).join('');
+                const descriptionHtml = item.desc ? `
+                    <div class="spatial-detail-description">
+                        <div class="spatial-detail-label">Deskripsi</div>
+                        <div class="spatial-detail-value">${escapePopupText(item.desc)}</div>
+                    </div>
+                ` : '';
                 const popupHtml = `
-                    <div>
-                        <div class="card-popup-banner" style="background: linear-gradient(135deg, ${meta.color} 0%, #0f172a 100%);">
+                    <div class="spatial-detail-card" style="--category-color: ${meta.color};">
+                        <div class="spatial-detail-header"><i class="fa-solid fa-image"></i> Detail ${escapePopupText(meta.label)}</div>
+                        <div class="spatial-detail-photo-wrap">
                             <i class="fa-solid ${meta.icon}"></i>
+                            ${item.photo ? `<img class="spatial-detail-photo" src="${escapePopupText(item.photo)}" alt="Foto ${escapePopupText(item.name)}" onerror="this.remove()">` : ''}
                         </div>
                         <div class="card-popup-body">
                             <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
-                            <h4>${escapeHtml(item.name)}</h4>
-                            <p><strong>Desa ${escapeHtml(item.desa)}, Kec. ${escapeHtml(item.kec)}</strong><br>${escapeHtml(item.desc)}</p>
+                            <h4>${item.name}</h4>
+                            <p><strong>Desa ${item.desa}, Kec. ${item.kec}</strong><br>${item.desc}</p>
                             <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" class="popup-route-btn">
                                 <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Arah (Google Maps)
                             </a>
