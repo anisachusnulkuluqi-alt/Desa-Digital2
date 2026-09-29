@@ -20,16 +20,12 @@
             align-items: center;
             justify-content: space-between;
         }
-        
         .breadcrumb { margin: 0; font-size: 14px; }
         .breadcrumb a { color: #64748b; text-decoration: none; }
         .breadcrumb a:hover { color: #1e3a8a; }
         .breadcrumb-item.active { color: #1e3a8a; font-weight: 600; }
-        
         .date-display { font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 6px; }
-        
         .main-content { padding: 28px 36px; max-width: 1200px; margin: 0 auto; }
-        
         .page-title {
             font-size: 24px;
             font-weight: 800;
@@ -39,76 +35,20 @@
             align-items: center;
             gap: 10px;
         }
-        
         .page-title i { color: #1e3a8a; font-size: 26px; }
         .page-subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 22px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            border-left: 4px solid #1e3a8a;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        
-        .stat-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: white;
-            flex-shrink: 0;
-        }
-        
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 22px; }
+        .stat-card { background: white; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; border-left: 4px solid #1e3a8a; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .stat-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; flex-shrink: 0; }
         .stat-icon.blue { background: linear-gradient(135deg, #3b82f6, #1e40af); }
         .stat-icon.green { background: linear-gradient(135deg, #10b981, #059669); }
-        
         .stat-info h3 { font-size: 24px; font-weight: 800; color: #1e293b; margin: 0; line-height: 1; }
         .stat-info p { font-size: 11px; color: #64748b; margin: 4px 0 0 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
-        
-        .search-bar {
-            background: white;
-            border-radius: 10px;
-            padding: 14px 18px;
-            margin-bottom: 18px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        
+        .search-bar { background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .search-box { position: relative; }
-        .search-box input {
-            width: 100%;
-            padding: 10px 14px 10px 40px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-        .search-box input:focus {
-            outline: none;
-            border-color: #1e3a8a;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08);
-        }
-        .search-box i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-            font-size: 15px;
-        }
+        .search-box input { width: 100%; padding: 10px 14px 10px 40px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: all 0.2s; }
+        .search-box input:focus { outline: none; border-color: #1e3a8a; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08); }
+        .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 15px; }
         
         .table-card {
             background: white;
@@ -264,7 +204,7 @@
         /* Modal Styles */
         .modal-content { border-radius: 12px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
         .modal-header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
             border-radius: 12px 12px 0 0;
             padding: 18px 22px;
@@ -355,11 +295,11 @@
         .btn-modal-cancel:hover { background: #f8fafc; border-color: #cbd5e1; color: #1e293b; }
         
         .btn-modal-save {
-            background: linear-gradient(135deg, #10b981, #059669); color: white; border: none;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; border: none;
             padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600;
             cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
         }
-        .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35); color: white; }
+        .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); color: white; }
         
         .btn-modal-delete {
             background: linear-gradient(135deg, #ef4444, #dc2626); color: white; border: none;
@@ -385,88 +325,57 @@
             .main-content { padding: 16px; }
         }
     </style>
+    @include('admin.partials.list-page-styles')
 </head>
 <body>
     @include('admin.partials.sidebar', ['activeMenu' => 'desa'])
-    <div class="page-header">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item active">Data Desa</li>
-            </ol>
-        </nav>
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
-        </div>
-    </div>
-
-    <div class="main-content">
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Desa / Kelurahan</strong></div>
+            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+        </header>
+        <main class="admin-content">
         @if(session('success'))
-        <div class="alert-banner">
+        <div class="admin-alert">
             <i class="bi bi-check-circle-fill"></i>
             <span>{{ session('success') }}</span>
-            <button class="close-btn" onclick="this.parentElement.style.display='none'">
+            <button type="button" aria-label="Tutup notifikasi" onclick="this.parentElement.style.display='none'">
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
         @endif
 
-        <h1 class="page-title">
-            <i class="bi bi-houses-fill"></i>
-            Data Desa/Kelurahan
-        </h1>
-        <p class="page-subtitle">Kelola data desa dan kelurahan di Kabupaten Tuban</p>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon blue">
-                    <i class="bi bi-houses-fill"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>{{ $totalDesa ?? 0 }}</h3>
-                    <p>TOTAL DESA</p>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon green">
-                    <i class="bi bi-geo-alt-fill"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>{{ $totalKecamatan ?? 0 }}</h3>
-                    <p>TOTAL KECAMATAN</p>
-                </div>
-            </div>
+        <div class="admin-page-heading">
+            <p class="admin-eyebrow">Data Wilayah</p>
+            <h1>Desa / Kelurahan</h1>
+            <p class="admin-page-subtitle">Kelola data desa dan kelurahan di Kabupaten Tuban.</p>
         </div>
 
-        <div class="search-bar">
-            <div class="search-box">
-                <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama desa...">
-            </div>
-        </div>
-
-        <div class="table-card">
-            <div class="table-header">
-                <div class="table-title">
+        <section class="admin-list-panel" aria-label="Daftar desa dan kelurahan">
+            <div class="admin-list-toolbar">
+                <div class="admin-list-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Desa
-                    <span class="badge-count">{{ $desas->count() }} Desa</span>
+                    <span class="admin-count">{{ number_format($totalDesa ?? $desas->count()) }} Data</span>
                 </div>
-                <div>
-                    <button type="button" class="btn-action-header btn-import" onclick="openImportModal()">
+                <div class="admin-list-actions">
+                    <label class="admin-search-wrap" for="searchInput">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama desa...">
+                    </label>
+                    <button type="button" class="admin-secondary-btn" onclick="openImportModal()">
                         <i class="bi bi-file-earmark-excel"></i>
-                        Import Excel
+                        Import
                     </button>
-                    <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()" style="margin-left: 8px;">
+                    <button type="button" class="admin-primary-btn" onclick="openTambahModal()">
                         <i class="bi bi-plus-lg"></i>
-                        Tambah
+                        Tambah Desa
                     </button>
                 </div>
             </div>
 
-            <table class="table-simple">
+            <div class="admin-table-wrap">
+            <table class="admin-table">
                 <thead>
                     <tr>
                         <th style="width: 60px;">NO</th>
@@ -478,19 +387,19 @@
                 </thead>
                 <tbody id="desaTable">
                     @forelse($desas as $index => $desa)
-                    <tr data-id="{{ $desa->id }}" onclick="showDetail({{ $desa->id }}, '{{ addslashes($desa->nama_desa) }}', '{{ addslashes($desa->kecamatan->nama_kecamatan ?? '-') }}', '{{ $desa->kode_desa ?? '-' }}', '{{ $desa->jenis ?? 'Desa' }}', '{{ addslashes($desa->website ?? '') }}', '{{ addslashes($desa->youtube ?? '') }}', '{{ addslashes($desa->instagram ?? '') }}', '{{ addslashes($desa->facebook ?? '') }}', '{{ addslashes($desa->tiktok ?? '') }}', '{{ addslashes($desa->whatsapp ?? '') }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                    <tr tabindex="0" role="button" data-id="{{ $desa->id }}" onclick="showDetail({{ $desa->id }}, '{{ addslashes($desa->nama_desa) }}', '{{ addslashes($desa->kecamatan->nama_kecamatan ?? '-') }}', '{{ $desa->kode_desa ?? '-' }}', '{{ $desa->jenis ?? 'Desa' }}', '{{ addslashes($desa->website ?? '') }}', '{{ addslashes($desa->youtube ?? '') }}', '{{ addslashes($desa->instagram ?? '') }}', '{{ addslashes($desa->facebook ?? '') }}', '{{ addslashes($desa->tiktok ?? '') }}', '{{ addslashes($desa->whatsapp ?? '') }}')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
+                        <td class="admin-row-number">{{ $index + 1 }}</td>
                         <td>
-                            <div class="desa-name">
-                                <div class="desa-name-icon">
+                            <div class="admin-place-name">
+                                <span class="admin-place-icon">
                                     <i class="bi bi-geo-alt-fill"></i>
-                                </div>
+                                </span>
                                 {{ $desa->nama_desa }}
                             </div>
                         </td>
                         <td>{{ $desa->kecamatan->nama_kecamatan ?? '-' }}</td>
                         <td>
-                            <span class="badge-jenis {{ ($desa->jenis ?? 'Desa') === 'Kelurahan' ? 'badge-kelurahan' : 'badge-desa' }}">
+                            <span class="admin-kind {{ ($desa->jenis ?? 'Desa') === 'Kelurahan' ? 'is-kelurahan' : '' }}">
                                 {{ $desa->jenis ?? 'Desa' }}
                             </span>
                         </td>
@@ -498,8 +407,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5">
-                            <div class="empty-state">
+                        <td class="admin-empty" colspan="5">
+                            <div>
                                 <i class="bi bi-inbox"></i>
                                 Belum ada data desa
                             </div>
@@ -507,8 +416,10 @@
                     </tr>
                     @endforelse
                 </tbody>
-            </table>
-        </div>
+                </table>
+                </div>
+            </section>
+        </main>
     </div>
 
     <!-- Modal Detail Desa -->

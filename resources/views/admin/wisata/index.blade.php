@@ -242,6 +242,7 @@
         @media (max-width: 992px) { .sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } }
         @media (max-width: 768px) { .table-header { flex-direction: column; align-items: stretch; } .table-actions { flex-direction: column; } .search-box input { width: 100%; } .detail-grid { grid-template-columns: 1fr; } .pagination-wrapper { justify-content: center; } }
     </style>
+    @include('admin.partials.list-page-styles')
 </head>
 <body>
     <aside class="sidebar">
@@ -265,55 +266,47 @@
         </ul>
     </aside>
 
-    <div class="main-content">
-        <header class="top-header">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Admin</a></li>
-                    <li class="breadcrumb-item active">Wisata Desa</li>
-                </ol>
-            </nav>
-            <div class="header-user">
-                <div class="header-user-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
-                <div class="header-user-name">{{ Auth::user()->name ?? 'Admin Desa Digital' }}</div>
-            </div>
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Wisata Desa</strong></div>
+            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
         </header>
 
-        <div class="page-body">
+        <main class="admin-content">
             @if(session('success'))
-            <div class="alert-banner">
+            <div class="admin-alert">
                 <i class="bi bi-check-circle-fill"></i>
                 <span>{{ session('success') }}</span>
-                <button class="close-btn" onclick="this.parentElement.style.display='none'"><i class="bi bi-x-lg"></i></button>
+                <button type="button" aria-label="Tutup notifikasi" onclick="this.parentElement.style.display='none'"><i class="bi bi-x-lg"></i></button>
             </div>
             @endif
 
-            <div class="page-header">
-                <div class="page-label">DATA WISATA DESA</div>
-                <h1 class="page-title">Wisata Desa</h1>
-                <p class="page-subtitle">Kelola data wisata desa Kabupaten Tuban</p>
+            <div class="admin-page-heading">
+                <p class="admin-eyebrow">Data Wisata Desa</p>
+                <h1>Wisata Desa</h1>
+                <p class="admin-page-subtitle">Kelola data wisata desa Kabupaten Tuban.</p>
             </div>
 
-            <div class="table-card">
-                <div class="table-header">
-                    <div class="table-title">
+            <section class="admin-list-panel" aria-label="Daftar wisata desa">
+                <div class="admin-list-toolbar">
+                    <div class="admin-list-title">
                         <i class="bi bi-list-ul"></i>
                         Daftar Wisata
-                        <span class="badge-count">{{ $wisatas->total() }} Titik</span>
+                        <span class="admin-count">{{ number_format($wisatas->total()) }} Titik</span>
                     </div>
-                    <div class="table-actions">
-                        <div class="search-box">
-                            <i class="bi bi-search"></i>
-                            <input type="text" id="searchInput" placeholder="Cari nama wisata...">
-                        </div>
-                        <button type="button" class="btn-add" onclick="openTambahModal()">
+                    <div class="admin-list-actions">
+                        <label class="admin-search-wrap" for="searchInput">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama wisata...">
+                        </label>
+                        <button type="button" class="admin-primary-btn" onclick="openTambahModal()">
                             <i class="bi bi-plus-lg"></i> Tambah Wisata
                         </button>
                     </div>
                 </div>
 
-                <div style="overflow-x: auto;">
-                    <table class="table-modern">
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
                         <thead>
                             <tr>
                                 <th style="width: 50px;">NO</th>
@@ -341,10 +334,10 @@
                                 $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? '';
                             @endphp
                             <tr data-id="{{ $wisata->id }}">
-                                <td style="color: #94a3b8; font-weight: 600;">{{ ($wisatas->currentPage() - 1) * $wisatas->perPage() + $index + 1 }}</td>
+                                <td class="admin-row-number">{{ ($wisatas->currentPage() - 1) * $wisatas->perPage() + $index + 1 }}</td>
                                 <td>
-                                    <a class="wisata-link" onclick="openDetailModal({{ $wisata->id }}, '{{ addslashes($wisata->nama_lokasi ?? $wisata->nama ?? '') }}', '{{ addslashes($desa) }}', '{{ addslashes($jenis) }}', '{{ addslashes($deskripsi) }}', '{{ addslashes($jam) }}', '{{ addslashes($htm) }}', '{{ addslashes($reservasi) }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ addslashes($foto) }}')">
-                                        <div class="wisata-icon"><i class="bi bi-image-fill"></i></div>
+                                    <a class="wisata-link admin-place-name" onclick="openDetailModal({{ $wisata->id }}, '{{ addslashes($wisata->nama_lokasi ?? $wisata->nama ?? '') }}', '{{ addslashes($desa) }}', '{{ addslashes($jenis) }}', '{{ addslashes($deskripsi) }}', '{{ addslashes($jam) }}', '{{ addslashes($htm) }}', '{{ addslashes($reservasi) }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ addslashes($foto) }}')">
+                                        <span class="admin-place-icon"><i class="bi bi-image-fill"></i></span>
                                         {{ $wisata->nama_lokasi ?? $wisata->nama ?? '-' }}
                                     </a>
                                 </td>
@@ -352,11 +345,10 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="3">
-                                    <div class="empty-state">
+                                <td class="admin-empty" colspan="3">
+                                    <div>
                                         <i class="bi bi-inbox"></i>
-                                        <h4>Belum ada data wisata</h4>
-                                        <p>Klik tombol "Tambah Wisata" untuk menambahkan data.</p>
+                                        Belum ada data wisata
                                     </div>
                                 </td>
                             </tr>
@@ -394,8 +386,8 @@
                     </ul>
                 </div>
                 @endif
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
     <!-- Modal Detail Wisata -->

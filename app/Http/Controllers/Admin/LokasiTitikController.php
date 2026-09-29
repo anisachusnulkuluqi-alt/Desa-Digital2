@@ -54,8 +54,39 @@ class LokasiTitikController extends Controller
     public function store(Request $request)
     {
         $category = $this->category($request);
-        $data = $this->validatedLocation($request);
+        $data = $this->validatedLocation($request, $category['route']);
         $now = now();
+        $propertiesData = json_decode($data['properties'] ?? '{}', true) ?: [];
+
+        if ($category['route'] === 'wifi') {
+            $propertiesData['nama_desa'] = $data['desa'];
+            $propertiesData['fasilitator'] = $data['fasilitator'];
+        }
+
+        if ($category['route'] === 'bumdes') {
+            $propertiesData['jenis_usaha'] = $data['jenis_usaha'];
+            $propertiesData['nama_ketua'] = $data['nama_ketua'];
+        }
+
+        if ($category['route'] === 'kkdmp') {
+            $propertiesData['nama'] = $data['nama_lokasi'];
+            $propertiesData['desa_kelur'] = $data['desa_kelur'];
+            $propertiesData['jenis'] = $data['jenis'];
+            $propertiesData['ketua'] = $data['nama_ketua'];
+            $propertiesData['no_ahu'] = $data['no_ahu'];
+        }
+
+        if ($category['route'] === 'kantor') {
+            $propertiesData['link_maps'] = $data['link_maps'] ?? null;
+        }
+
+        if ($request->hasFile('foto')) {
+            $photoPath = $request->file('foto')->store($category['route'], 'public');
+            $propertiesData['foto'] = asset('storage/'.$photoPath);
+        }
+        $properties = $propertiesData === []
+            ? null
+            : json_encode($propertiesData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         DB::table($category['table'])->insert([
             'feature_key' => hash('sha256', (string) Str::uuid()),
@@ -63,7 +94,7 @@ class LokasiTitikController extends Controller
             'alamat' => $data['alamat'] ?? null,
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
-            'properties' => $data['properties'] ?? null,
+            'properties' => $properties,
             'created_at' => $now,
             'updated_at' => $now,
         ]);
@@ -75,16 +106,51 @@ class LokasiTitikController extends Controller
     public function update(Request $request, int $id)
     {
         $category = $this->category($request);
-        $data = $this->validatedLocation($request);
+        $data = $this->validatedLocation($request, $category['route']);
         $location = DB::table($category['table'])->where('id', $id)->first();
         abort_if($location === null, 404);
+        $existingProperties = json_decode($location->properties ?? '{}', true) ?: [];
+        $submittedProperties = json_decode($data['properties'] ?? '{}', true) ?: [];
+        $propertiesData = array_merge($existingProperties, $submittedProperties);
+
+        if ($category['route'] === 'wifi') {
+            unset($propertiesData['fasilitato']);
+            $propertiesData['nama_desa'] = $data['desa'];
+            $propertiesData['fasilitator'] = $data['fasilitator'];
+        }
+
+        if ($category['route'] === 'bumdes') {
+            unset($propertiesData['jenis_usah']);
+            $propertiesData['jenis_usaha'] = $data['jenis_usaha'];
+            $propertiesData['nama_ketua'] = $data['nama_ketua'];
+        }
+
+        if ($category['route'] === 'kkdmp') {
+            $propertiesData['nama'] = $data['nama_lokasi'];
+            $propertiesData['desa_kelur'] = $data['desa_kelur'];
+            $propertiesData['jenis'] = $data['jenis'];
+            $propertiesData['ketua'] = $data['nama_ketua'];
+            $propertiesData['no_ahu'] = $data['no_ahu'];
+        }
+
+        if ($category['route'] === 'kantor') {
+            $propertiesData['link_maps'] = $data['link_maps'] ?? null;
+        }
+
+        if ($request->hasFile('foto')) {
+            $photoPath = $request->file('foto')->store($category['route'], 'public');
+            $propertiesData['foto'] = asset('storage/'.$photoPath);
+        }
+        $properties = $propertiesData === []
+            ? null
+            : json_encode($propertiesData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         DB::table($category['table'])->where('id', $id)->update([
             'nama_lokasi' => $data['nama_lokasi'],
             'alamat' => $data['alamat'] ?? null,
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
-            'properties' => $data['properties'] ?? null,
+            'properties' => $properties,
             'updated_at' => now(),
         ]);
 
@@ -110,14 +176,41 @@ class LokasiTitikController extends Controller
         return self::CATEGORIES[$key];
     }
 
-    private function validatedLocation(Request $request): array
+    private function validatedLocation(Request $request, string $categoryRoute): array
     {
-        return $request->validate([
+        $rules = [
             'nama_lokasi' => ['required', 'string', 'max:255'],
             'alamat' => ['nullable', 'string', 'max:5000'],
             'latitude' => ['required', 'numeric', 'between:-90,90'],
             'longitude' => ['required', 'numeric', 'between:-180,180'],
             'properties' => ['nullable', 'json'],
-        ]);
+        ];
+
+        if (in_array($categoryRoute, ['pasar', 'kantor', 'wifi', 'bumdes', 'kkdmp'], true)) {
+            $rules['foto'] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'];
+        }
+
+        if ($categoryRoute === 'wifi') {
+            $rules['desa'] = ['required', 'string', 'max:255'];
+            $rules['fasilitator'] = ['required', 'in:pemerintah_desa,pemerintah_kabupaten'];
+        }
+
+        if ($categoryRoute === 'kantor') {
+            $rules['link_maps'] = ['nullable', 'url', 'max:1000'];
+        }
+
+        if ($categoryRoute === 'bumdes') {
+            $rules['jenis_usaha'] = ['required', 'string', 'max:5000'];
+            $rules['nama_ketua'] = ['required', 'string', 'max:255'];
+        }
+
+        if ($categoryRoute === 'kkdmp') {
+            $rules['desa_kelur'] = ['required', 'string', 'max:255'];
+            $rules['jenis'] = ['required', 'in:desa,kelurahan'];
+            $rules['nama_ketua'] = ['required', 'string', 'max:255'];
+            $rules['no_ahu'] = ['required', 'string', 'max:255'];
+        }
+
+        return $request->validate($rules);
     }
 }

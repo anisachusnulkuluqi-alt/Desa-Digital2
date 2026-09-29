@@ -248,28 +248,21 @@
             .btn { width: 100%; justify-content: center; }
         }
     </style>
+    @include('admin.partials.list-page-styles')
 </head>
 <body>
-    <div class="page-header">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.desa.index') }}">Data Desa</a></li>
-                <li class="breadcrumb-item active">Edit Data</li>
-            </ol>
-        </nav>
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+    @include('admin.partials.sidebar', ['activeMenu' => 'desa'])
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <a href="{{ route('admin.desa.index') }}">Desa</a> <span aria-hidden="true">/</span> <strong>Edit</strong></div>
+            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+        </header>
+        <main class="admin-edit-content">
+        <div class="admin-page-heading">
+            <p class="admin-eyebrow">Data Wilayah</p>
+            <h1>Edit Desa / Kelurahan</h1>
+            <p class="admin-page-subtitle">Perbarui informasi {{ $desa->nama_desa }}.</p>
         </div>
-    </div>
-
-    <div class="main-content">
-        <h1 class="page-title">
-            <i class="bi bi-pencil-square"></i>
-            Edit Desa/Kelurahan
-        </h1>
-        <p class="page-subtitle">Ubah data {{ $desa->nama_desa }}</p>
 
         <form action="{{ route('admin.desa.update', $desa->id) }}" method="POST">
             @csrf
@@ -515,6 +508,7 @@
                 </div>
             </div>
         </form>
+        </main>
     </div>
 </body>
 </html>

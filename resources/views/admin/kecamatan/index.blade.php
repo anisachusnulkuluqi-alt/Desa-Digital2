@@ -198,84 +198,56 @@
             .main-content { padding: 16px; }
         }
     </style>
+    @include('admin.partials.list-page-styles')
 </head>
 <body>
     @include('admin.partials.sidebar', ['activeMenu' => 'kecamatan'])
-    <div class="page-header">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item active">Data Kecamatan</li>
-            </ol>
-        </nav>
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
-        </div>
-    </div>
-
-    <div class="main-content">
-        <h1 class="page-title">
-            <i class="bi bi-geo-alt-fill"></i>
-            Data Kecamatan
-        </h1>
-        <p class="page-subtitle">Kelola data kecamatan di Kabupaten Tuban</p>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon blue">
-                    <i class="bi bi-geo-alt-fill"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>{{ $totalKecamatan ?? 0 }}</h3>
-                    <p>TOTAL KECAMATAN</p>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon green">
-                    <i class="bi bi-houses-fill"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>{{ $totalDesa ?? 0 }}</h3>
-                    <p>TOTAL DESA</p>
-                </div>
-            </div>
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Kecamatan</strong></div>
+            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+        </header>
+        <main class="admin-content">
+        <div class="admin-page-heading">
+            <p class="admin-eyebrow">Data Wilayah</p>
+            <h1>Kecamatan</h1>
+            <p class="admin-page-subtitle">Kelola daftar kecamatan di Kabupaten Tuban.</p>
         </div>
 
-        <div class="search-bar">
-            <div class="search-box">
-                <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama kecamatan...">
-            </div>
-        </div>
-
-        <div class="table-card">
-            <div class="table-header">
-                <div class="table-title">
+        <section class="admin-list-panel" aria-label="Daftar kecamatan">
+            <div class="admin-list-toolbar">
+                <div class="admin-list-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Kecamatan
-                    <span class="badge-count">{{ $kecamatan->count() }} Kecamatan</span>
+                    <span class="admin-count">{{ number_format($totalKecamatan ?? $kecamatan->count()) }} Kecamatan</span>
+                </div>
+                <div class="admin-list-actions">
+                    <label class="admin-search-wrap" for="searchInput">
+                        <i class="bi bi-search" aria-hidden="true"></i>
+                        <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama kecamatan...">
+                    </label>
+                    <a class="admin-primary-btn" href="{{ route('admin.kecamatan.create') }}"><i class="bi bi-plus-lg"></i> Tambah Kecamatan</a>
                 </div>
             </div>
 
-            <table class="table-simple">
-                <thead>
-                    <tr>
-                        <th style="width: 60px;">NO</th>
-                        <th>NAMA KECAMATAN</th>
-                        <th>JUMLAH DESA</th>
-                    </tr>
-                </thead>
-                <tbody id="kecamatanTable">
+            <div class="admin-table-wrap">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 60px;">No</th>
+                            <th>Nama Kecamatan</th>
+                            <th>Jumlah Desa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kecamatanTable">
                     @forelse($kecamatan as $index => $item)
-                    <tr data-id="{{ $item->id }}" onclick="window.location.href='{{ route('admin.kecamatan.show', $item->id) }}'">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                    <tr tabindex="0" role="link" data-id="{{ $item->id }}" onclick="window.location.href='{{ route('admin.kecamatan.show', $item->id) }}'" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
+                        <td class="admin-row-number">{{ $index + 1 }}</td>
                         <td>
-                            <div class="kecamatan-name">
-                                <div class="kecamatan-name-icon">
+                            <div class="admin-place-name">
+                                <span class="admin-place-icon">
                                     <i class="bi bi-geo-alt-fill"></i>
-                                </div>
+                                </span>
                                 {{ $item->nama_kecamatan }}
                             </div>
                         </td>
@@ -283,8 +255,8 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3">
-                            <div class="empty-state">
+                        <td class="admin-empty" colspan="3">
+                            <div>
                                 <i class="bi bi-inbox"></i>
                                 Belum ada data kecamatan
                             </div>
@@ -292,8 +264,10 @@
                     </tr>
                     @endforelse
                 </tbody>
-            </table>
-        </div>
+                </table>
+            </div>
+        </section>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

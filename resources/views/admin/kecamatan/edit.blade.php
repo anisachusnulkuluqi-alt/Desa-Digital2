@@ -180,28 +180,21 @@
             .btn { width: 100%; justify-content: center; }
         }
     </style>
+    @include('admin.partials.list-page-styles')
 </head>
 <body>
-    <div class="page-header">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.kecamatan.index') }}">Data Kecamatan</a></li>
-                <li class="breadcrumb-item active">Edit Data</li>
-            </ol>
-        </nav>
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
+    @include('admin.partials.sidebar', ['activeMenu' => 'kecamatan'])
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <a href="{{ route('admin.kecamatan.index') }}">Kecamatan</a> <span aria-hidden="true">/</span> <strong>Edit</strong></div>
+            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+        </header>
+        <main class="admin-edit-content">
+        <div class="admin-page-heading">
+            <p class="admin-eyebrow">Data Wilayah</p>
+            <h1>Edit Kecamatan</h1>
+            <p class="admin-page-subtitle">Perbarui nama kecamatan {{ $kecamatan->nama_kecamatan }}.</p>
         </div>
-    </div>
-
-    <div class="main-content">
-        <h1 class="page-title">
-            <i class="bi bi-pencil-square"></i>
-            Edit Kecamatan
-        </h1>
-        <p class="page-subtitle">Ubah nama kecamatan {{ $kecamatan->nama_kecamatan }}</p>
 
         <div class="form-card">
             <div class="form-header">
@@ -253,6 +246,7 @@
                 </form>
             </div>
         </div>
+        </main>
     </div>
 </body>
 </html>
