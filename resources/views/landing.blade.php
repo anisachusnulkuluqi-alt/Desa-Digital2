@@ -579,7 +579,7 @@
             line-height: 1.2;
         }
 
-        /* 5. SEKSI GERBANG LAYANAN: ELEGAN, MINIMALIS & TANPA TEKS DESKRIPSI */
+        /* 5. SEKSI GERBANG LAYANAN: ELEGAN & MINIMALIS */
         .section-services-clean {
             padding: 85px 7%;
             background: var(--bg-blue-gradient);
@@ -631,7 +631,6 @@
             z-index: 2;
         }
 
-        /* Kartu Layanan Minimalis Tanpa Paragraf */
         .service-card-clean {
             background: rgba(255, 255, 255, 0.86);
             backdrop-filter: blur(14px);
@@ -676,7 +675,6 @@
             opacity: 1;
         }
 
-        /* Ikon Dinamis */
         .service-icon-circle {
             width: 64px;
             height: 64px;
@@ -703,7 +701,6 @@
             letter-spacing: -0.01em;
         }
 
-        /* Indikator Panah Minimalis */
         .service-action-arrow {
             width: 28px;
             height: 28px;
@@ -877,9 +874,15 @@
             <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
             <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
             <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
-            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
-            <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
-            <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
+            
+            <!-- MENU CCTV: Langsung mengarah ke portal CCTV Layanan Tuban -->
+            <li><a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer">CCTV TUBAN</a></li>
+            
+            <!-- MENU SURAT: Langsung mengarah ke APMD Tuban -->
+            <li><a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer">SURAT MANDIRI</a></li>
+            
+            <!-- MENU E-PBB: Langsung mengarah ke PBB Tuban -->
+            <li><a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer">E-PBB</a></li>
         </ul>
 
         <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET">
@@ -896,7 +899,7 @@
             <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban</p>
             
             <div class="hero-info-pills">
-                <span><i class="fa-solid fa-layer-group" styl e="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
+                <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
                 <div class="divider-dot"></div>
                 <span><i class="fa-solid fa-sitemap" style="color: #38bdf8;"></i> <strong>20</strong> Distrik Kecamatan</span>
                 <div class="divider-dot"></div>
@@ -1105,7 +1108,7 @@
                 </div>
             </a>
 
-          <!-- 3. Surat Desa (Langsung Terhubung ke APMD Tuban) -->
+            <!-- 3. Surat Desa (Langsung Terhubung ke APMD Tuban) -->
             <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #d97706; --service-border: #fde68a; --service-glow: rgba(217, 119, 6, 0.22); --service-pill: #fef3c7; --service-text: #b45309;">
                 <div class="service-icon-circle" 
@@ -1118,7 +1121,7 @@
                 </div>
             </a>
 
-         <!-- 4. CCTV (Langsung Terhubung ke CCTV Tuban) -->
+            <!-- 4. CCTV (Langsung Terhubung ke CCTV Tuban) -->
             <a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #e11d48; --service-border: #fecdd3; --service-glow: rgba(225, 29, 72, 0.22); --service-pill: #ffe4e6; --service-text: #be123c;">
                 <div class="service-icon-circle" 
@@ -1130,7 +1133,8 @@
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
             </a>
-            <!-- 5. e-PBB (Langsung Terhubung ke APMD Tuban) -->
+
+            <!-- 5. e-PBB (Langsung Terhubung ke PBB Tuban) -->
             <a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
                style="--service-accent: #7c3aed; --service-border: #ddd6fe; --service-glow: rgba(124, 58, 237, 0.22); --service-pill: #ede9fe; --service-text: #6d28d9;">
                 <div class="service-icon-circle" 
