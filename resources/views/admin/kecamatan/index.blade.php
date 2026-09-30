@@ -311,13 +311,8 @@
                     </thead>
                     <tbody id="kecamatanTable">
                     @forelse($kecamatan as $index => $item)
-<<<<<<< HEAD
-                    <tr tabindex="0" role="link" data-id="{{ $item->id }}" onclick="window.location.href='{{ route('admin.kecamatan.show', $item->id) }}'" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
-                        <td class="admin-row-number">{{ $kecamatan->firstItem() + $index }}</td>
-=======
                     <tr data-id="{{ $item->id }}">
-                        <td class="admin-row-number">{{ $index + 1 }}</td>
->>>>>>> 29821e6d1e1929c0d02e82044bd21e8cd795b69e
+                        <td class="admin-row-number">{{ $kecamatan->firstItem() + $index }}</td>
                         <td>
                             <div class="admin-place-name">
                                 <span class="admin-place-icon">
