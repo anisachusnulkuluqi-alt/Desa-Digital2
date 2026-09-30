@@ -47,10 +47,11 @@
             background: var(--header-dark);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px 7%;
+            padding: 12px clamp(20px, 5vw, 88px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(24px, 4vw, 64px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -89,8 +90,11 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: clamp(12px, 1.5vw, 22px);
             list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
         }
 
         .nav-menu a {
@@ -117,50 +121,18 @@
             border-radius: 2px;
         }
 
-        .search-pill-nav {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 5px 14px;
-            width: 190px;
-            transition: all 0.25s ease;
-        }
-        .search-pill-nav:focus-within {
-            width: 230px;
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent-cyan);
-        }
-        .search-pill-nav input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #ffffff;
-            font-size: 0.8rem;
-            width: 100%;
-        }
-        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
-        .search-pill-nav button {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
         /* 2. HERO BANNER */
         .hero-banner-clean {
             position: relative;
-            min-height: 590px;
+            min-height: clamp(520px, calc(100vh - 72px), 820px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 90px 24px 80px 24px;
+            padding: 64px 24px;
             background-size: cover;
-            background-position: center 60%;
+            background-position: center;
             background-repeat: no-repeat;
             color: #ffffff;
             overflow: hidden;
@@ -191,6 +163,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 8px 30px rgba(56, 189, 248, 0.35));
+            animation: hero-enter 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
 
         .hero-lead-text {
@@ -201,6 +174,7 @@
             margin: 0 auto 24px;
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            animation: hero-enter 0.7s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
 
         .hero-info-pills {
@@ -216,6 +190,7 @@
             font-size: 0.82rem;
             font-weight: 700;
             color: #cbd5e1;
+            animation: hero-enter 0.7s 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
         .hero-info-pills span {
             display: inline-flex;
@@ -246,6 +221,7 @@
             box-shadow: 0 12px 32px rgba(2, 132, 199, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.25);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: hero-enter 0.7s 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
         .btn-jelajah-solo:hover {
             transform: translateY(-3px) scale(1.02);
@@ -254,9 +230,14 @@
             color: #ffffff;
         }
 
+        @keyframes hero-enter {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* 3. SEKSI INOVASI EKOSISTEM DESA */
         .section-profil-accordion {
-            padding: 90px 7%;
+            padding: clamp(56px, 6vw, 90px) clamp(20px, 5vw, 88px);
             background: var(--bg-blue-gradient);
             position: relative;
         }
@@ -501,7 +482,7 @@
 
         /* 4. SEKSI STATISTIK: KAPSUL BULAT TERANG */
         .section-stats-circle {
-            padding: 45px 6%;
+            padding: clamp(32px, 4vw, 52px) clamp(20px, 5vw, 88px);
             background: linear-gradient(115deg, #e0ecf8 0%, #f2f7fc 52%, #dceaf8 100%);
             position: relative;
             border-top: 1px solid #e2e8f0;
@@ -581,7 +562,7 @@
 
         /* 5. SEKSI GERBANG LAYANAN: ELEGAN & MINIMALIS */
         .section-services-clean {
-            padding: 85px 7%;
+            padding: clamp(56px, 6vw, 88px) clamp(20px, 5vw, 88px);
             background: var(--bg-blue-gradient);
             position: relative;
             overflow: hidden;
@@ -693,6 +674,27 @@
             transform: scale(1.1) rotate(5deg);
         }
 
+        .reveal-item {
+            opacity: 0;
+            transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 26px), 0) scale(var(--reveal-scale, 1));
+            transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
+            transition-delay: var(--reveal-delay, 0ms);
+        }
+
+        .reveal-item.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        .reveal-icon {
+            --reveal-scale: 0.72;
+        }
+
+        .accordion-header-btn:hover .accordion-icon-box,
+        .location-detail-item:hover > i {
+            transform: translateY(-3px) rotate(-8deg) scale(1.08);
+        }
+
         .service-card-clean h4 {
             font-size: 1.08rem;
             font-weight: 800;
@@ -722,14 +724,14 @@
 
         /* 6. LOKASI KEDINASAN */
         .section-location-clean {
-            padding: 72px 0;
+            padding: clamp(44px, 5vw, 72px) 0;
             background: linear-gradient(125deg, #e4effa 0%, #f3f7fc 50%, #deebf8 100%);
             border-top: 1px solid var(--border-soft);
         }
 
         .location-grid-layout {
             display: grid;
-            grid-template-columns: minmax(280px, 0.9fr) minmax(420px, 2fr) minmax(300px, 1.25fr);
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr) minmax(0, 1.25fr);
             gap: 0;
             width: 100%;
             margin: 0;
@@ -823,6 +825,28 @@
             border: none;
         }
 
+        .accordion-icon-box,
+        .stat-circle-icon,
+        .service-icon-circle,
+        .service-action-arrow,
+        .hero-info-pills i,
+        .location-detail-item > i {
+            transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .accordion-item-clean:hover .accordion-icon-box,
+        .location-detail-item:hover > i {
+            transform: translateY(-2px) rotate(-4deg);
+        }
+
+        .stat-circle-pod:hover .stat-circle-icon {
+            transform: translateY(-3px) scale(1.08) rotate(-8deg);
+        }
+
+        .service-card-clean:hover .service-icon-circle {
+            transform: scale(1.1) rotate(5deg);
+        }
+
         /* 7. FOOTER */
         footer {
             background: #0f172a;
@@ -833,15 +857,26 @@
         }
 
         /* RESPONSIVE */
+        @media (min-width: 1440px) {
+            .hero-main-title { font-size: 5rem; }
+            .section-header-clean h2,
+            .services-header-box h2 { font-size: 2.6rem; }
+        }
+
         @media (max-width: 1180px) {
             .services-cards-cluster { grid-template-columns: repeat(3, 1fr); }
             .stats-grid-circles { grid-template-columns: repeat(4, 1fr); gap: 10px; }
             .stat-circle-number { font-size: 1.45rem; }
+            .site-header { gap: 24px; }
+            .nav-menu { gap: 12px; }
+            .nav-menu a { font-size: 0.72rem; }
+            .location-grid-layout { grid-template-columns: 1fr; }
+            .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
         @media (max-width: 900px) {
             .nav-menu { display: none; }
-            .search-pill-nav { display: none; }
+            .site-header { justify-content: flex-start; }
             .profil-dual-layout { grid-template-columns: 1fr; }
             .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .services-cards-cluster { grid-template-columns: repeat(2, 1fr); }
@@ -853,6 +888,26 @@
 
         @media (max-width: 580px) {
             .services-cards-cluster { grid-template-columns: 1fr; }
+            .hero-banner-clean { min-height: 540px; }
+            .hero-info-pills { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .hero-info-pills .divider-dot { display: none; }
+            .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                animation-delay: 0ms !important;
+                transition-duration: 0.01ms !important;
+                transition-delay: 0ms !important;
+            }
+
+            .reveal-item {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
@@ -885,10 +940,6 @@
             <li><a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer">E-PBB</a></li>
         </ul>
 
-        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET">
-            <input type="text" name="search" placeholder="Cari kecamatan...">
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
     </header>
 
     <!-- 2. HERO BANNER -->
@@ -907,9 +958,8 @@
             </div>
 
             <div>
-                <a href="#layanan-digital" class="btn-jelajah-solo">
+                <a href="#tentang-kami" class="btn-jelajah-solo">
                     <span>Mulai Jelajah</span>
-                    <i class="fa-solid fa-arrow-down"></i>
                 </a>
             </div>
 
@@ -1014,56 +1064,56 @@
             <!-- 1. WiFi Desa -->
             <div class="stat-circle-pod" style="--pod-accent: #0284c7; --pod-bg: #e0f2fe; --pod-border: #bae6fd; --pod-glow: rgba(2, 132, 199, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-wifi"></i></div>
-                <div class="stat-circle-number">448</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalWifiDesa'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Titik WiFi</div>
             </div>
 
             <!-- 2. Website Desa -->
             <div class="stat-circle-pod" style="--pod-accent: #2563eb; --pod-bg: #dbeafe; --pod-border: #bfdbfe; --pod-glow: rgba(37, 99, 235, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-globe"></i></div>
-                <div class="stat-circle-number">328</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalWebsite'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Website Desa</div>
             </div>
 
             <!-- 3. Wisata Desa -->
             <div class="stat-circle-pod" style="--pod-accent: #059669; --pod-bg: #d1fae5; --pod-border: #a7f3d0; --pod-glow: rgba(5, 150, 105, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-                <div class="stat-circle-number">35</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalWisata'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Wisata Desa</div>
             </div>
 
             <!-- 4. Balai Desa -->
             <div class="stat-circle-pod" style="--pod-accent: #4f46e5; --pod-bg: #e0e7ff; --pod-border: #c7d2fe; --pod-glow: rgba(79, 70, 229, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-building-columns"></i></div>
-                <div class="stat-circle-number">328</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalKantorDesa'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Balai Desa</div>
             </div>
 
             <!-- 5. Pasar Desa -->
             <div class="stat-circle-pod" style="--pod-accent: #d97706; --pod-bg: #fef3c7; --pod-border: #fde68a; --pod-glow: rgba(217, 119, 6, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-store"></i></div>
-                <div class="stat-circle-number">38</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalPasar'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Pasar Rakyat</div>
             </div>
 
             <!-- 6. Unit BUMDes -->
             <div class="stat-circle-pod" style="--pod-accent: #7c3aed; --pod-bg: #ede9fe; --pod-border: #ddd6fe; --pod-glow: rgba(124, 58, 237, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div class="stat-circle-number">309</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalBumdes'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Unit BUMDes</div>
             </div>
 
             <!-- 7. Dokumen KKDMP -->
             <div class="stat-circle-pod" style="--pod-accent: #e11d48; --pod-bg: #ffe4e6; --pod-border: #fecdd3; --pod-glow: rgba(225, 29, 72, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <div class="stat-circle-number">83</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalKkdmp'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Dokumen KKDMP</div>
             </div>
 
             <!-- 8. Distrik Kecamatan -->
             <div class="stat-circle-pod" style="--pod-accent: #0d9488; --pod-bg: #ccfbf1; --pod-border: #99f6e4; --pod-glow: rgba(13, 148, 136, 0.18);">
                 <div class="stat-circle-icon"><i class="fa-solid fa-sitemap"></i></div>
-                <div class="stat-circle-number">20</div>
+                <div class="stat-circle-number"><?= number_format($statistics['totalKecamatan'] ?? 0, 0, ',', '.'); ?></div>
                 <div class="stat-circle-label">Kecamatan</div>
             </div>
 
@@ -1227,6 +1277,79 @@
 
     <!-- SCRIPT AKORDEON -->
     <script>
+        const navigationEntry = performance.getEntriesByType('navigation')[0];
+        if (navigationEntry?.type === 'reload') {
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            if (window.location.hash) {
+                history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+
+            const resetHomeScroll = () => {
+                document.documentElement.style.scrollBehavior = 'auto';
+                window.scrollTo(0, 0);
+            };
+
+            resetHomeScroll();
+            window.addEventListener('pageshow', resetHomeScroll, { once: true });
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                resetHomeScroll();
+                document.documentElement.style.removeProperty('scroll-behavior');
+            }));
+        }
+
+        const revealGroups = [
+            '.section-header-clean',
+            '.profil-dual-layout',
+            '.accordion-item-clean',
+            '.video-player-frame',
+            '.accordion-title-wrap',
+            '.accordion-header-btn > i.fa-chevron-down',
+            '.accordion-icon-box',
+            '.stats-grid-circles > *',
+            '.stat-circle-icon, .stat-circle-number, .stat-circle-label',
+            '.services-header-box',
+            '.services-cards-cluster > *',
+            '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
+            '.hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i',
+            '.location-info-card, .map-viewport-frame',
+            '.location-detail-item',
+            '.location-detail-item > i',
+            'footer p'
+        ];
+        const revealDirections = [
+            [0, 30], [30, 0], [0, -30], [-30, 0], [22, 22], [-22, 22]
+        ];
+        let revealIndex = 0;
+
+        revealGroups.forEach(selector => {
+            document.querySelectorAll(selector).forEach((element, index) => {
+                element.classList.add('reveal-item');
+                if (element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i, .location-detail-item > i')) {
+                    element.classList.add('reveal-icon');
+                }
+                const [offsetX, offsetY] = revealDirections[revealIndex % revealDirections.length];
+                element.style.setProperty('--reveal-x', `${offsetX}px`);
+                element.style.setProperty('--reveal-y', `${offsetY}px`);
+                element.style.setProperty('--reveal-delay', `${Math.min(index * 75, 300)}ms`);
+                revealIndex += 1;
+            });
+        });
+
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
+            document.querySelectorAll('.reveal-item').forEach(element => revealObserver.observe(element));
+        } else {
+            document.querySelectorAll('.reveal-item').forEach(element => element.classList.add('is-visible'));
+        }
+
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
             const isCurrentlyActive = element.classList.contains('active');

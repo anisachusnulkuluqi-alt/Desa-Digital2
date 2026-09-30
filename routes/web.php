@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 use App\Http\Controllers\Admin\LokasiTitikController;
 use App\Http\Controllers\Admin\WisataController; // ✅ TAMBAHAN: Import WisataController
 use App\Http\Controllers\SpatialLocationController;
+use App\Services\DashboardStatistics;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ use App\Http\Controllers\SpatialLocationController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('landing');
+Route::get('/', function (DashboardStatistics $statistics) {
+    return view('landing', ['statistics' => $statistics->counts()]);
 })->name('home');
 
 Route::get('/data-spasial', function () {
