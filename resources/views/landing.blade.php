@@ -32,7 +32,7 @@
             --border-soft: #e2e8f0;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
         section[id], footer[id] { scroll-margin-top: 80px; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
@@ -44,14 +44,14 @@
 
         /* 1. TOP NAVBAR */
         .site-header {
-            background: var(--header-dark);
+            background: #495057;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px clamp(20px, 5vw, 88px);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: clamp(24px, 4vw, 64px);
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -62,7 +62,7 @@
         .brand-link {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
@@ -75,7 +75,7 @@
         }
 
         .brand-text-logo {
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.01em;
@@ -90,7 +90,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: clamp(12px, 1.5vw, 22px);
+            gap: clamp(8px, 0.75vw, 12px);
             list-style: none;
             flex-wrap: wrap;
             justify-content: flex-end;
@@ -98,27 +98,59 @@
         }
 
         .nav-menu a {
-            color: #e2e8f0;
+            color: #ffffff;
             text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.84rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0;
             position: relative;
-            padding: 6px 0;
-            transition: color 0.2s ease;
+            padding: 8px 0;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
-        .nav-menu a:hover { color: #ffffff; }
-        .nav-menu a.active { color: var(--accent-cyan); }
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
+        .nav-menu a:hover,
+        .nav-menu a.active { opacity: 0.76; }
+
+        .search-pill-nav {
+            display: flex;
+            align-items: center;
+            flex: 0 0 150px;
+            min-width: 0;
+            padding: 4px 10px 4px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .search-pill-nav:focus-within {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-pill-nav input {
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
+
+        .search-pill-nav button {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            border: 0;
+            background: transparent;
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
         }
 
         /* 2. HERO BANNER */
@@ -142,7 +174,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.62) 0%, rgba(15, 23, 42, 0.94) 100%);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.28) 100%);
         }
 
         .hero-content-wrap {
@@ -153,7 +185,7 @@
         }
 
         .hero-main-title {
-            font-size: 4.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 1.2;
@@ -175,36 +207,6 @@
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
             animation: hero-enter 0.7s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        }
-
-        .hero-info-pills {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(12px);
-            padding: 8px 22px;
-            border-radius: 40px;
-            margin-bottom: 34px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #cbd5e1;
-            animation: hero-enter 0.7s 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        }
-        .hero-info-pills span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .hero-info-pills span strong {
-            color: #38bdf8;
-        }
-        .hero-info-pills .divider-dot {
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
         }
 
         .btn-jelajah-solo {
@@ -237,15 +239,24 @@
 
         /* 3. SEKSI INOVASI EKOSISTEM DESA */
         .section-profil-accordion {
-            padding: clamp(56px, 6vw, 90px) clamp(20px, 5vw, 88px);
-            background: var(--bg-blue-gradient);
+            padding: clamp(64px, 7vw, 96px) clamp(20px, 5vw, 88px);
+            background: linear-gradient(125deg, #f7fbff 0%, #edf5fc 48%, #f8fbff 100%);
             position: relative;
         }
 
         .section-header-clean {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto 46px auto;
+            text-align: left;
+            max-width: 1280px;
+            margin: 0 auto 32px;
+        }
+        .section-purpose-label {
+            display: inline-block;
+            color: #0284c7;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
         .header-tag-pill {
             display: inline-flex;
@@ -264,23 +275,26 @@
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
         }
         .section-header-clean h2 {
-            font-size: 2.3rem;
+            max-width: 820px;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -0.025em;
+            line-height: 1.18;
             color: var(--text-dark);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .section-header-clean p {
-            font-size: 0.94rem;
+            max-width: 760px;
+            font-size: 0.96rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
 
         .profil-dual-layout {
             display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 32px;
-            max-width: 1240px;
+            grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+            gap: clamp(24px, 3vw, 42px);
+            max-width: 1280px;
             margin: 0 auto;
             align-items: stretch;
         }
@@ -288,18 +302,22 @@
         .accordion-stack-clean {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
 
         .accordion-item-clean {
             border: 1.5px solid var(--border-soft);
-            border-radius: 16px;
+            border-radius: 12px;
             background: #ffffff;
             overflow: hidden;
             transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.02);
+        }
+        .accordion-item-clean:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
         }
         .accordion-item-clean::before {
             content: '';
@@ -307,7 +325,7 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 5px;
+            width: 4px;
             background: transparent;
             transition: background 0.25s ease;
         }
@@ -342,7 +360,7 @@
 
         .accordion-header-btn {
             width: 100%;
-            padding: 16px 20px;
+            padding: 17px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -356,16 +374,16 @@
         .accordion-title-wrap {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             font-size: 0.94rem;
             font-weight: 800;
             color: var(--text-dark);
         }
         
         .accordion-icon-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -399,77 +417,36 @@
         }
 
         .accordion-content-text {
-            display: none;
-            padding: 0 24px 18px 70px;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px 0 74px;
+            opacity: 0;
+            transform: translateY(-8px);
             font-size: 0.88rem;
             color: var(--text-gray);
             line-height: 1.65;
+            transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.4s ease, padding 0.4s ease;
         }
         .accordion-item-clean.active .accordion-content-text {
-            display: block;
+            max-height: 180px;
+            padding-bottom: 20px;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .video-player-frame {
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1.5px solid #cbd5e1;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.14);
-            display: flex;
-            flex-direction: column;
-            background: #0f172a;
             position: relative;
-        }
-        .video-top-tag {
-            background: #ffffff;
-            padding: 12px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1.5px solid var(--border-soft);
-        }
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .channel-info i {
-            color: #ef4444;
-            font-size: 1.15rem;
-        }
-        .status-broadcast {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.72rem;
-            font-weight: 800;
-            color: #15803d;
-            background: #dcfce7;
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid #86efac;
-        }
-        .status-broadcast .live-pulse {
-            width: 7px;
-            height: 7px;
-            background: #16a34a;
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
-            animation: pulse 1.6s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            align-self: center;
+            overflow: hidden;
+            background: transparent;
         }
 
         .video-embed-box {
-            position: relative;
-            flex-grow: 1;
-            min-height: 350px;
-            background: #090e17;
+            position: absolute;
+            inset: 0;
+            background: transparent;
         }
         .video-embed-box iframe {
             position: absolute;
@@ -676,18 +653,26 @@
 
         .reveal-item {
             opacity: 0;
-            transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 26px), 0) scale(var(--reveal-scale, 1));
+            transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 26px), 0) scale(var(--reveal-scale, 1)) rotate(var(--reveal-rotation, 0deg));
             transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
             transition-delay: var(--reveal-delay, 0ms);
         }
 
         .reveal-item.is-visible {
             opacity: 1;
-            transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
         }
 
         .reveal-icon {
             --reveal-scale: 0.72;
+        }
+
+        #tentang-kami .reveal-item {
+            transition-duration: 0.85s;
+        }
+
+        #tentang-kami .reveal-item.reveal-icon {
+            --reveal-scale: 0.56;
         }
 
         .accordion-header-btn:hover .accordion-icon-box,
@@ -731,10 +716,10 @@
 
         .location-grid-layout {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr) minmax(0, 1.25fr);
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 2fr);
             gap: 0;
-            width: 100%;
-            margin: 0;
+            width: min(100%, 1440px);
+            margin: 0 auto;
             align-items: stretch;
         }
 
@@ -748,11 +733,20 @@
         }
 
         .location-info-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 900;
             line-height: 1.4;
             color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .location-office-name {
+            max-width: 360px;
             margin-bottom: 24px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 600;
+            line-height: 1.55;
         }
 
         .location-details-list {
@@ -825,11 +819,46 @@
             border: none;
         }
 
+        .social-media-clean {
+            padding: 42px 20px 48px;
+            background: #f8fafc;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+
+        .social-media-clean h2 {
+            margin-bottom: 22px;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .social-logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(24px, 4vw, 52px);
+        }
+
+        .social-logo-item {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            color: var(--social-color);
+            font-size: 1.7rem;
+            transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.25s ease;
+        }
+
+        .social-logo-item:hover {
+            transform: translateY(-5px) scale(1.12);
+        }
+
         .accordion-icon-box,
         .stat-circle-icon,
         .service-icon-circle,
         .service-action-arrow,
-        .hero-info-pills i,
         .location-detail-item > i {
             transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
         }
@@ -858,7 +887,7 @@
 
         /* RESPONSIVE */
         @media (min-width: 1440px) {
-            .hero-main-title { font-size: 5rem; }
+            .hero-main-title { font-size: 3.4rem; }
             .section-header-clean h2,
             .services-header-box h2 { font-size: 2.6rem; }
         }
@@ -869,15 +898,23 @@
             .stat-circle-number { font-size: 1.45rem; }
             .site-header { gap: 24px; }
             .nav-menu { gap: 12px; }
-            .nav-menu a { font-size: 0.72rem; }
+            .nav-menu a { font-size: 0.76rem; }
             .location-grid-layout { grid-template-columns: 1fr; }
             .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
         @media (max-width: 900px) {
-            .nav-menu { display: none; }
-            .site-header { justify-content: flex-start; }
+            .site-header { flex-wrap: wrap; gap: 12px 20px; }
+            .nav-menu {
+                order: 3;
+                flex: 0 0 100%;
+                justify-content: center;
+                margin-left: 0;
+            }
+            .search-pill-nav { margin-left: auto; }
             .profil-dual-layout { grid-template-columns: 1fr; }
+            .section-header-clean { margin-bottom: 26px; }
+            .section-header-clean h2 { font-size: 2.1rem; }
             .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .services-cards-cluster { grid-template-columns: repeat(2, 1fr); }
             .hero-main-title { font-size: 2.8rem; }
@@ -887,10 +924,16 @@
         }
 
         @media (max-width: 580px) {
+            .site-header { padding: 10px 14px; gap: 10px 12px; }
+            .brand-link { gap: 8px; }
+            .brand-logo-img { height: 32px; max-width: 44px; }
+            .brand-text-logo { font-size: 1.05rem; }
+            .search-pill-nav { flex-basis: min(140px, 42vw); padding-left: 10px; }
+            .nav-menu { gap: 8px 18px; }
+            .nav-menu a { font-size: 0.7rem; }
             .services-cards-cluster { grid-template-columns: 1fr; }
+            .section-header-clean h2 { font-size: 1.8rem; }
             .hero-banner-clean { min-height: 540px; }
-            .hero-info-pills { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .hero-info-pills .divider-dot { display: none; }
             .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
@@ -926,19 +969,16 @@
         </a>
 
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
-            <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
-            
-            <!-- MENU CCTV: Langsung mengarah ke portal CCTV Layanan Tuban -->
-            <li><a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer">CCTV TUBAN</a></li>
-            
-            <!-- MENU SURAT: Langsung mengarah ke APMD Tuban -->
-            <li><a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer">SURAT MANDIRI</a></li>
-            
-            <!-- MENU E-PBB: Langsung mengarah ke PBB Tuban -->
-            <li><a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer">E-PBB</a></li>
+            <li><a href="#hero-banner" class="active">BERANDA</a></li>
+            <li><a href="#tentang-kami">TENTANG KAMI</a></li>
+            <li><a href="#layanan-digital">LAYANAN</a></li>
+            <li><a href="#lokasi-kami">HUBUNGI KAMI</a></li>
         </ul>
+
+        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET" role="search">
+            <input type="search" name="search" placeholder="Cari..." aria-label="Cari kecamatan">
+            <button type="submit" aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
 
     </header>
 
@@ -948,18 +988,9 @@
             
             <h1 class="hero-main-title">Desa Digital</h1>
             <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban</p>
-            
-            <div class="hero-info-pills">
-                <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
-                <div class="divider-dot"></div>
-                <span><i class="fa-solid fa-sitemap" style="color: #38bdf8;"></i> <strong>20</strong> Distrik Kecamatan</span>
-                <div class="divider-dot"></div>
-                <span><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Layanan Siaga Terintegrasi</span>
-            </div>
-
             <div>
                 <a href="#tentang-kami" class="btn-jelajah-solo">
-                    <span>Mulai Jelajah</span>
+                    <span>Mulai</span>
                 </a>
             </div>
 
@@ -969,10 +1000,9 @@
     <!-- 3. ACCORDION & PROFIL INOVASI -->
     <section id="tentang-kami" class="section-profil-accordion">
         <div class="section-header-clean">
-            <div class="header-tag-pill">
-                <i class="fa-solid fa-network-wired"></i> PILAR TRANSFORMASI DIGITAL
-            </div>
-            <h2> Desa Digital</h2>
+            <span class="section-purpose-label">Tujuan Platform</span>
+            <h2>Satu Portal untuk Informasi dan Layanan Desa</h2>
+            <p>Website Desa Digital dibuat untuk memudahkan masyarakat mengakses informasi resmi, mengenal potensi desa, dan menemukan layanan publik Kabupaten Tuban dalam satu tempat.</p>
         </div>
 
         <div class="profil-dual-layout">
@@ -1034,16 +1064,6 @@
             </div>
 
             <div class="video-player-frame">
-                <div class="video-top-tag">
-                    <div class="channel-info">
-                        <i class="fa-brands fa-youtube"></i>
-                        <span>Diskominfo-SP Tuban</span>
-                    </div>
-                    <div class="status-broadcast">
-                        <div class="live-pulse"></div>
-                        <span>Siaran Resmi</span>
-                    </div>
-                </div>
                 <div class="video-embed-box">
                     <iframe 
                         src="https://www.youtube.com/embed/gPCZo6dKDWM?rel=0" 
@@ -1206,7 +1226,8 @@
             
             <div class="location-info-card">
                 <div>
-                    <h3>Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Tuban</h3>
+                    <h3>Hubungi Kami</h3>
+                    <p class="location-office-name">Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Tuban</p>
                     
                     <div class="location-details-list">
                         <div class="location-detail-item">
@@ -1258,15 +1279,17 @@
                 </iframe>
             </div>
 
-            <div class="map-viewport-frame">
-                <iframe
-                    src="https://www.google.com/maps?q=-6.901873934235668,112.0440727763729&z=17&output=embed"
-                    title="Google Maps Dinas Komunikasi dan Informatika Kabupaten Tuban"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
+        </div>
+    </section>
 
+    <section class="social-media-clean" aria-labelledby="social-media-title">
+        <h2 id="social-media-title">Media Sosial Kominfo Tuban</h2>
+        <div class="social-logo-row" aria-label="Platform media sosial">
+            <span class="social-logo-item" style="--social-color: #1877f2;" role="img" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="social-logo-item" style="--social-color: #e4405f;" role="img" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></span>
+            <span class="social-logo-item" style="--social-color: #ff0000;" role="img" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></span>
+            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></span>
         </div>
     </section>
 
@@ -1310,7 +1333,7 @@
             '.services-header-box',
             '.services-cards-cluster > *',
             '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
-            '.hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i',
+            '.header-tag-pill i, .services-tag-pill i',
             '.location-info-card, .map-viewport-frame',
             '.location-detail-item',
             '.location-detail-item > i',
@@ -1324,19 +1347,27 @@
         revealGroups.forEach(selector => {
             document.querySelectorAll(selector).forEach((element, index) => {
                 element.classList.add('reveal-item');
-                if (element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i, .location-detail-item > i')) {
+                const isRevealIcon = element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .header-tag-pill i, .services-tag-pill i, .location-detail-item > i');
+                const isProfileElement = Boolean(element.closest('#tentang-kami'));
+                const motionScale = isProfileElement ? 1.55 : 1;
+
+                if (isRevealIcon) {
                     element.classList.add('reveal-icon');
+                    element.style.setProperty('--reveal-rotation', `${revealIndex % 2 ? 18 : -18}deg`);
                 }
                 const [offsetX, offsetY] = revealDirections[revealIndex % revealDirections.length];
-                element.style.setProperty('--reveal-x', `${offsetX}px`);
-                element.style.setProperty('--reveal-y', `${offsetY}px`);
-                element.style.setProperty('--reveal-delay', `${Math.min(index * 75, 300)}ms`);
+                element.style.setProperty('--reveal-x', `${offsetX * motionScale}px`);
+                element.style.setProperty('--reveal-y', `${offsetY * motionScale}px`);
+                element.style.setProperty('--reveal-delay', `${Math.min(index * (isProfileElement ? 90 : 75), isProfileElement ? 360 : 300)}ms`);
                 revealIndex += 1;
             });
         });
 
+        const revealTargets = [...document.querySelectorAll('.reveal-item')];
+        let revealObserver = null;
+
         if ('IntersectionObserver' in window) {
-            const revealObserver = new IntersectionObserver(entries => {
+            revealObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -1345,10 +1376,26 @@
                 });
             }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
 
-            document.querySelectorAll('.reveal-item').forEach(element => revealObserver.observe(element));
+            revealTargets.forEach(element => revealObserver.observe(element));
         } else {
-            document.querySelectorAll('.reveal-item').forEach(element => element.classList.add('is-visible'));
+            revealTargets.forEach(element => element.classList.add('is-visible'));
         }
+
+        const revealVisibleItems = () => {
+            revealTargets.forEach(element => {
+                if (element.classList.contains('is-visible')) return;
+
+                const bounds = element.getBoundingClientRect();
+                if (bounds.top <= window.innerHeight * 0.9 && bounds.bottom >= 0) {
+                    element.classList.add('is-visible');
+                    revealObserver?.unobserve(element);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealVisibleItems, { passive: true });
+        window.addEventListener('resize', revealVisibleItems);
+        revealVisibleItems();
 
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
