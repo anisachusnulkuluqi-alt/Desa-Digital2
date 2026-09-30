@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class BumdesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $bumdes = Bumdes::orderBy('nama_bumdes', 'asc')->get();
+        $query = Bumdes::query();
+        if ($request->filled('search')) {
+            $query->where('nama_bumdes', 'like', '%' . $request->search . '%');
+        }
+
+        $bumdes = $query->orderBy('nama_bumdes', 'asc')->paginate(10)->withQueryString();
         $totalBumdes = Bumdes::count();
         $totalDesa = Desa::count();
 

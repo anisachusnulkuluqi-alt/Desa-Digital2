@@ -63,15 +63,17 @@
         .search { width: 240px; height: 37px; padding: 0 12px; border: 1px solid var(--line); border-radius: 8px; outline: none; font-size: 13px; }
         .search:focus, .field:focus, .textarea:focus { border-color: #7aa5ff; box-shadow: 0 0 0 3px #2563eb18; }
         .table-wrap { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; text-align: left; }
+        table { width: 100%; table-layout: fixed; border-collapse: collapse; text-align: left; }
+        th:first-child, td:first-child { width: 50px; }
+        th:nth-child(2), td:nth-child(2) { width: 45%; }
         th { padding: 14px 20px; background: #f8fafc; color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
         td { padding: 16px 20px; border-top: 1px solid #f1f5f9; color: var(--ink); font-size: 13px; vertical-align: middle; }
+        .row-number { color: #94a3b8; font-weight: 600; }
         tbody tr { cursor: pointer; transition: background 0.2s; }
         tbody tr:hover { background: #f8fafc; }
         .place-name { display: flex; align-items: center; gap: 10px; color: var(--blue); font-weight: 600; }
         .place-icon { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border-radius: 8px; background: #dbeafe; color: #1e40af; font-size: 14px; }
         .empty { padding: 45px 16px; color: var(--muted); text-align: center; }
-        .pagination { padding: 14px 18px; border-top: 1px solid var(--line); }
         .alert { margin-bottom: 16px; padding: 11px 14px; border: 1px solid #a8e0ce; border-radius: 6px; background: #eaf8f2; color: var(--green); }
         .alert-error { border-color: #f1c1bd; background: #fff1f0; color: var(--red); }
         .modal-backdrop { position: fixed; inset: 0; z-index: 20; display: none; place-items: center; padding: 20px; background: #0c1636a8; }
@@ -184,36 +186,42 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th style="width: 50px;">NO</th>
                                     <th>{{ $category['route'] === 'wifi' ? 'Nama SSID' : 'Nama tempat' }}</th>
                                     <th>Desa</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($locations as $location)
+                                @forelse ($locations as $index => $location)
                                     @php
                                         $locationProperties = is_array($location->properties)
                                             ? $location->properties
                                             : (json_decode($location->properties ?? '{}', true) ?: []);
-                                        $village = $locationProperties['nama_desa']
-                                            ?? $locationProperties['desa']
-                                            ?? $locationProperties['Desa']
-                                            ?? $locationProperties['kelurahan']
-                                            ?? $locationProperties['desa_kelur']
-                                            ?? '-';
+                                        $village = null;
+                                        foreach (['nama_desa', 'desa', 'Desa', 'kelurahan', 'desa_kelur', 'nama_kelurahan', 'village'] as $villageKey) {
+                                            $villageValue = trim((string) ($locationProperties[$villageKey] ?? ''));
+                                            if ($villageValue !== '' && $villageValue !== '-') {
+                                                $village = $villageValue;
+                                                break;
+                                            }
+                                        }
+                                        if (!$village && $category['route'] === 'kantor') {
+                                            $village = trim(preg_replace('/^(?:BALAI|KANTOR)\s+DESA\s+/i', '', $location->nama_lokasi));
+                                        }
+                                        $village = $village ?: '-';
                                     @endphp
                                     <tr tabindex="0" role="button" aria-label="Lihat detail {{ $location->nama_lokasi ?: 'lokasi' }}" data-id="{{ $location->id }}" data-name="{{ $location->nama_lokasi }}" data-address="{{ $location->alamat }}" data-latitude="{{ $location->latitude }}" data-longitude="{{ $location->longitude }}" data-properties="{{ json_encode($locationProperties, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) }}" onclick="openLocationDetail(this)" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLocationDetail(this); }">
+                                        <td class="row-number">{{ $locations->firstItem() + $index }}</td>
                                         <td><span class="place-name"><span class="place-icon"><i class="bi {{ ['wifi' => 'bi-wifi', 'kantor' => 'bi-building', 'pasar' => 'bi-shop', 'wisata' => 'bi-image-fill', 'bumdes' => 'bi-briefcase-fill', 'kkdmp' => 'bi-people-fill'][$category['route']] ?? 'bi-geo-alt-fill' }}"></i></span>{{ $location->nama_lokasi ?: 'Tanpa nama' }}</span></td>
                                         <td>{{ $village }}</td>
                                     </tr>
                                 @empty
-                                    <tr><td class="empty" colspan="2">Belum ada titik pada kategori ini.</td></tr>
+                                    <tr><td class="empty" colspan="3">Belum ada titik pada kategori ini.</td></tr>
                                 @endforelse
                             </tbody>
                         </table>
                     </div>
-                    @if ($locations->hasPages())
-                        <div class="pagination">{{ $locations->links() }}</div>
-                    @endif
+                    @include('admin.partials.pagination', ['paginator' => $locations])
                 </section>
             </section>
         </main>
@@ -272,11 +280,13 @@
                 @csrf
                 <input type="hidden" name="_method" id="formMethod" value="" disabled>
                 <div class="section-divider">Informasi Dasar</div>
-                @if ($category['route'] === 'wifi')
+                @if (in_array($category['route'], ['pasar', 'kantor', 'wifi', 'bumdes'], true))
                     <div class="field-group">
                         <label for="villageField">Nama Desa</label>
                         <input class="field" id="villageField" name="desa" maxlength="255" required>
                     </div>
+                @endif
+                @if ($category['route'] === 'wifi')
                     <div class="field-group">
                         <label for="facilitatorField">Fasilitator</label>
                         <select class="field" id="facilitatorField" name="fasilitator" required>
@@ -372,9 +382,23 @@
         const methodField = document.getElementById('formMethod');
         const updateUrlTemplate = @json($updateUrlTemplate);
         const deleteUrlTemplate = @json($deleteUrlTemplate);
+        const locationCategory = @json($category['route']);
         const detailModal = document.getElementById('locationDetailModal');
         let selectedLocationRow = null;
         let currentPhotoObjectUrl = null;
+
+        function getLocationVillage(properties, locationName = '') {
+            const village = [properties.nama_desa, properties.desa, properties.Desa, properties.kelurahan, properties.desa_kelur, properties.nama_kelurahan, properties.village]
+                .map(value => String(value ?? '').trim())
+                .find(value => value && value !== '-');
+
+            if (village) return village;
+            if (locationCategory === 'kantor') {
+                return locationName.trim().replace(/^(?:BALAI|KANTOR)\s+DESA\s+/i, '') || '-';
+            }
+
+            return '-';
+        }
 
         function setLocationPhotoPreview(source, label) {
             const preview = document.getElementById('photoPreview');
@@ -412,7 +436,7 @@
         function openLocationDetail(row) {
             selectedLocationRow = row;
             const properties = JSON.parse(row.dataset.properties || '{}');
-            const village = properties.nama_desa || properties.desa || properties.Desa || properties.kelurahan || properties.desa_kelur || '-';
+            const village = getLocationVillage(properties, row.dataset.name || '');
             const photo = String(properties.foto || properties.Foto || properties.image || '').trim();
             const photoContainer = document.getElementById('detailPhoto');
 
@@ -524,7 +548,7 @@
                 const mapsField = document.getElementById('linkMapsField');
                 if (mapsField) mapsField.value = properties.link_maps || '';
                 const villageField = document.getElementById('villageField');
-                if (villageField) villageField.value = properties.nama_desa || properties.desa || '';
+                if (villageField) villageField.value = getLocationVillage(properties, button.dataset.name || '') === '-' ? '' : getLocationVillage(properties, button.dataset.name || '');
                 const facilitatorField = document.getElementById('facilitatorField');
                 if (facilitatorField) {
                     facilitatorField.value = String(properties.fasilitator || properties.fasilitato || '')

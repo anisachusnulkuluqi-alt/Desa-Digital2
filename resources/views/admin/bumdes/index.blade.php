@@ -395,19 +395,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.bumdes.index') }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama BUMDes...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama BUMDes...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar BUMDes
-                    <span class="badge-count">{{ $bumdes->count() }} BUMDes</span>
+                    <span class="badge-count">{{ number_format($totalBumdes) }} BUMDes</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
@@ -427,7 +428,7 @@
                 <tbody id="bumdesTable">
                     @forelse($bumdes as $index => $item)
                     <tr data-id="{{ $item->id }}" onclick="showDetail({{ $item->id }}, '{{ addslashes($item->nama_bumdes ?? '-') }}', '{{ addslashes($item->jenis_usaha ?? '') }}', '{{ addslashes($item->nama_ketua ?? '') }}', '{{ addslashes($item->alamat ?? '') }}', '{{ $item->latitude ?? '' }}', '{{ $item->longitude ?? '' }}', '{{ $item->foto ?? '' }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $bumdes->firstItem() + $index }}</td>
                         <td>
                             <div class="bumdes-name">
                                 <div class="bumdes-name-icon">
@@ -449,6 +450,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $bumdes])
         </div>
     </div>
 

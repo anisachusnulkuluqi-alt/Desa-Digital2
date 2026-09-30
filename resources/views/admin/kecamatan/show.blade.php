@@ -256,7 +256,7 @@
                     <i class="bi bi-houses-fill"></i>
                 </div>
                 <div class="stat-info">
-                    <h3>{{ $desas->count() }}</h3>
+                    <h3>{{ $desas->total() }}</h3>
                     <p>TOTAL DESA</p>
                 </div>
             </div>
@@ -272,19 +272,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.kecamatan.show', $kecamatan) }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama desa...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama desa...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Desa
-                    <span class="badge-count">{{ $desas->count() }} Desa</span>
+                    <span class="badge-count">{{ number_format($desas->total()) }} Desa</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="window.location.href='{{ route('admin.desa.index') }}'">
@@ -306,7 +307,7 @@
                 <tbody id="desaTable">
                     @forelse($desas as $index => $desa)
                     <tr data-id="{{ $desa->id }}" onclick="window.location.href='{{ route('admin.desa.index') }}'">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $desas->firstItem() + $index }}</td>
                         <td>
                             <div class="desa-name">
                                 <div class="desa-name-icon">
@@ -334,6 +335,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $desas])
         </div>
     </div>
 

@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class KkdmpController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kkdmp = Kkdmp::orderBy('nama_desa', 'asc')->get();
+        $query = Kkdmp::query();
+        if ($request->filled('search')) {
+            $query->where('nama_desa', 'like', '%' . $request->search . '%');
+        }
+
+        $kkdmp = $query->orderBy('nama_desa', 'asc')->paginate(10)->withQueryString();
         $totalKkdmp = Kkdmp::count();
         $totalDesa = Desa::count();
 

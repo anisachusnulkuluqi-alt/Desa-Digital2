@@ -412,19 +412,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.kantor.index') }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama kantor...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama kantor...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Kantor Desa
-                    <span class="badge-count">{{ $kantors->count() }} Kantor</span>
+                    <span class="badge-count">{{ number_format($totalKantor) }} Kantor</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
@@ -445,7 +446,7 @@
                 <tbody id="kantorTable">
                     @forelse($kantors as $index => $kantor)
                     <tr data-id="{{ $kantor->id }}" onclick="showDetail({{ $kantor->id }}, '{{ addslashes($kantor->nama_kantor) }}', '{{ addslashes($kantor->alamat ?? '-') }}', '{{ addslashes($kantor->desa->nama_desa ?? '-') }}', '{{ addslashes($kantor->link_maps ?? '') }}', '{{ $kantor->latitude ?? '-' }}', '{{ $kantor->longitude ?? '-' }}', '{{ $kantor->foto ?? '' }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $kantors->firstItem() + $index }}</td>
                         <td>
                             <div class="kantor-name">
                                 <div class="kantor-name-icon">
@@ -468,6 +469,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $kantors])
         </div>
     </div>
 

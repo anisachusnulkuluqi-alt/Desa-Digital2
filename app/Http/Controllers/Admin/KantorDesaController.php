@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class KantorDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kantors = KantorDesa::with('desa')->orderBy('nama_kantor', 'asc')->get();
+        $query = KantorDesa::with('desa');
+        if ($request->filled('search')) {
+            $query->where('nama_kantor', 'like', '%' . $request->search . '%');
+        }
+
+        $kantors = $query->orderBy('nama_kantor', 'asc')->paginate(10)->withQueryString();
         $totalKantor = KantorDesa::count();
         $totalDesa = Desa::count();
 

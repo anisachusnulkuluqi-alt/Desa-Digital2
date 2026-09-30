@@ -401,19 +401,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.wifi.index') }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama WiFi...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama WiFi...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar WiFi Desa
-                    <span class="badge-count">{{ $wifis->count() }} WiFi</span>
+                    <span class="badge-count">{{ number_format($totalWifi) }} WiFi</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
@@ -435,7 +436,7 @@
                 <tbody id="wifiTable">
                     @forelse($wifis as $index => $wifi)
                     <tr data-id="{{ $wifi->id }}" onclick="showDetail({{ $wifi->id }}, '{{ addslashes($wifi->desa->nama_desa ?? '-') }}', '{{ addslashes($wifi->nama_ssid) }}', '{{ addslashes($wifi->fasilitator ?? '-') }}', '{{ addslashes($wifi->alamat ?? '-') }}', '{{ $wifi->latitude ?? '-' }}', '{{ $wifi->longitude ?? '-' }}', '{{ $wifi->foto ?? '' }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $wifis->firstItem() + $index }}</td>
                         <td>
                             <div class="wifi-name">
                                 <div class="wifi-name-icon">
@@ -459,6 +460,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $wifis])
         </div>
     </div>
 

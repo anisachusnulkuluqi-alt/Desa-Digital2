@@ -37,7 +37,7 @@ class LokasiTitikController extends Controller
             });
         }
 
-        $locations = $query->orderBy('nama_lokasi')->paginate(20)->withQueryString();
+        $locations = $query->orderBy('nama_lokasi')->paginate(10)->withQueryString();
         $routePrefix = 'admin.'.$category['route'];
 
         return view('admin.lokasi.index', [
@@ -61,6 +61,10 @@ class LokasiTitikController extends Controller
         if ($category['route'] === 'wifi') {
             $propertiesData['nama_desa'] = $data['desa'];
             $propertiesData['fasilitator'] = $data['fasilitator'];
+        }
+
+        if (in_array($category['route'], ['pasar', 'kantor', 'bumdes'], true)) {
+            $propertiesData['nama_desa'] = trim($data['desa']);
         }
 
         if ($category['route'] === 'bumdes') {
@@ -117,6 +121,10 @@ class LokasiTitikController extends Controller
             unset($propertiesData['fasilitato']);
             $propertiesData['nama_desa'] = $data['desa'];
             $propertiesData['fasilitator'] = $data['fasilitator'];
+        }
+
+        if (in_array($category['route'], ['pasar', 'kantor', 'bumdes'], true)) {
+            $propertiesData['nama_desa'] = trim($data['desa']);
         }
 
         if ($category['route'] === 'bumdes') {
@@ -193,6 +201,10 @@ class LokasiTitikController extends Controller
         if ($categoryRoute === 'wifi') {
             $rules['desa'] = ['required', 'string', 'max:255'];
             $rules['fasilitator'] = ['required', 'in:pemerintah_desa,pemerintah_kabupaten'];
+        }
+
+        if (in_array($categoryRoute, ['pasar', 'kantor', 'bumdes'], true)) {
+            $rules['desa'] = ['required', 'string', 'max:255'];
         }
 
         if ($categoryRoute === 'kantor') {

@@ -23,7 +23,7 @@ class PasarController extends Controller
         }
         
         // ✅ Gunakan variabel $pasars (jamak) agar cocok dengan Blade
-        $pasars = $query->orderBy('nama_pasar', 'asc')->get();
+        $pasars = $query->orderBy('nama_pasar', 'asc')->paginate(10)->withQueryString();
         $totalPasar = PasarDesa::count();
         $totalDesa = Desa::count();
 

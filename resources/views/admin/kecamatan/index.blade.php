@@ -223,16 +223,19 @@
                     <span class="admin-count">{{ number_format($totalKecamatan ?? $kecamatan->count()) }} Kecamatan</span>
                 </div>
                 <div class="admin-list-actions">
-                    <label class="admin-search-wrap" for="searchInput">
-                        <i class="bi bi-search" aria-hidden="true"></i>
-                        <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama kecamatan...">
-                    </label>
+                    <form method="GET" action="{{ route('admin.kecamatan.index') }}" style="margin: 0">
+                        <label class="admin-search-wrap" for="searchInput">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input class="admin-search" type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama kecamatan...">
+                        </label>
+                        <button class="visually-hidden" type="submit">Cari</button>
+                    </form>
                     <a class="admin-primary-btn" href="{{ route('admin.kecamatan.create') }}"><i class="bi bi-plus-lg"></i> Tambah Kecamatan</a>
                 </div>
             </div>
 
             <div class="admin-table-wrap">
-                <table class="admin-table">
+                <table class="admin-table admin-table--kecamatan">
                     <thead>
                         <tr>
                             <th style="width: 60px;">No</th>
@@ -243,7 +246,7 @@
                     <tbody id="kecamatanTable">
                     @forelse($kecamatan as $index => $item)
                     <tr tabindex="0" role="link" data-id="{{ $item->id }}" onclick="window.location.href='{{ route('admin.kecamatan.show', $item->id) }}'" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
-                        <td class="admin-row-number">{{ $index + 1 }}</td>
+                        <td class="admin-row-number">{{ $kecamatan->firstItem() + $index }}</td>
                         <td>
                             <div class="admin-place-name">
                                 <span class="admin-place-icon">
@@ -267,6 +270,7 @@
                 </tbody>
                 </table>
             </div>
+            @include('admin.partials.pagination', ['paginator' => $kecamatan])
         </section>
         </main>
     </div>

@@ -332,7 +332,7 @@
     @include('admin.partials.sidebar', ['activeMenu' => 'desa'])
     <div class="admin-main">
         <header class="admin-topbar">
-            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Desa / Kelurahan</strong></div>
+            <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Desa</strong></div>
             <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
         </header>
         <main class="admin-content">
@@ -348,11 +348,11 @@
 
         <div class="admin-page-heading">
             <p class="admin-eyebrow">Data Wilayah</p>
-            <h1>Desa / Kelurahan</h1>
-            <p class="admin-page-subtitle">Kelola data desa dan kelurahan di Kabupaten Tuban.</p>
+            <h1>Desa</h1>
+            <p class="admin-page-subtitle">Kelola data desa di Kabupaten Tuban.</p>
         </div>
 
-        <section class="admin-list-panel" aria-label="Daftar desa dan kelurahan">
+        <section class="admin-list-panel" aria-label="Daftar desa">
             <div class="admin-list-toolbar">
                 <div class="admin-list-title">
                     <i class="bi bi-list-ul"></i>
@@ -360,10 +360,13 @@
                     <span class="admin-count">{{ number_format($totalDesa ?? $desas->count()) }} Data</span>
                 </div>
                 <div class="admin-list-actions">
-                    <label class="admin-search-wrap" for="searchInput">
-                        <i class="bi bi-search" aria-hidden="true"></i>
-                        <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama desa...">
-                    </label>
+                    <form method="GET" action="{{ route('admin.desa.index') }}" style="margin: 0">
+                        <label class="admin-search-wrap" for="searchInput">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <input class="admin-search" type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama desa...">
+                        </label>
+                        <button class="visually-hidden" type="submit">Cari</button>
+                    </form>
                     <button type="button" class="admin-secondary-btn" onclick="openImportModal()">
                         <i class="bi bi-file-earmark-excel"></i>
                         Import
@@ -389,7 +392,7 @@
                 <tbody id="desaTable">
                     @forelse($desas as $index => $desa)
                     <tr tabindex="0" role="button" data-id="{{ $desa->id }}" onclick="showDetail({{ $desa->id }}, '{{ addslashes($desa->nama_desa) }}', '{{ addslashes($desa->kecamatan->nama_kecamatan ?? '-') }}', '{{ $desa->kode_desa ?? '-' }}', '{{ $desa->jenis ?? 'Desa' }}', '{{ addslashes($desa->website ?? '') }}', '{{ addslashes($desa->youtube ?? '') }}', '{{ addslashes($desa->instagram ?? '') }}', '{{ addslashes($desa->facebook ?? '') }}', '{{ addslashes($desa->tiktok ?? '') }}', '{{ addslashes($desa->whatsapp ?? '') }}')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
-                        <td class="admin-row-number">{{ $index + 1 }}</td>
+                        <td class="admin-row-number">{{ $desas->firstItem() + $index }}</td>
                         <td>
                             <div class="admin-place-name">
                                 <span class="admin-place-icon">
@@ -419,6 +422,7 @@
                 </tbody>
                 </table>
                 </div>
+                @include('admin.partials.pagination', ['paginator' => $desas])
             </section>
         </main>
     </div>

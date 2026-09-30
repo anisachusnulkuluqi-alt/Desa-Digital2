@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class WifiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $wifis = WifiDesa::with('desa')->orderBy('nama_ssid', 'asc')->get();
+        $query = WifiDesa::with('desa');
+        if ($request->filled('search')) {
+            $query->where('nama_ssid', 'like', '%' . $request->search . '%');
+        }
+
+        $wifis = $query->orderBy('nama_ssid', 'asc')->paginate(10)->withQueryString();
         $totalWifi = WifiDesa::count();
         $totalDesa = Desa::count();
 

@@ -18,7 +18,7 @@ class WisataController extends Controller
             $query->where('nama_lokasi', 'like', '%' . $request->search . '%');
         }
 
-        $wisatas = $query->orderBy('nama_lokasi', 'asc')->paginate(10);
+        $wisatas = $query->orderBy('nama_lokasi', 'asc')->paginate(10)->withQueryString();
 
         // Statistik
         $totalDenganKoordinat = Wisata::whereNotNull('latitude')

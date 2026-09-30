@@ -4,18 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        // updateOrCreate artinya: jika email sudah ada, update passwordnya. Jika belum, buat baru.
-        User::updateOrCreate(
-            ['email' => 'admin@desadigital.id'], 
+        User::firstOrCreate(
+            ['email' => 'admin@desadigital.id'],
             [
                 'name' => 'Admin',
-                'password' => Hash::make('admin1234'), // Ganti password sesuka Anda
+                'password' => 'admin1234',
                 'email_verified_at' => now(),
             ]
         );

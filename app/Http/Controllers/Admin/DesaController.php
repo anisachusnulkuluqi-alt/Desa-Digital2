@@ -17,7 +17,7 @@ class DesaController extends Controller
             $query->where('nama_desa', 'like', '%' . $request->search . '%');
         }
         
-        $desas = $query->orderBy('nama_desa', 'asc')->get();
+        $desas = $query->orderBy('nama_desa', 'asc')->paginate(10)->withQueryString();
         $totalDesa = Desa::count();
         $totalKecamatan = Kecamatan::count();
 

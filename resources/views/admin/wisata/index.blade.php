@@ -297,10 +297,13 @@
                         <span class="admin-count">{{ number_format($wisatas->total()) }} Titik</span>
                     </div>
                     <div class="admin-list-actions">
-                        <label class="admin-search-wrap" for="searchInput">
-                            <i class="bi bi-search" aria-hidden="true"></i>
-                            <input class="admin-search" type="search" id="searchInput" placeholder="Cari nama wisata...">
-                        </label>
+                        <form method="GET" action="{{ route('admin.wisata.index') }}" style="margin: 0">
+                            <label class="admin-search-wrap" for="searchInput">
+                                <i class="bi bi-search" aria-hidden="true"></i>
+                                <input class="admin-search" type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama wisata...">
+                            </label>
+                            <button class="visually-hidden" type="submit">Cari</button>
+                        </form>
                         <button type="button" class="admin-primary-btn" onclick="openTambahModal()">
                             <i class="bi bi-plus-lg"></i> Tambah Wisata
                         </button>
@@ -308,7 +311,7 @@
                 </div>
 
                 <div class="admin-table-wrap">
-                    <table class="admin-table">
+                    <table class="admin-table admin-table--wisata">
                         <thead>
                             <tr>
                                 <th style="width: 50px;">NO</th>
@@ -336,7 +339,7 @@
                                 $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? '';
                             @endphp
                             <tr data-id="{{ $wisata->id }}">
-                                <td class="admin-row-number">{{ ($wisatas->currentPage() - 1) * $wisatas->perPage() + $index + 1 }}</td>
+                                <td class="admin-row-number">{{ $wisatas->firstItem() + $index }}</td>
                                 <td>
                                     <a class="wisata-link admin-place-name" onclick="openDetailModal({{ $wisata->id }}, '{{ addslashes($wisata->nama_lokasi ?? $wisata->nama ?? '') }}', '{{ addslashes($desa) }}', '{{ addslashes($jenis) }}', '{{ addslashes($deskripsi) }}', '{{ addslashes($jam) }}', '{{ addslashes($htm) }}', '{{ addslashes($reservasi) }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ addslashes($foto) }}')">
                                         <span class="admin-place-icon"><i class="bi bi-image-fill"></i></span>
@@ -359,35 +362,7 @@
                     </table>
                 </div>
 
-                {{-- CUSTOM PAGINATION YANG RAPI & BERFUNGSI --}}
-                @if ($wisatas->hasPages())
-                <div class="pagination-wrapper">
-                    <div class="pagination-info">
-                        Showing {{ $wisatas->firstItem() }} to {{ $wisatas->lastItem() }} of {{ $wisatas->total() }} results
-                    </div>
-                    <ul class="pagination">
-                        @if ($wisatas->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">&laquo; Prev</span></li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $wisatas->previousPageUrl() }}">&laquo; Prev</a></li>
-                        @endif
-
-                        @foreach ($wisatas->getUrlRange(1, $wisatas->lastPage()) as $page => $url)
-                            @if ($page == $wisatas->currentPage())
-                                <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
-                            @else
-                                <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                            @endif
-                        @endforeach
-
-                        @if ($wisatas->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $wisatas->nextPageUrl() }}">Next &raquo;</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">Next &raquo;</span></li>
-                        @endif
-                    </ul>
-                </div>
-                @endif
+                @include('admin.partials.pagination', ['paginator' => $wisatas])
             </section>
         </main>
     </div>

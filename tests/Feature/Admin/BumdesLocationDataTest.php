@@ -20,6 +20,7 @@ class BumdesLocationDataTest extends TestCase
 
         $this->post(route('admin.bumdes.store'), [
             'nama_lokasi' => 'BUMDes Maju Test',
+            'desa' => 'Merkawang',
             'jenis_usaha' => 'Perdagangan dan jasa',
             'nama_ketua' => 'Siti Aminah',
             'alamat' => 'Jalan Desa',
@@ -36,11 +37,14 @@ class BumdesLocationDataTest extends TestCase
         $photoPath = 'bumdes/'.basename(parse_url($photoUrl, PHP_URL_PATH));
 
         $this->assertSame('Perdagangan dan jasa', $properties['jenis_usaha']);
+        $this->assertSame('Merkawang', $properties['nama_desa']);
         $this->assertSame('Siti Aminah', $properties['nama_ketua']);
+        $this->get(route('admin.bumdes.index'))->assertOk()->assertSee('Merkawang');
         Storage::disk('public')->assertExists($photoPath);
 
         $this->put(route('admin.bumdes.update', $location->id), [
             'nama_lokasi' => 'BUMDes Maju Test',
+            'desa' => 'Merkawang',
             'jenis_usaha' => 'Perdagangan, jasa, dan pertanian',
             'nama_ketua' => 'Siti Aminah',
             'alamat' => 'Jalan Desa Baru',

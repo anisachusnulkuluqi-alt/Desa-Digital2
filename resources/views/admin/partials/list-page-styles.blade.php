@@ -35,6 +35,11 @@
     .admin-secondary-btn { border-color: #e2e8f0; background: #fff; color: #334155; }
     .admin-table-wrap { overflow-x: auto; }
     .admin-table { width: 100%; border-collapse: collapse; text-align: left; }
+    .admin-table--kecamatan, .admin-table--wisata { table-layout: fixed; }
+    .admin-table--kecamatan th:first-child { width: 60px; }
+    .admin-table--kecamatan th:nth-child(2) { width: 45%; }
+    .admin-table--wisata th:first-child { width: 50px; }
+    .admin-table--wisata th:nth-child(2) { width: 45%; }
     .admin-table th { padding: 14px 20px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; color: #64748b; font-size: 11px; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
     .admin-table td { padding: 15px 20px; border-bottom: 1px solid #f1f5f9; color: #1e293b; font-size: 13px; vertical-align: middle; }
     .admin-table tbody tr { transition: background 0.2s; }

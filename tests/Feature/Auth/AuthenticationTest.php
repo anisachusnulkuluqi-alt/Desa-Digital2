@@ -3,6 +3,7 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
+use Database\Seeders\AdminSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,7 +28,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('dashboard', absolute: false));
+        $response->assertRedirect(route('admin.desa.dashboard', absolute: false));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -40,6 +41,29 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+    }
+
+    public function test_admin_seeder_keeps_the_existing_account_password(): void
+    {
+        User::where('email', 'admin@desadigital.id')->delete();
+        $this->seed(AdminSeeder::class);
+        $admin = User::where('email', 'admin@desadigital.id')->firstOrFail();
+
+        $this->post('/login', [
+            'email' => 'admin@desadigital.id',
+            'password' => 'admin1234',
+        ])->assertRedirect(route('admin.desa.dashboard', absolute: false));
+        $this->assertAuthenticatedAs($admin);
+
+        $this->post('/logout');
+        $admin->update(['password' => 'my-changed-password']);
+        $this->seed(AdminSeeder::class);
+
+        $this->post('/login', [
+            'email' => 'admin@desadigital.id',
+            'password' => 'my-changed-password',
+        ])->assertRedirect(route('admin.desa.dashboard', absolute: false));
+        $this->assertAuthenticatedAs($admin->fresh());
     }
 
     public function test_users_can_logout(): void

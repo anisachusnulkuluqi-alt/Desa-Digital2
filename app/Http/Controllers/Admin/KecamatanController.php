@@ -17,18 +17,21 @@ class KecamatanController extends Controller
             $query->where('nama_kecamatan', 'like', '%' . $request->search . '%');
         }
         
-        $kecamatan = $query->orderBy('nama_kecamatan', 'asc')->get();
+        $kecamatan = $query->orderBy('nama_kecamatan', 'asc')->paginate(10)->withQueryString();
         $totalKecamatan = Kecamatan::count();
         $totalDesa = Desa::count();
 
         return view('admin.kecamatan.index', compact('kecamatan', 'totalKecamatan', 'totalDesa'));
     }
 
-    public function show(Kecamatan $kecamatan)
+    public function show(Request $request, Kecamatan $kecamatan)
     {
-        $desas = Desa::where('kecamatan_id', $kecamatan->id)
-            ->orderBy('nama_desa', 'asc')
-            ->get();
+        $query = Desa::where('kecamatan_id', $kecamatan->id);
+        if ($request->filled('search')) {
+            $query->where('nama_desa', 'like', '%' . $request->search . '%');
+        }
+
+        $desas = $query->orderBy('nama_desa', 'asc')->paginate(10)->withQueryString();
 
         return view('admin.kecamatan.show', compact('kecamatan', 'desas'));
     }

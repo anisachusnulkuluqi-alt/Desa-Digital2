@@ -410,19 +410,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.pasar.index') }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama pasar...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama pasar...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar Pasar
-                    <span class="badge-count">{{ $pasars->count() }} Pasar</span>
+                    <span class="badge-count">{{ number_format($totalPasar) }} Pasar</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
@@ -443,7 +444,7 @@
                 <tbody id="pasarTable">
                     @forelse($pasars as $index => $pasar)
                     <tr data-id="{{ $pasar->id }}" onclick="showDetail({{ $pasar->id }}, '{{ addslashes($pasar->nama_pasar) }}', '{{ addslashes($pasar->alamat ?? '-') }}', '{{ addslashes($pasar->desa->nama_desa ?? '-') }}', '{{ $pasar->latitude ?? '-' }}', '{{ $pasar->longitude ?? '-' }}', '{{ $pasar->status ?? 'aktif' }}', '{{ $pasar->foto ?? '' }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $pasars->firstItem() + $index }}</td>
                         <td>
                             <div class="pasar-name">
                                 <div class="pasar-name-icon">
@@ -466,6 +467,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $pasars])
         </div>
     </div>
 

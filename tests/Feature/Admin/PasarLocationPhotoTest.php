@@ -21,6 +21,7 @@ class PasarLocationPhotoTest extends TestCase
         $properties = ['kelurahan' => 'Bandungrejo'];
         $this->post(route('admin.pasar.store'), [
             'nama_lokasi' => 'Pasar Foto Test',
+            'desa' => 'Bandungrejo',
             'alamat' => 'Jalan Pasar',
             'latitude' => -6.9,
             'longitude' => 111.8,
@@ -32,12 +33,15 @@ class PasarLocationPhotoTest extends TestCase
         $this->assertNotNull($location);
 
         $savedProperties = json_decode($location->properties, true);
+        $this->assertSame('Bandungrejo', $savedProperties['nama_desa']);
+        $this->get(route('admin.pasar.index'))->assertOk()->assertSee('Bandungrejo');
         $photoUrl = $savedProperties['foto'];
         $photoPath = 'pasar/'.basename(parse_url($photoUrl, PHP_URL_PATH));
         Storage::disk('public')->assertExists($photoPath);
 
         $this->put(route('admin.pasar.update', $location->id), [
             'nama_lokasi' => 'Pasar Foto Test',
+            'desa' => 'Bandungrejo',
             'alamat' => 'Jalan Pasar Baru',
             'latitude' => -6.9,
             'longitude' => 111.8,
@@ -61,6 +65,7 @@ class PasarLocationPhotoTest extends TestCase
 
         $this->post(route('admin.kantor.store'), [
             'nama_lokasi' => 'Balai Desa Foto Test',
+            'desa' => 'Kedungrejo',
             'alamat' => 'Jalan Desa',
             'latitude' => -6.8,
             'longitude' => 111.6,
@@ -76,10 +81,13 @@ class PasarLocationPhotoTest extends TestCase
         $photoPath = 'kantor/'.basename(parse_url($photoUrl, PHP_URL_PATH));
 
         $this->assertSame($mapLink, $savedProperties['link_maps']);
+        $this->assertSame('Kedungrejo', $savedProperties['nama_desa']);
+        $this->get(route('admin.kantor.index'))->assertOk()->assertSee('Kedungrejo');
         Storage::disk('public')->assertExists($photoPath);
 
         $this->put(route('admin.kantor.update', $location->id), [
             'nama_lokasi' => 'Balai Desa Foto Test',
+            'desa' => 'Kedungrejo',
             'alamat' => 'Jalan Desa Baru',
             'latitude' => -6.8,
             'longitude' => 111.6,
@@ -95,5 +103,25 @@ class PasarLocationPhotoTest extends TestCase
         $this->assertSame($mapLink, $updatedProperties['link_maps']);
         $this->assertSame($photoUrl, $updatedProperties['foto']);
         Storage::disk('public')->assertExists($photoPath);
+    }
+
+    public function test_legacy_balai_desa_name_supplies_missing_village_label(): void
+    {
+        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+
+        DB::table('lokasi_kantor')->insert([
+            'feature_key' => hash('sha256', 'legacy-balai-desa'),
+            'nama_lokasi' => 'BALAI DESA BADER',
+            'alamat' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'properties' => json_encode(['link_maps' => 'https://maps.example.test']),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->get(route('admin.kantor.index'))
+            ->assertOk()
+            ->assertSee('BADER');
     }
 }

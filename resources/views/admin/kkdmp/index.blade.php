@@ -395,19 +395,20 @@
             </div>
         </div>
 
-        <div class="search-bar">
+        <form method="GET" action="{{ route('admin.kkdmp.index') }}" class="search-bar">
             <div class="search-box">
                 <i class="bi bi-search"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama desa...">
+                <input type="search" id="searchInput" name="search" value="{{ request('search') }}" placeholder="Cari nama desa...">
             </div>
-        </div>
+            <button class="visually-hidden" type="submit">Cari</button>
+        </form>
 
         <div class="table-card">
             <div class="table-header">
                 <div class="table-title">
                     <i class="bi bi-list-ul"></i>
                     Daftar KKDMP
-                    <span class="badge-count">{{ $kkdmp->count() }} KKDMP</span>
+                    <span class="badge-count">{{ number_format($totalKkdmp) }} KKDMP</span>
                 </div>
                 <div>
                     <button type="button" class="btn-action-header btn-add" onclick="openTambahModal()">
@@ -427,7 +428,7 @@
                 <tbody id="kkdmpTable">
                     @forelse($kkdmp as $index => $item)
                     <tr data-id="{{ $item->id }}" onclick="showDetail({{ $item->id }}, '{{ addslashes($item->nama_desa ?? '-') }}', '{{ addslashes($item->jenis ?? '') }}', '{{ addslashes($item->nama_ketua ?? '') }}', '{{ addslashes($item->no_ahu ?? '') }}', '{{ addslashes($item->alamat ?? '') }}', '{{ $item->latitude ?? '' }}', '{{ $item->longitude ?? '' }}', '{{ $item->foto ?? '' }}')">
-                        <td style="color: #94a3b8; font-weight: 600;">{{ $index + 1 }}</td>
+                        <td style="color: #94a3b8; font-weight: 600;">{{ $kkdmp->firstItem() + $index }}</td>
                         <td>
                             <div class="kkdmp-name">
                                 <div class="kkdmp-name-icon">
@@ -449,6 +450,7 @@
                     @endforelse
                 </tbody>
             </table>
+            @include('admin.partials.pagination', ['paginator' => $kkdmp])
         </div>
     </div>
 
