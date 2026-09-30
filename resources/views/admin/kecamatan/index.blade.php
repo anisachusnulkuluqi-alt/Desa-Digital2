@@ -177,6 +177,72 @@
             align-items: center;
             gap: 10px;
         }
+
+        .kecamatan-toggle {
+            border: 0;
+            padding: 0;
+            background: transparent;
+            color: #1e40af;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .kecamatan-toggle:hover { text-decoration: underline; }
+        .kecamatan-toggle:focus-visible, .desa-detail-button:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
+        .kecamatan-chevron { margin-left: auto; color: #64748b; transition: transform 0.2s; }
+        .kecamatan-toggle[aria-expanded="true"] .kecamatan-chevron { transform: rotate(180deg); }
+
+        .desa-dropdown-row { display: none; background: #f8fafc; }
+        .desa-dropdown-row.is-open { display: table-row; }
+        .desa-dropdown-row td { padding: 12px 20px 16px 80px; }
+        .desa-dropdown-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .desa-detail-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 1px solid #dbeafe;
+            border-radius: 6px;
+            padding: 7px 10px;
+            background: white;
+            color: #1e40af;
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .desa-detail-button:hover { border-color: #93c5fd; background: #eff6ff; }
+        .desa-empty { color: #64748b; font-size: 13px; }
+
+        .modal-content { border: none; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .modal-header { padding: 18px 22px; border: none; border-radius: 12px 12px 0 0; background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; }
+        .modal-header .modal-title { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
+        .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
+        .modal-body { max-height: 70vh; overflow-y: auto; padding: 24px 22px; }
+        .modal-footer { padding: 14px 22px; border-top: 1px solid #e2e8f0; border-radius: 0 0 12px 12px; background: #f8fafc; }
+        .detail-row { display: flex; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { width: 130px; flex-shrink: 0; color: #64748b; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .detail-value { color: #1e293b; font-size: 14px; font-weight: 600; }
+        .badge-jenis { display: inline-block; border-radius: 6px; padding: 4px 10px; background: #dbeafe; color: #1e40af; font-size: 12px; }
+        .badge-jenis.badge-kelurahan { background: #fef3c7; color: #92400e; }
+        .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+        .social-link { display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; padding: 6px 12px; color: white; font-size: 12px; font-weight: 600; text-decoration: none; }
+        .social-link.website { background: #3b82f6; }
+        .social-link.youtube { background: #ef4444; }
+        .social-link.instagram { background: #d94675; }
+        .social-link.facebook { background: #1877f2; }
+        .social-link.tiktok { background: #111827; }
+        .social-link.whatsapp { background: #16a34a; }
+        .detail-value a { color: #1e40af; text-decoration: none; }
+        .btn-modal-cancel, .btn-modal-save { display: inline-flex; align-items: center; gap: 6px; border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 600; text-decoration: none; }
+        .btn-modal-cancel { border: 1.5px solid #e2e8f0; background: white; color: #64748b; }
+        .btn-modal-save { border: none; background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; }
+        .btn-modal-delete { display: inline-flex; align-items: center; gap: 6px; margin-right: auto; border: 0; border-radius: 8px; padding: 9px 18px; background: #ef4444; color: white; font-size: 13px; font-weight: 600; }
+        .section-divider { margin: 8px 0 14px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; color: #1e3a8a; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-label-custom { display: block; margin-bottom: 6px; color: #1e293b; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .form-label-custom .required { color: #ef4444; }
+        .form-input-custom, .form-select-custom { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; background: #f8fafc; color: #1e293b; font-size: 14px; }
+        .form-input-custom:focus, .form-select-custom:focus { outline: none; border-color: #3b82f6; background: white; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08); }
         
         .kecamatan-name-icon {
             width: 32px;
@@ -245,17 +311,52 @@
                     </thead>
                     <tbody id="kecamatanTable">
                     @forelse($kecamatan as $index => $item)
+<<<<<<< HEAD
                     <tr tabindex="0" role="link" data-id="{{ $item->id }}" onclick="window.location.href='{{ route('admin.kecamatan.show', $item->id) }}'" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
                         <td class="admin-row-number">{{ $kecamatan->firstItem() + $index }}</td>
+=======
+                    <tr data-id="{{ $item->id }}">
+                        <td class="admin-row-number">{{ $index + 1 }}</td>
+>>>>>>> 29821e6d1e1929c0d02e82044bd21e8cd795b69e
                         <td>
                             <div class="admin-place-name">
                                 <span class="admin-place-icon">
                                     <i class="bi bi-geo-alt-fill"></i>
                                 </span>
-                                {{ $item->nama_kecamatan }}
+                                <button type="button" class="kecamatan-toggle" aria-expanded="false" aria-controls="desaKecamatan{{ $item->id }}" onclick="toggleDesa({{ $item->id }}, this)">
+                                    {{ $item->nama_kecamatan }}
+                                    <i class="bi bi-chevron-down kecamatan-chevron" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </td>
                         <td>{{ $item->desa ? $item->desa->count() : 0 }} desa</td>
+                    </tr>
+                    <tr id="desaKecamatan{{ $item->id }}" class="desa-dropdown-row" data-parent-id="{{ $item->id }}">
+                        <td colspan="3">
+                            <div class="desa-dropdown-list">
+                                @forelse($item->desa->sortBy('nama_desa') as $desa)
+                                    <button type="button" class="desa-detail-button"
+                                        data-id="{{ $desa->id }}"
+                                        data-nama="{{ $desa->nama_desa }}"
+                                        data-kecamatan="{{ $item->nama_kecamatan }}"
+                                        data-kecamatan-id="{{ $item->id }}"
+                                        data-kode="{{ $desa->kode_desa ?? '-' }}"
+                                        data-jenis="{{ $desa->jenis ?? 'Desa' }}"
+                                        data-website="{{ $desa->website ?? '' }}"
+                                        data-youtube="{{ $desa->youtube ?? '' }}"
+                                        data-instagram="{{ $desa->instagram ?? '' }}"
+                                        data-facebook="{{ $desa->facebook ?? '' }}"
+                                        data-tiktok="{{ $desa->tiktok ?? '' }}"
+                                        data-whatsapp="{{ $desa->whatsapp ?? '' }}"
+                                        onclick="showDesaDetail(this)">
+                                        <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+                                        {{ $desa->nama_desa }}
+                                    </button>
+                                @empty
+                                    <span class="desa-empty">Belum ada data desa di kecamatan ini.</span>
+                                @endforelse
+                            </div>
+                        </td>
                     </tr>
                     @empty
                     <tr>
@@ -275,18 +376,242 @@
         </main>
     </div>
 
+    <div class="modal fade" id="modalDetailDesa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-houses-fill"></i><span id="detailNamaDesa">Detail Desa</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="detail-row"><div class="detail-label">Nama Desa</div><div class="detail-value" id="detailNama"></div></div>
+                    <div class="detail-row"><div class="detail-label">Kecamatan</div><div class="detail-value" id="detailKecamatan"></div></div>
+                    <div class="detail-row"><div class="detail-label">Jenis</div><div class="detail-value" id="detailJenis"></div></div>
+                    <div class="detail-row"><div class="detail-label">Kode Desa</div><div class="detail-value" id="detailKodeDesa"></div></div>
+                    <div class="detail-row" style="flex-direction: column; align-items: flex-start;">
+                        <div class="detail-label" style="width: auto; margin-bottom: 8px;">Sosial Media &amp; Website</div>
+                        <div class="detail-value" id="detailSosialMedia" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Tutup</button>
+                    <button type="button" class="btn-modal-save" onclick="openEditDesaFromDetail()"><i class="bi bi-pencil"></i> Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditDesa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Edit Desa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <form id="formEditDesa">
+                    @csrf
+                    <input type="hidden" id="editDesaId" name="id">
+                    <div class="modal-body">
+                        <div class="section-divider">Informasi Dasar</div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom" for="editKecamatanId">Kecamatan <span class="required">*</span></label>
+                                <select id="editKecamatanId" name="kecamatan_id" class="form-select-custom" required>
+                                    @foreach($kecamatan as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_kecamatan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom" for="editNamaDesa">Nama Desa/Kelurahan <span class="required">*</span></label>
+                                <input type="text" id="editNamaDesa" name="nama_desa" class="form-input-custom" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom" for="editKodeDesa">Kode Desa</label>
+                                <input type="text" id="editKodeDesa" name="kode_desa" class="form-input-custom">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label-custom" for="editJenis">Jenis <span class="required">*</span></label>
+                                <select id="editJenis" name="jenis" class="form-select-custom" required>
+                                    <option value="Desa">Desa</option>
+                                    <option value="Kelurahan">Kelurahan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="section-divider">Website &amp; Sosial Media</div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editWebsite">Website</label><input type="url" id="editWebsite" name="website" class="form-input-custom"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editYoutube">YouTube</label><input type="text" id="editYoutube" name="youtube" class="form-input-custom"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editInstagram">Instagram</label><input type="text" id="editInstagram" name="instagram" class="form-input-custom"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editFacebook">Facebook</label><input type="text" id="editFacebook" name="facebook" class="form-input-custom"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editTiktok">TikTok</label><input type="text" id="editTiktok" name="tiktok" class="form-input-custom"></div>
+                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editWhatsapp">WhatsApp</label><input type="text" id="editWhatsapp" name="whatsapp" class="form-input-custom"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Batal</button>
+                        <button type="button" class="btn-modal-delete" onclick="hapusDesaDariEdit()"><i class="bi bi-trash"></i> Hapus</button>
+                        <button type="submit" class="btn-modal-save"><i class="bi bi-check-lg"></i> Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let modalDetailDesa, modalEditDesa;
+        let selectedDesa = null;
+
         document.addEventListener('DOMContentLoaded', function() {
+            modalDetailDesa = new bootstrap.Modal(document.getElementById('modalDetailDesa'));
+            modalEditDesa = new bootstrap.Modal(document.getElementById('modalEditDesa'));
+            document.getElementById('formEditDesa').addEventListener('submit', simpanDesaDariEdit);
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
                 const rows = document.querySelectorAll('#kecamatanTable tr[data-id]');
                 rows.forEach(row => {
                     const text = row.textContent.toLowerCase();
                     row.style.display = text.includes(filter) ? '' : 'none';
+                    if (!text.includes(filter)) {
+                        const dropdown = document.getElementById(`desaKecamatan${row.dataset.id}`);
+                        dropdown.classList.remove('is-open');
+                        row.querySelector('.kecamatan-toggle').setAttribute('aria-expanded', 'false');
+                    }
                 });
             });
         });
+
+        function toggleDesa(id, button) {
+            const dropdown = document.getElementById(`desaKecamatan${id}`);
+            const isOpen = dropdown.classList.toggle('is-open');
+            button.setAttribute('aria-expanded', String(isOpen));
+        }
+
+        function showDesaDetail(button) {
+            const data = button.dataset;
+            selectedDesa = { ...data };
+            document.getElementById('detailNamaDesa').textContent = data.nama;
+            document.getElementById('detailNama').textContent = data.nama;
+            document.getElementById('detailKecamatan').textContent = data.kecamatan;
+            document.getElementById('detailKodeDesa').textContent = data.kode;
+
+            const jenis = document.createElement('span');
+            jenis.className = `badge-jenis ${data.jenis === 'Kelurahan' ? 'badge-kelurahan' : 'badge-desa'}`;
+            jenis.textContent = data.jenis;
+            document.getElementById('detailJenis').replaceChildren(jenis);
+
+            const sosialMedia = document.getElementById('detailSosialMedia');
+            sosialMedia.replaceChildren();
+            const links = [
+                ['website', 'Website', 'bi-globe', data.website],
+                ['youtube', 'YouTube', 'bi-youtube', data.youtube],
+                ['instagram', 'Instagram', 'bi-instagram', data.instagram],
+                ['facebook', 'Facebook', 'bi-facebook', data.facebook],
+                ['tiktok', 'TikTok', 'bi-tiktok', data.tiktok],
+                ['whatsapp', 'WhatsApp', 'bi-whatsapp', data.whatsapp ? `https://wa.me/${data.whatsapp.replace(/\\D/g, '')}` : '']
+            ];
+            const linkList = document.createElement('div');
+            linkList.className = 'social-links';
+            links.filter(([, , , url]) => url).forEach(([type, label, icon, url]) => {
+                const link = document.createElement('a');
+                link.className = `social-link ${type}`;
+                link.href = url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.innerHTML = `<i class="bi ${icon}" aria-hidden="true"></i>`;
+                link.append(document.createTextNode(` ${label}`));
+                linkList.append(link);
+            });
+            if (linkList.childElementCount) {
+                sosialMedia.append(linkList);
+            } else {
+                const empty = document.createElement('span');
+                empty.style.color = '#94a3b8';
+                empty.textContent = 'Tidak ada data';
+                sosialMedia.append(empty);
+            }
+
+            modalDetailDesa.show();
+        }
+
+        function openEditDesaFromDetail() {
+            if (!selectedDesa) return;
+
+            modalDetailDesa.hide();
+            setTimeout(() => {
+                document.getElementById('editDesaId').value = selectedDesa.id;
+                document.getElementById('editKecamatanId').value = selectedDesa.kecamatanId;
+                document.getElementById('editNamaDesa').value = selectedDesa.nama;
+                document.getElementById('editKodeDesa').value = selectedDesa.kode === '-' ? '' : selectedDesa.kode;
+                document.getElementById('editJenis').value = selectedDesa.jenis;
+                document.getElementById('editWebsite').value = selectedDesa.website;
+                document.getElementById('editYoutube').value = selectedDesa.youtube;
+                document.getElementById('editInstagram').value = selectedDesa.instagram;
+                document.getElementById('editFacebook').value = selectedDesa.facebook;
+                document.getElementById('editTiktok').value = selectedDesa.tiktok;
+                document.getElementById('editWhatsapp').value = selectedDesa.whatsapp;
+                modalEditDesa.show();
+            }, 300);
+        }
+
+        async function simpanDesaDariEdit(event) {
+            event.preventDefault();
+            const id = document.getElementById('editDesaId').value;
+            const formData = new FormData(event.currentTarget);
+            formData.append('_method', 'PUT');
+
+            try {
+                const response = await fetch(`/admin/desa/${encodeURIComponent(id)}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    const message = data.errors ? Object.values(data.errors).flat().join('\n') : (data.message || 'Gagal memperbarui data desa.');
+                    alert(message);
+                    return;
+                }
+
+                modalEditDesa.hide();
+                location.reload();
+            } catch (error) {
+                alert('Terjadi kesalahan saat memperbarui data desa.');
+            }
+        }
+
+        async function hapusDesaDariEdit() {
+            const id = document.getElementById('editDesaId').value;
+            const nama = document.getElementById('editNamaDesa').value;
+            if (!confirm(`Yakin ingin menghapus desa "${nama}"?`)) return;
+
+            try {
+                const response = await fetch(`/admin/desa/${encodeURIComponent(id)}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({ _method: 'DELETE' })
+                });
+                const data = await response.json();
+                if (!response.ok || !data.success) {
+                    alert(data.message || 'Gagal menghapus data desa.');
+                    return;
+                }
+
+                location.reload();
+            } catch (error) {
+                alert('Terjadi kesalahan saat menghapus data desa.');
+            }
+        }
     </script>
 </body>
 </html>

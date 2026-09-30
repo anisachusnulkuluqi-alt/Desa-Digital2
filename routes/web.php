@@ -107,17 +107,8 @@ Route::get('/surat/lacak', function (Request $request) {
 })->name('surat.lacak');
 
 
-/* --- MODUL CCTV --- */
-Route::get('/cctv', function () {
-    $cctvList = [];
-    if (class_exists(\App\Models\Cctv::class)) {
-        $cctvList = \App\Models\Cctv::all();
-    }
-    
-    if (view()->exists('cctv')) return view('cctv', compact('cctvList'));
-    return view('monitoring-cctv', compact('cctvList'));
-})->name('cctv.index');
-
+/// Otomatis lempar langsung ke portal resmi CCTV Tuban saat URL /cctv diakses
+Route::redirect('/cctv', 'https://cctv.tubankab.go.id/');
 
 /* --- MODUL e-PBB --- */
 Route::get('/epbb', function () {
