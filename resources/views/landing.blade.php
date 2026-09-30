@@ -731,7 +731,7 @@
 
         .location-grid-layout {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr) minmax(0, 1.25fr);
+            grid-template-columns: minmax(0, 2fr) minmax(0, 6fr) minmax(0, 2fr);
             gap: 0;
             width: 100%;
             margin: 0;
@@ -824,6 +824,25 @@
             min-height: 500px;
             border: none;
         }
+
+        .visitor-count-panel {
+            min-height: 500px;
+            border: 1.5px solid var(--border-soft);
+            border-left: 0;
+            padding: 42px 36px;
+            background: linear-gradient(145deg, #0f172a, #164e63);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .visitor-count-heading { display: flex; align-items: center; gap: 10px; color: #bae6fd; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+        .visitor-count-heading i { font-size: 1rem; }
+        .visitor-count-panel h3 { margin: 24px 0 8px; color: #ffffff; font-size: 1.45rem; font-weight: 800; }
+        .visitor-count-caption { margin: 0; color: #cbd5e1; font-size: 0.88rem; line-height: 1.6; }
+        .visitor-count-total { margin: 26px 0; color: #ffffff; font-size: 3.5rem; font-weight: 900; line-height: 1; }
+        .visitor-count-today { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; font-size: 0.9rem; }
+        .visitor-count-today strong { color: #ffffff; font-size: 1.2rem; }
 
         .accordion-icon-box,
         .stat-circle-icon,
@@ -926,18 +945,10 @@
         </a>
 
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
-            <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
-            
-            <!-- MENU CCTV: Langsung mengarah ke portal CCTV Layanan Tuban -->
-            <li><a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer">CCTV TUBAN</a></li>
-            
-            <!-- MENU SURAT: Langsung mengarah ke APMD Tuban -->
-            <li><a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer">SURAT MANDIRI</a></li>
-            
-            <!-- MENU E-PBB: Langsung mengarah ke PBB Tuban -->
-            <li><a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer">E-PBB</a></li>
+            <li><a href="#tentang-kami">TENTANG KAMI</a></li>
+            <li><a href="#statistik-wilayah">STATISTIK</a></li>
+            <li><a href="#layanan-digital">LAYANAN</a></li>
+            <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
 
     </header>
@@ -1201,7 +1212,7 @@
     </section>
 
     <!-- 6. LOKASI KEDINASAN -->
-    <section id="lokasi-kami" class="section-location-clean">
+    <section id="hubungi-kami" class="section-location-clean">
         <div class="location-grid-layout">
             
             <div class="location-info-card">
@@ -1258,13 +1269,17 @@
                 </iframe>
             </div>
 
-            <div class="map-viewport-frame">
-                <iframe
-                    src="https://www.google.com/maps?q=-6.901873934235668,112.0440727763729&z=17&output=embed"
-                    title="Google Maps Dinas Komunikasi dan Informatika Kabupaten Tuban"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            <div class="visitor-count-panel">
+                <div>
+                    <div class="visitor-count-heading"><i class="fa-solid fa-chart-line"></i><span>Statistik Website</span></div>
+                    <h3>Jumlah Pengunjung</h3>
+                    <p class="visitor-count-caption">Pengunjung unik yang tercatat di website Desa Digital.</p>
+                </div>
+                <div class="visitor-count-total">{{ number_format($statistics['totalPengunjung'] ?? 0, 0, ',', '.') }}</div>
+                <div class="visitor-count-today">
+                    <span>Pengunjung hari ini</span>
+                    <strong>{{ number_format($statistics['pengunjungHariIni'] ?? 0, 0, ',', '.') }}</strong>
+                </div>
             </div>
 
         </div>
@@ -1311,7 +1326,7 @@
             '.services-cards-cluster > *',
             '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
             '.hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i',
-            '.location-info-card, .map-viewport-frame',
+            '.location-info-card, .map-viewport-frame, .visitor-count-panel',
             '.location-detail-item',
             '.location-detail-item > i',
             'footer p'
@@ -1349,6 +1364,22 @@
         } else {
             document.querySelectorAll('.reveal-item').forEach(element => element.classList.add('is-visible'));
         }
+
+        const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+        const updateActiveSection = () => {
+            const focusPoint = window.scrollY + Math.max(120, window.innerHeight * 0.3);
+            const activeSection = sectionLinks
+                .map(link => document.querySelector(link.hash))
+                .find(section => section && section.offsetTop <= focusPoint && section.offsetTop + section.offsetHeight > focusPoint);
+
+            sectionLinks.forEach(link => {
+                link.classList.toggle('active', Boolean(activeSection && link.hash === `#${activeSection.id}`));
+            });
+        };
+
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+        updateActiveSection();
 
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
