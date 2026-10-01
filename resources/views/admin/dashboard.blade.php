@@ -128,6 +128,10 @@
             color: white;
         }
 
+        .sidebar-menu a:hover { background: #1d4ed8; }
+        .sidebar-menu a.return-to-website { background: #dc2626; color: white; }
+        .sidebar-menu a.return-to-website:hover { background: #b91c1c; color: white; }
+
         /* ===== MAIN CONTENT ===== */
         .main-content {
             margin-left: 240px;
@@ -531,6 +535,8 @@
         .stat-card:nth-child(6) { animation-delay: 0.24s; }
         .stat-card:nth-child(7) { animation-delay: 0.28s; }
         .stat-card:nth-child(8) { animation-delay: 0.32s; }
+        .stat-card:nth-child(9) { animation-delay: 0.36s; }
+        .stat-card:nth-child(10) { animation-delay: 0.40s; }
     </style>
 </head>
 <body>
@@ -556,6 +562,7 @@
             <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
             <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
             <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
+            <li><a href="{{ route('home') }}" class="return-to-website"><i class="bi bi-box-arrow-up-right"></i><span>Kembali ke Website</span></a></li>
         </ul>
     </aside>
 
@@ -717,6 +724,30 @@
                         <div class="stat-unit">kelompok</div>
                     </div>
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 75%;"></div></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon"><i class="bi bi-person-check-fill"></i></div>
+                    </div>
+                    <div class="stat-label">Pengunjung Unik</div>
+                    <div class="stat-value-row">
+                        <div class="stat-value">{{ $totalPengunjung ?? 0 }}</div>
+                        <div class="stat-unit">pengunjung</div>
+                    </div>
+                    <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%;"></div></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
+                    </div>
+                    <div class="stat-label">Pengunjung Hari Ini</div>
+                    <div class="stat-value-row">
+                        <div class="stat-value">{{ $pengunjungHariIni ?? 0 }}</div>
+                        <div class="stat-unit">pengunjung</div>
+                    </div>
+                    <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%;"></div></div>
                 </div>
             </div>
         </div>

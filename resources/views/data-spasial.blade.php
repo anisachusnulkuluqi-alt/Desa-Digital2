@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/global-search.css') }}">
 
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -728,8 +729,11 @@
             <li><a href="{{ url('/epbb') }}">E-PBB</a></li>
         </ul>
 
-        <form class="search-pill-nav" action="{{ url('/website') }}" method="GET">
-            <input type="text" name="search" placeholder="Cari kecamatan...">
+        <form class="search-pill-nav global-search-form" action="{{ url('/search') }}" method="GET" role="search" data-suggestions-url="{{ route('search.suggestions') }}" autocomplete="off">
+            <div class="global-search-control">
+                <input type="search" name="q" placeholder="Cari desa, kecamatan, wisata..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="map-search-suggestions">
+                <div class="global-search-suggestions" id="map-search-suggestions" role="listbox" hidden></div>
+            </div>
             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </header>
@@ -1320,6 +1324,21 @@
         document.addEventListener("DOMContentLoaded", async function () {
             const urlParams = new URLSearchParams(window.location.search);
             const filter = urlParams.get('filter');
+            const search = urlParams.get('search');
+            const layer = urlParams.get('layer');
+
+            if (search) {
+                document.getElementById('liveSearchInput').value = search;
+                handleSearch(search);
+            }
+
+            if (['desa', 'kecamatan'].includes(layer)) {
+                const layerCheckbox = document.getElementById(`layer${layer[0].toUpperCase()}${layer.slice(1)}`);
+                if (layerCheckbox) {
+                    layerCheckbox.checked = true;
+                    toggleLayer(layer, true);
+                }
+            }
 
             if (filter) {
                 const targetBtn = document.getElementById(`chip-${filter}`);
@@ -1341,5 +1360,6 @@
             }
         });
     </script>
+    <script src="{{ asset('js/global-search.js') }}" defer></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ class DashboardStatistics
             ? Desa::whereNotNull('website')->where('website', '<>', '')->count()
             : $totalDesa;
 
-        return [
+        return array_merge([
             'totalDesa' => $totalDesa,
             'totalWebsite' => $totalWebsite,
             'totalKecamatan' => Kecamatan::count(),
@@ -26,6 +26,18 @@ class DashboardStatistics
             'totalWifiDesa' => $this->safeCount('lokasi_wifi'),
             'totalBumdes' => $this->safeCount('lokasi_bumdes'),
             'totalKkdmp' => $this->safeCount('lokasi_kkdmp'),
+        ], $this->visitorCounts());
+    }
+
+    public function visitorCounts(): array
+    {
+        return [
+            'totalKunjungan' => Schema::hasTable('website_visits')
+                ? DB::table('website_visits')->count()
+                : 0,
+            'kunjunganHariIni' => Schema::hasTable('website_visits')
+                ? DB::table('website_visits')->whereDate('visited_on', now()->toDateString())->count()
+                : 0,
         ];
     }
 

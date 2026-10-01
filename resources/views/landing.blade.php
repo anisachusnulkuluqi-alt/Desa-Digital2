@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= csrf_token(); ?>">
     <title>Desa Digital - Pemerintah Kabupaten Tuban</title>
     <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
     
@@ -10,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= asset('css/global-search.css'); ?>">
 
     <style>
         :root {
@@ -44,7 +47,7 @@
 
         /* 1. TOP NAVBAR */
         .site-header {
-            background: #495057;
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 20px clamp(20px, 8.8vw, 128px);
@@ -67,20 +70,21 @@
         }
 
         .brand-logo-img {
-            height: 38px;
+            height: 52px;
             width: auto;
-            max-width: 140px;
+            max-width: 160px;
             object-fit: contain;
             display: block;
         }
 
         .brand-text-logo {
-            font-size: 1.15rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.01em;
             display: flex;
             align-items: center;
+            font-family: 'Manrope', sans-serif;
         }
         .brand-text-logo span {
             color: var(--accent-cyan);
@@ -98,18 +102,19 @@
         }
 
         .nav-menu a {
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            font-size: 0.84rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
             letter-spacing: 0;
             position: relative;
-            padding: 8px 0;
-            transition: color 0.2s ease, opacity 0.2s ease;
+            padding: 9px 8px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
-        .nav-menu a:hover,
-        .nav-menu a.active { opacity: 0.76; }
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
 
         .search-pill-nav {
             display: flex;
@@ -117,6 +122,7 @@
             flex: 0 0 150px;
             min-width: 0;
             padding: 4px 10px 4px 14px;
+            font-family: 'Manrope', sans-serif;
             border: 1px solid rgba(255, 255, 255, 0.42);
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.12);
@@ -136,6 +142,8 @@
             background: transparent;
             color: #ffffff;
             font-size: 0.85rem;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
         }
 
         .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
@@ -150,6 +158,7 @@
             background: transparent;
             color: #ffffff;
             font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
             cursor: pointer;
         }
 
@@ -175,6 +184,34 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.28) 100%);
+        }
+
+        .hero-banner-clean::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            background-image:
+                radial-gradient(circle at 15% 38%, rgba(255, 255, 255, 0.95) 0 1px, rgba(125, 211, 252, 0.7) 2px, transparent 4px),
+                radial-gradient(circle at 30% 68%, rgba(255, 255, 255, 0.9) 0 1px, rgba(56, 189, 248, 0.62) 2px, transparent 4px),
+                radial-gradient(circle at 58% 34%, rgba(255, 255, 255, 0.92) 0 1px, rgba(103, 232, 249, 0.68) 2px, transparent 4px),
+                radial-gradient(circle at 76% 61%, rgba(255, 255, 255, 0.9) 0 1px, rgba(125, 211, 252, 0.62) 2px, transparent 4px),
+                radial-gradient(circle at 91% 30%, rgba(255, 255, 255, 0.88) 0 1px, rgba(56, 189, 248, 0.6) 2px, transparent 4px),
+                linear-gradient(112deg, transparent 42%, rgba(125, 211, 252, 0.04) 46%, rgba(255, 255, 255, 0.2) 50%, rgba(34, 211, 238, 0.1) 53%, transparent 59%);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 220% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -140% 0;
+            background-repeat: no-repeat;
+            mix-blend-mode: screen;
+            animation: hero-glimmer 10s ease-in-out infinite;
+        }
+
+        @keyframes hero-glimmer {
+            0%, 18% { opacity: 0; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -140% 0; }
+            34% { opacity: 0.62; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -35% 0; }
+            52% { opacity: 0.38; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 45% 0; }
+            70%, 100% { opacity: 0; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 140% 0; }
         }
 
         .hero-content-wrap {
@@ -553,24 +590,6 @@
             margin: 0 auto 46px auto;
         }
 
-        .services-tag-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            color: var(--primary-dark);
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1.5px solid #bae6fd;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
-            margin-bottom: 12px;
-        }
-
         .services-header-box h2 {
             font-size: 2.35rem;
             font-weight: 900;
@@ -579,15 +598,51 @@
             margin-bottom: 0;
         }
 
-        .services-cards-cluster {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+        .services-carousel {
+            position: relative;
             max-width: 1240px;
             margin: 0 auto;
+        }
+
+        .services-cards-cluster {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% - 80px) / 5);
+            gap: 20px;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
             position: relative;
             z-index: 2;
         }
+
+        .services-cards-cluster::-webkit-scrollbar { display: none; }
+
+        .services-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transform: translateY(-50%);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+            transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .services-carousel-arrow:hover:not(:disabled) { background: var(--primary); color: #ffffff; }
+        .services-carousel-arrow:disabled { opacity: 0.38; cursor: default; }
+        .services-carousel-arrow[hidden] { display: none; }
+        .services-carousel-arrow-prev { left: -21px; }
+        .services-carousel-arrow-next { right: -21px; }
 
         .service-card-clean {
             background: rgba(255, 255, 255, 0.86);
@@ -608,6 +663,7 @@
             position: relative;
             overflow: hidden;
             min-height: 190px;
+            scroll-snap-align: start;
         }
 
         .service-card-clean::before {
@@ -855,6 +911,112 @@
             transform: translateY(-5px) scale(1.12);
         }
 
+        .floating-tools {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-tool-button {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            font-size: 1.15rem;
+            cursor: pointer;
+            box-shadow: 0 5px 16px rgba(15, 23, 42, 0.14);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .floating-tool-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
+        .floating-tool-button:focus-visible { outline: 3px solid #0f172a; outline-offset: 3px; }
+        .floating-tool-button[aria-pressed="true"] { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px currentColor; }
+        .floating-tool-feedback { background: #ffe4e6; border-color: #fda4af; color: #be123c; }
+        .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+        .floating-tool-display { background: #fef3c7; border-color: #fcd34d; color: #b45309; }
+        .floating-tool-text { background: #ede9fe; border-color: #c4b5fd; color: #6d28d9; }
+
+        .website-tool-control { position: relative; display: flex; align-items: center; }
+        .website-tool-panel {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            right: calc(100% + 12px);
+            width: min(290px, calc(100vw - 88px));
+            max-height: calc(100vh - 28px);
+            overflow-y: auto;
+            padding: 16px;
+            border: 1px solid var(--tool-border, #cbd5e1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.97);
+            color: var(--text-dark);
+            text-align: left;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+        }
+
+        .website-tool-panel[hidden] { display: none; }
+        .website-tool-heading { margin: 0 0 4px; font-size: 0.9rem; font-weight: 900; }
+        .website-tool-caption { margin: 0 0 13px; color: var(--text-muted); font-size: 0.72rem; line-height: 1.5; }
+        .feedback-rating-row { display: flex; justify-content: space-between; gap: 5px; margin-bottom: 12px; }
+        .feedback-rating-option { display: grid; place-items: center; gap: 4px; min-width: 42px; padding: 7px 5px; border: 1px solid transparent; border-radius: 8px; background: #f8fafc; color: #64748b; cursor: pointer; }
+        .feedback-rating-option i { font-size: 1.1rem; }
+        .feedback-rating-option span { font-size: 0.62rem; }
+        .feedback-rating-option:hover, .feedback-rating-option[aria-pressed="true"] { border-color: #fda4af; background: #fff1f2; color: #be123c; }
+        .feedback-message { width: 100%; min-height: 72px; resize: vertical; padding: 9px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; }
+        .feedback-submit { width: 100%; margin-top: 9px; padding: 9px 12px; border: 0; border-radius: 7px; background: #be123c; color: #ffffff; font: inherit; font-size: 0.75rem; font-weight: 800; cursor: pointer; }
+        .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
+        .feedback-status { min-height: 1.2em; margin: 8px 0 0; color: #047857; font-size: 0.7rem; line-height: 1.4; }
+        .screen-dimming-overlay { position: fixed; inset: 0; z-index: 1100; pointer-events: none; background: rgba(15, 23, 42, var(--screen-dim-opacity, 0)); transition: background-color 0.15s ease; }
+        .screen-dimming-control { --tool-border: #fcd34d; }
+        .screen-dimming-label { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0 5px; color: var(--text-gray); font-size: 0.72rem; font-weight: 700; }
+        .screen-dimming-value { color: #b45309; font-variant-numeric: tabular-nums; }
+        .screen-dimming-range { width: 100%; accent-color: #d97706; cursor: pointer; }
+
+        .visitor-stats-control { position: relative; display: flex; align-items: center; }
+        .visitor-stats-popover {
+            position: absolute;
+            top: 50%;
+            right: calc(100% + 12px);
+            width: 164px;
+            padding: 14px;
+            transform: translateY(-50%);
+            border: 1px solid #93c5fd;
+            border-radius: 16px;
+            background: rgba(219, 234, 254, 0.86);
+            color: var(--text-muted);
+            text-align: center;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.16);
+        }
+
+        .visitor-stats-popover[hidden] { display: none; }
+        .visitor-stats-number { display: block; color: #2563eb; font-size: 1.2rem; font-weight: 900; line-height: 1.2; font-variant-numeric: tabular-nums; }
+        .visitor-stats-label { display: block; margin-top: 3px; font-size: 0.76rem; }
+        .visitor-stats-divider { height: 1px; margin: 10px 0; border: 0; background: rgba(37, 99, 235, 0.2); }
+
+        .back-to-top-button {
+            width: 50px;
+            height: 50px;
+            margin-top: 22px;
+            border: 0;
+            border-radius: 6px;
+            background: #0ea5e9;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        html.large-text { font-size: 18px; }
+
         .accordion-icon-box,
         .stat-circle-icon,
         .service-icon-circle,
@@ -893,7 +1055,7 @@
         }
 
         @media (max-width: 1180px) {
-            .services-cards-cluster { grid-template-columns: repeat(3, 1fr); }
+            .services-cards-cluster { grid-auto-columns: calc((100% - 40px) / 3); }
             .stats-grid-circles { grid-template-columns: repeat(4, 1fr); gap: 10px; }
             .stat-circle-number { font-size: 1.45rem; }
             .site-header { gap: 24px; }
@@ -912,11 +1074,13 @@
                 margin-left: 0;
             }
             .search-pill-nav { margin-left: auto; }
+                .brand-logo-img { height: 46px; }
+                .brand-text-logo { font-size: 1.3rem; }
             .profil-dual-layout { grid-template-columns: 1fr; }
             .section-header-clean { margin-bottom: 26px; }
             .section-header-clean h2 { font-size: 2.1rem; }
             .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .services-cards-cluster { grid-template-columns: repeat(2, 1fr); }
+            .services-cards-cluster { grid-auto-columns: calc((100% - 20px) / 2); }
             .hero-main-title { font-size: 2.8rem; }
             .accordion-content-text { padding-left: 20px; }
             .location-grid-layout { grid-template-columns: 1fr; }
@@ -926,15 +1090,23 @@
         @media (max-width: 580px) {
             .site-header { padding: 10px 14px; gap: 10px 12px; }
             .brand-link { gap: 8px; }
-            .brand-logo-img { height: 32px; max-width: 44px; }
-            .brand-text-logo { font-size: 1.05rem; }
+            .brand-logo-img { height: 40px; max-width: 64px; }
+            .brand-text-logo { font-size: 1.15rem; }
             .search-pill-nav { flex-basis: min(140px, 42vw); padding-left: 10px; }
             .nav-menu { gap: 8px 18px; }
             .nav-menu a { font-size: 0.7rem; }
-            .services-cards-cluster { grid-template-columns: 1fr; }
+            .services-cards-cluster { grid-auto-columns: 100%; }
+            .services-carousel-arrow { width: 36px; height: 36px; }
+            .services-carousel-arrow-prev { left: 5px; }
+            .services-carousel-arrow-next { right: 5px; }
             .section-header-clean h2 { font-size: 1.8rem; }
             .hero-banner-clean { min-height: 540px; }
             .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .floating-tools { right: 14px; bottom: 14px; gap: 7px; }
+            .floating-tool-button { width: 44px; height: 44px; font-size: 1.05rem; }
+            .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
+            .website-tool-panel { right: calc(100% + 10px); width: min(290px, calc(100vw - 88px)); }
+            .back-to-top-button { width: 48px; height: 48px; margin-top: 16px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -971,12 +1143,16 @@
         <ul class="nav-menu">
             <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
+            <li><a href="#statistik-wilayah">STATISTIK</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
-            <li><a href="#lokasi-kami">HUBUNGI KAMI</a></li>
+            <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
 
-        <form class="search-pill-nav" action="<?= url('/website'); ?>" method="GET" role="search">
-            <input type="search" name="search" placeholder="Cari..." aria-label="Cari kecamatan">
+        <form class="search-pill-nav global-search-form" action="<?= url('/search'); ?>" method="GET" role="search" data-suggestions-url="<?= route('search.suggestions'); ?>" autocomplete="off">
+            <div class="global-search-control">
+                <input type="search" name="q" placeholder="Cari desa, kecamatan, wisata..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
+                <div class="global-search-suggestions" id="landing-search-suggestions" role="listbox" hidden></div>
+            </div>
             <button type="submit" aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
 
@@ -1144,13 +1320,14 @@
     <section id="layanan-digital" class="section-services-clean">
         
         <div class="services-header-box">
-            <div class="services-tag-pill">
-                <i class="fa-solid fa-layer-group"></i> PUSAT LAYANAN TERPADU
-            </div>
             <h2>Gerbang Layanan Publik Digital</h2>
         </div>
 
-        <div class="services-cards-cluster">
+        <div class="services-carousel">
+            <button type="button" class="services-carousel-arrow services-carousel-arrow-prev" id="services-carousel-prev" aria-label="Lihat layanan sebelumnya" aria-controls="services-carousel-track" title="Lihat layanan sebelumnya" hidden>
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="services-cards-cluster" id="services-carousel-track">
             
             <!-- 1. Website Desa -->
             <a href="<?= url('/website'); ?>" class="service-card-clean" 
@@ -1217,11 +1394,15 @@
                 </div>
             </a>
 
+            </div>
+            <button type="button" class="services-carousel-arrow services-carousel-arrow-next" id="services-carousel-next" aria-label="Lihat layanan berikutnya" aria-controls="services-carousel-track" title="Lihat layanan berikutnya" hidden>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
         </div>
     </section>
 
     <!-- 6. LOKASI KEDINASAN -->
-    <section id="lokasi-kami" class="section-location-clean">
+    <section id="hubungi-kami" class="section-location-clean">
         <div class="location-grid-layout">
             
             <div class="location-info-card">
@@ -1298,6 +1479,58 @@
         <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
     </footer>
 
+    <div class="screen-dimming-overlay" id="screen-dimming-overlay" aria-hidden="true"></div>
+    <div class="floating-tools" aria-label="Menu akses cepat">
+        <div class="website-tool-control">
+            <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Beri penilaian untuk website" aria-expanded="false" aria-controls="feedback-panel" title="Beri penilaian untuk website">
+                <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+            </button>
+            <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian kepuasan website" hidden>
+                <h2 class="website-tool-heading">Bagaimana pengalaman Anda?</h2>
+                <p class="website-tool-caption">Penilaian Anda membantu kami meningkatkan layanan website.</p>
+                <div class="feedback-rating-row" role="group" aria-label="Pilih nilai kepuasan">
+                    <button type="button" class="feedback-rating-option" data-rating="1" aria-label="Sangat kurang" aria-pressed="false"><i class="fa-solid fa-face-frown" aria-hidden="true"></i><span>Kurang</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="2" aria-label="Kurang" aria-pressed="false"><i class="fa-solid fa-face-meh" aria-hidden="true"></i><span>Cukup</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="3" aria-label="Cukup baik" aria-pressed="false"><i class="fa-solid fa-face-smile" aria-hidden="true"></i><span>Baik</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="4" aria-label="Puas" aria-pressed="false"><i class="fa-solid fa-face-laugh" aria-hidden="true"></i><span>Puas</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="5" aria-label="Sangat puas" aria-pressed="false"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i><span>Hebat</span></button>
+                </div>
+                <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Saran singkat (opsional)" aria-label="Saran singkat"></textarea>
+                <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim penilaian</button>
+                <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+            </section>
+        </div>
+        <div class="visitor-stats-control">
+            <button type="button" class="floating-tool-button floating-tool-stats" id="visitor-stats-toggle" aria-label="Tampilkan statistik pengunjung" aria-expanded="false" aria-controls="visitor-stats-panel" title="Tampilkan statistik pengunjung">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+            <section class="visitor-stats-popover" id="visitor-stats-panel" aria-label="Statistik pengunjung" aria-live="polite" hidden>
+                <span class="visitor-stats-number" id="visitors-today">{{ number_format($statistics['kunjunganHariIni'] ?? 0, 0, ',', '.') }}</span>
+                <span class="visitor-stats-label">Kunjungan Hari Ini</span>
+                <hr class="visitor-stats-divider">
+                <span class="visitor-stats-number" id="visitors-total">{{ number_format($statistics['totalKunjungan'] ?? 0, 0, ',', '.') }}</span>
+                <span class="visitor-stats-label">Total Kunjungan</span>
+            </section>
+        </div>
+        <div class="website-tool-control screen-dimming-control">
+            <button type="button" class="floating-tool-button floating-tool-display" id="screen-dimming-toggle" aria-label="Atur pencahayaan layar" aria-expanded="false" aria-controls="screen-dimming-panel" title="Atur pencahayaan layar">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            </button>
+            <section class="website-tool-panel" id="screen-dimming-panel" aria-label="Pengaturan pencahayaan layar" hidden>
+                <h2 class="website-tool-heading">Pencahayaan layar</h2>
+                <p class="website-tool-caption">Atur tingkat redup tampilan agar nyaman dibaca.</p>
+                <label class="screen-dimming-label" for="screen-dimming-range"><span>Redupkan tampilan</span><output class="screen-dimming-value" id="screen-dimming-value" for="screen-dimming-range">0%</output></label>
+                <input class="screen-dimming-range" id="screen-dimming-range" type="range" min="0" max="45" step="5" value="0" aria-label="Tingkat redup tampilan">
+            </section>
+        </div>
+        <button type="button" class="floating-tool-button floating-tool-text" id="large-text-toggle" aria-label="Perbesar teks" aria-pressed="false" title="Perbesar teks">
+            <i class="fa-solid fa-text-height" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="floating-tool-button back-to-top-button" id="back-to-top" aria-label="Kembali ke bagian paling atas" title="Kembali ke atas">
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </div>
+
     <!-- SCRIPT AKORDEON -->
     <script>
         const navigationEntry = performance.getEntriesByType('navigation')[0];
@@ -1333,7 +1566,7 @@
             '.services-header-box',
             '.services-cards-cluster > *',
             '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
-            '.header-tag-pill i, .services-tag-pill i',
+            '.header-tag-pill i',
             '.location-info-card, .map-viewport-frame',
             '.location-detail-item',
             '.location-detail-item > i',
@@ -1347,7 +1580,7 @@
         revealGroups.forEach(selector => {
             document.querySelectorAll(selector).forEach((element, index) => {
                 element.classList.add('reveal-item');
-                const isRevealIcon = element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .header-tag-pill i, .services-tag-pill i, .location-detail-item > i');
+                const isRevealIcon = element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .header-tag-pill i, .location-detail-item > i');
                 const isProfileElement = Boolean(element.closest('#tentang-kami'));
                 const motionScale = isProfileElement ? 1.55 : 1;
 
@@ -1397,6 +1630,242 @@
         window.addEventListener('resize', revealVisibleItems);
         revealVisibleItems();
 
+        const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+        const updateActiveSection = () => {
+            const focusPoint = window.scrollY + Math.max(120, window.innerHeight * 0.3);
+            const activeSection = sectionLinks
+                .map(link => document.querySelector(link.hash))
+                .find(section => section && section.offsetTop <= focusPoint && section.offsetTop + section.offsetHeight > focusPoint);
+
+            sectionLinks.forEach(link => {
+                link.classList.toggle('active', Boolean(activeSection && link.hash === `#${activeSection.id}`));
+            });
+        };
+
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+        updateActiveSection();
+
+        const feedbackButton = document.getElementById('feedback-toggle');
+        const feedbackPanel = document.getElementById('feedback-panel');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackSubmitButton = document.getElementById('feedback-submit');
+        const feedbackStatus = document.getElementById('feedback-status');
+        const feedbackRatingOptions = [...document.querySelectorAll('.feedback-rating-option')];
+        const visitorStatsButton = document.getElementById('visitor-stats-toggle');
+        const visitorStatsPanel = document.getElementById('visitor-stats-panel');
+        const screenDimmingButton = document.getElementById('screen-dimming-toggle');
+        const screenDimmingPanel = document.getElementById('screen-dimming-panel');
+        const screenDimmingRange = document.getElementById('screen-dimming-range');
+        const screenDimmingValue = document.getElementById('screen-dimming-value');
+        const screenDimmingOverlay = document.getElementById('screen-dimming-overlay');
+        const largeTextButton = document.getElementById('large-text-toggle');
+        const backToTopButton = document.getElementById('back-to-top');
+        let selectedFeedbackRating = null;
+
+        const setFeedbackVisible = isVisible => {
+            if (!feedbackButton || !feedbackPanel) return;
+            feedbackPanel.hidden = !isVisible;
+            feedbackButton.setAttribute('aria-expanded', String(isVisible));
+        };
+
+        const setVisitorStatsVisible = isVisible => {
+            if (!visitorStatsButton || !visitorStatsPanel) return;
+            visitorStatsPanel.hidden = !isVisible;
+            visitorStatsButton.setAttribute('aria-expanded', String(isVisible));
+            visitorStatsButton.setAttribute('aria-label', isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung');
+            visitorStatsButton.title = isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung';
+        };
+
+        const setScreenDimmingVisible = isVisible => {
+            if (!screenDimmingButton || !screenDimmingPanel) return;
+            screenDimmingPanel.hidden = !isVisible;
+            screenDimmingButton.setAttribute('aria-expanded', String(isVisible));
+        };
+
+        feedbackButton?.addEventListener('click', () => {
+            const isVisible = feedbackPanel?.hidden ?? false;
+            setFeedbackVisible(isVisible);
+            if (isVisible) {
+                setVisitorStatsVisible(false);
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        visitorStatsButton?.addEventListener('click', () => {
+            const isVisible = visitorStatsPanel?.hidden ?? false;
+            setVisitorStatsVisible(isVisible);
+            if (isVisible) {
+                setFeedbackVisible(false);
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        screenDimmingButton?.addEventListener('click', () => {
+            const isVisible = screenDimmingPanel?.hidden ?? false;
+            setScreenDimmingVisible(isVisible);
+            if (isVisible) {
+                setFeedbackVisible(false);
+                setVisitorStatsVisible(false);
+            }
+        });
+
+        document.addEventListener('click', event => {
+            if (feedbackPanel && !event.target.closest('.website-tool-control:not(.screen-dimming-control)')) {
+                setFeedbackVisible(false);
+            }
+            if (visitorStatsPanel && !event.target.closest('.visitor-stats-control')) {
+                setVisitorStatsVisible(false);
+            }
+            if (screenDimmingPanel && !event.target.closest('.screen-dimming-control')) {
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && feedbackPanel && !feedbackPanel.hidden) {
+                setFeedbackVisible(false);
+                feedbackButton?.focus();
+            }
+            if (event.key === 'Escape' && visitorStatsPanel && !visitorStatsPanel.hidden) {
+                setVisitorStatsVisible(false);
+                visitorStatsButton?.focus();
+            }
+            if (event.key === 'Escape' && screenDimmingPanel && !screenDimmingPanel.hidden) {
+                setScreenDimmingVisible(false);
+                screenDimmingButton?.focus();
+            }
+        });
+
+        feedbackRatingOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                selectedFeedbackRating = Number(option.dataset.rating);
+                feedbackRatingOptions.forEach(ratingOption => {
+                    ratingOption.setAttribute('aria-pressed', String(ratingOption === option));
+                });
+                feedbackSubmitButton.disabled = false;
+                feedbackStatus.textContent = '';
+            });
+        });
+
+        feedbackSubmitButton?.addEventListener('click', async () => {
+            if (!selectedFeedbackRating) return;
+
+            feedbackSubmitButton.disabled = true;
+            feedbackStatus.textContent = 'Mengirim penilaian...';
+
+            try {
+                const response = await fetch('{{ route('website-feedback.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        rating: selectedFeedbackRating,
+                        message: feedbackMessage.value.trim()
+                    })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || 'Penilaian gagal dikirim.');
+
+                feedbackStatus.textContent = result.message;
+                feedbackMessage.value = '';
+                selectedFeedbackRating = null;
+                feedbackRatingOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));
+            } catch (error) {
+                feedbackStatus.textContent = error.message || 'Koneksi gagal. Silakan coba lagi.';
+                feedbackSubmitButton.disabled = false;
+            }
+        });
+
+        const screenDimmingStorageKey = 'desa-digital-screen-dimming';
+        const applyScreenDimming = value => {
+            const dimLevel = Number(value);
+            screenDimmingRange.value = String(dimLevel);
+            screenDimmingValue.textContent = dimLevel === 0 ? 'Normal' : `${dimLevel}% redup`;
+            screenDimmingOverlay.style.setProperty('--screen-dim-opacity', String(dimLevel / 100));
+        };
+
+        try {
+            applyScreenDimming(window.localStorage.getItem(screenDimmingStorageKey) || '0');
+        } catch {
+            applyScreenDimming('0');
+        }
+
+        screenDimmingRange?.addEventListener('input', () => {
+            applyScreenDimming(screenDimmingRange.value);
+            try {
+                window.localStorage.setItem(screenDimmingStorageKey, screenDimmingRange.value);
+            } catch {}
+        });
+
+        const updateVisitorStats = async () => {
+            try {
+                const response = await fetch('{{ route('website-visits.stats') }}', {
+                    headers: { 'Accept': 'application/json' },
+                    cache: 'no-store'
+                });
+                if (!response.ok) return;
+
+                const counts = await response.json();
+                const numberFormat = new Intl.NumberFormat('id-ID');
+                document.getElementById('visitors-today').textContent = numberFormat.format(counts.kunjunganHariIni ?? 0);
+                document.getElementById('visitors-total').textContent = numberFormat.format(counts.totalKunjungan ?? 0);
+            } catch {
+                return;
+            }
+        };
+
+        updateVisitorStats();
+        window.setInterval(updateVisitorStats, 60000);
+
+        largeTextButton?.addEventListener('click', () => {
+            const isLargeText = largeTextButton.getAttribute('aria-pressed') !== 'true';
+            document.documentElement.classList.toggle('large-text', isLargeText);
+            largeTextButton.setAttribute('aria-pressed', String(isLargeText));
+            largeTextButton.setAttribute('aria-label', isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks');
+            largeTextButton.title = isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks';
+        });
+
+        backToTopButton?.addEventListener('click', () => {
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            window.scrollTo({ top: 0, behavior });
+        });
+
+        const servicesTrack = document.getElementById('services-carousel-track');
+        const servicesPreviousButton = document.getElementById('services-carousel-prev');
+        const servicesNextButton = document.getElementById('services-carousel-next');
+
+        const updateServicesCarousel = () => {
+            if (!servicesTrack || !servicesPreviousButton || !servicesNextButton) return;
+
+            const hasOverflow = servicesTrack.scrollWidth > servicesTrack.clientWidth + 1;
+            servicesPreviousButton.hidden = !hasOverflow;
+            servicesNextButton.hidden = !hasOverflow;
+            servicesPreviousButton.disabled = servicesTrack.scrollLeft <= 1;
+            servicesNextButton.disabled = servicesTrack.scrollLeft + servicesTrack.clientWidth >= servicesTrack.scrollWidth - 1;
+        };
+
+        const scrollServices = direction => {
+            const firstCard = servicesTrack?.querySelector('.service-card-clean');
+            if (!servicesTrack || !firstCard) return;
+
+            const gap = Number.parseFloat(getComputedStyle(servicesTrack).columnGap) || 0;
+            const scrollDistance = firstCard.getBoundingClientRect().width + gap;
+            servicesTrack.scrollBy({ left: direction * scrollDistance, behavior: 'auto' });
+            updateServicesCarousel();
+        };
+
+        servicesPreviousButton?.addEventListener('click', () => scrollServices(-1));
+        servicesNextButton?.addEventListener('click', () => scrollServices(1));
+        servicesTrack?.addEventListener('scroll', updateServicesCarousel, { passive: true });
+        window.addEventListener('resize', updateServicesCarousel);
+        new ResizeObserver(updateServicesCarousel).observe(servicesTrack);
+        new MutationObserver(updateServicesCarousel).observe(servicesTrack, { childList: true });
+        updateServicesCarousel();
+
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
             const isCurrentlyActive = element.classList.contains('active');
@@ -1408,5 +1877,6 @@
             }
         }
     </script>
+    <script src="<?= asset('js/global-search.js'); ?>" defer></script>
 </body>
 </html>
