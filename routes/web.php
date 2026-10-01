@@ -163,16 +163,34 @@ require __DIR__.'/auth.php';
 */
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->middleware('role:admin,kontributor,kominfo,kecamatan')->name('dashboard');
 
-    Route::get('/admin/kominfo/dashboard', [DashboardController::class, 'index'])->name('admin.kominfo.dashboard');
-    Route::get('/admin/kecamatan/dashboard', [DashboardController::class, 'index'])->name('admin.kecamatan.dashboard');
-    Route::get('/admin/desa/dashboard', [DashboardController::class, 'index'])->name('admin.desa.dashboard');
+    Route::get('/admin/kominfo/dashboard', [DashboardController::class, 'index'])
+        ->middleware('role:admin,kontributor,kominfo,kecamatan')->name('admin.kominfo.dashboard');
+    Route::get('/admin/kecamatan/dashboard', [DashboardController::class, 'index'])
+        ->middleware('role:admin,kontributor,kominfo,kecamatan')->name('admin.kecamatan.dashboard');
+    Route::get('/admin/desa/dashboard', [DashboardController::class, 'index'])
+        ->middleware('role:admin,kontributor,kominfo,kecamatan')->name('admin.desa.dashboard');
 
     // ==========================================
     // SEMUA ROUTE ADMIN DI DALAM PREFIX INI
     // ==========================================
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')
+        ->middleware('role:admin,kontributor,kominfo,kecamatan')->group(function () {
+
+        Route::middleware('role:admin')->group(function () {
+            Route::get('kontributor', [\App\Http\Controllers\Admin\ContributorController::class, 'index'])
+                ->name('kontributor.index');
+            Route::post('kontributor', [\App\Http\Controllers\Admin\ContributorController::class, 'store'])
+                ->name('kontributor.store');
+            Route::get('kontributor/{id}/edit', [\App\Http\Controllers\Admin\ContributorController::class, 'edit'])
+                ->whereNumber('id')->name('kontributor.edit');
+            Route::put('kontributor/{id}', [\App\Http\Controllers\Admin\ContributorController::class, 'update'])
+                ->whereNumber('id')->name('kontributor.update');
+            Route::delete('kontributor/{id}', [\App\Http\Controllers\Admin\ContributorController::class, 'destroy'])
+                ->whereNumber('id')->name('kontributor.destroy');
+        });
         
         // Kecamatan
         Route::resource('kecamatan', AdminKecamatanController::class);

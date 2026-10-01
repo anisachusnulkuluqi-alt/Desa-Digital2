@@ -10,6 +10,12 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    public const ROLE_ADMIN = 'admin';
+
+    public const ROLE_CONTRIBUTOR = 'kontributor';
+
+    public const ROLE_USER = 'user';
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
@@ -46,5 +52,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function hasRole(string ...$roles): bool
+    {
+        return in_array($this->role, $roles, true);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(self::ROLE_ADMIN);
     }
 }

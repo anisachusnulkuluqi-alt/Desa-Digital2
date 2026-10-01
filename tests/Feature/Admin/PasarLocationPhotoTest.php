@@ -16,7 +16,7 @@ class PasarLocationPhotoTest extends TestCase
     public function test_pasar_photo_is_uploaded_and_preserved_when_editing_without_a_new_file(): void
     {
         Storage::fake('public');
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
 
         $properties = ['kelurahan' => 'Bandungrejo'];
         $this->post(route('admin.pasar.store'), [
@@ -60,7 +60,7 @@ class PasarLocationPhotoTest extends TestCase
     public function test_balai_desa_map_link_and_photo_are_saved_and_preserved_when_editing(): void
     {
         Storage::fake('public');
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
         $mapLink = 'https://maps.app.goo.gl/example';
 
         $this->post(route('admin.kantor.store'), [
@@ -107,7 +107,7 @@ class PasarLocationPhotoTest extends TestCase
 
     public function test_legacy_balai_desa_name_supplies_missing_village_label(): void
     {
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
 
         DB::table('lokasi_kantor')->insert([
             'feature_key' => hash('sha256', 'legacy-balai-desa'),

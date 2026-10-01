@@ -10,6 +10,7 @@
         ['key' => 'wifi', 'route' => 'admin.wifi.index', 'icon' => 'bi-wifi', 'label' => 'WiFi Desa'],
         ['key' => 'bumdes', 'route' => 'admin.bumdes.index', 'icon' => 'bi-briefcase-fill', 'label' => 'BUMDes'],
         ['key' => 'kkdmp', 'route' => 'admin.kkdmp.index', 'icon' => 'bi-people-fill', 'label' => 'KKDMP'],
+        ...(auth()->user()?->isAdmin() ? [['key' => 'kontributor', 'route' => 'admin.kontributor.index', 'icon' => 'bi-person-plus-fill', 'label' => 'Kontributor']] : []),
         ['key' => 'website', 'route' => 'home', 'icon' => 'bi-box-arrow-up-right', 'label' => 'Kembali ke Website'],
     ];
 @endphp

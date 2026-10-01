@@ -16,7 +16,7 @@ class BumdesLocationDataTest extends TestCase
     public function test_bumdes_business_details_and_photo_are_saved_and_updated(): void
     {
         Storage::fake('public');
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
 
         $this->post(route('admin.bumdes.store'), [
             'nama_lokasi' => 'BUMDes Maju Test',

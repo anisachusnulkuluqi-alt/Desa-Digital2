@@ -562,6 +562,9 @@
             <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
             <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
             <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
+            @if (Auth::user()->isAdmin())
+                <li><a href="{{ route('admin.kontributor.index') }}"><i class="bi bi-person-plus-fill"></i><span>Kontributor</span></a></li>
+            @endif
             <li><a href="{{ route('home') }}" class="return-to-website"><i class="bi bi-box-arrow-up-right"></i><span>Kembali ke Website</span></a></li>
         </ul>
     </aside>
@@ -586,7 +589,7 @@
                         <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
                         <div class="user-info">
                             <strong>{{ Auth::user()->name ?? 'Admin Desa' }}</strong>
-                            <small>Administrator</small>
+                            <small>{{ ucfirst(Auth::user()->role) }}</small>
                         </div>
                         <i class="bi bi-chevron-down" style="color: var(--text-secondary); font-size: 10px;"></i>
                     </div>

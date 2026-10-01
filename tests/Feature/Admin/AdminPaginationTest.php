@@ -13,7 +13,7 @@ class AdminPaginationTest extends TestCase
 
     public function test_desa_index_paginates_and_continues_row_numbers(): void
     {
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['role' => User::ROLE_ADMIN]));
 
         $now = now();
         $kecamatanId = DB::table('kecamatan')->insertGetId([
@@ -40,7 +40,7 @@ class AdminPaginationTest extends TestCase
 
     public function test_location_list_has_a_number_column(): void
     {
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['role' => User::ROLE_ADMIN]));
 
         DB::table('lokasi_kantor')->insert([
             'feature_key' => hash('sha256', 'numbered-office-location'),
