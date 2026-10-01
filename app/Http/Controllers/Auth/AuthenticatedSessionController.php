@@ -30,19 +30,25 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        // Alur pembagian dashboard backend sesuai role admin
-        if ($user->role === 'kominfo') {
-            return redirect()->intended(route('admin.kominfo.dashboard', absolute: false));
-        } elseif ($user->role === 'kecamatan') {
-            return redirect()->intended(route('admin.kecamatan.dashboard', absolute: false));
-        } else {
-            // Default untuk admin tingkat desa / kelurahan
-            return redirect()->intended(route('admin.desa.dashboard', absolute: false));
+        if ($user->hasRole('admin')) {
+            return redirect()->intended(route('dashboard', absolute: false));
         }
+
+        if ($user->hasRole('kontributor')) {
+            return redirect()->route('dashboard');
+        }
+
+        if ($user->role === 'kominfo') {
+            return redirect()->route('admin.kominfo.dashboard');
+        } elseif ($user->role === 'kecamatan') {
+            return redirect()->route('admin.kecamatan.dashboard');
+        }
+
+        return redirect()->route('home');
     }
 
     /**
-     * Proses keluar (logout) dan kembali ke beranda landing page.
+    * Proses keluar (logout) dan kembali ke halaman login.
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -52,6 +58,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

@@ -375,11 +375,6 @@
             </div>
         </div>
 
-        <div class="action-buttons">
-            <a href="{{ route('admin.desa.edit', $desa->id) }}" class="btn-edit">
-                <i class="bi bi-pencil"></i> Edit Desa
-            </a>
-        </div>
     </div>
 </body>
 </html>

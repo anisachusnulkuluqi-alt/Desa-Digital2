@@ -287,12 +287,6 @@
                     Daftar Desa
                     <span class="badge-count">{{ number_format($desas->total()) }} Desa</span>
                 </div>
-                <div>
-                    <button type="button" class="btn-action-header btn-add" onclick="window.location.href='{{ route('admin.desa.index') }}'">
-                        <i class="bi bi-plus-lg"></i>
-                        Tambah Desa
-                    </button>
-                </div>
             </div>
 
             <table class="table-simple">

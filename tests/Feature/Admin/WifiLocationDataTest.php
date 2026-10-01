@@ -16,7 +16,7 @@ class WifiLocationDataTest extends TestCase
     public function test_wifi_desa_ssid_facilitator_and_photo_are_saved_and_updated(): void
     {
         Storage::fake('public');
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
 
         $this->post(route('admin.wifi.store'), [
             'desa' => 'Desa Sumberagung',

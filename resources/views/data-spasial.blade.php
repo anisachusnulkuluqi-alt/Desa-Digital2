@@ -1109,6 +1109,7 @@
                 name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama || 'Lokasi tanpa nama',
                 kec: properties.kecamatan || (kecMatch ? kecMatch[1].trim() : ''),
                 desa: properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || '',
+                address: String(address).trim(),
                 lat,
                 lng,
                 status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
@@ -1239,8 +1240,8 @@
                         </div>
                         <div class="card-popup-body">
                             <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
-                            <h4>${item.name}</h4>
-                            <p><strong>Desa ${item.desa}, Kec. ${item.kec}</strong><br>${item.desc}</p>
+                            <h4>${escapePopupText(item.name)}</h4>
+                            <p><strong>Alamat</strong><br>${escapePopupText(item.address || 'Alamat belum tersedia')}${item.desc ? `<br>${escapePopupText(item.desc)}` : ''}</p>
                             <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" class="popup-route-btn">
                                 <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Arah (Google Maps)
                             </a>

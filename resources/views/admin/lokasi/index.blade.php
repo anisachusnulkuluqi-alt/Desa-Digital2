@@ -52,6 +52,8 @@
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 0 13px; border: 1px solid transparent; border-radius: 8px; cursor: pointer; text-decoration: none; font-weight: 700; }
         .btn-primary { background: var(--blue); color: #fff; }
         .btn-primary:hover { background: var(--blue-dark); }
+        .btn-add { min-height: 42px; padding: 0 16px; border: 0; border-radius: 8px; background: linear-gradient(135deg, #1e40af, #2563eb); color: #fff; font-size: 13px; font-weight: 700; transition: all 0.2s; }
+        .btn-add:hover { background: linear-gradient(135deg, #1e3a8a, #1e40af); color: #fff; box-shadow: 0 4px 12px #1e40af35; transform: translateY(-1px); }
         .btn-light { border-color: var(--line); background: #fff; color: var(--ink); }
         .btn-danger { border-color: #f4d1ce; background: #fff; color: var(--red); }
         .panel { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
@@ -98,18 +100,18 @@
         .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .modal-actions { position: sticky; bottom: -24px; display: flex; justify-content: flex-end; gap: 8px; margin: 8px -22px -24px; padding: 14px 22px; border-top: 1px solid var(--line); background: #f8fafc; }
         .section-divider { margin: 2px 0 0; padding-bottom: 7px; border-bottom: 1px solid var(--line); color: var(--blue); font-size: 10px; font-weight: 700; text-transform: uppercase; }
-        .detail-modal { width: min(700px, 100%); }
+        .detail-modal { display: flex; width: min(560px, 100%); max-height: calc(100vh - 40px); flex-direction: column; overflow: hidden; }
         .detail-modal-head { border: 0; border-radius: 12px 12px 0 0; background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; }
         .detail-modal-head .icon-btn { background: transparent; color: #fff; font-size: 22px; }
-        .detail-photo { display: grid; height: 220px; place-items: center; overflow: hidden; background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; font-size: 42px; }
-        .detail-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .detail-body { padding: 22px; }
+        .detail-photo { display: grid; width: min(100%, 360px); aspect-ratio: 3 / 2; flex: 0 0 auto; place-items: center; margin: 14px auto 0; overflow: hidden; border: 1px solid #e2e8f0; border-radius: 8px; background: #f1f5f9; color: #64748b; font-size: 36px; }
+        .detail-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+        .detail-body { min-height: 0; padding: 18px 22px; overflow-y: auto; }
         .detail-name { margin: 0 0 6px; color: var(--ink); font-size: 22px; font-weight: 800; }
         .detail-village { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; color: var(--muted); font-size: 13px; }
         .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .detail-label { margin-bottom: 4px; color: var(--muted); font-size: 10px; font-weight: 700; text-transform: uppercase; }
         .detail-value { color: var(--ink); font-size: 13px; font-weight: 600; overflow-wrap: anywhere; }
-        .detail-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--line); background: #f8fafc; }
+        .detail-footer { display: flex; flex: 0 0 auto; justify-content: flex-end; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--line); background: #f8fafc; }
         .btn-modal-cancel, .btn-modal-edit, .btn-modal-delete { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; padding: 0 15px; border: 1px solid transparent; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; }
         .btn-modal-cancel { border-color: var(--line); background: #fff; color: var(--muted); }
         .btn-modal-edit { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; }
@@ -179,7 +181,7 @@
                             <form method="GET" action="{{ url()->current() }}">
                                 <input class="search" type="search" name="search" value="{{ request('search') }}" placeholder="Cari nama tempat atau desa..." aria-label="Cari nama tempat atau desa">
                             </form>
-                            <button class="btn btn-primary" type="button" onclick="openCreateModal()"><i class="bi bi-plus-lg"></i> Tambah {{ $category['label'] }}</button>
+                            <button class="btn btn-primary btn-add" type="button" onclick="openCreateModal()"><i class="bi bi-plus-lg"></i> Tambah {{ $category['label'] }}</button>
                         </div>
                     </div>
                     <div class="table-wrap">

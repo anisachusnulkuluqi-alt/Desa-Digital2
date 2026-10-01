@@ -45,8 +45,8 @@ class SpatialLocationController extends Controller
             $properties = is_array($properties) ? $properties : [];
             $properties[$category['name_property']] = $row->nama_lokasi;
 
-            if (!empty($row->alamat)) {
-                $properties['alamat'] = $row->alamat;
+            if (property_exists($row, 'alamat')) {
+                $properties['alamat'] = $row->alamat ?? '';
             }
 
             return [

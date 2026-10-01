@@ -16,7 +16,7 @@ class KkdmpLocationDataTest extends TestCase
     public function test_kkdmp_details_and_photo_are_saved_and_updated(): void
     {
         Storage::fake('public');
-        $this->actingAs(User::factory()->create(['email_verified_at' => now()]));
+        $this->actingAs(User::factory()->create(['email_verified_at' => now(), 'role' => User::ROLE_ADMIN]));
 
         $this->post(route('admin.kkdmp.store'), [
             'nama_lokasi' => 'KKDMP Merkawang Test',

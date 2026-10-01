@@ -21,6 +21,7 @@ class AuthenticationTest extends TestCase
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
         $user = User::factory()->create();
+        $this->get(route('admin.kantor.index'))->assertRedirect(route('login'));
 
         $response = $this->post('/login', [
             'email' => $user->email,
@@ -28,7 +29,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('admin.desa.dashboard', absolute: false));
+        $response->assertRedirect(route('home', absolute: false));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password(): void
@@ -52,7 +53,7 @@ class AuthenticationTest extends TestCase
         $this->post('/login', [
             'email' => 'admin@desadigital.id',
             'password' => 'admin1234',
-        ])->assertRedirect(route('admin.desa.dashboard', absolute: false));
+        ])->assertRedirect(route('dashboard', absolute: false));
         $this->assertAuthenticatedAs($admin);
 
         $this->post('/logout');
@@ -62,7 +63,7 @@ class AuthenticationTest extends TestCase
         $this->post('/login', [
             'email' => 'admin@desadigital.id',
             'password' => 'my-changed-password',
-        ])->assertRedirect(route('admin.desa.dashboard', absolute: false));
+        ])->assertRedirect(route('dashboard', absolute: false));
         $this->assertAuthenticatedAs($admin->fresh());
     }
 
@@ -73,6 +74,6 @@ class AuthenticationTest extends TestCase
         $response = $this->actingAs($user)->post('/logout');
 
         $this->assertGuest();
-        $response->assertRedirect('/');
+        $response->assertRedirect(route('login'));
     }
 }

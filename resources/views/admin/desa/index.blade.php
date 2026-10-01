@@ -367,14 +367,6 @@
                         </label>
                         <button class="visually-hidden" type="submit">Cari</button>
                     </form>
-                    <button type="button" class="admin-secondary-btn" onclick="openImportModal()">
-                        <i class="bi bi-file-earmark-excel"></i>
-                        Import
-                    </button>
-                    <button type="button" class="admin-primary-btn" onclick="openTambahModal()">
-                        <i class="bi bi-plus-lg"></i>
-                        Tambah Desa
-                    </button>
                 </div>
             </div>
 
@@ -466,162 +458,17 @@
                     <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
                         <i class="bi bi-x-lg"></i> Tutup
                     </button>
-                    <button type="button" class="btn-modal-save" onclick="openEditFromDetail()">
-                        <i class="bi bi-pencil"></i> Edit
-                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Tambah/Edit Desa -->
-    <div class="modal fade" id="modalForm" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalFormTitle">
-                        <i class="bi bi-plus-circle"></i>
-                        Tambah Desa
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="formDesa">
-                    @csrf
-                    <input type="hidden" id="desaId" name="id">
-                    <div class="modal-body">
-                        <div class="section-divider">Informasi Dasar</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Kecamatan <span class="required">*</span>
-                                </label>
-                                <select id="kecamatanId" name="kecamatan_id" class="form-select-custom" required>
-                                    <option value="">-- Pilih Kecamatan --</option>
-                                    @foreach(\App\Models\Kecamatan::orderBy('nama_kecamatan')->get() as $kecamatan)
-                                        <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama_kecamatan }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Nama Desa/Kelurahan <span class="required">*</span>
-                                </label>
-                                <input type="text" id="namaDesa" name="nama_desa" class="form-input-custom" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Kode Desa</label>
-                                <input type="text" id="kodeDesa" name="kode_desa" class="form-input-custom" placeholder="Contoh: 3523010001">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">
-                                    Jenis <span class="required">*</span>
-                                </label>
-                                <select id="jenis" name="jenis" class="form-select-custom" required>
-                                    <option value="Desa">Desa</option>
-                                    <option value="Kelurahan">Kelurahan</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="section-divider">Website & Sosial Media</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Website</label>
-                                <input type="url" id="website" name="website" class="form-input-custom" placeholder="https://desa.go.id">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">YouTube</label>
-                                <input type="text" id="youtube" name="youtube" class="form-input-custom" placeholder="Link channel YouTube">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Instagram</label>
-                                <input type="text" id="instagram" name="instagram" class="form-input-custom" placeholder="@username atau link">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Facebook</label>
-                                <input type="text" id="facebook" name="facebook" class="form-input-custom" placeholder="Link halaman Facebook">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">TikTok</label>
-                                <input type="text" id="tiktok" name="tiktok" class="form-input-custom" placeholder="@username atau link">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">WhatsApp</label>
-                                <input type="text" id="whatsapp" name="whatsapp" class="form-input-custom" placeholder="081234567890">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
-                            <i class="bi bi-x-lg"></i> Batal
-                        </button>
-                        <button type="button" id="btnHapusDesa" class="btn-modal-delete" onclick="hapusDariModal()" style="display: none;">
-                            <i class="bi bi-trash"></i> Hapus
-                        </button>
-                        <button type="submit" class="btn-modal-save">
-                            <i class="bi bi-check-lg"></i> Simpan
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Import Excel -->
-    <div class="modal fade" id="modalImport" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="bi bi-file-earmark-excel"></i>
-                        Import Excel
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="formImport" action="{{ route('admin.desa.import') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label-custom">Pilih File Excel</label>
-                            <input type="file" name="file" class="form-input-custom" accept=".xlsx,.xls" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
-                            <i class="bi bi-x-lg"></i> Batal
-                        </button>
-                        <button type="submit" class="btn-modal-save">
-                            <i class="bi bi-upload"></i> Upload
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let modalDetail, modalForm, modalImport;
-        let currentDesaId = null;
+        let modalDetail;
 
         document.addEventListener('DOMContentLoaded', function() {
             modalDetail = new bootstrap.Modal(document.getElementById('modalDetail'));
-            modalForm = new bootstrap.Modal(document.getElementById('modalForm'));
-            modalImport = new bootstrap.Modal(document.getElementById('modalImport'));
-            
-            document.getElementById('formDesa').addEventListener('submit', function(e) {
-                e.preventDefault();
-                submitForm();
-            });
 
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
@@ -633,65 +480,7 @@
             });
         });
 
-        function openImportModal() {
-            modalImport.show();
-        }
-
-        function openTambahModal() {
-            currentDesaId = null;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah Desa';
-            document.getElementById('formDesa').reset();
-            document.getElementById('desaId').value = '';
-            document.getElementById('jenis').value = 'Desa';
-            document.getElementById('btnHapusDesa').style.display = 'none';
-            modalForm.show();
-        }
-
-        function openEditModal(id, nama, kecamatanId, kodeDesa, jenis, website, youtube, instagram, facebook, tiktok, whatsapp) {
-            currentDesaId = id;
-            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Desa';
-            document.getElementById('desaId').value = id;
-            document.getElementById('namaDesa').value = nama;
-            document.getElementById('kecamatanId').value = kecamatanId || '';
-            document.getElementById('kodeDesa').value = kodeDesa || '';
-            document.getElementById('jenis').value = jenis || 'Desa';
-            document.getElementById('website').value = website || '';
-            document.getElementById('youtube').value = youtube || '';
-            document.getElementById('instagram').value = instagram || '';
-            document.getElementById('facebook').value = facebook || '';
-            document.getElementById('tiktok').value = tiktok || '';
-            document.getElementById('whatsapp').value = whatsapp || '';
-            document.getElementById('btnHapusDesa').style.display = 'inline-flex';
-            modalForm.show();
-        }
-
-        function openEditFromDetail() {
-            modalDetail.hide();
-            setTimeout(() => {
-                const nama = document.getElementById('detailNama').textContent;
-                const kecamatan = document.getElementById('detailKecamatan').textContent;
-                const kodeDesa = document.getElementById('detailKodeDesa').textContent;
-                const jenis = document.getElementById('detailJenis').textContent;
-                const sosialMedia = document.getElementById('detailSosialMedia');
-                
-                openEditModal(
-                    currentDesaId, 
-                    nama, 
-                    null, 
-                    kodeDesa, 
-                    jenis, 
-                    sosialMedia.dataset.website || '',
-                    sosialMedia.dataset.youtube || '',
-                    sosialMedia.dataset.instagram || '',
-                    sosialMedia.dataset.facebook || '',
-                    sosialMedia.dataset.tiktok || '',
-                    sosialMedia.dataset.whatsapp || ''
-                );
-            }, 300);
-        }
-
         function showDetail(id, nama, kecamatan, kodeDesa, jenis, website, youtube, instagram, facebook, tiktok, whatsapp) {
-            currentDesaId = id;
             document.getElementById('detailNamaDesa').textContent = nama;
             document.getElementById('detailNama').textContent = nama;
             document.getElementById('detailKecamatan').textContent = kecamatan;
@@ -719,75 +508,6 @@
             modalDetail.show();
         }
 
-        function hapusDariModal() {
-            const id = document.getElementById('desaId').value;
-            const nama = document.getElementById('namaDesa').value;
-            
-            if (confirm(`Yakin ingin menghapus desa "${nama}"?`)) {
-                fetch(`/admin/desa/${id}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Accept': 'application/json'
-                    },
-                    body: new URLSearchParams({ '_method': 'DELETE' })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        modalForm.hide();
-                        sessionStorage.setItem('desaNotif', 'Data desa berhasil dihapus!');
-                        location.reload();
-                    } else {
-                        alert(data.message || 'Gagal menghapus data');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Gagal menghapus data');
-                });
-            }
-        }
-
-        function submitForm() {
-            const formData = new FormData(document.getElementById('formDesa'));
-            const id = document.getElementById('desaId').value;
-            const url = id ? `/admin/desa/${id}` : '/admin/desa';
-            
-            if (id) {
-                formData.append('_method', 'PUT');
-            }
-
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    'Accept': 'application/json'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    modalForm.hide();
-                    const pesan = id ? 'Data desa berhasil diperbarui!' : 'Data desa berhasil ditambahkan!';
-                    sessionStorage.setItem('desaNotif', pesan);
-                    location.reload();
-                } else {
-                    let errorMsg = 'Gagal menyimpan data';
-                    if (data.errors) {
-                        errorMsg = Object.values(data.errors).flat().join('\n');
-                    } else if (data.message) {
-                        errorMsg = data.message;
-                    }
-                    alert('Error: ' + errorMsg);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat menyimpan data');
-            });
-        }
     </script>
 </body>
 </html>

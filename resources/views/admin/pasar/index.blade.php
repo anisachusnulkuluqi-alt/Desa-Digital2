@@ -159,8 +159,8 @@
             text-decoration: none;
         }
         
-        .btn-add { background: linear-gradient(135deg, #14b8a6, #0f766e); }
-        .btn-add:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); color: white; }
+        .btn-add { background: linear-gradient(135deg, #1e40af, #2563eb); }
+        .btn-add:hover { background: linear-gradient(135deg, #1e3a8a, #1e40af); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3); color: white; }
         
         .table-simple { width: 100%; border-collapse: collapse; }
         .table-simple thead { background: #f8fafc; }
