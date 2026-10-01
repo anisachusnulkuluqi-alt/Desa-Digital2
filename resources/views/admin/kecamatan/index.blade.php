@@ -296,7 +296,6 @@
                         </label>
                         <button class="visually-hidden" type="submit">Cari</button>
                     </form>
-                    <a class="admin-primary-btn" href="{{ route('admin.kecamatan.create') }}"><i class="bi bi-plus-lg"></i> Tambah Kecamatan</a>
                 </div>
             </div>
 
@@ -390,80 +389,17 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Tutup</button>
-                    <button type="button" class="btn-modal-save" onclick="openEditDesaFromDetail()"><i class="bi bi-pencil"></i> Edit</button>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalEditDesa" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Edit Desa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <form id="formEditDesa">
-                    @csrf
-                    <input type="hidden" id="editDesaId" name="id">
-                    <div class="modal-body">
-                        <div class="section-divider">Informasi Dasar</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom" for="editKecamatanId">Kecamatan <span class="required">*</span></label>
-                                <select id="editKecamatanId" name="kecamatan_id" class="form-select-custom" required>
-                                    @foreach($kecamatan as $item)
-                                        <option value="{{ $item->id }}">{{ $item->nama_kecamatan }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom" for="editNamaDesa">Nama Desa/Kelurahan <span class="required">*</span></label>
-                                <input type="text" id="editNamaDesa" name="nama_desa" class="form-input-custom" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom" for="editKodeDesa">Kode Desa</label>
-                                <input type="text" id="editKodeDesa" name="kode_desa" class="form-input-custom">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label-custom" for="editJenis">Jenis <span class="required">*</span></label>
-                                <select id="editJenis" name="jenis" class="form-select-custom" required>
-                                    <option value="Desa">Desa</option>
-                                    <option value="Kelurahan">Kelurahan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="section-divider">Website &amp; Sosial Media</div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editWebsite">Website</label><input type="url" id="editWebsite" name="website" class="form-input-custom"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editYoutube">YouTube</label><input type="text" id="editYoutube" name="youtube" class="form-input-custom"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editInstagram">Instagram</label><input type="text" id="editInstagram" name="instagram" class="form-input-custom"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editFacebook">Facebook</label><input type="text" id="editFacebook" name="facebook" class="form-input-custom"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editTiktok">TikTok</label><input type="text" id="editTiktok" name="tiktok" class="form-input-custom"></div>
-                            <div class="col-md-6 mb-3"><label class="form-label-custom" for="editWhatsapp">WhatsApp</label><input type="text" id="editWhatsapp" name="whatsapp" class="form-input-custom"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Batal</button>
-                        <button type="button" class="btn-modal-delete" onclick="hapusDesaDariEdit()"><i class="bi bi-trash"></i> Hapus</button>
-                        <button type="submit" class="btn-modal-save"><i class="bi bi-check-lg"></i> Simpan</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let modalDetailDesa, modalEditDesa;
-        let selectedDesa = null;
+        let modalDetailDesa;
 
         document.addEventListener('DOMContentLoaded', function() {
             modalDetailDesa = new bootstrap.Modal(document.getElementById('modalDetailDesa'));
-            modalEditDesa = new bootstrap.Modal(document.getElementById('modalEditDesa'));
-            document.getElementById('formEditDesa').addEventListener('submit', simpanDesaDariEdit);
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
                 const rows = document.querySelectorAll('#kecamatanTable tr[data-id]');
@@ -487,7 +423,6 @@
 
         function showDesaDetail(button) {
             const data = button.dataset;
-            selectedDesa = { ...data };
             document.getElementById('detailNamaDesa').textContent = data.nama;
             document.getElementById('detailNama').textContent = data.nama;
             document.getElementById('detailKecamatan').textContent = data.kecamatan;
@@ -532,81 +467,6 @@
             modalDetailDesa.show();
         }
 
-        function openEditDesaFromDetail() {
-            if (!selectedDesa) return;
-
-            modalDetailDesa.hide();
-            setTimeout(() => {
-                document.getElementById('editDesaId').value = selectedDesa.id;
-                document.getElementById('editKecamatanId').value = selectedDesa.kecamatanId;
-                document.getElementById('editNamaDesa').value = selectedDesa.nama;
-                document.getElementById('editKodeDesa').value = selectedDesa.kode === '-' ? '' : selectedDesa.kode;
-                document.getElementById('editJenis').value = selectedDesa.jenis;
-                document.getElementById('editWebsite').value = selectedDesa.website;
-                document.getElementById('editYoutube').value = selectedDesa.youtube;
-                document.getElementById('editInstagram').value = selectedDesa.instagram;
-                document.getElementById('editFacebook').value = selectedDesa.facebook;
-                document.getElementById('editTiktok').value = selectedDesa.tiktok;
-                document.getElementById('editWhatsapp').value = selectedDesa.whatsapp;
-                modalEditDesa.show();
-            }, 300);
-        }
-
-        async function simpanDesaDariEdit(event) {
-            event.preventDefault();
-            const id = document.getElementById('editDesaId').value;
-            const formData = new FormData(event.currentTarget);
-            formData.append('_method', 'PUT');
-
-            try {
-                const response = await fetch(`/admin/desa/${encodeURIComponent(id)}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                        'Accept': 'application/json'
-                    },
-                    body: formData
-                });
-                const data = await response.json();
-                if (!response.ok) {
-                    const message = data.errors ? Object.values(data.errors).flat().join('\n') : (data.message || 'Gagal memperbarui data desa.');
-                    alert(message);
-                    return;
-                }
-
-                modalEditDesa.hide();
-                location.reload();
-            } catch (error) {
-                alert('Terjadi kesalahan saat memperbarui data desa.');
-            }
-        }
-
-        async function hapusDesaDariEdit() {
-            const id = document.getElementById('editDesaId').value;
-            const nama = document.getElementById('editNamaDesa').value;
-            if (!confirm(`Yakin ingin menghapus desa "${nama}"?`)) return;
-
-            try {
-                const response = await fetch(`/admin/desa/${encodeURIComponent(id)}`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({ _method: 'DELETE' })
-                });
-                const data = await response.json();
-                if (!response.ok || !data.success) {
-                    alert(data.message || 'Gagal menghapus data desa.');
-                    return;
-                }
-
-                location.reload();
-            } catch (error) {
-                alert('Terjadi kesalahan saat menghapus data desa.');
-            }
-        }
     </script>
 </body>
 </html>

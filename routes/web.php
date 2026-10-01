@@ -193,15 +193,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
         
         // Kecamatan
-        Route::resource('kecamatan', AdminKecamatanController::class);
-        Route::post('kecamatan/import', [AdminKecamatanController::class, 'import'])->name('kecamatan.import');
-        Route::get('kecamatan/download-template', [AdminKecamatanController::class, 'downloadTemplate'])->name('kecamatan.download-template');
+        Route::resource('kecamatan', AdminKecamatanController::class)->only(['index', 'show']);
         
         // Desa
-        Route::resource('desa', AdminDesaController::class);
-        Route::get('desa/{desa}/detail', [AdminDesaController::class, 'showDetail'])->name('desa.detail');
-        Route::post('desa/import', [AdminDesaController::class, 'import'])->name('desa.import');
-        Route::get('desa/download-template', [AdminDesaController::class, 'downloadTemplate'])->name('desa.download-template');
+        Route::resource('desa', AdminDesaController::class)->only(['index']);
 
         // ==========================================
         // ✅ WISATA DESA (ROUTE KHUSUS, BUKAN LOKASI TITIK)

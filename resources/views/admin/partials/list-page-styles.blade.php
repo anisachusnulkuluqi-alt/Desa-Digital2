@@ -29,9 +29,9 @@
     .admin-search-wrap > i { position: absolute; top: 50%; left: 12px; color: #94a3b8; transform: translateY(-50%); }
     .admin-search { width: 240px; height: 38px; padding: 0 12px 0 36px; border: 1px solid #e2e8f0; border-radius: 8px; color: #1e293b; font-size: 13px; outline: none; }
     .admin-search:focus { border-color: #7aa5ff; box-shadow: 0 0 0 3px #2563eb18; }
-    .admin-primary-btn, .admin-secondary-btn { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; gap: 7px; padding: 0 14px; border: 1px solid transparent; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; cursor: pointer; }
-    .admin-primary-btn { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; }
-    .admin-primary-btn:hover { color: #fff; box-shadow: 0 4px 12px #1e3a8a30; }
+    .admin-primary-btn, .admin-secondary-btn { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; gap: 7px; padding: 0 16px; border: 1px solid transparent; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .admin-primary-btn { background: linear-gradient(135deg, #1e40af, #2563eb); color: #fff; }
+    .admin-primary-btn:hover { background: linear-gradient(135deg, #1e3a8a, #1e40af); color: #fff; box-shadow: 0 4px 12px #1e40af35; transform: translateY(-1px); }
     .admin-secondary-btn { border-color: #e2e8f0; background: #fff; color: #334155; }
     .admin-table-wrap { overflow-x: auto; }
     .admin-table { width: 100%; border-collapse: collapse; text-align: left; }
