@@ -342,7 +342,7 @@
     <div class="admin-main">
         <header class="admin-topbar">
             <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Desa</strong></div>
-            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+            @include('admin.partials.header-actions')
         </header>
         <main class="admin-content">
         @if(session('success'))

@@ -157,7 +157,7 @@
         <main class="main">
             <header class="topbar">
                 <div class="crumb">Admin <span aria-hidden="true">/</span> {{ $category['label'] }}</div>
-                <div class="user-pill">{{ auth()->user()->name ?? 'Administrator' }}</div>
+                @include('admin.partials.header-actions')
             </header>
 
             <section class="content">

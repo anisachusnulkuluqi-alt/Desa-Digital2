@@ -46,7 +46,7 @@
     <div class="admin-main">
         <header class="admin-topbar">
             <strong>Manajemen Pengguna</strong>
-            <span>{{ auth()->user()->name }}</span>
+            @include('admin.partials.header-actions')
         </header>
 
         <main class="admin-content">

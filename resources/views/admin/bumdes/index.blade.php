@@ -350,10 +350,7 @@
                 <li class="breadcrumb-item active">BUMDes</li>
             </ol>
         </nav>
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
-        </div>
+        @include('admin.partials.header-actions')
     </div>
 
     <div class="main-content">

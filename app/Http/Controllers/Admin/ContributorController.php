@@ -4,83 +4,95 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class ContributorController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $contributors = User::query()
-            ->where('role', User::ROLE_CONTRIBUTOR)
-            ->orderBy('name')
-            ->paginate(10);
+        $kontributors = User::where('role', '!=', 'superadmin')
+            ->orderBy('name', 'asc')
+            ->get();
 
-        return view('admin.kontributor.index', compact('contributors'));
+        return view('admin.kontributor.index', compact('kontributors'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', 'min:8'],
-        ]);
-
-        $contributor = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'role' => User::ROLE_CONTRIBUTOR,
-        ]);
-        $contributor->markEmailAsVerified();
-
-        return redirect()->route('admin.kontributor.index')->with('success', 'Akun kontributor berhasil ditambahkan.');
-    }
-
-    public function edit(int $id): View
-    {
-        $contributor = $this->findContributor($id);
-
-        return view('admin.kontributor.edit', compact('contributor'));
-    }
-
-    public function update(Request $request, int $id): RedirectResponse
-    {
-        $contributor = $this->findContributor($id);
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('users', 'email')->ignore($contributor->id)],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        $contributor->fill([
-            'name' => $data['name'],
-            'email' => $data['email'],
-        ]);
-
-        if (!empty($data['password'] ?? null)) {
-            $contributor->password = $data['password'];
+        // ✅ Hanya Admin yang bisa menambah user
+        if (auth()->user()->role !== 'admin') {
+            return back()->with('error', 'Hanya Admin yang dapat menambah kontributor!');
         }
 
-        $contributor->save();
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'in:admin,kontributor'],
+        ]);
 
-        return redirect()->route('admin.kontributor.index')->with('success', 'Akun kontributor berhasil diperbarui.');
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
+            'email_verified_at' => now(),
+        ]);
+
+        return back()->with('success', 'Kontributor berhasil ditambahkan!');
     }
 
-    public function destroy(int $id): RedirectResponse
+    public function update(Request $request, $id)
     {
-        $this->findContributor($id)->delete();
+        $user = User::findOrFail($id);
 
-        return redirect()->route('admin.kontributor.index')->with('success', 'Akun kontributor berhasil dihapus.');
+        // ✅ Kontributor tidak bisa mengubah role
+        $roleRule = auth()->user()->role === 'admin' 
+            ? ['required', 'in:admin,kontributor'] 
+            : ['required', 'in:kontributor'];
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id],
+            'role' => $roleRule,
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        
+        // ✅ Hanya Admin yang bisa mengubah role
+        if (auth()->user()->role === 'admin') {
+            $user->role = $validated['role'];
+        }
+
+        if (!empty($validated['password'])) {
+            $user->password = Hash::make($validated['password']);
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Kontributor berhasil diperbarui!');
     }
 
-    private function findContributor(int $id): User
+    public function destroy($id)
     {
-        return User::query()
-            ->where('role', User::ROLE_CONTRIBUTOR)
-            ->findOrFail($id);
+        // ✅ HANYA ADMIN yang bisa hapus
+        if (auth()->user()->role !== 'admin') {
+            return back()->with('error', 'Akses ditolak! Hanya Admin yang dapat menghapus kontributor.');
+        }
+
+        $user = User::findOrFail($id);
+
+        // Tidak bisa hapus akun sendiri
+        if ($user->id === auth()->id()) {
+            return back()->with('error', 'Anda tidak dapat menghapus akun sendiri!');
+        }
+
+        $user->delete();
+
+        return back()->with('success', 'Kontributor berhasil dihapus!');
     }
 }

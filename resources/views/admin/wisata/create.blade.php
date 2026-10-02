@@ -224,10 +224,7 @@
             <div class="breadcrumb-item active">Tambah Data</div>
         </div>
 
-        <div class="date-display">
-            <i class="bi bi-calendar"></i>
-            {{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}
-        </div>
+        @include('admin.partials.header-actions')
     </div>
 
     <div class="main-content">

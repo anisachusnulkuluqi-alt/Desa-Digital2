@@ -11,7 +11,6 @@
         ['key' => 'bumdes', 'route' => 'admin.bumdes.index', 'icon' => 'bi-briefcase-fill', 'label' => 'BUMDes'],
         ['key' => 'kkdmp', 'route' => 'admin.kkdmp.index', 'icon' => 'bi-people-fill', 'label' => 'KKDMP'],
         ...(auth()->user()?->isAdmin() ? [['key' => 'kontributor', 'route' => 'admin.kontributor.index', 'icon' => 'bi-person-plus-fill', 'label' => 'Kontributor']] : []),
-        ['key' => 'website', 'route' => 'home', 'icon' => 'bi-box-arrow-up-right', 'label' => 'Kembali ke Website'],
     ];
 @endphp
 
@@ -36,8 +35,6 @@
     .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
     .sidebar-menu a:hover, .sidebar-menu a.active { background: #2563eb; color: white; }
     .sidebar-menu a:hover { background: #1d4ed8; }
-    .sidebar-menu a.sidebar-menu-return { background: #dc2626; color: white; }
-    .sidebar-menu a.sidebar-menu-return:hover { background: #b91c1c; color: white; }
     .sidebar-menu a i { font-size: 16px; width: 18px; text-align: center; }
     .main-content { max-width: none; margin: 0 0 0 260px; }
     .main { margin-left: 260px; }
@@ -60,7 +57,7 @@
     <ul class="sidebar-menu">
         @foreach ($menuItems as $item)
             <li>
-                <a href="{{ route($item['route']) }}" class="{{ $activeMenu === $item['key'] ? 'active ' : '' }}{{ $item['key'] === 'website' ? 'sidebar-menu-return' : '' }}">
+                <a href="{{ route($item['route']) }}" class="{{ $activeMenu === $item['key'] ? 'active' : '' }}">
                     <i class="bi {{ $item['icon'] }}"></i><span>{{ $item['label'] }}</span>
                 </a>
             </li>

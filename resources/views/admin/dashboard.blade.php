@@ -129,9 +129,6 @@
         }
 
         .sidebar-menu a:hover { background: #1d4ed8; }
-        .sidebar-menu a.return-to-website { background: #dc2626; color: white; }
-        .sidebar-menu a.return-to-website:hover { background: #b91c1c; color: white; }
-
         /* ===== MAIN CONTENT ===== */
         .main-content {
             margin-left: 240px;
@@ -180,145 +177,6 @@
             transform: translateY(-50%);
             color: var(--text-light);
             font-size: 14px;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-icon-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: white;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            cursor: pointer;
-            position: relative;
-            transition: all 0.2s;
-            font-size: 15px;
-        }
-
-        .header-icon-btn:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .header-icon-btn .badge-dot {
-            position: absolute;
-            top: 7px;
-            right: 7px;
-            width: 6px;
-            height: 6px;
-            background: var(--danger);
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 4px 10px 4px 4px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .user-profile:hover {
-            border-color: var(--primary-light);
-            background: #f8fafc;
-        }
-
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 12px;
-        }
-
-        .user-info strong {
-            display: block;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .user-info small {
-            font-size: 9px;
-            color: var(--text-secondary);
-        }
-
-        /* ===== CUSTOM DROPDOWN PROFILE ===== */
-        .custom-dropdown {
-            position: absolute;
-            top: 115%;
-            right: 0;
-            width: 200px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            padding: 6px;
-            display: none;
-            z-index: 1050;
-            animation: fadeIn 0.15s ease-out;
-        }
-
-        .custom-dropdown.show {
-            display: block;
-        }
-
-        .custom-dropdown .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            color: var(--text-primary);
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: none;
-            background: transparent;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        .custom-dropdown .dropdown-item:hover {
-            background: #f1f5f9;
-            color: var(--primary);
-        }
-
-        .custom-dropdown .dropdown-item.text-danger:hover {
-            background: #fef2f2;
-            color: var(--danger);
-        }
-
-        .custom-dropdown .dropdown-divider {
-            height: 1px;
-            background: var(--border);
-            margin: 6px 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ===== PAGE BODY ===== */
@@ -565,7 +423,6 @@
             @if (Auth::user()->isAdmin())
                 <li><a href="{{ route('admin.kontributor.index') }}"><i class="bi bi-person-plus-fill"></i><span>Kontributor</span></a></li>
             @endif
-            <li><a href="{{ route('home') }}" class="return-to-website"><i class="bi bi-box-arrow-up-right"></i><span>Kembali ke Website</span></a></li>
         </ul>
     </aside>
 
@@ -577,42 +434,7 @@
                 <input type="text" placeholder="Cari desa, kecamatan, atau menu...">
             </div>
 
-            <div class="header-actions">
-                <button class="header-icon-btn">
-                    <i class="bi bi-bell-fill"></i>
-                    <span class="badge-dot"></span>
-                </button>
-
-                <!-- ✅ BAGIAN PROFIL & DROPDOWN LOGOUT -->
-                <div class="position-relative">
-                    <div class="user-profile" id="userProfileBtn">
-                        <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
-                        <div class="user-info">
-                            <strong>{{ Auth::user()->name ?? 'Admin Desa' }}</strong>
-                            <small>{{ ucfirst(Auth::user()->role) }}</small>
-                        </div>
-                        <i class="bi bi-chevron-down" style="color: var(--text-secondary); font-size: 10px;"></i>
-                    </div>
-
-                    <!-- Dropdown Menu -->
-                    <div class="custom-dropdown" id="userDropdown">
-                        <a href="{{ route('profile.show') }}" class="dropdown-item">
-                            <i class="bi bi-person"></i> Lihat Profil
-                        </a>
-                        <a href="{{ route('profile.edit') }}" class="dropdown-item">
-                            <i class="bi bi-gear"></i> Pengaturan
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="dropdown-item text-danger">
-                                <i class="bi bi-box-arrow-right"></i> Logout
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- ✅ AKHIR BAGIAN PROFIL -->
-            </div>
+            @include('admin.partials.header-actions')
         </header>
 
         <div class="page-body">
@@ -729,52 +551,9 @@
                     <div class="stat-bar"><div class="stat-bar-fill" style="width: 75%;"></div></div>
                 </div>
 
-                <div class="stat-card">
-                    <div class="stat-top">
-                        <div class="stat-icon"><i class="bi bi-person-check-fill"></i></div>
-                    </div>
-                    <div class="stat-label">Pengunjung Unik</div>
-                    <div class="stat-value-row">
-                        <div class="stat-value">{{ $totalPengunjung ?? 0 }}</div>
-                        <div class="stat-unit">pengunjung</div>
-                    </div>
-                    <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%;"></div></div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-top">
-                        <div class="stat-icon"><i class="bi bi-calendar-check-fill"></i></div>
-                    </div>
-                    <div class="stat-label">Pengunjung Hari Ini</div>
-                    <div class="stat-value-row">
-                        <div class="stat-value">{{ $pengunjungHariIni ?? 0 }}</div>
-                        <div class="stat-unit">pengunjung</div>
-                    </div>
-                    <div class="stat-bar"><div class="stat-bar-fill" style="width: 65%;"></div></div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- ✅ JAVASCRIPT UNTUK DROPDOWN -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const profileBtn = document.getElementById('userProfileBtn');
-            const dropdown = document.getElementById('userDropdown');
-
-            // Toggle dropdown saat tombol profil diklik
-            profileBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Mencegah event bubbling
-                dropdown.classList.toggle('show');
-            });
-
-            // Tutup dropdown saat mengklik di luar area dropdown
-            document.addEventListener('click', function(e) {
-                if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
-                    dropdown.classList.remove('show');
-                }
-            });
-        });
-    </script>
 </body>
 </html>

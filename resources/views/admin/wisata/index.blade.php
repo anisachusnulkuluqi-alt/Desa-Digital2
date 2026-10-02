@@ -24,8 +24,6 @@
         .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
         .sidebar-menu a:hover, .sidebar-menu a.active { background: #2563eb; color: white; }
         .sidebar-menu a:hover { background: #1d4ed8; }
-        .sidebar-menu a.return-to-website { background: #dc2626; color: white; }
-        .sidebar-menu a.return-to-website:hover { background: #b91c1c; color: white; }
         .sidebar-menu a i { font-size: 16px; width: 18px; text-align: center; }
         
         .main-content { margin-left: 260px; }
@@ -273,14 +271,13 @@
             <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
             <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
             <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
-            <li><a href="{{ route('home') }}" class="return-to-website"><i class="bi bi-box-arrow-up-right"></i><span>Kembali ke Website</span></a></li>
         </ul>
     </aside>
 
     <div class="admin-main">
         <header class="admin-topbar">
             <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <strong>Wisata Desa</strong></div>
-            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+            @include('admin.partials.header-actions')
         </header>
 
         <main class="admin-content">

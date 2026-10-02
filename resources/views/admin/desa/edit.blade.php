@@ -256,7 +256,7 @@
     <div class="admin-main">
         <header class="admin-topbar">
             <div class="admin-breadcrumb">Admin <span aria-hidden="true">/</span> <a href="{{ route('admin.desa.index') }}">Desa</a> <span aria-hidden="true">/</span> <strong>Edit</strong></div>
-            <div class="admin-user">{{ auth()->user()->name ?? 'Administrator' }}</div>
+            @include('admin.partials.header-actions')
         </header>
         <main class="admin-edit-content">
         <div class="admin-page-heading">
