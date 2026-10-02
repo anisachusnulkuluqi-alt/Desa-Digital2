@@ -238,6 +238,7 @@
         .file-preview.active {
             display: block;
         }
+        .file-preview-remove { margin-top: 8px; }
         
         .btn-modal-save { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; border: none; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
         .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); color: white; }
@@ -450,6 +451,7 @@
                 <form id="formWisata" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" id="wisataId" name="id">
+                    <input type="hidden" id="hapusFoto" name="hapus_foto" value="0">
                     <div class="modal-body">
                         <div class="section-divider">Informasi Dasar</div>
                         <div class="row">
@@ -512,6 +514,13 @@
                             </label>
                             <div class="file-preview" id="fotoPreview">
                                 <img id="fotoPreviewImg" src="" alt="Preview">
+                                <button type="button" class="btn btn-sm btn-outline-danger file-preview-remove" onclick="hapusFotoSaatIni()">
+                                    <i class="bi bi-trash"></i> Hapus foto
+                                </button>
+                            </div>
+                            <div class="alert alert-warning mt-2 mb-0 py-2" id="fotoHapusPending" hidden>
+                                Foto akan dihapus saat disimpan.
+                                <button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="batalkanHapusFoto()">Batalkan</button>
                             </div>
                         </div>
                     </div>
@@ -529,6 +538,7 @@
         let modalForm, modalDetail;
         let currentWisataId = null;
         let currentWisataData = null;
+        let originalWisataFoto = '';
 
         document.addEventListener('DOMContentLoaded', function() {
             modalForm = new bootstrap.Modal(document.getElementById('modalForm'));
@@ -560,8 +570,28 @@
                     preview.classList.add('active');
                 }
                 reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.classList.remove('active');
+            }
+        }
+
+        function hapusFotoSaatIni() {
+            document.getElementById('fotoUpload').value = '';
+            document.getElementById('hapusFoto').value = '1';
+            document.getElementById('fotoPreview').classList.remove('active');
+            document.getElementById('fotoPreviewImg').removeAttribute('src');
+            document.getElementById('fotoHapusPending').hidden = false;
+        }
+
+        function batalkanHapusFoto() {
+            document.getElementById('hapusFoto').value = '0';
+            document.getElementById('fotoHapusPending').hidden = true;
+
+            if (document.getElementById('fotoUpload').files.length > 0) {
+                return;
+            }
+
+            if (originalWisataFoto) {
+                document.getElementById('fotoPreviewImg').src = originalWisataFoto;
+                document.getElementById('fotoPreview').classList.add('active');
             }
         }
 
@@ -630,15 +660,21 @@
 
         function openTambahModal() {
             currentWisataId = null;
+            originalWisataFoto = '';
             document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah Wisata';
             document.getElementById('formWisata').reset();
             document.getElementById('wisataId').value = '';
+            document.getElementById('fotoUpload').value = '';
+            document.getElementById('hapusFoto').value = '0';
+            document.getElementById('fotoPreviewImg').removeAttribute('src');
             document.getElementById('fotoPreview').classList.remove('active');
+            document.getElementById('fotoHapusPending').hidden = true;
             modalForm.show();
         }
 
         function openEditModal(id, nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto) {
             currentWisataId = id;
+            originalWisataFoto = foto || '';
             document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Wisata';
             document.getElementById('wisataId').value = id;
             document.getElementById('namaWisata').value = nama || '';
@@ -650,13 +686,17 @@
             document.getElementById('reservasi').value = reservasi || '';
             document.getElementById('latitude').value = latitude || '';
             document.getElementById('longitude').value = longitude || '';
+            document.getElementById('fotoUpload').value = '';
+            document.getElementById('hapusFoto').value = '0';
+            document.getElementById('fotoHapusPending').hidden = true;
             
             const preview = document.getElementById('fotoPreview');
             const previewImg = document.getElementById('fotoPreviewImg');
-            if (foto && foto.trim() !== '') {
-                previewImg.src = foto;
+            if (originalWisataFoto.trim() !== '') {
+                previewImg.src = originalWisataFoto;
                 preview.classList.add('active');
             } else {
+                previewImg.removeAttribute('src');
                 preview.classList.remove('active');
             }
             

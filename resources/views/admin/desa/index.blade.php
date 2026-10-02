@@ -215,6 +215,15 @@
         .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
         .modal-body { padding: 24px 22px; max-height: 70vh; overflow-y: auto; }
         .modal-footer { border-top: 1px solid #e2e8f0; padding: 14px 22px; background: #f8fafc; border-radius: 0 0 12px 12px; }
+        .edit-form-grid, .edit-social-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .edit-section-title { margin: 18px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; color: #1e3a8a; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .edit-social-field { min-width: 0; }
+        .edit-social-field .form-label-custom { margin-top: 10px; }
+        .edit-error { margin-bottom: 16px; }
+        .form-input-custom.static-field, .form-input-custom.static-field:focus { border-color: #d1d5db; background: #e5e7eb; color: #9ca3af; box-shadow: none; cursor: not-allowed; }
+        .form-select-custom.static-field:disabled { border-color: #e2e8f0; background-color: #f1f3f5; color: #94a3b8; opacity: 1; cursor: not-allowed; }
+        .form-label-custom[for="editNamaDesa"], .form-label-custom[for="editKodeDesa"], .form-label-custom[for="editKecamatan"] { color: #94a3b8; }
+        @media (max-width: 768px) { .edit-form-grid, .edit-social-grid { grid-template-columns: 1fr; } }
         
         .detail-row {
             display: flex;
@@ -383,7 +392,7 @@
                 </thead>
                 <tbody id="desaTable">
                     @forelse($desas as $index => $desa)
-                    <tr tabindex="0" role="button" data-id="{{ $desa->id }}" onclick="showDetail({{ $desa->id }}, '{{ addslashes($desa->nama_desa) }}', '{{ addslashes($desa->kecamatan->nama_kecamatan ?? '-') }}', '{{ $desa->kode_desa ?? '-' }}', '{{ $desa->jenis ?? 'Desa' }}', '{{ addslashes($desa->website ?? '') }}', '{{ addslashes($desa->youtube ?? '') }}', '{{ addslashes($desa->instagram ?? '') }}', '{{ addslashes($desa->facebook ?? '') }}', '{{ addslashes($desa->tiktok ?? '') }}', '{{ addslashes($desa->whatsapp ?? '') }}')" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
+                    <tr tabindex="0" role="button" data-id="{{ $desa->id }}" onclick="showDetail({{ $desa->id }}, '{{ addslashes($desa->nama_desa) }}', '{{ addslashes($desa->kecamatan->nama_kecamatan ?? '-') }}', '{{ $desa->kode_desa ?? '-' }}', '{{ $desa->jenis ?? 'Desa' }}', '{{ addslashes($desa->website ?? '') }}', '{{ addslashes($desa->youtube ?? '') }}', '{{ addslashes($desa->instagram ?? '') }}', '{{ addslashes($desa->facebook ?? '') }}', '{{ addslashes($desa->tiktok ?? '') }}', '{{ addslashes($desa->whatsapp ?? '') }}', {{ $desa->kecamatan_id }})" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
                         <td class="admin-row-number">{{ $desas->firstItem() + $index }}</td>
                         <td>
                             <div class="admin-place-name">
@@ -458,17 +467,99 @@
                     <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal">
                         <i class="bi bi-x-lg"></i> Tutup
                     </button>
+                    <button type="button" class="btn-modal-save" onclick="editSelectedDesa()">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditDesa" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form id="formEditDesa" method="POST" onsubmit="submitEditDesa(event)">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="bi bi-pencil-square"></i> Edit Data Desa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger edit-error" id="editDesaError" role="alert" hidden></div>
+                        <div class="edit-form-grid">
+                            <div>
+                                <label class="form-label-custom" for="editNamaDesa">Nama Desa/Kelurahan <span class="required">*</span></label>
+                                <input class="form-input-custom static-field" id="editNamaDesa" name="nama_desa" type="text" maxlength="255" readonly required>
+                            </div>
+                            <div>
+                                <label class="form-label-custom" for="editKodeDesa">Kode Desa <span class="required">*</span></label>
+                                <input class="form-input-custom static-field" id="editKodeDesa" name="kode_desa" type="text" maxlength="20" readonly required>
+                            </div>
+                            <div>
+                                <label class="form-label-custom" for="editKecamatan">Kecamatan <span class="required">*</span></label>
+                                <select class="form-select-custom static-field" id="editKecamatan" disabled required>
+                                    <option value="">-- Pilih Kecamatan --</option>
+                                    @foreach($kecamatans as $kecamatan)
+                                        <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama_kecamatan }}</option>
+                                    @endforeach
+                                </select>
+                                <input id="editKecamatanValue" name="kecamatan_id" type="hidden">
+                            </div>
+                            <div>
+                                <label class="form-label-custom" for="editJenis">Jenis <span class="required">*</span></label>
+                                <select class="form-select-custom" id="editJenis" name="jenis" required>
+                                    <option value="Desa">Desa</option>
+                                    <option value="Kelurahan">Kelurahan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="edit-section-title">Media Sosial & Website</div>
+                        <div class="edit-social-grid">
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editWebsite">Website</label>
+                                <input class="form-input-custom" id="editWebsite" name="website" type="url" maxlength="255" placeholder="https://">
+                            </div>
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editYoutube">YouTube</label>
+                                <input class="form-input-custom" id="editYoutube" name="youtube" type="url" maxlength="255" placeholder="https://youtube.com/">
+                            </div>
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editInstagram">Instagram</label>
+                                <input class="form-input-custom" id="editInstagram" name="instagram" type="text" maxlength="255" placeholder="https://instagram.com/">
+                            </div>
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editFacebook">Facebook</label>
+                                <input class="form-input-custom" id="editFacebook" name="facebook" type="url" maxlength="255" placeholder="https://facebook.com/">
+                            </div>
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editTiktok">TikTok</label>
+                                <input class="form-input-custom" id="editTiktok" name="tiktok" type="text" maxlength="255" placeholder="https://tiktok.com/">
+                            </div>
+                            <div class="edit-social-field">
+                                <label class="form-label-custom" for="editWhatsapp">WhatsApp</label>
+                                <input class="form-input-custom" id="editWhatsapp" name="whatsapp" type="text" maxlength="50" placeholder="08xxxxxxxxxx">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Batal</button>
+                        <button type="submit" class="btn-modal-save"><i class="bi bi-check-lg"></i> Simpan</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let modalDetail;
+        let modalDetail, modalEditDesa;
+        let selectedDesa = null;
+        const desaUpdateUrl = @json(url('/admin/desa'));
 
         document.addEventListener('DOMContentLoaded', function() {
             modalDetail = new bootstrap.Modal(document.getElementById('modalDetail'));
+            modalEditDesa = new bootstrap.Modal(document.getElementById('modalEditDesa'));
 
             document.getElementById('searchInput').addEventListener('input', function() {
                 const filter = this.value.toLowerCase();
@@ -480,7 +571,8 @@
             });
         });
 
-        function showDetail(id, nama, kecamatan, kodeDesa, jenis, website, youtube, instagram, facebook, tiktok, whatsapp) {
+        function showDetail(id, nama, kecamatan, kodeDesa, jenis, website, youtube, instagram, facebook, tiktok, whatsapp, kecamatanId) {
+            selectedDesa = { id, nama, kecamatan, kecamatanId, kodeDesa, jenis, website, youtube, instagram, facebook, tiktok, whatsapp };
             document.getElementById('detailNamaDesa').textContent = nama;
             document.getElementById('detailNama').textContent = nama;
             document.getElementById('detailKecamatan').textContent = kecamatan;
@@ -506,6 +598,69 @@
             sosialEl.dataset.whatsapp = whatsapp;
             
             modalDetail.show();
+        }
+
+        function editSelectedDesa() {
+            if (!selectedDesa) return;
+
+            document.getElementById('modalDetail').addEventListener('hidden.bs.modal', () => {
+                openEditDesa(selectedDesa);
+            }, { once: true });
+            modalDetail.hide();
+        }
+
+        function openEditDesa(desa) {
+            const form = document.getElementById('formEditDesa');
+            form.reset();
+            form.action = `${desaUpdateUrl}/${desa.id}`;
+            document.getElementById('editDesaError').hidden = true;
+            document.getElementById('editNamaDesa').value = desa.nama || '';
+            document.getElementById('editKodeDesa').value = desa.kodeDesa === '-' ? '' : desa.kodeDesa;
+            document.getElementById('editKecamatan').value = desa.kecamatanId || '';
+            document.getElementById('editKecamatanValue').value = desa.kecamatanId || '';
+            document.getElementById('editJenis').value = desa.jenis || 'Desa';
+            document.getElementById('editWebsite').value = desa.website || '';
+            document.getElementById('editYoutube').value = desa.youtube || '';
+            document.getElementById('editInstagram').value = desa.instagram || '';
+            document.getElementById('editFacebook').value = desa.facebook || '';
+            document.getElementById('editTiktok').value = desa.tiktok || '';
+            document.getElementById('editWhatsapp').value = desa.whatsapp || '';
+            modalEditDesa.show();
+        }
+
+        async function submitEditDesa(event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const errorBox = document.getElementById('editDesaError');
+            const formData = new FormData(form);
+            const saveButton = form.querySelector('button[type="submit"]');
+            saveButton.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (!response.ok) {
+                    const messages = Object.values(result.errors || {}).flat();
+                    errorBox.textContent = messages.join(' ') || result.message || 'Data desa gagal diperbarui.';
+                    errorBox.hidden = false;
+                    return;
+                }
+
+                location.reload();
+            } catch (error) {
+                errorBox.textContent = 'Terjadi kesalahan saat menyimpan data desa.';
+                errorBox.hidden = false;
+            } finally {
+                saveButton.disabled = false;
+            }
         }
 
     </script>

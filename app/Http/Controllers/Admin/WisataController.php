@@ -45,6 +45,7 @@ class WisataController extends Controller
             'latitude'        => 'nullable|string|max:50',
             'longitude'       => 'nullable|string|max:50',
             'foto'            => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'hapus_foto'      => 'nullable|boolean',
         ]);
 
         // Handle upload foto
@@ -103,7 +104,9 @@ class WisataController extends Controller
         }
 
         // Handle upload foto baru
-        $fotoPath = $oldProperties['foto'] ?? null;
+        $oldFotoPath = $oldProperties['foto'] ?? null;
+        $hapusFoto = $request->boolean('hapus_foto');
+        $fotoPath = $hapusFoto ? null : $oldFotoPath;
         if ($request->hasFile('foto')) {
             $fotoPath = $request->file('foto')->store('wisata', 'public');
             $fotoPath = asset('storage/' . $fotoPath);
@@ -126,10 +129,46 @@ class WisataController extends Controller
             'properties' => json_encode($newProperties),
         ]);
 
+        if ($hapusFoto || $request->hasFile('foto')) {
+            $this->deleteStoredWisataPhoto($oldFotoPath);
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'Data wisata berhasil diperbarui!'
         ]);
+    }
+
+    private function deleteStoredWisataPhoto(?string $photoUrl): void
+    {
+        if (!$photoUrl) {
+            return;
+        }
+
+        $parsedUrl = parse_url($photoUrl);
+        if (!is_array($parsedUrl)) {
+            return;
+        }
+
+        $photoPath = $parsedUrl['path'] ?? '';
+        if (isset($parsedUrl['host'])) {
+            if (preg_match('~^/storage/(wisata/[^/]+)$~', $photoPath, $matches) !== 1) {
+                return;
+            }
+
+            $photoPath = $matches[1];
+        } else {
+            $photoPath = ltrim($photoPath, '/');
+            if (str_starts_with($photoPath, 'storage/')) {
+                $photoPath = substr($photoPath, strlen('storage/'));
+            }
+
+            if (preg_match('~^wisata/[^/]+$~', $photoPath) !== 1) {
+                return;
+            }
+        }
+
+        Storage::disk('public')->delete($photoPath);
     }
 
     public function destroy($id)

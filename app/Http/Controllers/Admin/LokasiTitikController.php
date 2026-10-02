@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class LokasiTitikController extends Controller
@@ -113,6 +114,30 @@ class LokasiTitikController extends Controller
         $data = $this->validatedLocation($request, $category['route']);
         $location = DB::table($category['table'])->where('id', $id)->first();
         abort_if($location === null, 404);
+        $counterpartRoute = match ($category['route']) {
+            'kantor' => 'wifi',
+            'wifi' => 'kantor',
+            default => null,
+        };
+        $sharedPhotoCounterparts = collect();
+
+        if ($request->hasFile('foto') && $counterpartRoute !== null) {
+            $counterpartTable = self::CATEGORIES[$counterpartRoute]['table'];
+            $sharedPhotoCounterparts = DB::table($counterpartTable)
+                ->where('latitude', $data['latitude'])
+                ->where('longitude', $data['longitude'])
+                ->get();
+
+            if ($sharedPhotoCounterparts->isNotEmpty() && !$request->has('apply_foto_kantor_wifi')) {
+                return response()->json([
+                    'requires_confirmation' => true,
+                    'counterpart_names' => $sharedPhotoCounterparts->pluck('nama_lokasi')->filter()->values(),
+                    'counterpart_category' => self::CATEGORIES[$counterpartRoute]['label'],
+                ], 409);
+            }
+        }
+
+        $applySharedPhoto = $request->boolean('apply_foto_kantor_wifi') && $sharedPhotoCounterparts->isNotEmpty();
         $existingProperties = json_decode($location->properties ?? '{}', true) ?: [];
         $submittedProperties = json_decode($data['properties'] ?? '{}', true) ?: [];
         $propertiesData = array_merge($existingProperties, $submittedProperties);
@@ -145,8 +170,22 @@ class LokasiTitikController extends Controller
             $propertiesData['link_maps'] = $data['link_maps'] ?? null;
         }
 
+        if ($request->boolean('remove_foto')) {
+            $existingPhoto = $existingProperties['foto'] ?? $existingProperties['Foto'] ?? $existingProperties['image'] ?? null;
+            unset($propertiesData['foto'], $propertiesData['Foto'], $propertiesData['image']);
+
+            $photoUrlPath = is_string($existingPhoto) ? parse_url($existingPhoto, PHP_URL_PATH) : null;
+            if (is_string($photoUrlPath)) {
+                $storedPhotoPath = Str::after($photoUrlPath, '/storage/');
+                if ($storedPhotoPath !== $photoUrlPath && Str::startsWith($storedPhotoPath, $category['route'].'/')) {
+                    Storage::disk('public')->delete($storedPhotoPath);
+                }
+            }
+        }
+
         if ($request->hasFile('foto')) {
-            $photoPath = $request->file('foto')->store($category['route'], 'public');
+            $photoDirectory = $applySharedPhoto ? 'kantor_dan_wifi' : $category['route'];
+            $photoPath = $request->file('foto')->store($photoDirectory, 'public');
             $propertiesData['foto'] = asset('storage/'.$photoPath);
         }
         $properties = $propertiesData === []
@@ -161,6 +200,19 @@ class LokasiTitikController extends Controller
             'properties' => $properties,
             'updated_at' => now(),
         ]);
+
+        if ($applySharedPhoto && isset($propertiesData['foto'])) {
+            foreach ($sharedPhotoCounterparts as $counterpart) {
+                $counterpartProperties = json_decode($counterpart->properties ?? '{}', true) ?: [];
+                unset($counterpartProperties['Foto'], $counterpartProperties['image']);
+                $counterpartProperties['foto'] = $propertiesData['foto'];
+
+                DB::table(self::CATEGORIES[$counterpartRoute]['table'])->where('id', $counterpart->id)->update([
+                    'properties' => json_encode($counterpartProperties, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
 
         return redirect()->route('admin.'.$category['route'].'.index')
             ->with('success', 'Titik lokasi berhasil diperbarui.');
@@ -196,6 +248,11 @@ class LokasiTitikController extends Controller
 
         if (in_array($categoryRoute, ['pasar', 'kantor', 'wifi', 'bumdes', 'kkdmp'], true)) {
             $rules['foto'] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'];
+            $rules['remove_foto'] = ['sometimes', 'boolean'];
+        }
+
+        if (in_array($categoryRoute, ['kantor', 'wifi'], true)) {
+            $rules['apply_foto_kantor_wifi'] = ['sometimes', 'boolean'];
         }
 
         if ($categoryRoute === 'wifi') {

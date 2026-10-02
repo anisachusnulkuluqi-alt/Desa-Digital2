@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Desa;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DesaController extends Controller
 {
@@ -20,8 +21,9 @@ class DesaController extends Controller
         $desas = $query->orderBy('nama_desa', 'asc')->paginate(10)->withQueryString();
         $totalDesa = Desa::count();
         $totalKecamatan = Kecamatan::count();
+        $kecamatans = Kecamatan::orderBy('nama_kecamatan')->get();
 
-        return view('admin.desa.index', compact('desas', 'totalDesa', 'totalKecamatan'));
+        return view('admin.desa.index', compact('desas', 'totalDesa', 'totalKecamatan', 'kecamatans'));
     }
 
     public function store(Request $request)
@@ -52,7 +54,7 @@ class DesaController extends Controller
         $request->validate([
             'nama_desa' => 'required|string|max:255',
             'kecamatan_id' => 'required|exists:kecamatan,id',
-            'kode_desa' => 'nullable|string|max:50',
+            'kode_desa' => ['required', 'string', 'max:20', Rule::unique('desa', 'kode_desa')->ignore($desa->id)],
             'jenis' => 'required|in:Desa,Kelurahan',
             'website' => 'nullable|url|max:255',
             'youtube' => 'nullable|string|max:255',

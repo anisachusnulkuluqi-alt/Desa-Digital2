@@ -93,10 +93,20 @@
         .field-group label { color: #1e293b; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .field { width: 100%; min-height: 39px; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; outline: none; background: #f8fafc; color: var(--ink); }
         .textarea { width: 100%; min-height: 110px; resize: vertical; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; outline: none; background: #f8fafc; color: var(--ink); font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+        .photo-upload { position: relative; display: grid; min-height: 124px; place-content: center; padding: 20px; border: 2px dashed #e2e8f0; border-radius: 10px; background: #f8fafc; text-align: center; cursor: pointer; transition: all 0.2s; }
+        .photo-upload:hover, .photo-upload.drag-over { border-color: #1e3a8a; background: #f1f5f9; }
+        .photo-upload:focus-visible { outline: 3px solid #1e3a8a30; outline-offset: 2px; }
+        .photo-upload input[type="file"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+        .photo-upload-icon { margin-bottom: 8px; color: #94a3b8; font-size: 28px; }
+        .photo-upload-text { color: #64748b; font-size: 13px; font-weight: 500; overflow-wrap: anywhere; }
+        .photo-upload-hint { margin-top: 4px; color: #94a3b8; font-size: 11px; }
         .photo-preview { display: none; align-items: center; gap: 12px; margin-top: 10px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: #f8fafc; }
         .photo-preview.visible { display: flex; }
         .photo-preview img { width: 76px; height: 58px; border-radius: 6px; object-fit: cover; }
         .photo-preview span { color: var(--muted); font-size: 12px; font-weight: 600; }
+        .photo-preview-remove { flex: 0 0 auto; margin-left: auto; padding: 7px 10px; border: 1px solid #fecaca; border-radius: 6px; background: #fff; color: #b91c1c; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .photo-preview-remove:hover { background: #fef2f2; }
+        @media (max-width: 520px) { .photo-preview { align-items: flex-start; flex-wrap: wrap; } .photo-preview-remove { margin-left: 0; } }
         .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .modal-actions { position: sticky; bottom: -24px; display: flex; justify-content: flex-end; gap: 8px; margin: 8px -22px -24px; padding: 14px 22px; border-top: 1px solid var(--line); background: #f8fafc; }
         .section-divider { margin: 2px 0 0; padding-bottom: 7px; border-bottom: 1px solid var(--line); color: var(--blue); font-size: 10px; font-weight: 700; text-transform: uppercase; }
@@ -362,11 +372,17 @@
                 @if (in_array($category['route'], ['pasar', 'kantor', 'wifi', 'bumdes', 'kkdmp'], true))
                     <div class="field-group">
                         <label for="photoField">Foto {{ $category['route'] === 'kantor' ? 'Balai Desa' : ($category['route'] === 'wifi' ? 'WiFi Desa' : ($category['route'] === 'bumdes' ? 'BUMDes' : ($category['route'] === 'kkdmp' ? 'KKDMP' : 'Pasar'))) }}</label>
-                        <input class="field" id="photoField" name="foto" type="file" accept="image/jpeg,image/png,image/webp" onchange="previewLocationPhoto(this)">
-                        <small style="color: var(--muted);">JPG, PNG, atau WEBP. Maksimal 2 MB.</small>
+                        <label class="photo-upload" id="photoUpload" for="photoField" tabindex="0" role="button" aria-label="Pilih atau seret foto lokasi">
+                            <input id="photoField" name="foto" type="file" accept="image/jpeg,image/png,image/webp" onchange="previewLocationPhoto(this)">
+                            <span class="photo-upload-icon"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i></span>
+                            <span class="photo-upload-text" id="photoUploadText">Klik atau seret foto ke sini</span>
+                            <span class="photo-upload-hint">Format: JPG, PNG, WEBP (Maks 2 MB)</span>
+                        </label>
+                        <input id="removePhotoField" name="remove_foto" type="hidden" value="0">
                         <div class="photo-preview" id="photoPreview">
                             <img id="photoPreviewImage" src="" alt="Preview foto lokasi">
                             <span id="photoPreviewLabel"></span>
+                            <button class="photo-preview-remove" id="removePhotoButton" type="button" onclick="removeLocationPhoto()"><i class="bi bi-trash" aria-hidden="true"></i> Hapus foto</button>
                         </div>
                     </div>
                 @endif
@@ -388,6 +404,76 @@
         const detailModal = document.getElementById('locationDetailModal');
         let selectedLocationRow = null;
         let currentPhotoObjectUrl = null;
+        const photoUpload = document.getElementById('photoUpload');
+        const photoInput = document.getElementById('photoField');
+
+        form.addEventListener('submit', async event => {
+            if (!['kantor', 'wifi'].includes(locationCategory) || methodField.disabled || !photoInput?.files.length) return;
+
+            event.preventDefault();
+            const saveButton = form.querySelector('button[type="submit"]');
+            const formData = new FormData(form);
+            saveButton.disabled = true;
+
+            try {
+                let response = await submitLocationUpdate(formData);
+                let result = response.status === 409 ? await response.json() : null;
+
+                if (result?.requires_confirmation) {
+                    const matchingNames = result.counterpart_names.filter(Boolean).join(', ');
+                    const applyToBoth = window.confirm(`Ditemukan titik ${result.counterpart_category} di koordinat yang sama${matchingNames ? ` (${matchingNames})` : ''}. Terapkan foto yang sama ke kedua titik?`);
+                    formData.set('apply_foto_kantor_wifi', applyToBoth ? '1' : '0');
+                    response = await submitLocationUpdate(formData);
+                }
+
+                if (!response.ok) {
+                    const errorResult = response.status === 422 ? await response.json() : null;
+                    const messages = Object.values(errorResult?.errors || {}).flat();
+                    throw new Error(messages.join('\n') || errorResult?.message || 'Gagal menyimpan data lokasi.');
+                }
+
+                location.reload();
+            } catch (error) {
+                window.alert(error.message || 'Terjadi kesalahan saat menyimpan data lokasi.');
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+        function submitLocationUpdate(formData) {
+            return fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+        }
+
+        if (photoUpload && photoInput) {
+            photoUpload.addEventListener('keydown', event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    photoInput.click();
+                }
+            });
+            photoUpload.addEventListener('dragover', event => {
+                event.preventDefault();
+                photoUpload.classList.add('drag-over');
+            });
+            photoUpload.addEventListener('dragleave', () => photoUpload.classList.remove('drag-over'));
+            photoUpload.addEventListener('drop', event => {
+                event.preventDefault();
+                photoUpload.classList.remove('drag-over');
+                if (!event.dataTransfer.files.length) return;
+
+                const transfer = new DataTransfer();
+                transfer.items.add(event.dataTransfer.files[0]);
+                photoInput.files = transfer.files;
+                previewLocationPhoto(photoInput);
+            });
+        }
 
         function getLocationVillage(properties, locationName = '') {
             const village = [properties.nama_desa, properties.desa, properties.Desa, properties.kelurahan, properties.desa_kelur, properties.nama_kelurahan, properties.village]
@@ -432,7 +518,19 @@
             const file = input.files?.[0];
             if (!file) return;
 
+            document.getElementById('removePhotoField').value = '0';
+            document.getElementById('photoUploadText').textContent = file.name;
             setLocationPhotoPreview(URL.createObjectURL(file), file.name);
+        }
+
+        function removeLocationPhoto() {
+            const removeField = document.getElementById('removePhotoField');
+            if (!removeField) return;
+
+            removeField.value = '1';
+            photoInput.value = '';
+            document.getElementById('photoUploadText').textContent = 'Foto akan dihapus saat disimpan. Pilih foto baru untuk mengganti.';
+            setLocationPhotoPreview('', '');
         }
 
         function openLocationDetail(row) {
@@ -506,6 +604,10 @@
 
         function openCreateModal() {
             form.reset();
+            const removePhotoField = document.getElementById('removePhotoField');
+            if (removePhotoField) removePhotoField.value = '0';
+            const photoUploadText = document.getElementById('photoUploadText');
+            if (photoUploadText) photoUploadText.textContent = 'Klik atau seret foto ke sini';
             form.action = @json($storeUrl);
             methodField.disabled = true;
             document.getElementById('modalTitle').textContent = @json($category['route'] === 'pasar' ? 'Tambah Pasar Desa' : ($category['route'] === 'kantor' ? 'Tambah Balai Desa' : ($category['route'] === 'wifi' ? 'Tambah WiFi Desa' : ($category['route'] === 'bumdes' ? 'Tambah BUMDes' : ($category['route'] === 'kkdmp' ? 'Tambah KKDMP' : 'Tambah titik lokasi')))));
@@ -535,6 +637,10 @@
 
         function openEditModal(button) {
             form.reset();
+            const removePhotoField = document.getElementById('removePhotoField');
+            if (removePhotoField) removePhotoField.value = '0';
+            const photoUploadText = document.getElementById('photoUploadText');
+            if (photoUploadText) photoUploadText.textContent = 'Klik atau seret foto ke sini';
             form.action = updateUrlTemplate.replace('__ID__', button.dataset.id);
             methodField.disabled = false;
             methodField.value = 'PUT';

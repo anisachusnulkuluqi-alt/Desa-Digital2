@@ -196,7 +196,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('kecamatan', AdminKecamatanController::class)->only(['index', 'show']);
         
         // Desa
-        Route::resource('desa', AdminDesaController::class)->only(['index']);
+        Route::resource('desa', AdminDesaController::class)->only(['index', 'update']);
 
         // ==========================================
         // ✅ WISATA DESA (ROUTE KHUSUS, BUKAN LOKASI TITIK)
