@@ -116,6 +116,19 @@
         .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
         .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
 
+        .menu-toggle {
+            display: none;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
         .search-pill-nav {
             display: flex;
             align-items: center;
@@ -876,16 +889,16 @@
         }
 
         .social-media-clean {
-            padding: 42px 20px 48px;
-            background: #f8fafc;
+            padding: 48px 20px 52px;
+            background: linear-gradient(135deg, #f4f9fc 0%, #ffffff 52%, #f3f8f7 100%);
             border-top: 1px solid var(--border-soft);
             text-align: center;
         }
 
         .social-media-clean h2 {
-            margin-bottom: 22px;
+            margin: 0 0 24px;
             color: var(--text-dark);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 800;
         }
 
@@ -894,21 +907,37 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: clamp(24px, 4vw, 52px);
+            gap: 12px;
         }
 
         .social-logo-item {
-            display: grid;
+            display: inline-grid;
             place-items: center;
-            width: 46px;
-            height: 46px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            background: #ffffff;
             color: var(--social-color);
-            font-size: 1.7rem;
-            transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.25s ease;
+            font-size: 1.25rem;
+            text-decoration: none;
+            box-shadow: 0 5px 16px rgba(15, 23, 42, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .social-logo-item:hover {
-            transform: translateY(-5px) scale(1.12);
+            transform: translateY(-3px);
+            border-color: var(--social-color);
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+        }
+
+        .social-logo-item i {
+            font-size: inherit;
+        }
+
+        .social-logo-item:focus-visible {
+            outline: 3px solid color-mix(in srgb, var(--social-color) 35%, transparent);
+            outline-offset: 3px;
         }
 
         .floating-tools {
@@ -1042,9 +1071,15 @@
         footer {
             background: #0f172a;
             color: #94a3b8;
-            padding: 32px 7%;
+            padding: 22px 7%;
             font-size: 0.84rem;
             text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: #cbd5e1;
+            line-height: 1.6;
         }
 
         /* RESPONSIVE */
@@ -1092,7 +1127,7 @@
             .brand-link { gap: 8px; }
             .brand-logo-img { height: 40px; max-width: 64px; }
             .brand-text-logo { font-size: 1.15rem; }
-            .search-pill-nav { flex-basis: min(140px, 42vw); padding-left: 10px; }
+            .search-pill-nav { flex: 0 1 min(150px, 36vw); padding-left: 9px; }
             .nav-menu { gap: 8px 18px; }
             .nav-menu a { font-size: 0.7rem; }
             .services-cards-cluster { grid-auto-columns: 100%; }
@@ -1107,6 +1142,32 @@
             .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
             .website-tool-panel { right: calc(100% + 10px); width: min(290px, calc(100vw - 88px)); }
             .back-to-top-button { width: 48px; height: 48px; margin-top: 16px; }
+        }
+
+        @media (max-width: 900px) and (orientation: portrait) {
+            .site-header { position: sticky; flex-wrap: nowrap; gap: 8px; }
+            .search-pill-nav { order: 2; margin-left: auto; flex: 0 1 min(150px, 36vw); }
+            .search-pill-nav .global-search-suggestions { right: -88px; width: min(360px, calc(100vw - 28px)); }
+            .menu-toggle { order: 3; display: grid; margin-left: 0; flex: 0 0 42px; }
+            .nav-menu {
+                order: 4;
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                right: 14px;
+                z-index: 1001;
+                flex-direction: column;
+                align-items: stretch;
+                width: min(260px, calc(100vw - 28px));
+                margin: 0;
+                padding: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                border-radius: 10px;
+                background: linear-gradient(145deg, #102a43, #0f766e);
+                box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+            }
+            .site-header.nav-open .nav-menu { display: flex; }
+            .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1140,23 +1201,54 @@
             </div>
         </a>
 
-        <ul class="nav-menu">
+        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-navigation">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <ul class="nav-menu" id="primary-navigation">
             <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
-            <li><a href="#statistik-wilayah">STATISTIK</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
             <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
 
         <form class="search-pill-nav global-search-form" action="<?= url('/search'); ?>" method="GET" role="search" data-suggestions-url="<?= route('search.suggestions'); ?>" autocomplete="off">
             <div class="global-search-control">
-                <input type="search" name="q" placeholder="Cari desa, kecamatan, wisata..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
+                <input type="search" name="q" placeholder="Cari informasi..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
                 <div class="global-search-suggestions" id="landing-search-suggestions" role="listbox" hidden></div>
             </div>
             <button type="submit" aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
 
     </header>
+
+    <script>
+        (() => {
+            const header = document.querySelector('.site-header');
+            const menuButton = header.querySelector('.menu-toggle');
+            const menuIcon = menuButton.querySelector('i');
+
+            const setMenuOpen = isOpen => {
+                header.classList.toggle('nav-open', isOpen);
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+                menuIcon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`;
+            };
+
+            menuButton.addEventListener('click', () => setMenuOpen(!header.classList.contains('nav-open')));
+            header.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+            document.addEventListener('click', event => {
+                if (!header.contains(event.target)) setMenuOpen(false);
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+                    setMenuOpen(false);
+                    menuButton.focus();
+                }
+            });
+        })();
+    </script>
+    <script src="<?= asset('js/global-search.js'); ?>" defer></script>
 
     <!-- 2. HERO BANNER -->
     <section id="hero-banner" class="hero-banner-clean" style="background-image: url('<?= asset('images/alun-alun-tuban.jpg'); ?>');">
@@ -1464,19 +1556,29 @@
     </section>
 
     <section class="social-media-clean" aria-labelledby="social-media-title">
-        <h2 id="social-media-title">Media Sosial Kominfo Tuban</h2>
+        <h2 id="social-media-title">Media sosial</h2>
         <div class="social-logo-row" aria-label="Platform media sosial">
-            <span class="social-logo-item" style="--social-color: #1877f2;" role="img" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></span>
-            <span class="social-logo-item" style="--social-color: #e4405f;" role="img" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></span>
-            <span class="social-logo-item" style="--social-color: #ff0000;" role="img" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></span>
-            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></span>
-            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></span>
+            <a class="social-logo-item" style="--social-color: #1877f2;" href="https://www.facebook.com/diskominfo.tuban" target="_blank" rel="noopener noreferrer" aria-label="Facebook Diskominfo Tuban">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+            <a class="social-logo-item" style="--social-color: #e4405f;" href="https://www.instagram.com/kominfo.tuban" target="_blank" rel="noopener noreferrer" aria-label="Instagram Diskominfo Tuban">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a class="social-logo-item" style="--social-color: #ff0000;" href="https://www.youtube.com/@diskominfotuban865" target="_blank" rel="noopener noreferrer" aria-label="YouTube Diskominfo Tuban">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a class="social-logo-item" style="--social-color: #111111;" href="https://www.tiktok.com/@kominfo.tuban" target="_blank" rel="noopener noreferrer" aria-label="TikTok Diskominfo Tuban">
+                <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+            </a>
+            <a class="social-logo-item" style="--social-color: #111111;" href="https://x.com/DiskominfoTuban" target="_blank" rel="noopener noreferrer" aria-label="X Diskominfo Tuban">
+                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+            </a>
         </div>
     </section>
 
     <!-- 7. FOOTER -->
     <footer>
-        <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
+        <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban</p>
     </footer>
 
     <div class="screen-dimming-overlay" id="screen-dimming-overlay" aria-hidden="true"></div>
@@ -1569,8 +1671,7 @@
             '.header-tag-pill i',
             '.location-info-card, .map-viewport-frame',
             '.location-detail-item',
-            '.location-detail-item > i',
-            'footer p'
+            '.location-detail-item > i'
         ];
         const revealDirections = [
             [0, 30], [30, 0], [0, -30], [-30, 0], [22, 22], [-22, 22]
@@ -1877,6 +1978,5 @@
             }
         }
     </script>
-    <script src="<?= asset('js/global-search.js'); ?>" defer></script>
 </body>
 </html>

@@ -51,7 +51,7 @@ class DesaController extends Controller
 
     public function update(Request $request, Desa $desa)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama_desa' => 'required|string|max:255',
             'kecamatan_id' => 'required|exists:kecamatan,id',
             'kode_desa' => ['required', 'string', 'max:20', Rule::unique('desa', 'kode_desa')->ignore($desa->id)],
@@ -64,7 +64,7 @@ class DesaController extends Controller
             'whatsapp' => 'nullable|string|max:50',
         ]);
 
-        $desa->update($request->all());
+        $desa->update($validated);
 
         return response()->json([
             'success' => true,

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Kecamatan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -81,7 +82,18 @@ Route::get('/kontak', function () {
 })->name('kontak');
 
 Route::get('/website', function () {
-    return view('website');
+    $kecamatans = Kecamatan::query()
+        ->with(['desa' => fn ($query) => $query->orderBy('nama_desa')])
+        ->withCount('desa')
+        ->orderBy('nama_kecamatan')
+        ->get();
+
+    $totalWebsiteAktif = $kecamatans->sum(
+        fn (Kecamatan $kecamatan) => $kecamatan->desa->whereNotNull('website')->where('website', '!=', '')->count()
+    );
+
+    return response()->view('website', compact('kecamatans', 'totalWebsiteAktif'))
+        ->header('Cache-Control', 'no-store, private');
 })->name('website');
 
 /* --- MODUL SURAT DESA --- */

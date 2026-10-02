@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/global-search.css') }}">
 
     <!-- Leaflet JS & CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -51,13 +50,14 @@
         }
 
         .site-header {
-            background: rgba(51, 65, 85, 0.96);
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px 7%;
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 1100;
@@ -65,21 +65,43 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; display: block; }
-        .brand-text-logo { font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
+        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-logo-img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; }
+        .brand-text-logo { font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: 0; display: flex; align-items: center; }
         .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
-        .nav-menu { display: flex; align-items: center; gap: 22px; list-style: none; }
-        .nav-menu a { color: #e2e8f0; text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; position: relative; padding: 6px 0; transition: color 0.2s ease; }
-        .nav-menu a:hover { color: #ffffff; }
-        .nav-menu a.active { color: #38bdf8; }
-        .nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #38bdf8; border-radius: 2px; }
-        .search-pill-nav { display: flex; align-items: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 5px 14px; width: 190px; transition: all 0.25s ease; }
-        .search-pill-nav:focus-within { width: 230px; background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
-        .search-pill-nav input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.8rem; width: 100%; }
-        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
-        .search-pill-nav button { background: transparent; border: none; color: rgba(255, 255, 255, 0.7); cursor: pointer; font-size: 0.8rem; }
-
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 0.6vw, 11px);
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+        .nav-menu a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.76rem;
+            font-weight: 700;
+            position: relative;
+            padding: 8px 7px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
+        .menu-toggle {
+            display: none;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
         .site-footer {
             position: fixed;
             inset: auto 0 0;
@@ -106,6 +128,7 @@
         }
 
         .search-pill-box {
+            position: relative;
             background: var(--card-glass);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -177,6 +200,42 @@
             pointer-events: auto;
             order: 5;
         }
+
+        .map-location-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 54px;
+            z-index: 1050;
+            width: min(480px, calc(100vw - 96px));
+            max-height: min(360px, calc(100vh - 190px));
+            overflow-y: auto;
+            padding: 6px;
+            border: 1px solid #dbe5ec;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.2);
+        }
+        .map-location-suggestions[hidden] { display: none; }
+        .map-location-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            padding: 10px 12px;
+            border: 0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #1e293b;
+            text-align: left;
+            cursor: pointer;
+        }
+        .map-location-option:hover,
+        .map-location-option.is-active { background: #eff8f7; }
+        .map-location-option-name { display: block; font-size: 0.84rem; font-weight: 800; }
+        .map-location-option-meta { display: block; margin-top: 3px; color: #64748b; font-size: 0.7rem; }
+        .map-location-option-type { flex: 0 0 auto; color: #0f766e; font-size: 0.68rem; font-weight: 800; }
+        .map-location-empty { margin: 0; padding: 12px; color: #64748b; font-size: 0.78rem; }
 
         .map-filter-panel {
             background: var(--card-glass);
@@ -473,6 +532,29 @@
             gap: 10px;
         }
 
+        .drawer-table-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 0 10px;
+        }
+        .table-search-field {
+            display: flex;
+            align-items: center;
+            flex: 1 1 260px;
+            min-width: 160px;
+            gap: 8px;
+            padding: 0 10px;
+            border: 1px solid #dbe3ea;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #64748b;
+        }
+        .table-search-field:focus-within { border-color: #0891b2; box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1); }
+        .table-search-field input { width: 100%; min-width: 0; height: 34px; border: 0; outline: 0; color: #1e293b; font-size: 0.78rem; }
+        .table-filter-select { min-height: 34px; }
+        .drawer-table-toolbar .table-filter-select { max-width: 190px; }
+
         .table-filter-select {
             padding: 6px 12px;
             border: 1px solid #cbd5e1;
@@ -502,6 +584,31 @@
             overflow-y: auto;
             padding: 12px 24px 20px 24px;
         }
+
+        .table-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 10px;
+            color: #64748b;
+            font-size: 0.74rem;
+        }
+        .table-pagination-actions { display: flex; align-items: center; gap: 6px; }
+        .table-page-button {
+            display: grid;
+            place-items: center;
+            min-width: 32px;
+            height: 30px;
+            padding: 0 8px;
+            border: 1px solid #dbe3ea;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #334155;
+            cursor: pointer;
+        }
+        .table-page-button:disabled { color: #a8b2bf; cursor: not-allowed; }
+        .table-empty-row { padding: 28px !important; color: #64748b !important; text-align: center; }
 
         .modern-table {
             width: 100%;
@@ -700,12 +807,55 @@
         }
         .spatial-detail-description .spatial-detail-value { font-weight: 500; }
 
+        @media (max-width: 900px) {
+            .site-header { flex-wrap: wrap; gap: 12px 20px; padding-inline: 5%; }
+            .nav-menu { order: 3; flex: 0 0 100%; justify-content: center; margin-left: 0; }
+        }
+
         @media (max-width: 768px) {
-            .gmaps-floating-header { max-width: calc(100% - 32px); }
-            .site-header { padding: 12px 5%; }
-            .nav-menu { display: none; }
-            .search-pill-nav { display: none; }
+            .gmaps-floating-header { top: 146px; max-width: calc(100% - 32px); }
+            .site-header { padding: 10px 14px; gap: 10px 12px; }
+            .brand-link { gap: 8px; }
+            .brand-logo-img { height: 40px; max-width: 64px; }
+            .brand-text-logo { font-size: 1.15rem; }
+            .nav-menu { gap: 6px 10px; }
+            .nav-menu a { padding: 7px 5px; font-size: 0.66rem; }
             .site-footer { padding: 10px 4%; font-size: 0.65rem; }
+            .drawer-table-content { padding: 10px 12px 16px; }
+            .drawer-table-toolbar { flex-wrap: wrap; }
+            .table-search-field { flex-basis: 100%; }
+            .drawer-table-toolbar .table-filter-select { flex: 1 1 130px; max-width: none; }
+            .drawer-handle-bar { padding: 0 12px; gap: 8px; }
+            .drawer-title-group { gap: 6px; min-width: 0; }
+            .drawer-title-group h3 { font-size: 0.74rem; }
+            .counter-badge { padding: 3px 6px; font-size: 0.64rem; white-space: nowrap; }
+            .drawer-actions-right { gap: 5px; }
+            #kecamatanFilter { max-width: 112px; padding: 6px; font-size: 0.66rem; }
+            .modern-table { min-width: 780px; }
+        }
+
+        @media (max-width: 900px) and (orientation: portrait) {
+            .site-header { position: sticky; flex-wrap: nowrap; }
+            .menu-toggle { display: grid; margin-left: auto; flex: 0 0 42px; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                right: 14px;
+                z-index: 1101;
+                flex-direction: column;
+                align-items: stretch;
+                width: min(260px, calc(100vw - 28px));
+                margin: 0;
+                padding: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                border-radius: 10px;
+                background: linear-gradient(145deg, #102a43, #0f766e);
+                box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+            }
+            .site-header.nav-open .nav-menu { display: flex; }
+            .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
+            .gmaps-floating-header { top: 76px; }
         }
     </style>
 </head>
@@ -720,23 +870,43 @@
             <div class="brand-text-logo">Desa<span>Digital</span></div>
         </a>
 
-        <ul class="nav-menu">
-            <li><a href="{{ url('/') }}">BERANDA</a></li>
-            <li><a href="{{ url('/website') }}">WEBSITE DESA</a></li>
-            <li><a href="{{ url('/data-spasial') }}" class="active">DATA SPASIAL</a></li>
-            <li><a href="{{ url('/cctv') }}">CCTV TUBAN</a></li>
-            <li><a href="{{ url('/surat') }}">SURAT MANDIRI</a></li>
-            <li><a href="{{ url('/epbb') }}">E-PBB</a></li>
+        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-navigation">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <ul class="nav-menu" id="primary-navigation">
+            <li><a href="{{ url('/#hero-banner') }}" class="active">BERANDA</a></li>
+            <li><a href="{{ url('/#tentang-kami') }}">TENTANG KAMI</a></li>
+            <li><a href="{{ url('/#layanan-digital') }}">LAYANAN</a></li>
+            <li><a href="{{ url('/#hubungi-kami') }}">HUBUNGI KAMI</a></li>
         </ul>
 
-        <form class="search-pill-nav global-search-form" action="{{ url('/search') }}" method="GET" role="search" data-suggestions-url="{{ route('search.suggestions') }}" autocomplete="off">
-            <div class="global-search-control">
-                <input type="search" name="q" placeholder="Cari desa, kecamatan, wisata..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="map-search-suggestions">
-                <div class="global-search-suggestions" id="map-search-suggestions" role="listbox" hidden></div>
-            </div>
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </form>
     </header>
+
+    <script>
+        (() => {
+            const header = document.querySelector('.site-header');
+            const menuButton = header.querySelector('.menu-toggle');
+            const menuIcon = menuButton.querySelector('i');
+            const setMenuOpen = isOpen => {
+                header.classList.toggle('nav-open', isOpen);
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+                menuIcon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`;
+            };
+            menuButton.addEventListener('click', () => setMenuOpen(!header.classList.contains('nav-open')));
+            header.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+            document.addEventListener('click', event => {
+                if (!header.contains(event.target)) setMenuOpen(false);
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+                    setMenuOpen(false);
+                    menuButton.focus();
+                }
+            });
+        })();
+    </script>
 
     <!-- TOP BAR -->
     <div class="gmaps-floating-header">
@@ -744,13 +914,14 @@
             <a href="{{ url('/') }}" class="btn-brand-menu" title="Kembali ke Beranda">
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
-            <input type="text" id="liveSearchInput" placeholder="Cari nama kantor desa, titik WiFi, pasar, wisata..." oninput="handleSearch(this.value)">
+            <input type="search" id="liveSearchInput" placeholder="Cari lokasi, mis. Kantor Desa..." oninput="handleSearch(this.value)" onkeydown="handleMapSearchKeydown(event)" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="map-location-suggestions" aria-label="Cari lokasi pada peta">
             <button class="search-action-btn" title="Cari Lokasi" onclick="handleSearch(document.getElementById('liveSearchInput').value)">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
             <button class="search-action-btn" title="Buka Tabel Data" onclick="toggleDrawer()">
                 <i class="fa-solid fa-table-list"></i>
             </button>
+            <div class="map-location-suggestions" id="map-location-suggestions" role="listbox" hidden></div>
         </div>
 
     </div>
@@ -862,17 +1033,6 @@
             <div class="drawer-actions-right" onclick="event.stopPropagation()">
                 <select class="table-filter-select" id="kecamatanFilter" onchange="applyKecamatanFilter(this.value)">
                     <option value="">Semua Kecamatan</option>
-                    <option value="Tuban">Kecamatan Tuban</option>
-                    <option value="Jenu">Kecamatan Jenu</option>
-                    <option value="Palang">Kecamatan Palang</option>
-                    <option value="Semanding">Kecamatan Semanding</option>
-                    <option value="Merakurak">Kecamatan Merakurak</option>
-                    <option value="Rengel">Kecamatan Rengel</option>
-                    <option value="Singgahan">Kecamatan Singgahan</option>
-                    <option value="Bancar">Kecamatan Bancar</option>
-                    <option value="Kenduruan">Kecamatan Kenduruan</option>
-                    <option value="Jatirogo">Kecamatan Jatirogo</option>
-                    <option value="Bangilan">Kecamatan Bangilan</option>
                 </select>
 
                 <button class="btn-drawer-toggle" onclick="toggleDrawer()">
@@ -882,6 +1042,21 @@
         </div>
 
         <div class="drawer-table-content">
+            <div class="drawer-table-toolbar" onclick="event.stopPropagation()">
+                <label class="table-search-field" for="tableSearchInput">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="tableSearchInput" placeholder="Filter daftar lokasi..." oninput="applyTableSearch(this.value)">
+                </label>
+                <select class="table-filter-select" id="tableCategoryFilter" aria-label="Filter kategori" onchange="applyTableCategoryFilter(this.value)">
+                    <option value="">Semua kategori</option>
+                    <option value="wifi">WiFi Desa</option>
+                    <option value="kantor">Kantor Desa</option>
+                    <option value="pasar">Pasar Desa</option>
+                    <option value="wisata">Wisata Desa</option>
+                    <option value="bumdes">BUMDes</option>
+                    <option value="kkdmp">KKDMP</option>
+                </select>
+            </div>
             <table class="modern-table">
                 <thead>
                     <tr>
@@ -895,6 +1070,14 @@
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
+            <div class="table-pagination" id="tablePagination">
+                <span id="tablePageInfo">Memuat daftar...</span>
+                <div class="table-pagination-actions">
+                    <button type="button" class="table-page-button" id="tablePrevious" aria-label="Halaman sebelumnya" onclick="changeTablePage(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span id="tablePageNumber">1 / 1</span>
+                    <button type="button" class="table-page-button" id="tableNext" aria-label="Halaman berikutnya" onclick="changeTablePage(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1083,11 +1266,23 @@
 
         let databaseSpasial = [];
 
+        function normalizeKecamatanName(value) {
+            const cleanedName = String(value || '')
+                .replace(/^\s*kecamatan\s+/i, '')
+                .replace(/^\s*kec\.?\s*/i, '')
+                .replace(/\s+kode\s+pos.*$/i, '')
+                .replace(/\s+kab(?:upaten)?\.?\s+tuban.*$/i, '')
+                .trim();
+
+            return cleanedName.toLocaleLowerCase('id').replace(/(^|[\s-])([a-z])/g, (_, separator, letter) => separator + letter.toUpperCase());
+        }
+
         function normalizeSpatialFeature(feature, type) {
             const properties = feature.properties || {};
             const [lng, lat] = feature.geometry?.coordinates || [];
             const address = properties.alamat || '';
             const kecMatch = address.match(/\bKec(?:amatan)?\.?\s+([^,]+)/i);
+            const kecamatan = normalizeKecamatanName(properties.kecamatan || (kecMatch ? kecMatch[1] : ''));
             const photoPath = String(properties.foto || '').trim();
             const cleanPhotoPath = photoPath.replace(/^\/?storage\//, '').replace(/^\/+/, '');
             const operatingHours = String(properties.jam_operas || properties.jam_operasional || '').replace(/â€“|â€”/g, '-');
@@ -1126,7 +1321,7 @@
                 id: `${type}-${feature.id ?? properties.FID}`,
                 type,
                 name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama || 'Lokasi tanpa nama',
-                kec: properties.kecamatan || (kecMatch ? kecMatch[1].trim() : ''),
+                kec: kecamatan,
                 desa: properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || '',
                 address: String(address).trim(),
                 lat,
@@ -1178,8 +1373,17 @@
 
         let activeMarkers = [];
         let currentFilterTypes = [];
-        let currentSearchQuery = '';
+        let currentMapSearchQuery = '';
+        let currentTableSearch = '';
+        let currentTableCategory = '';
         let currentKecFilter = '';
+        let currentTablePage = 1;
+        const tablePageSize = 30;
+        let activeMapSuggestionIndex = -1;
+
+        function normalizeSearchTerm(value) {
+            return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+        }
 
         function getCategoryMeta(type) {
             switch(type) {
@@ -1193,24 +1397,18 @@
             }
         }
 
-        function renderPointsAndTable() {
+        function renderMapMarkers() {
             activeMarkers.forEach(m => map.removeLayer(m));
             activeMarkers = [];
 
-            const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = '';
-            let matchedCount = 0;
-
             databaseSpasial.forEach(item => {
                 if (!currentFilterTypes.includes(item.type)) return;
-                if (currentKecFilter && item.kec !== currentKecFilter) return;
 
-                if (currentSearchQuery) {
-                    const q = currentSearchQuery.toLowerCase();
-                    if (!item.name.toLowerCase().includes(q) && !item.desa.toLowerCase().includes(q) && !item.kec.toLowerCase().includes(q)) return;
+                if (currentMapSearchQuery) {
+                    const searchable = normalizeSearchTerm(`${item.name} ${item.desa} ${item.kec} ${item.address}`);
+                    if (!searchable.includes(currentMapSearchQuery)) return;
                 }
 
-                matchedCount++;
                 const meta = getCategoryMeta(item.type);
 
                 const customIcon = L.divIcon({
@@ -1269,53 +1467,219 @@
                 `;
 
                 const marker = L.marker([item.lat, item.lng], { icon: customIcon }).bindPopup(popupHtml);
+                marker.spatialId = item.id;
                 marker.addTo(map);
                 activeMarkers.push(marker);
+            });
 
-                const tr = document.createElement('tr');
-                tr.onclick = () => flyToPoint(item.lat, item.lng, marker);
-                tr.innerHTML = `
-                    <td>
-                        <span class="category-pill" style="background: ${meta.bg}; color: ${meta.color};">
-                            <i class="fa-solid ${meta.icon}"></i> ${meta.label}
-                        </span>
-                    </td>
+        }
+
+        function renderDataTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.replaceChildren();
+            const query = normalizeSearchTerm(currentTableSearch);
+            const filteredItems = databaseSpasial.filter(item => {
+                if (currentTableCategory && item.type !== currentTableCategory) return false;
+                if (currentKecFilter && item.kec !== currentKecFilter) return false;
+                return !query || normalizeSearchTerm(`${item.name} ${item.kec} ${item.desa} ${item.address} ${item.status}`).includes(query);
+            });
+            const pageCount = Math.max(1, Math.ceil(filteredItems.length / tablePageSize));
+            currentTablePage = Math.min(currentTablePage, pageCount);
+            const startIndex = (currentTablePage - 1) * tablePageSize;
+
+            filteredItems.slice(startIndex, startIndex + tablePageSize).forEach(item => {
+                const meta = getCategoryMeta(item.type);
+                const row = document.createElement('tr');
+                row.tabIndex = 0;
+                row.setAttribute('aria-label', `${item.name}, ${meta.label}, Kecamatan ${item.kec}`);
+                row.innerHTML = `
+                    <td><span class="category-pill" style="background:${meta.bg};color:${meta.color}"><i class="fa-solid ${meta.icon}"></i> ${meta.label}</span></td>
                     <td><strong>${escapeHtml(item.name)}</strong></td>
                     <td>Kec. ${escapeHtml(item.kec)}</td>
                     <td>Desa ${escapeHtml(item.desa)}</td>
-                    <td><span style="color: #059669; font-weight: 700;">● ${escapeHtml(item.status)}</span></td>
-                    <td>
-                        <button class="btn-focus-map" onclick="event.stopPropagation(); flyToPoint(${item.lat}, ${item.lng}, activeMarkers[${matchedCount - 1}])">
-                            <i class="fa-solid fa-location-crosshairs"></i> Lihat Peta
-                        </button>
-                    </td>
+                    <td><span style="color:#059669;font-weight:700">● ${escapeHtml(item.status)}</span></td>
+                    <td><button type="button" class="btn-focus-map"><i class="fa-solid fa-location-crosshairs"></i> Lihat Peta</button></td>
                 `;
-                tableBody.appendChild(tr);
+                row.addEventListener('click', () => focusSpatialItem(item));
+                row.addEventListener('keydown', event => {
+                    if (event.key === 'Enter') focusSpatialItem(item);
+                });
+                row.querySelector('.btn-focus-map').addEventListener('click', event => {
+                    event.stopPropagation();
+                    focusSpatialItem(item);
+                });
+                tableBody.appendChild(row);
             });
 
-            document.getElementById('tableCounterBadge').innerText = `${matchedCount} Lokasi Aktif`;
+            if (!tableBody.childElementCount) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.innerHTML = '<td class="table-empty-row" colspan="6">Tidak ada data yang cocok dengan filter.</td>';
+                tableBody.appendChild(emptyRow);
+            }
+
+            const filtered = Boolean(query || currentTableCategory || currentKecFilter);
+            document.getElementById('tableCounterBadge').textContent = filtered
+                ? `${filteredItems.length.toLocaleString('id-ID')} dari ${databaseSpasial.length.toLocaleString('id-ID')} lokasi`
+                : `${databaseSpasial.length.toLocaleString('id-ID')} lokasi`;
+            document.getElementById('tablePageInfo').textContent = filteredItems.length
+                ? `${(startIndex + 1).toLocaleString('id-ID')}–${Math.min(startIndex + tablePageSize, filteredItems.length).toLocaleString('id-ID')} dari ${filteredItems.length.toLocaleString('id-ID')} data`
+                : 'Tidak ada data';
+            document.getElementById('tablePageNumber').textContent = `${currentTablePage} / ${pageCount}`;
+            document.getElementById('tablePrevious').disabled = currentTablePage <= 1;
+            document.getElementById('tableNext').disabled = currentTablePage >= pageCount;
+        }
+
+        function renderPointsAndTable() {
+            renderMapMarkers();
+            renderDataTable();
+        }
+
+        function populateKecamatanFilter() {
+            const select = document.getElementById('kecamatanFilter');
+            const selected = select.value;
+            const names = [...new Set(databaseSpasial.map(item => item.kec).filter(Boolean))]
+                .sort((first, second) => first.localeCompare(second, 'id'));
+            select.replaceChildren(new Option('Semua Kecamatan', ''));
+            names.forEach(name => select.add(new Option(`Kecamatan ${name}`, name)));
+            select.value = names.includes(selected) ? selected : '';
+        }
+
+        function renderMapSearchSuggestions(value) {
+            const input = document.getElementById('liveSearchInput');
+            const list = document.getElementById('map-location-suggestions');
+            const query = normalizeSearchTerm(value);
+            activeMapSuggestionIndex = -1;
+            list.replaceChildren();
+
+            if (!query) {
+                list.hidden = true;
+                input.setAttribute('aria-expanded', 'false');
+                input.removeAttribute('aria-activedescendant');
+                return;
+            }
+
+            const matches = databaseSpasial
+                .filter(item => normalizeSearchTerm(item.name).startsWith(query))
+                .sort((first, second) => first.name.localeCompare(second.name, 'id'))
+                .slice(0, 8);
+
+            if (!matches.length) {
+                const emptyMessage = document.createElement('p');
+                emptyMessage.className = 'map-location-empty';
+                emptyMessage.textContent = 'Tidak ada lokasi yang diawali teks tersebut.';
+                list.appendChild(emptyMessage);
+            } else {
+                matches.forEach((item, index) => {
+                    const option = document.createElement('button');
+                    option.type = 'button';
+                    option.className = 'map-location-option';
+                    option.id = `map-location-option-${index}`;
+                    option.setAttribute('role', 'option');
+                    option.setAttribute('aria-selected', 'false');
+                    const text = document.createElement('span');
+                    const name = document.createElement('span');
+                    name.className = 'map-location-option-name';
+                    name.textContent = item.name;
+                    const meta = document.createElement('span');
+                    meta.className = 'map-location-option-meta';
+                    meta.textContent = [item.desa, item.kec].filter(Boolean).join(' · ') || item.address;
+                    text.append(name, meta);
+                    const type = document.createElement('span');
+                    type.className = 'map-location-option-type';
+                    type.textContent = getCategoryMeta(item.type).label;
+                    option.append(text, type);
+                    option.addEventListener('click', () => selectMapSuggestion(item));
+                    list.appendChild(option);
+                });
+            }
+
+            list.hidden = false;
+            input.setAttribute('aria-expanded', 'true');
+        }
+
+        function handleMapSearchKeydown(event) {
+            const options = [...document.getElementById('map-location-suggestions').querySelectorAll('[role="option"]')];
+            if (event.key === 'Escape') {
+                document.getElementById('map-location-suggestions').hidden = true;
+                event.currentTarget.setAttribute('aria-expanded', 'false');
+                event.currentTarget.removeAttribute('aria-activedescendant');
+                return;
+            }
+            if (!options.length) return;
+
+            if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                event.preventDefault();
+                const direction = event.key === 'ArrowDown' ? 1 : -1;
+                activeMapSuggestionIndex = activeMapSuggestionIndex < 0
+                    ? (direction > 0 ? 0 : options.length - 1)
+                    : (activeMapSuggestionIndex + direction + options.length) % options.length;
+                options.forEach((option, index) => option.classList.toggle('is-active', index === activeMapSuggestionIndex));
+                event.currentTarget.setAttribute('aria-activedescendant', options[activeMapSuggestionIndex].id);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                options[Math.max(activeMapSuggestionIndex, 0)]?.click();
+            }
+        }
+
+        function selectMapSuggestion(item) {
+            const input = document.getElementById('liveSearchInput');
+            input.value = item.name;
+            currentMapSearchQuery = normalizeSearchTerm(item.name);
+            document.getElementById('map-location-suggestions').hidden = true;
+            input.setAttribute('aria-expanded', 'false');
+            input.removeAttribute('aria-activedescendant');
+            renderMapMarkers();
+            focusSpatialItem(item);
+        }
+
+        function focusSpatialItem(item) {
+            const marker = activeMarkers.find(activeMarker => activeMarker.spatialId === item.id);
+            if (marker) {
+                flyToPoint(item.lat, item.lng, marker);
+                return;
+            }
+
+            map.flyTo([item.lat, item.lng], 15, { duration: 1.2 });
+            const meta = getCategoryMeta(item.type);
+            const content = `<div class="map-search-detail"><span class="popup-badge" style="background:${meta.bg};color:${meta.color}">${escapeHtml(meta.label)}</span><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.address || 'Alamat belum tersedia')}</p></div>`;
+            L.popup().setLatLng([item.lat, item.lng]).setContent(content).openOn(map);
+            if (document.getElementById('bottomDrawer').classList.contains('open')) toggleDrawer();
+        }
+
+        function applyTableSearch(value) {
+            currentTableSearch = value;
+            currentTablePage = 1;
+            renderDataTable();
+        }
+
+        function applyTableCategoryFilter(value) {
+            currentTableCategory = value;
+            currentTablePage = 1;
+            renderDataTable();
+        }
+
+        function changeTablePage(direction) {
+            currentTablePage += direction;
+            renderDataTable();
         }
 
         function filterOnlyCategory(type, element) {
             currentFilterTypes = Array.from(
                 document.querySelectorAll('.category-chips-row input[type="checkbox"]:checked')
             ).map(input => input.id.replace('chip-', ''));
-            loadSpatialData()
-                .then(renderPointsAndTable)
-                .catch(error => {
-                    console.error('Gagal memuat data titik GeoJSON:', error);
-                    document.getElementById('tableCounterBadge').innerText = 'Data gagal dimuat';
-                });
+            renderMapMarkers();
         }
 
         function handleSearch(val) {
-            currentSearchQuery = val;
-            renderPointsAndTable();
+            currentMapSearchQuery = normalizeSearchTerm(val);
+            renderMapMarkers();
+            renderMapSearchSuggestions(val);
         }
 
         function applyKecamatanFilter(kec) {
             currentKecFilter = kec;
-            renderPointsAndTable();
+            currentTablePage = 1;
+            renderDataTable();
         }
 
         function flyToPoint(lat, lng, markerInstance) {
@@ -1373,13 +1737,14 @@
 
             try {
                 await loadSpatialData();
+                populateKecamatanFilter();
                 renderPointsAndTable();
+                renderMapSearchSuggestions(document.getElementById('liveSearchInput').value);
             } catch (error) {
                 console.error('Gagal memuat data titik GeoJSON:', error);
                 document.getElementById('tableCounterBadge').innerText = 'Data gagal dimuat';
             }
         });
     </script>
-    <script src="{{ asset('js/global-search.js') }}" defer></script>
 </body>
 </html>

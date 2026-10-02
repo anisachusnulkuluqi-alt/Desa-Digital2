@@ -25,26 +25,26 @@
             --border-hover: #7dd3fc;
             --emerald: #10b981;
             
-            /* WARNA HEADER & LOGO PERSIS GAMBAR */
             --header-dark-slate: #283548;
-            --digital-cyan: #28b2fc;
+            --digital-cyan: #38bdf8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg-canvas); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-        /* 1. Header Navbar Persis Gambar Referensi */
+        /* 1. Header shared with the public home page */
         .site-header {
-            background-color: var(--header-dark-slate);
-            padding: 14px 6%;
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .brand-link-clean {
@@ -59,17 +59,17 @@
 
         /* Ikon Logo: Murni dari file gambar asli */
         .brand-logo-icon {
-            height: 36px;
+            height: 52px;
             width: auto;
-            max-width: 48px;
+            max-width: 160px;
             object-fit: contain;
             display: block;
         }
 
         /* Teks Logo: "Desa Digital" Persis Gambar */
         .brand-text-logo {
-            font-size: 1.6rem;
-            letter-spacing: -0.02em;
+            font-size: 1.45rem;
+            letter-spacing: 0;
             line-height: 1;
             display: flex;
             align-items: baseline;
@@ -88,52 +88,61 @@
         .nav-menu { 
             display: flex; 
             align-items: center; 
-            gap: 28px; 
+            gap: clamp(8px, 0.75vw, 12px);
             list-style: none; 
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
         }
         .nav-menu a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 0.84rem;
-            font-weight: 800;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0;
             position: relative;
-            padding: 4px 0;
-            transition: color 0.2s ease;
+            padding: 9px 8px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
-        .nav-menu a:hover,
-        .nav-menu a.active { 
-            color: var(--digital-cyan); 
+        .nav-menu a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
         }
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 2.5px;
-            background: var(--digital-cyan);
-            border-radius: 2px;
+        .nav-menu a.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .menu-toggle {
+            display: none;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1.1rem;
+            cursor: pointer;
         }
 
         /* 2. Hero Ringkas & Minimalis */
         .hero-compact {
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            background: radial-gradient(ellipse at 82% 18%, rgba(56, 189, 248, 0.18), transparent 35%), linear-gradient(135deg, #102a43 0%, #164e63 58%, #0f766e 100%);
             color: #ffffff;
-            padding: 45px 7% 65px 7%;
+            padding: 48px 7% 72px;
             text-align: center;
             position: relative;
         }
         .hero-compact h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: -0.02em;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: 0;
             margin-bottom: 8px;
         }
         .hero-compact p {
             font-size: 0.95rem;
-            color: #94a3b8;
+            color: rgba(255, 255, 255, 0.76);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -177,8 +186,8 @@
         .search-input-wrap input {
             width: 100%;
             border: 1.5px solid var(--border-soft);
-            border-radius: 30px;
-            padding: 9px 14px 9px 38px;
+            border-radius: 9px;
+            padding: 9px 12px 9px 38px;
             font-size: 0.85rem;
             outline: none;
             transition: all 0.25s ease;
@@ -219,6 +228,11 @@
             cursor: pointer;
             transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
+            width: 100%;
+            color: inherit;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
         }
         .district-item-card::before {
             content: '';
@@ -232,6 +246,10 @@
             transform: translateY(-4px);
             border-color: var(--border-hover);
             box-shadow: 0 12px 24px -4px rgba(2, 132, 199, 0.15);
+        }
+        .district-item-card:focus-visible {
+            outline: 3px solid rgba(2, 132, 199, 0.35);
+            outline-offset: 3px;
         }
 
         .card-identity {
@@ -306,6 +324,17 @@
             transform: translateX(4px);
         }
 
+        .filter-bar-minimal {
+            padding: 10px 14px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+        }
+        .total-distrik-pill {
+            padding: 6px 12px;
+            border-radius: 9px;
+            white-space: nowrap;
+        }
+
         /* 5. Modal Drawer Data Desa */
         .modal-drawer-overlay {
             display: none;
@@ -321,13 +350,14 @@
 
         .modal-drawer-card {
             background: #ffffff;
-            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 16px;
             width: 100%;
-            max-width: 900px;
-            max-height: 88vh;
+            max-width: 980px;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 28px 80px rgba(15, 23, 42, 0.28);
             overflow: hidden;
             animation: popUp 0.25s ease-out;
         }
@@ -337,21 +367,27 @@
         }
 
         .modal-top-bar {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%);
-            padding: 18px 24px;
+            background: linear-gradient(112deg, #0f766e 0%, #087e8b 55%, #0369a1 100%);
+            padding: 18px 22px;
             color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .modal-heading-copy { min-width: 0; }
         .modal-top-bar h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 800;
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .modal-top-bar h3 span { color: #38bdf8; }
+        .modal-top-bar h3 span { color: #cffafe; }
+        .modal-subtitle {
+            margin: 5px 0 0 29px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.76rem;
+        }
         .btn-close-modal {
             background: rgba(255, 255, 255, 0.1);
             border: none;
@@ -369,141 +405,207 @@
         .btn-close-modal:hover { background: rgba(255, 255, 255, 0.25); transform: rotate(90deg); }
 
         .modal-body-scroll {
-            padding: 22px 24px;
+            padding: 0 22px 18px;
             overflow-y: auto;
             flex: 1;
         }
 
-        .summary-stats-box {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            background: #f8fafc;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 12px;
-            padding: 12px 18px;
-            margin-bottom: 20px;
-        }
-        .summary-stats-box div small {
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
+        .village-table-head,
+        .village-column-grid {
             display: block;
         }
-        .summary-stats-box div strong {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
 
-        .village-column-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
+        .village-table-head,
         .village-row-card {
+            display: grid;
+            grid-template-columns: minmax(210px, 1.25fr) minmax(190px, 1fr) 156px;
+            align-items: center;
+            column-gap: 18px;
+        }
+
+        .village-table-head {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            min-height: 42px;
+            padding: 0 12px;
+            border-bottom: 1px solid var(--border-soft);
             background: #ffffff;
-            border: 1.5px solid var(--border-soft);
-            border-radius: 12px;
-            padding: 14px 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 12px;
-            transition: all 0.2s ease;
+            color: #64748b;
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
+
         .village-row-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
+            background: #f8fbfc;
+        }
+        .village-row-card {
+            min-height: 58px;
+            padding: 9px 12px;
+            border-bottom: 1px solid #e8eef2;
+            transition: background-color 0.18s ease;
         }
 
-        .row-meta-top {
+        .village-name-cell { min-width: 0; }
+        .village-name-cell h4 {
+            overflow: hidden;
+            color: #0f5f8f;
+            font-size: 0.84rem;
+            font-weight: 800;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .village-name-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-        .row-meta-top h4 {
-            font-size: 0.98rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .row-meta-top span.code-tag {
-            font-size: 0.68rem;
-            font-weight: 800;
-            color: #0369a1;
-            background: #e0f2fe;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .location-info {
-            font-size: 0.78rem;
+            align-items: center;
+            gap: 7px;
+            margin-top: 4px;
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.68rem;
         }
-        .location-info i { color: #f43f5e; font-size: 0.82rem; }
-
-        .row-actions-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 10px;
-        }
-
-        .link-web-desa {
-            font-size: 0.78rem;
+        .type-tag {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: #ecfdf5;
+            color: #047857;
+            font-size: 0.62rem;
             font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
+        }
+        .code-tag {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .village-website-cell {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+        }
+        .link-web-desa {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            background: #f0f9ff;
-            padding: 5px 10px;
-            border-radius: 6px;
-            transition: background 0.2s;
+            min-width: 0;
+            gap: 7px;
+            color: #475569;
+            font-size: 0.76rem;
+            text-decoration: none;
         }
-        .link-web-desa:hover { background: #e0f2fe; color: var(--primary-dark); }
-
+        .link-web-desa i { color: #0891b2; }
+        .website-domain {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .link-web-desa:hover { color: #0369a1; }
+        .missing-link {
+            color: #94a3b8;
+            font-size: 0.74rem;
+        }
         .sosmed-pill-cluster {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            justify-content: flex-start;
+            gap: 5px;
         }
         .btn-sosmed-mini {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            color: var(--social-color);
+            font-size: 0.88rem;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: background-color 0.18s ease, transform 0.18s ease;
         }
         .btn-sosmed-mini:hover {
-            color: #ffffff;
-            transform: scale(1.15);
+            background: color-mix(in srgb, var(--social-color) 12%, white);
+            transform: translateY(-2px);
         }
-        .btn-sosmed-mini.ig:hover { background: #e1306c; }
-        .btn-sosmed-mini.fb:hover { background: #1877f2; }
-        .btn-sosmed-mini.yt:hover { background: #ff0000; }
-
+        .btn-sosmed-mini.ig { --social-color: #d94676; }
+        .btn-sosmed-mini.fb { --social-color: #1877f2; }
+        .btn-sosmed-mini.yt { --social-color: #e11d48; }
+        .btn-sosmed-mini.tt { --social-color: #111827; }
+        .social-empty {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            color: #cbd5e1;
+            font-size: 0.88rem;
+        }
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 28px;
+            color: var(--text-muted);
+            text-align: center;
+        }
         @media (max-width: 960px) {
             .district-grid-clean { grid-template-columns: repeat(2, 1fr); }
-            .village-column-grid { grid-template-columns: 1fr; }
+            .site-header { flex-wrap: wrap; gap: 12px 20px; padding-inline: 5%; }
+            .nav-menu {
+                order: 3;
+                flex: 0 0 100%;
+                justify-content: center;
+                gap: 6px;
+                margin-left: 0;
+            }
+            .nav-menu a { padding: 8px 6px; font-size: 0.74rem; }
         }
         @media (max-width: 640px) {
             .district-grid-clean { grid-template-columns: 1fr; }
-            .nav-menu { display: none; }
-            .summary-stats-box { grid-template-columns: 1fr; }
+            .site-header { padding: 10px 14px; gap: 10px 12px; }
+            .brand-link-clean { gap: 8px; }
+            .brand-logo-icon { height: 40px; max-width: 64px; }
+            .brand-text-logo { font-size: 1.15rem; }
+            .nav-menu { gap: 7px 12px; }
+            .nav-menu a { padding: 7px 5px; font-size: 0.68rem; }
+            .filter-bar-minimal { align-items: stretch; gap: 9px; }
+            .search-input-wrap { flex-basis: 100%; max-width: none; }
+            .total-distrik-pill { align-self: flex-start; font-size: 0.7rem; }
+            .hero-compact { padding: 38px 20px 60px; }
+            .content-wrap { padding-inline: 16px; }
+            .district-item-card { padding: 16px; }
+            .card-identity { gap: 10px; }
+            .card-text h3 { font-size: 0.96rem; }
+            .modal-drawer-overlay { padding: 10px; }
+            .modal-drawer-card { max-height: 94vh; }
+            .modal-top-bar { padding: 15px 16px; }
+            .modal-body-scroll { padding: 0 12px 12px; }
+            .village-table-head { display: none; }
+            .village-row-card {
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 6px 10px;
+                padding: 12px 8px;
+            }
+            .village-name-cell { grid-column: 1 / -1; }
+            .village-website-cell { grid-column: 1; }
+            .sosmed-pill-cluster { grid-column: 2; grid-row: 2; }
+            .btn-sosmed-mini, .social-empty { width: 26px; height: 28px; }
+        }
+        @media (max-width: 900px) and (orientation: portrait) {
+            .site-header { position: sticky; flex-wrap: nowrap; }
+            .menu-toggle { display: grid; margin-left: auto; flex: 0 0 42px; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                right: 14px;
+                z-index: 101;
+                flex-direction: column;
+                align-items: stretch;
+                width: min(260px, calc(100vw - 28px));
+                margin: 0;
+                padding: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                border-radius: 10px;
+                background: linear-gradient(145deg, #102a43, #0f766e);
+                box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+            }
+            .site-header.nav-open .nav-menu { display: flex; }
+            .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
         }
     </style>
 </head>
@@ -525,181 +627,130 @@
             </div>
         </a>
 
-        <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>">BERANDA</a></li>
-            <li><a href="<?= url('/website'); ?>" class="active">WEBSITE DESA</a></li>
-            <li><a href="<?= url('/data-spasial'); ?>">PETA SPASIAL</a></li>
-            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
-            <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
+        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-navigation">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <ul class="nav-menu" id="primary-navigation">
+            <li><a href="{{ url('/#hero-banner') }}" class="active">BERANDA</a></li>
+            <li><a href="{{ url('/#tentang-kami') }}">TENTANG KAMI</a></li>
+            <li><a href="{{ url('/#layanan-digital') }}">LAYANAN</a></li>
+            <li><a href="{{ url('/#hubungi-kami') }}">HUBUNGI KAMI</a></li>
         </ul>
+
     </header>
+
+    <script>
+        (() => {
+            const header = document.querySelector('.site-header');
+            const menuButton = header.querySelector('.menu-toggle');
+            const menuIcon = menuButton.querySelector('i');
+            const setMenuOpen = isOpen => {
+                header.classList.toggle('nav-open', isOpen);
+                menuButton.setAttribute('aria-expanded', String(isOpen));
+                menuButton.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+                menuIcon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`;
+            };
+            menuButton.addEventListener('click', () => setMenuOpen(!header.classList.contains('nav-open')));
+            header.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+            document.addEventListener('click', event => {
+                if (!header.contains(event.target)) setMenuOpen(false);
+            });
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+                    setMenuOpen(false);
+                    menuButton.focus();
+                }
+            });
+        })();
+    </script>
 
     <!-- 2. Hero Ringkas & Minimalis -->
     <section class="hero-compact">
         <h1>Direktori Website Desa & Kelurahan</h1>
-        <p>Akses cepat portal resmi dan data kewilayahan 20 distrik kecamatan Kabupaten Tuban.</p>
+        <p>Data wilayah terhubung langsung dengan basis data Kabupaten Tuban.</p>
     </section>
 
-    <!-- 3. Main Container -->
     <main class="content-wrap">
-        
-        <?php
-            // Data 20 Kecamatan dan Sampel Detail Desa/Kelurahan
-            $distrikList = [
-                ['nama' => 'Bancar', 'kode' => '35.23.01', 'total' => 24, 'color' => '#0284c7', 'villages' => [
-                    ['nama' => 'Desa Bancar', 'tipe' => 'Desa', 'kode' => '35.23.01.2001', 'lokasi' => 'Pesisir Utara Bancar', 'web' => 'https://bancar.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Boncong', 'tipe' => 'Desa', 'kode' => '35.23.01.2002', 'lokasi' => 'Jl. Pantura Boncong', 'web' => 'https://boncong.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Bulu', 'tipe' => 'Desa', 'kode' => '35.23.01.2003', 'lokasi' => 'Bulu Selatan', 'web' => 'https://bulu-tuban.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Bogorejo', 'tipe' => 'Desa', 'kode' => '35.23.01.2004', 'lokasi' => 'Bogorejo Bancar', 'web' => 'https://bogorejo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Bangilan', 'kode' => '35.23.02', 'total' => 14, 'color' => '#2563eb', 'villages' => [
-                    ['nama' => 'Desa Bangilan', 'tipe' => 'Desa', 'kode' => '35.23.02.2001', 'lokasi' => 'Sentra Bangilan', 'web' => 'https://bangilan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Kedungjambangan', 'tipe' => 'Desa', 'kode' => '35.23.02.2002', 'lokasi' => 'Kedungjambangan', 'web' => 'https://kedungjambangan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Klampok', 'tipe' => 'Desa', 'kode' => '35.23.02.2003', 'lokasi' => 'Klampok Barat', 'web' => 'https://klampok.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Grabagan', 'kode' => '35.23.03', 'total' => 11, 'color' => '#0d9488', 'villages' => [
-                    ['nama' => 'Desa Grabagan', 'tipe' => 'Desa', 'kode' => '35.23.03.2001', 'lokasi' => 'Perbukitan Grabagan', 'web' => 'https://grabagan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Dahor', 'tipe' => 'Desa', 'kode' => '35.23.03.2002', 'lokasi' => 'Dahor Lembah', 'web' => 'https://dahor.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Jatirogo', 'kode' => '35.23.04', 'total' => 18, 'color' => '#8b5cf6', 'villages' => [
-                    ['nama' => 'Desa Wotsogo', 'tipe' => 'Desa', 'kode' => '35.23.04.2001', 'lokasi' => 'Wotsogo Raya', 'web' => 'https://wotsogo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Paseyan', 'tipe' => 'Desa', 'kode' => '35.23.04.2002', 'lokasi' => 'Paseyan Timur', 'web' => 'https://paseyan.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Jenu', 'kode' => '35.23.05', 'total' => 17, 'color' => '#0284c7', 'villages' => [
-                    ['nama' => 'Desa Sugihwaras', 'tipe' => 'Desa', 'kode' => '35.23.05.2001', 'lokasi' => 'Pantai Sugihwaras', 'web' => 'https://sugihwaras.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Tasikharjo', 'tipe' => 'Desa', 'kode' => '35.23.05.2002', 'lokasi' => 'Wisata Pasir Putih', 'web' => 'https://tasikharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Socorejo', 'tipe' => 'Desa', 'kode' => '35.23.05.2003', 'lokasi' => 'Kawasan Pesisir', 'web' => 'https://socorejo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Remen', 'tipe' => 'Desa', 'kode' => '35.23.05.2004', 'lokasi' => 'Danau Remen', 'web' => 'https://remen.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Kenduruan', 'kode' => '35.23.06', 'total' => 9, 'color' => '#f43f5e', 'villages' => [
-                    ['nama' => 'Desa Sidohasri', 'tipe' => 'Desa', 'kode' => '35.23.06.2001', 'lokasi' => 'Sidohasri', 'web' => 'https://sidohasri.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Kerek', 'kode' => '35.23.07', 'total' => 16, 'color' => '#d97706', 'villages' => [
-                    ['nama' => 'Desa Gaji', 'tipe' => 'Desa', 'kode' => '35.23.07.2001', 'lokasi' => 'Sentra Batik Kerek', 'web' => 'https://gaji.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Merakurak', 'kode' => '35.23.08', 'total' => 19, 'color' => '#0284c7', 'villages' => [
-                    ['nama' => 'Desa Bogorejo', 'tipe' => 'Desa', 'kode' => '35.23.08.2001', 'lokasi' => 'Kawasan Merakurak', 'web' => 'https://bogorejo-merakurak.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Sambonggede', 'tipe' => 'Desa', 'kode' => '35.23.08.2002', 'lokasi' => 'Lembah Hijau', 'web' => 'https://sambonggede.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Montong', 'kode' => '35.23.09', 'total' => 13, 'color' => '#10b981', 'villages' => [
-                    ['nama' => 'Desa Guwoterus', 'tipe' => 'Desa', 'kode' => '35.23.09.2001', 'lokasi' => 'Kawasan Gua & Hutan', 'web' => 'https://guwoterus.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Palang', 'kode' => '35.23.10', 'total' => 19, 'color' => '#4f46e5', 'villages' => [
-                    ['nama' => 'Desa Panyuran', 'tipe' => 'Desa', 'kode' => '35.23.10.2001', 'lokasi' => 'Pesisir Palang', 'web' => 'https://panyuran.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Gesikharjo', 'tipe' => 'Desa', 'kode' => '35.23.10.2002', 'lokasi' => 'Religi Asmoroqondi', 'web' => 'https://gesikharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Parengan', 'kode' => '35.23.11', 'total' => 18, 'color' => '#f59e0b', 'villages' => [
-                    ['nama' => 'Desa Parangbatu', 'tipe' => 'Desa', 'kode' => '35.23.11.2001', 'lokasi' => 'Lembah Parengan', 'web' => 'https://parangbatu.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Plumpang', 'kode' => '35.23.12', 'total' => 18, 'color' => '#0284c7', 'villages' => [
-                    ['nama' => 'Desa Plumpang', 'tipe' => 'Desa', 'kode' => '35.23.12.2001', 'lokasi' => 'Pusat Plumpang', 'web' => 'https://plumpang.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Rengel', 'kode' => '35.23.13', 'total' => 16, 'color' => '#10b981', 'villages' => [
-                    ['nama' => 'Desa Rengel', 'tipe' => 'Desa', 'kode' => '35.23.13.2001', 'lokasi' => 'Sendang Beron', 'web' => 'https://rengel.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Semanding', 'kode' => '35.23.14', 'total' => 17, 'color' => '#e11d48', 'villages' => [
-                    ['nama' => 'Kelurahan Gedongombo', 'tipe' => 'Kelurahan', 'kode' => '35.23.14.1001', 'lokasi' => 'Gedongombo Kota', 'web' => 'https://gedongombo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Prunggahan Kulon', 'tipe' => 'Desa', 'kode' => '35.23.14.2002', 'lokasi' => 'Wisata Bektiharjo', 'web' => 'https://prunggahan-kulon.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Senori', 'kode' => '35.23.15', 'total' => 12, 'color' => '#8b5cf6', 'villages' => [
-                    ['nama' => 'Desa Rayung', 'tipe' => 'Desa', 'kode' => '35.23.15.2001', 'lokasi' => 'Rayung Senori', 'web' => 'https://rayung.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Singgahan', 'kode' => '35.23.16', 'total' => 12, 'color' => '#0ea5e9', 'villages' => [
-                    ['nama' => 'Desa Mulyoagung', 'tipe' => 'Desa', 'kode' => '35.23.16.2001', 'lokasi' => 'Air Terjun Nglirip', 'web' => 'https://mulyoagung.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Soko', 'kode' => '35.23.17', 'total' => 23, 'color' => '#f59e0b', 'villages' => [
-                    ['nama' => 'Desa Sokosari', 'tipe' => 'Desa', 'kode' => '35.23.17.2001', 'lokasi' => 'Sokosari Bengawan', 'web' => 'https://sokosari.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Tambakboyo', 'kode' => '35.23.18', 'total' => 18, 'color' => '#0284c7', 'villages' => [
-                    ['nama' => 'Desa Dasin', 'tipe' => 'Desa', 'kode' => '35.23.18.2001', 'lokasi' => 'Pesisir Tambakboyo', 'web' => 'https://dasin.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Tuban', 'kode' => '35.23.19', 'total' => 17, 'color' => '#10b981', 'villages' => [
-                    ['nama' => 'Kelurahan Kutorejo', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1001', 'lokasi' => 'Pusat Alun-Alun Tuban', 'web' => 'https://kutorejo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Kelurahan Latsari', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1002', 'lokasi' => 'Kawasan Perkotaan', 'web' => 'https://latsari.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Kelurahan Sidomulyo', 'tipe' => 'Kelurahan', 'kode' => '35.23.19.1003', 'lokasi' => 'Pusat Niaga Tuban', 'web' => 'https://sidomulyo.tubankab.go.id', 'ig' => '#', 'fb' => '#', 'yt' => '#'],
-                    ['nama' => 'Desa Sugiharjo', 'tipe' => 'Desa', 'kode' => '35.23.19.2004', 'lokasi' => 'Tuban Selatan', 'web' => 'https://sugiharjo.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]],
-                ['nama' => 'Widang', 'kode' => '35.23.20', 'total' => 16, 'color' => '#475569', 'villages' => [
-                    ['nama' => 'Desa Compreng', 'tipe' => 'Desa', 'kode' => '35.23.20.2001', 'lokasi' => 'Lembah Bengawan Widang', 'web' => 'https://compreng.desa.id', 'ig' => '#', 'fb' => '#', 'yt' => '#']
-                ]]
-            ];
-        ?>
-
-        <!-- Filter Bar Bersih -->
         <div class="filter-bar-minimal">
             <div class="search-input-wrap">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Cari nama distrik kecamatan..." oninput="handleSearch(this.value)">
+                <input type="search" id="searchInput" placeholder="Cari kecamatan atau desa..." oninput="handleSearch(this.value)" aria-label="Cari kecamatan atau desa">
             </div>
             <div class="total-distrik-pill" id="counterBadge">
                 <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
-                <span>20 Distrik Kecamatan Aktif</span>
+                <span>{{ number_format($kecamatans->count()) }} Kecamatan · {{ number_format($totalWebsiteAktif) }} Website · {{ number_format($kecamatans->sum('desa_count')) }} Wilayah</span>
             </div>
         </div>
 
-        <!-- Grid Kartu dengan Logo Murni Kabupaten Tuban -->
         <div class="district-grid-clean" id="gridDistrik">
-            <?php foreach ($distrikList as $item): ?>
-                <div class="district-item-card" 
-                     style="--card-color: <?= $item['color']; ?>;"
-                     data-name="<?= strtolower($item['nama']); ?>"
-                     onclick="showVillageDrawer('<?= $item['nama']; ?>', '<?= $item['kode']; ?>', <?= $item['total']; ?>, <?= htmlspecialchars(json_encode($item['villages'])); ?>)">
-                    
+            @forelse ($kecamatans as $item)
+                @php
+                    $villageData = $item->desa->map(fn ($desa) => [
+                        'nama' => $desa->nama_desa,
+                        'jenis' => $desa->jenis,
+                        'kode' => $desa->kode_desa,
+                        'website' => $desa->website,
+                        'instagram' => $desa->instagram,
+                        'facebook' => $desa->facebook,
+                        'youtube' => $desa->youtube,
+                        'tiktok' => $desa->tiktok,
+                        'whatsapp' => $desa->whatsapp,
+                    ])->values();
+                    $websiteCount = $item->desa->filter(fn ($desa) => filled($desa->website))->count();
+                    $searchText = strtolower($item->nama_kecamatan . ' ' . $item->desa->pluck('nama_desa')->implode(' '));
+                @endphp
+                <button type="button" class="district-item-card"
+                        data-name="{{ $searchText }}"
+                        data-kecamatan="{{ $item->nama_kecamatan }}"
+                        data-kode="{{ filled($item->kode_wilayah) ? $item->kode_wilayah : 'Belum tersedia' }}"
+                        data-total="{{ $item->desa_count }}"
+                        data-websites="{{ $websiteCount }}"
+                        data-villages="{{ $villageData->toJson() }}">
                     <div class="card-identity">
-                        <!-- Murni Memanggil Gambar Logo Asli Kabupaten Tuban -->
                         <div class="card-icon-round">
-                            <img src="<?= asset('images/logo-tuban.png'); ?>" 
-                                 alt="Logo Kabupaten Tuban"
-                                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
+                            <img src="{{ asset('images/logo-tuban.png') }}" alt="" aria-hidden="true"
+                                 onerror="this.onerror=null; this.src='{{ asset('images/desa-digital.png') }}';">
                         </div>
                         <div class="card-text">
-                            <h3>Kecamatan <?= $item['nama']; ?></h3>
-                            <small>Kode: <?= $item['kode']; ?></small>
+                            <h3>Kecamatan {{ $item->nama_kecamatan }}</h3>
+                            <small>Kode: {{ filled($item->kode_wilayah) ? $item->kode_wilayah : 'Belum tersedia' }}</small>
                         </div>
                     </div>
 
                     <div class="card-action-cue">
-                        <span class="badge-count"><?= $item['total']; ?> Wilayah</span>
+                        <span class="badge-count">{{ number_format($item->desa_count) }} Wilayah</span>
                         <i class="fa-solid fa-arrow-right btn-arrow-cue"></i>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                </button>
+            @empty
+                <p class="empty-state">Data kecamatan belum tersedia.</p>
+            @endforelse
         </div>
     </main>
 
     <!-- 4. Modal Kolom Data Desa / Kelurahan Saat Kartu Diklik -->
-    <div class="modal-drawer-overlay" id="villageModal" onclick="checkCloseOutside(event)">
+    <div class="modal-drawer-overlay" id="villageModal" role="dialog" aria-modal="true" aria-labelledby="modalKecamatanTitle" onclick="checkCloseOutside(event)">
         <div class="modal-drawer-card">
             
             <div class="modal-top-bar">
-                <h3 id="modalKecamatanTitle">
-                    <i class="fa-solid fa-layer-group"></i> 
-                    Kecamatan <span>-</span>
-                </h3>
+                <div class="modal-heading-copy">
+                    <h3 id="modalKecamatanTitle">
+                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                        <span>-</span>
+                    </h3>
+                    <p class="modal-subtitle" id="modalKecamatanSubtitle">Daftar desa dan kelurahan</p>
+                </div>
                 <button type="button" class="btn-close-modal" onclick="closeVillageModal()">&times;</button>
             </div>
 
             <div class="modal-body-scroll">
-                
-                <!-- Ringkasan Statistik -->
-                <div class="summary-stats-box">
-                    <div>
-                        <small>Kode Distrik</small>
-                        <strong id="modalKecKode">-</strong>
-                    </div>
-                    <div>
-                        <small>Total Wilayah</small>
-                        <strong id="modalKecTotal">-</strong>
-                    </div>
-                    <div>
-                        <small>Status Integrasi</small>
-                        <strong style="color: var(--emerald);"><i class="fa-solid fa-circle-check"></i> Siaga Terpadu</strong>
-                    </div>
+                <div class="village-table-head" aria-hidden="true">
+                    <span>Nama Desa/Kelurahan</span>
+                    <span>Website</span>
+                    <span>Sosial Media</span>
                 </div>
-
-                <!-- Kolom Daftar Desa/Kelurahan -->
-                <div class="village-column-grid" id="villageRowsGrid">
-                    <!-- Data Baris Render Otomatis -->
+                <div class="village-column-grid" id="villageRowsGrid" role="list">
                 </div>
 
             </div>
@@ -709,26 +760,24 @@
     <!-- Script Filter & Interaksi Klik Kolom -->
     <script>
         const searchFromUrl = new URLSearchParams(window.location.search).get('search') || '';
+        const districtCards = document.querySelectorAll('.district-item-card');
+        const defaultCountLabel = document.querySelector('#counterBadge span').textContent;
+        let lastOpenedCard = null;
 
         function handleSearch(val) {
             const query = val.toLowerCase().trim();
-            const cards = document.querySelectorAll('.district-item-card');
             let count = 0;
 
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                if (name.includes(query)) {
-                    card.style.display = 'flex';
-                    count++;
-                } else {
-                    card.style.display = 'none';
-                }
+            districtCards.forEach(card => {
+                const matches = card.dataset.name.includes(query);
+                card.style.display = matches ? 'flex' : 'none';
+                count += Number(matches);
             });
 
-            document.getElementById('counterBadge').innerHTML = `
-                <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
-                <span>${count} Distrik Terpilih</span>
-            `;
+            const countLabel = document.querySelector('#counterBadge span');
+            countLabel.textContent = query
+                ? `${count} dari ${districtCards.length} kecamatan`
+                : defaultCountLabel;
         }
 
         if (searchFromUrl) {
@@ -736,55 +785,152 @@
             handleSearch(searchFromUrl);
         }
 
-        function showVillageDrawer(namaKec, kodeKec, totalDesa, villageList) {
-            document.getElementById('modalKecamatanTitle').innerHTML = `
-                <i class="fa-solid fa-layer-group"></i> 
-                Kecamatan <span>${namaKec}</span>
-            `;
-            document.getElementById('modalKecKode').innerText = kodeKec;
-            document.getElementById('modalKecTotal').innerText = `${totalDesa} Desa & Kelurahan`;
+        districtCards.forEach(card => {
+            card.addEventListener('click', () => {
+                lastOpenedCard = card;
+                showVillageDrawer(
+                    card.dataset.kecamatan,
+                    card.dataset.kode,
+                    Number(card.dataset.total),
+                    Number(card.dataset.websites),
+                    JSON.parse(card.dataset.villages)
+                );
+            });
+        });
+
+        function createTextElement(tag, className, text) {
+            const element = document.createElement(tag);
+            element.className = className;
+            element.textContent = text || '';
+            return element;
+        }
+
+        function safeExternalUrl(value) {
+            if (!value || !value.trim()) return null;
+
+            try {
+                const normalizedValue = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+                const url = new URL(normalizedValue);
+                return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function createExternalLink(url, className, title, iconClass) {
+            const link = document.createElement('a');
+            link.className = className;
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.title = title;
+            link.setAttribute('aria-label', title);
+
+            const icon = document.createElement('i');
+            icon.className = iconClass;
+            icon.setAttribute('aria-hidden', 'true');
+            link.appendChild(icon);
+            return link;
+        }
+
+        function showVillageDrawer(namaKec, kodeKec, totalDesa, websiteCount, villageList) {
+            document.querySelector('#modalKecamatanTitle span').textContent = namaKec;
+            document.getElementById('modalKecamatanSubtitle').textContent = `${totalDesa} wilayah · ${websiteCount} website terdaftar`;
 
             const grid = document.getElementById('villageRowsGrid');
-            grid.innerHTML = '';
+            grid.replaceChildren();
+
+            if (villageList.length === 0) {
+                grid.appendChild(createTextElement('p', 'empty-state', 'Belum ada data desa atau kelurahan untuk kecamatan ini.'));
+            }
 
             villageList.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'village-row-card';
-                card.innerHTML = `
-                    <div class="row-meta-top">
-                        <div>
-                            <h4>${item.nama}</h4>
-                            <div class="location-info">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <span>${item.lokasi}</span>
-                            </div>
-                        </div>
-                        <span class="code-tag">${item.kode}</span>
-                    </div>
+                card.setAttribute('role', 'listitem');
 
-                    <div class="row-actions-bottom">
-                        <a href="${item.web}" target="_blank" rel="noopener" class="link-web-desa">
-                            <i class="fa-solid fa-globe"></i>
-                            <span>Buka Website</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-                        </a>
+                const nameCell = document.createElement('div');
+                nameCell.className = 'village-name-cell';
+                nameCell.appendChild(createTextElement('h4', '', item.nama));
+                const nameMeta = document.createElement('div');
+                nameMeta.className = 'village-name-meta';
+                nameMeta.append(
+                    createTextElement('span', 'type-tag', item.jenis || 'Wilayah'),
+                    createTextElement('span', 'code-tag', item.kode || 'Kode belum tersedia')
+                );
+                nameCell.appendChild(nameMeta);
 
-                        <div class="sosmed-pill-cluster">
-                            <a href="${item.ig}" target="_blank" class="btn-sosmed-mini ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="${item.fb}" target="_blank" class="btn-sosmed-mini fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="${item.yt}" target="_blank" class="btn-sosmed-mini yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        </div>
-                    </div>
-                `;
+                const websiteCell = document.createElement('div');
+                websiteCell.className = 'village-website-cell';
+                const websiteUrl = safeExternalUrl(item.website);
+                if (websiteUrl) {
+                    const websiteLink = createExternalLink(websiteUrl, 'link-web-desa', 'Buka website ' + item.nama, 'fa-solid fa-globe');
+                    const domain = new URL(websiteUrl).hostname.replace(/^www\./, '');
+                    websiteLink.appendChild(createTextElement('span', 'website-domain', domain));
+                    websiteCell.appendChild(websiteLink);
+                } else {
+                    websiteCell.appendChild(createTextElement('span', 'missing-link', 'Belum tersedia'));
+                }
+
+                const socialLinks = document.createElement('div');
+                socialLinks.className = 'sosmed-pill-cluster';
+                const socialPlatforms = [
+                    ['instagram', 'Instagram', 'fa-brands fa-instagram', 'ig'],
+                    ['facebook', 'Facebook', 'fa-brands fa-facebook-f', 'fb'],
+                    ['youtube', 'YouTube', 'fa-brands fa-youtube', 'yt'],
+                    ['tiktok', 'TikTok', 'fa-brands fa-tiktok', 'tt'],
+                ];
+
+                socialPlatforms.forEach(([field, label, icon, style]) => {
+                    const url = safeExternalUrl(item[field]);
+                    if (url) {
+                        socialLinks.appendChild(createExternalLink(url, `btn-sosmed-mini ${style}`, label + ' ' + item.nama, icon));
+                    } else {
+                        const placeholder = document.createElement('span');
+                        placeholder.className = 'social-empty';
+                        placeholder.title = `${label} belum tersedia`;
+                        placeholder.setAttribute('aria-label', `${label} belum tersedia`);
+                        const platformIcon = document.createElement('i');
+                        platformIcon.className = icon;
+                        platformIcon.setAttribute('aria-hidden', 'true');
+                        placeholder.appendChild(platformIcon);
+                        socialLinks.appendChild(placeholder);
+                    }
+                });
+
+                const whatsappNumber = (item.whatsapp || '').replace(/\D/g, '').replace(/^0/, '62');
+                if (whatsappNumber) {
+                    socialLinks.appendChild(createExternalLink(`https://wa.me/${whatsappNumber}`, 'btn-sosmed-mini wa', 'WhatsApp ' + item.nama, 'fa-brands fa-whatsapp'));
+                } else {
+                    const whatsappPlaceholder = document.createElement('span');
+                    whatsappPlaceholder.className = 'social-empty';
+                    whatsappPlaceholder.title = 'WhatsApp belum tersedia';
+                    whatsappPlaceholder.setAttribute('aria-label', 'WhatsApp belum tersedia');
+                    const whatsappIcon = document.createElement('i');
+                    whatsappIcon.className = 'fa-brands fa-whatsapp';
+                    whatsappIcon.setAttribute('aria-hidden', 'true');
+                    whatsappPlaceholder.appendChild(whatsappIcon);
+                    socialLinks.appendChild(whatsappPlaceholder);
+                }
+
+                card.append(nameCell, websiteCell, socialLinks);
                 grid.appendChild(card);
             });
 
             document.getElementById('villageModal').style.display = 'flex';
+            document.querySelector('.btn-close-modal').focus();
         }
 
         function closeVillageModal() {
             document.getElementById('villageModal').style.display = 'none';
+            lastOpenedCard?.focus();
         }
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && document.getElementById('villageModal').style.display === 'flex') {
+                closeVillageModal();
+            }
+        });
 
         function checkCloseOutside(e) {
             if (e.target.id === 'villageModal') {
