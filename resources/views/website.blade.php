@@ -708,6 +708,8 @@
 
     <!-- Script Filter & Interaksi Klik Kolom -->
     <script>
+        const searchFromUrl = new URLSearchParams(window.location.search).get('search') || '';
+
         function handleSearch(val) {
             const query = val.toLowerCase().trim();
             const cards = document.querySelectorAll('.district-item-card');
@@ -727,6 +729,11 @@
                 <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
                 <span>${count} Distrik Terpilih</span>
             `;
+        }
+
+        if (searchFromUrl) {
+            document.getElementById('searchInput').value = searchFromUrl;
+            handleSearch(searchFromUrl);
         }
 
         function showVillageDrawer(namaKec, kodeKec, totalDesa, villageList) {

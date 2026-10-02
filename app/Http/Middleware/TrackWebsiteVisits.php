@@ -24,9 +24,10 @@ class TrackWebsiteVisits
         }
 
         $visitorId = $request->cookie('website_visitor_id') ?: Str::random(64);
+            $visitHash = hash('sha256', $visitorId.'|'.Str::uuid());
 
-        DB::table('website_visits')->insertOrIgnore([
-            'visitor_hash' => hash('sha256', $visitorId),
+        DB::table('website_visits')->insert([
+                'visitor_hash' => $visitHash,
             'visited_on' => now()->toDateString(),
             'created_at' => now(),
             'updated_at' => now(),

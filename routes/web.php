@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
@@ -21,6 +22,31 @@ use App\Services\DashboardStatistics;
 Route::get('/', function (DashboardStatistics $statistics) {
     return view('landing', ['statistics' => $statistics->counts()]);
 })->name('home');
+
+Route::get('/website-visits/stats', function (DashboardStatistics $statistics) {
+    return response()->json($statistics->visitorCounts())
+        ->header('Cache-Control', 'no-store, private');
+})->name('website-visits.stats');
+
+Route::post('/website-feedback', function (Request $request) {
+    $validated = $request->validate([
+        'rating' => 'required|integer|between:1,5',
+        'message' => 'nullable|string|max:500',
+    ]);
+
+    \Illuminate\Support\Facades\DB::table('website_feedback')->insert([
+        'visitor_hash' => hash('sha256', $request->cookie('website_visitor_id') ?: Str::random(64)),
+        'rating' => $validated['rating'],
+        'message' => $validated['message'] ?? null,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return response()->json(['message' => 'Terima kasih, masukan Anda sudah tersimpan.'], 201);
+})->middleware('throttle:6,1')->name('website-feedback.store');
+
+Route::get('/search/suggestions', [HomeController::class, 'suggestions'])->name('search.suggestions');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 Route::get('/data-spasial', function () {
     return view('data-spasial');

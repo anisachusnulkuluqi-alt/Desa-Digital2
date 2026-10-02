@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= csrf_token(); ?>">
     <title>Desa Digital - Pemerintah Kabupaten Tuban</title>
     <link rel="icon" type="image/png" href="<?= asset('images/desa-digital.png'); ?>">
     
@@ -10,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="<?= asset('css/global-search.css'); ?>">
 
     <style>
         :root {
@@ -32,7 +35,7 @@
             --border-soft: #e2e8f0;
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
         section[id], footer[id] { scroll-margin-top: 80px; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
@@ -44,14 +47,14 @@
 
         /* 1. TOP NAVBAR */
         .site-header {
-            background: var(--header-dark);
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px clamp(20px, 5vw, 88px);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: clamp(24px, 4vw, 64px);
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -62,25 +65,26 @@
         .brand-link {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
 
         .brand-logo-img {
-            height: 38px;
+            height: 52px;
             width: auto;
-            max-width: 140px;
+            max-width: 160px;
             object-fit: contain;
             display: block;
         }
 
         .brand-text-logo {
-            font-size: 1.35rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: #ffffff;
             letter-spacing: -0.01em;
             display: flex;
             align-items: center;
+            font-family: 'Manrope', sans-serif;
         }
         .brand-text-logo span {
             color: var(--accent-cyan);
@@ -90,7 +94,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: clamp(12px, 1.5vw, 22px);
+            gap: clamp(8px, 0.75vw, 12px);
             list-style: none;
             flex-wrap: wrap;
             justify-content: flex-end;
@@ -98,27 +102,64 @@
         }
 
         .nav-menu a {
-            color: #e2e8f0;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
+            font-family: 'Manrope', sans-serif;
             font-size: 0.8rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0;
             position: relative;
-            padding: 6px 0;
-            transition: color 0.2s ease;
+            padding: 9px 8px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
-        .nav-menu a:hover { color: #ffffff; }
-        .nav-menu a.active { color: var(--accent-cyan); }
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
+
+        .search-pill-nav {
+            display: flex;
+            align-items: center;
+            flex: 0 0 150px;
+            min-width: 0;
+            padding: 4px 10px 4px 14px;
+            font-family: 'Manrope', sans-serif;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .search-pill-nav:focus-within {
+            background: rgba(255, 255, 255, 0.18);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .search-pill-nav input {
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+        }
+
+        .search-pill-nav input::placeholder { color: rgba(255, 255, 255, 0.6); }
+
+        .search-pill-nav button {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            border: 0;
+            background: transparent;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
         }
 
         /* 2. HERO BANNER */
@@ -142,7 +183,35 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(15, 23, 42, 0.62) 0%, rgba(15, 23, 42, 0.94) 100%);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.28) 100%);
+        }
+
+        .hero-banner-clean::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            background-image:
+                radial-gradient(circle at 15% 38%, rgba(255, 255, 255, 0.95) 0 1px, rgba(125, 211, 252, 0.7) 2px, transparent 4px),
+                radial-gradient(circle at 30% 68%, rgba(255, 255, 255, 0.9) 0 1px, rgba(56, 189, 248, 0.62) 2px, transparent 4px),
+                radial-gradient(circle at 58% 34%, rgba(255, 255, 255, 0.92) 0 1px, rgba(103, 232, 249, 0.68) 2px, transparent 4px),
+                radial-gradient(circle at 76% 61%, rgba(255, 255, 255, 0.9) 0 1px, rgba(125, 211, 252, 0.62) 2px, transparent 4px),
+                radial-gradient(circle at 91% 30%, rgba(255, 255, 255, 0.88) 0 1px, rgba(56, 189, 248, 0.6) 2px, transparent 4px),
+                linear-gradient(112deg, transparent 42%, rgba(125, 211, 252, 0.04) 46%, rgba(255, 255, 255, 0.2) 50%, rgba(34, 211, 238, 0.1) 53%, transparent 59%);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 220% 100%;
+            background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -140% 0;
+            background-repeat: no-repeat;
+            mix-blend-mode: screen;
+            animation: hero-glimmer 10s ease-in-out infinite;
+        }
+
+        @keyframes hero-glimmer {
+            0%, 18% { opacity: 0; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -140% 0; }
+            34% { opacity: 0.62; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, -35% 0; }
+            52% { opacity: 0.38; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 45% 0; }
+            70%, 100% { opacity: 0; background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 140% 0; }
         }
 
         .hero-content-wrap {
@@ -153,7 +222,7 @@
         }
 
         .hero-main-title {
-            font-size: 4.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             letter-spacing: -0.04em;
             line-height: 1.2;
@@ -175,36 +244,6 @@
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
             animation: hero-enter 0.7s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        }
-
-        .hero-info-pills {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(12px);
-            padding: 8px 22px;
-            border-radius: 40px;
-            margin-bottom: 34px;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #cbd5e1;
-            animation: hero-enter 0.7s 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-        }
-        .hero-info-pills span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .hero-info-pills span strong {
-            color: #38bdf8;
-        }
-        .hero-info-pills .divider-dot {
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
         }
 
         .btn-jelajah-solo {
@@ -237,15 +276,24 @@
 
         /* 3. SEKSI INOVASI EKOSISTEM DESA */
         .section-profil-accordion {
-            padding: clamp(56px, 6vw, 90px) clamp(20px, 5vw, 88px);
-            background: var(--bg-blue-gradient);
+            padding: clamp(64px, 7vw, 96px) clamp(20px, 5vw, 88px);
+            background: linear-gradient(125deg, #f7fbff 0%, #edf5fc 48%, #f8fbff 100%);
             position: relative;
         }
 
         .section-header-clean {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto 46px auto;
+            text-align: left;
+            max-width: 1280px;
+            margin: 0 auto 32px;
+        }
+        .section-purpose-label {
+            display: inline-block;
+            color: #0284c7;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
         .header-tag-pill {
             display: inline-flex;
@@ -264,23 +312,26 @@
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
         }
         .section-header-clean h2 {
-            font-size: 2.3rem;
+            max-width: 820px;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -0.025em;
+            line-height: 1.18;
             color: var(--text-dark);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .section-header-clean p {
-            font-size: 0.94rem;
+            max-width: 760px;
+            font-size: 0.96rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
 
         .profil-dual-layout {
             display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 32px;
-            max-width: 1240px;
+            grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+            gap: clamp(24px, 3vw, 42px);
+            max-width: 1280px;
             margin: 0 auto;
             align-items: stretch;
         }
@@ -288,18 +339,22 @@
         .accordion-stack-clean {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
         }
 
         .accordion-item-clean {
             border: 1.5px solid var(--border-soft);
-            border-radius: 16px;
+            border-radius: 12px;
             background: #ffffff;
             overflow: hidden;
             transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             box-shadow: 0 3px 10px rgba(15, 23, 42, 0.02);
+        }
+        .accordion-item-clean:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
         }
         .accordion-item-clean::before {
             content: '';
@@ -307,7 +362,7 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 5px;
+            width: 4px;
             background: transparent;
             transition: background 0.25s ease;
         }
@@ -342,7 +397,7 @@
 
         .accordion-header-btn {
             width: 100%;
-            padding: 16px 20px;
+            padding: 17px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -356,16 +411,16 @@
         .accordion-title-wrap {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             font-size: 0.94rem;
             font-weight: 800;
             color: var(--text-dark);
         }
         
         .accordion-icon-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -399,77 +454,36 @@
         }
 
         .accordion-content-text {
-            display: none;
-            padding: 0 24px 18px 70px;
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px 0 74px;
+            opacity: 0;
+            transform: translateY(-8px);
             font-size: 0.88rem;
             color: var(--text-gray);
             line-height: 1.65;
+            transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.4s ease, padding 0.4s ease;
         }
         .accordion-item-clean.active .accordion-content-text {
-            display: block;
+            max-height: 180px;
+            padding-bottom: 20px;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .video-player-frame {
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1.5px solid #cbd5e1;
-            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.14);
-            display: flex;
-            flex-direction: column;
-            background: #0f172a;
             position: relative;
-        }
-        .video-top-tag {
-            background: #ffffff;
-            padding: 12px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1.5px solid var(--border-soft);
-        }
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .channel-info i {
-            color: #ef4444;
-            font-size: 1.15rem;
-        }
-        .status-broadcast {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.72rem;
-            font-weight: 800;
-            color: #15803d;
-            background: #dcfce7;
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid #86efac;
-        }
-        .status-broadcast .live-pulse {
-            width: 7px;
-            height: 7px;
-            background: #16a34a;
-            border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
-            animation: pulse 1.6s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            align-self: center;
+            overflow: hidden;
+            background: transparent;
         }
 
         .video-embed-box {
-            position: relative;
-            flex-grow: 1;
-            min-height: 350px;
-            background: #090e17;
+            position: absolute;
+            inset: 0;
+            background: transparent;
         }
         .video-embed-box iframe {
             position: absolute;
@@ -576,24 +590,6 @@
             margin: 0 auto 46px auto;
         }
 
-        .services-tag-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            color: var(--primary-dark);
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1.5px solid #bae6fd;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.1);
-            margin-bottom: 12px;
-        }
-
         .services-header-box h2 {
             font-size: 2.35rem;
             font-weight: 900;
@@ -602,15 +598,51 @@
             margin-bottom: 0;
         }
 
-        .services-cards-cluster {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
+        .services-carousel {
+            position: relative;
             max-width: 1240px;
             margin: 0 auto;
+        }
+
+        .services-cards-cluster {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% - 80px) / 5);
+            gap: 20px;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
             position: relative;
             z-index: 2;
         }
+
+        .services-cards-cluster::-webkit-scrollbar { display: none; }
+
+        .services-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transform: translateY(-50%);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+            transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .services-carousel-arrow:hover:not(:disabled) { background: var(--primary); color: #ffffff; }
+        .services-carousel-arrow:disabled { opacity: 0.38; cursor: default; }
+        .services-carousel-arrow[hidden] { display: none; }
+        .services-carousel-arrow-prev { left: -21px; }
+        .services-carousel-arrow-next { right: -21px; }
 
         .service-card-clean {
             background: rgba(255, 255, 255, 0.86);
@@ -631,6 +663,7 @@
             position: relative;
             overflow: hidden;
             min-height: 190px;
+            scroll-snap-align: start;
         }
 
         .service-card-clean::before {
@@ -676,18 +709,26 @@
 
         .reveal-item {
             opacity: 0;
-            transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 26px), 0) scale(var(--reveal-scale, 1));
+            transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 26px), 0) scale(var(--reveal-scale, 1)) rotate(var(--reveal-rotation, 0deg));
             transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.2, 0.7, 0.2, 1);
             transition-delay: var(--reveal-delay, 0ms);
         }
 
         .reveal-item.is-visible {
             opacity: 1;
-            transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
         }
 
         .reveal-icon {
             --reveal-scale: 0.72;
+        }
+
+        #tentang-kami .reveal-item {
+            transition-duration: 0.85s;
+        }
+
+        #tentang-kami .reveal-item.reveal-icon {
+            --reveal-scale: 0.56;
         }
 
         .accordion-header-btn:hover .accordion-icon-box,
@@ -731,10 +772,10 @@
 
         .location-grid-layout {
             display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(0, 6fr) minmax(0, 2fr);
+            grid-template-columns: minmax(280px, 0.85fr) minmax(0, 2fr);
             gap: 0;
-            width: 100%;
-            margin: 0;
+            width: min(100%, 1440px);
+            margin: 0 auto;
             align-items: stretch;
         }
 
@@ -748,11 +789,20 @@
         }
 
         .location-info-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 900;
             line-height: 1.4;
             color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .location-office-name {
+            max-width: 360px;
             margin-bottom: 24px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 600;
+            line-height: 1.55;
         }
 
         .location-details-list {
@@ -825,30 +875,152 @@
             border: none;
         }
 
-        .visitor-count-panel {
-            min-height: 500px;
-            border: 1.5px solid var(--border-soft);
-            border-left: 0;
-            padding: 42px 36px;
-            background: linear-gradient(145deg, #0f172a, #164e63);
-            color: #ffffff;
+        .social-media-clean {
+            padding: 42px 20px 48px;
+            background: #f8fafc;
+            border-top: 1px solid var(--border-soft);
+            text-align: center;
+        }
+
+        .social-media-clean h2 {
+            margin-bottom: 22px;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .social-logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(24px, 4vw, 52px);
+        }
+
+        .social-logo-item {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            color: var(--social-color);
+            font-size: 1.7rem;
+            transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.25s ease;
+        }
+
+        .social-logo-item:hover {
+            transform: translateY(-5px) scale(1.12);
+        }
+
+        .floating-tools {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1200;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
         }
-        .visitor-count-heading { display: flex; align-items: center; gap: 10px; color: #bae6fd; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-        .visitor-count-heading i { font-size: 1rem; }
-        .visitor-count-panel h3 { margin: 24px 0 8px; color: #ffffff; font-size: 1.45rem; font-weight: 800; }
-        .visitor-count-caption { margin: 0; color: #cbd5e1; font-size: 0.88rem; line-height: 1.6; }
-        .visitor-count-total { margin: 26px 0; color: #ffffff; font-size: 3.5rem; font-weight: 900; line-height: 1; }
-        .visitor-count-today { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.2); color: #e2e8f0; font-size: 0.9rem; }
-        .visitor-count-today strong { color: #ffffff; font-size: 1.2rem; }
+
+        .floating-tool-button {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            font-size: 1.15rem;
+            cursor: pointer;
+            box-shadow: 0 5px 16px rgba(15, 23, 42, 0.14);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .floating-tool-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
+        .floating-tool-button:focus-visible { outline: 3px solid #0f172a; outline-offset: 3px; }
+        .floating-tool-button[aria-pressed="true"] { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px currentColor; }
+        .floating-tool-feedback { background: #ffe4e6; border-color: #fda4af; color: #be123c; }
+        .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+        .floating-tool-display { background: #fef3c7; border-color: #fcd34d; color: #b45309; }
+        .floating-tool-text { background: #ede9fe; border-color: #c4b5fd; color: #6d28d9; }
+
+        .website-tool-control { position: relative; display: flex; align-items: center; }
+        .website-tool-panel {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            right: calc(100% + 12px);
+            width: min(290px, calc(100vw - 88px));
+            max-height: calc(100vh - 28px);
+            overflow-y: auto;
+            padding: 16px;
+            border: 1px solid var(--tool-border, #cbd5e1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.97);
+            color: var(--text-dark);
+            text-align: left;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+        }
+
+        .website-tool-panel[hidden] { display: none; }
+        .website-tool-heading { margin: 0 0 4px; font-size: 0.9rem; font-weight: 900; }
+        .website-tool-caption { margin: 0 0 13px; color: var(--text-muted); font-size: 0.72rem; line-height: 1.5; }
+        .feedback-rating-row { display: flex; justify-content: space-between; gap: 5px; margin-bottom: 12px; }
+        .feedback-rating-option { display: grid; place-items: center; gap: 4px; min-width: 42px; padding: 7px 5px; border: 1px solid transparent; border-radius: 8px; background: #f8fafc; color: #64748b; cursor: pointer; }
+        .feedback-rating-option i { font-size: 1.1rem; }
+        .feedback-rating-option span { font-size: 0.62rem; }
+        .feedback-rating-option:hover, .feedback-rating-option[aria-pressed="true"] { border-color: #fda4af; background: #fff1f2; color: #be123c; }
+        .feedback-message { width: 100%; min-height: 72px; resize: vertical; padding: 9px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; }
+        .feedback-submit { width: 100%; margin-top: 9px; padding: 9px 12px; border: 0; border-radius: 7px; background: #be123c; color: #ffffff; font: inherit; font-size: 0.75rem; font-weight: 800; cursor: pointer; }
+        .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
+        .feedback-status { min-height: 1.2em; margin: 8px 0 0; color: #047857; font-size: 0.7rem; line-height: 1.4; }
+        .screen-dimming-overlay { position: fixed; inset: 0; z-index: 1100; pointer-events: none; background: rgba(15, 23, 42, var(--screen-dim-opacity, 0)); transition: background-color 0.15s ease; }
+        .screen-dimming-control { --tool-border: #fcd34d; }
+        .screen-dimming-label { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0 5px; color: var(--text-gray); font-size: 0.72rem; font-weight: 700; }
+        .screen-dimming-value { color: #b45309; font-variant-numeric: tabular-nums; }
+        .screen-dimming-range { width: 100%; accent-color: #d97706; cursor: pointer; }
+
+        .visitor-stats-control { position: relative; display: flex; align-items: center; }
+        .visitor-stats-popover {
+            position: absolute;
+            top: 50%;
+            right: calc(100% + 12px);
+            width: 164px;
+            padding: 14px;
+            transform: translateY(-50%);
+            border: 1px solid #93c5fd;
+            border-radius: 16px;
+            background: rgba(219, 234, 254, 0.86);
+            color: var(--text-muted);
+            text-align: center;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 10px 26px rgba(37, 99, 235, 0.16);
+        }
+
+        .visitor-stats-popover[hidden] { display: none; }
+        .visitor-stats-number { display: block; color: #2563eb; font-size: 1.2rem; font-weight: 900; line-height: 1.2; font-variant-numeric: tabular-nums; }
+        .visitor-stats-label { display: block; margin-top: 3px; font-size: 0.76rem; }
+        .visitor-stats-divider { height: 1px; margin: 10px 0; border: 0; background: rgba(37, 99, 235, 0.2); }
+
+        .back-to-top-button {
+            width: 50px;
+            height: 50px;
+            margin-top: 22px;
+            border: 0;
+            border-radius: 6px;
+            background: #0ea5e9;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+
+        html.large-text { font-size: 18px; }
 
         .accordion-icon-box,
         .stat-circle-icon,
         .service-icon-circle,
         .service-action-arrow,
-        .hero-info-pills i,
         .location-detail-item > i {
             transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
         }
@@ -877,28 +1049,38 @@
 
         /* RESPONSIVE */
         @media (min-width: 1440px) {
-            .hero-main-title { font-size: 5rem; }
+            .hero-main-title { font-size: 3.4rem; }
             .section-header-clean h2,
             .services-header-box h2 { font-size: 2.6rem; }
         }
 
         @media (max-width: 1180px) {
-            .services-cards-cluster { grid-template-columns: repeat(3, 1fr); }
+            .services-cards-cluster { grid-auto-columns: calc((100% - 40px) / 3); }
             .stats-grid-circles { grid-template-columns: repeat(4, 1fr); gap: 10px; }
             .stat-circle-number { font-size: 1.45rem; }
             .site-header { gap: 24px; }
             .nav-menu { gap: 12px; }
-            .nav-menu a { font-size: 0.72rem; }
+            .nav-menu a { font-size: 0.76rem; }
             .location-grid-layout { grid-template-columns: 1fr; }
             .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
         @media (max-width: 900px) {
-            .nav-menu { display: none; }
-            .site-header { justify-content: flex-start; }
+            .site-header { flex-wrap: wrap; gap: 12px 20px; }
+            .nav-menu {
+                order: 3;
+                flex: 0 0 100%;
+                justify-content: center;
+                margin-left: 0;
+            }
+            .search-pill-nav { margin-left: auto; }
+                .brand-logo-img { height: 46px; }
+                .brand-text-logo { font-size: 1.3rem; }
             .profil-dual-layout { grid-template-columns: 1fr; }
+            .section-header-clean { margin-bottom: 26px; }
+            .section-header-clean h2 { font-size: 2.1rem; }
             .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .services-cards-cluster { grid-template-columns: repeat(2, 1fr); }
+            .services-cards-cluster { grid-auto-columns: calc((100% - 20px) / 2); }
             .hero-main-title { font-size: 2.8rem; }
             .accordion-content-text { padding-left: 20px; }
             .location-grid-layout { grid-template-columns: 1fr; }
@@ -906,11 +1088,25 @@
         }
 
         @media (max-width: 580px) {
-            .services-cards-cluster { grid-template-columns: 1fr; }
+            .site-header { padding: 10px 14px; gap: 10px 12px; }
+            .brand-link { gap: 8px; }
+            .brand-logo-img { height: 40px; max-width: 64px; }
+            .brand-text-logo { font-size: 1.15rem; }
+            .search-pill-nav { flex-basis: min(140px, 42vw); padding-left: 10px; }
+            .nav-menu { gap: 8px 18px; }
+            .nav-menu a { font-size: 0.7rem; }
+            .services-cards-cluster { grid-auto-columns: 100%; }
+            .services-carousel-arrow { width: 36px; height: 36px; }
+            .services-carousel-arrow-prev { left: 5px; }
+            .services-carousel-arrow-next { right: 5px; }
+            .section-header-clean h2 { font-size: 1.8rem; }
             .hero-banner-clean { min-height: 540px; }
-            .hero-info-pills { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .hero-info-pills .divider-dot { display: none; }
             .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .floating-tools { right: 14px; bottom: 14px; gap: 7px; }
+            .floating-tool-button { width: 44px; height: 44px; font-size: 1.05rem; }
+            .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
+            .website-tool-panel { right: calc(100% + 10px); width: min(290px, calc(100vw - 88px)); }
+            .back-to-top-button { width: 48px; height: 48px; margin-top: 16px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -945,11 +1141,20 @@
         </a>
 
         <ul class="nav-menu">
+            <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
             <li><a href="#statistik-wilayah">STATISTIK</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
             <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
+
+        <form class="search-pill-nav global-search-form" action="<?= url('/search'); ?>" method="GET" role="search" data-suggestions-url="<?= route('search.suggestions'); ?>" autocomplete="off">
+            <div class="global-search-control">
+                <input type="search" name="q" placeholder="Cari desa, kecamatan, wisata..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
+                <div class="global-search-suggestions" id="landing-search-suggestions" role="listbox" hidden></div>
+            </div>
+            <button type="submit" aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
 
     </header>
 
@@ -959,18 +1164,9 @@
             
             <h1 class="hero-main-title">Desa Digital</h1>
             <p class="hero-lead-text">Digitalisasi Pemerintahan Desa di Kabupaten Tuban</p>
-            
-            <div class="hero-info-pills">
-                <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> <strong>328</strong> Desa & Kelurahan</span>
-                <div class="divider-dot"></div>
-                <span><i class="fa-solid fa-sitemap" style="color: #38bdf8;"></i> <strong>20</strong> Distrik Kecamatan</span>
-                <div class="divider-dot"></div>
-                <span><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Layanan Siaga Terintegrasi</span>
-            </div>
-
             <div>
                 <a href="#tentang-kami" class="btn-jelajah-solo">
-                    <span>Mulai Jelajah</span>
+                    <span>Mulai</span>
                 </a>
             </div>
 
@@ -980,10 +1176,9 @@
     <!-- 3. ACCORDION & PROFIL INOVASI -->
     <section id="tentang-kami" class="section-profil-accordion">
         <div class="section-header-clean">
-            <div class="header-tag-pill">
-                <i class="fa-solid fa-network-wired"></i> PILAR TRANSFORMASI DIGITAL
-            </div>
-            <h2> Desa Digital</h2>
+            <span class="section-purpose-label">Tujuan Platform</span>
+            <h2>Satu Portal untuk Informasi dan Layanan Desa</h2>
+            <p>Website Desa Digital dibuat untuk memudahkan masyarakat mengakses informasi resmi, mengenal potensi desa, dan menemukan layanan publik Kabupaten Tuban dalam satu tempat.</p>
         </div>
 
         <div class="profil-dual-layout">
@@ -1045,16 +1240,6 @@
             </div>
 
             <div class="video-player-frame">
-                <div class="video-top-tag">
-                    <div class="channel-info">
-                        <i class="fa-brands fa-youtube"></i>
-                        <span>Diskominfo-SP Tuban</span>
-                    </div>
-                    <div class="status-broadcast">
-                        <div class="live-pulse"></div>
-                        <span>Siaran Resmi</span>
-                    </div>
-                </div>
                 <div class="video-embed-box">
                     <iframe 
                         src="https://www.youtube.com/embed/gPCZo6dKDWM?rel=0" 
@@ -1135,13 +1320,14 @@
     <section id="layanan-digital" class="section-services-clean">
         
         <div class="services-header-box">
-            <div class="services-tag-pill">
-                <i class="fa-solid fa-layer-group"></i> PUSAT LAYANAN TERPADU
-            </div>
             <h2>Gerbang Layanan Publik Digital</h2>
         </div>
 
-        <div class="services-cards-cluster">
+        <div class="services-carousel">
+            <button type="button" class="services-carousel-arrow services-carousel-arrow-prev" id="services-carousel-prev" aria-label="Lihat layanan sebelumnya" aria-controls="services-carousel-track" title="Lihat layanan sebelumnya" hidden>
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="services-cards-cluster" id="services-carousel-track">
             
             <!-- 1. Website Desa -->
             <a href="<?= url('/website'); ?>" class="service-card-clean" 
@@ -1208,6 +1394,10 @@
                 </div>
             </a>
 
+            </div>
+            <button type="button" class="services-carousel-arrow services-carousel-arrow-next" id="services-carousel-next" aria-label="Lihat layanan berikutnya" aria-controls="services-carousel-track" title="Lihat layanan berikutnya" hidden>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
         </div>
     </section>
 
@@ -1217,7 +1407,8 @@
             
             <div class="location-info-card">
                 <div>
-                    <h3>Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Tuban</h3>
+                    <h3>Hubungi Kami</h3>
+                    <p class="location-office-name">Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Tuban</p>
                     
                     <div class="location-details-list">
                         <div class="location-detail-item">
@@ -1269,19 +1460,17 @@
                 </iframe>
             </div>
 
-            <div class="visitor-count-panel">
-                <div>
-                    <div class="visitor-count-heading"><i class="fa-solid fa-chart-line"></i><span>Statistik Website</span></div>
-                    <h3>Jumlah Pengunjung</h3>
-                    <p class="visitor-count-caption">Pengunjung unik yang tercatat di website Desa Digital.</p>
-                </div>
-                <div class="visitor-count-total">{{ number_format($statistics['totalPengunjung'] ?? 0, 0, ',', '.') }}</div>
-                <div class="visitor-count-today">
-                    <span>Pengunjung hari ini</span>
-                    <strong>{{ number_format($statistics['pengunjungHariIni'] ?? 0, 0, ',', '.') }}</strong>
-                </div>
-            </div>
+        </div>
+    </section>
 
+    <section class="social-media-clean" aria-labelledby="social-media-title">
+        <h2 id="social-media-title">Media Sosial Kominfo Tuban</h2>
+        <div class="social-logo-row" aria-label="Platform media sosial">
+            <span class="social-logo-item" style="--social-color: #1877f2;" role="img" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></span>
+            <span class="social-logo-item" style="--social-color: #e4405f;" role="img" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></span>
+            <span class="social-logo-item" style="--social-color: #ff0000;" role="img" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></span>
+            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+            <span class="social-logo-item" style="--social-color: #111111;" role="img" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></span>
         </div>
     </section>
 
@@ -1289,6 +1478,58 @@
     <footer>
         <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
     </footer>
+
+    <div class="screen-dimming-overlay" id="screen-dimming-overlay" aria-hidden="true"></div>
+    <div class="floating-tools" aria-label="Menu akses cepat">
+        <div class="website-tool-control">
+            <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Beri penilaian untuk website" aria-expanded="false" aria-controls="feedback-panel" title="Beri penilaian untuk website">
+                <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+            </button>
+            <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian kepuasan website" hidden>
+                <h2 class="website-tool-heading">Bagaimana pengalaman Anda?</h2>
+                <p class="website-tool-caption">Penilaian Anda membantu kami meningkatkan layanan website.</p>
+                <div class="feedback-rating-row" role="group" aria-label="Pilih nilai kepuasan">
+                    <button type="button" class="feedback-rating-option" data-rating="1" aria-label="Sangat kurang" aria-pressed="false"><i class="fa-solid fa-face-frown" aria-hidden="true"></i><span>Kurang</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="2" aria-label="Kurang" aria-pressed="false"><i class="fa-solid fa-face-meh" aria-hidden="true"></i><span>Cukup</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="3" aria-label="Cukup baik" aria-pressed="false"><i class="fa-solid fa-face-smile" aria-hidden="true"></i><span>Baik</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="4" aria-label="Puas" aria-pressed="false"><i class="fa-solid fa-face-laugh" aria-hidden="true"></i><span>Puas</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="5" aria-label="Sangat puas" aria-pressed="false"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i><span>Hebat</span></button>
+                </div>
+                <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Saran singkat (opsional)" aria-label="Saran singkat"></textarea>
+                <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim penilaian</button>
+                <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+            </section>
+        </div>
+        <div class="visitor-stats-control">
+            <button type="button" class="floating-tool-button floating-tool-stats" id="visitor-stats-toggle" aria-label="Tampilkan statistik pengunjung" aria-expanded="false" aria-controls="visitor-stats-panel" title="Tampilkan statistik pengunjung">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+            <section class="visitor-stats-popover" id="visitor-stats-panel" aria-label="Statistik pengunjung" aria-live="polite" hidden>
+                <span class="visitor-stats-number" id="visitors-today">{{ number_format($statistics['kunjunganHariIni'] ?? 0, 0, ',', '.') }}</span>
+                <span class="visitor-stats-label">Kunjungan Hari Ini</span>
+                <hr class="visitor-stats-divider">
+                <span class="visitor-stats-number" id="visitors-total">{{ number_format($statistics['totalKunjungan'] ?? 0, 0, ',', '.') }}</span>
+                <span class="visitor-stats-label">Total Kunjungan</span>
+            </section>
+        </div>
+        <div class="website-tool-control screen-dimming-control">
+            <button type="button" class="floating-tool-button floating-tool-display" id="screen-dimming-toggle" aria-label="Atur pencahayaan layar" aria-expanded="false" aria-controls="screen-dimming-panel" title="Atur pencahayaan layar">
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+            </button>
+            <section class="website-tool-panel" id="screen-dimming-panel" aria-label="Pengaturan pencahayaan layar" hidden>
+                <h2 class="website-tool-heading">Pencahayaan layar</h2>
+                <p class="website-tool-caption">Atur tingkat redup tampilan agar nyaman dibaca.</p>
+                <label class="screen-dimming-label" for="screen-dimming-range"><span>Redupkan tampilan</span><output class="screen-dimming-value" id="screen-dimming-value" for="screen-dimming-range">0%</output></label>
+                <input class="screen-dimming-range" id="screen-dimming-range" type="range" min="0" max="45" step="5" value="0" aria-label="Tingkat redup tampilan">
+            </section>
+        </div>
+        <button type="button" class="floating-tool-button floating-tool-text" id="large-text-toggle" aria-label="Perbesar teks" aria-pressed="false" title="Perbesar teks">
+            <i class="fa-solid fa-text-height" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="floating-tool-button back-to-top-button" id="back-to-top" aria-label="Kembali ke bagian paling atas" title="Kembali ke atas">
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </div>
 
     <!-- SCRIPT AKORDEON -->
     <script>
@@ -1325,8 +1566,8 @@
             '.services-header-box',
             '.services-cards-cluster > *',
             '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
-            '.hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i',
-            '.location-info-card, .map-viewport-frame, .visitor-count-panel',
+            '.header-tag-pill i',
+            '.location-info-card, .map-viewport-frame',
             '.location-detail-item',
             '.location-detail-item > i',
             'footer p'
@@ -1339,19 +1580,27 @@
         revealGroups.forEach(selector => {
             document.querySelectorAll(selector).forEach((element, index) => {
                 element.classList.add('reveal-item');
-                if (element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .hero-info-pills i, .header-tag-pill i, .services-tag-pill i, .channel-info i, .location-detail-item > i')) {
+                const isRevealIcon = element.matches('.accordion-icon-box, .accordion-header-btn > i, .stat-circle-icon, .service-icon-circle, .service-action-arrow, .header-tag-pill i, .location-detail-item > i');
+                const isProfileElement = Boolean(element.closest('#tentang-kami'));
+                const motionScale = isProfileElement ? 1.55 : 1;
+
+                if (isRevealIcon) {
                     element.classList.add('reveal-icon');
+                    element.style.setProperty('--reveal-rotation', `${revealIndex % 2 ? 18 : -18}deg`);
                 }
                 const [offsetX, offsetY] = revealDirections[revealIndex % revealDirections.length];
-                element.style.setProperty('--reveal-x', `${offsetX}px`);
-                element.style.setProperty('--reveal-y', `${offsetY}px`);
-                element.style.setProperty('--reveal-delay', `${Math.min(index * 75, 300)}ms`);
+                element.style.setProperty('--reveal-x', `${offsetX * motionScale}px`);
+                element.style.setProperty('--reveal-y', `${offsetY * motionScale}px`);
+                element.style.setProperty('--reveal-delay', `${Math.min(index * (isProfileElement ? 90 : 75), isProfileElement ? 360 : 300)}ms`);
                 revealIndex += 1;
             });
         });
 
+        const revealTargets = [...document.querySelectorAll('.reveal-item')];
+        let revealObserver = null;
+
         if ('IntersectionObserver' in window) {
-            const revealObserver = new IntersectionObserver(entries => {
+            revealObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -1360,10 +1609,26 @@
                 });
             }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
 
-            document.querySelectorAll('.reveal-item').forEach(element => revealObserver.observe(element));
+            revealTargets.forEach(element => revealObserver.observe(element));
         } else {
-            document.querySelectorAll('.reveal-item').forEach(element => element.classList.add('is-visible'));
+            revealTargets.forEach(element => element.classList.add('is-visible'));
         }
+
+        const revealVisibleItems = () => {
+            revealTargets.forEach(element => {
+                if (element.classList.contains('is-visible')) return;
+
+                const bounds = element.getBoundingClientRect();
+                if (bounds.top <= window.innerHeight * 0.9 && bounds.bottom >= 0) {
+                    element.classList.add('is-visible');
+                    revealObserver?.unobserve(element);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealVisibleItems, { passive: true });
+        window.addEventListener('resize', revealVisibleItems);
+        revealVisibleItems();
 
         const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
         const updateActiveSection = () => {
@@ -1381,6 +1646,226 @@
         window.addEventListener('resize', updateActiveSection);
         updateActiveSection();
 
+        const feedbackButton = document.getElementById('feedback-toggle');
+        const feedbackPanel = document.getElementById('feedback-panel');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackSubmitButton = document.getElementById('feedback-submit');
+        const feedbackStatus = document.getElementById('feedback-status');
+        const feedbackRatingOptions = [...document.querySelectorAll('.feedback-rating-option')];
+        const visitorStatsButton = document.getElementById('visitor-stats-toggle');
+        const visitorStatsPanel = document.getElementById('visitor-stats-panel');
+        const screenDimmingButton = document.getElementById('screen-dimming-toggle');
+        const screenDimmingPanel = document.getElementById('screen-dimming-panel');
+        const screenDimmingRange = document.getElementById('screen-dimming-range');
+        const screenDimmingValue = document.getElementById('screen-dimming-value');
+        const screenDimmingOverlay = document.getElementById('screen-dimming-overlay');
+        const largeTextButton = document.getElementById('large-text-toggle');
+        const backToTopButton = document.getElementById('back-to-top');
+        let selectedFeedbackRating = null;
+
+        const setFeedbackVisible = isVisible => {
+            if (!feedbackButton || !feedbackPanel) return;
+            feedbackPanel.hidden = !isVisible;
+            feedbackButton.setAttribute('aria-expanded', String(isVisible));
+        };
+
+        const setVisitorStatsVisible = isVisible => {
+            if (!visitorStatsButton || !visitorStatsPanel) return;
+            visitorStatsPanel.hidden = !isVisible;
+            visitorStatsButton.setAttribute('aria-expanded', String(isVisible));
+            visitorStatsButton.setAttribute('aria-label', isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung');
+            visitorStatsButton.title = isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung';
+        };
+
+        const setScreenDimmingVisible = isVisible => {
+            if (!screenDimmingButton || !screenDimmingPanel) return;
+            screenDimmingPanel.hidden = !isVisible;
+            screenDimmingButton.setAttribute('aria-expanded', String(isVisible));
+        };
+
+        feedbackButton?.addEventListener('click', () => {
+            const isVisible = feedbackPanel?.hidden ?? false;
+            setFeedbackVisible(isVisible);
+            if (isVisible) {
+                setVisitorStatsVisible(false);
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        visitorStatsButton?.addEventListener('click', () => {
+            const isVisible = visitorStatsPanel?.hidden ?? false;
+            setVisitorStatsVisible(isVisible);
+            if (isVisible) {
+                setFeedbackVisible(false);
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        screenDimmingButton?.addEventListener('click', () => {
+            const isVisible = screenDimmingPanel?.hidden ?? false;
+            setScreenDimmingVisible(isVisible);
+            if (isVisible) {
+                setFeedbackVisible(false);
+                setVisitorStatsVisible(false);
+            }
+        });
+
+        document.addEventListener('click', event => {
+            if (feedbackPanel && !event.target.closest('.website-tool-control:not(.screen-dimming-control)')) {
+                setFeedbackVisible(false);
+            }
+            if (visitorStatsPanel && !event.target.closest('.visitor-stats-control')) {
+                setVisitorStatsVisible(false);
+            }
+            if (screenDimmingPanel && !event.target.closest('.screen-dimming-control')) {
+                setScreenDimmingVisible(false);
+            }
+        });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && feedbackPanel && !feedbackPanel.hidden) {
+                setFeedbackVisible(false);
+                feedbackButton?.focus();
+            }
+            if (event.key === 'Escape' && visitorStatsPanel && !visitorStatsPanel.hidden) {
+                setVisitorStatsVisible(false);
+                visitorStatsButton?.focus();
+            }
+            if (event.key === 'Escape' && screenDimmingPanel && !screenDimmingPanel.hidden) {
+                setScreenDimmingVisible(false);
+                screenDimmingButton?.focus();
+            }
+        });
+
+        feedbackRatingOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                selectedFeedbackRating = Number(option.dataset.rating);
+                feedbackRatingOptions.forEach(ratingOption => {
+                    ratingOption.setAttribute('aria-pressed', String(ratingOption === option));
+                });
+                feedbackSubmitButton.disabled = false;
+                feedbackStatus.textContent = '';
+            });
+        });
+
+        feedbackSubmitButton?.addEventListener('click', async () => {
+            if (!selectedFeedbackRating) return;
+
+            feedbackSubmitButton.disabled = true;
+            feedbackStatus.textContent = 'Mengirim penilaian...';
+
+            try {
+                const response = await fetch('{{ route('website-feedback.store') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({
+                        rating: selectedFeedbackRating,
+                        message: feedbackMessage.value.trim()
+                    })
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.message || 'Penilaian gagal dikirim.');
+
+                feedbackStatus.textContent = result.message;
+                feedbackMessage.value = '';
+                selectedFeedbackRating = null;
+                feedbackRatingOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));
+            } catch (error) {
+                feedbackStatus.textContent = error.message || 'Koneksi gagal. Silakan coba lagi.';
+                feedbackSubmitButton.disabled = false;
+            }
+        });
+
+        const screenDimmingStorageKey = 'desa-digital-screen-dimming';
+        const applyScreenDimming = value => {
+            const dimLevel = Number(value);
+            screenDimmingRange.value = String(dimLevel);
+            screenDimmingValue.textContent = dimLevel === 0 ? 'Normal' : `${dimLevel}% redup`;
+            screenDimmingOverlay.style.setProperty('--screen-dim-opacity', String(dimLevel / 100));
+        };
+
+        try {
+            applyScreenDimming(window.localStorage.getItem(screenDimmingStorageKey) || '0');
+        } catch {
+            applyScreenDimming('0');
+        }
+
+        screenDimmingRange?.addEventListener('input', () => {
+            applyScreenDimming(screenDimmingRange.value);
+            try {
+                window.localStorage.setItem(screenDimmingStorageKey, screenDimmingRange.value);
+            } catch {}
+        });
+
+        const updateVisitorStats = async () => {
+            try {
+                const response = await fetch('{{ route('website-visits.stats') }}', {
+                    headers: { 'Accept': 'application/json' },
+                    cache: 'no-store'
+                });
+                if (!response.ok) return;
+
+                const counts = await response.json();
+                const numberFormat = new Intl.NumberFormat('id-ID');
+                document.getElementById('visitors-today').textContent = numberFormat.format(counts.kunjunganHariIni ?? 0);
+                document.getElementById('visitors-total').textContent = numberFormat.format(counts.totalKunjungan ?? 0);
+            } catch {
+                return;
+            }
+        };
+
+        updateVisitorStats();
+        window.setInterval(updateVisitorStats, 60000);
+
+        largeTextButton?.addEventListener('click', () => {
+            const isLargeText = largeTextButton.getAttribute('aria-pressed') !== 'true';
+            document.documentElement.classList.toggle('large-text', isLargeText);
+            largeTextButton.setAttribute('aria-pressed', String(isLargeText));
+            largeTextButton.setAttribute('aria-label', isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks');
+            largeTextButton.title = isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks';
+        });
+
+        backToTopButton?.addEventListener('click', () => {
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            window.scrollTo({ top: 0, behavior });
+        });
+
+        const servicesTrack = document.getElementById('services-carousel-track');
+        const servicesPreviousButton = document.getElementById('services-carousel-prev');
+        const servicesNextButton = document.getElementById('services-carousel-next');
+
+        const updateServicesCarousel = () => {
+            if (!servicesTrack || !servicesPreviousButton || !servicesNextButton) return;
+
+            const hasOverflow = servicesTrack.scrollWidth > servicesTrack.clientWidth + 1;
+            servicesPreviousButton.hidden = !hasOverflow;
+            servicesNextButton.hidden = !hasOverflow;
+            servicesPreviousButton.disabled = servicesTrack.scrollLeft <= 1;
+            servicesNextButton.disabled = servicesTrack.scrollLeft + servicesTrack.clientWidth >= servicesTrack.scrollWidth - 1;
+        };
+
+        const scrollServices = direction => {
+            const firstCard = servicesTrack?.querySelector('.service-card-clean');
+            if (!servicesTrack || !firstCard) return;
+
+            const gap = Number.parseFloat(getComputedStyle(servicesTrack).columnGap) || 0;
+            const scrollDistance = firstCard.getBoundingClientRect().width + gap;
+            servicesTrack.scrollBy({ left: direction * scrollDistance, behavior: 'auto' });
+            updateServicesCarousel();
+        };
+
+        servicesPreviousButton?.addEventListener('click', () => scrollServices(-1));
+        servicesNextButton?.addEventListener('click', () => scrollServices(1));
+        servicesTrack?.addEventListener('scroll', updateServicesCarousel, { passive: true });
+        window.addEventListener('resize', updateServicesCarousel);
+        new ResizeObserver(updateServicesCarousel).observe(servicesTrack);
+        new MutationObserver(updateServicesCarousel).observe(servicesTrack, { childList: true });
+        updateServicesCarousel();
+
         function switchCleanAccordion(element) {
             const allItems = document.querySelectorAll('.accordion-item-clean');
             const isCurrentlyActive = element.classList.contains('active');
@@ -1392,5 +1877,6 @@
             }
         }
     </script>
+    <script src="<?= asset('js/global-search.js'); ?>" defer></script>
 </body>
 </html>
