@@ -964,6 +964,25 @@
             desa: L.layerGroup()
         };
 
+        let activeVillageLayer = null;
+        const defaultVillageStyle = {
+            color: '#10b981',
+            weight: 1.2,
+            dashArray: '3, 4',
+            fillColor: '#10b981',
+            fillOpacity: 0.2
+        };
+        const highlightedVillageStyle = {
+            color: '#047857',
+            weight: 3,
+            fillColor: '#34d399',
+            fillOpacity: 0.45
+        };
+
+        function clearVillageHighlight(layer) {
+            layer.setStyle(defaultVillageStyle);
+        }
+
         map.createPane('desaPane');
         map.getPane('desaPane').style.zIndex = 450;
 
@@ -971,6 +990,10 @@
             if (isChecked) {
                 map.addLayer(layers[name]);
             } else {
+                if (name === 'desa' && activeVillageLayer) {
+                    clearVillageHighlight(activeVillageLayer);
+                    activeVillageLayer = null;
+                }
                 map.removeLayer(layers[name]);
             }
         }
@@ -1020,33 +1043,29 @@
             .then(data => {
                 L.geoJSON(data, {
                     pane: 'desaPane',
-                    style: {
-                        color: '#10b981',
-                        weight: 1.2,
-                        dashArray: '3, 4',
-                        fillColor: '#10b981',
-                        fillOpacity: 0.2
-                    },
+                    style: defaultVillageStyle,
                     onEachFeature: (feature, layer) => {
                         const desa = feature.properties?.nm_kelurahan || 'Desa';
                         layer.bindPopup(`<b>Desa/Kelurahan:</b> ${desa}`);
                         layer.on({
                             mouseover: event => {
-                                event.target.setStyle({
-                                    color: '#047857',
-                                    weight: 3,
-                                    fillColor: '#34d399',
-                                    fillOpacity: 0.45
-                                });
-                                event.target.bringToFront();
+                                const hoveredLayer = event.target;
+
+                                if (activeVillageLayer && activeVillageLayer !== hoveredLayer) {
+                                    clearVillageHighlight(activeVillageLayer);
+                                }
+
+                                activeVillageLayer = hoveredLayer;
+                                activeVillageLayer.setStyle(highlightedVillageStyle);
+                                activeVillageLayer.bringToFront();
                             },
                             mouseout: event => {
-                                event.target.setStyle({
-                                    color: '#10b981',
-                                    weight: 1.2,
-                                    fillColor: '#10b981',
-                                    fillOpacity: 0.2
-                                });
+                                if (activeVillageLayer !== event.target) {
+                                    return;
+                                }
+
+                                clearVillageHighlight(activeVillageLayer);
+                                activeVillageLayer = null;
                             }
                         });
                     }
