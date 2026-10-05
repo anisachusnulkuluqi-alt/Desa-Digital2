@@ -408,7 +408,8 @@
         const photoInput = document.getElementById('photoField');
 
         form.addEventListener('submit', async event => {
-            if (!['kantor', 'wifi'].includes(locationCategory) || methodField.disabled || !photoInput?.files.length) return;
+            const photoRemovalRequested = document.getElementById('removePhotoField')?.value === '1';
+            if (!['kantor', 'wifi'].includes(locationCategory) || (!photoInput?.files.length && !photoRemovalRequested)) return;
 
             event.preventDefault();
             const saveButton = form.querySelector('button[type="submit"]');
@@ -421,7 +422,10 @@
 
                 if (result?.requires_confirmation) {
                     const matchingNames = result.counterpart_names.filter(Boolean).join(', ');
-                    const applyToBoth = window.confirm(`Ditemukan titik ${result.counterpart_category} di koordinat yang sama${matchingNames ? ` (${matchingNames})` : ''}. Terapkan foto yang sama ke kedua titik?`);
+                    const confirmationAction = photoRemovalRequested
+                        ? 'Hapus foto dari kedua titik?'
+                        : 'Terapkan foto yang sama ke kedua titik?';
+                    const applyToBoth = window.confirm(`Ditemukan titik ${result.counterpart_category} di koordinat yang sama${matchingNames ? ` (${matchingNames})` : ''}. ${confirmationAction}`);
                     formData.set('apply_foto_kantor_wifi', applyToBoth ? '1' : '0');
                     response = await submitLocationUpdate(formData);
                 }

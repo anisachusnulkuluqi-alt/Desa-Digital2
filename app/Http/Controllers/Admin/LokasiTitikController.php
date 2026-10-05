@@ -58,6 +58,27 @@ class LokasiTitikController extends Controller
         $data = $this->validatedLocation($request, $category['route']);
         $now = now();
         $propertiesData = json_decode($data['properties'] ?? '{}', true) ?: [];
+        $counterpartRoute = $this->counterpartRoute($category['route']);
+        $sharedPhotoCounterparts = collect();
+        $oldPhotos = [];
+
+        if ($request->hasFile('foto') && $counterpartRoute !== null) {
+            $sharedPhotoCounterparts = $this->matchingCounterparts(
+                $counterpartRoute,
+                $data['latitude'],
+                $data['longitude']
+            );
+
+            if ($sharedPhotoCounterparts->isNotEmpty() && ! $request->has('apply_foto_kantor_wifi')) {
+                return response()->json([
+                    'requires_confirmation' => true,
+                    'counterpart_names' => $sharedPhotoCounterparts->pluck('nama_lokasi')->filter()->values(),
+                    'counterpart_category' => self::CATEGORIES[$counterpartRoute]['label'],
+                ], 409);
+            }
+        }
+
+        $applySharedPhoto = $request->boolean('apply_foto_kantor_wifi') && $sharedPhotoCounterparts->isNotEmpty();
 
         if ($category['route'] === 'wifi') {
             $propertiesData['nama_desa'] = $data['desa'];
@@ -86,7 +107,8 @@ class LokasiTitikController extends Controller
         }
 
         if ($request->hasFile('foto')) {
-            $photoPath = $request->file('foto')->store($category['route'], 'public');
+            $photoDirectory = $applySharedPhoto ? 'kantor_dan_wifi' : $category['route'];
+            $photoPath = $request->file('foto')->store($photoDirectory, 'public');
             $propertiesData['foto'] = asset('storage/'.$photoPath);
         }
         $properties = $propertiesData === []
@@ -104,6 +126,21 @@ class LokasiTitikController extends Controller
             'updated_at' => $now,
         ]);
 
+        if ($applySharedPhoto && isset($propertiesData['foto'])) {
+            foreach ($sharedPhotoCounterparts as $counterpart) {
+                $counterpartProperties = json_decode($counterpart->properties ?? '{}', true) ?: [];
+                $oldPhotos[] = $counterpartProperties['foto'] ?? $counterpartProperties['Foto'] ?? $counterpartProperties['image'] ?? null;
+                unset($counterpartProperties['Foto'], $counterpartProperties['image']);
+                $counterpartProperties['foto'] = $propertiesData['foto'];
+
+                DB::table(self::CATEGORIES[$counterpartRoute]['table'])->where('id', $counterpart->id)->update([
+                    'properties' => json_encode($counterpartProperties, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                    'updated_at' => now(),
+                ]);
+            }
+            $this->deleteUnreferencedPhotos($oldPhotos);
+        }
+
         return redirect()->route('admin.'.$category['route'].'.index')
             ->with('success', 'Titik lokasi berhasil ditambahkan.');
     }
@@ -114,21 +151,19 @@ class LokasiTitikController extends Controller
         $data = $this->validatedLocation($request, $category['route']);
         $location = DB::table($category['table'])->where('id', $id)->first();
         abort_if($location === null, 404);
-        $counterpartRoute = match ($category['route']) {
-            'kantor' => 'wifi',
-            'wifi' => 'kantor',
-            default => null,
-        };
+        $counterpartRoute = $this->counterpartRoute($category['route']);
         $sharedPhotoCounterparts = collect();
+        $oldPhotos = [];
 
-        if ($request->hasFile('foto') && $counterpartRoute !== null) {
-            $counterpartTable = self::CATEGORIES[$counterpartRoute]['table'];
-            $sharedPhotoCounterparts = DB::table($counterpartTable)
-                ->where('latitude', $data['latitude'])
-                ->where('longitude', $data['longitude'])
-                ->get();
+        $photoChanged = $request->hasFile('foto') || $request->boolean('remove_foto');
+        if ($photoChanged && $counterpartRoute !== null) {
+            $sharedPhotoCounterparts = $this->matchingCounterparts(
+                $counterpartRoute,
+                $data['latitude'],
+                $data['longitude']
+            );
 
-            if ($sharedPhotoCounterparts->isNotEmpty() && !$request->has('apply_foto_kantor_wifi')) {
+            if ($sharedPhotoCounterparts->isNotEmpty() && ! $request->has('apply_foto_kantor_wifi')) {
                 return response()->json([
                     'requires_confirmation' => true,
                     'counterpart_names' => $sharedPhotoCounterparts->pluck('nama_lokasi')->filter()->values(),
@@ -172,21 +207,15 @@ class LokasiTitikController extends Controller
 
         if ($request->boolean('remove_foto')) {
             $existingPhoto = $existingProperties['foto'] ?? $existingProperties['Foto'] ?? $existingProperties['image'] ?? null;
+            $oldPhotos[] = $existingPhoto;
             unset($propertiesData['foto'], $propertiesData['Foto'], $propertiesData['image']);
-
-            $photoUrlPath = is_string($existingPhoto) ? parse_url($existingPhoto, PHP_URL_PATH) : null;
-            if (is_string($photoUrlPath)) {
-                $storedPhotoPath = Str::after($photoUrlPath, '/storage/');
-                if ($storedPhotoPath !== $photoUrlPath && Str::startsWith($storedPhotoPath, $category['route'].'/')) {
-                    Storage::disk('public')->delete($storedPhotoPath);
-                }
-            }
         }
 
         if ($request->hasFile('foto')) {
             $photoDirectory = $applySharedPhoto ? 'kantor_dan_wifi' : $category['route'];
             $photoPath = $request->file('foto')->store($photoDirectory, 'public');
             $propertiesData['foto'] = asset('storage/'.$photoPath);
+            $oldPhotos[] = $existingProperties['foto'] ?? $existingProperties['Foto'] ?? $existingProperties['image'] ?? null;
         }
         $properties = $propertiesData === []
             ? null
@@ -201,11 +230,17 @@ class LokasiTitikController extends Controller
             'updated_at' => now(),
         ]);
 
-        if ($applySharedPhoto && isset($propertiesData['foto'])) {
+        if ($applySharedPhoto) {
             foreach ($sharedPhotoCounterparts as $counterpart) {
                 $counterpartProperties = json_decode($counterpart->properties ?? '{}', true) ?: [];
-                unset($counterpartProperties['Foto'], $counterpartProperties['image']);
-                $counterpartProperties['foto'] = $propertiesData['foto'];
+                $oldPhotos[] = $counterpartProperties['foto'] ?? $counterpartProperties['Foto'] ?? $counterpartProperties['image'] ?? null;
+
+                if ($request->boolean('remove_foto')) {
+                    unset($counterpartProperties['foto'], $counterpartProperties['Foto'], $counterpartProperties['image']);
+                } elseif (isset($propertiesData['foto'])) {
+                    unset($counterpartProperties['Foto'], $counterpartProperties['image']);
+                    $counterpartProperties['foto'] = $propertiesData['foto'];
+                }
 
                 DB::table(self::CATEGORIES[$counterpartRoute]['table'])->where('id', $counterpart->id)->update([
                     'properties' => json_encode($counterpartProperties, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
@@ -213,6 +248,8 @@ class LokasiTitikController extends Controller
                 ]);
             }
         }
+
+        $this->deleteUnreferencedPhotos($oldPhotos);
 
         return redirect()->route('admin.'.$category['route'].'.index')
             ->with('success', 'Titik lokasi berhasil diperbarui.');
@@ -234,6 +271,54 @@ class LokasiTitikController extends Controller
         abort_unless(is_string($key) && isset(self::CATEGORIES[$key]), 404);
 
         return self::CATEGORIES[$key];
+    }
+
+    private function counterpartRoute(string $categoryRoute): ?string
+    {
+        return match ($categoryRoute) {
+            'kantor' => 'wifi',
+            'wifi' => 'kantor',
+            default => null,
+        };
+    }
+
+    private function matchingCounterparts(string $counterpartRoute, mixed $latitude, mixed $longitude)
+    {
+        return DB::table(self::CATEGORIES[$counterpartRoute]['table'])
+            ->where('latitude', $latitude)
+            ->where('longitude', $longitude)
+            ->get();
+    }
+
+    private function deleteUnreferencedPhotos(array $photos): void
+    {
+        foreach (array_unique(array_filter($photos, 'is_string')) as $photo) {
+            $path = parse_url($photo, PHP_URL_PATH);
+            if (! is_string($path) || ! Str::contains($path, '/storage/')) {
+                continue;
+            }
+
+            $storedPath = Str::after($path, '/storage/');
+            $directory = Str::before($storedPath, '/');
+            if (! in_array($directory, array_merge(array_keys(self::CATEGORIES), ['kantor_dan_wifi']), true)) {
+                continue;
+            }
+
+            $isReferenced = false;
+            foreach (self::CATEGORIES as $candidate) {
+                foreach (DB::table($candidate['table'])->pluck('properties') as $properties) {
+                    $values = json_decode($properties ?? '{}', true) ?: [];
+                    if (in_array($photo, [$values['foto'] ?? null, $values['Foto'] ?? null, $values['image'] ?? null], true)) {
+                        $isReferenced = true;
+                        break 2;
+                    }
+                }
+            }
+
+            if (! $isReferenced) {
+                Storage::disk('public')->delete($storedPath);
+            }
+        }
     }
 
     private function validatedLocation(Request $request, string $categoryRoute): array
