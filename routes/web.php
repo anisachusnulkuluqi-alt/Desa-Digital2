@@ -10,7 +10,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DesaController as AdminDesaController;
 use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 use App\Http\Controllers\Admin\LokasiTitikController;
-use App\Http\Controllers\Admin\WisataController; // ✅ TAMBAHAN: Import WisataController
+use App\Http\Controllers\Admin\WisataController;
+use App\Http\Controllers\Admin\TempatController;
 use App\Http\Controllers\SpatialLocationController;
 use App\Services\DashboardStatistics;
 
@@ -145,8 +146,6 @@ Route::get('/surat/lacak', function (Request $request) {
     ]);
 })->name('surat.lacak');
 
-
-/// Otomatis lempar langsung ke portal resmi CCTV Tuban saat URL /cctv diakses
 Route::redirect('/cctv', 'https://cctv.tubankab.go.id/');
 
 /* --- MODUL e-PBB --- */
@@ -217,6 +216,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('admin')->name('admin.')
         ->middleware('role:admin,kontributor,kominfo,kecamatan')->group(function () {
 
+        Route::get('search/suggestions', [DashboardController::class, 'searchSuggestions'])
+            ->name('search.suggestions');
+
         Route::middleware('role:admin')->group(function () {
             Route::get('kontributor', [\App\Http\Controllers\Admin\ContributorController::class, 'index'])
                 ->name('kontributor.index');
@@ -237,13 +239,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('desa', AdminDesaController::class)->only(['index', 'update']);
 
         // ==========================================
-        // ✅ WISATA DESA (ROUTE KHUSUS, BUKAN LOKASI TITIK)
+        // WISATA DESA (ROUTE KHUSUS)
         // ==========================================
         Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
         Route::post('/wisata', [WisataController::class, 'store'])->name('wisata.store');
         Route::put('/wisata/{wisata}', [WisataController::class, 'update'])->name('wisata.update');
         Route::delete('/wisata/{wisata}', [WisataController::class, 'destroy'])->name('wisata.destroy');
         
+        // ==========================================
+        // TEMPAT (ROUTE BARU UNTUK MANAJEMEN KATEGORI FLEKSIBEL)
+        // ==========================================
+        Route::get('/tempat', [TempatController::class, 'index'])->name('tempat.index');
+        Route::get('/tempat/kategori/{kategori}', [TempatController::class, 'showByKategori'])->name('tempat.kategori');
+        Route::post('/tempat', [TempatController::class, 'store'])->name('tempat.store');
+        Route::put('/tempat/{id}', [TempatController::class, 'update'])->name('tempat.update');
+        Route::delete('/tempat/{id}', [TempatController::class, 'destroy'])->name('tempat.destroy');
+        Route::get('/tempat/autocomplete-kategori', [TempatController::class, 'autocompleteKategori'])->name('tempat.autocomplete');
+
         // Modul lokasi lainnya (Tanpa Wisata, karena Wisata sudah punya route sendiri di atas)
         $locationModules = [
             'wifi' => ['path' => 'wifi', 'name' => 'wifi'],

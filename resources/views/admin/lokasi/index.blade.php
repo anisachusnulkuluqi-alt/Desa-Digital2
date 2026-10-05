@@ -150,7 +150,7 @@
         }
     </style>
 </head>
-<body>
+<body class="admin-location-module">
     <div class="app">
         @include('admin.partials.sidebar', ['activeMenu' => request()->route('kategori')])
 

@@ -20,6 +20,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-left: 260px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
         }
         
         .breadcrumb { margin: 0; font-size: 14px; }
@@ -29,7 +33,7 @@
         
         .date-display { font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 6px; }
         
-        .main-content { padding: 28px 36px; max-width: 1200px; margin: 0 auto; }
+        .main-content { padding: 28px 36px; max-width: none; margin: 0 0 0 260px; }
         
         .page-title {
             font-size: 24px;
@@ -359,6 +363,8 @@
     </style>
 </head>
 <body>
+    @include('admin.partials.sidebar')
+
     <div class="page-header">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">

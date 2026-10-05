@@ -14,14 +14,14 @@
             <i class="bi bi-chevron-down admin-header-chevron" aria-hidden="true"></i>
         </button>
         <div class="admin-header-dropdown" id="adminHeaderProfileMenu" hidden>
-            <a href="{{ route('profile.show') }}"><i class="bi bi-person"></i> Lihat Profil</a>
-            <a href="{{ route('profile.edit') }}"><i class="bi bi-gear"></i> Pengaturan</a>
-            <div class="admin-header-dropdown-divider"></div>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit"><i class="bi bi-box-arrow-right"></i> Logout</button>
-            </form>
-        </div>
+    <a href="{{ route('profile.show') }}"><i class="bi bi-person"></i> Lihat Profil</a>
+    <a href="{{ route('profile.edit') }}"><i class="bi bi-gear"></i> Pengaturan</a>
+    <div class="admin-header-dropdown-divider"></div>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit"><i class="bi bi-box-arrow-right"></i> Logout</button>
+    </form>
+</div>
     </div>
 </div>
 

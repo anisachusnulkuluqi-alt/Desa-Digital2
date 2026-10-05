@@ -20,6 +20,7 @@
         .sidebar-brand-text small { color: #64748b; font-size: 10px; }
         .sidebar-menu { list-style: none; padding: 0; }
         .sidebar-menu li { margin-bottom: 4px; }
+        .sidebar-menu .sidebar-menu-divider { height: 0; margin: 10px 10px 8px; border-top: 1px solid rgba(148, 163, 184, .25); }
         .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
         .sidebar-menu a:hover, .sidebar-menu a.active { background: #2563eb; color: white; }
         .sidebar-menu a i { font-size: 16px; width: 18px; text-align: center; }
@@ -209,27 +210,7 @@
 </head>
 <body>
     <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <div class="sidebar-brand-icon"><i class="bi bi-house-heart-fill"></i></div>
-            <div class="sidebar-brand-text">
-                <h5>Desa Digital</h5>
-                <small>Admin pengelola data</small>
-            </div>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="{{ route('dashboard') }}"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
-            <li><a href="{{ route('admin.kecamatan.index') }}"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
-            <li><a href="{{ route('admin.desa.index') }}"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
-            <li><a href="{{ route('admin.wisata.index') }}"><i class="bi bi-image-fill"></i><span>Wisata Desa</span></a></li>
-            <li><a href="{{ route('admin.pasar.index') }}"><i class="bi bi-shop"></i><span>Pasar Desa</span></a></li>
-            <li><a href="{{ route('admin.kantor.index') }}"><i class="bi bi-building"></i><span>Kantor Desa</span></a></li>
-            <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
-            <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
-            <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
-            <li><a href="{{ route('admin.kontributor.index') }}" class="active"><i class="bi bi-people-fill"></i><span>Kontributor</span></a></li>
-        </ul>
-    </aside>
+    @include('admin.partials.sidebar')
 
     <!-- Main Content -->
     <div class="main-content">

@@ -98,6 +98,7 @@
         }
 
         .sidebar-menu li { margin-bottom: 2px; }
+        .sidebar-menu .sidebar-menu-divider { height: 0; margin: 10px 10px 8px; border-top: 1px solid rgba(148, 163, 184, .25); }
 
         .sidebar-menu a {
             display: flex;
@@ -170,13 +171,62 @@
             background: white;
         }
 
-        .search-box i {
+        .search-box-submit {
             position: absolute;
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
+            padding: 0;
+            border: 0;
+            background: transparent;
             color: var(--text-light);
             font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            left: 0;
+            z-index: 120;
+            max-height: 360px;
+            overflow-y: auto;
+            padding: 5px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, .14);
+        }
+
+        .search-suggestion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: var(--text-primary);
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .search-suggestion:hover,
+        .search-suggestion[aria-selected="true"] {
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .search-suggestion-type {
+            flex: 0 0 auto;
+            color: var(--text-light);
+            font-size: 11px;
+        }
+
+        .search-suggestions-empty {
+            padding: 10px;
+            color: var(--text-secondary);
+            font-size: 12px;
         }
 
         /* ===== PAGE BODY ===== */
@@ -398,41 +448,30 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <div class="sidebar-brand-icon">
-                <img src="{{ asset('images/desa-digital.png') }}" alt="Logo Desa Digital">
-            </div>
-            <div class="sidebar-brand-text">
-                <h5>Desa Digital</h5>
-                <small>Bersama Membangun Desa</small>
-            </div>
-        </div>
-
-        <ul class="sidebar-menu">
-            <li><a href="{{ route('dashboard') }}" class="active"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
-            <li><a href="{{ route('admin.kecamatan.index') }}"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
-            <li><a href="{{ route('admin.desa.index') }}"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
-            <li><a href="{{ route('admin.wisata.index') }}"><i class="bi bi-image-fill"></i><span>Wisata Desa</span></a></li>
-            <li><a href="{{ route('admin.pasar.index') }}"><i class="bi bi-shop"></i><span>Pasar Desa</span></a></li>
-            <li><a href="{{ route('admin.kantor.index') }}"><i class="bi bi-building"></i><span>Kantor Desa</span></a></li>
-            <li><a href="{{ route('admin.wifi.index') }}"><i class="bi bi-wifi"></i><span>WiFi Desa</span></a></li>
-            <li><a href="{{ route('admin.bumdes.index') }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
-            <li><a href="{{ route('admin.kkdmp.index') }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
-            @if (Auth::user()->isAdmin())
-                <li><a href="{{ route('admin.kontributor.index') }}"><i class="bi bi-person-plus-fill"></i><span>Kontributor</span></a></li>
-            @endif
-        </ul>
-    </aside>
+    @include('admin.partials.sidebar')
 
     <!-- Main Content -->
     <div class="main-content">
         <header class="top-header">
-            <div class="search-box">
-                <i class="bi bi-search"></i>
-                <input type="text" placeholder="Cari desa, kecamatan, atau menu...">
-            </div>
+            <form class="search-box" id="dashboardSearchForm" action="{{ route('admin.desa.index') }}" method="GET" role="search">
+                <button class="search-box-submit" type="submit" aria-label="Cari">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                </button>
+                <input
+                    type="search"
+                    name="search"
+                    id="dashboardSearchInput"
+                    placeholder="Cari desa, kecamatan, atau menu..."
+                    autocomplete="off"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-controls="dashboardSearchSuggestions"
+                    data-suggestions-url="{{ route('admin.search.suggestions') }}"
+                    required
+                >
+                <div class="search-suggestions" id="dashboardSearchSuggestions" role="listbox" hidden></div>
+            </form>
 
             @include('admin.partials.header-actions')
         </header>
@@ -554,6 +593,8 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/admin-dashboard-search.js') }}" defer></script>
 
 </body>
 </html>

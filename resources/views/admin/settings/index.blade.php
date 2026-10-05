@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
-        body { background: #f1f5f9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        body { background: #f1f5f9; min-height: 100vh; }
+        .settings-main { min-height: 100vh; margin-left: 260px; display: flex; align-items: center; justify-content: center; padding: 24px; }
         .settings-card {
             background: white;
             border-radius: 16px;
@@ -43,18 +44,23 @@
             gap: 8px;
         }
         .btn-back:hover { color: white; transform: translateY(-2px); }
+        @media (max-width: 992px) { .settings-main { margin-left: 0; } }
     </style>
 </head>
 <body>
-    <div class="settings-card">
-        <div class="settings-icon">
-            <i class="bi bi-gear-fill"></i>
+    @include('admin.partials.sidebar')
+
+    <main class="settings-main">
+        <div class="settings-card">
+            <div class="settings-icon">
+                <i class="bi bi-gear-fill"></i>
+            </div>
+            <h2>Pengaturan Sistem</h2>
+            <p>Modul pengaturan sedang dalam pengembangan. Fitur ini akan segera tersedia.</p>
+            <a href="{{ route('dashboard') }}" class="btn-back">
+                <i class="bi bi-arrow-left"></i> Kembali ke Dashboard
+            </a>
         </div>
-        <h2>Pengaturan Sistem</h2>
-        <p>Modul pengaturan sedang dalam pengembangan. Fitur ini akan segera tersedia.</p>
-        <a href="{{ route('dashboard') }}" class="btn-back">
-            <i class="bi bi-arrow-left"></i> Kembali ke Dashboard
-        </a>
-    </div>
+    </main>
 </body>
 </html>
