@@ -37,6 +37,8 @@ class WifiLocationDataTest extends TestCase
 
         $this->assertSame('Desa Sumberagung', $properties['nama_desa']);
         $this->assertSame('pemerintah_desa', $properties['fasilitator']);
+        $this->assertSame('Jalan Desa Sumberagung', $location->alamat);
+        $this->assertSame('Jalan Desa Sumberagung', $properties['alamat']);
         Storage::disk('public')->assertExists($photoPath);
 
         $this->put(route('admin.wifi.update', $location->id), [
@@ -55,6 +57,7 @@ class WifiLocationDataTest extends TestCase
         );
 
         $this->assertSame('pemerintah_kabupaten', $updatedProperties['fasilitator']);
+        $this->assertSame('Jalan Desa Sumberagung', $updatedProperties['alamat']);
         $this->assertSame($photoUrl, $updatedProperties['foto']);
         Storage::disk('public')->assertExists($photoPath);
     }

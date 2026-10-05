@@ -58,6 +58,7 @@ class LokasiTitikController extends Controller
         $data = $this->validatedLocation($request, $category['route']);
         $now = now();
         $propertiesData = json_decode($data['properties'] ?? '{}', true) ?: [];
+        $propertiesData['alamat'] = $data['alamat'] ?? null;
         $counterpartRoute = $this->counterpartRoute($category['route']);
         $sharedPhotoCounterparts = collect();
         $oldPhotos = [];
@@ -176,6 +177,7 @@ class LokasiTitikController extends Controller
         $existingProperties = json_decode($location->properties ?? '{}', true) ?: [];
         $submittedProperties = json_decode($data['properties'] ?? '{}', true) ?: [];
         $propertiesData = array_merge($existingProperties, $submittedProperties);
+        $propertiesData['alamat'] = $data['alamat'] ?? null;
 
         if ($category['route'] === 'wifi') {
             unset($propertiesData['fasilitato']);

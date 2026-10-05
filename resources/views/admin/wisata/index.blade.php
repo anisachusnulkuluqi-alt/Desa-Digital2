@@ -324,12 +324,13 @@
                                 $deskripsi = $props['deskripsi'] ?? $props['Deskripsi'] ?? '';
                                 $reservasi = $props['reservasi'] ?? $props['Reservasi'] ?? $props['kontak'] ?? '';
                                 $desa = $props['desa'] ?? $props['Desa'] ?? $props['nama_desa'] ?? '-';
+                                $alamat = $wisata->alamat ?: ($props['alamat'] ?? $props['Address'] ?? '');
                                 $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? '';
                             @endphp
                             <tr data-id="{{ $wisata->id }}">
                                 <td class="admin-row-number">{{ $wisatas->firstItem() + $index }}</td>
                                 <td>
-                                    <a class="wisata-link admin-place-name" onclick="openDetailModal({{ $wisata->id }}, '{{ addslashes($wisata->nama_lokasi ?? $wisata->nama ?? '') }}', '{{ addslashes($desa) }}', '{{ addslashes($jenis) }}', '{{ addslashes($deskripsi) }}', '{{ addslashes($jam) }}', '{{ addslashes($htm) }}', '{{ addslashes($reservasi) }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ addslashes($foto) }}')">
+                                    <a class="wisata-link admin-place-name" onclick="openDetailModal({{ $wisata->id }}, '{{ addslashes($wisata->nama_lokasi ?? $wisata->nama ?? '') }}', '{{ addslashes($desa) }}', '{{ addslashes($jenis) }}', '{{ addslashes($deskripsi) }}', '{{ addslashes($jam) }}', '{{ addslashes($htm) }}', '{{ addslashes($reservasi) }}', '{{ $wisata->latitude ?? '' }}', '{{ $wisata->longitude ?? '' }}', '{{ addslashes($foto) }}', '{{ addslashes($alamat) }}')">
                                         <span class="admin-place-icon"><i class="bi bi-image-fill"></i></span>
                                         {{ $wisata->nama_lokasi ?? $wisata->nama ?? '-' }}
                                     </a>
@@ -395,6 +396,10 @@
                                 <div class="detail-item-value" id="detailReservasi">-</div>
                             </div>
                             <div class="detail-item">
+                                <div class="detail-item-label">Alamat Lokasi</div>
+                                <div class="detail-item-value" id="detailAlamat">-</div>
+                            </div>
+                            <div class="detail-item">
                                 <div class="detail-item-label">Latitude</div>
                                 <div class="detail-item-value" id="detailLat" style="font-family: monospace;">-</div>
                             </div>
@@ -447,6 +452,12 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label-custom">Jenis Wisata</label>
                                 <input type="text" id="jenisWisata" name="jenis_wisata" class="form-input-custom" placeholder="Contoh: Alam, Budaya">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label-custom">Alamat Lokasi</label>
+                                <textarea id="alamatWisata" name="alamat" class="form-textarea-custom" placeholder="Alamat lengkap atau patokan lokasi wisata"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -574,9 +585,9 @@
             }
         }
 
-        function openDetailModal(id, nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto) {
+        function openDetailModal(id, nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto, alamat) {
             currentWisataId = id;
-            currentWisataData = { nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto };
+            currentWisataData = { nama, desa, alamat, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto };
 
             document.getElementById('detailNama').textContent = nama || '-';
             document.getElementById('detailDesa').textContent = desa || '-';
@@ -584,6 +595,7 @@
             document.getElementById('detailHtm').textContent = htm || '-';
             document.getElementById('detailJam').textContent = jam || '-';
             document.getElementById('detailReservasi').textContent = reservasi || '-';
+            document.getElementById('detailAlamat').textContent = alamat || '-';
             document.getElementById('detailLat').textContent = latitude || '-';
             document.getElementById('detailLng').textContent = longitude || '-';
 
@@ -609,7 +621,7 @@
             modalDetail.hide();
             setTimeout(() => {
                 const d = currentWisataData;
-                openEditModal(currentWisataId, d.nama, d.desa, d.jenis, d.deskripsi, d.jam, d.htm, d.reservasi, d.latitude, d.longitude, d.foto);
+                openEditModal(currentWisataId, d.nama, d.desa, d.jenis, d.deskripsi, d.jam, d.htm, d.reservasi, d.latitude, d.longitude, d.foto, d.alamat);
             }, 300);
         }
 
@@ -651,13 +663,14 @@
             modalForm.show();
         }
 
-        function openEditModal(id, nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto) {
+        function openEditModal(id, nama, desa, jenis, deskripsi, jam, htm, reservasi, latitude, longitude, foto, alamat) {
             currentWisataId = id;
             originalWisataFoto = foto || '';
             document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit Wisata';
             document.getElementById('wisataId').value = id;
             document.getElementById('namaWisata').value = nama || '';
             document.getElementById('desaWisata').value = desa || '';
+            document.getElementById('alamatWisata').value = alamat || '';
             document.getElementById('jenisWisata').value = jenis || '';
             document.getElementById('deskripsi').value = deskripsi || '';
             document.getElementById('jamOperasional').value = jam || '';

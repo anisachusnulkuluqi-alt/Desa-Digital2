@@ -1203,15 +1203,38 @@
         fetch("{{ asset('geojson/kecamatan.geojson') }}")
             .then(res => res.json())
             .then(data => {
+                const districtColors = {
+                    Bancar: '#e6194b',
+                    Bangilan: '#3cb44b',
+                    Grabagan: '#4363d8',
+                    Jatirogo: '#f58231',
+                    Jenu: '#5e3c99',
+                    Kenduruan: '#00a6a6',
+                    Kerek: '#f032e6',
+                    Merakurak: '#bfef45',
+                    Montong: '#d94877',
+                    Palang: '#469990',
+                    Parengan: '#d01c8b',
+                    Plumpang: '#9a6324',
+                    Rengel: '#d4a017',
+                    Semanding: '#800000',
+                    Senori: '#009e73',
+                    Singgahan: '#808000',
+                    Soko: '#d55e00',
+                    Tambakboyo: '#000075',
+                    Tuban: '#6c757d',
+                    Widang: '#b83280'
+                };
+
                 L.geoJSON(data, {
                     style: (feature) => {
-                        const colors = ['#0284c7', '#8b5cf6', '#10b981', '#f59e0b', '#06b6d4', '#ec4899'];
-                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        const districtName = feature.properties?.nm_kecamatan;
+                        const districtColor = districtColors[districtName] || '#64748b';
                         return {
-                            color: '#0284c7',
-                            weight: 2,
-                            fillColor: randomColor,
-                            fillOpacity: 0.22
+                            color: '#ffffff',
+                            weight: 1.2,
+                            fillColor: districtColor,
+                            fillOpacity: 0.32
                         };
                     },
                     onEachFeature: (feature, layer) => {
@@ -1285,11 +1308,17 @@
             const kecamatan = normalizeKecamatanName(properties.kecamatan || (kecMatch ? kecMatch[1] : ''));
             const photoPath = String(properties.foto || '').trim();
             const cleanPhotoPath = photoPath.replace(/^\/?storage\//, '').replace(/^\/+/, '');
-            const operatingHours = String(properties.jam_operas || properties.jam_operasional || '').replace(/â€“|â€”/g, '-');
+            const operatingHours = String(properties.jam_operas || properties.jam_operasional || properties.jam || '').replace(/â€“|â€”/g, '-');
+            const entranceFee = properties.htm ?? properties.HTM ?? properties.Harga ?? properties.htm_wisata;
+            const formattedEntranceFee = entranceFee === 0 || String(entranceFee ?? '').trim() === '0'
+                ? 'Gratis'
+                : (entranceFee !== null && entranceFee !== undefined && String(entranceFee).trim() !== ''
+                    ? `Rp ${entranceFee}`
+                    : '');
             const detailFields = {
                 wisata: [
-                    ['Jenis Wisata', properties.jenis_wisa],
-                    ['HTM', properties.htm ? (properties.htm === '0' ? 'Gratis' : `Rp ${properties.htm}`) : ''],
+                    ['Jenis Wisata', properties.jenis_wisa || properties.jenis_wisata || properties.jenis],
+                    ['HTM', formattedEntranceFee],
                     ['Jam Operasional', operatingHours],
                     ['Reservasi', properties.reservasi]
                 ],
@@ -1320,7 +1349,7 @@
             return {
                 id: `${type}-${feature.id ?? properties.FID}`,
                 type,
-                name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama || 'Lokasi tanpa nama',
+                name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama_wisata || properties.nama || 'Lokasi tanpa nama',
                 kec: kecamatan,
                 desa: properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || '',
                 address: String(address).trim(),
@@ -1328,7 +1357,7 @@
                 lng,
                 status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
                 desc: properties.deskripsi || '',
-                kind: properties.jenis_wisa || '',
+                kind: properties.jenis_wisa || properties.jenis_wisata || properties.jenis || '',
                 details: (detailFields[type] || [])
                     .map(([label, value]) => [label, String(value ?? '').trim()])
                     .filter(([, value]) => value && value !== '-'),
@@ -1360,7 +1389,7 @@
 
         async function loadSpatialData() {
             const entries = await Promise.all(Object.entries(spatialSources).map(async ([type, source]) => {
-                const response = await fetch(source);
+                const response = await fetch(source, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`HTTP ${response.status} saat memuat ${source}`);
                 const data = await response.json();
                 return data.features
@@ -1368,7 +1397,11 @@
                     .map(feature => normalizeSpatialFeature(feature, type));
             }));
 
-            databaseSpasial = entries.flat().filter(item => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+            const updatedData = entries.flat().filter(item => Number.isFinite(item.lat) && Number.isFinite(item.lng));
+            const hasChanged = JSON.stringify(updatedData) !== JSON.stringify(databaseSpasial);
+            databaseSpasial = updatedData;
+
+            return hasChanged;
         }
 
         let activeMarkers = [];
@@ -1397,7 +1430,47 @@
             }
         }
 
-        function renderMapMarkers() {
+        function buildSpatialPopup(item) {
+            const meta = getCategoryMeta(item.type);
+            const detailFieldsHtml = [
+                ...item.details,
+                ['Latitude', item.lat],
+                ['Longitude', item.lng]
+            ].map(([label, value]) => `
+                <div class="spatial-detail-field">
+                    <div class="spatial-detail-label">${escapePopupText(label)}</div>
+                    <div class="spatial-detail-value">${escapePopupText(value)}</div>
+                </div>
+            `).join('');
+            const descriptionHtml = item.desc ? `
+                <div class="spatial-detail-description">
+                    <div class="spatial-detail-label">Deskripsi</div>
+                    <div class="spatial-detail-value">${escapePopupText(item.desc)}</div>
+                </div>
+            ` : '';
+
+            return `
+                <div class="spatial-detail-card" style="--category-color: ${meta.color};">
+                    <div class="spatial-detail-header"><i class="fa-solid fa-image"></i> Detail ${escapePopupText(meta.label)}</div>
+                    <div class="spatial-detail-photo-wrap">
+                        <i class="fa-solid ${meta.icon}"></i>
+                        ${item.photo ? `<img class="spatial-detail-photo" src="${escapePopupText(item.photo)}" alt="Foto ${escapePopupText(item.name)}" onerror="this.remove()">` : ''}
+                    </div>
+                    <div class="spatial-detail-body">
+                        <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
+                        <h4 class="spatial-detail-title">${escapePopupText(item.name)}</h4>
+                        ${item.desa || item.kec ? `<div class="spatial-detail-location"><i class="fa-solid fa-location-dot"></i> ${escapePopupText([item.desa, item.kec].filter(Boolean).join(' · '))}</div>` : ''}
+                        ${detailFieldsHtml ? `<div class="spatial-detail-grid">${detailFieldsHtml}</div>` : ''}
+                        ${descriptionHtml}
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" rel="noopener noreferrer" class="popup-route-btn">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Arah (Google Maps)
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderMapMarkers(openPopupSpatialId = null) {
             activeMarkers.forEach(m => map.removeLayer(m));
             activeMarkers = [];
 
@@ -1432,43 +1505,10 @@
                     popupAnchor: [0, -20]
                 });
 
-                const detailFieldsHtml = [
-                    ...item.details,
-                    ['Latitude', item.lat],
-                    ['Longitude', item.lng]
-                ].map(([label, value]) => `
-                    <div class="spatial-detail-field">
-                        <div class="spatial-detail-label">${escapePopupText(label)}</div>
-                        <div class="spatial-detail-value">${escapePopupText(value)}</div>
-                    </div>
-                `).join('');
-                const descriptionHtml = item.desc ? `
-                    <div class="spatial-detail-description">
-                        <div class="spatial-detail-label">Deskripsi</div>
-                        <div class="spatial-detail-value">${escapePopupText(item.desc)}</div>
-                    </div>
-                ` : '';
-                const popupHtml = `
-                    <div class="spatial-detail-card" style="--category-color: ${meta.color};">
-                        <div class="spatial-detail-header"><i class="fa-solid fa-image"></i> Detail ${escapePopupText(meta.label)}</div>
-                        <div class="spatial-detail-photo-wrap">
-                            <i class="fa-solid ${meta.icon}"></i>
-                            ${item.photo ? `<img class="spatial-detail-photo" src="${escapePopupText(item.photo)}" alt="Foto ${escapePopupText(item.name)}" onerror="this.remove()">` : ''}
-                        </div>
-                        <div class="card-popup-body">
-                            <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
-                            <h4>${escapePopupText(item.name)}</h4>
-                            <p><strong>Alamat</strong><br>${escapePopupText(item.address || 'Alamat belum tersedia')}${item.desc ? `<br>${escapePopupText(item.desc)}` : ''}</p>
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" class="popup-route-btn">
-                                <i class="fa-solid fa-diamond-turn-right"></i> Petunjuk Arah (Google Maps)
-                            </a>
-                        </div>
-                    </div>
-                `;
-
-                const marker = L.marker([item.lat, item.lng], { icon: customIcon }).bindPopup(popupHtml);
+                const marker = L.marker([item.lat, item.lng], { icon: customIcon }).bindPopup(buildSpatialPopup(item));
                 marker.spatialId = item.id;
                 marker.addTo(map);
+                if (item.id === openPopupSpatialId) marker.openPopup();
                 activeMarkers.push(marker);
             });
 
@@ -1532,6 +1572,28 @@
         function renderPointsAndTable() {
             renderMapMarkers();
             renderDataTable();
+        }
+
+        let spatialDataRefreshInProgress = false;
+
+        async function refreshSpatialData() {
+            if (spatialDataRefreshInProgress || document.hidden) return;
+
+            spatialDataRefreshInProgress = true;
+            try {
+                const hasChanged = await loadSpatialData();
+                if (!hasChanged) return;
+
+                const openPopupSpatialId = activeMarkers.find(marker => marker.isPopupOpen())?.spatialId ?? null;
+                populateKecamatanFilter();
+                renderMapMarkers(openPopupSpatialId);
+                renderDataTable();
+                renderMapSearchSuggestions(document.getElementById('liveSearchInput').value);
+            } catch (error) {
+                console.error('Gagal memperbarui data spasial dari backend:', error);
+            } finally {
+                spatialDataRefreshInProgress = false;
+            }
         }
 
         function populateKecamatanFilter() {
@@ -1640,9 +1702,7 @@
             }
 
             map.flyTo([item.lat, item.lng], 15, { duration: 1.2 });
-            const meta = getCategoryMeta(item.type);
-            const content = `<div class="map-search-detail"><span class="popup-badge" style="background:${meta.bg};color:${meta.color}">${escapeHtml(meta.label)}</span><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.address || 'Alamat belum tersedia')}</p></div>`;
-            L.popup().setLatLng([item.lat, item.lng]).setContent(content).openOn(map);
+            L.popup().setLatLng([item.lat, item.lng]).setContent(buildSpatialPopup(item)).openOn(map);
             if (document.getElementById('bottomDrawer').classList.contains('open')) toggleDrawer();
         }
 
@@ -1740,6 +1800,11 @@
                 populateKecamatanFilter();
                 renderPointsAndTable();
                 renderMapSearchSuggestions(document.getElementById('liveSearchInput').value);
+                window.setInterval(refreshSpatialData, 30000);
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) refreshSpatialData();
+                });
+                window.addEventListener('online', refreshSpatialData);
             } catch (error) {
                 console.error('Gagal memuat data titik GeoJSON:', error);
                 document.getElementById('tableCounterBadge').innerText = 'Data gagal dimuat';

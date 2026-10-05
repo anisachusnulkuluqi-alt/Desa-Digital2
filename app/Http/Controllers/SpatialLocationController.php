@@ -45,9 +45,15 @@ class SpatialLocationController extends Controller
             $properties = is_array($properties) ? $properties : [];
             $properties[$category['name_property']] = $row->nama_lokasi;
 
-            if (property_exists($row, 'alamat')) {
-                $properties['alamat'] = $row->alamat ?? '';
+            $address = property_exists($row, 'alamat') ? trim((string) $row->alamat) : '';
+            foreach (['alamat', 'Alamat', 'address', 'Address'] as $addressKey) {
+                if ($address !== '') {
+                    break;
+                }
+                $address = trim((string) ($properties[$addressKey] ?? ''));
             }
+
+            $properties['alamat'] = $address;
 
             return [
                 'type' => 'Feature',
@@ -63,6 +69,6 @@ class SpatialLocationController extends Controller
         return response()->json([
             'type' => 'FeatureCollection',
             'features' => $features,
-        ]);
+        ])->header('Cache-Control', 'no-store, private');
     }
 }

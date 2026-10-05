@@ -37,6 +37,7 @@ class WisataController extends Controller
         $validated = $request->validate([
             'nama_lokasi'     => 'required|string|max:255',
             'desa'            => 'nullable|string|max:255',
+            'alamat'          => 'nullable|string|max:5000',
             'jenis_wisata'    => 'nullable|string|max:100',
             'jam_operasional' => 'nullable|string|max:100',
             'htm'             => 'nullable|string|max:50',
@@ -57,6 +58,7 @@ class WisataController extends Controller
 
         $properties = [
             'desa' => $validated['desa'] ?? null,
+            'alamat' => $validated['alamat'] ?? null,
             'jenis' => $validated['jenis_wisata'] ?? null,
             'jam_operasional' => $validated['jam_operasional'] ?? null,
             'htm' => $validated['htm'] ?? null,
@@ -69,6 +71,7 @@ class WisataController extends Controller
         Wisata::create([
             'feature_key' => 'wk_' . uniqid() . '_' . time(),
             'nama_lokasi' => $validated['nama_lokasi'],
+            'alamat' => $validated['alamat'] ?? null,
             'latitude' => $validated['latitude'],
             'longitude' => $validated['longitude'],
             'properties' => json_encode($properties),
@@ -87,6 +90,7 @@ class WisataController extends Controller
         $validated = $request->validate([
             'nama_lokasi'     => 'required|string|max:255',
             'desa'            => 'nullable|string|max:255',
+            'alamat'          => 'nullable|string|max:5000',
             'jenis_wisata'    => 'nullable|string|max:100',
             'jam_operasional' => 'nullable|string|max:100',
             'htm'             => 'nullable|string|max:50',
@@ -114,6 +118,7 @@ class WisataController extends Controller
 
         $newProperties = array_merge($oldProperties, [
             'desa' => $validated['desa'],
+            'alamat' => $validated['alamat'] ?? null,
             'jenis' => $validated['jenis_wisata'],
             'jam_operasional' => $validated['jam_operasional'],
             'htm' => $validated['htm'],
@@ -124,6 +129,7 @@ class WisataController extends Controller
 
         $wisata->update([
             'nama_lokasi' => $validated['nama_lokasi'],
+            'alamat' => $validated['alamat'] ?? null,
             'latitude' => $validated['latitude'],
             'longitude' => $validated['longitude'],
             'properties' => json_encode($newProperties),

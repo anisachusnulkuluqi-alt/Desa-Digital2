@@ -1268,9 +1268,8 @@
     <!-- 3. ACCORDION & PROFIL INOVASI -->
     <section id="tentang-kami" class="section-profil-accordion">
         <div class="section-header-clean">
-            <span class="section-purpose-label">Tujuan Platform</span>
-            <h2>Satu Portal untuk Informasi dan Layanan Desa</h2>
-            <p>Website Desa Digital dibuat untuk memudahkan masyarakat mengakses informasi resmi, mengenal potensi desa, dan menemukan layanan publik Kabupaten Tuban dalam satu tempat.</p>
+            <span class="section-purpose-label">SEPUTAR TENTANG</span>
+            <h2>DESA DIGITAL</h2>
         </div>
 
         <div class="profil-dual-layout">

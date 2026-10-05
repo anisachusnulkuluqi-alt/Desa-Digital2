@@ -36,11 +36,13 @@ class WisataPhotoRemovalTest extends TestCase
         $this->get(route('admin.wisata.index'))
             ->assertOk()
             ->assertSee('Hapus foto')
-            ->assertSee('Batalkan');
+            ->assertSee('Batalkan')
+            ->assertSee('name="alamat"', false);
 
         $data = [
             'nama_lokasi' => 'Wisata Foto Test',
             'desa' => 'Desa Test',
+            'alamat' => 'Jalan Wisata Nomor 1, Tuban',
             'jenis_wisata' => '',
             'jam_operasional' => '',
             'htm' => '',
@@ -53,6 +55,13 @@ class WisataPhotoRemovalTest extends TestCase
         $this->put(route('admin.wisata.update', $id), $data)
             ->assertOk()
             ->assertJson(['success' => true]);
+        $this->assertSame(
+            'Jalan Wisata Nomor 1, Tuban',
+            DB::table('lokasi_wisata')->where('id', $id)->value('alamat')
+        );
+        $this->getJson(route('data.spasial.locations', ['kategori' => 'wisata']))
+            ->assertOk()
+            ->assertJsonPath('features.0.properties.alamat', 'Jalan Wisata Nomor 1, Tuban');
         Storage::disk('public')->assertExists($photoPath);
         $this->assertSame(
             $photoUrl,

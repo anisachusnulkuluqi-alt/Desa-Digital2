@@ -15,6 +15,7 @@ class Wisata extends Model
         'feature_id',
         'feature_key',
         'nama_lokasi',
+        'alamat',
         'latitude',
         'longitude',
         'properties',
