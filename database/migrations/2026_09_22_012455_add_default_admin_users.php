@@ -14,7 +14,7 @@ return new class extends Migration
             ['email' => 'admin@desadigital.id'],
             [
                 'name' => 'Administrator Desa Digital',
-                'password' => Hash::make('AdminDesa2024!'),
+                'password' => Hash::make('admin1234'),
                 'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -25,7 +25,7 @@ return new class extends Migration
             ['email' => 'operator@desadigital.id'],
             [
                 'name' => 'Operator Desa',
-                'password' => Hash::make('Operator2024!'),
+                'password' => Hash::make('operator1234'),
                 'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now(),

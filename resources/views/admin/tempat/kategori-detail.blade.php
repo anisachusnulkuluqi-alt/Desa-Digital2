@@ -14,21 +14,12 @@
         
         .main-content { margin-left: 260px; }
         
-        .top-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; }
+        .top-header { min-height: 62px; background: white; border-bottom: 1px solid #e2e8f0; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; }
         .breadcrumb-simple { font-size: 13px; color: #64748b; display: flex; align-items: center; gap: 8px; }
         .breadcrumb-simple a { color: #64748b; text-decoration: none; }
         .breadcrumb-simple a:hover { color: #1e3a8a; }
         .breadcrumb-simple .separator { color: #cbd5e1; }
         .breadcrumb-simple .active { color: #1e293b; font-weight: 600; }
-        
-        .header-actions { display: flex; align-items: center; gap: 12px; }
-        .header-home-btn { width: 38px; height: 38px; border-radius: 8px; background: white; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; color: #64748b; cursor: pointer; transition: all 0.2s; text-decoration: none; font-size: 16px; }
-        .header-home-btn:hover { background: #f8fafc; border-color: #cbd5e1; color: #1e3a8a; }
-        
-        .user-profile { display: flex; align-items: center; gap: 10px; padding: 6px 12px; background: white; border: 1px solid #e2e8f0; border-radius: 10px; }
-        .user-avatar { width: 32px; height: 32px; border-radius: 8px; background: #1e3a8a; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 12px; }
-        .user-info strong { display: block; font-size: 12px; font-weight: 600; color: #1e293b; }
-        .user-info small { font-size: 10px; color: #64748b; }
         
         .page-body { padding: 28px; }
         .page-header { margin-bottom: 24px; }
@@ -106,18 +97,7 @@
                 <span class="separator">/</span>
                 <span class="active">{{ ucfirst($kategori) }}</span>
             </div>
-            <div class="header-actions">
-                <a href="{{ url('/') }}" class="header-home-btn" title="Kembali ke Website">
-                    <i class="bi bi-house-fill"></i>
-                </a>
-                <div class="user-profile">
-                    <div class="user-avatar">{{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}</div>
-                    <div class="user-info">
-                        <strong>{{ Auth::user()->name ?? 'Admin' }}</strong>
-                        <small>{{ ucfirst(Auth::user()->role ?? 'Admin') }}</small>
-                    </div>
-                </div>
-            </div>
+            @include('admin.partials.header-actions')
         </header>
 
         <div class="page-body">

@@ -36,7 +36,7 @@
         }
 
         html { scroll-behavior: smooth; overflow-x: clip; }
-        section[id], footer[id] { scroll-margin-top: 80px; }
+        section[id], footer[id] { scroll-margin-top: var(--site-header-height, 80px); }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         
         body { 
@@ -55,12 +55,16 @@
             justify-content: space-between;
             align-items: center;
             gap: clamp(14px, 2vw, 28px);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
+
+        .site-header-spacer { height: 92px; }
 
         .brand-link {
             display: flex;
@@ -114,7 +118,7 @@
             transition: color 0.2s ease, background-color 0.2s ease;
         }
         .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
-        .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
+        .nav-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
 
         .menu-toggle {
             display: none;
@@ -1228,7 +1232,7 @@
         }
 
         @media (max-width: 900px) and (orientation: portrait) {
-            .site-header { position: sticky; flex-wrap: nowrap; gap: 8px; }
+            .site-header { flex-wrap: nowrap; gap: 8px; }
             .search-pill-nav { order: 2; margin-left: auto; flex: 0 1 min(150px, 36vw); }
             .search-pill-nav .global-search-suggestions { right: -88px; width: min(360px, calc(100vw - 28px)); }
             .menu-toggle { order: 3; display: grid; margin-left: 0; flex: 0 0 42px; }
@@ -1291,6 +1295,7 @@
         <ul class="nav-menu" id="primary-navigation">
             <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
+            <li><a href="#statistik-wilayah">DATA WILAYAH</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
             <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
@@ -1304,12 +1309,23 @@
         </form>
 
     </header>
+    <div class="site-header-spacer" aria-hidden="true"></div>
 
     <script>
         (() => {
             const header = document.querySelector('.site-header');
+            const headerSpacer = document.querySelector('.site-header-spacer');
             const menuButton = header.querySelector('.menu-toggle');
             const menuIcon = menuButton.querySelector('i');
+
+            const syncHeaderHeight = () => {
+                const headerHeight = `${header.offsetHeight}px`;
+                headerSpacer.style.height = headerHeight;
+                document.documentElement.style.setProperty('--site-header-height', headerHeight);
+            };
+
+            syncHeaderHeight();
+            window.addEventListener('resize', syncHeaderHeight);
 
             const setMenuOpen = isOpen => {
                 header.classList.toggle('nav-open', isOpen);
@@ -1810,14 +1826,23 @@
         revealVisibleItems();
 
         const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+        const linkedSections = sectionLinks
+            .map(link => ({ link, section: document.querySelector(link.hash) }))
+            .filter(entry => entry.section);
         const updateActiveSection = () => {
-            const focusPoint = window.scrollY + Math.max(120, window.innerHeight * 0.3);
-            const activeSection = sectionLinks
-                .map(link => document.querySelector(link.hash))
-                .find(section => section && section.offsetTop <= focusPoint && section.offsetTop + section.offsetHeight > focusPoint);
+            const focusPoint = window.scrollY + document.querySelector('.site-header').offsetHeight + Math.max(120, window.innerHeight * 0.3);
+            const activeEntry = linkedSections
+                .filter(({ section }) => section.getBoundingClientRect().top + window.scrollY <= focusPoint)
+                .at(-1);
 
             sectionLinks.forEach(link => {
-                link.classList.toggle('active', Boolean(activeSection && link.hash === `#${activeSection.id}`));
+                const isActive = activeEntry?.link === link;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
             });
         };
 
