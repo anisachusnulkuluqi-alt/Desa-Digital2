@@ -4,135 +4,235 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tempat;
+use App\Models\Kategori;
+use App\Models\KategoriField;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TempatController extends Controller
 {
     /**
-     * Tampilkan semua tempat (master)
+     * Tampilkan daftar kategori/atribut (Master)
      */
     public function index(Request $request)
     {
-        $query = Tempat::query();
-
-        if ($request->filled('kategori')) {
-            $query->where('kategori', $request->kategori);
-        }
-
-        if ($request->filled('search')) {
-            $query->where('nama', 'like', '%' . $request->search . '%')
-                  ->orWhere('desa', 'like', '%' . $request->search . '%');
-        }
-
-        $tempats = $query->orderBy('nama', 'asc')->paginate(15);
-        $totalTempat = Tempat::count();
-        $totalKategori = Tempat::select('kategori')->distinct()->count();
-        $existingKategori = Tempat::getExistingKategori();
-
-        return view('admin.tempat.index', compact('tempats', 'totalTempat', 'totalKategori', 'existingKategori'));
+        $kategoris = Kategori::orderBy('nama', 'asc')->get();
+        return view('admin.tempat.index', compact('kategoris'));
     }
 
     /**
-     * Tampilkan tempat berdasarkan kategori (untuk menu sidebar dinamis)
+     * Tampilkan halaman detail kategori dengan field dinamis (untuk sidebar)
      */
-    public function showByKategori($kategori)
+    public function showKategoriDetail($kategori)
     {
         $kategori = strtolower(trim($kategori));
-
-        $query = Tempat::where('kategori', $kategori);
-
-        if (request()->filled('search')) {
-            $query->where('nama', 'like', '%' . request('search') . '%')
-                  ->orWhere('desa', 'like', '%' . request('search') . '%');
+        $kategoriModel = Kategori::where('nama', $kategori)->first();
+        
+        if (!$kategoriModel) {
+            abort(404, 'Kategori tidak ditemukan');
         }
 
-        $tempats = $query->orderBy('nama', 'asc')->paginate(15);
-        $totalTempat = $query->count();
-        $existingKategori = Tempat::getExistingKategori();
+        $fields = $kategoriModel->fields;
+        $data = Tempat::where('kategori', $kategori)->get();
 
-        return view('admin.tempat.by-kategori', compact('tempats', 'totalTempat', 'kategori', 'existingKategori'));
+        return view('admin.tempat.kategori-detail', compact('kategori', 'kategoriModel', 'fields', 'data'));
     }
 
     /**
-     * Simpan tempat baru
+     * Ambil data field kategori dalam format JSON (untuk popup di halaman master)
      */
-    public function store(Request $request)
+    public function getKategoriFieldsJson($kategori)
+    {
+        $kategori = strtolower(trim($kategori));
+        $kategoriModel = Kategori::where('nama', $kategori)->first();
+        
+        if (!$kategoriModel) {
+            return response()->json([
+                'success' => false, 
+                'error' => 'Kategori tidak ditemukan'
+            ], 404);
+        }
+
+        $fields = $kategoriModel->fields;
+        $data = Tempat::where('kategori', $kategori)->get();
+
+        return response()->json([
+            'success' => true,
+            'kategori' => $kategori,
+            'kategori_id' => $kategoriModel->id,
+            'fields' => $fields,
+            'data' => $data
+        ]);
+    }
+
+    /**
+     * Tambah field baru ke kategori
+     */
+    public function storeField(Request $request)
     {
         $validated = $request->validate([
-            'nama'      => 'required|string|max:255',
-            'kategori'  => 'required|string|max:100',
-            'desa'      => 'nullable|string|max:255',
-            'alamat'    => 'nullable|string',
-            'latitude'  => 'nullable|string|max:50',
-            'longitude' => 'nullable|string|max:50',
-            'deskripsi' => 'nullable|string',
-            'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'nama_field' => 'required|string|max:100',
+            'tipe_field' => 'required|in:text,number,textarea,file,date',
         ]);
 
-        $fotoPath = null;
-        if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('tempat', 'public');
-        }
+        $maxUrutan = KategoriField::where('kategori_id', $validated['kategori_id'])->max('urutan') ?? 0;
 
-        Tempat::create([
-            'nama'          => $validated['nama'],
-            'kategori'      => strtolower(trim($validated['kategori'])),
-            'desa'          => $validated['desa'] ?? null,
-            'alamat'        => $validated['alamat'] ?? null,
-            'latitude'      => $validated['latitude'] ?? null,
-            'longitude'     => $validated['longitude'] ?? null,
-            'foto'          => $fotoPath,
-            'deskripsi'     => $validated['deskripsi'] ?? null,
-            'info_tambahan' => json_encode($request->info_tambahan ?? []),
+        KategoriField::create([
+            'kategori_id' => $validated['kategori_id'],
+            'nama_field' => strtolower(trim($validated['nama_field'])),
+            'tipe_field' => $validated['tipe_field'],
+            'urutan' => $maxUrutan + 1,
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Tempat berhasil ditambahkan!']);
+        return response()->json([
+            'success' => true, 
+            'message' => 'Field berhasil ditambahkan!'
+        ]);
     }
 
     /**
-     * Update tempat
+     * Hapus field dari kategori
      */
-    public function update(Request $request, $id)
+    public function destroyField($id)
     {
-        $tempat = Tempat::findOrFail($id);
+        $field = KategoriField::findOrFail($id);
+        $field->delete();
 
-        $validated = $request->validate([
-            'nama'      => 'required|string|max:255',
-            'kategori'  => 'required|string|max:100',
-            'desa'      => 'nullable|string|max:255',
-            'alamat'    => 'nullable|string',
-            'latitude'  => 'nullable|string|max:50',
-            'longitude' => 'nullable|string|max:50',
-            'deskripsi' => 'nullable|string',
-            'foto'      => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        return response()->json([
+            'success' => true, 
+            'message' => 'Field berhasil dihapus!'
         ]);
-
-        $fotoPath = $tempat->foto;
-        if ($request->hasFile('foto')) {
-            if ($fotoPath) Storage::disk('public')->delete($fotoPath);
-            $fotoPath = $request->file('foto')->store('tempat', 'public');
-        }
-
-        $tempat->update(array_merge($validated, [
-            'kategori'      => strtolower(trim($validated['kategori'])),
-            'foto'          => $fotoPath,
-            'info_tambahan' => json_encode($request->info_tambahan ?? []),
-        ]));
-
-        return response()->json(['success' => true, 'message' => 'Tempat berhasil diperbarui!']);
     }
 
     /**
-     * Hapus tempat
+     * Simpan data dengan field dinamis
+     */
+    public function storeData(Request $request)
+    {
+        $validated = $request->validate([
+            'kategori' => 'required|string',
+            'nama' => 'required|string|max:255',
+        ]);
+
+        $kategori = strtolower(trim($validated['kategori']));
+        $kategoriModel = Kategori::where('nama', $kategori)->first();
+
+        if (!$kategoriModel) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Kategori tidak ditemukan'
+            ], 404);
+        }
+
+        $fields = $kategoriModel->fields;
+        $dataToSave = [
+            'nama' => $validated['nama'],
+            'kategori' => $kategori,
+        ];
+
+        // Simpan semua field tambahan ke dalam kolom info_tambahan (JSON)
+        $infoTambahan = [];
+        foreach ($fields as $field) {
+            $fieldName = $field->nama_field;
+            
+            if ($field->tipe_field === 'file' && $request->hasFile($fieldName)) {
+                $infoTambahan[$fieldName] = $request->file($fieldName)->store('tempat', 'public');
+            } elseif ($request->has($fieldName)) {
+                $infoTambahan[$fieldName] = $request->input($fieldName);
+            }
+        }
+
+        $dataToSave['info_tambahan'] = json_encode($infoTambahan);
+
+        Tempat::create($dataToSave);
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'Data berhasil ditambahkan!'
+        ]);
+    }
+
+    /**
+     * Hapus data tempat
      */
     public function destroy($id)
     {
         $tempat = Tempat::findOrFail($id);
-        if ($tempat->foto) Storage::disk('public')->delete($tempat->foto);
+        
+        // Hapus file dari info_tambahan jika ada
+        $infoTambahan = json_decode($tempat->info_tambahan, true) ?? [];
+        foreach ($infoTambahan as $value) {
+            if (is_string($value) && !str_starts_with($value, 'http')) {
+                Storage::disk('public')->delete($value);
+            }
+        }
+        
+        // Hapus foto dari kolom standar jika ada
+        if ($tempat->foto) {
+            Storage::disk('public')->delete($tempat->foto);
+        }
+        
         $tempat->delete();
 
-        return response()->json(['success' => true, 'message' => 'Tempat berhasil dihapus!']);
+        return response()->json([
+            'success' => true, 
+            'message' => 'Data berhasil dihapus!'
+        ]);
+    }
+
+    /**
+     * Simpan kategori/atribut baru (untuk tombol "Tambah Atribut")
+     */
+    public function storeKategori(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string|max:100|unique:kategoris,nama',
+        ]);
+
+        Kategori::create([
+            'nama' => strtolower(trim($validated['nama'])),
+        ]);
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'Kategori "' . ucfirst(strtolower(trim($validated['nama']))) . '" berhasil ditambahkan dan akan muncul di sidebar!'
+        ]);
+    }
+
+    /**
+     * Update kategori/atribut (Edit jika salah ketik)
+     */
+    public function updateKategori(Request $request, $id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        
+        $validated = $request->validate([
+            'nama' => 'required|string|max:100|unique:kategoris,nama,' . $id,
+        ]);
+
+        $kategori->update([
+            'nama' => strtolower(trim($validated['nama'])),
+        ]);
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'Kategori berhasil diperbarui!'
+        ]);
+    }
+
+    /**
+     * Hapus kategori/atribut
+     */
+    public function destroyKategori($id)
+    {
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'Kategori berhasil dihapus!'
+        ]);
     }
 
     /**

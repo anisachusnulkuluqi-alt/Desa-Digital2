@@ -247,16 +247,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/wisata/{wisata}', [WisataController::class, 'destroy'])->name('wisata.destroy');
         
         // ==========================================
-        // TEMPAT (ROUTE BARU UNTUK MANAJEMEN KATEGORI FLEKSIBEL)
-        // ==========================================
-        Route::get('/tempat', [TempatController::class, 'index'])->name('tempat.index');
-        Route::get('/tempat/kategori/{kategori}', [TempatController::class, 'showByKategori'])->name('tempat.kategori');
-        Route::post('/tempat', [TempatController::class, 'store'])->name('tempat.store');
-        Route::put('/tempat/{id}', [TempatController::class, 'update'])->name('tempat.update');
-        Route::delete('/tempat/{id}', [TempatController::class, 'destroy'])->name('tempat.destroy');
-        Route::get('/tempat/autocomplete-kategori', [TempatController::class, 'autocompleteKategori'])->name('tempat.autocomplete');
+// TEMPAT (ROUTE BARU UNTUK MANAJEMEN KATEGORI FLEKSIBEL)
+// ==========================================
+Route::get('/tempat', [TempatController::class, 'index'])->name('tempat.index');
 
-        // Modul lokasi lainnya (Tanpa Wisata, karena Wisata sudah punya route sendiri di atas)
+// ✅ ROUTE BARU: Halaman detail kategori dengan field dinamis
+Route::get('/tempat/kategori/{kategori}', [TempatController::class, 'showKategoriDetail'])->name('tempat.kategori.detail');
+Route::get('/tempat/kategori-json/{kategori}', [TempatController::class, 'getKategoriFieldsJson'])->name('tempat.kategori.fields.json');
+
+Route::get('/tempat/autocomplete-kategori', [TempatController::class, 'autocompleteKategori'])->name('tempat.autocomplete');
+Route::post('/tempat', [TempatController::class, 'store'])->name('tempat.store');
+Route::put('/tempat/{id}', [TempatController::class, 'update'])->name('tempat.update');
+Route::delete('/tempat/{id}', [TempatController::class, 'destroy'])->name('tempat.destroy');
+
+Route::post('/tempat/kategori', [TempatController::class, 'storeKategori'])->name('tempat.kategori.store');
+Route::put('/tempat/kategori/{id}', [TempatController::class, 'updateKategori'])->name('tempat.kategori.update');
+Route::delete('/tempat/kategori/{id}', [TempatController::class, 'destroyKategori'])->name('tempat.kategori.destroy');
+
+Route::post('/tempat/field', [TempatController::class, 'storeField'])->name('tempat.field.store');
+Route::delete('/tempat/field/{id}', [TempatController::class, 'destroyField'])->name('tempat.field.destroy');
+Route::post('/tempat/data', [TempatController::class, 'storeData'])->name('tempat.data.store');
+                
+
+// Modul lokasi lainnya (Tanpa Wisata, karena Wisata sudah punya route sendiri di atas)
         $locationModules = [
             'wifi' => ['path' => 'wifi', 'name' => 'wifi'],
             'kantor' => ['path' => 'kantor-desa', 'name' => 'kantor'],

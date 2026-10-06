@@ -12,18 +12,6 @@
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #f8fafc; color: #1e293b; }
         
-        .sidebar { width: 260px; background: #0f172a; min-height: 100vh; position: fixed; left: 0; top: 0; padding: 20px 14px; z-index: 100; overflow-y: auto; }
-        .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 8px 12px; margin-bottom: 30px; }
-        .sidebar-brand-icon { width: 38px; height: 38px; background: #2563eb; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
-        .sidebar-brand-text h5 { color: white; font-weight: 700; font-size: 14px; margin: 0; }
-        .sidebar-brand-text small { color: #64748b; font-size: 10px; }
-        .sidebar-menu { list-style: none; padding: 0; }
-        .sidebar-menu li { margin-bottom: 4px; }
-        .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
-        .sidebar-menu a:hover, .sidebar-menu a.active { background: #2563eb; color: white; }
-        .sidebar-menu a i { font-size: 16px; width: 18px; text-align: center; }
-        .sidebar-divider { margin: 16px 0; padding-top: 16px; border-top: 1px solid rgba(148, 163, 184, 0.2); list-style: none; }
-        
         .main-content { margin-left: 260px; }
         
         .top-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 99; }
@@ -92,15 +80,47 @@
         .pagination .page-item.active .page-link { background: #1e3a8a; border-color: #1e3a8a; color: white; }
         .pagination .page-item.disabled .page-link { color: #cbd5e1; cursor: not-allowed; background: #f8fafc; }
         
+        .modal-form .modal-content { border-radius: 12px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .modal-form .modal-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; border-radius: 12px 12px 0 0; padding: 18px 22px; border: none; }
+        .modal-form .modal-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .modal-form .modal-header .btn-close { filter: brightness(0) invert(1); }
+        .modal-form .modal-body { padding: 24px 22px; max-height: 70vh; overflow-y: auto; }
+        .modal-form .modal-footer { border-top: 1px solid #e2e8f0; padding: 14px 22px; background: #f8fafc; border-radius: 0 0 12px 12px; }
+        
+        .form-label-custom { display: block; font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.3px; }
+        .form-label-custom .required { color: #ef4444; margin-left: 2px; }
+        .form-input-custom { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-weight: 500; color: #1e293b; background: #f8fafc; transition: all 0.25s; font-family: 'Inter', sans-serif; }
+        .form-input-custom:focus { outline: none; border-color: #1e3a8a; background: white; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08); }
+        .form-textarea-custom { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-weight: 500; color: #1e293b; background: #f8fafc; transition: all 0.25s; font-family: 'Inter', sans-serif; resize: vertical; min-height: 80px; }
+        .form-textarea-custom:focus { outline: none; border-color: #1e3a8a; background: white; box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.08); }
+        
+        .section-divider { font-size: 11px; font-weight: 700; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px 0; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
+        
         .alert-banner { padding: 14px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
         .alert-success { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
         .alert-banner i { font-size: 18px; }
         .alert-banner .close-btn { margin-left: auto; background: none; border: none; cursor: pointer; font-size: 16px; color: inherit; }
         
-        @media (max-width: 992px) { .sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } }
+        .file-upload-container { border: 2px dashed #e2e8f0; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: #f8fafc; }
+        .file-upload-container:hover { border-color: #1e3a8a; background: #f1f5f9; }
+        .file-upload-container input[type="file"] { display: none; }
+        .file-upload-icon { font-size: 32px; color: #94a3b8; margin-bottom: 8px; }
+        .file-upload-text { font-size: 13px; color: #64748b; font-weight: 500; }
+        .file-upload-hint { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+        .file-preview { margin-top: 12px; display: none; }
+        .file-preview img { max-width: 100%; max-height: 200px; border-radius: 8px; border: 2px solid #e2e8f0; }
+        .file-preview.active { display: block; }
+        
+        .btn-modal-cancel { background: white; color: #64748b; border: 1.5px solid #e2e8f0; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-modal-save { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; border: none; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); color: white; }
+        
+        @media (max-width: 992px) { .main-content { margin-left: 0; } }
+        @media (max-width: 768px) { .card-header-modern { flex-direction: column; align-items: stretch; } .table-actions { flex-direction: column; } .search-box input { width: 100%; } }
     </style>
 </head>
 <body>
+    
     @include('admin.partials.sidebar', ['activeMenu' => $kategori])
 
     <div class="main-content">
@@ -144,18 +164,18 @@
                     <div class="card-title-modern">
                         <i class="bi bi-list-ul"></i>
                         Daftar {{ ucfirst($kategori) }}
-                        <span class="badge-count">{{ $totalTempat }} {{ ucfirst($kategori) }}</span>
+                        <span class="badge-count">{{ $totalTempat }} Data</span>
                     </div>
                     <div class="table-actions">
                         <form method="GET" action="{{ route('admin.tempat.kategori', $kategori) }}" style="display: flex; gap: 10px; align-items: center;">
                             <div class="search-box">
                                 <i class="bi bi-search"></i>
-                                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau desa...">
+                                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama...">
                             </div>
                         </form>
-                        <a href="{{ route('admin.tempat.index') }}" class="btn-add">
+                        <button type="button" class="btn-add" onclick="openTambahModal()">
                             <i class="bi bi-plus-lg"></i> Tambah {{ ucfirst($kategori) }}
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -166,7 +186,7 @@
                                 <th style="width: 50px;">NO</th>
                                 <th>NAMA</th>
                                 <th>DESA</th>
-                                <th>KOORDINAT</th>
+                                <th>ALAMAT</th>
                                 <th style="width: 140px;">AKSI</th>
                             </tr>
                         </thead>
@@ -176,23 +196,17 @@
                                 <td style="color: #94a3b8; font-weight: 600;">{{ ($tempats->currentPage() - 1) * $tempats->perPage() + $index + 1 }}</td>
                                 <td>
                                     <div class="tempat-link">
-                                        <div class="tempat-icon"><i class="bi bi-pin-map-fill"></i></div>
+                                        <div class="tempat-icon"><i class="bi bi-geo-alt-fill"></i></div>
                                         {{ $tempat->nama }}
                                     </div>
                                 </td>
                                 <td>{{ $tempat->desa ?? '-' }}</td>
+                                <td>{{ $tempat->alamat ?? '-' }}</td>
                                 <td>
-                                    @if($tempat->latitude && $tempat->longitude)
-                                        <span style="font-family: monospace; font-size: 12px; color: #1e40af; font-weight: 600;">{{ $tempat->latitude }}, {{ $tempat->longitude }}</span>
-                                    @else
-                                        <span style="color: #94a3b8;">-</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <button class="btn-action btn-edit" onclick="openEditModal({{ $tempat->id }}, '{{ addslashes($tempat->nama) }}', '{{ addslashes($tempat->kategori) }}', '{{ addslashes($tempat->desa ?? '') }}', '{{ addslashes($tempat->alamat ?? '') }}', '{{ $tempat->latitude ?? '' }}', '{{ $tempat->longitude ?? '' }}', '{{ addslashes($tempat->deskripsi ?? '') }}', '{{ $tempat->foto ? asset('storage/' . $tempat->foto) : '' }}')">
+                                    <button class="btn-action btn-edit" onclick="openEditModal({{ $tempat->id }}, '{{ addslashes($tempat->nama) }}', '{{ addslashes($tempat->desa ?? '') }}', '{{ addslashes($tempat->alamat ?? '') }}', '{{ $tempat->latitude ?? '' }}', '{{ $tempat->longitude ?? '' }}', '{{ addslashes($tempat->deskripsi ?? '') }}')">
                                         <i class="bi bi-pencil"></i> Edit
                                     </button>
-                                    <button class="btn-action btn-delete" onclick="hapusTempat({{ $tempat->id }}, '{{ addslashes($tempat->nama) }}')">
+                                    <button class="btn-action btn-delete" onclick="hapusData({{ $tempat->id }}, '{{ addslashes($tempat->nama) }}')">
                                         <i class="bi bi-trash"></i> Hapus
                                     </button>
                                 </td>
@@ -242,61 +256,58 @@
         </div>
     </div>
 
-    <!-- Modal Edit (sama seperti di index.blade.php) -->
-    <div class="modal fade" id="modalEdit" tabindex="-1" aria-hidden="true">
+    <!-- Modal Tambah/Edit -->
+    <div class="modal fade modal-form" id="modalForm" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
-                <div class="modal-header" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; border-radius: 12px 12px 0 0; padding: 18px 22px; border: none;">
-                    <h5 class="modal-title" style="font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 10px;">
-                        <i class="bi bi-pencil-square"></i> Edit {{ ucfirst($kategori) }}
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: brightness(0) invert(1);"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFormTitle"><i class="bi bi-plus-circle"></i> Tambah {{ ucfirst($kategori) }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form id="formEdit" method="POST" enctype="multipart/form-data">
+                <form id="formData" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
-                    <div class="modal-body" style="padding: 24px 22px;">
-                        <div class="mb-3">
-                            <label class="form-label-custom">Nama</label>
-                            <input type="text" name="nama" id="editNama" class="form-input-custom" required>
+                    <input type="hidden" id="dataId" name="id">
+                    <input type="hidden" name="kategori" value="{{ $kategori }}">
+                    <div class="modal-body">
+                        <div class="section-divider">Informasi Dasar</div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label-custom">Nama <span class="required">*</span></label>
+                                <input type="text" id="namaData" name="nama" class="form-input-custom" required>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Kategori</label>
-                                <input type="text" name="kategori" id="editKategori" class="form-input-custom" value="{{ $kategori }}" readonly>
+                                <label class="form-label-custom">Desa</label>
+                                <input type="text" id="desaData" name="desa" class="form-input-custom" placeholder="Nama desa">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label-custom">Desa</label>
-                                <input type="text" name="desa" id="editDesa" class="form-input-custom">
+                                <label class="form-label-custom">Alamat</label>
+                                <input type="text" id="alamatData" name="alamat" class="form-input-custom" placeholder="Alamat lengkap">
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label-custom">Alamat</label>
-                            <input type="text" name="alamat" id="editAlamat" class="form-input-custom">
-                        </div>
+
+                        <div class="section-divider">Lokasi</div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label-custom">Latitude</label>
-                                <input type="text" name="latitude" id="editLatitude" class="form-input-custom">
+                                <input type="text" id="latitudeData" name="latitude" class="form-input-custom" placeholder="-6.9175">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label-custom">Longitude</label>
-                                <input type="text" name="longitude" id="editLongitude" class="form-input-custom">
+                                <input type="text" id="longitudeData" name="longitude" class="form-input-custom" placeholder="111.8360">
                             </div>
                         </div>
+
+                        <div class="section-divider">Deskripsi</div>
                         <div class="mb-3">
                             <label class="form-label-custom">Deskripsi</label>
-                            <textarea name="deskripsi" id="editDeskripsi" class="form-input-custom" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label-custom">Foto (kosongkan jika tidak ingin mengubah)</label>
-                            <input type="file" name="foto" id="editFoto" class="form-input-custom" accept="image/*">
-                            <img id="editFotoPreview" src="" style="max-width: 200px; margin-top: 10px; border-radius: 8px; display: none;">
+                            <textarea id="deskripsiData" name="deskripsi" class="form-textarea-custom" placeholder="Deskripsi singkat"></textarea>
                         </div>
                     </div>
-                    <div class="modal-footer" style="border-top: 1px solid #e2e8f0; padding: 14px 22px; background: #f8fafc; border-radius: 0 0 12px 12px;">
-                        <button type="button" class="btn-action" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Batal</button>
-                        <button type="submit" class="btn-add"><i class="bi bi-check-lg"></i> Simpan Perubahan</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Batal</button>
+                        <button type="submit" class="btn-modal-save"><i class="bi bi-check-lg"></i> Simpan</button>
                     </div>
                 </form>
             </div>
@@ -305,35 +316,64 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        let modalEdit;
+        let modalForm;
+        let currentDataId = null;
+        const kategori = '{{ $kategori }}';
+
         document.addEventListener('DOMContentLoaded', function() {
-            modalEdit = new bootstrap.Modal(document.getElementById('modalEdit'));
+            modalForm = new bootstrap.Modal(document.getElementById('modalForm'));
+            document.getElementById('formData').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitForm();
+            });
         });
 
-        function openEditModal(id, nama, kategori, desa, alamat, latitude, longitude, deskripsi, foto) {
-            document.getElementById('formEdit').action = '/admin/tempat/' + id;
-            document.getElementById('editNama').value = nama || '';
-            document.getElementById('editKategori').value = kategori || '';
-            document.getElementById('editDesa').value = desa || '';
-            document.getElementById('editAlamat').value = alamat || '';
-            document.getElementById('editLatitude').value = latitude || '';
-            document.getElementById('editLongitude').value = longitude || '';
-            document.getElementById('editDeskripsi').value = deskripsi || '';
+        function openTambahModal() {
+            currentDataId = null;
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-plus-circle"></i> Tambah ' + capitalizeFirst(kategori);
+            document.getElementById('formData').reset();
+            document.getElementById('dataId').value = '';
+            document.getElementById('formData').action = '/admin/tempat';
+            document.getElementById('formData').method = 'POST';
             
-            const preview = document.getElementById('editFotoPreview');
-            if (foto && foto.trim() !== '') {
-                preview.src = foto;
-                preview.style.display = 'block';
-            } else {
-                preview.style.display = 'none';
-            }
+            // Hapus method PUT jika ada
+            let methodInput = document.querySelector('input[name="_method"]');
+            if (methodInput) methodInput.remove();
             
-            modalEdit.show();
+            modalForm.show();
         }
 
-        function hapusTempat(id, nama) {
+        function openEditModal(id, nama, desa, alamat, latitude, longitude, deskripsi) {
+            currentDataId = id;
+            document.getElementById('modalFormTitle').innerHTML = '<i class="bi bi-pencil-square"></i> Edit ' + capitalizeFirst(kategori);
+            document.getElementById('dataId').value = id;
+            document.getElementById('namaData').value = nama || '';
+            document.getElementById('desaData').value = desa || '';
+            document.getElementById('alamatData').value = alamat || '';
+            document.getElementById('latitudeData').value = latitude || '';
+            document.getElementById('longitudeData').value = longitude || '';
+            document.getElementById('deskripsiData').value = deskripsi || '';
+            document.getElementById('formData').action = '/admin/tempat/' + id;
+            document.getElementById('formData').method = 'POST';
+            
+            // Tambahkan method PUT
+            let methodInput = document.querySelector('input[name="_method"]');
+            if (!methodInput) {
+                methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                methodInput.value = 'PUT';
+                document.getElementById('formData').appendChild(methodInput);
+            } else {
+                methodInput.value = 'PUT';
+            }
+            
+            modalForm.show();
+        }
+
+        function hapusData(id, nama) {
             if (confirm(`Yakin ingin menghapus "${nama}"?`)) {
-                fetch(`/admin/tempat/${id}`, {
+                fetch('/admin/tempat/' + id, {
                     method: 'POST',
                     headers: { 
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 
@@ -348,6 +388,37 @@
                 })
                 .catch(err => { console.error(err); alert('Gagal menghapus'); });
             }
+        }
+
+        function submitForm() {
+            const formData = new FormData(document.getElementById('formData'));
+            const url = currentDataId ? '/admin/tempat/' + currentDataId : '/admin/tempat';
+            
+            if (currentDataId) formData.append('_method', 'PUT');
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'), 
+                    'Accept': 'application/json' 
+                },
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) { modalForm.hide(); location.reload(); }
+                else {
+                    let msg = 'Gagal menyimpan';
+                    if (data.errors) msg = Object.values(data.errors).flat().join('\n');
+                    else if (data.message) msg = data.message;
+                    alert('Error: ' + msg);
+                }
+            })
+            .catch(err => { console.error(err); alert('Terjadi kesalahan'); });
+        }
+
+        function capitalizeFirst(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     </script>
 </body>

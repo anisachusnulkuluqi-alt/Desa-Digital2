@@ -1,5 +1,8 @@
 @php
-    $allKategori = \App\Models\Tempat::select('kategori')->distinct()->pluck('kategori')->filter()->values();
+    // Ambil kategori dari 2 sumber: tabel 'kategoris' (dari tombol Tambah Atribut) + kolom 'kategori' di tabel 'tempat'
+    $kategoriDariTabel = \App\Models\Kategori::pluck('nama')->filter()->values();
+    $kategoriDariTempat = \App\Models\Tempat::select('kategori')->distinct()->pluck('kategori')->filter()->values();
+    $allKategori = $kategoriDariTabel->merge($kategoriDariTempat)->unique()->filter()->values();
 @endphp
 
 <style>
@@ -109,6 +112,7 @@
         </div>
     </div>
     <ul class="sidebar-menu">
+        {{-- MENU UTAMA --}}
         <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><i class="bi bi-house-fill"></i><span>Beranda</span></a></li>
         <li><a href="{{ route('admin.kecamatan.index') }}" class="{{ request()->routeIs('admin.kecamatan.*') ? 'active' : '' }}"><i class="bi bi-geo-alt-fill"></i><span>Kecamatan</span></a></li>
         <li><a href="{{ route('admin.desa.index') }}" class="{{ request()->routeIs('admin.desa.*') ? 'active' : '' }}"><i class="bi bi-houses-fill"></i><span>Desa</span></a></li>
@@ -119,15 +123,17 @@
         <li><a href="{{ route('admin.bumdes.index') }}" class="{{ request()->routeIs('admin.bumdes.*') ? 'active' : '' }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
         <li><a href="{{ route('admin.kkdmp.index') }}" class="{{ request()->routeIs('admin.kkdmp.*') ? 'active' : '' }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
 
+        {{-- 🔥 MENU DINAMIS: Muncul otomatis dari tabel 'kategoris' + kolom 'kategori' di tabel 'tempat' (TANPA PEMBATAS) --}}
         @foreach($allKategori as $kat)
-        <li>
-            <a href="{{ route('admin.tempat.kategori', $kat) }}" class="{{ request('kategori') == $kat ? 'active' : '' }}">
-                <i class="bi bi-pin-map-fill"></i>
-                <span>{{ ucfirst($kat) }}</span>
-            </a>
-        </li>
-        @endforeach
+<li>
+    <a href="{{ route('admin.tempat.kategori.detail', $kat) }}" class="{{ request('kategori') == $kat ? 'active' : '' }}">
+        <i class="bi bi-pin-map-fill"></i>
+        <span>{{ ucfirst($kat) }}</span>
+    </a>
+</li>
+@endforeach
 
+        {{-- TEMPAT (MASTER) --}}
         <li>
             <a href="{{ route('admin.tempat.index') }}" class="{{ request()->routeIs('admin.tempat.index') ? 'active' : '' }}">
                 <i class="bi bi-pin-map-fill"></i>
@@ -135,8 +141,10 @@
             </a>
         </li>
 
+        {{-- PEMBATAS SEBELUM KONTRIBUTOR --}}
         <li class="sidebar-menu-divider" role="separator"></li>
 
+        {{-- KONTRIBUTOR (PALING BAWAH) --}}
         <li>
             <a href="{{ route('admin.kontributor.index') }}" class="{{ request()->routeIs('admin.kontributor.*') ? 'active' : '' }}">
                 <i class="bi bi-person-plus-fill"></i>
@@ -144,6 +152,7 @@
             </a>
         </li>
     </ul>
+
     <button
         type="button"
         class="sidebar-collapse-toggle"
