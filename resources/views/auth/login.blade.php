@@ -3,201 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk Petugas - Desa Digital Kabupaten Tuban</title>
-    
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <meta name="theme-color" content="#e9edf5">
+    <title>Masuk - Desa Digital Kabupaten Tuban</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        :root {
+            color-scheme: light;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: #20283a;
+            background: #e9edf5;
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+        }
+        * { box-sizing: border-box; }
         body {
             min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 28px 18px;
+            background:
+                radial-gradient(ellipse at 12% 8%, rgba(90, 112, 168, .13), transparent 36%),
+                radial-gradient(ellipse at 92% 90%, rgba(130, 104, 181, .12), transparent 36%),
+                linear-gradient(145deg, #f6f6f8, #e7ebf3);
+        }
+        .auth-card {
+            width: min(100%, 460px);
+            padding: 38px 42px;
+            border: 1px solid rgba(255, 255, 255, .85);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 24px 60px rgba(32, 42, 63, .14);
+        }
+        .brand {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: #0b1325;
-            padding: 30px 16px;
-        }
-        .login-card {
-            background: #ffffff;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 440px;
-            padding: 36px 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-        }
-        .brand-header {
+            gap: 7px;
+            margin-bottom: 30px;
             text-align: center;
-            margin-bottom: 24px;
         }
-        .brand-header img {
-            width: 44px;
-            height: 52px;
+        .brand img {
+            width: 58px;
+            height: 70px;
             object-fit: contain;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 2px 6px rgba(14, 165, 233, 0.3));
+            filter: drop-shadow(0 4px 5px rgba(26, 39, 68, .12));
         }
-        .brand-header h2 {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #0f172a;
+        .brand-name {
+            color: #202b43;
+            font-size: 19px;
+            font-weight: 750;
+            letter-spacing: -.4px;
+            line-height: 1.35;
+            text-transform: none;
         }
-        .brand-header p {
-            font-size: 0.82rem;
-            color: #64748b;
-            margin-top: 4px;
+        .brand-name span {
+            display: block;
+            margin-top: 3px;
+            color: #727b8e;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        .form-group {
-            margin-bottom: 16px;
+        .heading { margin-bottom: 26px; text-align: center; }
+        .heading h1 {
+            margin: 0 0 8px;
+            color: #222c43;
+            font-size: 24px;
+            letter-spacing: -.6px;
         }
+        .heading p {
+            margin: 0;
+            color: #737d90;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .form-group { margin-bottom: 18px; }
         .form-group label {
             display: block;
-            font-size: 0.82rem;
+            margin-bottom: 7px;
+            color: #535d70;
+            font-size: 12px;
             font-weight: 700;
-            color: #334155;
-            margin-bottom: 6px;
+            letter-spacing: .55px;
+            text-transform: uppercase;
         }
         .form-group input {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 0.88rem;
-            color: #0f172a;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .form-group input:focus {
-            border-color: #0284c7;
-        }
-        
-        .password-input-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .password-input-wrap input {
-            padding-right: 42px;
-        }
-        .btn-toggle-eye {
-            position: absolute;
-            right: 12px;
-            background: transparent;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.95rem;
-            cursor: pointer;
-            padding: 4px 6px;
-            transition: color 0.2s;
-        }
-        .btn-toggle-eye:hover {
-            color: #0284c7;
-        }
-
-        .error-msg {
-            color: #ef4444;
-            font-size: 0.76rem;
-            margin-top: 4px;
             display: block;
-            font-weight: 600;
-        }
-        .btn-submit {
             width: 100%;
-            background: #0284c7;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 0.9rem;
+            min-height: 46px;
+            padding: 11px 13px;
+            border: 1px solid #d7ddea;
+            border-radius: 12px;
+            outline: none;
+            background: #eaf0fb;
+            color: #242d42;
+            font: inherit;
+            font-size: 13px;
+            transition: border-color .18s, box-shadow .18s, background .18s;
+        }
+        .form-group input::placeholder { color: #8a94a8; }
+        .form-group input:focus {
+            border-color: #7776bc;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(119, 118, 188, .15);
+        }
+        .password-wrap { position: relative; }
+        .password-wrap input { padding-right: 70px; }
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            padding: 7px 5px;
+            border: 0;
+            background: transparent;
+            color: #596d9f;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
-        }
-        .btn-submit:hover {
-            background: #0369a1;
-        }
-        .footer-link {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.84rem;
-            color: #64748b;
-        }
-        .footer-link a {
-            color: #0284c7;
-            text-decoration: none;
+            font: inherit;
+            font-size: 11px;
             font-weight: 700;
         }
-        .footer-link a:hover {
-            text-decoration: underline;
+        .password-toggle:hover { color: #705da7; }
+        .password-toggle:focus-visible, .submit-button:focus-visible, a:focus-visible {
+            outline: 3px solid rgba(113, 103, 173, .32);
+            outline-offset: 3px;
+        }
+        .error-msg {
+            display: block;
+            margin-top: 6px;
+            color: #b42318;
+            font-size: 12px;
+        }
+        .submit-button {
+            width: 100%;
+            min-height: 47px;
+            margin-top: 4px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(110deg, #30394d, #283c65 65%, #65548c);
+            box-shadow: 0 9px 20px rgba(42, 53, 80, .23);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 750;
+            transition: transform .18s, box-shadow .18s;
+        }
+        .submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(42, 53, 80, .29);
+        }
+        .auth-footer {
+            margin: 22px 0 0;
+            color: #737d90;
+            font-size: 12px;
+            text-align: center;
+        }
+        .auth-footer a {
+            color: #514f91;
+            font-weight: 750;
+            text-decoration: none;
+        }
+        .auth-footer a:hover { text-decoration: underline; }
+        @media (max-width: 480px) {
+            .auth-card { padding: 30px 24px; border-radius: 20px; }
+            .brand { margin-bottom: 25px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="login-card">
-        <div class="brand-header">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png" 
-                 alt="Logo Kabupaten Tuban"
-                 onerror="this.onerror=null; this.src='https://tubankab.go.id/images/logo.png';">
-            <h2>Masuk Petugas</h2>
-            <p>Portal Pelayanan Ekosistem Desa Digital Kabupaten Tuban</p>
+    <main class="auth-card">
+        <div class="brand">
+            <img src="{{ asset('images/logo-tuban.png') }}" alt="Logo Kabupaten Tuban">
+            <div class="brand-name">
+                Desa Digital
+                <span>Portal Kabupaten Tuban</span>
+            </div>
         </div>
+
+        <header class="heading">
+            <h1>Selamat datang</h1>
+        </header>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
-            <!-- Email -->
             <div class="form-group">
-                <label for="email">Alamat Email</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" required autofocus>
+                <label for="email">Alamat email</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" required autofocus autocomplete="username">
                 @error('email')
                     <span class="error-msg">{{ $message }}</span>
                 @enderror
             </div>
 
-            <!-- Password -->
             <div class="form-group">
-                <label for="password">Kata Sandi</label>
-                <div class="password-input-wrap">
+                <label for="password">Kata sandi</label>
+                <div class="password-wrap">
                     <input type="password" id="password" name="password" placeholder="Masukkan kata sandi" required autocomplete="current-password">
-                    <button type="button" class="btn-toggle-eye" onclick="togglePasswordVisibility('password', 'eyeIconLogin')" title="Lihat/Sembunyikan Sandi">
-                        <i class="fa-solid fa-eye-slash" id="eyeIconLogin"></i>
-                    </button>
+                    <button type="button" class="password-toggle" data-password-toggle="password" aria-label="Lihat kata sandi" aria-pressed="false">Lihat</button>
                 </div>
                 @error('password')
                     <span class="error-msg">{{ $message }}</span>
                 @enderror
             </div>
 
-            <button type="submit" class="btn-submit">
-                Masuk
-            </button>
+            <button type="submit" class="submit-button">Masuk ke akun</button>
         </form>
 
-        <div class="footer-link">
-            Belum memiliki akun? <a href="{{ route('register') }}">Daftar di sini</a>
-        </div>
-    </div>
+        <p class="auth-footer">
+            Belum punya akun? <a href="{{ route('register') }}">Daftar sekarang</a>
+        </p>
+    </main>
 
     <script>
-        function togglePasswordVisibility(inputId, iconId) {
-            const inputField = document.getElementById(inputId);
-            const icon = document.getElementById(iconId);
+        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.passwordToggle);
+                const showPassword = input.type === 'password';
 
-            if (inputField.type === 'password') {
-                inputField.type = 'text';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                inputField.type = 'password';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        }
+                input.type = showPassword ? 'text' : 'password';
+                button.textContent = showPassword ? 'Sembunyi' : 'Lihat';
+                button.setAttribute('aria-label', showPassword ? 'Sembunyikan kata sandi' : 'Lihat kata sandi');
+                button.setAttribute('aria-pressed', String(showPassword));
+            });
+        });
     </script>
 </body>
 </html>

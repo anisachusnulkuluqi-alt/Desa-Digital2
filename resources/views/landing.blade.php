@@ -196,7 +196,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.12) 0%, rgba(15, 23, 42, 0.28) 100%);
+            background:
+                linear-gradient(115deg, rgba(24, 42, 73, 0.22), rgba(83, 73, 132, 0.11) 58%, rgba(14, 42, 63, 0.19)),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.3) 100%);
         }
 
         .hero-banner-clean::after {
@@ -244,7 +246,7 @@
             background: linear-gradient(180deg, #ffffff 40%, #7dd3fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 8px 30px rgba(56, 189, 248, 0.35));
+            filter: drop-shadow(0 2px 2px rgba(15, 23, 42, 0.82)) drop-shadow(0 7px 13px rgba(15, 23, 42, 0.48)) drop-shadow(0 8px 24px rgba(56, 189, 248, 0.2));
             animation: hero-enter 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
 
@@ -255,7 +257,7 @@
             max-width: 540px;
             margin: 0 auto 24px;
             line-height: 1.6;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 2px 3px rgba(15, 23, 42, 0.92), 0 5px 13px rgba(15, 23, 42, 0.58);
             animation: hero-enter 0.7s 0.12s cubic-bezier(0.2, 0.7, 0.2, 1) both;
         }
 
@@ -490,13 +492,17 @@
             aspect-ratio: 16 / 9;
             align-self: center;
             overflow: hidden;
-            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .72);
+            border-radius: 18px;
+            background: #172033;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, .17);
         }
 
         .video-embed-box {
             position: absolute;
             inset: 0;
-            background: transparent;
+            overflow: hidden;
+            background: #172033;
         }
         .video-embed-box iframe {
             position: absolute;
@@ -505,6 +511,93 @@
             width: 100%;
             height: 100%;
             border: none;
+        }
+        .video-poster {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+            background: #172033;
+            cursor: pointer;
+        }
+        .video-poster::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, rgba(23, 35, 57, .24), rgba(53, 54, 103, .16) 58%, rgba(13, 31, 48, .28));
+            transition: background .2s ease;
+        }
+        .video-poster:hover::after,
+        .video-poster:focus-visible::after {
+            background: linear-gradient(115deg, rgba(23, 35, 57, .12), rgba(53, 54, 103, .08) 58%, rgba(13, 31, 48, .18));
+        }
+        .video-poster:focus-visible {
+            outline: 3px solid #7dd3fc;
+            outline-offset: -5px;
+        }
+        .video-poster img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(.88) contrast(.97);
+            transition: transform .45s ease, filter .45s ease;
+        }
+        .video-poster:hover img {
+            transform: scale(1.025);
+            filter: saturate(.96) contrast(1);
+        }
+        .video-play-mark {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 104px;
+            height: 104px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, .72);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 12px 35px rgba(11, 22, 42, .25);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .video-poster:hover .video-play-mark {
+            transform: scale(1.06);
+            box-shadow: 0 16px 42px rgba(11, 22, 42, .32);
+        }
+        .video-play-mark img {
+            position: static;
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            filter: none;
+        }
+        .video-play-triangle {
+            position: absolute;
+            right: -2px;
+            bottom: 2px;
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            padding-left: 2px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #168bc4, #5954a8);
+            color: #fff;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(25, 39, 77, .24);
+        }
+        @media (max-width: 580px) {
+            .video-player-frame { border-radius: 14px; }
+            .video-play-mark { width: 82px; height: 82px; }
+            .video-play-mark img { width: 46px; height: 46px; }
+            .video-play-triangle { width: 30px; height: 30px; font-size: 10px; }
         }
 
         /* 4. SEKSI STATISTIK: KAPSUL BULAT TERANG */
@@ -969,8 +1062,6 @@
         .floating-tool-button[aria-pressed="true"] { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px currentColor; }
         .floating-tool-feedback { background: #ffe4e6; border-color: #fda4af; color: #be123c; }
         .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
-        .floating-tool-display { background: #fef3c7; border-color: #fcd34d; color: #b45309; }
-        .floating-tool-text { background: #ede9fe; border-color: #c4b5fd; color: #6d28d9; }
 
         .website-tool-control { position: relative; display: flex; align-items: center; }
         .website-tool-panel {
@@ -1004,12 +1095,6 @@
         .feedback-submit { width: 100%; margin-top: 9px; padding: 9px 12px; border: 0; border-radius: 7px; background: #be123c; color: #ffffff; font: inherit; font-size: 0.75rem; font-weight: 800; cursor: pointer; }
         .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
         .feedback-status { min-height: 1.2em; margin: 8px 0 0; color: #047857; font-size: 0.7rem; line-height: 1.4; }
-        .screen-dimming-overlay { position: fixed; inset: 0; z-index: 1100; pointer-events: none; background: rgba(15, 23, 42, var(--screen-dim-opacity, 0)); transition: background-color 0.15s ease; }
-        .screen-dimming-control { --tool-border: #fcd34d; }
-        .screen-dimming-label { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0 5px; color: var(--text-gray); font-size: 0.72rem; font-weight: 700; }
-        .screen-dimming-value { color: #b45309; font-variant-numeric: tabular-nums; }
-        .screen-dimming-range { width: 100%; accent-color: #d97706; cursor: pointer; }
-
         .visitor-stats-control { position: relative; display: flex; align-items: center; }
         .visitor-stats-popover {
             position: absolute;
@@ -1043,8 +1128,6 @@
             color: #ffffff;
             font-size: 1.2rem;
         }
-
-        html.large-text { font-size: 18px; }
 
         .accordion-icon-box,
         .stat-circle-icon,
@@ -1331,18 +1414,30 @@
             </div>
 
             <div class="video-player-frame">
-                <div class="video-embed-box">
-                    <iframe 
-                        src="https://www.youtube.com/embed/gPCZo6dKDWM?rel=0" 
-                        title="Profil Desa Digital Kabupaten Tuban" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
+                <div class="video-embed-box" id="profil-video">
+                    <button type="button" class="video-poster" id="profil-video-play" aria-label="Putar video Profil Desa Digital Kabupaten Tuban">
+                        <img src="https://img.youtube.com/vi/gPCZo6dKDWM/hqdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='<?= asset('images/alun-alun-tuban.jpg'); ?>';">
+                        <span class="video-play-mark" aria-hidden="true">
+                            <img src="<?= asset('images/desa-digital.png'); ?>" alt="">
+                            <span class="video-play-triangle"><i class="fa-solid fa-play"></i></span>
+                        </span>
+                    </button>
                 </div>
             </div>
 
         </div>
     </section>
+    <script>
+        document.getElementById('profil-video-play')?.addEventListener('click', () => {
+            const player = document.getElementById('profil-video');
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/gPCZo6dKDWM?autoplay=1&controls=0&disablekb=1&rel=0&playsinline=1&iv_load_policy=3';
+            iframe.title = 'Profil Desa Digital Kabupaten Tuban';
+            iframe.allow = 'autoplay; encrypted-media';
+            iframe.allowFullscreen = true;
+            player.replaceChildren(iframe);
+        });
+    </script>
 
     <!-- 4. SEKSI STATISTIK: KAPSUL BULAT TERANG -->
     <section id="statistik-wilayah" class="section-stats-circle">
@@ -1555,7 +1650,6 @@
     </section>
 
     <section class="social-media-clean" aria-labelledby="social-media-title">
-        <h2 id="social-media-title">Media sosial</h2>
         <div class="social-logo-row" aria-label="Platform media sosial">
             <a class="social-logo-item" style="--social-color: #1877f2;" href="https://www.facebook.com/diskominfo.tuban" target="_blank" rel="noopener noreferrer" aria-label="Facebook Diskominfo Tuban">
                 <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
@@ -1580,7 +1674,6 @@
         <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban</p>
     </footer>
 
-    <div class="screen-dimming-overlay" id="screen-dimming-overlay" aria-hidden="true"></div>
     <div class="floating-tools" aria-label="Menu akses cepat">
         <div class="website-tool-control">
             <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Beri penilaian untuk website" aria-expanded="false" aria-controls="feedback-panel" title="Beri penilaian untuk website">
@@ -1613,20 +1706,6 @@
                 <span class="visitor-stats-label">Total Kunjungan</span>
             </section>
         </div>
-        <div class="website-tool-control screen-dimming-control">
-            <button type="button" class="floating-tool-button floating-tool-display" id="screen-dimming-toggle" aria-label="Atur pencahayaan layar" aria-expanded="false" aria-controls="screen-dimming-panel" title="Atur pencahayaan layar">
-                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-            </button>
-            <section class="website-tool-panel" id="screen-dimming-panel" aria-label="Pengaturan pencahayaan layar" hidden>
-                <h2 class="website-tool-heading">Pencahayaan layar</h2>
-                <p class="website-tool-caption">Atur tingkat redup tampilan agar nyaman dibaca.</p>
-                <label class="screen-dimming-label" for="screen-dimming-range"><span>Redupkan tampilan</span><output class="screen-dimming-value" id="screen-dimming-value" for="screen-dimming-range">0%</output></label>
-                <input class="screen-dimming-range" id="screen-dimming-range" type="range" min="0" max="45" step="5" value="0" aria-label="Tingkat redup tampilan">
-            </section>
-        </div>
-        <button type="button" class="floating-tool-button floating-tool-text" id="large-text-toggle" aria-label="Perbesar teks" aria-pressed="false" title="Perbesar teks">
-            <i class="fa-solid fa-text-height" aria-hidden="true"></i>
-        </button>
         <button type="button" class="floating-tool-button back-to-top-button" id="back-to-top" aria-label="Kembali ke bagian paling atas" title="Kembali ke atas">
             <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
         </button>
@@ -1754,12 +1833,6 @@
         const feedbackRatingOptions = [...document.querySelectorAll('.feedback-rating-option')];
         const visitorStatsButton = document.getElementById('visitor-stats-toggle');
         const visitorStatsPanel = document.getElementById('visitor-stats-panel');
-        const screenDimmingButton = document.getElementById('screen-dimming-toggle');
-        const screenDimmingPanel = document.getElementById('screen-dimming-panel');
-        const screenDimmingRange = document.getElementById('screen-dimming-range');
-        const screenDimmingValue = document.getElementById('screen-dimming-value');
-        const screenDimmingOverlay = document.getElementById('screen-dimming-overlay');
-        const largeTextButton = document.getElementById('large-text-toggle');
         const backToTopButton = document.getElementById('back-to-top');
         let selectedFeedbackRating = null;
 
@@ -1777,18 +1850,11 @@
             visitorStatsButton.title = isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung';
         };
 
-        const setScreenDimmingVisible = isVisible => {
-            if (!screenDimmingButton || !screenDimmingPanel) return;
-            screenDimmingPanel.hidden = !isVisible;
-            screenDimmingButton.setAttribute('aria-expanded', String(isVisible));
-        };
-
         feedbackButton?.addEventListener('click', () => {
             const isVisible = feedbackPanel?.hidden ?? false;
             setFeedbackVisible(isVisible);
             if (isVisible) {
                 setVisitorStatsVisible(false);
-                setScreenDimmingVisible(false);
             }
         });
 
@@ -1797,28 +1863,15 @@
             setVisitorStatsVisible(isVisible);
             if (isVisible) {
                 setFeedbackVisible(false);
-                setScreenDimmingVisible(false);
-            }
-        });
-
-        screenDimmingButton?.addEventListener('click', () => {
-            const isVisible = screenDimmingPanel?.hidden ?? false;
-            setScreenDimmingVisible(isVisible);
-            if (isVisible) {
-                setFeedbackVisible(false);
-                setVisitorStatsVisible(false);
             }
         });
 
         document.addEventListener('click', event => {
-            if (feedbackPanel && !event.target.closest('.website-tool-control:not(.screen-dimming-control)')) {
+            if (feedbackPanel && !event.target.closest('.website-tool-control')) {
                 setFeedbackVisible(false);
             }
             if (visitorStatsPanel && !event.target.closest('.visitor-stats-control')) {
                 setVisitorStatsVisible(false);
-            }
-            if (screenDimmingPanel && !event.target.closest('.screen-dimming-control')) {
-                setScreenDimmingVisible(false);
             }
         });
 
@@ -1830,10 +1883,6 @@
             if (event.key === 'Escape' && visitorStatsPanel && !visitorStatsPanel.hidden) {
                 setVisitorStatsVisible(false);
                 visitorStatsButton?.focus();
-            }
-            if (event.key === 'Escape' && screenDimmingPanel && !screenDimmingPanel.hidden) {
-                setScreenDimmingVisible(false);
-                screenDimmingButton?.focus();
             }
         });
 
@@ -1880,27 +1929,6 @@
             }
         });
 
-        const screenDimmingStorageKey = 'desa-digital-screen-dimming';
-        const applyScreenDimming = value => {
-            const dimLevel = Number(value);
-            screenDimmingRange.value = String(dimLevel);
-            screenDimmingValue.textContent = dimLevel === 0 ? 'Normal' : `${dimLevel}% redup`;
-            screenDimmingOverlay.style.setProperty('--screen-dim-opacity', String(dimLevel / 100));
-        };
-
-        try {
-            applyScreenDimming(window.localStorage.getItem(screenDimmingStorageKey) || '0');
-        } catch {
-            applyScreenDimming('0');
-        }
-
-        screenDimmingRange?.addEventListener('input', () => {
-            applyScreenDimming(screenDimmingRange.value);
-            try {
-                window.localStorage.setItem(screenDimmingStorageKey, screenDimmingRange.value);
-            } catch {}
-        });
-
         const updateVisitorStats = async () => {
             try {
                 const response = await fetch('{{ route('website-visits.stats') }}', {
@@ -1920,14 +1948,6 @@
 
         updateVisitorStats();
         window.setInterval(updateVisitorStats, 60000);
-
-        largeTextButton?.addEventListener('click', () => {
-            const isLargeText = largeTextButton.getAttribute('aria-pressed') !== 'true';
-            document.documentElement.classList.toggle('large-text', isLargeText);
-            largeTextButton.setAttribute('aria-pressed', String(isLargeText));
-            largeTextButton.setAttribute('aria-label', isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks');
-            largeTextButton.title = isLargeText ? 'Kembalikan ukuran teks' : 'Perbesar teks';
-        });
 
         backToTopButton?.addEventListener('click', () => {
             const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';

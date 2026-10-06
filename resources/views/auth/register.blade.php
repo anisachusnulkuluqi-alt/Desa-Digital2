@@ -3,207 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Akun - Portal Desa Digital</title>
-    
-    <!-- Bootstrap 5 & Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
-    <!-- Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <meta name="theme-color" content="#e9edf5">
+    <title>Daftar Akun - Desa Digital Kabupaten Tuban</title>
     <style>
-        * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+        :root {
+            color-scheme: light;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: #20283a;
+            background: #e9edf5;
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+        }
+        * { box-sizing: border-box; }
         body {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 28px 18px;
+            background:
+                radial-gradient(ellipse at 12% 8%, rgba(90, 112, 168, .13), transparent 36%),
+                radial-gradient(ellipse at 92% 90%, rgba(130, 104, 181, .12), transparent 36%),
+                linear-gradient(145deg, #f6f6f8, #e7ebf3);
         }
         .auth-card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(30, 136, 229, 0.1);
-            border: 1px solid #e2e8f0;
+            width: min(100%, 460px);
+            padding: 32px 42px;
+            border: 1px solid rgba(255, 255, 255, .85);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 24px 60px rgba(32, 42, 63, .14);
         }
-        .auth-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .auth-header .icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #1e88e5, #00897b);
-            border-radius: 14px;
+        .brand {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            color: white;
-            font-size: 28px;
+            gap: 6px;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        .auth-header h2 {
-            font-size: 24px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 8px;
+        .brand img {
+            width: 48px;
+            height: 58px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 5px rgba(26, 39, 68, .12));
         }
-        .auth-header p {
-            color: #64748b;
-            font-size: 14px;
-            margin: 0;
+        .brand-name {
+            color: #202b43;
+            font-size: 17px;
+            font-weight: 750;
+            letter-spacing: -.4px;
+            line-height: 1.35;
         }
-        .form-group { margin-bottom: 18px; }
-        .form-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 6px;
-        }
-        .form-control {
-            padding: 12px 15px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.2s;
-            background-color: #f8fafc;
-        }
-        .form-control:focus {
-            border-color: #1e88e5;
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
-        }
-        .btn-register {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #1e88e5, #00897b);
-            color: white;
-            border: none;
-            border-radius: 8px;
+        .brand-name span {
+            display: block;
+            margin-top: 3px;
+            color: #727b8e;
+            font-size: 10px;
             font-weight: 700;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 10px;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
         }
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
-            color: white;
+        .heading { margin-bottom: 22px; text-align: center; }
+        .heading h1 {
+            margin: 0 0 7px;
+            color: #222c43;
+            font-size: 23px;
+            letter-spacing: -.6px;
+        }
+        .heading p {
+            margin: 0;
+            color: #737d90;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .form-group { margin-bottom: 14px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #535d70;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .45px;
+            text-transform: uppercase;
+        }
+        .form-group input {
+            display: block;
+            width: 100%;
+            min-height: 44px;
+            padding: 10px 13px;
+            border: 1px solid #d7ddea;
+            border-radius: 12px;
+            outline: none;
+            background: #eaf0fb;
+            color: #242d42;
+            font: inherit;
+            font-size: 13px;
+            transition: border-color .18s, box-shadow .18s, background .18s;
+        }
+        .form-group input::placeholder { color: #8a94a8; }
+        .form-group input:focus {
+            border-color: #7776bc;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(119, 118, 188, .15);
+        }
+        .password-wrap { position: relative; }
+        .password-wrap input { padding-right: 70px; }
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            padding: 7px 5px;
+            border: 0;
+            background: transparent;
+            color: #596d9f;
+            cursor: pointer;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .password-toggle:hover { color: #705da7; }
+        .password-toggle:focus-visible, .submit-button:focus-visible, a:focus-visible {
+            outline: 3px solid rgba(113, 103, 173, .32);
+            outline-offset: 3px;
+        }
+        .error-msg {
+            display: block;
+            margin-top: 6px;
+            color: #b42318;
+            font-size: 12px;
+        }
+        .alert-danger {
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border: 1px solid #f2c9c5;
+            border-radius: 10px;
+            background: #fff7f7;
+            color: #9c3028;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .alert-danger strong { display: block; margin-bottom: 4px; }
+        .alert-danger ul { margin: 0; padding-left: 18px; }
+        .submit-button {
+            width: 100%;
+            min-height: 46px;
+            margin-top: 3px;
+            border: 0;
+            border-radius: 10px;
+            background: linear-gradient(110deg, #30394d, #283c65 65%, #65548c);
+            box-shadow: 0 9px 20px rgba(42, 53, 80, .23);
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 750;
+            transition: transform .18s, box-shadow .18s;
+        }
+        .submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(42, 53, 80, .29);
         }
         .auth-footer {
+            margin: 18px 0 0;
+            color: #737d90;
+            font-size: 12px;
             text-align: center;
-            margin-top: 24px;
-            font-size: 14px;
-            color: #64748b;
+            line-height: 1.8;
         }
         .auth-footer a {
-            color: #1e88e5;
+            color: #514f91;
+            font-weight: 750;
             text-decoration: none;
-            font-weight: 600;
         }
         .auth-footer a:hover { text-decoration: underline; }
-        
-        .alert-danger {
-            background: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-            border-radius: 8px;
-            padding: 12px 16px;
-            font-size: 13px;
-            margin-bottom: 20px;
+        .home-link { display: inline-block; margin-top: 7px; }
+        @media (max-width: 480px) {
+            .auth-card { padding: 27px 24px; border-radius: 20px; }
         }
-        .alert-danger ul { margin-bottom: 0; padding-left: 20px; }
     </style>
 </head>
 <body>
-    <div class="auth-card">
-        <div class="auth-header">
-            <div class="icon">
-                <i class="bi bi-person-plus-fill"></i>
+    <main class="auth-card">
+        <div class="brand">
+            <img src="{{ asset('images/logo-tuban.png') }}" alt="Logo Kabupaten Tuban">
+            <div class="brand-name">
+                Desa Digital
+                <span>Portal Kabupaten Tuban</span>
             </div>
-            <h2>Daftar Akun Baru</h2>
-            <p>Bergabung dengan Portal Desa Digital Kabupaten Tuban</p>
         </div>
 
-        {{-- Tampilkan Error Validasi --}}
+        <header class="heading">
+            <h1>Buat akun baru</h1>
+        </header>
+
         @if ($errors->any())
-        <div class="alert-danger">
-            <strong><i class="bi bi-exclamation-triangle-fill"></i> Terjadi kesalahan:</strong>
-            <ul class="mt-2">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert-danger" role="alert">
+                <strong>Periksa kembali data Anda:</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
-        {{-- Form Register --}}
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
             <div class="form-group">
-                <label for="name" class="form-label">Nama Lengkap</label>
-                <input type="text" 
-                       class="form-control" 
-                       id="name" 
-                       name="name" 
-                       value="{{ old('name') }}" 
-                       placeholder="Masukkan nama lengkap"
-                       required 
-                       autofocus>
+                <label for="name">Nama lengkap</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Masukkan nama lengkap" required autofocus autocomplete="name">
             </div>
 
             <div class="form-group">
-                <label for="email" class="form-label">Alamat Email</label>
-                <input type="email" 
-                       class="form-control" 
-                       id="email" 
-                       name="email" 
-                       value="{{ old('email') }}" 
-                       placeholder="nama@contoh.com"
-                       required>
+                <label for="email">Alamat email</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" required autocomplete="username">
             </div>
 
             <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" 
-                       class="form-control" 
-                       id="password" 
-                       name="password" 
-                       placeholder="Minimal 8 karakter"
-                       required>
+                <label for="password">Kata sandi</label>
+                <div class="password-wrap">
+                    <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" required autocomplete="new-password">
+                    <button type="button" class="password-toggle" data-password-toggle="password" aria-label="Lihat kata sandi" aria-pressed="false">Lihat</button>
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                <input type="password" 
-                       class="form-control" 
-                       id="password_confirmation" 
-                       name="password_confirmation" 
-                       placeholder="Ulangi password"
-                       required>
+                <label for="password_confirmation">Konfirmasi kata sandi</label>
+                <div class="password-wrap">
+                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Ulangi kata sandi" required autocomplete="new-password">
+                    <button type="button" class="password-toggle" data-password-toggle="password_confirmation" aria-label="Lihat konfirmasi kata sandi" aria-pressed="false">Lihat</button>
+                </div>
             </div>
 
-            <button type="submit" class="btn-register">
-                <i class="bi bi-check-circle"></i> Daftar Sekarang
-            </button>
+            <button type="submit" class="submit-button">Daftar sekarang</button>
         </form>
 
-        <div class="auth-footer">
+        <p class="auth-footer">
             Sudah memiliki akun? <a href="{{ route('login') }}">Masuk di sini</a>
             <br>
-            <a href="{{ route('home') }}" class="text-muted" style="font-size: 12px; margin-top: 10px; display: inline-block;">
-                <i class="bi bi-arrow-left"></i> Kembali ke Beranda
-            </a>
-        </div>
-    </div>
+            <a href="{{ route('home') }}" class="home-link">Kembali ke beranda</a>
+        </p>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const input = document.getElementById(button.dataset.passwordToggle);
+                const showPassword = input.type === 'password';
+
+                input.type = showPassword ? 'text' : 'password';
+                button.textContent = showPassword ? 'Sembunyi' : 'Lihat';
+                button.setAttribute('aria-label', showPassword ? 'Sembunyikan kata sandi' : 'Lihat kata sandi');
+                button.setAttribute('aria-pressed', String(showPassword));
+            });
+        });
+    </script>
 </body>
 </html>
