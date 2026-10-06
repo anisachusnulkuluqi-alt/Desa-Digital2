@@ -42,11 +42,11 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 240px;
+            width: 260px;
             height: 100vh;
             background: #0f172a;
             padding: 20px 14px;
-            z-index: 1000;
+            z-index: 100;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
@@ -132,7 +132,7 @@
         .sidebar-menu a:hover { background: #1d4ed8; }
         /* ===== MAIN CONTENT ===== */
         .main-content {
-            margin-left: 240px;
+            margin-left: 260px;
             min-height: 100vh;
         }
 
@@ -140,13 +140,14 @@
         .top-header {
             background: white;
             border-bottom: 1px solid var(--border);
-            padding: 12px 24px;
+            height: 62px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 99;
         }
 
         .search-box {

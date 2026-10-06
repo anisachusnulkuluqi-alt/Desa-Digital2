@@ -6,7 +6,7 @@
     .sidebar {
         width: 260px;
         background: #0f172a;
-        min-height: 100vh;
+        height: 100vh;
         position: fixed;
         left: 0;
         top: 0;
@@ -21,8 +21,10 @@
     .sidebar-brand-text small { color: #64748b; font-size: 10px; }
     .sidebar-menu { list-style: none; padding: 0; }
     .sidebar-menu li { margin-bottom: 4px; }
+    .sidebar .sidebar-menu > li:not(.sidebar-menu-divider) { margin: 0 0 4px; }
     .sidebar-menu .sidebar-menu-divider { height: 0; margin: 10px 10px 8px; border-top: 1px solid rgba(148, 163, 184, .25); list-style: none; }
     .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #94a3b8; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+    .sidebar .sidebar-menu > li:not(.sidebar-menu-divider) > a { height: 40px; min-height: 40px; padding-top: 0; padding-bottom: 0; line-height: 20px; }
     .sidebar-menu a:hover { background: #1d4ed8; color: white; }
     .sidebar-menu a.active { background: #2563eb; color: white; }
     .sidebar-menu a i { font-size: 16px; width: 18px; text-align: center; }
