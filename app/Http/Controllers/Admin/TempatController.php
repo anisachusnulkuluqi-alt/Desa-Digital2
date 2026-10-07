@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tempat;
 use App\Models\Kategori;
 use App\Models\KategoriField;
+use App\Models\Tempat;
+use App\Support\LokasiAttributeTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,6 +15,10 @@ class TempatController extends Controller
     public function index(Request $request)
     {
         $kategoris = Kategori::orderBy('nama', 'asc')->get();
+        foreach ($kategoris as $kategori) {
+            LokasiAttributeTable::ensureCategoryFields($kategori);
+        }
+
         return view('admin.tempat.index', compact('kategoris'));
     }
 
@@ -21,11 +26,12 @@ class TempatController extends Controller
     {
         $kategori = strtolower(trim($kategori));
         $kategoriModel = Kategori::where('nama', $kategori)->first();
-        
-        if (!$kategoriModel) {
+
+        if (! $kategoriModel) {
             abort(404, 'Kategori tidak ditemukan');
         }
 
+        LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
         $data = Tempat::where('kategori', $kategori)->get();
 
@@ -36,11 +42,12 @@ class TempatController extends Controller
     {
         $kategori = strtolower(trim($kategori));
         $kategoriModel = Kategori::where('nama', $kategori)->first();
-        
-        if (!$kategoriModel) {
+
+        if (! $kategoriModel) {
             return response()->json(['success' => false, 'error' => 'Kategori tidak ditemukan'], 404);
         }
 
+        LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
         $data = Tempat::where('kategori', $kategori)->get();
 
@@ -49,33 +56,53 @@ class TempatController extends Controller
             'kategori' => $kategori,
             'kategori_id' => $kategoriModel->id,
             'fields' => $fields,
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
     public function storeField(Request $request)
     {
+        $request->merge([
+            'nama_field' => strtolower(trim((string) $request->input('nama_field'))),
+        ]);
+
         $validated = $request->validate([
             'kategori_id' => 'required|exists:kategoris,id',
-            'nama_field' => 'required|string|max:100',
+            'nama_field' => [
+                'required',
+                'string',
+                'max:100',
+                'regex:/^[a-z][a-z0-9_]*$/',
+                'not_in:id,nama,tempat_id,created_at,updated_at',
+                'unique:kategori_fields,nama_field,NULL,id,kategori_id,'.$request->input('kategori_id'),
+            ],
             'tipe_field' => 'required|in:text,number,textarea,file,date',
         ]);
 
         $maxUrutan = KategoriField::where('kategori_id', $validated['kategori_id'])->max('urutan') ?? 0;
 
-        KategoriField::create([
+        $field = new KategoriField([
             'kategori_id' => $validated['kategori_id'],
-            'nama_field' => strtolower(trim($validated['nama_field'])),
+            'nama_field' => $validated['nama_field'],
             'tipe_field' => $validated['tipe_field'],
             'urutan' => $maxUrutan + 1,
         ]);
+        $field->save();
+        foreach ($field->kategori->fields as $categoryField) {
+            LokasiAttributeTable::create($categoryField);
+        }
 
-        return response()->json(['success' => true, 'message' => 'Field berhasil ditambahkan!']);
+        return response()->json([
+            'success' => true,
+            'table' => LokasiAttributeTable::name($field),
+            'message' => 'Field berhasil ditambahkan!',
+        ]);
     }
 
     public function destroyField($id)
     {
         $field = KategoriField::findOrFail($id);
+        LokasiAttributeTable::delete($field);
         $field->delete();
 
         return response()->json(['success' => true, 'message' => 'Field berhasil dihapus!']);
@@ -91,10 +118,17 @@ class TempatController extends Controller
         $kategori = strtolower(trim($validated['kategori']));
         $kategoriModel = Kategori::where('nama', $kategori)->first();
 
-        if (!$kategoriModel) {
+        if (! $kategoriModel) {
             return response()->json(['success' => false, 'message' => 'Kategori tidak ditemukan'], 404);
         }
 
+        $request->validate([
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+            'foto' => 'nullable|image|max:5120',
+        ]);
+
+        LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
         $dataToSave = [
             'nama' => $validated['nama'],
@@ -104,8 +138,10 @@ class TempatController extends Controller
         $infoTambahan = [];
         foreach ($fields as $field) {
             $fieldName = $field->nama_field;
-            
-            if ($field->tipe_field === 'file' && $request->hasFile($fieldName)) {
+
+            if ($fieldName === 'foto' && $request->hasFile($fieldName)) {
+                $infoTambahan[$fieldName] = $request->file($fieldName)->store('tempat', 'public');
+            } elseif ($field->tipe_field === 'file' && $request->hasFile($fieldName)) {
                 $infoTambahan[$fieldName] = $request->file($fieldName)->store('tempat', 'public');
             } elseif ($request->has($fieldName)) {
                 $infoTambahan[$fieldName] = $request->input($fieldName);
@@ -114,7 +150,12 @@ class TempatController extends Controller
 
         $dataToSave['info_tambahan'] = json_encode($infoTambahan);
 
-        Tempat::create($dataToSave);
+        $tempat = Tempat::create($dataToSave);
+        foreach ($fields as $field) {
+            if (array_key_exists($field->nama_field, $infoTambahan)) {
+                LokasiAttributeTable::save($field, $tempat->id, $infoTambahan[$field->nama_field]);
+            }
+        }
 
         return response()->json(['success' => true, 'message' => 'Data berhasil ditambahkan!']);
     }
@@ -128,23 +169,36 @@ class TempatController extends Controller
         ]);
 
         $kategoriModel = Kategori::where('nama', $tempat->kategori)->first();
-        
-        if (!$kategoriModel) {
+
+        if (! $kategoriModel) {
             return response()->json(['success' => false, 'message' => 'Kategori tidak ditemukan'], 404);
         }
 
+        $request->validate([
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+            'foto' => 'nullable|image|max:5120',
+        ]);
+
+        LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
-        
+
         $tempat->nama = $validated['nama'];
-        
-        $infoTambahan = is_string($tempat->info_tambahan) 
-            ? (json_decode($tempat->info_tambahan, true) ?? []) 
+
+        $infoTambahan = is_string($tempat->info_tambahan)
+            ? (json_decode($tempat->info_tambahan, true) ?? [])
             : (is_array($tempat->info_tambahan) ? $tempat->info_tambahan : []);
-        
+
         foreach ($fields as $field) {
             $fieldName = $field->nama_field;
-            
-            if ($field->tipe_field === 'file' && $request->hasFile($fieldName)) {
+
+            if ($fieldName === 'foto' && $request->hasFile($fieldName)) {
+                $oldFile = $infoTambahan[$fieldName] ?? null;
+                if ($oldFile) {
+                    Storage::disk('public')->delete($oldFile);
+                }
+                $infoTambahan[$fieldName] = $request->file($fieldName)->store('tempat', 'public');
+            } elseif ($field->tipe_field === 'file' && $request->hasFile($fieldName)) {
                 $oldFile = $infoTambahan[$fieldName] ?? null;
                 if ($oldFile) {
                     Storage::disk('public')->delete($oldFile);
@@ -154,9 +208,15 @@ class TempatController extends Controller
                 $infoTambahan[$fieldName] = $request->input($fieldName);
             }
         }
-        
+
         $tempat->info_tambahan = json_encode($infoTambahan);
         $tempat->save();
+
+        foreach ($fields as $field) {
+            if (array_key_exists($field->nama_field, $infoTambahan)) {
+                LokasiAttributeTable::save($field, $tempat->id, $infoTambahan[$field->nama_field]);
+            }
+        }
 
         return response()->json(['success' => true, 'message' => 'Data berhasil diperbarui!']);
     }
@@ -164,25 +224,27 @@ class TempatController extends Controller
     public function destroy($id)
     {
         $tempat = Tempat::findOrFail($id);
-        
+
         $infoTambahan = $tempat->info_tambahan;
-        
+
         if (is_string($infoTambahan)) {
             $infoTambahan = json_decode($infoTambahan, true) ?? [];
-        } elseif (!is_array($infoTambahan)) {
+        } elseif (! is_array($infoTambahan)) {
             $infoTambahan = [];
         }
-        
+
         foreach ($infoTambahan as $key => $value) {
-            if (is_string($value) && !empty($value) && !str_starts_with($value, 'http')) {
+            if (is_string($value) && ! empty($value) && ! str_starts_with($value, 'http')) {
                 Storage::disk('public')->delete($value);
             }
         }
-        
-        if (!empty($tempat->foto)) {
+
+        LokasiAttributeTable::deleteTempatValues($tempat);
+
+        if (! empty($tempat->foto)) {
             Storage::disk('public')->delete($tempat->foto);
         }
-        
+
         $tempat->delete();
 
         return response()->json(['success' => true, 'message' => 'Data berhasil dihapus!']);
@@ -190,30 +252,37 @@ class TempatController extends Controller
 
     public function storeKategori(Request $request)
     {
+        $request->merge(['nama' => strtolower(trim((string) $request->input('nama')))]);
         $validated = $request->validate([
             'nama' => 'required|string|max:100|unique:kategoris,nama',
         ]);
 
-        Kategori::create([
-            'nama' => strtolower(trim($validated['nama'])),
+        $kategori = Kategori::create([
+            'nama' => $validated['nama'],
         ]);
+        LokasiAttributeTable::ensureCategoryFields($kategori);
 
         return response()->json([
-            'success' => true, 
-            'message' => 'Kategori berhasil ditambahkan!'
+            'success' => true,
+            'table' => LokasiAttributeTable::nameForCategory($kategori->nama, $kategori->id),
+            'message' => 'Kategori berhasil ditambahkan!',
         ]);
     }
 
     public function updateKategori(Request $request, $id)
     {
         $kategori = Kategori::findOrFail($id);
-        
+        LokasiAttributeTable::ensureCategoryFields($kategori);
+        $request->merge(['nama' => strtolower(trim((string) $request->input('nama')))]);
         $validated = $request->validate([
-            'nama' => 'required|string|max:100|unique:kategoris,nama,' . $id,
+            'nama' => 'required|string|max:100|unique:kategoris,nama,'.$id,
         ]);
 
+        $nama = $validated['nama'];
+        LokasiAttributeTable::renameCategoryTables($kategori->fields, $nama);
+        Tempat::where('kategori', $kategori->nama)->update(['kategori' => $nama]);
         $kategori->update([
-            'nama' => strtolower(trim($validated['nama'])),
+            'nama' => $nama,
         ]);
 
         return response()->json(['success' => true, 'message' => 'Kategori berhasil diperbarui!']);
@@ -222,6 +291,7 @@ class TempatController extends Controller
     public function destroyKategori($id)
     {
         $kategori = Kategori::findOrFail($id);
+        LokasiAttributeTable::deleteCategoryTables($kategori);
         $kategori->delete();
 
         return response()->json(['success' => true, 'message' => 'Kategori berhasil dihapus!']);
@@ -232,7 +302,7 @@ class TempatController extends Controller
         $query = $request->get('q', '');
         $kategori = Tempat::select('kategori')
             ->distinct()
-            ->where('kategori', 'like', '%' . $query . '%')
+            ->where('kategori', 'like', '%'.$query.'%')
             ->pluck('kategori')
             ->filter()
             ->values();

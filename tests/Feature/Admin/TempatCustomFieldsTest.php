@@ -26,7 +26,8 @@ class TempatCustomFieldsTest extends TestCase
             ->assertOk()
             ->assertJsonPath('success', true)
             ->assertJsonPath('kategori_id', $kategori->id)
-            ->assertJsonPath('fields', []);
+            ->assertJsonPath('fields.0.nama_field', 'latitude')
+            ->assertJsonPath('fields.1.nama_field', 'longitude');
 
         $this->postJson(route('admin.tempat.field.store'), [
             'kategori_id' => $kategori->id,
@@ -34,7 +35,9 @@ class TempatCustomFieldsTest extends TestCase
             'tipe_field' => 'text',
         ])->assertOk()->assertJsonPath('success', true);
 
-        $field = KategoriField::where('kategori_id', $kategori->id)->firstOrFail();
+        $field = KategoriField::where('kategori_id', $kategori->id)
+            ->where('nama_field', 'nama_pengurus')
+            ->firstOrFail();
         $this->getJson(route('admin.tempat.kategori.fields.json', ['kategori' => $kategori->nama]))
             ->assertOk()
             ->assertJsonPath('fields.0.id', $field->id)
@@ -81,8 +84,7 @@ class TempatCustomFieldsTest extends TestCase
             ->assertSee('openKategoriPopup(kategoriToOpen)', false)
             ->assertDontSee('name="desa"', false)
             ->assertDontSee('name="alamat"', false)
-            ->assertDontSee('name="latitude"', false)
-            ->assertDontSee('name="longitude"', false)
+            ->assertSee('Koordinat wajib', false)
             ->assertDontSee('name="deskripsi"', false)
             ->assertDontSee('name="namaDataBaru"', false);
     }
@@ -104,18 +106,24 @@ class TempatCustomFieldsTest extends TestCase
         $this->actingAs($admin)
             ->postJson(route('admin.tempat.data.store'), [
                 'kategori' => 'arsip',
-                'fields' => ['kode_dokumen' => 'DOC-001'],
-                'desa' => 'Tidak disimpan',
+                'nama' => 'Dokumen Uji',
+                'kode_dokumen' => 'DOC-001',
+                'latitude' => '-6.9',
+                'longitude' => '111.8',
             ])
             ->assertOk()
             ->assertJsonPath('success', true);
 
         $tempat = Tempat::firstOrFail();
-        $this->assertNull($tempat->nama);
-        $this->assertSame(['kode_dokumen' => 'DOC-001'], $tempat->info_tambahan);
+        $this->assertSame('Dokumen Uji', $tempat->nama);
+        $this->assertSame([
+            'kode_dokumen' => 'DOC-001',
+            'latitude' => '-6.9',
+            'longitude' => '111.8',
+        ], $tempat->info_tambahan);
     }
 
-    public function test_data_cannot_be_saved_until_custom_fields_are_configured(): void
+    public function test_default_coordinate_fields_allow_a_category_location_without_extra_fields(): void
     {
         $admin = User::factory()->create([
             'email_verified_at' => now(),
@@ -124,10 +132,15 @@ class TempatCustomFieldsTest extends TestCase
         Kategori::create(['nama' => 'kosong']);
 
         $this->actingAs($admin)
-            ->postJson(route('admin.tempat.data.store'), ['kategori' => 'kosong'])
-            ->assertUnprocessable()
-            ->assertJsonPath('success', false);
+            ->postJson(route('admin.tempat.data.store'), [
+                'kategori' => 'kosong',
+                'nama' => 'Tempat Uji',
+                'latitude' => '-6.9',
+                'longitude' => '111.8',
+            ])
+            ->assertOk()
+            ->assertJsonPath('success', true);
 
-        $this->assertDatabaseCount('tempat', 0);
+        $this->assertDatabaseCount('tempat', 1);
     }
 }

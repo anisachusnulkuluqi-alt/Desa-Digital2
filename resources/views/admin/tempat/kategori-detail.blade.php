@@ -348,14 +348,16 @@
                 fieldsList.forEach(function(field) {
                     const fieldName = field.nama_field;
                     const value = infoTambahan[fieldName] || '';
-                    
+                    const isCoordinate = ['latitude', 'longitude'].includes(fieldName);
+
                     html += '<div class="mb-3">';
-                    html += '<label class="form-label-custom">' + field.label + '</label>';
-                    
+                    html += '<label class="form-label-custom">' + field.label + (isCoordinate ? ' <span class="required">*</span>' : '') + '</label>';
+
                     if (field.tipe_field === 'text') {
                         html += '<input type="text" name="' + fieldName + '" class="form-input-custom" value="' + escapeHtml(value) + '" placeholder="Masukkan ' + field.label.toLowerCase() + '">';
                     } else if (field.tipe_field === 'number') {
-                        html += '<input type="number" step="any" name="' + fieldName + '" class="form-input-custom" value="' + escapeHtml(value) + '" placeholder="Masukkan ' + field.label.toLowerCase() + '">';
+                        const range = fieldName === 'latitude' ? ' min="-90" max="90"' : (fieldName === 'longitude' ? ' min="-180" max="180"' : '');
+                        html += '<input type="number" step="any"' + range + (isCoordinate ? ' required' : '') + ' name="' + fieldName + '" class="form-input-custom" value="' + escapeHtml(value) + '" placeholder="Masukkan ' + field.label.toLowerCase() + '">';
                     } else if (field.tipe_field === 'textarea') {
                         html += '<textarea name="' + fieldName + '" class="form-textarea-custom" placeholder="Masukkan ' + field.label.toLowerCase() + '">' + escapeHtml(value) + '</textarea>';
                     } else if (field.tipe_field === 'file') {

@@ -204,7 +204,7 @@
                                placeholder="Contoh: kuliner, wisata, hotel, sekolah..." required>
                         <div class="kategori-hint">
                             <i class="bi bi-lightbulb"></i>
-                            <span>Kategori akan muncul di sidebar setelah disimpan</span>
+                            <span>Kategori akan tersedia di peta dan otomatis memiliki field latitude dan longitude</span>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -434,15 +434,14 @@
             
             let html = '';
             fields.forEach(field => {
+                const isCoordinate = ['latitude', 'longitude'].includes(field.nama_field);
                 html += `
                     <div class="field-item">
                         <div class="field-item-info">
                             <span class="field-item-name">${capitalizeFirst(field.nama_field)}</span>
-                            <span class="field-item-type">${field.tipe_field}</span>
+                            <span class="field-item-type">${isCoordinate ? 'Koordinat wajib' : field.tipe_field}</span>
                         </div>
-                        <button class="btn-action btn-delete" onclick="hapusField(${field.id}, '${field.nama_field}')">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                        ${isCoordinate ? '' : `<button class="btn-action btn-delete" onclick="hapusField(${field.id}, '${field.nama_field}')"><i class="bi bi-trash"></i></button>`}
                     </div>
                 `;
             });

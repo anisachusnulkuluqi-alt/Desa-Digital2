@@ -1012,6 +1012,12 @@
                     <input type="checkbox" id="chip-kkdmp" onchange="filterOnlyCategory('kkdmp', this)">
                     <span class="chip-dot" style="background: var(--rose);"></span> KKDMP
                 </label>
+                @foreach($spatialCategories as $category)
+                <label class="location-filter-option">
+                    <input type="checkbox" id="chip-{{ $category['slug'] }}" onchange="filterOnlyCategory('{{ $category['slug'] }}', this)">
+                    <span class="chip-dot" style="background: #0f766e;"></span> {{ $category['label'] }}
+                </label>
+                @endforeach
             </div>
 
         </div>
@@ -1278,13 +1284,16 @@
                 }).addTo(layers.desa);
             }).catch(e => console.error("Gagal muat desa.geojson:", e));
 
+        const customSpatialSources = @json($customSpatialSources);
+        const customSpatialMeta = @json($customSpatialMeta);
         const spatialSources = {
             wifi: '{{ route('data.spasial.locations', ['kategori' => 'wifi']) }}',
             kantor: '{{ route('data.spasial.locations', ['kategori' => 'kantor']) }}',
             pasar: '{{ route('data.spasial.locations', ['kategori' => 'pasar']) }}',
             wisata: '{{ route('data.spasial.locations', ['kategori' => 'wisata']) }}',
             bumdes: '{{ route('data.spasial.locations', ['kategori' => 'bumdes']) }}',
-            kkdmp: '{{ route('data.spasial.locations', ['kategori' => 'kkdmp']) }}'
+            kkdmp: '{{ route('data.spasial.locations', ['kategori' => 'kkdmp']) }}',
+            ...customSpatialSources
         };
 
         let databaseSpasial = [];
@@ -1345,6 +1354,15 @@
                     ['Alamat', address]
                 ]
             };
+            const customFields = Object.entries(properties)
+                .filter(([key]) => ![
+                    'nama', 'latitude', 'longitude', 'foto', 'gambar', 'image', 'photo',
+                    'status', 'created_at', 'updated_at', 'id', 'tempat_id'
+                ].includes(key.toLowerCase()))
+                .map(([key, value]) => [
+                    key.replace(/_/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase()),
+                    value
+                ]);
 
             return {
                 id: `${type}-${feature.id ?? properties.FID}`,
@@ -1358,7 +1376,7 @@
                 status: properties.status || properties.jenis_wisa || properties.jenis || 'Tersedia',
                 desc: properties.deskripsi || '',
                 kind: properties.jenis_wisa || properties.jenis_wisata || properties.jenis || '',
-                details: (detailFields[type] || [])
+                details: (detailFields[type] || (customSpatialMeta[type] ? customFields : []))
                     .map(([label, value]) => [label, String(value ?? '').trim()])
                     .filter(([, value]) => value && value !== '-'),
                 photo: photoPath
@@ -1426,7 +1444,7 @@
                 case 'wisata': return { label: 'Pariwisata', color: '#06b6d4', bg: '#cffafe', icon: 'fa-mountain-sun' };
                 case 'bumdes': return { label: 'Unit BUMDes', color: '#8b5cf6', bg: '#ede9fe', icon: 'fa-briefcase' };
                 case 'kkdmp': return { label: 'KKDMP', color: '#f43f5e', bg: '#ffe4e6', icon: 'fa-people-group' };
-                default: return { label: 'Fasilitas', color: '#64748b', bg: '#f1f5f9', icon: 'fa-location-dot' };
+                default: return customSpatialMeta[type] || { label: 'Fasilitas', color: '#64748b', bg: '#f1f5f9', icon: 'fa-location-dot' };
             }
         }
 
@@ -1457,7 +1475,7 @@
                         ${item.photo ? `<img class="spatial-detail-photo" src="${escapePopupText(item.photo)}" alt="Foto ${escapePopupText(item.name)}" onerror="this.remove()">` : ''}
                     </div>
                     <div class="spatial-detail-body">
-                        <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${meta.label}</span>
+                        <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${escapePopupText(meta.label)}</span>
                         <h4 class="spatial-detail-title">${escapePopupText(item.name)}</h4>
                         ${item.desa || item.kec ? `<div class="spatial-detail-location"><i class="fa-solid fa-location-dot"></i> ${escapePopupText([item.desa, item.kec].filter(Boolean).join(' · '))}</div>` : ''}
                         ${detailFieldsHtml ? `<div class="spatial-detail-grid">${detailFieldsHtml}</div>` : ''}
@@ -1793,6 +1811,12 @@
                     targetBtn.checked = true;
                     currentFilterTypes = [filter];
                 }
+            } else {
+                const categoryCheckboxes = document.querySelectorAll('.category-chips-row input[type="checkbox"]');
+                categoryCheckboxes.forEach(input => {
+                    input.checked = true;
+                    currentFilterTypes.push(input.id.replace('chip-', ''));
+                });
             }
 
             try {

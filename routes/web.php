@@ -50,9 +50,7 @@ Route::post('/website-feedback', function (Request $request) {
 Route::get('/search/suggestions', [HomeController::class, 'suggestions'])->name('search.suggestions');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
-Route::get('/data-spasial', function () {
-    return view('data-spasial');
-})->name('data.spasial');
+Route::get('/data-spasial', [SpatialLocationController::class, 'map'])->name('data.spasial');
 
 Route::get('/data-spasial/lokasi/{kategori}', [SpatialLocationController::class, 'index'])
     ->name('data.spasial.locations');
