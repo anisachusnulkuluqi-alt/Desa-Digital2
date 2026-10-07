@@ -23,6 +23,7 @@ class PlaceStatisticsTest extends TestCase
         $this->get(route('home'))
             ->assertOk()
             ->assertSee('Titik WiFi')
+            ->assertSee('data-core="true"', false)
             ->assertSee('id="stats-carousel-prev"', false)
             ->assertSee('id="stats-carousel-next"', false);
     }
@@ -42,7 +43,7 @@ class PlaceStatisticsTest extends TestCase
             strpos($content, 'id="statistik-wilayah"'),
             strpos($content, 'id="layanan-digital"')
         );
-        $response->assertSee('data-category="wisata desa"', false)
+        $response->assertSee('data-category="wisata"', false)
             ->assertSee('data-count="1"', false);
     }
 
@@ -51,8 +52,10 @@ class PlaceStatisticsTest extends TestCase
         $kategori = Kategori::create(['nama' => 'wisata']);
         $this->getJson(route('place-statistics'))
             ->assertOk()
-            ->assertJsonPath('categories.0.name', 'wisata')
-            ->assertJsonPath('categories.0.count', 0);
+            ->assertJsonCount(8, 'categories')
+            ->assertJsonPath('categories.2.name', 'wisata')
+            ->assertJsonPath('categories.2.count', 0)
+            ->assertJsonPath('categories.2.is_core', true);
 
         Tempat::create([
             'nama' => 'Pantai Boom',
@@ -63,18 +66,20 @@ class PlaceStatisticsTest extends TestCase
             'kategori' => ' WISATA ',
         ]);
 
-        $newKategori = Kategori::create(['nama' => 'kuliner']);
+        $newKategori = Kategori::create(['nama' => 'masjid']);
         Tempat::create([
-            'nama' => 'Warung Pesisir',
+            'nama' => 'Masjid Al Ikhlas',
             'kategori' => $newKategori->nama,
         ]);
 
         $this->getJson(route('place-statistics'))
             ->assertOk()
-            ->assertJsonCount(2, 'categories')
-            ->assertJsonPath('categories.0.name', 'kuliner')
-            ->assertJsonPath('categories.0.count', 1)
-            ->assertJsonPath('categories.1.name', 'wisata')
-            ->assertJsonPath('categories.1.count', 2);
+            ->assertJsonCount(9, 'categories')
+            ->assertJsonPath('categories.2.name', 'wisata')
+            ->assertJsonPath('categories.2.count', 2)
+            ->assertJsonPath('categories.2.is_core', true)
+            ->assertJsonPath('categories.8.name', 'masjid')
+            ->assertJsonPath('categories.8.count', 1)
+            ->assertJsonPath('categories.8.is_core', false);
     }
 }

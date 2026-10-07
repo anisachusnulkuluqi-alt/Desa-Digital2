@@ -630,20 +630,25 @@
 
         .stats-grid-circles {
             display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid-circles.is-carousel-active {
             grid-auto-flow: column;
             grid-auto-columns: calc((100% - 48px) / 4);
-            gap: 16px;
+            grid-template-columns: none;
             overflow-x: auto;
             overscroll-behavior-x: contain;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             scrollbar-width: none;
-            position: relative;
-            z-index: 2;
         }
 
         .stats-grid-circles::-webkit-scrollbar { display: none; }
-        .stats-grid-circles > * { scroll-snap-align: start; }
+        .stats-grid-circles.is-carousel-active > * { scroll-snap-align: start; }
 
         .stats-carousel-arrow {
             position: absolute;
@@ -940,14 +945,19 @@
             display: grid;
             grid-template-columns: minmax(280px, 0.85fr) minmax(0, 2fr);
             gap: 0;
-            width: min(100%, 1440px);
+            width: min(calc(100% - 40px), 1240px);
             margin: 0 auto;
             align-items: stretch;
+            overflow: hidden;
+            border: 1.5px solid var(--border-soft);
+            border-radius: 18px;
+            background: #ffffff;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
         }
 
         .location-info-card {
             background: #ffffff;
-            border: 1.5px solid var(--border-soft);
+            border: 0;
             padding: 38px 30px;
             display: flex;
             flex-direction: column;
@@ -1029,8 +1039,7 @@
         }
 
         .map-viewport-frame {
-            border: 1.5px solid var(--border-soft);
-            border-left: 0;
+            border-left: 1.5px solid var(--border-soft);
             overflow: hidden;
             min-height: 500px;
         }
@@ -1234,13 +1243,15 @@
 
         @media (max-width: 1180px) {
             .services-cards-cluster { grid-auto-columns: calc((100% - 40px) / 3); }
-            .stats-grid-circles { grid-auto-columns: calc((100% - 32px) / 3); gap: 16px; }
+            .stats-grid-circles { gap: 16px; }
+            .stats-grid-circles.is-carousel-active { grid-auto-columns: calc((100% - 32px) / 3); }
             .stat-circle-number { font-size: 1.45rem; }
             .site-header { gap: 24px; }
             .nav-menu { gap: 12px; }
             .nav-menu a { font-size: 0.76rem; }
             .location-grid-layout { grid-template-columns: 1fr; }
-            .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
+            .map-viewport-frame { min-height: 420px; border-top: 1.5px solid var(--border-soft); border-left: 0; }
+            .map-viewport-frame iframe { min-height: 420px; }
         }
 
         @media (max-width: 900px) {
@@ -1257,12 +1268,12 @@
             .profil-dual-layout { grid-template-columns: 1fr; }
             .section-header-clean { margin-bottom: 26px; }
             .section-header-clean h2 { font-size: 2.1rem; }
-            .stats-grid-circles { grid-auto-columns: calc((100% - 12px) / 2); gap: 12px; }
+            .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+            .stats-grid-circles.is-carousel-active { grid-auto-columns: calc((100% - 12px) / 2); grid-template-columns: none; }
             .services-cards-cluster { grid-auto-columns: calc((100% - 20px) / 2); }
             .hero-main-title { font-size: 2.8rem; }
             .accordion-content-text { padding-left: 20px; }
             .location-grid-layout { grid-template-columns: 1fr; }
-            .map-viewport-frame { border-left: 1.5px solid var(--border-soft); }
         }
 
         @media (max-width: 580px) {
@@ -1282,7 +1293,7 @@
             .stats-carousel-arrow { width: 36px; height: 36px; }
             .stats-carousel-arrow-prev { left: 5px; }
             .stats-carousel-arrow-next { right: 5px; }
-            .stats-grid-circles { grid-auto-columns: 78%; gap: 12px; padding: 4px 6px 12px; }
+            .stats-grid-circles.is-carousel-active { grid-auto-columns: 78%; gap: 12px; padding: 4px 6px 12px; }
             .floating-tools { right: 14px; bottom: 14px; gap: 7px; }
             .floating-tool-button { width: 44px; height: 44px; font-size: 1.05rem; }
             .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
@@ -1607,7 +1618,7 @@
             </button>
             <div class="stats-grid-circles" id="place-statistics-grid" aria-live="polite">
                 @foreach($placeCategories as $category)
-                <div class="stat-circle-pod reveal-item" data-category="{{ $category['name'] }}" style="--reveal-x: 0px; --reveal-y: 26px;">
+                <div class="stat-circle-pod reveal-item" data-category="{{ $category['name'] }}" data-core="{{ ($category['is_core'] ?? false) ? 'true' : 'false' }}" style="--reveal-x: 0px; --reveal-y: 26px;">
                     <div class="stat-circle-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
                     <div class="stat-circle-number" data-count="{{ $category['count'] }}" aria-label="{{ number_format($category['count'], 0, ',', '.') }}">0</div>
                     <div class="stat-circle-label">{{ $category['label'] ?? ucwords(str_replace(['_', '-'], ' ', $category['name'])) }}</div>
@@ -1845,13 +1856,20 @@
         const placeStatisticsGrid = document.getElementById('place-statistics-grid');
         const statsPreviousButton = document.getElementById('stats-carousel-prev');
         const statsNextButton = document.getElementById('stats-carousel-next');
+        const initialStatsCardCount = placeStatisticsGrid?.querySelectorAll('[data-core="true"]').length ?? 0;
         const numberFormat = new Intl.NumberFormat('id-ID');
         const countAnimationFrames = new WeakMap();
 
         const updateStatsCarousel = () => {
             if (!placeStatisticsGrid || !statsPreviousButton || !statsNextButton) return;
 
-            const hasOverflow = placeStatisticsGrid.scrollWidth > placeStatisticsGrid.clientWidth + 1;
+            const hasMoreCategoriesThanInitial = placeStatisticsGrid.children.length > initialStatsCardCount;
+            placeStatisticsGrid.classList.toggle('is-carousel-active', hasMoreCategoriesThanInitial);
+
+            if (!hasMoreCategoriesThanInitial) placeStatisticsGrid.scrollLeft = 0;
+
+            const hasOverflow = hasMoreCategoriesThanInitial
+                && placeStatisticsGrid.scrollWidth > placeStatisticsGrid.clientWidth + 1;
             statsPreviousButton.hidden = !hasOverflow;
             statsNextButton.hidden = !hasOverflow;
             statsPreviousButton.disabled = placeStatisticsGrid.scrollLeft <= 1;
@@ -1946,6 +1964,7 @@
             const card = document.createElement('div');
             card.className = 'stat-circle-pod reveal-item';
             card.dataset.category = category.name;
+            card.dataset.core = 'false';
             card.style.setProperty('--reveal-x', '0px');
             card.style.setProperty('--reveal-y', '26px');
 

@@ -20,31 +20,63 @@ class DashboardStatistics
             ->groupByRaw('LOWER(TRIM(kategori))')
             ->pluck('records_count', 'kategori_key');
 
-        $categories = Kategori::query()
+        $masterCategories = Kategori::query()
             ->orderBy('nama')
-            ->get(['id', 'nama'])
+            ->get(['id', 'nama']);
+
+        $statistics = $this->counts();
+        $baseCategories = [
+            ['name' => 'wifi', 'label' => 'Titik WiFi', 'count' => $statistics['totalWifiDesa'], 'is_core' => true, 'aliases' => ['wifi', 'titik wifi', 'wifi desa']],
+            ['name' => 'website_desa', 'label' => 'Website Desa', 'count' => $statistics['totalWebsite'], 'is_core' => true, 'aliases' => ['website', 'website desa']],
+            ['name' => 'wisata', 'label' => 'Wisata Desa', 'count' => $statistics['totalWisata'], 'is_core' => true, 'aliases' => ['wisata', 'wisata desa']],
+            ['name' => 'balai_desa', 'label' => 'Balai Desa', 'count' => $statistics['totalKantorDesa'], 'is_core' => true, 'aliases' => ['balai desa', 'kantor desa', 'kantor']],
+            ['name' => 'pasar', 'label' => 'Pasar Rakyat', 'count' => $statistics['totalPasar'], 'is_core' => true, 'aliases' => ['pasar', 'pasar rakyat', 'pasar desa']],
+            ['name' => 'bumdes', 'label' => 'Unit BUMDes', 'count' => $statistics['totalBumdes'], 'is_core' => true, 'aliases' => ['bumdes', 'unit bumdes']],
+            ['name' => 'kkdmp', 'label' => 'Dokumen KKDMP', 'count' => $statistics['totalKkdmp'], 'is_core' => true, 'aliases' => ['kkdmp', 'dokumen kkdmp']],
+            ['name' => 'kecamatan', 'label' => 'Kecamatan', 'count' => $statistics['totalKecamatan'], 'is_core' => true, 'aliases' => ['kecamatan']],
+        ];
+
+        $baseAliases = [];
+        foreach ($baseCategories as &$baseCategory) {
+            foreach ($baseCategory['aliases'] as $alias) {
+                $baseAliases[$alias] = true;
+            }
+
+            $masterCategory = $masterCategories->first(
+                fn (Kategori $kategori): bool => in_array(
+                    $this->normalizeCategoryName($kategori->nama),
+                    $baseCategory['aliases'],
+                    true
+                )
+            );
+
+            if ($masterCategory) {
+                $baseCategory['count'] = (int) $countsByCategory->get(
+                    strtolower(trim($masterCategory->nama)),
+                    0
+                );
+            }
+
+            unset($baseCategory['aliases']);
+        }
+        unset($baseCategory);
+
+        $additionalCategories = $masterCategories
+            ->reject(fn (Kategori $kategori): bool => isset($baseAliases[$this->normalizeCategoryName($kategori->nama)]))
             ->map(fn (Kategori $kategori): array => [
                 'name' => $kategori->nama,
+                'label' => ucwords(str_replace(['_', '-'], ' ', $kategori->nama)),
                 'count' => (int) $countsByCategory->get(strtolower(trim($kategori->nama)), 0),
+                'is_core' => false,
             ])
             ->all();
 
-        if ($categories !== []) {
-            return $categories;
-        }
+        return array_merge($baseCategories, $additionalCategories);
+    }
 
-        $statistics = $this->counts();
-
-        return [
-            ['name' => 'wifi', 'label' => 'Titik WiFi', 'count' => $statistics['totalWifiDesa']],
-            ['name' => 'website_desa', 'label' => 'Website Desa', 'count' => $statistics['totalWebsite']],
-            ['name' => 'wisata', 'label' => 'Wisata Desa', 'count' => $statistics['totalWisata']],
-            ['name' => 'balai_desa', 'label' => 'Balai Desa', 'count' => $statistics['totalKantorDesa']],
-            ['name' => 'pasar', 'label' => 'Pasar Rakyat', 'count' => $statistics['totalPasar']],
-            ['name' => 'bumdes', 'label' => 'Unit BUMDes', 'count' => $statistics['totalBumdes']],
-            ['name' => 'kkdmp', 'label' => 'Dokumen KKDMP', 'count' => $statistics['totalKkdmp']],
-            ['name' => 'kecamatan', 'label' => 'Kecamatan', 'count' => $statistics['totalKecamatan']],
-        ];
+    private function normalizeCategoryName(string $name): string
+    {
+        return preg_replace('/[\s_-]+/', ' ', strtolower(trim($name))) ?? strtolower(trim($name));
     }
 
     public function counts(): array
