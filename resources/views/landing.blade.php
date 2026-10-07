@@ -613,15 +613,71 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
-        .stats-grid-circles {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+        .stats-heading {
+            max-width: 1140px;
+            margin: 0 auto 24px;
+            color: var(--text-dark);
+            font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .stats-carousel {
+            position: relative;
             max-width: 1140px;
             margin: 0 auto;
+        }
+
+        .stats-grid-circles {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: calc((100% - 48px) / 4);
+            gap: 16px;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
             position: relative;
             z-index: 2;
         }
+
+        .stats-grid-circles::-webkit-scrollbar { display: none; }
+        .stats-grid-circles > * { scroll-snap-align: start; }
+
+        .stats-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-soft);
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transform: translateY(-50%);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+            transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .stats-carousel-arrow:hover:not(:disabled) { background: var(--primary); color: #ffffff; }
+        .stats-carousel-arrow:disabled { opacity: 0.38; cursor: default; }
+        .stats-carousel-arrow[hidden] { display: none; }
+        .stats-carousel-arrow-prev { left: -21px; }
+        .stats-carousel-arrow-next { right: -21px; }
+
+        .stat-circle-pod:nth-child(8n + 1) { --pod-accent: #0284c7; --pod-bg: #e0f2fe; --pod-border: #bae6fd; --pod-glow: rgba(2, 132, 199, 0.18); }
+        .stat-circle-pod:nth-child(8n + 2) { --pod-accent: #2563eb; --pod-bg: #dbeafe; --pod-border: #bfdbfe; --pod-glow: rgba(37, 99, 235, 0.18); }
+        .stat-circle-pod:nth-child(8n + 3) { --pod-accent: #059669; --pod-bg: #d1fae5; --pod-border: #a7f3d0; --pod-glow: rgba(5, 150, 105, 0.18); }
+        .stat-circle-pod:nth-child(8n + 4) { --pod-accent: #4f46e5; --pod-bg: #e0e7ff; --pod-border: #c7d2fe; --pod-glow: rgba(79, 70, 229, 0.18); }
+        .stat-circle-pod:nth-child(8n + 5) { --pod-accent: #d97706; --pod-bg: #fef3c7; --pod-border: #fde68a; --pod-glow: rgba(217, 119, 6, 0.18); }
+        .stat-circle-pod:nth-child(8n + 6) { --pod-accent: #7c3aed; --pod-bg: #ede9fe; --pod-border: #ddd6fe; --pod-glow: rgba(124, 58, 237, 0.18); }
+        .stat-circle-pod:nth-child(8n + 7) { --pod-accent: #e11d48; --pod-bg: #ffe4e6; --pod-border: #fecdd3; --pod-glow: rgba(225, 29, 72, 0.18); }
+        .stat-circle-pod:nth-child(8n) { --pod-accent: #0d9488; --pod-bg: #ccfbf1; --pod-border: #99f6e4; --pod-glow: rgba(13, 148, 136, 0.18); }
 
         .stat-circle-pod {
             background: #ffffff;
@@ -1178,7 +1234,7 @@
 
         @media (max-width: 1180px) {
             .services-cards-cluster { grid-auto-columns: calc((100% - 40px) / 3); }
-            .stats-grid-circles { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+            .stats-grid-circles { grid-auto-columns: calc((100% - 32px) / 3); gap: 16px; }
             .stat-circle-number { font-size: 1.45rem; }
             .site-header { gap: 24px; }
             .nav-menu { gap: 12px; }
@@ -1201,7 +1257,7 @@
             .profil-dual-layout { grid-template-columns: 1fr; }
             .section-header-clean { margin-bottom: 26px; }
             .section-header-clean h2 { font-size: 2.1rem; }
-            .stats-grid-circles { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .stats-grid-circles { grid-auto-columns: calc((100% - 12px) / 2); gap: 12px; }
             .services-cards-cluster { grid-auto-columns: calc((100% - 20px) / 2); }
             .hero-main-title { font-size: 2.8rem; }
             .accordion-content-text { padding-left: 20px; }
@@ -1223,7 +1279,10 @@
             .services-carousel-arrow-next { right: 5px; }
             .section-header-clean h2 { font-size: 1.8rem; }
             .hero-banner-clean { min-height: 540px; }
-            .stats-grid-circles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .stats-carousel-arrow { width: 36px; height: 36px; }
+            .stats-carousel-arrow-prev { left: 5px; }
+            .stats-carousel-arrow-next { right: 5px; }
+            .stats-grid-circles { grid-auto-columns: 78%; gap: 12px; padding: 4px 6px 12px; }
             .floating-tools { right: 14px; bottom: 14px; gap: 7px; }
             .floating-tool-button { width: 44px; height: 44px; font-size: 1.05rem; }
             .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
@@ -1455,70 +1514,7 @@
         });
     </script>
 
-    <!-- 4. SEKSI STATISTIK: KAPSUL BULAT TERANG -->
-    <section id="statistik-wilayah" class="section-stats-circle">
-        <div class="stats-grid-circles">
-            
-            <!-- 1. WiFi Desa -->
-            <div class="stat-circle-pod" style="--pod-accent: #0284c7; --pod-bg: #e0f2fe; --pod-border: #bae6fd; --pod-glow: rgba(2, 132, 199, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-wifi"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalWifiDesa'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Titik WiFi</div>
-            </div>
-
-            <!-- 2. Website Desa -->
-            <div class="stat-circle-pod" style="--pod-accent: #2563eb; --pod-bg: #dbeafe; --pod-border: #bfdbfe; --pod-glow: rgba(37, 99, 235, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-globe"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalWebsite'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Website Desa</div>
-            </div>
-
-            <!-- 3. Wisata Desa -->
-            <div class="stat-circle-pod" style="--pod-accent: #059669; --pod-bg: #d1fae5; --pod-border: #a7f3d0; --pod-glow: rgba(5, 150, 105, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-mountain-sun"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalWisata'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Wisata Desa</div>
-            </div>
-
-            <!-- 4. Balai Desa -->
-            <div class="stat-circle-pod" style="--pod-accent: #4f46e5; --pod-bg: #e0e7ff; --pod-border: #c7d2fe; --pod-glow: rgba(79, 70, 229, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-building-columns"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalKantorDesa'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Balai Desa</div>
-            </div>
-
-            <!-- 5. Pasar Desa -->
-            <div class="stat-circle-pod" style="--pod-accent: #d97706; --pod-bg: #fef3c7; --pod-border: #fde68a; --pod-glow: rgba(217, 119, 6, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-store"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalPasar'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Pasar Rakyat</div>
-            </div>
-
-            <!-- 6. Unit BUMDes -->
-            <div class="stat-circle-pod" style="--pod-accent: #7c3aed; --pod-bg: #ede9fe; --pod-border: #ddd6fe; --pod-glow: rgba(124, 58, 237, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalBumdes'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Unit BUMDes</div>
-            </div>
-
-            <!-- 7. Dokumen KKDMP -->
-            <div class="stat-circle-pod" style="--pod-accent: #e11d48; --pod-bg: #ffe4e6; --pod-border: #fecdd3; --pod-glow: rgba(225, 29, 72, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalKkdmp'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Dokumen KKDMP</div>
-            </div>
-
-            <!-- 8. Distrik Kecamatan -->
-            <div class="stat-circle-pod" style="--pod-accent: #0d9488; --pod-bg: #ccfbf1; --pod-border: #99f6e4; --pod-glow: rgba(13, 148, 136, 0.18);">
-                <div class="stat-circle-icon"><i class="fa-solid fa-sitemap"></i></div>
-                <div class="stat-circle-number"><?= number_format($statistics['totalKecamatan'] ?? 0, 0, ',', '.'); ?></div>
-                <div class="stat-circle-label">Kecamatan</div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 5. SEKSI GERBANG LAYANAN: ELEGAN, MINIMALIS & TANPA TEKS DESKRIPSI -->
+    <!-- 4. SEKSI LAYANAN PUBLIK -->
     <section id="layanan-digital" class="section-services-clean">
         
         <div class="services-header-box">
@@ -1598,6 +1594,27 @@
 
             </div>
             <button type="button" class="services-carousel-arrow services-carousel-arrow-next" id="services-carousel-next" aria-label="Lihat layanan berikutnya" aria-controls="services-carousel-track" title="Lihat layanan berikutnya" hidden>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 5. SEKSI STATISTIK TEMPAT DARI MASTER -->
+    <section id="statistik-wilayah" class="section-stats-circle">
+        <div class="stats-carousel">
+            <button type="button" class="stats-carousel-arrow stats-carousel-arrow-prev" id="stats-carousel-prev" aria-label="Lihat statistik sebelumnya" aria-controls="place-statistics-grid" title="Lihat statistik sebelumnya" hidden>
+                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="stats-grid-circles" id="place-statistics-grid" aria-live="polite">
+                @foreach($placeCategories as $category)
+                <div class="stat-circle-pod reveal-item" data-category="{{ $category['name'] }}" style="--reveal-x: 0px; --reveal-y: 26px;">
+                    <div class="stat-circle-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
+                    <div class="stat-circle-number" data-count="{{ $category['count'] }}" aria-label="{{ number_format($category['count'], 0, ',', '.') }}">0</div>
+                    <div class="stat-circle-label">{{ $category['label'] ?? ucwords(str_replace(['_', '-'], ' ', $category['name'])) }}</div>
+                </div>
+                @endforeach
+            </div>
+            <button type="button" class="stats-carousel-arrow stats-carousel-arrow-next" id="stats-carousel-next" aria-label="Lihat statistik berikutnya" aria-controls="place-statistics-grid" title="Lihat statistik berikutnya" hidden>
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </button>
         </div>
@@ -1758,7 +1775,7 @@
             '.accordion-header-btn > i.fa-chevron-down',
             '.accordion-icon-box',
             '.stats-grid-circles > *',
-            '.stat-circle-icon, .stat-circle-number, .stat-circle-label',
+            '.stat-circle-icon, .stat-circle-label',
             '.services-header-box',
             '.services-cards-cluster > *',
             '.service-icon-circle, .service-card-clean h4, .service-action-arrow',
@@ -1824,6 +1841,201 @@
         window.addEventListener('scroll', revealVisibleItems, { passive: true });
         window.addEventListener('resize', revealVisibleItems);
         revealVisibleItems();
+
+        const placeStatisticsGrid = document.getElementById('place-statistics-grid');
+        const statsPreviousButton = document.getElementById('stats-carousel-prev');
+        const statsNextButton = document.getElementById('stats-carousel-next');
+        const numberFormat = new Intl.NumberFormat('id-ID');
+        const countAnimationFrames = new WeakMap();
+
+        const updateStatsCarousel = () => {
+            if (!placeStatisticsGrid || !statsPreviousButton || !statsNextButton) return;
+
+            const hasOverflow = placeStatisticsGrid.scrollWidth > placeStatisticsGrid.clientWidth + 1;
+            statsPreviousButton.hidden = !hasOverflow;
+            statsNextButton.hidden = !hasOverflow;
+            statsPreviousButton.disabled = placeStatisticsGrid.scrollLeft <= 1;
+            statsNextButton.disabled = placeStatisticsGrid.scrollLeft + placeStatisticsGrid.clientWidth >= placeStatisticsGrid.scrollWidth - 1;
+        };
+
+        const scrollStats = direction => {
+            const firstCard = placeStatisticsGrid?.querySelector('.stat-circle-pod');
+            if (!placeStatisticsGrid || !firstCard) return;
+
+            const styles = getComputedStyle(placeStatisticsGrid);
+            const gap = Number.parseFloat(styles.columnGap) || 0;
+            const scrollDistance = firstCard.getBoundingClientRect().width + gap;
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            placeStatisticsGrid.scrollBy({ left: direction * scrollDistance, behavior });
+        };
+
+        statsPreviousButton?.addEventListener('click', () => scrollStats(-1));
+        statsNextButton?.addEventListener('click', () => scrollStats(1));
+        placeStatisticsGrid?.addEventListener('scroll', updateStatsCarousel, { passive: true });
+        window.addEventListener('resize', updateStatsCarousel);
+        if (placeStatisticsGrid) new ResizeObserver(updateStatsCarousel).observe(placeStatisticsGrid);
+        updateStatsCarousel();
+
+        const animatePlaceCount = element => {
+            const target = Number(element.dataset.count);
+            const start = Number(element.dataset.displayValue || 0);
+            const frame = countAnimationFrames.get(element);
+            if (frame) cancelAnimationFrame(frame);
+
+            element.classList.add('is-counted');
+            element.setAttribute('aria-label', numberFormat.format(target));
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || start === target) {
+                element.dataset.displayValue = String(target);
+                element.textContent = numberFormat.format(target);
+                return;
+            }
+
+            const startTime = performance.now();
+            const duration = 900;
+            const update = currentTime => {
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(start + (target - start) * easedProgress);
+                element.dataset.displayValue = String(value);
+                element.textContent = numberFormat.format(value);
+
+                if (progress < 1) {
+                    countAnimationFrames.set(element, requestAnimationFrame(update));
+                } else {
+                    countAnimationFrames.delete(element);
+                }
+            };
+
+            countAnimationFrames.set(element, requestAnimationFrame(update));
+        };
+
+        const placeCountObserver = 'IntersectionObserver' in window
+            ? new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    animatePlaceCount(entry.target);
+                    placeCountObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.35 })
+            : null;
+
+        const observePlaceCount = element => {
+            if (placeCountObserver) {
+                placeCountObserver.observe(element);
+            } else {
+                animatePlaceCount(element);
+            }
+        };
+
+        document.querySelectorAll('#place-statistics-grid .stat-circle-number').forEach(observePlaceCount);
+
+        const categoryIcons = {
+            wisata: 'fa-mountain-sun',
+            wifi: 'fa-wifi',
+            kuliner: 'fa-utensils',
+            pasar: 'fa-store',
+            pendidikan: 'fa-graduation-cap',
+            kesehatan: 'fa-heart-pulse',
+            ibadah: 'fa-mosque',
+            masjid: 'fa-mosque',
+            hotel: 'fa-hotel',
+            bumdes: 'fa-briefcase'
+        };
+
+        const createPlaceCategoryCard = category => {
+            const card = document.createElement('div');
+            card.className = 'stat-circle-pod reveal-item';
+            card.dataset.category = category.name;
+            card.style.setProperty('--reveal-x', '0px');
+            card.style.setProperty('--reveal-y', '26px');
+
+            const iconWrap = document.createElement('div');
+            iconWrap.className = 'stat-circle-icon';
+            const icon = document.createElement('i');
+            const iconKey = category.name.toLowerCase().replace(/[_-]+/g, ' ');
+            icon.className = `fa-solid ${categoryIcons[iconKey] || 'fa-map-location-dot'}`;
+            icon.setAttribute('aria-hidden', 'true');
+            iconWrap.append(icon);
+
+            const number = document.createElement('div');
+            number.className = 'stat-circle-number';
+            number.dataset.count = String(category.count);
+            number.textContent = '0';
+
+            const label = document.createElement('div');
+            label.className = 'stat-circle-label';
+            label.textContent = category.label || category.name
+                .replace(/[_-]+/g, ' ')
+                .replace(/\b[a-z]/g, letter => letter.toUpperCase());
+
+            card.append(iconWrap, number, label);
+            return card;
+        };
+
+        const renderPlaceCategories = categories => {
+            if (!placeStatisticsGrid) return;
+
+            const currentCategories = new Set();
+            categories.forEach(category => {
+                const name = String(category.name);
+                const count = Number(category.count);
+                if (!Number.isFinite(count)) return;
+
+                currentCategories.add(name);
+                let card = Array.from(placeStatisticsGrid.children)
+                    .find(item => item.dataset.category === name);
+
+                if (!card) {
+                    card = createPlaceCategoryCard({ name, count });
+                    placeStatisticsGrid.append(card);
+                    if (revealObserver) {
+                        revealObserver.observe(card);
+                    } else {
+                        card.classList.add('is-visible');
+                    }
+                    observePlaceCount(card.querySelector('.stat-circle-number'));
+                }
+
+                const number = card.querySelector('.stat-circle-number');
+                number.dataset.count = String(count);
+                if (number.classList.contains('is-counted')) animatePlaceCount(number);
+            });
+
+            Array.from(placeStatisticsGrid.children).forEach(card => {
+                if (currentCategories.has(card.dataset.category)) return;
+                revealObserver?.unobserve(card);
+                placeCountObserver?.unobserve(card.querySelector('.stat-circle-number'));
+                card.remove();
+            });
+            updateStatsCarousel();
+        };
+
+        let placeStatisticsRequestPending = false;
+        const updatePlaceStatistics = async () => {
+            if (placeStatisticsRequestPending) return;
+            placeStatisticsRequestPending = true;
+            try {
+                const response = await fetch('{{ route('place-statistics') }}', {
+                    headers: { 'Accept': 'application/json' },
+                    cache: 'no-store'
+                });
+                if (!response.ok) throw new Error(`Permintaan statistik gagal (${response.status}).`);
+
+                const result = await response.json();
+                if (!Array.isArray(result.categories)) {
+                    throw new Error('Format data statistik tempat tidak valid.');
+                }
+                renderPlaceCategories(result.categories);
+            } catch (error) {
+                console.error('Statistik tempat gagal diperbarui:', error);
+            } finally {
+                placeStatisticsRequestPending = false;
+            }
+        };
+
+        updatePlaceStatistics();
+        window.setInterval(updatePlaceStatistics, 60000);
+        window.addEventListener('focus', updatePlaceStatistics);
 
         const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
         const linkedSections = sectionLinks

@@ -22,8 +22,16 @@ use App\Services\DashboardStatistics;
 */
 
 Route::get('/', function (DashboardStatistics $statistics) {
-    return view('landing', ['statistics' => $statistics->counts()]);
+    return view('landing', [
+        'statistics' => $statistics->counts(),
+        'placeCategories' => $statistics->placeCategoryCounts(),
+    ]);
 })->name('home');
+
+Route::get('/place-statistics', function (DashboardStatistics $statistics) {
+    return response()->json(['categories' => $statistics->placeCategoryCounts()])
+        ->header('Cache-Control', 'no-store, private');
+})->name('place-statistics');
 
 Route::get('/website-visits/stats', function (DashboardStatistics $statistics) {
     return response()->json($statistics->visitorCounts())
