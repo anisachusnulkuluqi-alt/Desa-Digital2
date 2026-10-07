@@ -144,13 +144,13 @@
         {{-- PEMBATAS SEBELUM KONTRIBUTOR --}}
         <li class="sidebar-menu-divider" role="separator"></li>
 
-        {{-- KONTRIBUTOR (PALING BAWAH) --}}
-        <li>
-            <a href="{{ route('admin.kontributor.index') }}" class="{{ request()->routeIs('admin.kontributor.*') ? 'active' : '' }}">
-                <i class="bi bi-person-plus-fill"></i>
-                <span>Kontributor</span>
-            </a>
-        </li>
+        {{-- USER (PALING BAWAH) --}}
+<li>
+    <a href="{{ route('admin.kontributor.index') }}" class="{{ request()->routeIs('admin.kontributor.*') ? 'active' : '' }}">
+        <i class="bi bi-person-fill"></i>
+        <span>User</span>
+    </a>
+</li>
     </ul>
 
     <button
@@ -162,7 +162,7 @@
         title="Perkecil sidebar"
     >
         <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
-        <span class="sidebar-collapse-label">Perkecil menu</span>
+        <span class="sidebar-collapse-label"></span>
     </button>
 </aside>
 
