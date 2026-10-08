@@ -42,7 +42,8 @@ class WilayahGeoJsonSeeder extends Seeder
 
             foreach ($desaFeatures as $feature) {
                 $properties = $this->properties($feature, 'desa.geojson');
-                $kodeKecamatan = $this->requiredCode($properties, 'kd_kecamatan', 3);
+                $kodeKecamatan = $this->requiredCode($properties, 'kd_kecamatan', 2);
+                $kodeKecamatanSeeder = str_pad($kodeKecamatan, 3, '0', STR_PAD_LEFT);
                 $kodeDesa = $this->requiredCode($properties, 'kd_kelurahan', 3);
                 $namaDesa = trim((string) ($properties['nm_kelurahan'] ?? ''));
 
@@ -50,18 +51,20 @@ class WilayahGeoJsonSeeder extends Seeder
                     throw new RuntimeException('Nama desa/kelurahan kosong pada GeoJSON.');
                 }
 
-                if (!isset($kecamatanIds[$kodeKecamatan])) {
+                if (!isset($kecamatanIds[$kodeKecamatanSeeder])) {
                     throw new RuntimeException("Kecamatan {$kodeKecamatan} tidak ditemukan untuk {$namaDesa}.");
                 }
 
-                $kodeWilayahDesa = $this->requiredCode($properties, 'kd_propinsi', 2)
-                    .$this->requiredCode($properties, 'kd_dati2', 2)
-                    .$kodeKecamatan
-                    .$kodeDesa;
-                $existing = DB::table('desa')->where('kode_desa', $kodeWilayahDesa)->first(['id']);
+                $kodeProvinsi = $this->requiredCode($properties, 'kd_propinsi', 2);
+                $kodeKabupaten = $this->requiredCode($properties, 'kd_dati2', 2);
+                $kodeWilayahDesa = $kodeProvinsi.$kodeKabupaten.$kodeKecamatan.$kodeDesa;
+                $kodeWilayahDesaLama = $kodeProvinsi.$kodeKabupaten.$kodeKecamatanSeeder.$kodeDesa;
+                $existing = DB::table('desa')
+                    ->whereIn('kode_desa', [$kodeWilayahDesa, $kodeWilayahDesaLama])
+                    ->first(['id']);
                 $data = [
                     'nama_desa' => $namaDesa,
-                    'kecamatan_id' => $kecamatanIds[$kodeKecamatan],
+                    'kecamatan_id' => $kecamatanIds[$kodeKecamatanSeeder],
                     'kode_desa' => $kodeWilayahDesa,
                     'updated_at' => $now,
                 ];

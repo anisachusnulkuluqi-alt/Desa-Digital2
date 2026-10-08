@@ -6,8 +6,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Tawaran"
       },
       "geometry": {
@@ -3225,8 +3225,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Tuwiri Wetan"
       },
       "geometry": {
@@ -6534,8 +6534,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Boncong"
       },
       "geometry": {
@@ -10288,8 +10288,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Bogorejo"
       },
       "geometry": {
@@ -15687,8 +15687,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Bulumeduro"
       },
       "geometry": {
@@ -24150,8 +24150,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Doromukti"
       },
       "geometry": {
@@ -24339,8 +24339,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Gesikharjo"
       },
       "geometry": {
@@ -27688,8 +27688,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Glodog"
       },
       "geometry": {
@@ -31252,8 +31252,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Jatisari"
       },
       "geometry": {
@@ -34663,8 +34663,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Jenu"
       },
       "geometry": {
@@ -38012,8 +38012,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kaliuntu"
       },
       "geometry": {
@@ -41711,8 +41711,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Karangagung"
       },
       "geometry": {
@@ -47965,8 +47965,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Karangrejo"
       },
       "geometry": {
@@ -51429,8 +51429,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kayen"
       },
       "geometry": {
@@ -55967,8 +55967,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Mentoso"
       },
       "geometry": {
@@ -60546,8 +60546,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Payuran"
       },
       "geometry": {
@@ -63790,8 +63790,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Remen"
       },
       "geometry": {
@@ -69439,8 +69439,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Siding"
       },
       "geometry": {
@@ -72843,8 +72843,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Socorejo"
       },
       "geometry": {
@@ -77227,8 +77227,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sugihwaras"
       },
       "geometry": {
@@ -86051,8 +86051,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Sukolilo"
       },
       "geometry": {
@@ -93200,8 +93200,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Temaji"
       },
       "geometry": {
@@ -97243,8 +97243,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Tasikharjo"
       },
       "geometry": {
@@ -103071,8 +103071,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Tasikmadu"
       },
       "geometry": {
@@ -106530,8 +106530,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Wadung"
       },
       "geometry": {
@@ -114734,8 +114734,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Jamprong"
       },
       "geometry": {
@@ -118453,8 +118453,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Jetak"
       },
       "geometry": {
@@ -122322,8 +122322,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Talangkembar"
       },
       "geometry": {
@@ -125286,8 +125286,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Ketambul"
       },
       "geometry": {
@@ -132465,8 +132465,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Leran Wetan"
       },
       "geometry": {
@@ -135568,8 +135568,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Mulyoagung"
       },
       "geometry": {
@@ -138847,8 +138847,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Prunggahan Kulon"
       },
       "geometry": {
@@ -142516,8 +142516,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Pucangan"
       },
       "geometry": {
@@ -145490,8 +145490,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Wangun"
       },
       "geometry": {
@@ -148539,8 +148539,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Banjar"
       },
       "geometry": {
@@ -149533,8 +149533,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Bandungrejo"
       },
       "geometry": {
@@ -150647,8 +150647,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Bangunrejo"
       },
       "geometry": {
@@ -153166,8 +153166,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "020",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2020",
         "nm_kelurahan": "Banjaragung"
       },
       "geometry": {
@@ -154350,8 +154350,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "021",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2021",
         "nm_kelurahan": "Banjararum"
       },
       "geometry": {
@@ -155354,8 +155354,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Banyubang"
       },
       "geometry": {
@@ -156288,8 +156288,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Banyuurip"
       },
       "geometry": {
@@ -158132,8 +158132,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Bate"
       },
       "geometry": {
@@ -160761,8 +160761,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Binangun"
       },
       "geometry": {
@@ -162845,8 +162845,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Bringin"
       },
       "geometry": {
@@ -164064,8 +164064,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Brangkal"
       },
       "geometry": {
@@ -165648,8 +165648,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Bulurejo"
       },
       "geometry": {
@@ -166922,8 +166922,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Bunut"
       },
       "geometry": {
@@ -167826,8 +167826,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Campurejo"
       },
       "geometry": {
@@ -169330,8 +169330,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Cangkring"
       },
       "geometry": {
@@ -170124,8 +170124,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Cekalang"
       },
       "geometry": {
@@ -171688,8 +171688,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Cengkong"
       },
       "geometry": {
@@ -172972,8 +172972,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Compreng"
       },
       "geometry": {
@@ -174471,8 +174471,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Dagangan"
       },
       "geometry": {
@@ -176605,8 +176605,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Dahor"
       },
       "geometry": {
@@ -177214,8 +177214,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Dermawuharjo"
       },
       "geometry": {
@@ -178973,8 +178973,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Gesikan"
       },
       "geometry": {
@@ -181362,8 +181362,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Grabagan"
       },
       "geometry": {
@@ -183096,8 +183096,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Kendalrejo"
       },
       "geometry": {
@@ -183475,8 +183475,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Saringembat"
       },
       "geometry": {
@@ -185739,8 +185739,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Sawahan"
       },
       "geometry": {
@@ -187878,8 +187878,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Selogabus"
       },
       "geometry": {
@@ -190472,8 +190472,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Sembung"
       },
       "geometry": {
@@ -192466,8 +192466,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Sembungrejo"
       },
       "geometry": {
@@ -193520,8 +193520,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Sendang"
       },
       "geometry": {
@@ -195759,8 +195759,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Sidokumpul"
       },
       "geometry": {
@@ -196758,8 +196758,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Sidotentrem"
       },
       "geometry": {
@@ -199502,8 +199502,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Simo"
       },
       "geometry": {
@@ -200521,8 +200521,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Simorejo"
       },
       "geometry": {
@@ -202245,8 +202245,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sokosari"
       },
       "geometry": {
@@ -204379,8 +204379,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Gununganyar"
       },
       "geometry": {
@@ -206743,8 +206743,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Jati"
       },
       "geometry": {
@@ -209017,8 +209017,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Jatimulyo"
       },
       "geometry": {
@@ -210701,8 +210701,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Kablukan"
       },
       "geometry": {
@@ -213065,8 +213065,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Kaligede"
       },
       "geometry": {
@@ -215209,8 +215209,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Kanorejo"
       },
       "geometry": {
@@ -216573,8 +216573,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Karangtinoto"
       },
       "geometry": {
@@ -217947,8 +217947,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Katerban"
       },
       "geometry": {
@@ -219586,8 +219586,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Kebomlati"
       },
       "geometry": {
@@ -220085,8 +220085,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Kebonagung"
       },
       "geometry": {
@@ -221139,8 +221139,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Kedungharjo"
       },
       "geometry": {
@@ -222118,8 +222118,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kedungharjo"
       },
       "geometry": {
@@ -223882,8 +223882,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Kedungjambe"
       },
       "geometry": {
@@ -226296,8 +226296,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Kedungrojo"
       },
       "geometry": {
@@ -227100,8 +227100,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Kedungsoko"
       },
       "geometry": {
@@ -228569,8 +228569,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Kemlaten"
       },
       "geometry": {
@@ -230633,8 +230633,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "025",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2025",
         "nm_kelurahan": "Kenongosari"
       },
       "geometry": {
@@ -231487,8 +231487,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Kepohagung"
       },
       "geometry": {
@@ -233041,8 +233041,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Kesamben"
       },
       "geometry": {
@@ -234580,8 +234580,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Klakeh"
       },
       "geometry": {
@@ -236184,8 +236184,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Klotok"
       },
       "geometry": {
@@ -237318,8 +237318,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Klumpit"
       },
       "geometry": {
@@ -240007,8 +240007,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Lajo Kidul"
       },
       "geometry": {
@@ -241421,8 +241421,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Magersari"
       },
       "geometry": {
@@ -243900,8 +243900,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Maibit"
       },
       "geometry": {
@@ -246319,8 +246319,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Maindu"
       },
       "geometry": {
@@ -248708,8 +248708,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Manjung"
       },
       "geometry": {
@@ -249542,8 +249542,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Margorejo"
       },
       "geometry": {
@@ -250871,8 +250871,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Menyunyur"
       },
       "geometry": {
@@ -251390,8 +251390,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Menilo"
       },
       "geometry": {
@@ -253169,8 +253169,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Mentoro"
       },
       "geometry": {
@@ -255108,8 +255108,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Mergoasri"
       },
       "geometry": {
@@ -256772,8 +256772,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Mergosari"
       },
       "geometry": {
@@ -258436,8 +258436,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Minohorejo"
       },
       "geometry": {
@@ -259850,8 +259850,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Mojoagung"
       },
       "geometry": {
@@ -260949,8 +260949,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Mrutuk"
       },
       "geometry": {
@@ -263883,8 +263883,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Mulyorejo"
       },
       "geometry": {
@@ -265847,8 +265847,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Ngadirejo"
       },
       "geometry": {
@@ -267016,8 +267016,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Ngandong"
       },
       "geometry": {
@@ -268085,8 +268085,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Ngarum"
       },
       "geometry": {
@@ -270019,8 +270019,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Ngawun"
       },
       "geometry": {
@@ -271843,8 +271843,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Ngimbang"
       },
       "geometry": {
@@ -273332,8 +273332,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Ngino"
       },
       "geometry": {
@@ -275491,8 +275491,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Ngrayung"
       },
       "geometry": {
@@ -276220,8 +276220,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Ngrejeng"
       },
       "geometry": {
@@ -277834,8 +277834,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Ngrojo"
       },
       "geometry": {
@@ -278713,8 +278713,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Nguluhan"
       },
       "geometry": {
@@ -280552,8 +280552,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Pacing"
       },
       "geometry": {
@@ -282801,8 +282801,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Pakis"
       },
       "geometry": {
@@ -283285,8 +283285,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Pandanagung"
       },
       "geometry": {
@@ -284559,8 +284559,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "021",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2021",
         "nm_kelurahan": "Pandanwangi"
       },
       "geometry": {
@@ -285603,8 +285603,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Patihan"
       },
       "geometry": {
@@ -286902,8 +286902,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Pekuwon"
       },
       "geometry": {
@@ -289036,8 +289036,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Penidon"
       },
       "geometry": {
@@ -291320,8 +291320,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Plandirejo"
       },
       "geometry": {
@@ -292174,8 +292174,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Plumpang"
       },
       "geometry": {
@@ -294553,8 +294553,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Prambontergayang"
       },
       "geometry": {
@@ -296037,8 +296037,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "022",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2022",
         "nm_kelurahan": "Prambonwetan"
       },
       "geometry": {
@@ -296856,8 +296856,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Punggulrejo"
       },
       "geometry": {
@@ -298790,8 +298790,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "023",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2023",
         "nm_kelurahan": "Rahayu"
       },
       "geometry": {
@@ -299604,8 +299604,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Rengel"
       },
       "geometry": {
@@ -302118,8 +302118,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "022",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2022",
         "nm_kelurahan": "Sandingrowo"
       },
       "geometry": {
@@ -303247,8 +303247,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Sambongrejo"
       },
       "geometry": {
@@ -305641,8 +305641,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Trutup"
       },
       "geometry": {
@@ -306480,8 +306480,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Tambakrejo"
       },
       "geometry": {
@@ -307189,8 +307189,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Tegalrejo"
       },
       "geometry": {
@@ -308198,8 +308198,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Sumberagung"
       },
       "geometry": {
@@ -310052,8 +310052,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "14",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sumberejo"
       },
       "geometry": {
@@ -311961,8 +311961,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Sumberjo"
       },
       "geometry": {
@@ -314325,8 +314325,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "020",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2020",
         "nm_kelurahan": "Sumurcinde"
       },
       "geometry": {
@@ -316374,8 +316374,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "17",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Sumurjalak"
       },
       "geometry": {
@@ -318553,8 +318553,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Tanggir"
       },
       "geometry": {
@@ -319687,8 +319687,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Tanggulangin"
       },
       "geometry": {
@@ -322411,8 +322411,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Tanjungrejo"
       },
       "geometry": {
@@ -324380,8 +324380,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Tegalsari"
       },
       "geometry": {
@@ -325909,8 +325909,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Tingkis"
       },
       "geometry": {
@@ -328183,8 +328183,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Tunggulrejo"
       },
       "geometry": {
@@ -330927,8 +330927,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Wadung"
       },
       "geometry": {
@@ -332856,8 +332856,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "20",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Waleran"
       },
       "geometry": {
@@ -334770,8 +334770,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Weden"
       },
       "geometry": {
@@ -335544,8 +335544,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Widang"
       },
       "geometry": {
@@ -337868,8 +337868,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Wonosari"
       },
       "geometry": {
@@ -339677,8 +339677,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sumber"
       },
       "geometry": {
@@ -340381,8 +340381,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Pabeyan"
       },
       "geometry": {
@@ -341175,8 +341175,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Latsari"
       },
       "geometry": {
@@ -343899,8 +343899,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Semanding"
       },
       "geometry": {
@@ -344833,8 +344833,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Bejagung"
       },
       "geometry": {
@@ -345912,8 +345912,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Boto"
       },
       "geometry": {
@@ -346986,8 +346986,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Cendoro"
       },
       "geometry": {
@@ -348840,8 +348840,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Cepokorejo"
       },
       "geometry": {
@@ -351599,8 +351599,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Dawung"
       },
       "geometry": {
@@ -352628,8 +352628,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Gedongombo"
       },
       "geometry": {
@@ -354307,8 +354307,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Dingil"
       },
       "geometry": {
@@ -356441,8 +356441,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Hargoretno"
       },
       "geometry": {
@@ -358305,8 +358305,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Jatiklabang"
       },
       "geometry": {
@@ -359739,8 +359739,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Padasan"
       },
       "geometry": {
@@ -360918,8 +360918,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Kapu"
       },
       "geometry": {
@@ -362782,8 +362782,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Kradenan"
       },
       "geometry": {
@@ -365716,8 +365716,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Prunggahan Wetan"
       },
       "geometry": {
@@ -367235,8 +367235,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Sidohasri"
       },
       "geometry": {
@@ -368384,8 +368384,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Sidomukti"
       },
       "geometry": {
@@ -370463,8 +370463,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Sidonganti"
       },
       "geometry": {
@@ -372212,8 +372212,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Sokogrenjeng"
       },
       "geometry": {
@@ -373821,8 +373821,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Sumurgung"
       },
       "geometry": {
@@ -374995,8 +374995,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Tahulu"
       },
       "geometry": {
@@ -377079,8 +377079,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Tegalbang"
       },
       "geometry": {
@@ -377853,8 +377853,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Tegalrejo"
       },
       "geometry": {
@@ -380251,8 +380251,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Temayang"
       },
       "geometry": {
@@ -382579,8 +382579,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Tenggerwetan"
       },
       "geometry": {
@@ -384783,8 +384783,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Bader"
       },
       "geometry": {
@@ -385852,8 +385852,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "020",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2020",
         "nm_kelurahan": "Bancar"
       },
       "geometry": {
@@ -388556,8 +388556,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Banjarjo"
       },
       "geometry": {
@@ -390755,8 +390755,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Borehbangle"
       },
       "geometry": {
@@ -391339,8 +391339,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Baturetno"
       },
       "geometry": {
@@ -392383,8 +392383,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Beji"
       },
       "geometry": {
@@ -394087,8 +394087,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Belikanget"
       },
       "geometry": {
@@ -395151,8 +395151,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Besowo"
       },
       "geometry": {
@@ -396605,8 +396605,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Bogorejo"
       },
       "geometry": {
@@ -397534,8 +397534,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Bulujowo"
       },
       "geometry": {
@@ -399798,8 +399798,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Demit"
       },
       "geometry": {
@@ -400777,8 +400777,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Karanglo"
       },
       "geometry": {
@@ -401761,8 +401761,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "024",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2024",
         "nm_kelurahan": "Cingklung"
       },
       "geometry": {
@@ -403270,8 +403270,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Gadon"
       },
       "geometry": {
@@ -404419,8 +404419,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Cokrowati"
       },
       "geometry": {
@@ -406272,8 +406272,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Latsari"
       },
       "geometry": {
@@ -407131,8 +407131,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Dasin"
       },
       "geometry": {
@@ -408710,8 +408710,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Dikir"
       },
       "geometry": {
@@ -411164,8 +411164,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Gaji"
       },
       "geometry": {
@@ -412683,8 +412683,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Glondonggede"
       },
       "geometry": {
@@ -415003,8 +415003,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Jarorejo"
       },
       "geometry": {
@@ -416976,8 +416976,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Jenggolo"
       },
       "geometry": {
@@ -418360,8 +418360,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Jombok"
       },
       "geometry": {
@@ -419454,8 +419454,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Karang"
       },
       "geometry": {
@@ -420293,8 +420293,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Karangasem"
       },
       "geometry": {
@@ -422142,8 +422142,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Kasiman"
       },
       "geometry": {
@@ -423621,8 +423621,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Klutuk"
       },
       "geometry": {
@@ -424980,8 +424980,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Karangsari"
       },
       "geometry": {
@@ -427908,8 +427908,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Karangtengah"
       },
       "geometry": {
@@ -429777,8 +429777,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kenanti"
       },
       "geometry": {
@@ -430346,8 +430346,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Kebonharjo"
       },
       "geometry": {
@@ -431790,8 +431790,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kebonsari"
       },
       "geometry": {
@@ -432049,8 +432049,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kedungmakam"
       },
       "geometry": {
@@ -432513,8 +432513,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Kedungrejo"
       },
       "geometry": {
@@ -434082,8 +434082,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Kembangbilo"
       },
       "geometry": {
@@ -434996,8 +434996,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Ketodan"
       },
       "geometry": {
@@ -436525,8 +436525,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Kingking"
       },
       "geometry": {
@@ -436864,8 +436864,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Kutorejo"
       },
       "geometry": {
@@ -438063,8 +438063,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Mander"
       },
       "geometry": {
@@ -439172,8 +439172,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Mliwang"
       },
       "geometry": {
@@ -440096,8 +440096,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Mandirejo"
       },
       "geometry": {
@@ -441225,8 +441225,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Margomulyo"
       },
       "geometry": {
@@ -442319,8 +442319,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Margorejo"
       },
       "geometry": {
@@ -443993,8 +443993,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Mondokan"
       },
       "geometry": {
@@ -445082,8 +445082,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "023",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2023",
         "nm_kelurahan": "Margosuko"
       },
       "geometry": {
@@ -447261,8 +447261,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Merkawang"
       },
       "geometry": {
@@ -449828,8 +449828,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Ngulahan"
       },
       "geometry": {
@@ -451437,8 +451437,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "021",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2021",
         "nm_kelurahan": "Ngampelrejo"
       },
       "geometry": {
@@ -453121,8 +453121,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Ngepon"
       },
       "geometry": {
@@ -455135,8 +455135,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Ngujuran"
       },
       "geometry": {
@@ -457149,8 +457149,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Palang"
       },
       "geometry": {
@@ -459008,8 +459008,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Paseyan"
       },
       "geometry": {
@@ -460522,8 +460522,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Perbon"
       },
       "geometry": {
@@ -462081,8 +462081,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Plajan"
       },
       "geometry": {
@@ -463530,8 +463530,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Pliwetan"
       },
       "geometry": {
@@ -463879,8 +463879,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sekaran"
       },
       "geometry": {
@@ -464983,8 +464983,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Pugoh"
       },
       "geometry": {
@@ -466712,8 +466712,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Pulogede"
       },
       "geometry": {
@@ -468381,8 +468381,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Sidomulyo"
       },
       "geometry": {
@@ -469400,8 +469400,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Purworejo"
       },
       "geometry": {
@@ -472171,8 +472171,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Rawasan"
       },
       "geometry": {
@@ -473775,8 +473775,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Ronggomulyo"
       },
       "geometry": {
@@ -474244,8 +474244,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Sadang"
       },
       "geometry": {
@@ -475638,8 +475638,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Sambonggede"
       },
       "geometry": {
@@ -477262,8 +477262,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Sidorejo"
       },
       "geometry": {
@@ -478066,8 +478066,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sawir"
       },
       "geometry": {
@@ -480120,8 +480120,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sekardadi"
       },
       "geometry": {
@@ -481584,8 +481584,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Sembungin"
       },
       "geometry": {
@@ -482538,8 +482538,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Sembungrejo"
       },
       "geometry": {
@@ -483932,8 +483932,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sendanghaji"
       },
       "geometry": {
@@ -485301,8 +485301,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Sotang"
       },
       "geometry": {
@@ -486605,8 +486605,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sendangharjo"
       },
       "geometry": {
@@ -488314,8 +488314,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Senori"
       },
       "geometry": {
@@ -490673,8 +490673,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "022",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2022",
         "nm_kelurahan": "Sidomulyo"
       },
       "geometry": {
@@ -492357,8 +492357,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Sidomulyo"
       },
       "geometry": {
@@ -493211,8 +493211,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Sobontoro"
       },
       "geometry": {
@@ -494950,8 +494950,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "06",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Tambakboyo"
       },
       "geometry": {
@@ -495929,8 +495929,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Sugihan"
       },
       "geometry": {
@@ -497748,8 +497748,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Sugihan"
       },
       "geometry": {
@@ -498692,8 +498692,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Sugiharjo"
       },
       "geometry": {
@@ -500151,8 +500151,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sukolilo"
       },
       "geometry": {
@@ -501525,8 +501525,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Sukoharjo"
       },
       "geometry": {
@@ -504249,8 +504249,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Sumberan"
       },
       "geometry": {
@@ -505683,8 +505683,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Sumberarum"
       },
       "geometry": {
@@ -507152,8 +507152,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Sumberjo"
       },
       "geometry": {
@@ -508306,8 +508306,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Sumurgeneng"
       },
       "geometry": {
@@ -510300,8 +510300,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "16",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Sumurgung"
       },
       "geometry": {
@@ -511844,8 +511844,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Tlogowaru"
       },
       "geometry": {
@@ -512708,8 +512708,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "12",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Suwalan"
       },
       "geometry": {
@@ -514277,8 +514277,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Tegalagung"
       },
       "geometry": {
@@ -515331,8 +515331,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Temandang"
       },
       "geometry": {
@@ -517524,8 +517524,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Tenggerkulon"
       },
       "geometry": {
@@ -519178,8 +519178,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Tergambang"
       },
       "geometry": {
@@ -520992,8 +520992,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Trantang"
       },
       "geometry": {
@@ -522366,8 +522366,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "04",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Tlogoagung"
       },
       "geometry": {
@@ -524145,8 +524145,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Tobo"
       },
       "geometry": {
@@ -525639,8 +525639,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Tuwiri Kulon"
       },
       "geometry": {
@@ -527788,8 +527788,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Wangi"
       },
       "geometry": {
@@ -529817,8 +529817,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Wolutengah"
       },
       "geometry": {
@@ -531151,8 +531151,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "02",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Wotsogo"
       },
       "geometry": {
@@ -532785,8 +532785,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "004",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2004",
         "nm_kelurahan": "Kedungjambangan"
       },
       "geometry": {
@@ -533699,8 +533699,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Kedungmulyo"
       },
       "geometry": {
@@ -534838,8 +534838,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Bangilan"
       },
       "geometry": {
@@ -536157,8 +536157,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Banjarworo"
       },
       "geometry": {
@@ -537741,8 +537741,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Bektiharjo"
       },
       "geometry": {
@@ -540385,8 +540385,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Bendonglateng"
       },
       "geometry": {
@@ -542974,8 +542974,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Genaharjo"
       },
       "geometry": {
@@ -545278,8 +545278,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "020",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2020",
         "nm_kelurahan": "Gesing"
       },
       "geometry": {
@@ -546942,8 +546942,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Guwoterus"
       },
       "geometry": {
@@ -548726,8 +548726,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Kowang"
       },
       "geometry": {
@@ -550365,8 +550365,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "07",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Lajo Lor"
       },
       "geometry": {
@@ -551989,8 +551989,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Montongsekar"
       },
       "geometry": {
@@ -553813,8 +553813,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Pakel"
       },
       "geometry": {
@@ -555982,8 +555982,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Penambangan"
       },
       "geometry": {
@@ -558221,8 +558221,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Sidodadi"
       },
       "geometry": {
@@ -559825,8 +559825,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Sokogunung"
       },
       "geometry": {
@@ -562109,8 +562109,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Sumurgung"
       },
       "geometry": {
@@ -564583,8 +564583,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Talun"
       },
       "geometry": {
@@ -566847,8 +566847,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "019",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2019",
         "nm_kelurahan": "Tunah"
       },
       "geometry": {
@@ -567921,8 +567921,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "15",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Jadi"
       },
       "geometry": {
@@ -570570,8 +570570,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Jlodro"
       },
       "geometry": {
@@ -572259,8 +572259,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "03",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Kumpulrejo"
       },
       "geometry": {
@@ -574033,8 +574033,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "18",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Leran Kulon"
       },
       "geometry": {
@@ -576384,8 +576384,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "10",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Pucangan"
       },
       "geometry": {
@@ -578428,8 +578428,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "01",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Sidorejo"
       },
       "geometry": {
@@ -579917,8 +579917,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "024",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2024",
         "nm_kelurahan": "Glagahsari"
       },
       "geometry": {
@@ -580451,8 +580451,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "017",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2017",
         "nm_kelurahan": "Sendangrejo"
       },
       "geometry": {
@@ -583770,8 +583770,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "010",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2010",
         "nm_kelurahan": "Sidoharjo"
       },
       "geometry": {
@@ -586749,8 +586749,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "002",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2002",
         "nm_kelurahan": "Jatisari"
       },
       "geometry": {
@@ -590198,8 +590198,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "014",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2014",
         "nm_kelurahan": "Jegulo"
       },
       "geometry": {
@@ -593212,8 +593212,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "015",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2015",
         "nm_kelurahan": "Kujung"
       },
       "geometry": {
@@ -597386,8 +597386,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Kumpulrejo"
       },
       "geometry": {
@@ -600390,8 +600390,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Leran"
       },
       "geometry": {
@@ -603419,8 +603419,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Medalem"
       },
       "geometry": {
@@ -606798,8 +606798,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "012",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2012",
         "nm_kelurahan": "Mlangi"
       },
       "geometry": {
@@ -616282,8 +616282,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "018",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2018",
         "nm_kelurahan": "Mojomalang"
       },
       "geometry": {
@@ -619666,8 +619666,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "006",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2006",
         "nm_kelurahan": "Ngadipuro"
       },
       "geometry": {
@@ -622925,8 +622925,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "19",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Ngadirejo"
       },
       "geometry": {
@@ -630289,8 +630289,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Nguruan"
       },
       "geometry": {
@@ -633763,8 +633763,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "007",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2007",
         "nm_kelurahan": "Parangbatu"
       },
       "geometry": {
@@ -637152,8 +637152,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "011",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2011",
         "nm_kelurahan": "Rayung"
       },
       "geometry": {
@@ -640366,8 +640366,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "016",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2016",
         "nm_kelurahan": "Sugihwaras"
       },
       "geometry": {
@@ -643955,8 +643955,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "013",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2013",
         "nm_kelurahan": "Suciharjo"
       },
       "geometry": {
@@ -647494,8 +647494,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "003",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2003",
         "nm_kelurahan": "Sukorejo"
       },
       "geometry": {
@@ -651038,8 +651038,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "11",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Tluwe"
       },
       "geometry": {
@@ -654192,8 +654192,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Wanglukulon"
       },
       "geometry": {
@@ -657746,8 +657746,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
-        "kd_kelurahan": "009",
+        "kd_kecamatan": "05",
+        "kd_kelurahan": "2009",
         "nm_kelurahan": "Wangluwetan"
       },
       "geometry": {
@@ -661231,8 +661231,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
-        "kd_kelurahan": "008",
+        "kd_kecamatan": "09",
+        "kd_kelurahan": "2008",
         "nm_kelurahan": "Wukirharjo"
       },
       "geometry": {
@@ -664245,8 +664245,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
-        "kd_kelurahan": "001",
+        "kd_kecamatan": "08",
+        "kd_kelurahan": "2001",
         "nm_kelurahan": "Gemulung"
       },
       "geometry": {
@@ -667304,8 +667304,8 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
-        "kd_kelurahan": "005",
+        "kd_kecamatan": "13",
+        "kd_kelurahan": "2005",
         "nm_kelurahan": "Pongpongan"
       },
       "geometry": {
