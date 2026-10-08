@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             WilayahGeoJsonSeeder::class,
+            WebsiteDesaSeeder::class,
             LokasiTitikSeeder::class,
         ]);
     }
