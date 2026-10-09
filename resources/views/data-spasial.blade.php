@@ -30,6 +30,8 @@
             --border-glass: rgba(226, 232, 240, 0.9);
             --text-dark: #0f172a;
             --text-muted: #64748b;
+            --header-height: 72px;
+            --drawer-handle-height: 50px;
         }
 
         * {
@@ -41,32 +43,36 @@
         }
 
         body {
-            width: 100vw;
+            width: 100%;
             height: 100vh;
+            height: 100dvh;
+            min-height: 0;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
             background: #0f172a;
         }
 
         .site-header {
+            min-height: var(--header-height);
+            height: var(--header-height);
             background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 20px clamp(20px, 8.8vw, 128px);
+            padding: 8px clamp(20px, 5vw, 72px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: clamp(14px, 2vw, 28px);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1100;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .brand-logo-img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; }
+        .brand-logo-img { height: 44px; width: auto; max-width: 160px; object-fit: contain; display: block; }
         .brand-text-logo { font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: 0; display: flex; align-items: center; }
         .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
         .nav-menu {
@@ -103,43 +109,52 @@
             cursor: pointer;
         }
         .site-footer {
-            position: fixed;
-            inset: auto 0 0;
-            z-index: 1100;
-            padding: 12px 7%;
-            background: #0f172a;
-            color: #94a3b8;
-            font-size: 0.72rem;
+            margin-top: 14px;
+            padding: 10px 0 0;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.68rem;
             text-align: center;
+            line-height: 1.4;
         }
 
         /* 1. TOP FLOATING APP BAR */
         .gmaps-floating-header {
-            position: absolute;
-            top: 98px;
+            position: fixed;
+            top: calc(var(--header-height) + 14px);
             left: 16px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-width: 680px;
-            width: calc(100% - 32px);
+            width: auto;
             pointer-events: none;
         }
 
         .search-pill-box {
             position: relative;
+            width: 46px;
+            height: 46px;
             background: var(--card-glass);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
-            border-radius: 28px;
-            padding: 6px 10px 6px 16px;
+            border-radius: 14px;
+            padding: 4px;
             display: flex;
             align-items: center;
             box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.22);
-            gap: 10px;
+            gap: 0;
             pointer-events: auto;
+            overflow: visible;
+            transition: width 0.2s ease, border-radius 0.2s ease;
+        }
+
+        .search-pill-box.is-open {
+            width: min(360px, calc(100vw - 24px));
+            padding: 5px 7px;
+            gap: 7px;
+            border-radius: 24px;
         }
 
         .btn-brand-menu {
@@ -159,7 +174,9 @@
         }
 
         .search-pill-box input {
+            display: none;
             flex: 1;
+            min-width: 0;
             border: none;
             outline: none;
             background: transparent;
@@ -167,6 +184,7 @@
             font-weight: 600;
             color: var(--text-dark);
         }
+        .search-pill-box.is-open input { display: block; }
 
         .search-pill-box input::placeholder {
             color: #94a3b8;
@@ -178,6 +196,7 @@
             border: none;
             width: 36px;
             height: 36px;
+            flex: 0 0 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -193,9 +212,9 @@
         }
 
         .category-chips-row {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px;
             padding: 0 4px;
             pointer-events: auto;
             order: 5;
@@ -204,10 +223,10 @@
         .map-location-suggestions {
             position: absolute;
             top: calc(100% + 8px);
-            left: 54px;
+            left: 0;
             z-index: 1050;
-            width: min(480px, calc(100vw - 96px));
-            max-height: min(360px, calc(100vh - 190px));
+            width: min(360px, calc(100vw - 24px));
+            max-height: min(360px, calc(100vh - 130px));
             overflow-y: auto;
             padding: 6px;
             border: 1px solid #dbe5ec;
@@ -238,6 +257,7 @@
         .map-location-empty { margin: 0; padding: 12px; color: #64748b; font-size: 0.78rem; }
 
         .map-filter-panel {
+            display: none;
             background: var(--card-glass);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -246,9 +266,22 @@
             padding: 10px;
             box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.2);
             pointer-events: auto;
-            display: flex;
             flex-direction: column;
-            width: 100%;
+            width: min(300px, calc(100vw - 24px));
+            max-height: min(60vh, 420px);
+            overflow-y: auto;
+        }
+        .map-filter-panel.is-open { display: flex; }
+        .filter-panel-close {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #475569;
+            cursor: pointer;
         }
 
         .location-filter-title {
@@ -278,11 +311,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 0;
+            padding: 7px 8px;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
+            background: #f8fafc;
             color: #1e293b;
             cursor: pointer;
-            font-size: 0.76rem;
+            font-size: 0.72rem;
             font-weight: 600;
         }
 
@@ -332,39 +367,40 @@
 
         /* 2. MAP CANVAS */
         #map {
-            position: absolute;
-            inset: 82px 0 90px;
-            z-index: 1;
+            position: fixed;
+            inset: 0;
+            z-index: 0;
         }
 
         /* 3. FLOATING CONTROLS */
         .gmaps-controls-right {
-            position: absolute;
-            top: 100px;
+            position: fixed;
+            top: calc(var(--header-height) + 14px);
             right: 16px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             gap: 12px;
             align-items: flex-end;
-            width: min(260px, calc(100vw - 32px));
+            width: auto;
+            max-width: calc(100vw - 32px);
         }
 
         .map-tool-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            width: 100%;
+            width: auto;
         }
 
         .map-tool-row .control-bubble {
             flex-direction: row;
-            flex: 1;
             min-width: 0;
         }
 
         .map-tool-row .tool-btn {
-            width: 34px;
+            width: 36px;
+            height: 36px;
         }
 
         .control-bubble {
@@ -460,20 +496,22 @@
 
         /* 4. BOTTOM DRAWER */
         .bottom-table-drawer {
-            position: absolute;
-            bottom: 40px;
-            left: 0;
-            right: 0;
+            position: fixed;
+            bottom: 12px;
+            left: 16px;
+            right: 16px;
             background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(20px);
-            border-top: 1.5px solid #cbd5e1;
-            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(203, 213, 225, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.2);
             z-index: 1001;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(calc(100% - 50px));
+            transform: translateY(calc(100% - var(--drawer-handle-height)));
             display: flex;
             flex-direction: column;
-            max-height: 52vh;
+            max-height: min(64vh, 600px);
+            max-height: min(64dvh, 600px);
         }
 
         .bottom-table-drawer.open {
@@ -481,7 +519,9 @@
         }
 
         .drawer-handle-bar {
-            height: 50px;
+            position: relative;
+            height: var(--drawer-handle-height);
+            flex: 0 0 var(--drawer-handle-height);
             padding: 0 24px;
             display: flex;
             align-items: center;
@@ -489,9 +529,11 @@
             cursor: pointer;
             background: #ffffff;
             border-bottom: 1px solid #f1f5f9;
+            border-radius: 16px 16px 0 0;
         }
 
         .drawer-grabber {
+            display: none;
             width: 44px;
             height: 5px;
             background: #cbd5e1;
@@ -581,7 +623,8 @@
 
         .drawer-table-content {
             flex: 1;
-            overflow-y: auto;
+            min-height: 0;
+            overflow: auto;
             padding: 12px 24px 20px 24px;
         }
 
@@ -609,6 +652,13 @@
         }
         .table-page-button:disabled { color: #a8b2bf; cursor: not-allowed; }
         .table-empty-row { padding: 28px !important; color: #64748b !important; text-align: center; }
+
+        .table-scroll-container {
+            max-width: 100%;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+        }
 
         .modern-table {
             width: 100%;
@@ -808,34 +858,14 @@
         .spatial-detail-description .spatial-detail-value { font-weight: 500; }
 
         @media (max-width: 900px) {
-            .site-header { flex-wrap: wrap; gap: 12px 20px; padding-inline: 5%; }
-            .nav-menu { order: 3; flex: 0 0 100%; justify-content: center; margin-left: 0; }
-        }
-
-        @media (max-width: 768px) {
-            .gmaps-floating-header { top: 146px; max-width: calc(100% - 32px); }
-            .site-header { padding: 10px 14px; gap: 10px 12px; }
+            :root {
+                --header-height: 60px;
+                --drawer-handle-height: 56px;
+            }
+            .site-header { flex-wrap: nowrap; gap: 10px 12px; padding: 6px 14px; }
             .brand-link { gap: 8px; }
-            .brand-logo-img { height: 40px; max-width: 64px; }
+            .brand-logo-img { height: 36px; max-width: 58px; }
             .brand-text-logo { font-size: 1.15rem; }
-            .nav-menu { gap: 6px 10px; }
-            .nav-menu a { padding: 7px 5px; font-size: 0.66rem; }
-            .site-footer { padding: 10px 4%; font-size: 0.65rem; }
-            .drawer-table-content { padding: 10px 12px 16px; }
-            .drawer-table-toolbar { flex-wrap: wrap; }
-            .table-search-field { flex-basis: 100%; }
-            .drawer-table-toolbar .table-filter-select { flex: 1 1 130px; max-width: none; }
-            .drawer-handle-bar { padding: 0 12px; gap: 8px; }
-            .drawer-title-group { gap: 6px; min-width: 0; }
-            .drawer-title-group h3 { font-size: 0.74rem; }
-            .counter-badge { padding: 3px 6px; font-size: 0.64rem; white-space: nowrap; }
-            .drawer-actions-right { gap: 5px; }
-            #kecamatanFilter { max-width: 112px; padding: 6px; font-size: 0.66rem; }
-            .modern-table { min-width: 780px; }
-        }
-
-        @media (max-width: 900px) and (orientation: portrait) {
-            .site-header { position: sticky; flex-wrap: nowrap; }
             .menu-toggle { display: grid; margin-left: auto; flex: 0 0 42px; }
             .nav-menu {
                 display: none;
@@ -855,7 +885,78 @@
             }
             .site-header.nav-open .nav-menu { display: flex; }
             .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
-            .gmaps-floating-header { top: 76px; }
+            .gmaps-floating-header {
+                top: calc(var(--header-height) + 10px);
+                left: 12px;
+                width: auto;
+            }
+            .search-pill-box.is-open { width: min(360px, calc(100vw - 24px)); }
+            .search-pill-box input { min-width: 0; font-size: 0.82rem; }
+            .search-action-btn { width: 34px; height: 34px; flex-basis: 34px; }
+            .gmaps-controls-right {
+                top: calc(var(--header-height) + 10px);
+                right: 12px;
+                width: auto;
+                max-width: calc(100vw - 24px);
+            }
+            .map-filter-panel { width: min(300px, calc(100vw - 24px)); max-height: min(56vh, 420px); max-height: min(56dvh, 420px); }
+            .bottom-table-drawer {
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                max-height: min(68vh, 620px);
+                max-height: min(68dvh, 620px);
+                border-radius: 14px;
+            }
+            .drawer-handle-bar {
+                display: grid;
+                grid-template-columns: 1fr;
+                place-items: center;
+                gap: 0;
+                padding: 11px 10px 4px;
+                border-radius: 14px 14px 0 0;
+            }
+            .drawer-grabber { display: block; top: 5px; width: 38px; height: 4px; }
+            .drawer-collapsed-hint { display: grid; place-items: center; color: #64748b; font-size: 0.9rem; }
+            .bottom-table-drawer:not(.open) .drawer-title-group,
+            .bottom-table-drawer:not(.open) .drawer-actions-right { display: none; }
+            .bottom-table-drawer.open .drawer-handle-bar {
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 6px;
+                place-items: center stretch;
+                padding: 13px 10px 3px;
+            }
+            .bottom-table-drawer.open .drawer-collapsed-hint { display: none; }
+            .drawer-title-group { min-width: 0; gap: 6px; }
+            .drawer-title-group h3 {
+                min-width: 0;
+                overflow: hidden;
+                font-size: 0.7rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .counter-badge { padding: 3px 6px; font-size: 0.62rem; white-space: nowrap; }
+            .drawer-actions-right { min-width: 0; gap: 5px; }
+            #kecamatanFilter { width: min(128px, 34vw); padding: 6px; font-size: 0.66rem; }
+            .btn-drawer-toggle { flex: 0 0 32px; }
+            .drawer-table-content { padding: 10px 12px 16px; }
+            .drawer-table-toolbar { flex-wrap: wrap; }
+            .table-search-field { flex: 1 1 100%; min-height: 40px; }
+            .drawer-table-toolbar .table-filter-select { flex: 1 1 130px; max-width: none; min-height: 40px; }
+            .modern-table { min-width: 720px; }
+            .modern-table th, .modern-table td { padding: 10px 11px; }
+            .table-pagination { flex-wrap: wrap; }
+        }
+
+        @media (max-width: 480px) {
+            .map-tool-row { gap: 4px; }
+            .map-tool-row .tool-btn { width: 31px; height: 32px; }
+            .control-bubble { padding: 3px; gap: 1px; }
+            .drawer-table-content { padding-inline: 8px; }
+            .drawer-handle-bar { padding-inline: 8px; }
+            .drawer-title-group h3 { font-size: 0.64rem; }
+            .counter-badge { font-size: 0.58rem; }
+            .table-pagination { font-size: 0.68rem; }
         }
     </style>
 </head>
@@ -910,17 +1011,11 @@
 
     <!-- TOP BAR -->
     <div class="gmaps-floating-header">
-        <div class="search-pill-box">
-            <a href="{{ url('/') }}" class="btn-brand-menu" title="Kembali ke Beranda">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+        <div class="search-pill-box" id="mapSearchBox">
+            <button class="search-action-btn" id="mapSearchToggle" type="button" onclick="toggleMapSearch()" title="Cari lokasi" aria-label="Buka pencarian lokasi" aria-expanded="false" aria-controls="liveSearchInput">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
             <input type="search" id="liveSearchInput" placeholder="Cari lokasi, mis. Kantor Desa..." oninput="handleSearch(this.value)" onkeydown="handleMapSearchKeydown(event)" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="map-location-suggestions" aria-label="Cari lokasi pada peta">
-            <button class="search-action-btn" title="Cari Lokasi" onclick="handleSearch(document.getElementById('liveSearchInput').value)">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <button class="search-action-btn" title="Buka Tabel Data" onclick="toggleDrawer()">
-                <i class="fa-solid fa-table-list"></i>
-            </button>
             <div class="map-location-suggestions" id="map-location-suggestions" role="listbox" hidden></div>
         </div>
 
@@ -955,12 +1050,19 @@
                     <i class="fa-solid fa-list-check"></i>
                 </button>
             </div>
+            <div class="control-bubble">
+                <button class="tool-btn" id="btnMapFilters" type="button" onclick="toggleMapFilters()" title="Buka filter peta" aria-label="Buka filter peta" aria-expanded="false" aria-controls="mapFilters">
+                    <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
 
-        <div class="map-filter-panel">
+        <div class="map-filter-panel" id="mapFilters">
             <div class="location-filter-title">
-                <span>Legenda</span>
-                <i class="fa-solid fa-map-pin" style="color: var(--primary);"></i>
+                <span>Filter &amp; Legenda Peta</span>
+                <button class="filter-panel-close" type="button" onclick="toggleMapFilters(false)" aria-label="Tutup filter peta" title="Tutup filter">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
             </div>
 
             <div class="location-section-title">Batas Wilayah</div>
@@ -1026,8 +1128,9 @@
 
     <!-- BOTTOM DRAWER TABLE -->
     <div class="bottom-table-drawer" id="bottomDrawer">
-        <div class="drawer-handle-bar" onclick="toggleDrawer()">
+        <div class="drawer-handle-bar" onclick="handleDrawerClick()">
             <div class="drawer-grabber"></div>
+            <span class="drawer-collapsed-hint" aria-hidden="true"><i class="fa-solid fa-table-list"></i></span>
             <div class="drawer-title-group">
                 <h3>
                     <i class="fa-solid fa-database" style="color: var(--primary);"></i>
@@ -1063,19 +1166,21 @@
                     <option value="kkdmp">KKDMP</option>
                 </select>
             </div>
-            <table class="modern-table">
-                <thead>
-                    <tr>
-                        <th>Kategori</th>
-                        <th>Nama Entitas / Fasilitas</th>
-                        <th>Kecamatan</th>
-                        <th>Desa / Dusun</th>
-                        <th>Status Layanan</th>
-                        <th>Aksi Navigasi</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
+            <div class="table-scroll-container" role="region" aria-label="Daftar data spasial" tabindex="0">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th>Kategori</th>
+                            <th>Nama Entitas / Fasilitas</th>
+                            <th>Kecamatan</th>
+                            <th>Desa / Dusun</th>
+                            <th>Status Layanan</th>
+                            <th>Aksi Navigasi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
             <div class="table-pagination" id="tablePagination">
                 <span id="tablePageInfo">Memuat daftar...</span>
                 <div class="table-pagination-actions">
@@ -1084,22 +1189,36 @@
                     <button type="button" class="table-page-button" id="tableNext" aria-label="Halaman berikutnya" onclick="changeTablePage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
+            <footer class="site-footer">
+                &copy; 2026 Pemerintah Kabupaten Tuban &bull; Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.
+            </footer>
         </div>
     </div>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 Pemerintah Kabupaten Tuban • Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.</p>
-    </footer>
 
     <script>
         // Inisialisasi Peta Tuban
         const tubanCenter = [-6.9150, 111.9500];
+        let tubanBounds = null;
         const map = L.map('map', {
             zoomControl: false,
-            minZoom: 10,
+            minZoom: 6,
             maxZoom: 19
-        }).setView(tubanCenter, 11);
+        }).setView(tubanCenter, 8);
         L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+        function fitTubanBounds(animate = false) {
+            if (!tubanBounds || !tubanBounds.isValid()) {
+                map.setView(tubanCenter, 8);
+                return;
+            }
+
+            map.fitBounds(tubanBounds, {
+                animate,
+                maxZoom: 9,
+                paddingTopLeft: [36, 168],
+                paddingBottomRight: [36, 136]
+            });
+        }
 
         // Tile Base Layer
         const tileOsm  = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 });
@@ -1126,7 +1245,7 @@
         }
 
         function resetViewTuban() {
-            map.flyTo(tubanCenter, 11, { duration: 1.2 });
+            fitTubanBounds(true);
         }
 
         function geoLocateMe() {
@@ -1191,7 +1310,7 @@
         fetch("{{ asset('geojson/kabupaten.geojson') }}")
             .then(res => res.json())
             .then(data => {
-                L.geoJSON(data, {
+                const districtLayer = L.geoJSON(data, {
                     style: {
                         color: '#dc2626',
                         weight: 3,
@@ -1203,7 +1322,13 @@
                         const nama = feature.properties?.nm_dati2 || 'Kabupaten Tuban';
                         layer.bindPopup(`<b>Wilayah:</b> ${nama}`);
                     }
-                }).addTo(layers.kabupaten);
+                });
+                districtLayer.addTo(layers.kabupaten);
+                tubanBounds = districtLayer.getBounds();
+                window.requestAnimationFrame(() => {
+                    map.invalidateSize({ pan: false });
+                    fitTubanBounds();
+                });
             }).catch(e => console.error("Gagal muat kabupaten.geojson:", e));
 
         fetch("{{ asset('geojson/kecamatan.geojson') }}")
@@ -1770,6 +1895,43 @@
             if (drawer.classList.contains('open')) toggleDrawer();
         }
 
+        function toggleMapFilters(forceOpen) {
+            const panel = document.getElementById('mapFilters');
+            const button = document.getElementById('btnMapFilters');
+            const isOpen = typeof forceOpen === 'boolean'
+                ? forceOpen
+                : !panel.classList.contains('is-open');
+
+            panel.classList.toggle('is-open', isOpen);
+            button.classList.toggle('active', isOpen);
+            button.setAttribute('aria-expanded', String(isOpen));
+            button.setAttribute('aria-label', isOpen ? 'Tutup filter peta' : 'Buka filter peta');
+            button.title = isOpen ? 'Tutup filter peta' : 'Buka filter peta';
+        }
+
+        function toggleMapSearch(forceOpen) {
+            const searchBox = document.getElementById('mapSearchBox');
+            const searchButton = document.getElementById('mapSearchToggle');
+            const input = document.getElementById('liveSearchInput');
+            const isOpen = typeof forceOpen === 'boolean'
+                ? forceOpen
+                : !searchBox.classList.contains('is-open');
+
+            searchBox.classList.toggle('is-open', isOpen);
+            searchButton.setAttribute('aria-expanded', String(isOpen));
+            searchButton.setAttribute('aria-label', isOpen ? 'Tutup pencarian lokasi' : 'Buka pencarian lokasi');
+            searchButton.title = isOpen ? 'Tutup pencarian' : 'Cari lokasi';
+            searchButton.querySelector('i').className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-magnifying-glass'}`;
+
+            if (isOpen) {
+                input.focus();
+            } else {
+                document.getElementById('map-location-suggestions').hidden = true;
+                input.setAttribute('aria-expanded', 'false');
+                input.removeAttribute('aria-activedescendant');
+            }
+        }
+
         function toggleDrawer() {
             const drawer = document.getElementById('bottomDrawer');
             const chevron = document.getElementById('drawerChevron');
@@ -1781,6 +1943,35 @@
                 chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
             }
         }
+
+        let drawerSwipeStartY = null;
+        let suppressDrawerClick = false;
+
+        function handleDrawerClick() {
+            if (suppressDrawerClick) {
+                suppressDrawerClick = false;
+                return;
+            }
+            toggleDrawer();
+        }
+
+        const drawerHandle = document.querySelector('.drawer-handle-bar');
+        drawerHandle.addEventListener('touchstart', event => {
+            drawerSwipeStartY = event.changedTouches[0].clientY;
+        }, { passive: true });
+        drawerHandle.addEventListener('touchend', event => {
+            if (drawerSwipeStartY === null) return;
+
+            const swipeDistance = drawerSwipeStartY - event.changedTouches[0].clientY;
+            drawerSwipeStartY = null;
+            if (Math.abs(swipeDistance) < 35) return;
+
+            const drawer = document.getElementById('bottomDrawer');
+            const shouldOpen = swipeDistance > 0;
+            if (drawer.classList.contains('open') !== shouldOpen) toggleDrawer();
+            suppressDrawerClick = true;
+            window.setTimeout(() => { suppressDrawerClick = false; }, 300);
+        }, { passive: true });
 
         // Deteksi parameter URL dari Beranda (?filter=wifi, dsb.)
         document.addEventListener("DOMContentLoaded", async function () {
@@ -1797,6 +1988,7 @@
             });
 
             if (search) {
+                toggleMapSearch(true);
                 document.getElementById('liveSearchInput').value = search;
                 handleSearch(search);
             }
@@ -1817,6 +2009,7 @@
                     });
                     targetBtn.checked = true;
                     currentFilterTypes = [filter];
+                    toggleMapFilters(true);
                 }
             }
 

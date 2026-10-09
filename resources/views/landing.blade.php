@@ -621,6 +621,22 @@
             font-weight: 900;
             text-align: center;
         }
+        .stats-heading::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            margin: 12px auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #0284c7, #10b981);
+        }
+        .stats-subheading {
+            margin: -12px auto 28px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            text-align: center;
+        }
 
         .stats-carousel {
             position: relative;
@@ -1366,13 +1382,13 @@
             <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
-            <li><a href="#statistik-wilayah">DATA WILAYAH</a></li>
+            <li><a href="#statistik-wilayah">STATISTIK</a></li>
             <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
 
         <form class="search-pill-nav global-search-form" action="<?= url('/search'); ?>" method="GET" role="search" data-suggestions-url="<?= route('search.suggestions'); ?>" autocomplete="off">
             <div class="global-search-control">
-                <input type="search" name="q" placeholder="Cari informasi..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
+                <input type="search" name="q" placeholder="Cari..." aria-label="Cari informasi dan data" data-global-search-input role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="landing-search-suggestions">
                 <div class="global-search-suggestions" id="landing-search-suggestions" role="listbox" hidden></div>
             </div>
             <button type="submit" aria-label="Cari"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -1612,6 +1628,7 @@
 
     <!-- 5. SEKSI STATISTIK TEMPAT DARI MASTER -->
     <section id="statistik-wilayah" class="section-stats-circle">
+        <h2 class="stats-heading">ANGKA STATISTIK</h2>
         <div class="stats-carousel">
             <button type="button" class="stats-carousel-arrow stats-carousel-arrow-prev" id="stats-carousel-prev" aria-label="Lihat statistik sebelumnya" aria-controls="place-statistics-grid" title="Lihat statistik sebelumnya" hidden>
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
