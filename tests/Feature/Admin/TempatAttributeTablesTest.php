@@ -83,6 +83,7 @@ class TempatAttributeTablesTest extends TestCase
         $this->get(route('data.spasial'))
             ->assertOk()
             ->assertSee('chip-desa_wisata')
+            ->assertDontSee('id="chip-desa_wisata" checked', false)
             ->assertSee('const customSpatialSources', false)
             ->assertSee('customSpatialMeta[type] ? customFields : []', false);
     }

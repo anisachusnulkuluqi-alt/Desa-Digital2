@@ -1365,8 +1365,8 @@
         <ul class="nav-menu" id="primary-navigation">
             <li><a href="#hero-banner" class="active">BERANDA</a></li>
             <li><a href="#tentang-kami">TENTANG KAMI</a></li>
-            <li><a href="#statistik-wilayah">DATA WILAYAH</a></li>
             <li><a href="#layanan-digital">LAYANAN</a></li>
+            <li><a href="#statistik-wilayah">DATA WILAYAH</a></li>
             <li><a href="#hubungi-kami">HUBUNGI KAMI</a></li>
         </ul>
 
@@ -2059,7 +2059,8 @@
         const sectionLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
         const linkedSections = sectionLinks
             .map(link => ({ link, section: document.querySelector(link.hash) }))
-            .filter(entry => entry.section);
+            .filter(entry => entry.section)
+            .sort((a, b) => a.section.compareDocumentPosition(b.section) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
         const updateActiveSection = () => {
             const focusPoint = window.scrollY + document.querySelector('.site-header').offsetHeight + Math.max(120, window.innerHeight * 0.3);
             const activeEntry = linkedSections

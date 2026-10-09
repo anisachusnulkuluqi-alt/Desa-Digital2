@@ -14,6 +14,11 @@ class SpatialLocationTest extends TestCase
     {
         $this->get(route('data.spasial'))
             ->assertOk()
+            ->assertSee('id="layerKabupaten" checked', false)
+            ->assertDontSee('id="layerKecamatan" checked', false)
+            ->assertDontSee('id="layerDesa" checked', false)
+            ->assertSee("document.getElementById('layerKabupaten').checked = true;", false)
+            ->assertSee("document.querySelectorAll('.category-chips-row input[type=\"checkbox\"]').forEach(input => {\n                input.checked = false;", false)
             ->assertSee(route('data.spasial.locations', ['kategori' => 'wisata']))
             ->assertSee('districtColors')
             ->assertSee('window.setInterval(refreshSpatialData, 30000)', false)

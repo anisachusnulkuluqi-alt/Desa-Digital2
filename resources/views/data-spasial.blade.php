@@ -1789,6 +1789,13 @@
             const search = urlParams.get('search');
             const layer = urlParams.get('layer');
 
+            document.getElementById('layerKabupaten').checked = true;
+            document.getElementById('layerKecamatan').checked = false;
+            document.getElementById('layerDesa').checked = false;
+            document.querySelectorAll('.category-chips-row input[type="checkbox"]').forEach(input => {
+                input.checked = false;
+            });
+
             if (search) {
                 document.getElementById('liveSearchInput').value = search;
                 handleSearch(search);
@@ -1811,12 +1818,6 @@
                     targetBtn.checked = true;
                     currentFilterTypes = [filter];
                 }
-            } else {
-                const categoryCheckboxes = document.querySelectorAll('.category-chips-row input[type="checkbox"]');
-                categoryCheckboxes.forEach(input => {
-                    input.checked = true;
-                    currentFilterTypes.push(input.id.replace('chip-', ''));
-                });
             }
 
             try {
