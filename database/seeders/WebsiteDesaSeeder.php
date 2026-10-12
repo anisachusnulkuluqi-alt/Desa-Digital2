@@ -9,9 +9,18 @@ use RuntimeException;
 
 class WebsiteDesaSeeder extends Seeder
 {
+    private const FIELDS = [
+        'website' => 255,
+        'youtube' => 255,
+        'instagram' => 255,
+        'facebook' => 255,
+        'tiktok' => 255,
+        'whatsapp' => 50,
+    ];
+
     public function run(): void
     {
-        $path = public_path('json/data-desa.json');
+        $path = database_path('seeders/data/json/data-desa.json');
         if (!is_file($path) || !is_readable($path)) {
             throw new RuntimeException('File data website desa tidak ditemukan atau tidak dapat dibaca.');
         }
@@ -26,43 +35,66 @@ class WebsiteDesaSeeder extends Seeder
             throw new RuntimeException('Format file data website desa tidak valid.');
         }
 
-        $websites = [];
+        $villageData = [];
         foreach ($records as $index => $record) {
             if (!is_array($record)) {
                 throw new RuntimeException('Data desa pada baris '.($index + 1).' tidak valid.');
             }
 
             $kodeDesa = trim((string) ($record['kode_desa'] ?? ''));
-            $website = trim((string) ($record['website'] ?? ''));
-            if ($kodeDesa === '' || $website === '') {
+            if ($kodeDesa === '') {
                 continue;
             }
 
-            if (isset($websites[$kodeDesa])) {
-                throw new RuntimeException("Kode desa duplikat pada file data website: {$kodeDesa}.");
+            $data = [];
+            foreach (self::FIELDS as $field => $maxLength) {
+                $value = $record[$field] ?? '';
+                if (!is_scalar($value)) {
+                    throw new RuntimeException("Nilai {$field} tidak valid pada kode desa {$kodeDesa}.");
+                }
+
+                $value = trim((string) $value);
+                if ($value === '') {
+                    continue;
+                }
+
+                if ($field === 'website' && !preg_match('/^https?:\/\//i', $value)) {
+                    $value = 'https://'.$value;
+                }
+
+                if (strlen($value) > $maxLength) {
+                    throw new RuntimeException("Nilai {$field} terlalu panjang untuk kode desa {$kodeDesa}.");
+                }
+
+                $data[$field] = $value;
             }
 
-            $website = preg_match('/^https?:\/\//i', $website) ? $website : 'https://'.$website;
-            if (strlen($website) > 255) {
-                throw new RuntimeException("Alamat website terlalu panjang untuk kode desa {$kodeDesa}.");
+            if ($data === []) {
+                continue;
             }
 
-            $websites[$kodeDesa] = $website;
+            if (isset($villageData[$kodeDesa])) {
+                throw new RuntimeException("Kode desa duplikat pada file data website desa: {$kodeDesa}.");
+            }
+
+            $villageData[$kodeDesa] = $data;
         }
 
         $updatedCount = 0;
-        DB::transaction(function () use ($websites, &$updatedCount): void {
-            foreach ($websites as $kodeDesa => $website) {
-                $updatedCount += DB::table('desa')
-                    ->where('kode_desa', $kodeDesa)
-                    ->whereRaw("TRIM(COALESCE(website, '')) = ''")
-                    ->update([
-                        'website' => $website,
-                        'updated_at' => now(),
-                    ]);
+        DB::transaction(function () use ($villageData, &$updatedCount): void {
+            foreach ($villageData as $kodeDesa => $fields) {
+                foreach ($fields as $field => $value) {
+                    $updatedCount += DB::table('desa')
+                        ->where('kode_desa', $kodeDesa)
+                        ->whereRaw("TRIM(COALESCE({$field}, '')) = ''")
+                        ->update([
+                            $field => $value,
+                            'updated_at' => now(),
+                        ]);
+                }
             }
         });
 
-        $this->command?->info("Website desa yang berhasil diisi: {$updatedCount}.");
+        $this->command?->info("Data website dan sosial media desa yang berhasil diisi: {$updatedCount}.");
     }
 }

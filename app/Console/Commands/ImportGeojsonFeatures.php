@@ -10,13 +10,13 @@ use Throwable;
 
 class ImportGeojsonFeatures extends Command
 {
-    protected $signature = 'geojson:import {--file= : Import one file from public/geojson}';
+    protected $signature = 'geojson:import {--file= : Import one file from database/seeders/data/geojson}';
 
-    protected $description = 'Import GeoJSON features from public/geojson into the database';
+    protected $description = 'Import GeoJSON features from database/seeders/data/geojson into the database';
 
     public function handle(): int
     {
-        $directory = public_path('geojson');
+        $directory = database_path('seeders/data/geojson');
         $requestedFile = $this->option('file');
 
         if ($requestedFile) {
@@ -31,7 +31,7 @@ class ImportGeojsonFeatures extends Command
         }
 
         if ($files === []) {
-            $this->error('Tidak ada file GeoJSON yang ditemukan di public/geojson.');
+            $this->error('Tidak ada file GeoJSON yang ditemukan di database/seeders/data/geojson.');
 
             return self::FAILURE;
         }

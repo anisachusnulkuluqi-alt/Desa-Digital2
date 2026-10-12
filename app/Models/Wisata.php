@@ -127,8 +127,7 @@ class Wisata extends Model
     {
         $candidatePaths = array_filter([
             $filePath,
-            base_path('wisata.json'),
-            public_path('json/wisata.json'),
+            database_path('seeders/data/json/wisata.json'),
         ]);
 
         $resolvedPath = null;

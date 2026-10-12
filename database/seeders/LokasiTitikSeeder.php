@@ -21,7 +21,7 @@ class LokasiTitikSeeder extends Seeder
     public function run(): void
     {
         foreach (self::LAYERS as $fileName => $layer) {
-            $filePath = public_path("geojson/{$fileName}");
+            $filePath = database_path("seeders/data/geojson/{$fileName}");
             if (!is_file($filePath)) {
                 throw new RuntimeException("File GeoJSON tidak ditemukan: {$fileName}");
             }

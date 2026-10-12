@@ -16,9 +16,7 @@ class WisataSeeder extends Seeder
     {
         // 1. Lokasi file data sumber
         $candidatePaths = [
-            database_path('seeders/wisata.json'),
-            base_path('wisata.json'),
-            public_path('json/wisata.json'),
+            database_path('seeders/data/json/wisata.json'),
         ];
 
         $jsonPath = null;
