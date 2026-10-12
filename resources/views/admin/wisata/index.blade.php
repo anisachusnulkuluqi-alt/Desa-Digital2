@@ -325,7 +325,7 @@
                                 $reservasi = $props['reservasi'] ?? $props['Reservasi'] ?? $props['kontak'] ?? '';
                                 $desa = $props['desa'] ?? $props['Desa'] ?? $props['nama_desa'] ?? '-';
                                 $alamat = $wisata->alamat ?: ($props['alamat'] ?? $props['Address'] ?? '');
-                                $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? '';
+                                $foto = $wisata->foto_url ?? ($props['foto'] ?? $props['Foto'] ?? $props['image'] ?? '');
                             @endphp
                             <tr data-id="{{ $wisata->id }}">
                                 <td class="admin-row-number">{{ $wisatas->firstItem() + $index }}</td>
@@ -601,7 +601,11 @@
 
             const fotoContainer = document.getElementById('detailFotoContainer');
             if (foto && foto.trim() !== '') {
-                fotoContainer.innerHTML = `<img src="${foto}" alt="${nama}" onerror="this.parentElement.innerHTML='<div class=\\'detail-foto-placeholder\\'><i class=\\'bi bi-image\\'></i><p>Gagal memuat foto</p></div>'">`;
+                let fotoSrc = foto.trim();
+                if (!fotoSrc.startsWith('http://') && !fotoSrc.startsWith('https://') && !fotoSrc.startsWith('/')) {
+                    fotoSrc = '/storage/wisata/' + fotoSrc;
+                }
+                fotoContainer.innerHTML = `<img src="${fotoSrc}" alt="${nama}" onerror="this.parentElement.innerHTML='<div class=\\'detail-foto-placeholder\\'><i class=\\'bi bi-image\\'></i><p>Foto belum tersedia</p></div>'">`;
             } else {
                 fotoContainer.innerHTML = '<div class="detail-foto-placeholder"><i class="bi bi-image"></i><p>Tidak ada foto</p></div>';
             }

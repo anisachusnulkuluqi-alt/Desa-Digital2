@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\KecamatanController as AdminKecamatanController;
 use App\Http\Controllers\Admin\LokasiTitikController;
 use App\Http\Controllers\Admin\WisataController;
 use App\Http\Controllers\Admin\TempatController;
+use App\Http\Controllers\Admin\SurveiKepuasanController;
 use App\Http\Controllers\SpatialLocationController;
 use App\Services\DashboardStatistics;
 
@@ -41,19 +42,48 @@ Route::get('/website-visits/stats', function (DashboardStatistics $statistics) {
 Route::post('/website-feedback', function (Request $request) {
     $validated = $request->validate([
         'rating' => 'required|integer|between:1,5',
+        'nama' => 'nullable|string|max:100',
+        'pekerjaan' => 'nullable|string|max:100',
         'message' => 'nullable|string|max:500',
     ]);
 
-    \Illuminate\Support\Facades\DB::table('website_feedback')->insert([
+    \App\Models\SurveiKepuasan::create([
         'visitor_hash' => hash('sha256', $request->cookie('website_visitor_id') ?: Str::random(64)),
         'rating' => $validated['rating'],
+        'nama' => $validated['nama'] ?? null,
+        'pekerjaan' => $validated['pekerjaan'] ?? null,
         'message' => $validated['message'] ?? null,
-        'created_at' => now(),
-        'updated_at' => now(),
     ]);
 
-    return response()->json(['message' => 'Terima kasih, masukan Anda sudah tersimpan.'], 201);
-})->middleware('throttle:6,1')->name('website-feedback.store');
+    return response()->json(['message' => 'Terima kasih, masukan survei kepuasan Anda sudah tersimpan.'], 201);
+})->middleware('throttle:10,1')->name('website-feedback.store');
+
+Route::get('/survei-kepuasan', function () {
+    return view('survei');
+})->name('survei.public');
+
+Route::post('/survei-kepuasan', function (Request $request) {
+    $validated = $request->validate([
+        'rating' => 'required|integer|between:1,5',
+        'nama' => 'nullable|string|max:100',
+        'pekerjaan' => 'nullable|string|max:100',
+        'message' => 'nullable|string|max:500',
+    ]);
+
+    \App\Models\SurveiKepuasan::create([
+        'visitor_hash' => hash('sha256', $request->cookie('website_visitor_id') ?: Str::random(64)),
+        'rating' => $validated['rating'],
+        'nama' => $validated['nama'] ?? null,
+        'pekerjaan' => $validated['pekerjaan'] ?? null,
+        'message' => $validated['message'] ?? null,
+    ]);
+
+    if ($request->wantsJson()) {
+        return response()->json(['message' => 'Terima kasih atas partisipasi Anda dalam survei kepuasan masyarakat!'], 201);
+    }
+
+    return back()->with('success', 'Terima kasih! Penilaian dan masukan Anda pada Survei Kepuasan Masyarakat telah berhasil dikirim.');
+})->middleware('throttle:10,1')->name('survei.submit');
 
 Route::get('/search/suggestions', [HomeController::class, 'suggestions'])->name('search.suggestions');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
@@ -249,6 +279,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // ==========================================
         Route::get('/wisata', [WisataController::class, 'index'])->name('wisata.index');
         Route::post('/wisata', [WisataController::class, 'store'])->name('wisata.store');
+        Route::post('/wisata/import-json', [WisataController::class, 'importJson'])->name('wisata.import-json');
         Route::put('/wisata/{wisata}', [WisataController::class, 'update'])->name('wisata.update');
         Route::delete('/wisata/{wisata}', [WisataController::class, 'destroy'])->name('wisata.destroy');
         
@@ -257,7 +288,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // ==========================================
         Route::get('/tempat', [TempatController::class, 'index'])->name('tempat.index');
         Route::get('/tempat/kategori-json/{kategori}', [TempatController::class, 'getKategoriFieldsJson'])->name('tempat.kategori.json');
+        Route::get('/tempat/kategori-fields-json/{kategori}', [TempatController::class, 'getKategoriFieldsJson'])->name('tempat.kategori.fields.json');
         Route::get('/tempat/kategori/{kategori}', [TempatController::class, 'showKategoriDetail'])->name('tempat.kategori.detail');
+        Route::get('/tempat/kategori-view/{kategori}', [TempatController::class, 'showKategoriDetail'])->name('tempat.kategori');
         Route::post('/tempat/data', [TempatController::class, 'storeData'])->name('tempat.data.store');
         Route::post('/tempat', [TempatController::class, 'store'])->name('tempat.store');
         Route::put('/tempat/{id}', [TempatController::class, 'update'])->name('tempat.update');
@@ -312,6 +345,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/e-pbb', function () { 
             return view('admin.epbb.index'); 
         })->name('e-pbb.index');
+
+        // Survei Kepuasan (Admin)
+        Route::get('/survei-kepuasan', [SurveiKepuasanController::class, 'index'])->name('survei.index');
+        Route::delete('/survei-kepuasan/{id}', [SurveiKepuasanController::class, 'destroy'])->whereNumber('id')->name('survei.destroy');
+        Route::get('/survei-kepuasan/export', [SurveiKepuasanController::class, 'exportCsv'])->name('survei.export');
 
     }); // ← AKHIRI prefix('admin') DI SINI
 

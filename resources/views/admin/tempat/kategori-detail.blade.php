@@ -381,7 +381,7 @@
                 html += '<div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px; padding: 16px; margin-top: 16px;">';
                 html += '<i class="bi bi-exclamation-triangle" style="color: #d97706; font-size: 18px;"></i>';
                 html += '<strong style="color: #92400e; display: block; margin-bottom: 4px;">Belum ada field</strong>';
-                html += '<span style="color: #78350f; font-size: 13px;">Silakan tambahkan field melalui menu Tempat (Master).</span>';
+                html += '<span style="color: #78350f; font-size: 13px;">Silakan tambahkan field melalui menu Spasial (Master).</span>';
                 html += '</div>';
             }
             

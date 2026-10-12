@@ -24,12 +24,35 @@ class WisataController extends Controller
         $totalDenganKoordinat = Wisata::whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->count();
-        
+
         $totalDenganFoto = Wisata::whereNotNull('properties')
-            ->where('properties', 'like', '%"foto":"http%"')
+            ->where(function ($q) {
+                $q->where('properties', 'like', '%"foto":"http%')
+                    ->orWhere('properties', 'like', '%.jpg%')
+                    ->orWhere('properties', 'like', '%.jpeg%')
+                    ->orWhere('properties', 'like', '%.png%')
+                    ->orWhere('properties', 'like', '%.webp%');
+            })
             ->count();
 
         return view('admin.wisata.index', compact('wisatas', 'totalDenganKoordinat', 'totalDenganFoto'));
+    }
+
+    public function importJson(Request $request)
+    {
+        try {
+            $count = Wisata::importFromJson();
+            return response()->json([
+                'success' => true,
+                'message' => "Berhasil menyinkronkan {$count} data wisata dari wisata.json!",
+                'count' => $count,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menyinkronkan data wisata: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function store(Request $request)

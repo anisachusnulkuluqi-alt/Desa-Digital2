@@ -133,24 +133,32 @@
             </li>
         @endforeach
 
-        {{-- TEMPAT (MASTER) --}}
+        {{-- SPASIAL (MASTER) --}}
         <li>
             <a href="{{ route('admin.tempat.index') }}" class="{{ request()->routeIs('admin.tempat.index') ? 'active' : '' }}">
                 <i class="bi bi-pin-map-fill"></i>
-                <span>Tempat (Master)</span>
+                <span>Spasial (Master)</span>
             </a>
         </li>
 
-        {{-- PEMBATAS SEBELUM KONTRIBUTOR --}}
+        {{-- PEMBATAS SEBELUM SURVEI & USER --}}
         <li class="sidebar-menu-divider" role="separator"></li>
 
+        {{-- SURVEI KEPUASAN (DIBAWAH GARIS, DIATAS USER) --}}
+        <li>
+            <a href="{{ route('admin.survei.index') }}" class="{{ request()->routeIs('admin.survei.*') ? 'active' : '' }}">
+                <i class="bi bi-chat-heart-fill"></i>
+                <span>Survei Kepuasan</span>
+            </a>
+        </li>
+
         {{-- USER (PALING BAWAH) --}}
-<li>
-    <a href="{{ route('admin.kontributor.index') }}" class="{{ request()->routeIs('admin.kontributor.*') ? 'active' : '' }}">
-        <i class="bi bi-person-fill"></i>
-        <span>User</span>
-    </a>
-</li>
+        <li>
+            <a href="{{ route('admin.kontributor.index') }}" class="{{ request()->routeIs('admin.kontributor.*') ? 'active' : '' }}">
+                <i class="bi bi-person-fill"></i>
+                <span>User</span>
+            </a>
+        </li>
     </ul>
 
     <button

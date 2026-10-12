@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Tempat - Portal Desa Digital</title>
+    <title>Spasial (Master) - Portal Desa Digital</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -99,16 +99,16 @@
             <div class="breadcrumb-simple">
                 <a href="{{ route('dashboard') }}">Admin</a>
                 <span class="separator">/</span>
-                <span class="active">Tempat</span>
+                <span class="active">Spasial (Master)</span>
             </div>
             @include('admin.partials.header-actions')
         </header>
 
         <div class="page-body">
             <div class="page-header">
-                <div class="page-label">MANAJEMEN ATRIBUT/KATEGORI</div>
-                <h1 class="page-title">Tempat</h1>
-                <p class="page-subtitle">Kelola kategori dan field kustom untuk pengelompokan data tempat.</p>
+                <div class="page-label">MANAJEMEN SPASIAL / ATRIBUT</div>
+                <h1 class="page-title">Spasial (Master)</h1>
+                <p class="page-subtitle">Kelola kategori dan field kustom untuk pengelompokan data spasial desa.</p>
             </div>
 
             @if(session('success'))
@@ -323,6 +323,11 @@
                 e.preventDefault();
                 submitField();
             });
+
+            const kategoriToOpen = '{{ request('open_kategori') }}';
+            if (kategoriToOpen) {
+                openKategoriPopup(kategoriToOpen);
+            }
         });
 
         function openAtributModal() {

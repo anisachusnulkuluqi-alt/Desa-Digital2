@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1175,8 +1175,9 @@
         .feedback-rating-option { display: grid; place-items: center; gap: 4px; min-width: 42px; padding: 7px 5px; border: 1px solid transparent; border-radius: 8px; background: #f8fafc; color: #64748b; cursor: pointer; }
         .feedback-rating-option i { font-size: 1.1rem; }
         .feedback-rating-option span { font-size: 0.62rem; }
-        .feedback-rating-option:hover, .feedback-rating-option[aria-pressed="true"] { border-color: #fda4af; background: #fff1f2; color: #be123c; }
-        .feedback-message { width: 100%; min-height: 72px; resize: vertical; padding: 9px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; }
+        .feedback-name-input { width: 100%; margin-bottom: 8px; padding: 7px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; outline: none; box-sizing: border-box; }
+        .feedback-name-input:focus { border-color: #fda4af; }
+        .feedback-message { width: 100%; min-height: 72px; resize: vertical; padding: 9px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; box-sizing: border-box; }
         .feedback-submit { width: 100%; margin-top: 9px; padding: 9px 12px; border: 0; border-radius: 7px; background: #be123c; color: #ffffff; font: inherit; font-size: 0.75rem; font-weight: 800; cursor: pointer; }
         .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
         .feedback-status { min-height: 1.2em; margin: 8px 0 0; color: #047857; font-size: 0.7rem; line-height: 1.4; }
@@ -1732,17 +1733,17 @@
 
     <!-- 7. FOOTER -->
     <footer>
-        <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban</p>
+        <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban &bull; <a href="{{ route('survei.public') }}" style="color: inherit; text-decoration: underline; margin-left: 6px;">Survei Kepuasan Masyarakat</a></p>
     </footer>
 
     <div class="floating-tools" aria-label="Menu akses cepat">
         <div class="website-tool-control">
-            <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Beri penilaian untuk website" aria-expanded="false" aria-controls="feedback-panel" title="Beri penilaian untuk website">
+            <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Survei kepuasan website" aria-expanded="false" aria-controls="feedback-panel" title="Survei kepuasan website">
                 <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
             </button>
-            <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian kepuasan website" hidden>
-                <h2 class="website-tool-heading">Bagaimana pengalaman Anda?</h2>
-                <p class="website-tool-caption">Penilaian Anda membantu kami meningkatkan layanan website.</p>
+            <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian survei kepuasan website" hidden>
+                <h2 class="website-tool-heading">Survei Kepuasan Website</h2>
+                <p class="website-tool-caption">Penilaian Anda membantu kami meningkatkan layanan portal Desa Digital.</p>
                 <div class="feedback-rating-row" role="group" aria-label="Pilih nilai kepuasan">
                     <button type="button" class="feedback-rating-option" data-rating="1" aria-label="Sangat kurang" aria-pressed="false"><i class="fa-solid fa-face-frown" aria-hidden="true"></i><span>Kurang</span></button>
                     <button type="button" class="feedback-rating-option" data-rating="2" aria-label="Kurang" aria-pressed="false"><i class="fa-solid fa-face-meh" aria-hidden="true"></i><span>Cukup</span></button>
@@ -1750,8 +1751,12 @@
                     <button type="button" class="feedback-rating-option" data-rating="4" aria-label="Puas" aria-pressed="false"><i class="fa-solid fa-face-laugh" aria-hidden="true"></i><span>Puas</span></button>
                     <button type="button" class="feedback-rating-option" data-rating="5" aria-label="Sangat puas" aria-pressed="false"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i><span>Hebat</span></button>
                 </div>
-                <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Saran singkat (opsional)" aria-label="Saran singkat"></textarea>
-                <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim penilaian</button>
+                <input type="text" class="feedback-name-input" id="feedback-name" maxlength="100" placeholder="Nama Anda (opsional)" aria-label="Nama Anda">
+                <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Saran & masukan (opsional)" aria-label="Saran singkat"></textarea>
+                <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim Survei</button>
+                <div style="text-align: center; margin-top: 8px;">
+                    <a href="{{ route('survei.public') }}" style="font-size: 0.68rem; color: #64748b; text-decoration: underline;">Formulir survei lengkap &raquo;</a>
+                </div>
                 <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
             </section>
         </div>
@@ -2101,6 +2106,7 @@
 
         const feedbackButton = document.getElementById('feedback-toggle');
         const feedbackPanel = document.getElementById('feedback-panel');
+        const feedbackName = document.getElementById('feedback-name');
         const feedbackMessage = document.getElementById('feedback-message');
         const feedbackSubmitButton = document.getElementById('feedback-submit');
         const feedbackStatus = document.getElementById('feedback-status');
@@ -2187,6 +2193,7 @@
                     },
                     body: JSON.stringify({
                         rating: selectedFeedbackRating,
+                        nama: feedbackName ? feedbackName.value.trim() : null,
                         message: feedbackMessage.value.trim()
                     })
                 });
@@ -2194,6 +2201,7 @@
                 if (!response.ok) throw new Error(result.message || 'Penilaian gagal dikirim.');
 
                 feedbackStatus.textContent = result.message;
+                if (feedbackName) feedbackName.value = '';
                 feedbackMessage.value = '';
                 selectedFeedbackRating = null;
                 feedbackRatingOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));

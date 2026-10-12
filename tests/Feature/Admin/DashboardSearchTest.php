@@ -65,6 +65,24 @@ class DashboardSearchTest extends TestCase
                 'url' => route('admin.tempat.index'),
             ]);
 
+        $this->actingAs($admin)
+            ->getJson(route('admin.search.suggestions', ['q' => 'Spasial']))
+            ->assertOk()
+            ->assertJsonFragment([
+                'title' => 'Spasial (Master)',
+                'type' => 'Menu',
+                'url' => route('admin.tempat.index'),
+            ]);
+
+        $this->actingAs($admin)
+            ->getJson(route('admin.search.suggestions', ['q' => 'Survei']))
+            ->assertOk()
+            ->assertJsonFragment([
+                'title' => 'Survei Kepuasan',
+                'type' => 'Menu',
+                'url' => route('admin.survei.index'),
+            ]);
+
         $sidebarRoutes = [
             'dashboard',
             'admin.kecamatan.index',
@@ -79,6 +97,7 @@ class DashboardSearchTest extends TestCase
             'admin.kontributor.index',
             'admin.tempat.index',
             'admin.tempat.kategori',
+            'admin.survei.index',
         ];
 
         foreach ($sidebarRoutes as $routeName) {
@@ -110,9 +129,10 @@ class DashboardSearchTest extends TestCase
                     'BUMDes</span>',
                     'KKDMP</span>',
                     'Kuliner</span>',
-                    'Tempat (Master)</span>',
+                    'Spasial (Master)</span>',
                     '<li class="sidebar-menu-divider" role="separator"></li>',
-                    'Kontributor</span>',
+                    'Survei Kepuasan</span>',
+                    'User</span>',
                 ], false)
                 ->assertSee('id="adminSidebarCollapseToggle"', false)
                 ->assertSee('js/admin-sidebar-toggle.js', false);

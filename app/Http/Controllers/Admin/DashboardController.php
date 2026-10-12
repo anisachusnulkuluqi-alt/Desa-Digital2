@@ -34,10 +34,13 @@ class DashboardController extends Controller
             ['title' => 'WiFi Desa', 'type' => 'Menu', 'url' => route('admin.wifi.index')],
             ['title' => 'BUMDes', 'type' => 'Menu', 'url' => route('admin.bumdes.index')],
             ['title' => 'KKDMP', 'type' => 'Menu', 'url' => route('admin.kkdmp.index')],
+            ['title' => 'Spasial (Master)', 'type' => 'Menu', 'url' => route('admin.tempat.index')],
             ['title' => 'Tempat', 'type' => 'Menu', 'url' => route('admin.tempat.index')],
+            ['title' => 'Survei Kepuasan', 'type' => 'Menu', 'url' => route('admin.survei.index')],
         ];
 
         if ($request->user()->isAdmin()) {
+            $menus[] = ['title' => 'User', 'type' => 'Menu', 'url' => route('admin.kontributor.index')];
             $menus[] = ['title' => 'Kontributor', 'type' => 'Menu', 'url' => route('admin.kontributor.index')];
         }
 

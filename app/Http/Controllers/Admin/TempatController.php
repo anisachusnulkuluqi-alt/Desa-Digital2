@@ -32,11 +32,7 @@ class TempatController extends Controller
     public function showKategoriDetail($kategori)
     {
         $kategori = strtolower(trim($kategori));
-        $kategoriModel = Kategori::where('nama', $kategori)->first();
-
-        if (!$kategoriModel) {
-            abort(404, 'Kategori tidak ditemukan');
-        }
+        $kategoriModel = Kategori::firstOrCreate(['nama' => $kategori]);
 
         LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
@@ -51,7 +47,7 @@ class TempatController extends Controller
     public function getKategoriFieldsJson($kategori)
     {
         $kategori = strtolower(trim($kategori));
-        $kategoriModel = Kategori::where('nama', $kategori)->first();
+        $kategoriModel = Kategori::firstOrCreate(['nama' => $kategori]);
 
         if (!$kategoriModel) {
             return response()->json(['success' => false, 'error' => 'Kategori tidak ditemukan'], 404);
