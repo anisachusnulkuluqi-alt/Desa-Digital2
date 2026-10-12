@@ -1145,7 +1145,7 @@
         .floating-tool-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2); }
         .floating-tool-button:focus-visible { outline: 3px solid #0f172a; outline-offset: 3px; }
         .floating-tool-button[aria-pressed="true"] { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px currentColor; }
-        .floating-tool-feedback { background: #ffe4e6; border-color: #fda4af; color: #be123c; }
+        .floating-tool-feedback { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
         .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
 
         .website-tool-control { position: relative; display: flex; align-items: center; }
@@ -1154,33 +1154,61 @@
             top: auto;
             bottom: 0;
             right: calc(100% + 12px);
-            width: min(290px, calc(100vw - 88px));
+            width: min(340px, calc(100vw - 88px));
             max-height: calc(100vh - 28px);
             overflow-y: auto;
-            padding: 16px;
+            padding: 18px;
             border: 1px solid var(--tool-border, #cbd5e1);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.98);
             color: var(--text-dark);
             text-align: left;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
         }
 
         .website-tool-panel[hidden] { display: none; }
-        .website-tool-heading { margin: 0 0 4px; font-size: 0.9rem; font-weight: 900; }
-        .website-tool-caption { margin: 0 0 13px; color: var(--text-muted); font-size: 0.72rem; line-height: 1.5; }
-        .feedback-rating-row { display: flex; justify-content: space-between; gap: 5px; margin-bottom: 12px; }
-        .feedback-rating-option { display: grid; place-items: center; gap: 4px; min-width: 42px; padding: 7px 5px; border: 1px solid transparent; border-radius: 8px; background: #f8fafc; color: #64748b; cursor: pointer; }
-        .feedback-rating-option i { font-size: 1.1rem; }
-        .feedback-rating-option span { font-size: 0.62rem; }
-        .feedback-name-input { width: 100%; margin-bottom: 8px; padding: 7px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; outline: none; box-sizing: border-box; }
-        .feedback-name-input:focus { border-color: #fda4af; }
-        .feedback-message { width: 100%; min-height: 72px; resize: vertical; padding: 9px 10px; border: 1px solid var(--border-soft); border-radius: 7px; color: var(--text-dark); font: inherit; font-size: 0.74rem; box-sizing: border-box; }
-        .feedback-submit { width: 100%; margin-top: 9px; padding: 9px 12px; border: 0; border-radius: 7px; background: #be123c; color: #ffffff; font: inherit; font-size: 0.75rem; font-weight: 800; cursor: pointer; }
+        .website-tool-heading { margin: 0 0 5px; color: #172554; font-size: 1rem; font-weight: 850; letter-spacing: -0.02em; }
+        .website-tool-caption { margin: 0 0 15px; color: #64748b; font-size: 0.76rem; line-height: 1.55; }
+        .feedback-rating-row { display: flex; justify-content: space-between; gap: 6px; margin: 0 0 8px; padding: 8px; border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc; }
+        .feedback-rating-option {
+            display: grid;
+            justify-items: center;
+            align-content: center;
+            gap: 2px;
+            flex: 1;
+            min-width: 0;
+            min-height: 54px;
+            padding: 4px 2px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            background: transparent;
+            color: #94a3b8;
+            line-height: 1;
+            cursor: pointer;
+            transition: color .15s ease, background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+        }
+        .feedback-rating-option:hover,
+        .feedback-rating-option:focus-visible,
+        .feedback-rating-option.is-active { color: #d97706; background: #fff; }
+        .feedback-rating-option.is-active[aria-pressed="true"] { box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1); }
+        .feedback-rating-option:hover { transform: translateY(-1px); }
+        .feedback-rating-option:focus-visible { outline: 2px solid #d97706; outline-offset: 2px; }
+        .feedback-rating-option:disabled { cursor: wait; }
+        .feedback-rating-star { font-size: 1.45rem; }
+        .feedback-rating-number { color: #64748b; font-size: 0.64rem; font-weight: 700; }
+        .feedback-rating-label { min-height: 1.4em; margin: 0 0 12px; color: #334155; font-size: 0.75rem; font-weight: 700; text-align: center; }
+        .feedback-comment-wrap[hidden] { display: none; }
+        .feedback-comment-wrap .website-tool-caption { display: block; margin-bottom: 7px; color: #475569; }
+        .feedback-message { width: 100%; min-height: 88px; resize: vertical; padding: 11px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: var(--text-dark); font: inherit; font-size: 0.76rem; box-sizing: border-box; outline: none; }
+        .feedback-message:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .12); }
+        .feedback-submit { width: 100%; margin-top: 10px; padding: 11px 12px; border: 0; border-radius: 10px; background: #1d4ed8; color: #ffffff; font: inherit; font-size: 0.76rem; font-weight: 800; cursor: pointer; transition: background-color .15s ease, transform .15s ease; }
+        .feedback-submit:not(:disabled):hover { background: #1e40af; transform: translateY(-1px); }
         .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
-        .feedback-status { min-height: 1.2em; margin: 8px 0 0; color: #047857; font-size: 0.7rem; line-height: 1.4; }
+        .feedback-status { min-height: 1.2em; margin: 10px 0 0; color: #047857; font-size: 0.72rem; line-height: 1.45; }
+        .feedback-status[data-state="error"] { color: #b91c1c; }
+        .feedback-status[data-state="pending"] { color: #475569; }
         .visitor-stats-control { position: relative; display: flex; align-items: center; }
         .visitor-stats-popover {
             position: absolute;
@@ -1733,29 +1761,29 @@
 
     <!-- 7. FOOTER -->
     <footer>
-        <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban &bull; <a href="{{ route('survei.public') }}" style="color: inherit; text-decoration: underline; margin-left: 6px;">Survei Kepuasan Masyarakat</a></p>
+        <p>&copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban</p>
     </footer>
 
     <div class="floating-tools" aria-label="Menu akses cepat">
         <div class="website-tool-control">
             <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Survei kepuasan website" aria-expanded="false" aria-controls="feedback-panel" title="Survei kepuasan website">
-                <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+                <i class="fa-regular fa-star" aria-hidden="true"></i>
             </button>
             <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian survei kepuasan website" hidden>
-                <h2 class="website-tool-heading">Survei Kepuasan Website</h2>
-                <p class="website-tool-caption">Penilaian Anda membantu kami meningkatkan layanan portal Desa Digital.</p>
+                <h2 class="website-tool-heading">Kepuasan Anda</h2>
+                <p class="website-tool-caption">Bagaimana pengalaman Anda menggunakan portal Desa Digital?</p>
                 <div class="feedback-rating-row" role="group" aria-label="Pilih nilai kepuasan">
-                    <button type="button" class="feedback-rating-option" data-rating="1" aria-label="Sangat kurang" aria-pressed="false"><i class="fa-solid fa-face-frown" aria-hidden="true"></i><span>Kurang</span></button>
-                    <button type="button" class="feedback-rating-option" data-rating="2" aria-label="Kurang" aria-pressed="false"><i class="fa-solid fa-face-meh" aria-hidden="true"></i><span>Cukup</span></button>
-                    <button type="button" class="feedback-rating-option" data-rating="3" aria-label="Cukup baik" aria-pressed="false"><i class="fa-solid fa-face-smile" aria-hidden="true"></i><span>Baik</span></button>
-                    <button type="button" class="feedback-rating-option" data-rating="4" aria-label="Puas" aria-pressed="false"><i class="fa-solid fa-face-laugh" aria-hidden="true"></i><span>Puas</span></button>
-                    <button type="button" class="feedback-rating-option" data-rating="5" aria-label="Sangat puas" aria-pressed="false"><i class="fa-solid fa-face-grin-stars" aria-hidden="true"></i><span>Hebat</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="1" aria-label="1 bintang, sangat tidak puas" aria-pressed="false"><span class="feedback-rating-star" aria-hidden="true">&#9733;</span><span class="feedback-rating-number" aria-hidden="true">1</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="2" aria-label="2 bintang, kurang puas" aria-pressed="false"><span class="feedback-rating-star" aria-hidden="true">&#9733;</span><span class="feedback-rating-number" aria-hidden="true">2</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="3" aria-label="3 bintang, cukup puas" aria-pressed="false"><span class="feedback-rating-star" aria-hidden="true">&#9733;</span><span class="feedback-rating-number" aria-hidden="true">3</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="4" aria-label="4 bintang, puas" aria-pressed="false"><span class="feedback-rating-star" aria-hidden="true">&#9733;</span><span class="feedback-rating-number" aria-hidden="true">4</span></button>
+                    <button type="button" class="feedback-rating-option" data-rating="5" aria-label="5 bintang, sangat puas" aria-pressed="false"><span class="feedback-rating-star" aria-hidden="true">&#9733;</span><span class="feedback-rating-number" aria-hidden="true">5</span></button>
                 </div>
-                <input type="text" class="feedback-name-input" id="feedback-name" maxlength="100" placeholder="Nama Anda (opsional)" aria-label="Nama Anda">
-                <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Saran & masukan (opsional)" aria-label="Saran singkat"></textarea>
-                <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim Survei</button>
-                <div style="text-align: center; margin-top: 8px;">
-                    <a href="{{ route('survei.public') }}" style="font-size: 0.68rem; color: #64748b; text-decoration: underline;">Formulir survei lengkap &raquo;</a>
+                <p class="feedback-rating-label" id="feedback-rating-label">Pilih bintang 1 sampai 5</p>
+                <div class="feedback-comment-wrap" id="feedback-comment-wrap" hidden>
+                    <label class="website-tool-caption" for="feedback-message">Apa yang perlu kami perbaiki? Kritik dan saran wajib diisi.</label>
+                    <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Tuliskan kritik atau saran Anda (maksimal 500 karakter)" aria-label="Kritik dan saran" aria-required="true"></textarea>
+                    <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim Penilaian</button>
                 </div>
                 <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
             </section>
@@ -2106,8 +2134,9 @@
 
         const feedbackButton = document.getElementById('feedback-toggle');
         const feedbackPanel = document.getElementById('feedback-panel');
-        const feedbackName = document.getElementById('feedback-name');
         const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackCommentWrap = document.getElementById('feedback-comment-wrap');
+        const feedbackRatingLabel = document.getElementById('feedback-rating-label');
         const feedbackSubmitButton = document.getElementById('feedback-submit');
         const feedbackStatus = document.getElementById('feedback-status');
         const feedbackRatingOptions = [...document.querySelectorAll('.feedback-rating-option')];
@@ -2115,6 +2144,14 @@
         const visitorStatsPanel = document.getElementById('visitor-stats-panel');
         const backToTopButton = document.getElementById('back-to-top');
         let selectedFeedbackRating = null;
+        let feedbackRequestPending = false;
+        const feedbackRatingLabels = {
+            1: 'Sangat tidak puas',
+            2: 'Kurang puas',
+            3: 'Cukup puas',
+            4: 'Puas',
+            5: 'Sangat puas'
+        };
 
         const setFeedbackVisible = isVisible => {
             if (!feedbackButton || !feedbackPanel) return;
@@ -2168,20 +2205,65 @@
 
         feedbackRatingOptions.forEach(option => {
             option.addEventListener('click', () => {
+                if (feedbackRequestPending) return;
                 selectedFeedbackRating = Number(option.dataset.rating);
                 feedbackRatingOptions.forEach(ratingOption => {
-                    ratingOption.setAttribute('aria-pressed', String(ratingOption === option));
+                    const rating = Number(ratingOption.dataset.rating);
+                    ratingOption.setAttribute('aria-pressed', String(rating === selectedFeedbackRating));
+                    ratingOption.classList.toggle('is-active', rating <= selectedFeedbackRating);
                 });
-                feedbackSubmitButton.disabled = false;
+                feedbackRatingLabel.textContent = `${selectedFeedbackRating} bintang — ${feedbackRatingLabels[selectedFeedbackRating]}`;
                 feedbackStatus.textContent = '';
+                feedbackStatus.dataset.state = '';
+
+                if (selectedFeedbackRating === 5) {
+                    feedbackCommentWrap.hidden = true;
+                    feedbackSubmitButton.disabled = true;
+                    submitFeedback();
+                    return;
+                }
+
+                feedbackCommentWrap.hidden = false;
+                feedbackSubmitButton.disabled = !feedbackMessage.value.trim();
+                feedbackMessage.focus();
             });
         });
 
-        feedbackSubmitButton?.addEventListener('click', async () => {
-            if (!selectedFeedbackRating) return;
+        feedbackMessage?.addEventListener('input', () => {
+            feedbackSubmitButton.disabled = !feedbackMessage.value.trim() || feedbackRequestPending;
+            if (feedbackMessage.value.trim()) {
+                feedbackStatus.textContent = '';
+                feedbackStatus.dataset.state = '';
+            }
+        });
 
+        const resetFeedbackForm = () => {
+            selectedFeedbackRating = null;
+            feedbackMessage.value = '';
+            feedbackCommentWrap.hidden = true;
+            feedbackSubmitButton.disabled = true;
+            feedbackRatingLabel.textContent = 'Pilih bintang 1 sampai 5';
+            feedbackRatingOptions.forEach(option => {
+                option.setAttribute('aria-pressed', 'false');
+                option.classList.remove('is-active');
+                option.disabled = false;
+            });
+        };
+
+        const submitFeedback = async () => {
+            if (!selectedFeedbackRating || feedbackRequestPending) return;
+            if (selectedFeedbackRating < 5 && !feedbackMessage.value.trim()) {
+                feedbackStatus.textContent = 'Mohon isi kritik atau saran sebelum mengirim.';
+                feedbackStatus.dataset.state = 'error';
+                feedbackMessage.focus();
+                return;
+            }
+
+            feedbackRequestPending = true;
             feedbackSubmitButton.disabled = true;
             feedbackStatus.textContent = 'Mengirim penilaian...';
+            feedbackStatus.dataset.state = 'pending';
+            feedbackRatingOptions.forEach(option => { option.disabled = true; });
 
             try {
                 const response = await fetch('{{ route('website-feedback.store') }}', {
@@ -2193,23 +2275,26 @@
                     },
                     body: JSON.stringify({
                         rating: selectedFeedbackRating,
-                        nama: feedbackName ? feedbackName.value.trim() : null,
-                        message: feedbackMessage.value.trim()
+                        message: selectedFeedbackRating < 5 ? feedbackMessage.value.trim() : null
                     })
                 });
                 const result = await response.json();
                 if (!response.ok) throw new Error(result.message || 'Penilaian gagal dikirim.');
 
                 feedbackStatus.textContent = result.message;
-                if (feedbackName) feedbackName.value = '';
-                feedbackMessage.value = '';
-                selectedFeedbackRating = null;
-                feedbackRatingOptions.forEach(option => option.setAttribute('aria-pressed', 'false'));
+                feedbackStatus.dataset.state = 'success';
+                resetFeedbackForm();
             } catch (error) {
                 feedbackStatus.textContent = error.message || 'Koneksi gagal. Silakan coba lagi.';
-                feedbackSubmitButton.disabled = false;
+                feedbackStatus.dataset.state = 'error';
+                feedbackRatingOptions.forEach(option => { option.disabled = false; });
+                feedbackSubmitButton.disabled = selectedFeedbackRating === 5 || !feedbackMessage.value.trim();
+            } finally {
+                feedbackRequestPending = false;
             }
-        });
+        };
+
+        feedbackSubmitButton?.addEventListener('click', submitFeedback);
 
         const updateVisitorStats = async () => {
             try {

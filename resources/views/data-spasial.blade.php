@@ -30,7 +30,7 @@
             --border-glass: rgba(226, 232, 240, 0.9);
             --text-dark: #0f172a;
             --text-muted: #64748b;
-            --header-height: 72px;
+            --header-height: 82px;
             --drawer-handle-height: 50px;
         }
 
@@ -43,36 +43,34 @@
         }
 
         body {
-            width: 100%;
+            width: 100vw;
             height: 100vh;
             height: 100dvh;
             min-height: 0;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
             background: #0f172a;
         }
 
         .site-header {
-            min-height: var(--header-height);
-            height: var(--header-height);
             background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 8px clamp(20px, 5vw, 72px);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: clamp(14px, 2vw, 28px);
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
             z-index: 1100;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .brand-logo-img { height: 44px; width: auto; max-width: 160px; object-fit: contain; display: block; }
+        .brand-logo-img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; }
         .brand-text-logo { font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: 0; display: flex; align-items: center; }
         .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
         .nav-menu {
@@ -109,19 +107,20 @@
             cursor: pointer;
         }
         .site-footer {
-            margin-top: 14px;
-            padding: 10px 0 0;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-            font-size: 0.68rem;
+            position: fixed;
+            inset: auto 0 0;
+            z-index: 1100;
+            padding: 12px 7%;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.72rem;
             text-align: center;
-            line-height: 1.4;
         }
 
         /* 1. TOP FLOATING APP BAR */
         .gmaps-floating-header {
-            position: fixed;
-            top: calc(var(--header-height) + 14px);
+            position: absolute;
+            top: 98px;
             left: 16px;
             z-index: 1000;
             display: flex;
@@ -367,40 +366,39 @@
 
         /* 2. MAP CANVAS */
         #map {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
+            position: absolute;
+            inset: 82px 0 90px;
+            z-index: 1;
         }
 
         /* 3. FLOATING CONTROLS */
         .gmaps-controls-right {
-            position: fixed;
-            top: calc(var(--header-height) + 14px);
+            position: absolute;
+            top: 100px;
             right: 16px;
-            z-index: 1000;
+            z-index: 1102;
             display: flex;
             flex-direction: column;
             gap: 12px;
             align-items: flex-end;
-            width: auto;
-            max-width: calc(100vw - 32px);
+            width: min(260px, calc(100vw - 32px));
         }
 
         .map-tool-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            width: auto;
+            width: 100%;
         }
 
         .map-tool-row .control-bubble {
             flex-direction: row;
+            flex: 1;
             min-width: 0;
         }
 
         .map-tool-row .tool-btn {
-            width: 36px;
-            height: 36px;
+            width: 34px;
         }
 
         .control-bubble {
@@ -438,6 +436,36 @@
         .tool-btn.active {
             background: #e0f2fe;
             color: var(--primary);
+        }
+        .tool-btn:focus-visible {
+            outline: 3px solid rgba(2, 132, 199, 0.35);
+            outline-offset: 2px;
+        }
+        .map-action-status {
+            position: fixed;
+            left: 50%;
+            bottom: 76px;
+            z-index: 1200;
+            max-width: min(420px, calc(100vw - 32px));
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 10px;
+            background: #0f172a;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.24);
+            color: #ffffff;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            text-align: center;
+            transform: translate(-50%, 12px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+            pointer-events: none;
+        }
+        .map-action-status.is-visible {
+            transform: translate(-50%, 0);
+            opacity: 1;
+            visibility: visible;
         }
 
         .layer-control-panel {
@@ -496,30 +524,29 @@
 
         /* 4. BOTTOM DRAWER */
         .bottom-table-drawer {
-            position: fixed;
-            bottom: 12px;
-            left: 16px;
-            right: 16px;
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
             background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(203, 213, 225, 0.9);
-            border-radius: 16px;
-            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.2);
+            border-top: 1.5px solid #cbd5e1;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
             z-index: 1001;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(calc(100% - var(--drawer-handle-height)));
             display: flex;
             flex-direction: column;
-            max-height: min(64vh, 600px);
-            max-height: min(64dvh, 600px);
+            max-height: 52vh;
+            pointer-events: none;
         }
 
         .bottom-table-drawer.open {
             transform: translateY(0);
+            pointer-events: auto;
         }
 
         .drawer-handle-bar {
-            position: relative;
             height: var(--drawer-handle-height);
             flex: 0 0 var(--drawer-handle-height);
             padding: 0 24px;
@@ -529,11 +556,10 @@
             cursor: pointer;
             background: #ffffff;
             border-bottom: 1px solid #f1f5f9;
-            border-radius: 16px 16px 0 0;
+            pointer-events: auto;
         }
 
         .drawer-grabber {
-            display: none;
             width: 44px;
             height: 5px;
             background: #cbd5e1;
@@ -543,6 +569,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        .drawer-collapsed-hint { display: none; }
 
         .drawer-title-group {
             display: flex;
@@ -862,7 +889,17 @@
                 --header-height: 60px;
                 --drawer-handle-height: 56px;
             }
-            .site-header { flex-wrap: nowrap; gap: 10px 12px; padding: 6px 14px; }
+            .site-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: var(--header-height);
+                min-height: var(--header-height);
+                flex-wrap: nowrap;
+                gap: 10px 12px;
+                padding: 6px 14px;
+            }
             .brand-link { gap: 8px; }
             .brand-logo-img { height: 36px; max-width: 58px; }
             .brand-text-logo { font-size: 1.15rem; }
@@ -885,7 +922,9 @@
             }
             .site-header.nav-open .nav-menu { display: flex; }
             .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
+            #map { position: fixed; inset: 0; }
             .gmaps-floating-header {
+                position: fixed;
                 top: calc(var(--header-height) + 10px);
                 left: 12px;
                 width: auto;
@@ -894,6 +933,7 @@
             .search-pill-box input { min-width: 0; font-size: 0.82rem; }
             .search-action-btn { width: 34px; height: 34px; flex-basis: 34px; }
             .gmaps-controls-right {
+                position: fixed;
                 top: calc(var(--header-height) + 10px);
                 right: 12px;
                 width: auto;
@@ -901,20 +941,25 @@
             }
             .map-filter-panel { width: min(300px, calc(100vw - 24px)); max-height: min(56vh, 420px); max-height: min(56dvh, 420px); }
             .bottom-table-drawer {
+                position: fixed;
                 bottom: 10px;
                 left: 10px;
                 right: 10px;
                 max-height: min(68vh, 620px);
                 max-height: min(68dvh, 620px);
                 border-radius: 14px;
+                border: 1px solid rgba(203, 213, 225, 0.9);
             }
+            .map-action-status { bottom: 76px; }
             .drawer-handle-bar {
+                position: relative;
                 display: grid;
                 grid-template-columns: 1fr;
                 place-items: center;
                 gap: 0;
                 padding: 11px 10px 4px;
                 border-radius: 14px 14px 0 0;
+                border-bottom: 0;
             }
             .drawer-grabber { display: block; top: 5px; width: 38px; height: 4px; }
             .drawer-collapsed-hint { display: grid; place-items: center; color: #64748b; font-size: 0.9rem; }
@@ -946,6 +991,7 @@
             .modern-table { min-width: 720px; }
             .modern-table th, .modern-table td { padding: 10px 11px; }
             .table-pagination { flex-wrap: wrap; }
+            .site-footer { display: none; }
         }
 
         @media (max-width: 480px) {
@@ -1040,13 +1086,13 @@
             </div>
 
             <div class="control-bubble">
-                <button class="tool-btn" onclick="geoLocateMe()" title="Lokasi Saya Saat Ini">
+                <button class="tool-btn" type="button" onclick="geoLocateMe()" title="Tampilkan lokasi saya" aria-label="Tampilkan lokasi saya">
                     <i class="fa-solid fa-crosshairs"></i>
                 </button>
-                <button class="tool-btn" onclick="resetViewTuban()" title="Fokuskan ke Kabupaten Tuban">
+                <button class="tool-btn" type="button" onclick="resetViewTuban()" title="Fokuskan peta ke Kabupaten Tuban" aria-label="Fokuskan peta ke Kabupaten Tuban">
                     <i class="fa-solid fa-compress"></i>
                 </button>
-                <button class="tool-btn" onclick="toggleDrawer()" title="Tampilkan Tabel Data">
+                <button class="tool-btn" id="btnDataDirectory" type="button" onclick="toggleDrawer()" title="Tampilkan direktori data" aria-label="Tampilkan direktori data" aria-expanded="false" aria-controls="bottomDrawer">
                     <i class="fa-solid fa-list-check"></i>
                 </button>
             </div>
@@ -1189,11 +1235,12 @@
                     <button type="button" class="table-page-button" id="tableNext" aria-label="Halaman berikutnya" onclick="changeTablePage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
-            <footer class="site-footer">
-                &copy; 2026 Pemerintah Kabupaten Tuban &bull; Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.
-            </footer>
         </div>
     </div>
+    <footer class="site-footer">
+        &copy; 2026 Pemerintah Kabupaten Tuban &bull; Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.
+    </footer>
+    <div class="map-action-status" id="mapActionStatus" role="status" aria-live="polite"></div>
 
     <script>
         // Inisialisasi Peta Tuban
@@ -1212,11 +1259,12 @@
                 return;
             }
 
+            const isMobileLayout = window.matchMedia('(max-width: 900px)').matches;
             map.fitBounds(tubanBounds, {
                 animate,
-                maxZoom: 9,
-                paddingTopLeft: [36, 168],
-                paddingBottomRight: [36, 136]
+                maxZoom: 10,
+                paddingTopLeft: isMobileLayout ? [36, 112] : [32, 32],
+                paddingBottomRight: isMobileLayout ? [36, 112] : [32, 32]
             });
         }
 
@@ -1248,21 +1296,54 @@
             fitTubanBounds(true);
         }
 
+        let myLocationMarker = null;
+        let statusTimeoutId = null;
+
+        function showMapActionStatus(message) {
+            const status = document.getElementById('mapActionStatus');
+            status.textContent = message;
+            status.classList.add('is-visible');
+            window.clearTimeout(statusTimeoutId);
+            statusTimeoutId = window.setTimeout(() => status.classList.remove('is-visible'), 4000);
+        }
+
         function geoLocateMe() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(pos => {
-                    const lat = pos.coords.latitude;
-                    const lng = pos.coords.longitude;
-                    map.flyTo([lat, lng], 14, { duration: 1.5 });
-                    L.circleMarker([lat, lng], {
+            if (!('geolocation' in navigator)) {
+                showMapActionStatus('Browser ini tidak mendukung akses lokasi.');
+                return;
+            }
+
+            showMapActionStatus('Mengambil lokasi Anda...');
+            navigator.geolocation.getCurrentPosition(position => {
+                const point = [position.coords.latitude, position.coords.longitude];
+                map.flyTo(point, 14, { duration: 1.5 });
+
+                if (!myLocationMarker) {
+                    myLocationMarker = L.circleMarker(point, {
                         radius: 8,
                         fillColor: '#0284c7',
                         color: '#ffffff',
                         weight: 3,
                         fillOpacity: 1
-                    }).addTo(map).bindPopup('<b>Posisi Anda Saat Ini</b>').openPopup();
-                });
-            }
+                    }).addTo(map);
+                } else {
+                    myLocationMarker.setLatLng(point);
+                }
+
+                myLocationMarker.bindPopup('<b>Posisi Anda Saat Ini</b>').openPopup();
+                showMapActionStatus('Lokasi Anda berhasil ditemukan.');
+            }, error => {
+                const messages = {
+                    1: 'Izin lokasi ditolak. Aktifkan izin lokasi untuk situs ini.',
+                    2: 'Lokasi Anda tidak dapat ditemukan. Coba lagi beberapa saat.',
+                    3: 'Pencarian lokasi terlalu lama. Silakan coba lagi.'
+                };
+                showMapActionStatus(messages[error.code] || 'Terjadi kesalahan saat mengambil lokasi.');
+            }, {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 30000
+            });
         }
 
         // Wadah Layer Poligon GeoJSON
@@ -1935,9 +2016,14 @@
         function toggleDrawer() {
             const drawer = document.getElementById('bottomDrawer');
             const chevron = document.getElementById('drawerChevron');
-            drawer.classList.toggle('open');
+            const isOpen = drawer.classList.toggle('open');
+            const directoryButton = document.getElementById('btnDataDirectory');
+            directoryButton.setAttribute('aria-expanded', String(isOpen));
+            directoryButton.setAttribute('aria-label', isOpen ? 'Sembunyikan direktori data' : 'Tampilkan direktori data');
+            directoryButton.title = isOpen ? 'Sembunyikan direktori data' : 'Tampilkan direktori data';
+            directoryButton.classList.toggle('active', isOpen);
 
-            if (drawer.classList.contains('open')) {
+            if (isOpen) {
                 chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
             } else {
                 chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
