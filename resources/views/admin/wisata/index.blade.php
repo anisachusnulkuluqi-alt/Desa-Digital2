@@ -248,8 +248,15 @@
         .alert-banner i { font-size: 18px; color: #16a34a; }
         .alert-banner .close-btn { margin-left: auto; background: none; border: none; color: #166534; cursor: pointer; font-size: 16px; }
         
-        @media (max-width: 992px) { .sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } }
-        @media (max-width: 768px) { .table-header { flex-direction: column; align-items: stretch; } .table-actions { flex-direction: column; } .search-box input { width: 100%; } .detail-grid { grid-template-columns: 1fr; } .pagination-wrapper { justify-content: center; } }
+        @media (max-width: 992px) { .admin-main { margin-left: 0 !important; width: 100% !important; } }
+        @media (max-width: 768px) {
+            .table-header { flex-direction: column; align-items: stretch; }
+            .table-actions { flex-direction: column; }
+            .search-box input { width: 100%; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .pagination-wrapper { justify-content: center; }
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
+        }
     </style>
     @include('admin.partials.list-page-styles')
 </head>

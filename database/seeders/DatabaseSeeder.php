@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             WilayahGeoJsonSeeder::class,
             WebsiteDesaSeeder::class,
             LokasiTitikSeeder::class,
+            WisataSeeder::class,
         ]);
     }
 }

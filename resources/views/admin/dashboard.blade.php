@@ -413,14 +413,20 @@
         }
 
         @media (max-width: 992px) {
-            .sidebar { transform: translateX(-100%); }
-            .main-content { margin-left: 0; }
+            .main-content { margin-left: 0 !important; width: 100% !important; }
+        }
+
+        @media (max-width: 768px) {
+            .top-header { padding: 0 14px; gap: 8px; }
+            .search-box { min-width: 0; }
+            .welcome-banner { padding: 22px 18px; }
         }
 
         @media (max-width: 576px) {
             .stats-grid { grid-template-columns: 1fr; }
             .page-body { padding: 14px; }
-            .welcome-text h2 { font-size: 18px; }
+            .welcome-text h1 { font-size: 16px; }
+            .welcome-text h2 { font-size: 20px; }
             .welcome-content { flex-direction: column; align-items: flex-start; gap: 12px; }
         }
 

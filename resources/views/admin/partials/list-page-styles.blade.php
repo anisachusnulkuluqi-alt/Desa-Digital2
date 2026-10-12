@@ -54,15 +54,21 @@
     .admin-empty { padding: 48px 16px !important; color: #94a3b8 !important; text-align: center; }
     .admin-empty i { display: block; margin-bottom: 10px; color: #94a3b8; font-size: 30px; }
     @media (max-width: 992px) {
-        .admin-main { margin-left: 0; }
+        .admin-main { margin-left: 0 !important; width: 100% !important; }
+        .admin-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; }
+        .admin-table { min-width: 620px; }
     }
     @media (max-width: 760px) {
-        .admin-topbar { min-height: 56px; padding: 0 16px; }
-        .admin-content { padding: 20px 14px 30px; }
-            .admin-edit-content { padding: 20px 14px 30px; }
-        .admin-page-heading h1 { font-size: 24px; }
-        .admin-list-toolbar, .admin-list-actions { align-items: stretch; flex-direction: column; }
+        .admin-topbar { min-height: 56px; padding: 0 14px; gap: 8px; }
+        .admin-breadcrumb { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+        .admin-content { padding: 16px 12px 24px; }
+        .admin-edit-content { padding: 16px 12px 24px; }
+        .admin-page-heading h1 { font-size: 22px; }
+        .admin-list-toolbar { padding: 14px 14px; gap: 12px; align-items: stretch; flex-direction: column; }
+        .admin-list-actions { align-items: stretch; flex-direction: column; width: 100%; gap: 10px; }
+        .admin-search-wrap { width: 100%; }
         .admin-search { width: 100%; }
-        .admin-primary-btn, .admin-secondary-btn { width: 100%; }
+        .admin-primary-btn, .admin-secondary-btn { width: 100%; justify-content: center; }
+        .admin-table th, .admin-table td { padding: 12px 14px; font-size: 12px; }
     }
 </style>

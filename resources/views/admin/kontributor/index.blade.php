@@ -205,7 +205,23 @@
         .role-info-banner { background: #dbeafe; border: 1px solid #93c5fd; color: #1e40af; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
         .role-info-banner i { font-size: 16px; }
         
-        @media (max-width: 992px) { .sidebar { transform: translateX(-100%); } .main-content { margin-left: 0; } .form-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 992px) {
+            .main-content { margin-left: 0 !important; width: 100% !important; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .top-header { padding: 12px 14px; gap: 8px; }
+            .breadcrumb-simple { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .page-body { padding: 16px; }
+            .page-title { font-size: 22px; }
+            .card-header-modern { flex-direction: column; align-items: stretch; gap: 12px; }
+            .table-modern { min-width: 600px; }
+            .form-actions { flex-direction: column-reverse; }
+            .btn-primary-custom, .btn-secondary-custom { width: 100%; justify-content: center; }
+        }
+        @media (max-width: 576px) {
+            .header-actions .user-info { display: none; }
+        }
     </style>
 </head>
 <body>

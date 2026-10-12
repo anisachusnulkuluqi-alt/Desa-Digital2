@@ -260,9 +260,12 @@
         .empty-state { text-align: center; padding: 40px; color: #94a3b8; }
         .empty-state i { font-size: 32px; display: block; margin-bottom: 10px; }
 
+        @media (max-width: 992px) {
+            .admin-main { margin-left: 0 !important; width: 100% !important; }
+        }
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
-            .main-content { padding: 16px; }
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
         }
     </style>
     @include('admin.partials.list-page-styles')

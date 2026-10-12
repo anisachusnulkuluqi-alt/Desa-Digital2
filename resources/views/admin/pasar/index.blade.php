@@ -354,9 +354,19 @@
             border-left: 3px solid #0ea5e9;
         }
 
+        @media (max-width: 992px) {
+            .page-header { margin-left: 0 !important; }
+            .main-content { margin-left: 0 !important; width: 100% !important; }
+        }
         @media (max-width: 768px) {
+            .page-header { padding: 12px 14px; gap: 8px; }
+            .breadcrumb { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
             .stats-grid { grid-template-columns: 1fr; }
-            .main-content { padding: 16px; }
+            .main-content { padding: 16px 14px; }
+            .page-title { font-size: 22px; }
+            .table-card { overflow-x: auto; }
+            .table-simple { min-width: 500px; }
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
         }
     </style>
 </head>

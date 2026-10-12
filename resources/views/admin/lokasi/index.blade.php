@@ -126,24 +126,20 @@
         .btn-modal-cancel { border-color: var(--line); background: #fff; color: var(--muted); }
         .btn-modal-edit { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: #fff; }
         .btn-modal-delete { background: #ef4444; color: #fff; }
-        @media (max-width: 760px) {
-            .sidebar { width: 58px; padding-inline: 7px; }
-            .brand { justify-content: center; padding-inline: 0; }
-            .brand-copy, .nav-label, .nav-text { display: none; }
-            .nav-list a { justify-content: center; padding-inline: 0; }
-            .nav-icon { width: auto; }
-            .main { margin-left: 58px; }
-            .topbar { padding-inline: 16px; }
-            .content { padding: 20px 14px 30px; }
-            .page-head { align-items: flex-start; flex-direction: column; }
-            .panel-toolbar { align-items: stretch; flex-direction: column; }
-            .search { width: 100%; }
-            .field-row { grid-template-columns: 1fr; }
+        @media (max-width: 992px) {
+            .main { margin-left: 0 !important; width: 100% !important; }
         }
         @media (max-width: 760px) {
-            .content { padding: 20px 14px 30px; }
-            .panel-toolbar, .table-actions { align-items: stretch; flex-direction: column; }
+            .main { margin-left: 0 !important; width: 100% !important; }
+            .topbar { padding-inline: 14px; gap: 8px; }
+            .crumb { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .content { padding: 16px 14px 28px; }
+            .page-head { align-items: flex-start; flex-direction: column; gap: 12px; }
+            .panel-toolbar, .table-actions { align-items: stretch; flex-direction: column; gap: 10px; }
+            .btn-add { width: 100%; justify-content: center; }
             .search { width: 100%; }
+            .table-wrap { overflow-x: auto; }
+            table { min-width: 550px; }
             .detail-grid { grid-template-columns: 1fr; }
             .detail-footer { flex-wrap: wrap; }
             .field-row { grid-template-columns: 1fr; }

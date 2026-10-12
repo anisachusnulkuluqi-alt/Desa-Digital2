@@ -30,10 +30,10 @@
         .action-button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 7px; padding: 0 15px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; color: #334155; font: inherit; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
         .action-button--save { border-color: #1e40af; background: #1e40af; color: #fff; }
         .action-button--save:hover { background: #1d4ed8; color: #fff; }
-        @media (max-width: 992px) { .admin-main { margin-left: 0; } }
+        @media (max-width: 992px) { .admin-main { margin-left: 0 !important; width: 100% !important; } }
         @media (max-width: 640px) {
-            .admin-topbar { padding: 0 16px; }
-            .admin-content { padding: 20px 14px; }
+            .admin-topbar { padding: 0 14px; gap: 8px; }
+            .admin-content { padding: 16px 14px; }
             .account-form { grid-template-columns: 1fr; }
             .form-actions { grid-column: auto; flex-direction: column-reverse; }
             .action-button { width: 100%; }

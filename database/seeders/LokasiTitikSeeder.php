@@ -14,7 +14,6 @@ class LokasiTitikSeeder extends Seeder
         'wifi.geojson' => ['table' => 'lokasi_wifi', 'name' => 'nama_ssid'],
         'kantor.geojson' => ['table' => 'lokasi_kantor', 'name' => 'nama_ssid'],
         'pasar.geojson' => ['table' => 'lokasi_pasar', 'name' => 'nama_pasar'],
-        'wisata.geojson' => ['table' => 'lokasi_wisata', 'name' => 'nama_wisat'],
         'bumdes.geojson' => ['table' => 'lokasi_bumdes', 'name' => 'nama'],
         'kkdmp.geojson' => ['table' => 'lokasi_kkdmp', 'name' => 'nama'],
     ];

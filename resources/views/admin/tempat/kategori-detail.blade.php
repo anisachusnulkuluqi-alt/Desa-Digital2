@@ -88,8 +88,18 @@
         .current-photo-preview { margin-top: 8px; }
         .current-photo-preview img { max-width: 100px; border-radius: 4px; border: 1px solid #e2e8f0; }
         .current-photo-label { font-size: 11px; color: #64748b; margin-bottom: 4px; display: block; }
-        @media (max-width: 992px) { .main-content { margin-left: 0; } }
-        @media (max-width: 768px) { .card-header-modern { flex-direction: column; align-items: stretch; } .info-grid { grid-template-columns: 1fr; } .modal-detail .modal-dialog { max-width: 95%; margin: 10px; } }
+        @media (max-width: 992px) { .main-content { margin-left: 0 !important; width: 100% !important; } }
+        @media (max-width: 768px) {
+            .top-header { padding: 0 14px; min-height: 56px; gap: 8px; }
+            .breadcrumb-simple { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .page-body { padding: 16px; }
+            .page-title { font-size: 22px; }
+            .card-header-modern { flex-direction: column; align-items: stretch; gap: 12px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .modal-detail .modal-dialog, .modal-dialog { max-width: 95%; margin: 10px; }
+            .table-modern { min-width: 550px; }
+            .btn-add { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
 <body>

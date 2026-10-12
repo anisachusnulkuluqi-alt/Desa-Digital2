@@ -134,6 +134,10 @@
     .admin-header-dropdown form button:hover { background: #f1f5f9; }
     .admin-header-dropdown form button { color: #dc2626; }
     .admin-header-dropdown-divider { height: 1px; margin: 5px 0; background: #e2e8f0; }
+    @media (max-width: 768px) {
+        .admin-header-profile { min-width: 140px; }
+        .admin-header-user-info small { display: none; }
+    }
     @media (max-width: 576px) {
         .admin-header-profile { min-width: 36px; width: 36px; padding: 2px; justify-content: center; }
         .admin-header-user-info,

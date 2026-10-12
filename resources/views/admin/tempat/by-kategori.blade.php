@@ -106,8 +106,19 @@
         .btn-modal-save { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; border: none; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
         .btn-modal-save:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3); color: white; }
         
-        @media (max-width: 992px) { .main-content { margin-left: 0; } }
-        @media (max-width: 768px) { .card-header-modern { flex-direction: column; align-items: stretch; } .table-actions { flex-direction: column; } .search-box input { width: 100%; } }
+        @media (max-width: 992px) { .main-content { margin-left: 0 !important; width: 100% !important; } }
+        @media (max-width: 768px) {
+            .top-header { padding: 0 14px; min-height: 56px; gap: 8px; }
+            .breadcrumb-simple { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .page-body { padding: 16px; }
+            .page-title { font-size: 22px; }
+            .card-header-modern { flex-direction: column; align-items: stretch; gap: 12px; }
+            .table-actions { flex-direction: column; width: 100%; }
+            .btn-add { width: 100%; justify-content: center; }
+            .search-box input { width: 100%; }
+            .table-modern { min-width: 550px; }
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
+        }
     </style>
 </head>
 <body>

@@ -86,8 +86,20 @@
         
         .section-divider { font-size: 11px; font-weight: 700; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 0 10px 0; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
         
-        @media (max-width: 992px) { .main-content { margin-left: 0; } }
-        @media (max-width: 768px) { .card-header-modern { flex-direction: column; align-items: stretch; } .table-actions { flex-direction: column; } }
+        @media (max-width: 992px) { .main-content { margin-left: 0 !important; width: 100% !important; } }
+        @media (max-width: 768px) {
+            .top-header { padding: 0 14px; min-height: 56px; gap: 8px; }
+            .breadcrumb-simple { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .page-body { padding: 16px; }
+            .page-title { font-size: 22px; }
+            .card-header-modern { flex-direction: column; align-items: stretch; gap: 12px; }
+            .table-actions { flex-direction: column; width: 100%; }
+            .btn-add { width: 100%; justify-content: center; }
+            .table-modern { min-width: 550px; }
+        }
+        @media (max-width: 576px) {
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
+        }
     </style>
 </head>
 <body>

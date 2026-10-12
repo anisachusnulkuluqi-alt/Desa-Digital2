@@ -180,11 +180,15 @@
         .alert-success { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
         .alert-banner .close-btn { margin-left: auto; background: none; border: none; cursor: pointer; font-size: 16px; color: inherit; }
 
-        @media (max-width: 992px) { .main-content { margin-left: 0; } }
+        @media (max-width: 992px) { .main-content { margin-left: 0 !important; width: 100% !important; } }
         @media (max-width: 768px) {
-            .card-header-modern { flex-direction: column; align-items: stretch; }
+            .top-header { padding: 0 14px; min-height: 56px; gap: 8px; }
+            .breadcrumb-simple { font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: calc(100% - 150px); }
+            .card-header-modern { flex-direction: column; align-items: stretch; gap: 12px; }
             .search-box { min-width: 100%; }
             .page-body { padding: 16px; }
+            .table-modern { min-width: 650px; }
+            .page-title { font-size: 22px; }
         }
     </style>
 </head>

@@ -330,9 +330,14 @@
             border-bottom: 1px solid #e2e8f0;
         }
 
+        @media (max-width: 992px) {
+            .admin-main { margin-left: 0 !important; width: 100% !important; }
+        }
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; }
-            .main-content { padding: 16px; }
+            .modal-dialog { margin: 10px; max-width: calc(100% - 20px) !important; }
+            .detail-row { flex-direction: column; gap: 4px; }
+            .detail-label { width: auto; }
         }
     </style>
     @include('admin.partials.list-page-styles')
