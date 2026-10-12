@@ -13,6 +13,20 @@ df = df.fillna('')
 # Mengubah ke format JSON
 data_json = df.to_dict(orient='records')
 
+for row in data_json:
+    if 'jam_operasional' in row and isinstance(row['jam_operasional'], str):
+        row['jam_operasional'] = (
+            row['jam_operasional']
+            .replace('\x96', ' - ')
+            .replace('\u0096', ' - ')
+            .replace('â€“', ' - ')
+            .replace('â€”', ' - ')
+            .replace('–', ' - ')
+            .replace('—', ' - ')
+            .replace('  ', ' ')
+            .strip()
+        )
+
 # Menyimpan hasilnya menjadi file wisata.json di root
 with open('wisata.json', 'w', encoding='utf-8') as f:
     json.dump(data_json, f, ensure_ascii=False, indent=4)

@@ -64,5 +64,28 @@ class ImportWisataTest extends TestCase
             ->assertDontSee('Sinkronkan wisata.json')
             ->assertSee('Agro Wisata Durian');
     }
+
+    public function test_lokasi_wisata_table_has_dedicated_columns_and_they_are_populated(): void
+    {
+        $this->artisan('wisata:import')->assertSuccessful();
+
+        $durian = Wisata::where('nama_lokasi', 'Agro Wisata Durian')->firstOrFail();
+
+        $this->assertSame('Bringin', $durian->desa);
+        $this->assertSame('Wisata Alam', $durian->jenis_wisata);
+        $this->assertSame('5000', $durian->htm);
+        $this->assertSame('Pokdarwis Bringin', $durian->reservasi);
+        $this->assertStringContainsString('09.00 - 17.00', $durian->jam_operasional);
+        $this->assertNotEmpty($durian->deskripsi);
+        $this->assertNotEmpty($durian->foto);
+
+        $this->assertDatabaseHas('lokasi_wisata', [
+            'nama_lokasi' => 'Agro Wisata Durian',
+            'desa' => 'Bringin',
+            'jenis_wisata' => 'Wisata Alam',
+            'htm' => '5000',
+            'reservasi' => 'Pokdarwis Bringin',
+        ]);
+    }
 }
 

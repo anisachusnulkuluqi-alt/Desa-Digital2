@@ -90,14 +90,21 @@ class WisataController extends Controller
             'foto' => $fotoPath,
         ];
 
-        // ✅ PERBAIKAN: Menambahkan feature_key agar tidak error default value
+        // ✅ PERBAIKAN: Menambahkan feature_key dan mengisi kolom fisik lokasi_wisata
         Wisata::create([
-            'feature_key' => 'wk_' . uniqid() . '_' . time(),
-            'nama_lokasi' => $validated['nama_lokasi'],
-            'alamat' => $validated['alamat'] ?? null,
-            'latitude' => $validated['latitude'],
-            'longitude' => $validated['longitude'],
-            'properties' => json_encode($properties),
+            'feature_key'     => 'wk_' . uniqid() . '_' . time(),
+            'nama_lokasi'     => $validated['nama_lokasi'],
+            'desa'            => $validated['desa'] ?? null,
+            'alamat'          => $validated['alamat'] ?? null,
+            'jenis_wisata'    => $validated['jenis_wisata'] ?? null,
+            'jam_operasional' => $validated['jam_operasional'] ?? null,
+            'htm'             => $validated['htm'] ?? null,
+            'reservasi'       => $validated['reservasi'] ?? null,
+            'deskripsi'       => $validated['deskripsi'] ?? null,
+            'foto'            => $fotoPath,
+            'latitude'        => $validated['latitude'],
+            'longitude'       => $validated['longitude'],
+            'properties'      => json_encode($properties),
         ]);
 
         return response()->json([
@@ -131,7 +138,7 @@ class WisataController extends Controller
         }
 
         // Handle upload foto baru
-        $oldFotoPath = $oldProperties['foto'] ?? null;
+        $oldFotoPath = $oldProperties['foto'] ?? $wisata->foto;
         $hapusFoto = $request->boolean('hapus_foto');
         $fotoPath = $hapusFoto ? null : $oldFotoPath;
         if ($request->hasFile('foto')) {
@@ -151,11 +158,18 @@ class WisataController extends Controller
         ]);
 
         $wisata->update([
-            'nama_lokasi' => $validated['nama_lokasi'],
-            'alamat' => $validated['alamat'] ?? null,
-            'latitude' => $validated['latitude'],
-            'longitude' => $validated['longitude'],
-            'properties' => json_encode($newProperties),
+            'nama_lokasi'     => $validated['nama_lokasi'],
+            'desa'            => $validated['desa'] ?? null,
+            'alamat'          => $validated['alamat'] ?? null,
+            'jenis_wisata'    => $validated['jenis_wisata'] ?? null,
+            'jam_operasional' => $validated['jam_operasional'] ?? null,
+            'htm'             => $validated['htm'] ?? null,
+            'reservasi'       => $validated['reservasi'] ?? null,
+            'deskripsi'       => $validated['deskripsi'] ?? null,
+            'foto'            => $fotoPath,
+            'latitude'        => $validated['latitude'],
+            'longitude'       => $validated['longitude'],
+            'properties'      => json_encode($newProperties),
         ]);
 
         if ($hapusFoto || $request->hasFile('foto')) {

@@ -15,6 +15,13 @@ class Wisata extends Model
         'feature_id',
         'feature_key',
         'nama_lokasi',
+        'desa',
+        'jenis_wisata',
+        'jam_operasional',
+        'htm',
+        'reservasi',
+        'deskripsi',
+        'foto',
         'alamat',
         'latitude',
         'longitude',
@@ -30,30 +37,53 @@ class Wisata extends Model
         return $value ?? [];
     }
 
-    // Helper untuk mendapatkan jenis wisata dari properties
+    // Alias nama_wisata <=> nama_lokasi
+    public function getNamaWisataAttribute()
+    {
+        return $this->nama_lokasi;
+    }
+
+    public function setNamaWisataAttribute($value)
+    {
+        $this->attributes['nama_lokasi'] = $value;
+    }
+
+    // Helper untuk mendapatkan jenis wisata
     public function getJenisAttribute()
     {
+        if (!empty($this->attributes['jenis_wisata'])) {
+            return $this->attributes['jenis_wisata'];
+        }
         $props = $this->properties;
         return $props['jenis'] ?? $props['jenis_wisata'] ?? $props['Jenis'] ?? '-';
     }
 
-    // Helper untuk mendapatkan HTM dari properties
+    // Helper untuk mendapatkan HTM
     public function getHtmAttribute()
     {
+        if (isset($this->attributes['htm']) && $this->attributes['htm'] !== '') {
+            return (string) $this->attributes['htm'];
+        }
         $props = $this->properties;
         return $props['htm'] ?? $props['HTM'] ?? $props['Harga'] ?? '-';
     }
 
-    // Helper untuk mendapatkan jam operasional dari properties
+    // Helper untuk mendapatkan jam operasional
     public function getJamOperasionalAttribute()
     {
+        if (!empty($this->attributes['jam_operasional'])) {
+            return $this->attributes['jam_operasional'];
+        }
         $props = $this->properties;
         return $props['jam_operasional'] ?? $props['jam_operas'] ?? $props['Jam'] ?? $props['Jam Operasional'] ?? '-';
     }
 
-    // Helper untuk mendapatkan desa dari properties
+    // Helper untuk mendapatkan desa
     public function getDesaAttribute()
     {
+        if (!empty($this->attributes['desa'])) {
+            return $this->attributes['desa'];
+        }
         $props = $this->properties;
         return $props['desa'] ?? $props['Desa'] ?? $props['nama_desa'] ?? '-';
     }
@@ -61,8 +91,12 @@ class Wisata extends Model
     // Helper untuk mendapatkan URL foto yang valid
     public function getFotoUrlAttribute()
     {
-        $props = $this->properties;
-        $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? null;
+        $foto = !empty($this->attributes['foto']) ? $this->attributes['foto'] : null;
+        if (!$foto) {
+            $props = $this->properties;
+            $foto = $props['foto'] ?? $props['Foto'] ?? $props['image'] ?? null;
+        }
+
         if (!$foto || trim($foto) === '') {
             return null;
         }
@@ -130,6 +164,12 @@ class Wisata extends Model
             $latitude = isset($item['latitude']) && is_numeric($item['latitude']) ? (float) $item['latitude'] : null;
             $longitude = isset($item['longitude']) && is_numeric($item['longitude']) ? (float) $item['longitude'] : null;
 
+            $jamOperasional = trim((string) ($item['jam_operasional'] ?? ''));
+            if ($jamOperasional !== '') {
+                $jamOperasional = str_replace(["\x96", "\u{0096}", "\u{2013}", "\u{2014}", 'â€“', 'â€”', '–', '—'], ' - ', $jamOperasional);
+                $jamOperasional = preg_replace('/\s+-\s+/', ' - ', $jamOperasional);
+            }
+
             $properties = [
                 'FID' => $id,
                 'nama_wisat' => $nama,
@@ -137,8 +177,8 @@ class Wisata extends Model
                 'desa' => $item['desa'] ?? null,
                 'jenis' => $item['jenis_wisata'] ?? $item['jenis'] ?? null,
                 'jenis_wisata' => $item['jenis_wisata'] ?? $item['jenis'] ?? null,
-                'jam_operasional' => $item['jam_operasional'] ?? null,
-                'jam_operas' => $item['jam_operasional'] ?? null,
+                'jam_operasional' => $jamOperasional ?: null,
+                'jam_operas' => $jamOperasional ?: null,
                 'htm' => (string) ($item['htm'] ?? '0'),
                 'reservasi' => $item['reservasi'] ?? null,
                 'deskripsi' => $item['deskripsi'] ?? null,
@@ -162,7 +202,14 @@ class Wisata extends Model
             }
 
             $wisata->nama_lokasi = $nama;
+            $wisata->desa = $item['desa'] ?? null;
             $wisata->alamat = $item['alamat'] ?? (!empty($item['desa']) ? 'Desa ' . $item['desa'] : null);
+            $wisata->jenis_wisata = $item['jenis_wisata'] ?? $item['jenis'] ?? null;
+            $wisata->jam_operasional = $jamOperasional ?: null;
+            $wisata->htm = isset($item['htm']) ? (string) $item['htm'] : null;
+            $wisata->reservasi = $item['reservasi'] ?? null;
+            $wisata->deskripsi = $item['deskripsi'] ?? null;
+            $wisata->foto = $item['foto'] ?? null;
             $wisata->latitude = $latitude;
             $wisata->longitude = $longitude;
             $wisata->properties = json_encode($properties, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
