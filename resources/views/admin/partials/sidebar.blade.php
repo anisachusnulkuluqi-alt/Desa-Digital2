@@ -261,6 +261,14 @@
                 <span>Spasial (Master)</span>
             </a>
         </li>
+        @if(auth()->user()?->role === 'admin')
+            <li>
+                <a href="{{ route('admin.layanan.index') }}" class="{{ request()->routeIs('admin.layanan.*') ? 'active' : '' }}">
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Layanan (Master)</span>
+                </a>
+            </li>
+        @endif
 
         {{-- PEMBATAS SEBELUM SURVEI & USER --}}
         <li class="sidebar-menu-divider" role="separator"></li>

@@ -1582,72 +1582,39 @@
                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
             </button>
             <div class="services-cards-cluster" id="services-carousel-track">
-            
-            <!-- 1. Website Desa -->
-            <a href="<?= url('/website'); ?>" class="service-card-clean" 
-               style="--service-accent: #2563eb; --service-border: #bfdbfe; --service-glow: rgba(37, 99, 235, 0.22); --service-pill: #dbeafe; --service-text: #1d4ed8;">
-                <div class="service-icon-circle" 
-                     style="background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); --icon-shadow: rgba(37, 99, 235, 0.35);">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
-                <h4>Website Desa</h4>
-                <div class="service-action-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </a>
-
-            <!-- 2. Data Spasial -->
-            <a href="<?= url('/data-spasial'); ?>" class="service-card-clean"
-               style="--service-accent: #059669; --service-border: #a7f3d0; --service-glow: rgba(5, 150, 105, 0.22); --service-pill: #d1fae5; --service-text: #047857;">
-                <div class="service-icon-circle" 
-                     style="background: linear-gradient(135deg, #047857 0%, #10b981 100%); --icon-shadow: rgba(16, 185, 129, 0.35);">
-                    <i class="fa-solid fa-location-dot"></i>
-                </div>
-                <h4>Data Spasial</h4>
-                <div class="service-action-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </a>
-
-            <!-- 3. Surat Desa (Langsung Terhubung ke APMD Tuban) -->
-            <a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
-               style="--service-accent: #d97706; --service-border: #fde68a; --service-glow: rgba(217, 119, 6, 0.22); --service-pill: #fef3c7; --service-text: #b45309;">
-                <div class="service-icon-circle" 
-                     style="background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%); --icon-shadow: rgba(245, 158, 11, 0.35);">
-                    <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-                <h4>Surat Desa</h4>
-                <div class="service-action-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </a>
-
-            <!-- 4. CCTV (Langsung Terhubung ke CCTV Tuban) -->
-            <a href="https://cctv.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
-               style="--service-accent: #e11d48; --service-border: #fecdd3; --service-glow: rgba(225, 29, 72, 0.22); --service-pill: #ffe4e6; --service-text: #be123c;">
-                <div class="service-icon-circle" 
-                     style="background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%); --icon-shadow: rgba(244, 63, 94, 0.35);">
-                    <i class="fa-solid fa-video"></i>
-                </div>
-                <h4>CCTV</h4>
-                <div class="service-action-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </a>
-
-            <!-- 5. e-PBB (Langsung Terhubung ke PBB Tuban) -->
-            <a href="https://pbb.tubankab.go.id/" target="_blank" rel="noopener noreferrer" class="service-card-clean"
-               style="--service-accent: #7c3aed; --service-border: #ddd6fe; --service-glow: rgba(124, 58, 237, 0.22); --service-pill: #ede9fe; --service-text: #6d28d9;">
-                <div class="service-icon-circle" 
-                     style="background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%); --icon-shadow: rgba(139, 92, 246, 0.35);">
-                    <i class="fa-solid fa-qrcode"></i>
-                </div>
-                <h4>e-PBB</h4>
-                <div class="service-action-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
-            </a>
-
+            @php
+                $serviceThemes = [
+                    ['accent' => '#2563eb', 'border' => '#bfdbfe', 'glow' => 'rgba(37, 99, 235, 0.22)', 'pill' => '#dbeafe', 'text' => '#1d4ed8', 'gradient' => 'linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%)', 'shadow' => 'rgba(37, 99, 235, 0.35)'],
+                    ['accent' => '#059669', 'border' => '#a7f3d0', 'glow' => 'rgba(5, 150, 105, 0.22)', 'pill' => '#d1fae5', 'text' => '#047857', 'gradient' => 'linear-gradient(135deg, #047857 0%, #10b981 100%)', 'shadow' => 'rgba(16, 185, 129, 0.35)'],
+                    ['accent' => '#d97706', 'border' => '#fde68a', 'glow' => 'rgba(217, 119, 6, 0.22)', 'pill' => '#fef3c7', 'text' => '#b45309', 'gradient' => 'linear-gradient(135deg, #b45309 0%, #f59e0b 100%)', 'shadow' => 'rgba(245, 158, 11, 0.35)'],
+                    ['accent' => '#e11d48', 'border' => '#fecdd3', 'glow' => 'rgba(225, 29, 72, 0.22)', 'pill' => '#ffe4e6', 'text' => '#be123c', 'gradient' => 'linear-gradient(135deg, #be123c 0%, #f43f5e 100%)', 'shadow' => 'rgba(244, 63, 94, 0.35)'],
+                    ['accent' => '#7c3aed', 'border' => '#ddd6fe', 'glow' => 'rgba(124, 58, 237, 0.22)', 'pill' => '#ede9fe', 'text' => '#6d28d9', 'gradient' => 'linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%)', 'shadow' => 'rgba(139, 92, 246, 0.35)'],
+                ];
+                $serviceIcons = [
+                    'Website Desa' => 'fa-globe',
+                    'Data Spasial' => 'fa-location-dot',
+                    'Surat Desa' => 'fa-envelope-open-text',
+                    'CCTV' => 'fa-video',
+                    'e-PBB' => 'fa-qrcode',
+                ];
+            @endphp
+            @foreach($layanans as $index => $layanan)
+                @php
+                    $theme = $serviceThemes[$index % count($serviceThemes)];
+                    $serviceHost = parse_url($layanan->link, PHP_URL_HOST);
+                    $isExternalService = $serviceHost && $serviceHost !== request()->getHost();
+                @endphp
+                <a href="{{ $layanan->link }}" class="service-card-clean"
+                   @if($isExternalService) target="_blank" rel="noopener noreferrer" @endif
+                   style="--service-accent: {{ $theme['accent'] }}; --service-border: {{ $theme['border'] }}; --service-glow: {{ $theme['glow'] }}; --service-pill: {{ $theme['pill'] }}; --service-text: {{ $theme['text'] }};">
+                    <div class="service-icon-circle"
+                         style="background: {{ $theme['gradient'] }}; --icon-shadow: {{ $theme['shadow'] }};">
+                        <i class="fa-solid {{ $serviceIcons[$layanan->nama] ?? 'fa-link' }}"></i>
+                    </div>
+                    <h4>{{ $layanan->nama }}</h4>
+                    <div class="service-action-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            @endforeach
             </div>
             <button type="button" class="services-carousel-arrow services-carousel-arrow-next" id="services-carousel-next" aria-label="Lihat layanan berikutnya" aria-controls="services-carousel-track" title="Lihat layanan berikutnya" hidden>
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>

@@ -309,6 +309,7 @@
                             <th style="width: 60px;">No</th>
                             <th>Nama Kecamatan</th>
                             <th>Jumlah Desa</th>
+                            <th>Kode Kecamatan</th>
                         </tr>
                     </thead>
                     <tbody id="kecamatanTable">
@@ -327,9 +328,10 @@
                             </div>
                         </td>
                         <td>{{ $item->desa ? $item->desa->count() : 0 }} desa</td>
+                        <td>{{ $item->kode_kecamatan ?? '-' }}</td>
                     </tr>
                     <tr id="desaKecamatan{{ $item->id }}" class="desa-dropdown-row" data-parent-id="{{ $item->id }}">
-                        <td colspan="3">
+                        <td colspan="4">
                             <div class="desa-dropdown-list">
                                 @forelse($item->desa->sortBy('nama_desa') as $desa)
                                     <button type="button" class="desa-detail-button"
@@ -357,7 +359,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td class="admin-empty" colspan="3">
+                        <td class="admin-empty" colspan="4">
                             <div>
                                 <i class="bi bi-inbox"></i>
                                 Belum ada data kecamatan

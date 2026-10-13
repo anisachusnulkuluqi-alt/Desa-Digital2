@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Kecamatan;
+use App\Models\Layanan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -26,6 +27,7 @@ Route::get('/', function (DashboardStatistics $statistics) {
     return view('landing', [
         'statistics' => $statistics->counts(),
         'placeCategories' => $statistics->placeCategoryCounts(),
+        'layanans' => Layanan::orderBy('id')->get(),
     ]);
 })->name('home');
 
@@ -256,6 +258,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ->name('search.suggestions');
 
         Route::middleware('role:admin')->group(function () {
+            Route::get('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'index'])
+                ->name('layanan.index');
+            Route::post('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'store'])
+                ->name('layanan.store');
+            Route::put('layanan/{layanan}', [\App\Http\Controllers\Admin\LayananController::class, 'update'])
+                ->name('layanan.update');
+            Route::delete('layanan/{layanan}', [\App\Http\Controllers\Admin\LayananController::class, 'destroy'])
+                ->name('layanan.destroy');
             Route::get('kontributor', [\App\Http\Controllers\Admin\ContributorController::class, 'index'])
                 ->name('kontributor.index');
             Route::post('kontributor', [\App\Http\Controllers\Admin\ContributorController::class, 'store'])

@@ -6,7 +6,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "001",
+        "kd_kecamatan": "01",
         "nm_kecamatan": "Kenduruan"
       },
       "geometry": {
@@ -4249,7 +4249,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "002",
+        "kd_kecamatan": "02",
         "nm_kecamatan": "Jatirogo"
       },
       "geometry": {
@@ -8617,7 +8617,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "003",
+        "kd_kecamatan": "03",
         "nm_kecamatan": "Bangilan"
       },
       "geometry": {
@@ -14250,7 +14250,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "004",
+        "kd_kecamatan": "04",
         "nm_kecamatan": "Bancar"
       },
       "geometry": {
@@ -44303,7 +44303,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "005",
+        "kd_kecamatan": "05",
         "nm_kecamatan": "Senori"
       },
       "geometry": {
@@ -50392,7 +50392,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "006",
+        "kd_kecamatan": "06",
         "nm_kecamatan": "Tambakboyo"
       },
       "geometry": {
@@ -58359,7 +58359,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "007",
+        "kd_kecamatan": "07",
         "nm_kecamatan": "Singgahan"
       },
       "geometry": {
@@ -63770,7 +63770,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "008",
+        "kd_kecamatan": "08",
         "nm_kecamatan": "Kerek"
       },
       "geometry": {
@@ -68453,7 +68453,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "009",
+        "kd_kecamatan": "09",
         "nm_kecamatan": "Parengan"
       },
       "geometry": {
@@ -78796,7 +78796,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "010",
+        "kd_kecamatan": "10",
         "nm_kecamatan": "Montong"
       },
       "geometry": {
@@ -86151,7 +86151,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "011",
+        "kd_kecamatan": "11",
         "nm_kecamatan": "Soko"
       },
       "geometry": {
@@ -93714,7 +93714,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "012",
+        "kd_kecamatan": "12",
         "nm_kecamatan": "Jenu"
       },
       "geometry": {
@@ -132579,7 +132579,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "013",
+        "kd_kecamatan": "13",
         "nm_kecamatan": "Merakurak"
       },
       "geometry": {
@@ -138426,7 +138426,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "014",
+        "kd_kecamatan": "14",
         "nm_kecamatan": "Rengel"
       },
       "geometry": {
@@ -143569,7 +143569,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "015",
+        "kd_kecamatan": "15",
         "nm_kecamatan": "Semanding"
       },
       "geometry": {
@@ -150677,7 +150677,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "016",
+        "kd_kecamatan": "16",
         "nm_kecamatan": "Tuban"
       },
       "geometry": {
@@ -161124,7 +161124,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "017",
+        "kd_kecamatan": "17",
         "nm_kecamatan": "Plumpang"
       },
       "geometry": {
@@ -165377,7 +165377,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "018",
+        "kd_kecamatan": "18",
         "nm_kecamatan": "Palang"
       },
       "geometry": {
@@ -194165,7 +194165,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "019",
+        "kd_kecamatan": "19",
         "nm_kecamatan": "Widang"
       },
       "geometry": {
@@ -219993,7 +219993,7 @@
       "properties": {
         "kd_propinsi": "35",
         "kd_dati2": "23",
-        "kd_kecamatan": "020",
+        "kd_kecamatan": "20",
         "nm_kecamatan": "Grabagan"
       },
       "geometry": {

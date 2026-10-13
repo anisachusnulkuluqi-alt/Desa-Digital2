@@ -40,7 +40,7 @@ class PlaceStatisticsTest extends TestCase
         $content = $response->getContent();
 
         $this->assertLessThan(
-            strpos($content, 'href="#statistik-wilayah">DATA WILAYAH'),
+            strpos($content, 'href="#statistik-wilayah">STATISTIK'),
             strpos($content, 'href="#layanan-digital">LAYANAN')
         );
         $this->assertLessThan(

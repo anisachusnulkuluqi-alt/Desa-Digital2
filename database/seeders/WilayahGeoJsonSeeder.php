@@ -20,7 +20,11 @@ class WilayahGeoJsonSeeder extends Seeder
 
             foreach ($kecamatanFeatures as $feature) {
                 $properties = $this->properties($feature, 'kecamatan.geojson');
-                $kodeKecamatan = $this->requiredCode($properties, 'kd_kecamatan', 3);
+                $kodeKecamatanRaw = $this->requiredCode($properties, 'kd_kecamatan', 2);
+                $kodeKecamatan = str_pad($kodeKecamatanRaw, 3, '0', STR_PAD_LEFT);
+                $kodeProvinsi = $this->requiredCode($properties, 'kd_propinsi', 2);
+                $kodeKabupaten = $this->requiredCode($properties, 'kd_dati2', 2);
+                $kodeKecamatanLengkap = $kodeProvinsi.$kodeKabupaten.$kodeKecamatanRaw;
                 $namaKecamatan = trim((string) ($properties['nm_kecamatan'] ?? ''));
 
                 if ($namaKecamatan === '') {
@@ -33,9 +37,17 @@ class WilayahGeoJsonSeeder extends Seeder
 
                 $kecamatanId = $kecamatan?->id ?? DB::table('kecamatan')->insertGetId([
                     'nama_kecamatan' => $namaKecamatan,
+                    'kode_kecamatan' => $kodeKecamatanLengkap,
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);
+
+                if ($kecamatan) {
+                    DB::table('kecamatan')->where('id', $kecamatanId)->update([
+                        'kode_kecamatan' => $kodeKecamatanLengkap,
+                        'updated_at' => $now,
+                    ]);
+                }
 
                 $kecamatanIds[$kodeKecamatan] = $kecamatanId;
             }

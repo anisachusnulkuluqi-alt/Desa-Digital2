@@ -58,4 +58,21 @@ class AdminPaginationTest extends TestCase
             ->assertSee('<th style="width: 50px;">NO</th>', false)
             ->assertSee('<td class="row-number">1</td>', false);
     }
+
+    public function test_kecamatan_list_displays_kode_kecamatan_from_database(): void
+    {
+        $this->actingAs(User::factory()->create(['role' => User::ROLE_ADMIN]));
+
+        DB::table('kecamatan')->insert([
+            'nama_kecamatan' => 'Kecamatan Uji',
+            'kode_kecamatan' => '352301',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->get(route('admin.kecamatan.index'))
+            ->assertOk()
+            ->assertSee('<th>Kode Kecamatan</th>', false)
+            ->assertSee('352301');
+    }
 }
