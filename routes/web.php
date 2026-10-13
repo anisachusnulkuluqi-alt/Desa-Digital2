@@ -257,6 +257,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('search/suggestions', [DashboardController::class, 'searchSuggestions'])
             ->name('search.suggestions');
 
+        Route::get('search', [DashboardController::class, 'search'])
+            ->name('search');
+
         Route::middleware('role:admin')->group(function () {
             Route::get('layanan', [\App\Http\Controllers\Admin\LayananController::class, 'index'])
                 ->name('layanan.index');

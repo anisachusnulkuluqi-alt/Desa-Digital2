@@ -177,12 +177,22 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            padding: 0;
+            padding: 4px;
             border: 0;
             background: transparent;
             color: var(--text-light);
             font-size: 14px;
             cursor: pointer;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .search-box-submit:hover {
+            color: var(--primary);
+            background: #eff6ff;
         }
 
         .search-suggestions {
@@ -191,9 +201,9 @@
             right: 0;
             left: 0;
             z-index: 120;
-            max-height: 360px;
+            max-height: 380px;
             overflow-y: auto;
-            padding: 5px;
+            padding: 6px;
             border: 1px solid var(--border);
             border-radius: 10px;
             background: white;
@@ -205,11 +215,12 @@
             justify-content: space-between;
             align-items: center;
             gap: 12px;
-            padding: 9px 10px;
+            padding: 8px 10px;
             border-radius: 7px;
             color: var(--text-primary);
             font-size: 13px;
             text-decoration: none;
+            transition: background 0.15s;
         }
 
         .search-suggestion:hover,
@@ -218,16 +229,65 @@
             color: var(--primary);
         }
 
+        .search-suggestion-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .search-suggestion-title {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-suggestion-desc {
+            font-size: 11px;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .search-suggestion-type {
             flex: 0 0 auto;
-            color: var(--text-light);
-            font-size: 11px;
+            color: #2563eb;
+            background: #eff6ff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .search-suggestion-all {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            margin-top: 4px;
+            border-top: 1px solid var(--border);
+            border-radius: 0 0 7px 7px;
+            background: #f8fafc;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 12px;
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+
+        .search-suggestion-all:hover,
+        .search-suggestion-all[aria-selected="true"] {
+            background: #eff6ff;
         }
 
         .search-suggestions-empty {
-            padding: 10px;
+            padding: 12px 10px;
             color: var(--text-secondary);
             font-size: 12px;
+            text-align: center;
         }
 
         /* ===== PAGE BODY ===== */
@@ -460,15 +520,15 @@
     <!-- Main Content -->
     <div class="main-content">
         <header class="top-header">
-            <form class="search-box" id="dashboardSearchForm" action="{{ route('admin.desa.index') }}" method="GET" role="search">
-                <button class="search-box-submit" type="submit" aria-label="Cari">
+            <form class="search-box" id="dashboardSearchForm" action="{{ route('admin.search') }}" method="GET" role="search">
+                <button class="search-box-submit" type="submit" aria-label="Cari semua data & atribut" title="Cari semua data & atribut">
                     <i class="bi bi-search" aria-hidden="true"></i>
                 </button>
                 <input
                     type="search"
-                    name="search"
+                    name="q"
                     id="dashboardSearchInput"
-                    placeholder="Cari desa, kecamatan, atau menu..."
+                    placeholder="Cari semua data & atribut (wisata, pasar, tempat, desa...)"
                     autocomplete="off"
                     role="combobox"
                     aria-autocomplete="list"

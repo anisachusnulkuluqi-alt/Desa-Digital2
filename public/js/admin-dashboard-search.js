@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
         input.removeAttribute('aria-activedescendant');
     };
 
-    const renderSuggestions = function (items) {
+    const renderSuggestions = function (items, currentTerm) {
         suggestions.replaceChildren();
 
         if (!items.length) {
             const emptyMessage = document.createElement('div');
             emptyMessage.className = 'search-suggestions-empty';
-            emptyMessage.textContent = 'Tidak ada hasil yang cocok.';
+            emptyMessage.textContent = 'Tidak ada rekomendasi langsung.';
             suggestions.appendChild(emptyMessage);
         } else {
             items.forEach(function (item, index) {
@@ -31,15 +31,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.setAttribute('role', 'option');
                 link.setAttribute('aria-selected', 'false');
 
+                const main = document.createElement('div');
+                main.className = 'search-suggestion-main';
+
                 const title = document.createElement('span');
+                title.className = 'search-suggestion-title';
                 title.textContent = item.title;
+                main.appendChild(title);
+
+                if (item.description) {
+                    const desc = document.createElement('span');
+                    desc.className = 'search-suggestion-desc';
+                    desc.textContent = item.description;
+                    main.appendChild(desc);
+                }
+
                 const type = document.createElement('span');
                 type.className = 'search-suggestion-type';
                 type.textContent = item.type;
 
-                link.append(title, type);
+                link.append(main, type);
                 suggestions.appendChild(link);
             });
+        }
+
+        if (currentTerm) {
+            const allLink = document.createElement('a');
+            allLink.className = 'search-suggestion-all';
+            const actionUrl = form.getAttribute('action') || '/admin/search';
+            const searchUrl = new URL(actionUrl, window.location.origin);
+            searchUrl.searchParams.set('q', currentTerm);
+            allLink.href = searchUrl.toString();
+            allLink.id = 'dashboard-search-option-all';
+            allLink.setAttribute('role', 'option');
+            allLink.setAttribute('aria-selected', 'false');
+
+            const allIcon = document.createElement('i');
+            allIcon.className = 'bi bi-search';
+            const allText = document.createElement('span');
+            allText.textContent = 'Lihat semua hasil untuk "' + currentTerm + '"';
+
+            allLink.append(allIcon, allText);
+            suggestions.appendChild(allLink);
         }
 
         suggestions.hidden = false;
@@ -71,7 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         debounceTimer = window.setTimeout(async function () {
             try {
-                renderSuggestions(await fetchSuggestions(term));
+                const items = await fetchSuggestions(term);
+                renderSuggestions(items, term);
             } catch (error) {
                 if (error.name !== 'AbortError') {
                     closeSuggestions();
@@ -109,33 +143,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-
-        const firstOption = suggestions.querySelector('[role="option"]');
-        if (firstOption) {
-            window.location.assign(firstOption.href);
+    form.addEventListener('submit', function (event) {
+        const selectedOption = suggestions.querySelector('[role="option"][aria-selected="true"]');
+        if (selectedOption && selectedOption.href) {
+            event.preventDefault();
+            window.location.assign(selectedOption.href);
             return;
         }
 
         const term = input.value.trim();
-        if (!term) return;
+        if (!term) {
+            event.preventDefault();
+            return;
+        }
 
         window.clearTimeout(debounceTimer);
         if (requestController) requestController.abort();
-
-        try {
-            const items = await fetchSuggestions(term);
-            if (items.length) {
-                window.location.assign(items[0].url);
-                return;
-            }
-        } catch (error) {
-            if (error.name === 'AbortError') return;
-            console.error(error);
-        }
-
-        form.submit();
+        closeSuggestions();
+        // Allow normal submission to form.action (/admin/search?q=...)
     });
 
     document.addEventListener('click', function (event) {

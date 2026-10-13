@@ -138,4 +138,122 @@ class DashboardSearchTest extends TestCase
                 ->assertSee('js/admin-sidebar-toggle.js', false);
         }
     }
+
+    public function test_dashboard_renders_search_form_targeting_all_attributes_search(): void
+    {
+        $admin = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        $response = $this->actingAs($admin)->get(route('dashboard'));
+
+        $response->assertOk()
+            ->assertSee('action="' . route('admin.search') . '"', false)
+            ->assertSee('name="q"', false)
+            ->assertSee('id="dashboardSearchInput"', false)
+            ->assertSee('id="dashboardSearchSuggestions"', false)
+            ->assertSee('placeholder="Cari semua data & atribut', false);
+    }
+
+    public function test_search_page_displays_grouped_results_across_all_attributes(): void
+    {
+        $admin = User::factory()->create([
+            'name' => 'Admin Utama',
+            'email_verified_at' => now(),
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        $kecamatan = Kecamatan::create([
+            'nama_kecamatan' => 'Kerek Indah',
+            'kode_wilayah' => 'krk-01',
+        ]);
+
+        Desa::create([
+            'kecamatan_id' => $kecamatan->id,
+            'nama_desa' => 'Desa Margomulyo',
+            'kode_desa' => 'mgm-01',
+            'alamat_kantor' => 'Jl. Raya Margomulyo No. 1',
+        ]);
+
+        Tempat::create([
+            'nama' => 'Sendang Asri Margomulyo',
+            'kategori' => 'wisata alam',
+            'desa' => 'Margomulyo',
+            'deskripsi' => 'Mata air alami desa',
+        ]);
+
+        // Wisata
+        if (\Illuminate\Support\Facades\Schema::hasTable('lokasi_wisata')) {
+            \App\Models\Wisata::create([
+                'feature_key' => 'wisata-margomulyo-01',
+                'nama_lokasi' => 'Pantai Margomulyo Indah',
+                'desa' => 'Margomulyo',
+                'jenis_wisata' => 'Wisata Bahari',
+                'alamat' => 'Pesisir Utara',
+            ]);
+        }
+
+        // Empty search redirects to dashboard
+        $this->actingAs($admin)
+            ->get(route('admin.search', ['q' => '   ']))
+            ->assertRedirect(route('dashboard'));
+
+        // Search by term matching multiple modules and attributes
+        $response = $this->actingAs($admin)
+            ->get(route('admin.search', ['q' => 'Margomulyo']));
+
+        $response->assertOk()
+            ->assertSee('Hasil Pencarian')
+            ->assertSee('Margomulyo')
+            ->assertSee('Desa Margomulyo')
+            ->assertSee('Sendang Asri Margomulyo');
+
+        if (\Illuminate\Support\Facades\Schema::hasTable('lokasi_wisata')) {
+            $response->assertSee('Pantai Margomulyo Indah');
+        }
+    }
+
+    public function test_search_finds_records_by_various_attributes(): void
+    {
+        $admin = User::factory()->create([
+            'name' => 'Koordinator Digital',
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        $kec = Kecamatan::create([
+            'nama_kecamatan' => 'Rengel Barat',
+            'kode_wilayah' => 'rng-01',
+        ]);
+
+        Desa::create([
+            'kecamatan_id' => $kec->id,
+            'nama_desa' => 'Desa Kanorejo',
+            'kode_desa' => 'knr-09',
+            'alamat_kantor' => 'Jalan Pahlawan Nomor 10',
+            'telepon' => '081234567890',
+        ]);
+
+        Tempat::create([
+            'nama' => 'Pusat Kerajinan Anyaman',
+            'kategori' => 'kerajinan',
+            'desa' => 'Desa Kanorejo',
+            'alamat' => 'Dusun Krajan',
+            'deskripsi' => 'Sentra pembuatan kerajinan bambu tradisional',
+        ]);
+
+        // Search by category attribute ("kerajinan")
+        $responseKat = $this->actingAs($admin)
+            ->get(route('admin.search', ['q' => 'kerajinan']));
+        $responseKat->assertOk()
+            ->assertSee('Pusat Kerajinan Anyaman');
+
+        // Search by office address attribute ("Pahlawan")
+        $responseAlamat = $this->actingAs($admin)
+            ->get(route('admin.search', ['q' => 'Pahlawan']));
+        $responseAlamat->assertOk()
+            ->assertSee('Desa Kanorejo');
+    }
 }
+
+
