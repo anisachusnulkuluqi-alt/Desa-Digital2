@@ -612,62 +612,12 @@
             .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
         }
     </style>
+    <link rel="stylesheet" href="<?= asset('css/public-header.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('css/global-search.css'); ?>">
 </head>
 <body>
 
-    <!-- 1. Header Navbar Persis Gambar Referensi -->
-    <header class="site-header">
-        <a href="<?= url('/'); ?>" class="brand-link-clean">
-            <!-- Gambar Logo Ikon Murni Dari Public -->
-            <img src="<?= asset('images/desa-digital.png'); ?>" 
-                 alt="Logo Desa Digital" 
-                 class="brand-logo-icon"
-                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/300px-Lambang_Kabupaten_Tuban.png';">
-            
-            <!-- Font Tipografi: "Desa Digital" Persis Sesuai Gambar -->
-            <div class="brand-text-logo">
-                <span class="text-desa">Desa</span>
-                <span class="text-digital">Digital</span>
-            </div>
-        </a>
-
-        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-navigation">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-        </button>
-
-        <ul class="nav-menu" id="primary-navigation">
-            <li><a href="{{ url('/#hero-banner') }}" class="active">BERANDA</a></li>
-            <li><a href="{{ url('/#tentang-kami') }}">TENTANG KAMI</a></li>
-            <li><a href="{{ url('/#layanan-digital') }}">LAYANAN</a></li>
-            <li><a href="{{ url('/#hubungi-kami') }}">HUBUNGI KAMI</a></li>
-        </ul>
-
-    </header>
-
-    <script>
-        (() => {
-            const header = document.querySelector('.site-header');
-            const menuButton = header.querySelector('.menu-toggle');
-            const menuIcon = menuButton.querySelector('i');
-            const setMenuOpen = isOpen => {
-                header.classList.toggle('nav-open', isOpen);
-                menuButton.setAttribute('aria-expanded', String(isOpen));
-                menuButton.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
-                menuIcon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`;
-            };
-            menuButton.addEventListener('click', () => setMenuOpen(!header.classList.contains('nav-open')));
-            header.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
-            document.addEventListener('click', event => {
-                if (!header.contains(event.target)) setMenuOpen(false);
-            });
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && header.classList.contains('nav-open')) {
-                    setMenuOpen(false);
-                    menuButton.focus();
-                }
-            });
-        })();
-    </script>
+    @include('partials.public-header', ['activePage' => 'website', 'showSpacer' => true])
 
     <!-- 2. Hero Ringkas & Minimalis -->
     <section class="hero-compact">

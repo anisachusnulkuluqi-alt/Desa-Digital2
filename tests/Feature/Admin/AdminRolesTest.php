@@ -23,6 +23,55 @@ class AdminRolesTest extends TestCase
             ->assertOk();
     }
 
+    public function test_contributor_dashboard_uses_sidebar_without_admin_only_links(): void
+    {
+        $contributor = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_CONTRIBUTOR,
+        ]);
+
+        $this->actingAs($contributor)
+            ->get(route('dashboard'))
+            ->assertOk()
+            ->assertSee('Kontributor data')
+            ->assertSee('WiFi Desa')
+            ->assertDontSee(route('admin.layanan.index'))
+            ->assertDontSee('Spasial (Master)')
+            ->assertDontSee(route('admin.kontributor.index'));
+    }
+
+    public function test_admin_dashboard_sidebar_includes_admin_management_links(): void
+    {
+        $admin = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        $this->actingAs($admin)
+            ->get(route('dashboard'))
+            ->assertOk()
+            ->assertSee('Admin pengelola data')
+            ->assertSee(route('admin.layanan.index'))
+            ->assertSee('Spasial (Master)')
+            ->assertSee(route('admin.tempat.index'))
+            ->assertSee(route('admin.kontributor.index'));
+    }
+
+    public function test_contributor_cannot_access_spatial_master_routes(): void
+    {
+        $contributor = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_CONTRIBUTOR,
+        ]);
+
+        $this->actingAs($contributor)
+            ->get(route('admin.tempat.index'))
+            ->assertForbidden();
+
+        $this->get(route('admin.tempat.kategori.detail', ['kategori' => 'kuliner']))
+            ->assertForbidden();
+    }
+
     public function test_contributor_login_does_not_return_to_admin_only_user_management(): void
     {
         $contributor = User::factory()->create([

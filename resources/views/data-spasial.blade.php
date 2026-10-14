@@ -1008,55 +1008,12 @@
             .table-pagination { font-size: 0.68rem; }
         }
     </style>
+    <link rel="stylesheet" href="<?= asset('css/public-header.css'); ?>">
+    <link rel="stylesheet" href="<?= asset('css/global-search.css'); ?>">
 </head>
 <body>
 
-    <header class="site-header">
-        <a href="{{ url('/') }}" class="brand-link">
-            <img src="{{ asset('images/desa-digital.png') }}"
-                 alt="Logo Desa Digital"
-                 class="brand-logo-img"
-                 onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
-            <div class="brand-text-logo">Desa<span>Digital</span></div>
-        </a>
-
-        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="primary-navigation">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
-        </button>
-
-        <ul class="nav-menu" id="primary-navigation">
-            <li><a href="{{ url('/#hero-banner') }}" class="active">BERANDA</a></li>
-            <li><a href="{{ url('/#tentang-kami') }}">TENTANG KAMI</a></li>
-            <li><a href="{{ url('/#layanan-digital') }}">LAYANAN</a></li>
-            <li><a href="{{ url('/#hubungi-kami') }}">HUBUNGI KAMI</a></li>
-        </ul>
-
-    </header>
-
-    <script>
-        (() => {
-            const header = document.querySelector('.site-header');
-            const menuButton = header.querySelector('.menu-toggle');
-            const menuIcon = menuButton.querySelector('i');
-            const setMenuOpen = isOpen => {
-                header.classList.toggle('nav-open', isOpen);
-                menuButton.setAttribute('aria-expanded', String(isOpen));
-                menuButton.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
-                menuIcon.className = `fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`;
-            };
-            menuButton.addEventListener('click', () => setMenuOpen(!header.classList.contains('nav-open')));
-            header.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
-            document.addEventListener('click', event => {
-                if (!header.contains(event.target)) setMenuOpen(false);
-            });
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape' && header.classList.contains('nav-open')) {
-                    setMenuOpen(false);
-                    menuButton.focus();
-                }
-            });
-        })();
-    </script>
+    @include('partials.public-header', ['activePage' => 'spatial', 'showSpacer' => false])
 
     <!-- TOP BAR -->
     <div class="gmaps-floating-header">

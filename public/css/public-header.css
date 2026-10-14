@@ -1,0 +1,242 @@
+.site-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1100;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(14px, 2vw, 28px);
+    min-height: 78px;
+    padding: 12px clamp(20px, 5vw, 80px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    color: #ffffff;
+}
+
+.brand-link {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    display: block;
+    width: auto;
+    max-width: 160px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.brand-text-logo {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+.brand-text-logo span {
+    margin-left: 2px;
+    color: #38bdf8;
+}
+
+.nav-menu {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(4px, 0.55vw, 10px);
+    margin-left: auto;
+    list-style: none;
+}
+
+.nav-menu a {
+    display: block;
+    padding: 9px 8px;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.nav-menu a.active {
+    background: rgba(148, 163, 184, 0.32);
+    box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35);
+    color: #ffffff;
+}
+
+.menu-toggle {
+    display: none;
+    flex: 0 0 42px;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.site-header-spacer {
+    height: 78px;
+}
+
+.search-pill-nav {
+    display: flex;
+    flex: 0 0 150px;
+    align-items: center;
+    min-width: 0;
+    padding: 4px 10px 4px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.12);
+    font-family: 'Manrope', sans-serif;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.search-pill-nav:focus-within {
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.search-pill-nav input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.search-pill-nav input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-pill-nav button {
+    display: grid;
+    flex: 0 0 28px;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .site-header {
+        gap: 12px;
+        padding-inline: 24px;
+    }
+
+    .nav-menu {
+        gap: 2px;
+    }
+
+    .nav-menu a {
+        padding-inline: 6px;
+        font-size: 0.69rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .site-header {
+        flex-wrap: nowrap;
+        min-height: 60px;
+        height: 60px;
+        gap: 10px;
+        padding: 6px 14px;
+    }
+
+    .brand-link {
+        gap: 8px;
+    }
+
+    .brand-logo-img {
+        height: 38px;
+        max-width: 64px;
+    }
+
+    .brand-text-logo {
+        font-size: 1.15rem;
+    }
+
+    .menu-toggle {
+        display: grid;
+        order: 3;
+        margin-left: auto;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 14px;
+        z-index: 1101;
+        display: none;
+        flex: initial;
+        flex-direction: column;
+        align-items: stretch;
+        width: min(280px, calc(100vw - 28px));
+        margin: 0;
+        padding: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 10px;
+        background: linear-gradient(145deg, #102a43, #0f766e);
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.25);
+    }
+
+    .site-header.nav-open .nav-menu {
+        display: flex;
+    }
+
+    .nav-menu a {
+        padding: 11px 12px;
+        font-size: 0.82rem;
+    }
+
+    .search-pill-nav {
+        order: 2;
+        flex: 0 1 min(180px, 38vw);
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-logo-img {
+        max-width: 48px;
+    }
+
+    .search-pill-nav {
+        flex-basis: min(145px, 34vw);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-menu a {
+        transition: none;
+    }
+}
