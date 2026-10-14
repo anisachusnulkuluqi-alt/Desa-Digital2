@@ -7,6 +7,7 @@ use App\Models\Desa;
 use App\Models\Kategori;
 use App\Models\Kecamatan;
 use App\Models\Layanan;
+use App\Models\SurveiKepuasan;
 use App\Models\Tempat;
 use App\Models\User;
 use App\Models\Wisata;
@@ -20,7 +21,14 @@ class DashboardController extends Controller
 {
     public function index(DashboardStatistics $statistics)
     {
-        return view('admin.dashboard', $statistics->counts());
+        $counts = $statistics->counts();
+        $recentSurveis = class_exists(SurveiKepuasan::class) && Schema::hasTable('website_feedback')
+            ? SurveiKepuasan::latest('created_at')->take(5)->get()
+            : collect();
+
+        return view('admin.dashboard', array_merge($counts, [
+            'recentSurveis' => $recentSurveis,
+        ]));
     }
 
     /**

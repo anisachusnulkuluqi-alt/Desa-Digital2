@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -30,13 +31,14 @@
 
         /* Header Navbar */
         .site-header {
-            background: rgba(51, 65, 85, 0.96);
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px 7%;
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -44,14 +46,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo-img { height: 38px; width: auto; max-width: 140px; object-fit: contain; display: block; }
-        .brand-text-logo { font-size: 1.35rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
+        .brand-logo-img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; }
+        .brand-text-logo { font-family: 'Manrope', sans-serif; font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em; display: flex; align-items: center; }
         .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
-        .nav-menu { display: flex; align-items: center; gap: 22px; list-style: none; }
-        .nav-menu a { color: #e2e8f0; text-decoration: none; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; position: relative; padding: 6px 0; transition: color 0.2s ease; }
-        .nav-menu a:hover { color: #ffffff; }
-        .nav-menu a.active { color: #38bdf8; }
-        .nav-menu a.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #38bdf8; border-radius: 2px; }
+        .nav-menu { display: flex; align-items: center; gap: clamp(8px, 0.75vw, 12px); list-style: none; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
+        .nav-menu a { color: rgba(255, 255, 255, 0.9); text-decoration: none; font-family: 'Manrope', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0; position: relative; padding: 9px 8px; border-radius: 6px; transition: color 0.2s ease, background-color 0.2s ease; }
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
         .search-pill-nav { display: flex; align-items: center; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 5px 14px; width: 190px; transition: all 0.25s ease; }
         .search-pill-nav:focus-within { width: 230px; background: rgba(255, 255, 255, 0.2); border-color: #38bdf8; }
         .search-pill-nav input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 0.8rem; width: 100%; }
@@ -323,10 +324,10 @@
             <div class="brand-text-logo">Desa<span>Digital</span></div>
         </a>
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>">BERANDA</a></li>
+            <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
             <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
             <li><a href="<?= url('/data-spasial'); ?>">DATA SPASIAL</a></li>
-            <li><a href="<?= url('/cctv'); ?>" class="active">CCTV TUBAN</a></li>
+            <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
             <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
             <li><a href="<?= url('/epbb'); ?>">E-PBB</a></li>
         </ul>

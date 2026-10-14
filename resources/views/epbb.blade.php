@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -31,11 +32,12 @@
 
         /* 1. TOP NAVBAR */
         .main-navbar {
-            background: var(--dark-header);
-            padding: 14px 7%;
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -48,27 +50,34 @@
             text-decoration: none;
         }
         .brand-logo-img {
-            height: 38px;
+            height: 52px;
             width: auto;
-            max-width: 140px;
+            max-width: 160px;
             object-fit: contain;
         }
         .nav-links-menu {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: clamp(8px, 0.75vw, 12px);
             list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
         }
         .nav-links-menu a {
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: opacity 0.2s;
+            letter-spacing: 0;
+            position: relative;
+            padding: 9px 8px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
-        .nav-links-menu a:hover { opacity: 0.8; }
+        .nav-links-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-links-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
         .btn-nav-login {
             background: var(--primary-violet);
             color: #ffffff !important;
@@ -473,11 +482,11 @@
                  alt="Logo Desa Digital" 
                  class="brand-logo-img"
                  onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Lambang_Kabupaten_Tuban.png/400px-Lambang_Kabupaten_Tuban.png'">
-            <span style="font-size: 1.22rem; font-weight: 800; color: #ffffff;">Desa<span style="color: #38bdf8;">Digital</span></span>
+            <span style="font-family: 'Manrope', sans-serif; font-size: 1.45rem; font-weight: 800; color: #ffffff;">Desa<span style="color: #38bdf8;">Digital</span></span>
         </a>
 
         <ul class="nav-links-menu">
-            <li><a href="{{ url('/') }}">Beranda</a></li>
+            <li><a href="{{ url('/') }}" class="active">Beranda</a></li>
             <li><a href="#cek-tagihan">Cek NOP</a></li>
             <li><a href="#alur-layanan">Alur Pelayanan</a></li>
             <li><a href="#jenis-layanan">Jenis Layanan</a></li>

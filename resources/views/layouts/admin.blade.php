@@ -344,6 +344,7 @@
         
         .admin-footer small {
             color: #6b7280;
+            font-weight: 700;
         }
         
         .admin-footer-links a {

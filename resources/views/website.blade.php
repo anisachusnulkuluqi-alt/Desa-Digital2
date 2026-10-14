@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -68,6 +69,7 @@
 
         /* Teks Logo: "Desa Digital" Persis Gambar */
         .brand-text-logo {
+            font-family: 'Manrope', sans-serif;
             font-size: 1.45rem;
             letter-spacing: 0;
             line-height: 1;
@@ -97,6 +99,7 @@
         .nav-menu a {
             color: #ffffff;
             text-decoration: none;
+            font-family: 'Manrope', sans-serif;
             font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0;
@@ -111,7 +114,8 @@
         }
         .nav-menu a.active {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.16);
+            background: rgba(148, 163, 184, 0.32);
+            box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35);
         }
         .menu-toggle {
             display: none;

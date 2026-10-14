@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Leaflet JS & CSS -->
@@ -71,7 +72,7 @@
 
         .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-logo-img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; }
-        .brand-text-logo { font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: 0; display: flex; align-items: center; }
+        .brand-text-logo { font-family: 'Manrope', sans-serif; font-size: 1.45rem; font-weight: 800; color: #ffffff; letter-spacing: 0; display: flex; align-items: center; }
         .brand-text-logo span { color: #38bdf8; margin-left: 2px; }
         .nav-menu {
             display: flex;
@@ -85,6 +86,7 @@
         .nav-menu a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
+            font-family: 'Manrope', sans-serif;
             font-size: 0.76rem;
             font-weight: 700;
             position: relative;
@@ -93,7 +95,7 @@
             transition: color 0.2s ease, background-color 0.2s ease;
         }
         .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
-        .nav-menu a.active { color: #ffffff; background: rgba(255, 255, 255, 0.16); }
+        .nav-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
         .menu-toggle {
             display: none;
             place-items: center;
@@ -114,6 +116,7 @@
             background: #0f172a;
             color: #94a3b8;
             font-size: 0.72rem;
+            font-weight: 700;
             text-align: center;
         }
 
@@ -1238,7 +1241,7 @@
         </div>
     </div>
     <footer class="site-footer">
-        &copy; 2026 Pemerintah Kabupaten Tuban &bull; Dinas Komunikasi, Informatika, Statistik dan Persandian. Seluruh hak cipta dilindungi.
+        &copy; 2026 <strong>Dinas Komunikasi dan Informatika, Statistik dan Persandian</strong> Kabupaten Tuban
     </footer>
     <div class="map-action-status" id="mapActionStatus" role="status" aria-live="polite"></div>
 

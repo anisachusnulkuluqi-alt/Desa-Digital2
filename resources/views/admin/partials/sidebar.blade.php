@@ -274,10 +274,20 @@
         <li class="sidebar-menu-divider" role="separator"></li>
 
         {{-- SURVEI KEPUASAN (DIBAWAH GARIS, DIATAS USER) --}}
+        @php
+            $surveiBaruHariIni = \Illuminate\Support\Facades\Schema::hasTable('website_feedback')
+                ? \App\Models\SurveiKepuasan::whereDate('created_at', \Carbon\Carbon::today())->count()
+                : 0;
+        @endphp
         <li>
-            <a href="{{ route('admin.survei.index') }}" class="{{ request()->routeIs('admin.survei.*') ? 'active' : '' }}">
-                <i class="bi bi-chat-heart-fill"></i>
-                <span>Survei Kepuasan</span>
+            <a href="{{ route('admin.survei.index') }}" class="{{ request()->routeIs('admin.survei.*') ? 'active' : '' }}" style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="display: flex; align-items: center; gap: 10px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <i class="bi bi-chat-heart-fill"></i>
+                    <span>Survei Kepuasan</span>
+                </span>
+                @if($surveiBaruHariIni > 0)
+                    <span class="badge bg-danger rounded-pill" style="font-size: 10px; padding: 2px 7px; font-weight: 700; flex-shrink: 0;" title="{{ $surveiBaruHariIni }} survei masuk hari ini">+{{ $surveiBaruHariIni }}</span>
+                @endif
             </a>
         </li>
 

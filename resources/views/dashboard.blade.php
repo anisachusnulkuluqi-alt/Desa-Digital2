@@ -255,7 +255,7 @@
             display: flex; justify-content: space-between; align-items: center;
             border-top: 1px solid #e5e7eb; margin-top: 40px;
         }
-        .footer small { color: #6b7280; font-size: 13px; }
+        .footer small { color: #6b7280; font-size: 13px; font-weight: 700; }
         .footer a { color: #00897b; text-decoration: none; margin-left: 20px; font-size: 13px; }
         
         @media (max-width: 992px) {

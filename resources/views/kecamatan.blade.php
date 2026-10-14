@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -29,16 +30,23 @@
 
         /* Topbar Header */
         .top-nav {
-            background: var(--brand-navy);
-            padding: 16px 7%;
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            gap: clamp(14px, 2vw, 28px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
-        .brand-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
-        .brand-link h3 { font-size: 1.1rem; font-weight: 800; }
-        .brand-link span { font-size: 0.68rem; color: var(--accent-cyan-glow); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; flex: 0 0 auto; }
+        .brand-link img { width: auto; height: 52px; max-width: 160px; object-fit: contain; }
+        .brand-link h3 { margin: 0; font-family: 'Manrope', sans-serif; font-size: 1.45rem; font-weight: 800; letter-spacing: -0.01em; }
+        .brand-link h3 span { color: #38bdf8; }
+        .header-nav-menu { display: flex; align-items: center; justify-content: flex-end; gap: clamp(8px, 0.75vw, 12px); list-style: none; margin: 0 0 0 auto; padding: 0; }
+        .header-nav-menu a { display: block; padding: 9px 8px; border-radius: 6px; color: rgba(255, 255, 255, 0.9); font-family: 'Manrope', sans-serif; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: color 0.2s ease, background-color 0.2s ease; }
+        .header-nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .header-nav-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
 
         .btn-kembali {
             color: #cbd5e1;
@@ -184,23 +192,33 @@
         }
         .btn-masuk-forum:hover { background: var(--royal-indigo); }
 
-        @media(max-width: 960px) { .kecamatan-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media(max-width: 600px) { .kecamatan-grid { grid-template-columns: 1fr; } }
+        @media(max-width: 960px) {
+            .kecamatan-grid { grid-template-columns: repeat(2, 1fr); }
+            .top-nav { padding-inline: 5%; }
+        }
+        @media(max-width: 680px) {
+            .kecamatan-grid { grid-template-columns: 1fr; }
+            .top-nav { flex-wrap: wrap; padding: 12px 18px; }
+            .brand-link img { height: 42px; max-width: 72px; }
+            .brand-link h3 { font-size: 1.2rem; }
+            .header-nav-menu { flex: 0 0 100%; justify-content: center; gap: 4px; }
+            .header-nav-menu a { padding: 8px 6px; font-size: 0.72rem; }
+        }
     </style>
 </head>
 <body>
 
     <header class="top-nav">
         <a href="{{ url('/') }}" class="brand-link">
-            <i class="fa-solid fa-building-columns" style="color: #a5b4fc; font-size: 1.3rem;"></i>
-            <div>
-                <h3>Forum Kecamatan</h3>
-                <span>Kabupaten Tuban</span>
-            </div>
+            <img src="{{ asset('images/desa-digital.png') }}" alt="Logo Desa Digital">
+            <h3>Desa<span>Digital</span></h3>
         </a>
-        <a href="{{ url('/') }}" class="btn-kembali">
-            <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
-        </a>
+        <ul class="header-nav-menu">
+            <li><a href="{{ url('/#hero-banner') }}" class="active">BERANDA</a></li>
+            <li><a href="{{ url('/#tentang-kami') }}">TENTANG KAMI</a></li>
+            <li><a href="{{ url('/#layanan-digital') }}">LAYANAN</a></li>
+            <li><a href="{{ url('/#hubungi-kami') }}">HUBUNGI KAMI</a></li>
+        </ul>
     </header>
 
     <section class="page-banner">

@@ -96,7 +96,47 @@ class DashboardStatistics
             'totalWifiDesa' => $this->safeCount('lokasi_wifi'),
             'totalBumdes' => $this->safeCount('lokasi_bumdes'),
             'totalKkdmp' => $this->safeCount('lokasi_kkdmp'),
-        ], $this->visitorCounts());
+        ], $this->visitorCounts(), $this->surveyCounts());
+    }
+
+    public function surveyCounts(): array
+    {
+        if (!Schema::hasTable('website_feedback')) {
+            return [
+                'totalSurvei' => 0,
+                'avgRatingSurvei' => 0,
+                'persentaseKepuasan' => 0,
+                'surveiHariIni' => 0,
+            ];
+        }
+
+        try {
+            $totalSurvei = DB::table('website_feedback')->count();
+            $avgRating = $totalSurvei > 0
+                ? round((float) DB::table('website_feedback')->avg('rating'), 1)
+                : 0;
+            $puasCount = DB::table('website_feedback')->whereIn('rating', [4, 5])->count();
+            $persentaseKepuasan = $totalSurvei > 0
+                ? round(($puasCount / $totalSurvei) * 100)
+                : 0;
+            $surveiHariIni = DB::table('website_feedback')
+                ->whereDate('created_at', now()->toDateString())
+                ->count();
+
+            return [
+                'totalSurvei' => $totalSurvei,
+                'avgRatingSurvei' => $avgRating,
+                'persentaseKepuasan' => $persentaseKepuasan,
+                'surveiHariIni' => $surveiHariIni,
+            ];
+        } catch (\Exception $exception) {
+            return [
+                'totalSurvei' => 0,
+                'avgRatingSurvei' => 0,
+                'persentaseKepuasan' => 0,
+                'surveiHariIni' => 0,
+            ];
+        }
     }
 
     public function visitorCounts(): array

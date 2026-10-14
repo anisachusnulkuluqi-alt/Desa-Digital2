@@ -184,4 +184,29 @@ class SurveiKepuasanTest extends TestCase
         $response = $this->get(route('admin.survei.index'));
         $response->assertRedirect(route('login'));
     }
+
+    public function test_admin_dashboard_displays_survey_metrics_and_recent_surveys(): void
+    {
+        $admin = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        SurveiKepuasan::create([
+            'visitor_hash' => 'hash_dashboard_test',
+            'rating' => 5,
+            'nama' => 'Rina Wijaya',
+            'pekerjaan' => 'Pelajar / Mahasiswa',
+            'message' => 'Desa Digital sangat keren dan mudah diakses.',
+        ]);
+
+        $response = $this->actingAs($admin)->get(route('dashboard'));
+
+        $response->assertOk()
+            ->assertSee('Survei Kepuasan')
+            ->assertSee('Rina Wijaya')
+            ->assertSee('Desa Digital sangat keren')
+            ->assertSee('Tanggapan & Survei Kepuasan Terbaru');
+    }
 }
+

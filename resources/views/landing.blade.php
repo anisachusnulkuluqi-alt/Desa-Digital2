@@ -1276,6 +1276,7 @@
         footer p {
             margin: 0;
             color: #cbd5e1;
+            font-weight: 700;
             line-height: 1.6;
         }
 

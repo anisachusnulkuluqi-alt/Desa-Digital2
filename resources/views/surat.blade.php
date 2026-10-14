@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -32,11 +33,12 @@
 
         /* 1. Header Navbar */
         .site-header {
-            background-color: var(--header-slate);
-            padding: 12px 6%;
+            background: linear-gradient(112deg, #102a43 0%, #155e75 52%, #0f766e 100%);
+            padding: 20px clamp(20px, 8.8vw, 128px);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(14px, 2vw, 28px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -60,6 +62,7 @@
         }
 
         .brand-text-logo {
+            font-family: 'Manrope', sans-serif;
             font-size: 1.55rem;
             letter-spacing: -0.02em;
             line-height: 1;
@@ -71,37 +74,29 @@
         .brand-text-logo .text-desa { color: #ffffff; font-weight: 800; }
         .brand-text-logo .text-digital { color: var(--digital-cyan); font-weight: 800; }
 
-        .nav-menu { 
-            display: flex; 
-            align-items: center; 
-            gap: 28px; 
-            list-style: none; 
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 0.75vw, 12px);
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-left: auto;
         }
         .nav-menu a {
-            color: #ffffff;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            font-size: 0.84rem;
-            font-weight: 800;
-            letter-spacing: 0.6px;
-            text-transform: uppercase;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0;
             position: relative;
-            padding: 4px 0;
-            transition: color 0.2s ease;
+            padding: 9px 8px;
+            border-radius: 6px;
+            transition: color 0.2s ease, background-color 0.2s ease;
         }
-        .nav-menu a:hover,
-        .nav-menu a.active { 
-            color: var(--digital-cyan); 
-        }
-        .nav-menu a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 2.5px;
-            background: var(--digital-cyan);
-            border-radius: 2px;
-        }
+        .nav-menu a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.1); }
+        .nav-menu a.active { color: #ffffff; background: rgba(148, 163, 184, 0.32); box-shadow: inset 0 0 0 1px rgba(203, 213, 225, 0.35); }
 
         .btn-apmd-nav {
             background: var(--primary-apmd);
@@ -386,6 +381,7 @@
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
+        footer p { font-weight: 700; }
         footer a { color: var(--digital-cyan); text-decoration: none; }
 
         @media (max-width: 1024px) {
@@ -420,11 +416,11 @@
         </a>
 
         <ul class="nav-menu">
-            <li><a href="<?= url('/'); ?>">BERANDA</a></li>
+            <li><a href="<?= url('/'); ?>" class="active">BERANDA</a></li>
             <li><a href="<?= url('/website'); ?>">WEBSITE DESA</a></li>
             <li><a href="<?= url('/data-spasial'); ?>">PETA SPASIAL</a></li>
             <li><a href="<?= url('/cctv'); ?>">CCTV TUBAN</a></li>
-            <li><a href="<?= url('/surat'); ?>" class="active">SURAT MANDIRI</a></li>
+            <li><a href="<?= url('/surat'); ?>">SURAT MANDIRI</a></li>
             <li><a href="https://apmd.tubankab.go.id/" target="_blank" rel="noopener" class="btn-apmd-nav"><i class="fa-solid fa-arrow-right-to-bracket"></i> Portal APMD</a></li>
         </ul>
     </header>
