@@ -17,6 +17,8 @@ class SpatialLocationTest extends TestCase
             ->assertSee('id="layerKabupaten" checked', false)
             ->assertDontSee('id="layerKecamatan" checked', false)
             ->assertDontSee('id="layerDesa" checked', false)
+            ->assertSee('minZoom: 9', false)
+            ->assertSee('map.setView(tubanCenter, 9)', false)
             ->assertSee("document.getElementById('layerKabupaten').checked = true;", false)
             ->assertSee("document.querySelectorAll('.category-chips-row input[type=\"checkbox\"]').forEach(input => {\n                input.checked = false;", false)
             ->assertSee(route('data.spasial.locations', ['kategori' => 'wisata']))

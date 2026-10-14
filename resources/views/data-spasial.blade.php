@@ -1208,14 +1208,14 @@
         let tubanBounds = null;
         const map = L.map('map', {
             zoomControl: false,
-            minZoom: 6,
+            minZoom: 9,
             maxZoom: 19
-        }).setView(tubanCenter, 8);
+        }).setView(tubanCenter, 9);
         L.control.zoom({ position: 'bottomright' }).addTo(map);
 
         function fitTubanBounds(animate = false) {
             if (!tubanBounds || !tubanBounds.isValid()) {
-                map.setView(tubanCenter, 8);
+                map.setView(tubanCenter, 9);
                 return;
             }
 
