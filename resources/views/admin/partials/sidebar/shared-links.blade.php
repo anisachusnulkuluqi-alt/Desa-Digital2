@@ -8,6 +8,17 @@
 <li><a href="{{ route('admin.bumdes.index') }}" class="{{ request()->routeIs('admin.bumdes.*') ? 'active' : '' }}"><i class="bi bi-briefcase-fill"></i><span>BUMDes</span></a></li>
 <li><a href="{{ route('admin.kkdmp.index') }}" class="{{ request()->routeIs('admin.kkdmp.*') ? 'active' : '' }}"><i class="bi bi-people-fill"></i><span>KKDMP</span></a></li>
 
+@if(auth()->user()?->hasRole(\App\Models\User::ROLE_ADMIN, \App\Models\User::ROLE_CONTRIBUTOR))
+    @foreach($allKategori as $kat)
+        <li>
+            <a href="{{ route('admin.tempat.kategori.detail', $kat) }}" class="{{ request('kategori') == $kat ? 'active' : '' }}">
+                <i class="bi bi-pin-map-fill"></i>
+                <span>{{ ucfirst($kat) }}</span>
+            </a>
+        </li>
+    @endforeach
+@endif
+
 <li class="sidebar-menu-divider" role="separator"></li>
 @php
     $surveiBaruHariIni = \Illuminate\Support\Facades\Schema::hasTable('website_feedback')

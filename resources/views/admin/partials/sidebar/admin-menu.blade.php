@@ -6,14 +6,6 @@
             <span>Layanan (Master)</span>
         </a>
     </li>
-    @foreach($allKategori as $kat)
-        <li>
-            <a href="{{ route('admin.tempat.kategori.detail', $kat) }}" class="{{ request('kategori') == $kat ? 'active' : '' }}">
-                <i class="bi bi-pin-map-fill"></i>
-                <span>{{ ucfirst($kat) }}</span>
-            </a>
-        </li>
-    @endforeach
     <li>
         <a href="{{ route('admin.tempat.index') }}" class="{{ request()->routeIs('admin.tempat.index') ? 'active' : '' }}">
             <i class="bi bi-pin-map-fill"></i>

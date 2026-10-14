@@ -110,7 +110,11 @@
             <div class="breadcrumb-simple">
                 <a href="{{ route('dashboard') }}">Admin</a>
                 <span class="separator">/</span>
-                <a href="{{ route('admin.tempat.index') }}">Tempat</a>
+                @if($isAdmin)
+                    <a href="{{ route('admin.tempat.index') }}">Spasial (Master)</a>
+                @else
+                    <span>Data Lokasi</span>
+                @endif
                 <span class="separator">/</span>
                 <span class="active">{{ ucfirst($kategori) }}</span>
             </div>
@@ -227,7 +231,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-modal-cancel" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> Tutup</button>
-                    <button type="button" class="btn-modal-delete" id="btnDeleteModal"><i class="bi bi-trash"></i> Hapus</button>
+                    @if($isAdmin)
+                        <button type="button" class="btn-modal-delete" id="btnDeleteModal"><i class="bi bi-trash"></i> Hapus</button>
+                    @endif
                     <button type="button" class="btn-modal-edit" id="btnEditModal"><i class="bi bi-pencil"></i> Edit</button>
                 </div>
             </div>
@@ -307,12 +313,15 @@
                 photoArea.innerHTML = '<i class="bi bi-geo-alt-fill"></i>';
             }
             
-            document.getElementById('btnDeleteModal').onclick = function() { 
-                if (confirm('Yakin ingin menghapus "' + nama + '"?')) {
-                    modalDetail.hide();
-                    setTimeout(() => hapusData(id, nama), 300);
-                }
-            };
+            const deleteButton = document.getElementById('btnDeleteModal');
+            if (deleteButton) {
+                deleteButton.onclick = function() {
+                    if (confirm('Yakin ingin menghapus "' + nama + '"?')) {
+                        modalDetail.hide();
+                        setTimeout(() => hapusData(id, nama), 300);
+                    }
+                };
+            }
             document.getElementById('btnEditModal').onclick = function() { 
                 modalDetail.hide(); 
                 setTimeout(() => openEditModal(id, nama, desa, foto, infoTambahan), 300);

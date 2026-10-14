@@ -2,7 +2,9 @@
     // Ambil kategori dari 2 sumber: tabel 'kategoris' (dari tombol Tambah Atribut) + kolom 'kategori' di tabel 'tempat'
     $kategoriDariTabel = \App\Models\Kategori::pluck('nama')->filter()->values();
     $kategoriDariTempat = \App\Models\Tempat::select('kategori')->distinct()->pluck('kategori')->filter()->values();
-    $allKategori = $kategoriDariTabel->merge($kategoriDariTempat)->unique()->filter()->values();
+    $allKategori = auth()->user()?->hasRole(\App\Models\User::ROLE_CONTRIBUTOR)
+        ? $kategoriDariTabel
+        : $kategoriDariTabel->merge($kategoriDariTempat)->unique()->filter()->values();
 @endphp
 
 <style>

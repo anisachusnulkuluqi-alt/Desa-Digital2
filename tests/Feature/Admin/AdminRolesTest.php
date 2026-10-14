@@ -3,6 +3,8 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\User;
+use App\Models\Kategori;
+use App\Models\Tempat;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -25,6 +27,7 @@ class AdminRolesTest extends TestCase
 
     public function test_contributor_dashboard_uses_sidebar_without_admin_only_links(): void
     {
+        Kategori::create(['nama' => 'Lokasi Khusus']);
         $contributor = User::factory()->create([
             'email_verified_at' => now(),
             'role' => User::ROLE_CONTRIBUTOR,
@@ -35,6 +38,7 @@ class AdminRolesTest extends TestCase
             ->assertOk()
             ->assertSee('Kontributor data')
             ->assertSee('WiFi Desa')
+            ->assertSee(route('admin.tempat.kategori.detail', ['kategori' => 'Lokasi Khusus']))
             ->assertDontSee(route('admin.layanan.index'))
             ->assertDontSee('Spasial (Master)')
             ->assertDontSee(route('admin.kontributor.index'));
@@ -42,6 +46,7 @@ class AdminRolesTest extends TestCase
 
     public function test_admin_dashboard_sidebar_includes_admin_management_links(): void
     {
+        Kategori::create(['nama' => 'Lokasi Khusus']);
         $admin = User::factory()->create([
             'email_verified_at' => now(),
             'role' => User::ROLE_ADMIN,
@@ -54,11 +59,13 @@ class AdminRolesTest extends TestCase
             ->assertSee(route('admin.layanan.index'))
             ->assertSee('Spasial (Master)')
             ->assertSee(route('admin.tempat.index'))
-            ->assertSee(route('admin.kontributor.index'));
+            ->assertSee(route('admin.kontributor.index'))
+            ->assertSeeInOrder(['KKDMP', 'Lokasi Khusus', 'Survei Kepuasan', 'Layanan (Master)', 'Spasial (Master)']);
     }
 
-    public function test_contributor_cannot_access_spatial_master_routes(): void
+    public function test_contributor_can_access_dynamic_category_but_not_spatial_master_configuration(): void
     {
+        Kategori::create(['nama' => 'lokasi-uji']);
         $contributor = User::factory()->create([
             'email_verified_at' => now(),
             'role' => User::ROLE_CONTRIBUTOR,
@@ -68,7 +75,50 @@ class AdminRolesTest extends TestCase
             ->get(route('admin.tempat.index'))
             ->assertForbidden();
 
-        $this->get(route('admin.tempat.kategori.detail', ['kategori' => 'kuliner']))
+        $this->get(route('admin.tempat.kategori.detail', ['kategori' => 'lokasi-uji']))
+            ->assertOk()
+            ->assertSee('Tambah Data')
+            ->assertDontSee('href="' . route('admin.tempat.index') . '"', false)
+            ->assertDontSee('id="btnDeleteModal"', false);
+
+        $this->get(route('admin.tempat.kategori.fields.json', ['kategori' => 'lokasi-uji']))
+            ->assertForbidden();
+        $this->postJson(route('admin.tempat.kategori.store'), ['nama' => 'lokasi-baru'])
+            ->assertForbidden();
+        $this->postJson(route('admin.tempat.field.store'), [
+            'kategori_id' => Kategori::where('nama', 'lokasi-uji')->value('id'),
+            'nama_field' => 'catatan',
+            'tipe_field' => 'text',
+        ])->assertForbidden();
+    }
+
+    public function test_contributor_can_create_and_edit_dynamic_location_data_but_cannot_delete_it(): void
+    {
+        Kategori::create(['nama' => 'lokasi-uji']);
+        $contributor = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_CONTRIBUTOR,
+        ]);
+
+        $this->actingAs($contributor)
+            ->postJson(route('admin.tempat.data.store'), [
+                'kategori' => 'lokasi-uji',
+                'nama' => 'Lokasi Baru',
+                'latitude' => '-6.9',
+                'longitude' => '111.8',
+            ])
+            ->assertOk()
+            ->assertJsonPath('success', true);
+
+        $tempat = Tempat::where('kategori', 'lokasi-uji')->firstOrFail();
+        $this->putJson(route('admin.tempat.update', ['id' => $tempat->id]), [
+            'nama' => 'Lokasi Diperbarui',
+            'latitude' => '-6.8',
+            'longitude' => '111.9',
+        ])->assertOk()->assertJsonPath('success', true);
+
+        $this->assertSame('Lokasi Diperbarui', $tempat->fresh()->nama);
+        $this->deleteJson(route('admin.tempat.destroy', ['id' => $tempat->id]))
             ->assertForbidden();
     }
 

@@ -31,14 +31,16 @@ class TempatController extends Controller
      */
     public function showKategoriDetail($kategori)
     {
-        $kategori = strtolower(trim($kategori));
-        $kategoriModel = Kategori::firstOrCreate(['nama' => $kategori]);
+        $kategoriKey = strtolower(trim($kategori));
+        $kategoriModel = Kategori::whereRaw('LOWER(nama) = ?', [$kategoriKey])->firstOrFail();
+        $kategori = $kategoriModel->nama;
 
         LokasiAttributeTable::ensureCategoryFields($kategoriModel);
         $fields = $kategoriModel->fields;
         $data = Tempat::where('kategori', $kategori)->get();
+        $isAdmin = auth()->user()?->isAdmin() ?? false;
 
-        return view('admin.tempat.kategori-detail', compact('kategori', 'kategoriModel', 'fields', 'data'));
+        return view('admin.tempat.kategori-detail', compact('kategori', 'kategoriModel', 'fields', 'data', 'isAdmin'));
     }
 
     /**
@@ -131,12 +133,13 @@ class TempatController extends Controller
             'nama' => 'required|string|max:255',
         ]);
 
-        $kategori = strtolower(trim($validated['kategori']));
-        $kategoriModel = Kategori::where('nama', $kategori)->first();
+        $kategoriKey = strtolower(trim($validated['kategori']));
+        $kategoriModel = Kategori::whereRaw('LOWER(nama) = ?', [$kategoriKey])->first();
 
         if (!$kategoriModel) {
             return response()->json(['success' => false, 'message' => 'Kategori tidak ditemukan'], 404);
         }
+        $kategori = $kategoriModel->nama;
 
         $request->validate([
             'latitude' => 'required|numeric|between:-90,90',
