@@ -182,7 +182,7 @@
         /* 2. HERO BANNER */
         .hero-banner-clean {
             position: relative;
-            min-height: clamp(520px, calc(100vh - 72px), 820px);
+            min-height: clamp(520px, calc(100vh - 78px), 820px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -1396,7 +1396,7 @@
     @include('partials.public-header', ['activePage' => 'home', 'showSpacer' => true])
 
     <!-- 2. HERO BANNER -->
-    <section id="hero-banner" class="hero-banner-clean" style="background-image: url('<?= asset('images/alun-alun-tuban.jpg'); ?>');">
+    <section id="hero-banner" class="hero-banner-clean" style="background-image: url('<?= asset('images/alun2.jpeg'); ?>');">
         <div class="hero-content-wrap">
             
             <h1 class="hero-main-title">Desa Digital</h1>
@@ -1478,7 +1478,7 @@
             <div class="video-player-frame">
                 <div class="video-embed-box" id="profil-video">
                     <button type="button" class="video-poster" id="profil-video-play" aria-label="Putar video Profil Desa Digital Kabupaten Tuban">
-                        <img src="https://img.youtube.com/vi/gPCZo6dKDWM/hqdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='<?= asset('images/alun-alun-tuban.jpg'); ?>';">
+                        <img src="https://img.youtube.com/vi/gPCZo6dKDWM/hqdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='<?= asset('images/alun2.jpeg'); ?>';">
                         <span class="video-play-mark" aria-hidden="true">
                             <img src="<?= asset('images/desa-digital.png'); ?>" alt="">
                             <span class="video-play-triangle"><i class="fa-solid fa-play"></i></span>
