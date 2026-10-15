@@ -344,12 +344,14 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(15, 23, 42, 0.72);
             backdrop-filter: blur(8px);
-            z-index: 1000;
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: clamp(16px, 3.5vh, 32px) clamp(14px, 2vw, 24px);
+            overflow-y: auto;
         }
 
         .modal-drawer-card {
@@ -357,13 +359,14 @@
             border: 1px solid rgba(148, 163, 184, 0.35);
             border-radius: 16px;
             width: 100%;
-            max-width: 980px;
-            max-height: 90vh;
+            max-width: 960px;
+            max-height: min(86vh, calc(100dvh - 40px));
             display: flex;
             flex-direction: column;
-            box-shadow: 0 28px 80px rgba(15, 23, 42, 0.28);
+            box-shadow: 0 28px 80px rgba(15, 23, 42, 0.35);
             overflow: hidden;
             animation: popUp 0.25s ease-out;
+            margin: auto;
         }
         @keyframes popUp {
             from { opacity: 0; transform: scale(0.96); }
@@ -372,11 +375,13 @@
 
         .modal-top-bar {
             background: linear-gradient(112deg, #0f766e 0%, #087e8b 55%, #0369a1 100%);
-            padding: 18px 22px;
+            padding: 16px 22px;
             color: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
         }
         .modal-heading-copy { min-width: 0; }
         .modal-top-bar h3 {
@@ -385,33 +390,38 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            margin: 0;
         }
         .modal-top-bar h3 span { color: #cffafe; }
         .modal-subtitle {
-            margin: 5px 0 0 29px;
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 0.76rem;
+            margin: 4px 0 0 28px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.78rem;
+            font-weight: 500;
         }
         .btn-close-modal {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: #ffffff;
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
+            flex: 0 0 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.25rem;
+            line-height: 1;
             transition: all 0.2s;
         }
-        .btn-close-modal:hover { background: rgba(255, 255, 255, 0.25); transform: rotate(90deg); }
+        .btn-close-modal:hover { background: rgba(255, 255, 255, 0.3); transform: rotate(90deg); }
 
         .modal-body-scroll {
             padding: 0 22px 18px;
             overflow-y: auto;
-            flex: 1;
+            flex: 1 1 auto;
+            min-height: 0;
         }
 
         .village-table-head,
@@ -422,33 +432,33 @@
         .village-table-head,
         .village-row-card {
             display: grid;
-            grid-template-columns: minmax(210px, 1.25fr) minmax(190px, 1fr) 156px;
+            grid-template-columns: minmax(210px, 1.25fr) minmax(190px, 1.1fr) auto;
             align-items: center;
-            column-gap: 18px;
+            column-gap: 16px;
         }
 
         .village-table-head {
             position: sticky;
             top: 0;
-            z-index: 2;
-            min-height: 42px;
+            z-index: 10;
+            min-height: 44px;
             padding: 0 12px;
-            border-bottom: 1px solid var(--border-soft);
+            border-bottom: 2px solid var(--border-soft);
             background: #ffffff;
             color: #64748b;
-            font-size: 0.66rem;
+            font-size: 0.68rem;
             font-weight: 800;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
         .village-row-card:hover {
-            background: #f8fbfc;
+            background: #f8fafc;
         }
         .village-row-card {
             min-height: 58px;
-            padding: 9px 12px;
-            border-bottom: 1px solid #e8eef2;
+            padding: 10px 12px;
+            border-bottom: 1px solid #eef2f6;
             transition: background-color 0.18s ease;
         }
 
@@ -532,6 +542,7 @@
         .btn-sosmed-mini.fb { --social-color: #1877f2; }
         .btn-sosmed-mini.yt { --social-color: #e11d48; }
         .btn-sosmed-mini.tt { --social-color: #111827; }
+        .btn-sosmed-mini.wa { --social-color: #16a34a; }
         .social-empty {
             display: grid;
             place-items: center;
@@ -548,6 +559,11 @@
         }
         @media (max-width: 960px) {
             .district-grid-clean { grid-template-columns: repeat(2, 1fr); }
+            .village-table-head,
+            .village-row-card {
+                grid-template-columns: minmax(180px, 1.2fr) minmax(160px, 1fr) auto;
+                column-gap: 12px;
+            }
             .site-header { flex-wrap: wrap; gap: 12px 20px; padding-inline: 5%; }
             .nav-menu {
                 order: 3;
@@ -557,6 +573,72 @@
                 margin-left: 0;
             }
             .nav-menu a { padding: 8px 6px; font-size: 0.74rem; }
+        }
+        @media (max-width: 720px) {
+            .modal-drawer-overlay {
+                padding: 10px;
+                align-items: center;
+            }
+            .modal-drawer-card {
+                max-height: calc(100dvh - 20px);
+                border-radius: 14px;
+            }
+            .modal-top-bar {
+                padding: 13px 15px;
+            }
+            .modal-top-bar h3 {
+                font-size: 1.02rem;
+            }
+            .modal-subtitle {
+                margin: 3px 0 0 24px;
+                font-size: 0.72rem;
+            }
+            .modal-body-scroll {
+                padding: 0 12px 14px;
+            }
+            .village-table-head {
+                display: none;
+            }
+            .village-row-card {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 12px 10px;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .village-name-cell {
+                width: 100%;
+            }
+            .village-name-cell h4 {
+                font-size: 0.94rem;
+                white-space: normal;
+                word-break: break-word;
+            }
+            .village-name-meta {
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-top: 3px;
+            }
+            .village-website-cell {
+                width: 100%;
+            }
+            .link-web-desa {
+                font-size: 0.8rem;
+                word-break: break-all;
+            }
+            .sosmed-pill-cluster {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                padding-top: 4px;
+                border-top: 1px dashed #f1f5f9;
+            }
+            .btn-sosmed-mini, .social-empty {
+                width: 32px;
+                height: 32px;
+                font-size: 0.92rem;
+            }
         }
         @media (max-width: 640px) {
             .district-grid-clean { grid-template-columns: 1fr; }
@@ -574,20 +656,6 @@
             .district-item-card { padding: 16px; }
             .card-identity { gap: 10px; }
             .card-text h3 { font-size: 0.96rem; }
-            .modal-drawer-overlay { padding: 10px; }
-            .modal-drawer-card { max-height: 94vh; }
-            .modal-top-bar { padding: 15px 16px; }
-            .modal-body-scroll { padding: 0 12px 12px; }
-            .village-table-head { display: none; }
-            .village-row-card {
-                grid-template-columns: minmax(0, 1fr) auto;
-                gap: 6px 10px;
-                padding: 12px 8px;
-            }
-            .village-name-cell { grid-column: 1 / -1; }
-            .village-website-cell { grid-column: 1; }
-            .sosmed-pill-cluster { grid-column: 2; grid-row: 2; }
-            .btn-sosmed-mini, .social-empty { width: 26px; height: 28px; }
         }
         @media (max-width: 900px) and (orientation: portrait) {
             .site-header { position: sticky; flex-wrap: nowrap; }
@@ -872,11 +940,13 @@
             });
 
             document.getElementById('villageModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
             document.querySelector('.btn-close-modal').focus();
         }
 
         function closeVillageModal() {
             document.getElementById('villageModal').style.display = 'none';
+            document.body.style.overflow = '';
             lastOpenedCard?.focus();
         }
 
