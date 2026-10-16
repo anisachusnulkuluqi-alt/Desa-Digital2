@@ -23,7 +23,7 @@ class DashboardController extends Controller
     {
         $counts = $statistics->counts();
         $recentSurveis = class_exists(SurveiKepuasan::class) && Schema::hasTable('website_feedback')
-            ? SurveiKepuasan::latest('created_at')->take(5)->get()
+            ? SurveiKepuasan::whereNull('feedback_removed_at')->latest('created_at')->take(5)->get()
             : collect();
 
         return view('admin.dashboard', array_merge($counts, [
@@ -377,6 +377,7 @@ class DashboardController extends Controller
         // 13. Survei Kepuasan
         if (Schema::hasTable('website_feedback')) {
             $results['Survei Kepuasan'] = DB::table('website_feedback')
+                ->whereNull('feedback_removed_at')
                 ->where(function ($q) use ($term) {
                     $q->where('nama', 'like', '%'.$term.'%')
                       ->orWhere('message', 'like', '%'.$term.'%')

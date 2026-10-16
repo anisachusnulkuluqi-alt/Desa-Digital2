@@ -22,7 +22,9 @@
 <li class="sidebar-menu-divider" role="separator"></li>
 @php
     $surveiBaruHariIni = \Illuminate\Support\Facades\Schema::hasTable('website_feedback')
-        ? \App\Models\SurveiKepuasan::whereDate('created_at', \Carbon\Carbon::today())->count()
+        ? \App\Models\SurveiKepuasan::whereNull('feedback_removed_at')
+            ->whereDate('created_at', \Carbon\Carbon::today())
+            ->count()
         : 0;
 @endphp
 <li>

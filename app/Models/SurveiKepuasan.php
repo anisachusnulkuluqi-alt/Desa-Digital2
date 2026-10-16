@@ -17,12 +17,14 @@ class SurveiKepuasan extends Model
         'nama',
         'pekerjaan',
         'message',
+        'feedback_removed_at',
     ];
 
     protected $casts = [
         'rating' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'feedback_removed_at' => 'datetime',
     ];
 
     /**
@@ -71,4 +73,3 @@ class SurveiKepuasan extends Model
         return $this->pekerjaan ?: 'Masyarakat / Umum';
     }
 }
-

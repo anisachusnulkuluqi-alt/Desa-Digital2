@@ -19,7 +19,7 @@ class SurveiKepuasanController extends Controller
         $ratingFilter = $request->integer('rating');
         $timeFilter = $request->string('time')->toString();
 
-        $query = SurveiKepuasan::query();
+        $query = SurveiKepuasan::whereNull('feedback_removed_at');
 
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -84,8 +84,14 @@ class SurveiKepuasanController extends Controller
      */
     public function destroy($id)
     {
-        $survei = SurveiKepuasan::findOrFail($id);
-        $survei->delete();
+        $survei = SurveiKepuasan::whereNull('feedback_removed_at')->findOrFail($id);
+        $survei->update([
+            'visitor_hash' => hash('sha256', random_bytes(32)),
+            'nama' => null,
+            'pekerjaan' => null,
+            'message' => null,
+            'feedback_removed_at' => Carbon::now(),
+        ]);
 
         return back()->with('success', 'Data tanggapan survei kepuasan berhasil dihapus.');
     }
@@ -98,7 +104,7 @@ class SurveiKepuasanController extends Controller
         $ratingFilter = $request->integer('rating');
         $timeFilter = $request->string('time')->toString();
 
-        $query = SurveiKepuasan::query();
+        $query = SurveiKepuasan::whereNull('feedback_removed_at');
 
         if ($ratingFilter >= 1 && $ratingFilter <= 5) {
             $query->where('rating', $ratingFilter);
@@ -154,4 +160,3 @@ class SurveiKepuasanController extends Controller
         ]);
     }
 }
-

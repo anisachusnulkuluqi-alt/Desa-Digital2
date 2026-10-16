@@ -1146,9 +1146,12 @@
         .floating-tool-button:focus-visible { outline: 3px solid #0f172a; outline-offset: 3px; }
         .floating-tool-button[aria-pressed="true"] { box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px currentColor; }
         .floating-tool-feedback { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
+        .floating-tool-feedback.is-submitted { background: #fef9c3; border-color: #fde047; color: #eab308; }
         .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
 
         .website-tool-control { position: relative; display: flex; align-items: center; }
+        .feedback-submitted-notice { position: absolute; right: 0; bottom: calc(100% + 10px); width: max-content; max-width: min(240px, calc(100vw - 40px)); padding: 9px 12px; border: 1px solid #fde68a; border-radius: 10px; background: #fffbeb; color: #854d0e; font-size: 0.75rem; font-weight: 700; line-height: 1.4; text-align: center; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.15); }
+        .feedback-submitted-notice[hidden] { display: none; }
         .website-tool-panel {
             position: absolute;
             top: auto;
@@ -1201,8 +1204,10 @@
         .feedback-rating-label { min-height: 1.4em; margin: 0 0 12px; color: #334155; font-size: 0.75rem; font-weight: 700; text-align: center; }
         .feedback-comment-wrap[hidden] { display: none; }
         .feedback-comment-wrap .website-tool-caption { display: block; margin-bottom: 7px; color: #475569; }
-        .feedback-message { width: 100%; min-height: 88px; resize: vertical; padding: 11px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: var(--text-dark); font: inherit; font-size: 0.76rem; box-sizing: border-box; outline: none; }
+        .feedback-message-wrap { position: relative; }
+        .feedback-message { display: block; width: 100%; min-height: 88px; resize: vertical; padding: 11px 50px 28px 12px; border: 1px solid #cbd5e1; border-radius: 10px; background: #fff; color: var(--text-dark); font: inherit; font-size: 0.76rem; box-sizing: border-box; outline: none; }
         .feedback-message:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .12); }
+        .feedback-character-count { position: absolute; right: 12px; bottom: 10px; color: #64748b; font-size: 0.68rem; line-height: 1; pointer-events: none; }
         .feedback-submit { width: 100%; margin-top: 10px; padding: 11px 12px; border: 0; border-radius: 10px; background: #1d4ed8; color: #ffffff; font: inherit; font-size: 0.76rem; font-weight: 800; cursor: pointer; transition: background-color .15s ease, transform .15s ease; }
         .feedback-submit:not(:disabled):hover { background: #1e40af; transform: translateY(-1px); }
         .feedback-submit:disabled { opacity: 0.48; cursor: not-allowed; }
@@ -1667,6 +1672,7 @@
             <button type="button" class="floating-tool-button floating-tool-feedback" id="feedback-toggle" aria-label="Survei kepuasan website" aria-expanded="false" aria-controls="feedback-panel" title="Survei kepuasan website">
                 <i class="fa-regular fa-star" aria-hidden="true"></i>
             </button>
+            <span class="feedback-submitted-notice" id="feedback-submitted-notice" role="status" aria-live="polite" hidden>Anda sudah memberikan feedback.</span>
             <section class="website-tool-panel" id="feedback-panel" aria-label="Penilaian survei kepuasan website" hidden>
                 <h2 class="website-tool-heading">Kepuasan Anda</h2>
                 <p class="website-tool-caption">Bagaimana pengalaman Anda menggunakan portal Desa Digital?</p>
@@ -1680,7 +1686,10 @@
                 <p class="feedback-rating-label" id="feedback-rating-label">Pilih bintang 1 sampai 5</p>
                 <div class="feedback-comment-wrap" id="feedback-comment-wrap" hidden>
                     <label class="website-tool-caption" for="feedback-message">Apa yang perlu kami perbaiki? Kritik dan saran wajib diisi.</label>
-                    <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Tuliskan kritik atau saran Anda (maksimal 500 karakter)" aria-label="Kritik dan saran" aria-required="true"></textarea>
+                    <div class="feedback-message-wrap">
+                        <textarea class="feedback-message" id="feedback-message" maxlength="500" placeholder="Tuliskan kritik atau saran Anda" aria-label="Kritik dan saran" aria-required="true"></textarea>
+                        <span class="feedback-character-count" id="feedback-character-count" aria-label="Jumlah karakter" aria-live="polite">0/500</span>
+                    </div>
                     <button type="button" class="feedback-submit" id="feedback-submit" disabled>Kirim Penilaian</button>
                 </div>
                 <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
@@ -2032,7 +2041,9 @@
 
         const feedbackButton = document.getElementById('feedback-toggle');
         const feedbackPanel = document.getElementById('feedback-panel');
+        const feedbackSubmittedNotice = document.getElementById('feedback-submitted-notice');
         const feedbackMessage = document.getElementById('feedback-message');
+        const feedbackCharacterCount = document.getElementById('feedback-character-count');
         const feedbackCommentWrap = document.getElementById('feedback-comment-wrap');
         const feedbackRatingLabel = document.getElementById('feedback-rating-label');
         const feedbackSubmitButton = document.getElementById('feedback-submit');
@@ -2043,6 +2054,11 @@
         const backToTopButton = document.getElementById('back-to-top');
         let selectedFeedbackRating = null;
         let feedbackRequestPending = false;
+        let hasSubmittedFeedback = false;
+        let feedbackNoticeTimeout;
+        const updateFeedbackCharacterCount = () => {
+            feedbackCharacterCount.textContent = `${feedbackMessage.value.length}/500`;
+        };
         const feedbackRatingLabels = {
             1: 'Sangat tidak puas',
             2: 'Kurang puas',
@@ -2057,6 +2073,14 @@
             feedbackButton.setAttribute('aria-expanded', String(isVisible));
         };
 
+        const showFeedbackSubmittedNotice = () => {
+            feedbackSubmittedNotice.hidden = false;
+            window.clearTimeout(feedbackNoticeTimeout);
+            feedbackNoticeTimeout = window.setTimeout(() => {
+                feedbackSubmittedNotice.hidden = true;
+            }, 3500);
+        };
+
         const setVisitorStatsVisible = isVisible => {
             if (!visitorStatsButton || !visitorStatsPanel) return;
             visitorStatsPanel.hidden = !isVisible;
@@ -2066,10 +2090,17 @@
         };
 
         feedbackButton?.addEventListener('click', () => {
+            if (hasSubmittedFeedback) {
+                setFeedbackVisible(false);
+                setVisitorStatsVisible(false);
+                showFeedbackSubmittedNotice();
+                return;
+            }
             const isVisible = feedbackPanel?.hidden ?? false;
             setFeedbackVisible(isVisible);
             if (isVisible) {
                 setVisitorStatsVisible(false);
+                feedbackSubmittedNotice.hidden = true;
             }
         });
 
@@ -2084,6 +2115,7 @@
         document.addEventListener('click', event => {
             if (feedbackPanel && !event.target.closest('.website-tool-control')) {
                 setFeedbackVisible(false);
+                feedbackSubmittedNotice.hidden = true;
             }
             if (visitorStatsPanel && !event.target.closest('.visitor-stats-control')) {
                 setVisitorStatsVisible(false);
@@ -2103,7 +2135,7 @@
 
         feedbackRatingOptions.forEach(option => {
             option.addEventListener('click', () => {
-                if (feedbackRequestPending) return;
+                if (feedbackRequestPending || hasSubmittedFeedback) return;
                 selectedFeedbackRating = Number(option.dataset.rating);
                 feedbackRatingOptions.forEach(ratingOption => {
                     const rating = Number(ratingOption.dataset.rating);
@@ -2128,6 +2160,7 @@
         });
 
         feedbackMessage?.addEventListener('input', () => {
+            updateFeedbackCharacterCount();
             feedbackSubmitButton.disabled = !feedbackMessage.value.trim() || feedbackRequestPending;
             if (feedbackMessage.value.trim()) {
                 feedbackStatus.textContent = '';
@@ -2138,6 +2171,7 @@
         const resetFeedbackForm = () => {
             selectedFeedbackRating = null;
             feedbackMessage.value = '';
+            updateFeedbackCharacterCount();
             feedbackCommentWrap.hidden = true;
             feedbackSubmitButton.disabled = true;
             feedbackRatingLabel.textContent = 'Pilih bintang 1 sampai 5';
@@ -2149,7 +2183,7 @@
         };
 
         const submitFeedback = async () => {
-            if (!selectedFeedbackRating || feedbackRequestPending) return;
+            if (!selectedFeedbackRating || feedbackRequestPending || hasSubmittedFeedback) return;
             if (selectedFeedbackRating < 5 && !feedbackMessage.value.trim()) {
                 feedbackStatus.textContent = 'Mohon isi kritik atau saran sebelum mengirim.';
                 feedbackStatus.dataset.state = 'error';
@@ -2182,6 +2216,15 @@
                 feedbackStatus.textContent = result.message;
                 feedbackStatus.dataset.state = 'success';
                 resetFeedbackForm();
+                hasSubmittedFeedback = true;
+                feedbackButton.classList.add('is-submitted');
+                feedbackButton.setAttribute('aria-label', 'Anda telah memberikan feedback');
+                feedbackButton.title = 'Anda telah memberikan feedback';
+                feedbackButton.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+                feedbackMessage.disabled = true;
+                feedbackSubmitButton.disabled = true;
+                feedbackRatingOptions.forEach(option => { option.disabled = true; });
+                setFeedbackVisible(false);
             } catch (error) {
                 feedbackStatus.textContent = error.message || 'Koneksi gagal. Silakan coba lagi.';
                 feedbackStatus.dataset.state = 'error';

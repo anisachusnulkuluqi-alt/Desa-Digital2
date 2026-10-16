@@ -144,15 +144,39 @@ class SurveiKepuasanTest extends TestCase
             'nama' => 'Spammer',
             'message' => 'Spam content',
         ]);
+        SurveiKepuasan::create([
+            'visitor_hash' => 'hash_valid',
+            'rating' => 5,
+            'nama' => 'Responden',
+            'message' => 'Masukan tetap tersedia.',
+        ]);
 
         $response = $this->actingAs($admin)->delete(route('admin.survei.destroy', $survei->id));
 
         $response->assertRedirect()
             ->assertSessionHas('success');
 
-        $this->assertDatabaseMissing('website_feedback', [
+        $this->assertDatabaseHas('website_feedback', [
             'id' => $survei->id,
+            'rating' => 1,
+            'nama' => null,
+            'pekerjaan' => null,
+            'message' => null,
         ]);
+        $this->assertNotNull($survei->fresh()->feedback_removed_at);
+        $this->assertNotSame('hash_spam', $survei->fresh()->visitor_hash);
+
+        $response = $this->actingAs($admin)->get(route('admin.survei.index'));
+        $response->assertOk();
+        $this->assertSame(2, $response->viewData('totalSurvei'));
+        $this->assertSame(3.0, $response->viewData('avgRating'));
+        $this->assertSame(1, $response->viewData('surveis')->total());
+
+        $dashboard = $this->actingAs($admin)->get(route('dashboard'));
+        $dashboard->assertOk();
+        $this->assertSame(2, $dashboard->viewData('totalSurvei'));
+        $this->assertSame(3.0, $dashboard->viewData('avgRatingSurvei'));
+        $this->assertCount(1, $dashboard->viewData('recentSurveis'));
     }
 
     public function test_admin_can_export_survei_csv(): void
@@ -209,4 +233,3 @@ class SurveiKepuasanTest extends TestCase
             ->assertSee('Tanggapan & Survei Kepuasan Terbaru');
     }
 }
-
