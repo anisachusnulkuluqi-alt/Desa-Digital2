@@ -38,11 +38,12 @@ class KecamatanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama_kecamatan' => 'required|string|max:255',
+            'kode_kecamatan' => 'nullable|string|max:50',
         ]);
 
-        Kecamatan::create($request->all());
+        Kecamatan::create($validated);
 
         return response()->json([
             'success' => true,
@@ -52,11 +53,12 @@ class KecamatanController extends Controller
 
     public function update(Request $request, Kecamatan $kecamatan)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama_kecamatan' => 'required|string|max:255',
+            'kode_kecamatan' => 'nullable|string|max:50',
         ]);
 
-        $kecamatan->update($request->all());
+        $kecamatan->update($validated);
 
         return response()->json([
             'success' => true,

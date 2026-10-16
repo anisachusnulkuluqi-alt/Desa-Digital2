@@ -317,6 +317,7 @@
             padding: 4px 10px;
             border-radius: 8px;
             border: 1px solid var(--border-soft);
+            white-space: nowrap;
         }
         .btn-arrow-cue {
             color: var(--primary);
@@ -690,7 +691,7 @@
     <!-- 2. Hero Ringkas & Minimalis -->
     <section class="hero-compact">
         <h1>Direktori Website Desa & Kelurahan</h1>
-        <p>Data wilayah terhubung langsung dengan basis data Kabupaten Tuban.</p>
+        <p>Data desa & kelurahan terhubung langsung dengan basis data Kabupaten Tuban.</p>
     </section>
 
     <main class="content-wrap">
@@ -701,7 +702,7 @@
             </div>
             <div class="total-distrik-pill" id="counterBadge">
                 <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i>
-                <span>{{ number_format($kecamatans->count()) }} Kecamatan · {{ number_format($totalWebsiteAktif) }} Website · {{ number_format($kecamatans->sum('desa_count')) }} Wilayah</span>
+                <span>{{ number_format($kecamatans->count()) }} Kecamatan · {{ number_format($totalWebsiteAktif) }} Website · {{ number_format($kecamatans->sum('desa_count')) }} Desa</span>
             </div>
         </div>
 
@@ -720,12 +721,13 @@
                         'whatsapp' => $desa->whatsapp,
                     ])->values();
                     $websiteCount = $item->desa->filter(fn ($desa) => filled($desa->website))->count();
-                    $searchText = strtolower($item->nama_kecamatan . ' ' . $item->desa->pluck('nama_desa')->implode(' '));
+                    $kodeKecamatan = $item->kode_kecamatan ?? $item->kode_wilayah;
+                    $searchText = strtolower($item->nama_kecamatan . ' ' . $item->desa->pluck('nama_desa')->implode(' ') . ' ' . $kodeKecamatan);
                 @endphp
                 <button type="button" class="district-item-card"
                         data-name="{{ $searchText }}"
                         data-kecamatan="{{ $item->nama_kecamatan }}"
-                        data-kode="{{ filled($item->kode_wilayah) ? $item->kode_wilayah : 'Belum tersedia' }}"
+                        data-kode="{{ filled($kodeKecamatan) ? $kodeKecamatan : 'Belum tersedia' }}"
                         data-total="{{ $item->desa_count }}"
                         data-websites="{{ $websiteCount }}"
                         data-villages="{{ $villageData->toJson() }}">
@@ -736,12 +738,12 @@
                         </div>
                         <div class="card-text">
                             <h3>Kecamatan {{ $item->nama_kecamatan }}</h3>
-                            <small>Kode: {{ filled($item->kode_wilayah) ? $item->kode_wilayah : 'Belum tersedia' }}</small>
+                            <small>Kode: {{ filled($kodeKecamatan) ? $kodeKecamatan : 'Belum tersedia' }}</small>
                         </div>
                     </div>
 
                     <div class="card-action-cue">
-                        <span class="badge-count">{{ number_format($item->desa_count) }} Wilayah</span>
+                        <span class="badge-count">{{ number_format($item->desa_count) }} Desa</span>
                         <i class="fa-solid fa-arrow-right btn-arrow-cue"></i>
                     </div>
                 </button>
@@ -857,7 +859,8 @@
 
         function showVillageDrawer(namaKec, kodeKec, totalDesa, websiteCount, villageList) {
             document.querySelector('#modalKecamatanTitle span').textContent = namaKec;
-            document.getElementById('modalKecamatanSubtitle').textContent = `${totalDesa} wilayah · ${websiteCount} website terdaftar`;
+            const kodeText = (kodeKec && kodeKec !== 'Belum tersedia') ? `Kode: ${kodeKec} · ` : '';
+            document.getElementById('modalKecamatanSubtitle').textContent = `${kodeText}${totalDesa} desa · ${websiteCount} website terdaftar`;
 
             const grid = document.getElementById('villageRowsGrid');
             grid.replaceChildren();
@@ -877,7 +880,7 @@
                 const nameMeta = document.createElement('div');
                 nameMeta.className = 'village-name-meta';
                 nameMeta.append(
-                    createTextElement('span', 'type-tag', item.jenis || 'Wilayah'),
+                    createTextElement('span', 'type-tag', item.jenis || 'Desa'),
                     createTextElement('span', 'code-tag', item.kode || 'Kode belum tersedia')
                 );
                 nameCell.appendChild(nameMeta);

@@ -13,7 +13,16 @@ class Kecamatan extends Model
 
     protected $fillable = [
         'nama_kecamatan',
+        'kode_kecamatan',
     ];
+
+    /**
+     * Accessor agar pemanggilan kode_wilayah otomatis merujuk ke kode_kecamatan
+     */
+    public function getKodeWilayahAttribute()
+    {
+        return $this->kode_kecamatan;
+    }
 
     /**
      * Relasi ke tabel desa (hasMany)
