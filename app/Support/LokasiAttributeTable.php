@@ -111,6 +111,20 @@ class LokasiAttributeTable
         );
     }
 
+    public static function saveLocationName(Kategori $kategori, int $tempatId, string $name): void
+    {
+        $tableName = self::nameForCategory($kategori->nama, $kategori->id);
+        self::ensureTable($tableName);
+
+        DB::table($tableName)->updateOrInsert(
+            ['tempat_id' => $tempatId],
+            [
+                'nama_lokasi' => $name,
+                'updated_at' => now(),
+            ]
+        );
+    }
+
     public static function delete(KategoriField $field): void
     {
         if (in_array($field->nama_field, ['latitude', 'longitude'], true)) {
@@ -195,15 +209,20 @@ class LokasiAttributeTable
 
     private static function ensureTable(string $tableName): void
     {
-        if (Schema::hasTable($tableName)) {
-            return;
+        if (! Schema::hasTable($tableName)) {
+            Schema::create($tableName, function (Blueprint $table): void {
+                $table->id();
+                $table->unsignedBigInteger('tempat_id')->unique();
+                $table->string('nama_lokasi')->nullable();
+                $table->timestamps();
+            });
         }
 
-        Schema::create($tableName, function (Blueprint $table): void {
-            $table->id();
-            $table->unsignedBigInteger('tempat_id')->unique();
-            $table->timestamps();
-        });
+        if (! Schema::hasColumn($tableName, 'nama_lokasi')) {
+            Schema::table($tableName, function (Blueprint $table): void {
+                $table->string('nama_lokasi')->nullable();
+            });
+        }
     }
 
     private static function legacyName(KategoriField $field): string

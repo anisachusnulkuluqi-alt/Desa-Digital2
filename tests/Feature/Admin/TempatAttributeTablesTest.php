@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Tempat;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,40 @@ use Tests\TestCase;
 class TempatAttributeTablesTest extends TestCase
 {
     use RefreshDatabase;
+
+    public function test_existing_category_location_table_gets_name_column_and_backfilled_names(): void
+    {
+        $kategori = Kategori::create(['nama' => 'tes tempat']);
+        $tempat = Tempat::create([
+            'nama' => 'Tempat Sebelumnya',
+            'kategori' => $kategori->nama,
+        ]);
+
+        Schema::create('lokasi_tes_tempat', function (Blueprint $table): void {
+            $table->id();
+            $table->unsignedBigInteger('tempat_id')->unique();
+            $table->decimal('latitude', 20, 8)->nullable();
+            $table->decimal('longitude', 20, 8)->nullable();
+            $table->text('foto')->nullable();
+            $table->timestamps();
+        });
+        DB::table('lokasi_tes_tempat')->insert([
+            'tempat_id' => $tempat->id,
+            'latitude' => '-6.9',
+            'longitude' => '111.8',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $migration = require database_path('migrations/2026_10_19_000000_add_nama_lokasi_to_lokasi_tes_tempat_table.php');
+        $migration->up();
+
+        $this->assertTrue(Schema::hasColumn('lokasi_tes_tempat', 'nama_lokasi'));
+        $this->assertSame(
+            'Tempat Sebelumnya',
+            DB::table('lokasi_tes_tempat')->value('nama_lokasi')
+        );
+    }
 
     public function test_new_location_category_has_default_coordinates_and_is_available_on_the_map(): void
     {
@@ -36,6 +71,7 @@ class TempatAttributeTablesTest extends TestCase
         $this->assertTrue(Schema::hasColumn('lokasi_desa_wisata', 'latitude'));
         $this->assertTrue(Schema::hasColumn('lokasi_desa_wisata', 'longitude'));
         $this->assertTrue(Schema::hasColumn('lokasi_desa_wisata', 'foto'));
+        $this->assertTrue(Schema::hasColumn('lokasi_desa_wisata', 'nama_lokasi'));
         $this->assertSame(
             'file',
             $kategori->fields()->where('nama_field', 'foto')->value('tipe_field')
@@ -69,6 +105,7 @@ class TempatAttributeTablesTest extends TestCase
 
         $photoPath = DB::table('lokasi_desa_wisata')->value('foto');
         $this->assertNotEmpty($photoPath);
+        $this->assertSame('Air Terjun Uji', DB::table('lokasi_desa_wisata')->value('nama_lokasi'));
         Storage::disk('public')->assertExists($photoPath);
 
         $this->getJson(route('data.spasial.locations', ['kategori' => 'desa_wisata']))
@@ -129,6 +166,7 @@ class TempatAttributeTablesTest extends TestCase
             'DOC-001',
             DB::table($tableName)->where('tempat_id', $tempat->id)->value('kode_dokumen')
         );
+        $this->assertSame('Arsip Desa', DB::table($tableName)->where('tempat_id', $tempat->id)->value('nama_lokasi'));
         $this->assertSame('Budi', DB::table($tableName)->where('tempat_id', $tempat->id)->value('pemilik'));
 
         $this->putJson(route('admin.tempat.update', ['id' => $tempat->id]), [
@@ -143,6 +181,7 @@ class TempatAttributeTablesTest extends TestCase
             'DOC-002',
             DB::table($tableName)->where('tempat_id', $tempat->id)->value('kode_dokumen')
         );
+        $this->assertSame('Arsip Desa Baru', DB::table($tableName)->where('tempat_id', $tempat->id)->value('nama_lokasi'));
         $this->assertSame('Siti', DB::table($tableName)->where('tempat_id', $tempat->id)->value('pemilik'));
 
         $this->putJson(route('admin.tempat.kategori.update', ['id' => $kategori->id]), [

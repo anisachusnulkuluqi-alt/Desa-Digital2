@@ -171,6 +171,7 @@ class TempatController extends Controller
         $dataToSave['info_tambahan'] = json_encode($infoTambahan);
 
         $tempat = Tempat::create($dataToSave);
+        LokasiAttributeTable::saveLocationName($kategoriModel, $tempat->id, $tempat->nama);
         
         foreach ($fields as $field) {
             if (array_key_exists($field->nama_field, $infoTambahan)) {
@@ -235,6 +236,7 @@ class TempatController extends Controller
 
         $tempat->info_tambahan = json_encode($infoTambahan);
         $tempat->save();
+        LokasiAttributeTable::saveLocationName($kategoriModel, $tempat->id, $tempat->nama);
 
         foreach ($fields as $field) {
             if (array_key_exists($field->nama_field, $infoTambahan)) {
