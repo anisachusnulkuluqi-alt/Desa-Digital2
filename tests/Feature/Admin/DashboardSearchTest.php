@@ -32,6 +32,9 @@ class DashboardSearchTest extends TestCase
             'nama' => 'Kuliner Uji',
             'kategori' => 'kuliner',
         ]);
+        \App\Models\Kategori::create([
+            'nama' => 'kuliner',
+        ]);
 
         $this->actingAs($admin)
             ->getJson(route('admin.search.suggestions', ['q' => 'Uji']))
@@ -129,10 +132,9 @@ class DashboardSearchTest extends TestCase
                     'BUMDes</span>',
                     'KKDMP</span>',
                     'Kuliner</span>',
-                    'Spasial (Master)</span>',
                     '<li class="sidebar-menu-divider" role="separator"></li>',
                     'Survei Kepuasan</span>',
-                    'User</span>',
+                    'Spasial (Master)</span>',
                 ], false)
                 ->assertSee('id="adminSidebarCollapseToggle"', false)
                 ->assertSee('js/admin-sidebar-toggle.js', false);

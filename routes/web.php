@@ -49,12 +49,18 @@ Route::post('/website-feedback', function (Request $request) {
         'message' => 'nullable|string|max:500',
     ]);
 
+    $ua = (string) $request->userAgent();
+    $deviceInfo = \App\Models\SurveiKepuasan::detectDevice($ua);
+
     \App\Models\SurveiKepuasan::create([
         'visitor_hash' => hash('sha256', $request->cookie('website_visitor_id') ?: Str::random(64)),
         'rating' => $validated['rating'],
         'nama' => $validated['nama'] ?? null,
         'pekerjaan' => $validated['pekerjaan'] ?? null,
         'message' => $validated['message'] ?? null,
+        'device' => $deviceInfo['device'],
+        'browser' => $deviceInfo['browser'],
+        'user_agent' => substr($ua, 0, 500),
     ]);
 
     return response()->json(['message' => 'Terima kasih, masukan survei kepuasan Anda sudah tersimpan.'], 201);
@@ -72,12 +78,18 @@ Route::post('/survei-kepuasan', function (Request $request) {
         'message' => 'nullable|string|max:500',
     ]);
 
+    $ua = (string) $request->userAgent();
+    $deviceInfo = \App\Models\SurveiKepuasan::detectDevice($ua);
+
     \App\Models\SurveiKepuasan::create([
         'visitor_hash' => hash('sha256', $request->cookie('website_visitor_id') ?: Str::random(64)),
         'rating' => $validated['rating'],
         'nama' => $validated['nama'] ?? null,
         'pekerjaan' => $validated['pekerjaan'] ?? null,
         'message' => $validated['message'] ?? null,
+        'device' => $deviceInfo['device'],
+        'browser' => $deviceInfo['browser'],
+        'user_agent' => substr($ua, 0, 500),
     ]);
 
     if ($request->wantsJson()) {

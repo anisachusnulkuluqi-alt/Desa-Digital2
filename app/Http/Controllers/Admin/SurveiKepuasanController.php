@@ -25,7 +25,9 @@ class SurveiKepuasanController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('message', 'like', "%{$search}%")
                   ->orWhere('nama', 'like', "%{$search}%")
-                  ->orWhere('pekerjaan', 'like', "%{$search}%");
+                  ->orWhere('pekerjaan', 'like', "%{$search}%")
+                  ->orWhere('device', 'like', "%{$search}%")
+                  ->orWhere('browser', 'like', "%{$search}%");
             });
         }
 
@@ -132,6 +134,8 @@ class SurveiKepuasanController extends Controller
                 'No',
                 'Tanggal',
                 'Waktu',
+                'Perangkat',
+                'Browser',
                 'Nama Responden',
                 'Kategori / Profesi',
                 'Nilai Skor (1-5)',
@@ -145,6 +149,8 @@ class SurveiKepuasanController extends Controller
                     $no++,
                     $item->created_at ? $item->created_at->format('d/m/Y') : '-',
                     $item->created_at ? $item->created_at->format('H:i') . ' WIB' : '-',
+                    $item->device_label,
+                    $item->browser_label,
                     $item->display_name,
                     $item->display_pekerjaan,
                     $item->rating,

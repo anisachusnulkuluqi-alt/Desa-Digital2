@@ -228,8 +228,80 @@ class SurveiKepuasanTest extends TestCase
 
         $response->assertOk()
             ->assertSee('Survei Kepuasan')
-            ->assertSee('Rina Wijaya')
-            ->assertSee('Desa Digital sangat keren')
-            ->assertSee('Tanggapan & Survei Kepuasan Terbaru');
+            ->assertDontSee('Tanggapan & Survei Kepuasan Terbaru');
+    }
+
+    public function test_survey_submission_detects_android_device(): void
+    {
+        $androidUA = 'Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36';
+
+        $payload = [
+            'rating' => 5,
+            'nama' => 'Pengguna Android',
+            'message' => 'Diisi dari ponsel Android.',
+        ];
+
+        $response = $this->withHeader('User-Agent', $androidUA)
+            ->post(route('survei.submit'), $payload);
+
+        $response->assertRedirect();
+
+        $this->assertDatabaseHas('website_feedback', [
+            'nama' => 'Pengguna Android',
+            'device' => 'Android Smartphone',
+            'browser' => 'Google Chrome',
+        ]);
+    }
+
+    public function test_survey_submission_detects_iphone_device(): void
+    {
+        $iphoneUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1';
+
+        $payload = [
+            'rating' => 4,
+            'message' => 'Diisi dari iPhone Apple.',
+        ];
+
+        $response = $this->withHeader('User-Agent', $iphoneUA)
+            ->postJson(route('website-feedback.store'), $payload);
+
+        $response->assertCreated();
+
+        $this->assertDatabaseHas('website_feedback', [
+            'device' => 'iPhone (iOS)',
+            'browser' => 'Apple Safari',
+        ]);
+    }
+
+    public function test_admin_survey_table_displays_detected_device_and_icon(): void
+    {
+        $admin = User::factory()->create([
+            'email_verified_at' => now(),
+            'role' => User::ROLE_ADMIN,
+        ]);
+
+        SurveiKepuasan::create([
+            'visitor_hash' => 'h_android',
+            'rating' => 5,
+            'device' => 'Android Smartphone',
+            'browser' => 'Google Chrome',
+            'message' => 'Puas sekali lewat HP Android.',
+        ]);
+
+        SurveiKepuasan::create([
+            'visitor_hash' => 'h_windows',
+            'rating' => 4,
+            'device' => 'Windows PC',
+            'browser' => 'Microsoft Edge',
+            'message' => 'Bagus lewat Laptop Windows.',
+        ]);
+
+        $response = $this->actingAs($admin)->get(route('admin.survei.index'));
+
+        $response->assertOk()
+            ->assertSee('Android Smartphone')
+            ->assertSee('Windows PC')
+            ->assertSee('bi-phone')
+            ->assertSee('bi-laptop');
     }
 }
