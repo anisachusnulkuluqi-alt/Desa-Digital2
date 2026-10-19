@@ -142,4 +142,22 @@ class SpatialLocationTest extends TestCase
             ->assertOk()
             ->assertJsonPath('features.0.properties.alamat', '');
     }
+
+    public function test_spatial_endpoint_resolves_and_includes_kecamatan_in_properties(): void
+    {
+        DB::table('lokasi_wisata')->insert([
+            'feature_key' => str_repeat('d', 64),
+            'nama_lokasi' => 'Wisata Pantai',
+            'latitude' => -6.89,
+            'longitude' => 112.05,
+            'alamat' => 'Desa Sugihwaras, Kec. Jenu',
+            'properties' => json_encode(['desa' => 'Sugihwaras']),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->getJson(route('data.spasial.locations', ['kategori' => 'wisata']))
+            ->assertOk()
+            ->assertJsonPath('features.0.properties.kecamatan', 'Jenu');
+    }
 }

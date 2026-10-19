@@ -991,7 +991,7 @@
             .drawer-table-toolbar { flex-wrap: wrap; }
             .table-search-field { flex: 1 1 100%; min-height: 40px; }
             .drawer-table-toolbar .table-filter-select { flex: 1 1 130px; max-width: none; min-height: 40px; }
-            .modern-table { min-width: 720px; }
+            .modern-table { min-width: 620px; }
             .modern-table th, .modern-table td { padding: 10px 11px; }
             .table-pagination { flex-wrap: wrap; }
             .site-footer { display: none; }
@@ -1179,8 +1179,7 @@
                             <th>Kategori</th>
                             <th>Nama Entitas / Fasilitas</th>
                             <th>Kecamatan</th>
-                            <th>Desa / Dusun</th>
-                            <th>Status Layanan</th>
+                            <th>Desa</th>
                             <th>Aksi Navigasi</th>
                         </tr>
                     </thead>
@@ -1480,7 +1479,10 @@
             const [lng, lat] = feature.geometry?.coordinates || [];
             const address = properties.alamat || '';
             const kecMatch = address.match(/\bKec(?:amatan)?\.?\s+([^,]+)/i);
-            const kecamatan = normalizeKecamatanName(properties.kecamatan || (kecMatch ? kecMatch[1] : ''));
+            const rawKec = properties.kecamatan || properties.Kecamatan || properties.kec || (kecMatch ? kecMatch[1] : '');
+            const kecamatan = normalizeKecamatanName(rawKec);
+            const extractedDesa = (properties.nama_ssid || properties.nama || '').match(/^BALAI\s+DESA\s+(.*)$/i)?.[1] || '';
+            const desa = properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || extractedDesa || '';
             const photoPath = String(properties.foto || '').trim();
             const cleanPhotoPath = photoPath.replace(/^\/?storage\//, '').replace(/^\/+/, '');
             const operatingHours = String(properties.jam_operas || properties.jam_operasional || properties.jam || '').replace(/â€“|â€”/g, '-');
@@ -1535,7 +1537,7 @@
                 type,
                 name: properties.nama_ssid || properties.nama_pasar || properties.nama_wisat || properties.nama_wisata || properties.nama || 'Lokasi tanpa nama',
                 kec: kecamatan,
-                desa: properties.nama_desa || properties.kelurahan || properties.desa || properties.desa_kelur || '',
+                desa: desa,
                 address: String(address).trim(),
                 lat,
                 lng,
@@ -1643,7 +1645,7 @@
                     <div class="spatial-detail-body">
                         <span class="popup-badge" style="background: ${meta.bg}; color: ${meta.color};">${escapePopupText(meta.label)}</span>
                         <h4 class="spatial-detail-title">${escapePopupText(item.name)}</h4>
-                        ${item.desa || item.kec ? `<div class="spatial-detail-location"><i class="fa-solid fa-location-dot"></i> ${escapePopupText([item.desa, item.kec].filter(Boolean).join(' · '))}</div>` : ''}
+                        ${item.desa || item.kec ? `<div class="spatial-detail-location"><i class="fa-solid fa-location-dot"></i> ${escapePopupText([item.desa ? (item.desa.toLowerCase().startsWith('desa ') ? item.desa : 'Desa ' + item.desa) : '', item.kec ? 'Kec. ' + item.kec : ''].filter(Boolean).join(' · '))}</div>` : ''}
                         ${detailFieldsHtml ? `<div class="spatial-detail-grid">${detailFieldsHtml}</div>` : ''}
                         ${descriptionHtml}
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}" target="_blank" rel="noopener noreferrer" class="popup-route-btn">
@@ -1715,13 +1717,12 @@
                 const meta = getCategoryMeta(item.type);
                 const row = document.createElement('tr');
                 row.tabIndex = 0;
-                row.setAttribute('aria-label', `${item.name}, ${meta.label}, Kecamatan ${item.kec}`);
+                row.setAttribute('aria-label', `${item.name}, ${meta.label}${item.kec ? ', Kecamatan ' + item.kec : ''}`);
                 row.innerHTML = `
                     <td><span class="category-pill" style="background:${meta.bg};color:${meta.color}"><i class="fa-solid ${meta.icon}"></i> ${meta.label}</span></td>
                     <td><strong>${escapeHtml(item.name)}</strong></td>
-                    <td>Kec. ${escapeHtml(item.kec)}</td>
-                    <td>Desa ${escapeHtml(item.desa)}</td>
-                    <td><span style="color:#059669;font-weight:700">● ${escapeHtml(item.status)}</span></td>
+                    <td>${item.kec ? ('Kec. ' + escapeHtml(item.kec)) : '-'}</td>
+                    <td>${item.desa ? (item.desa.toLowerCase().startsWith('desa ') ? escapeHtml(item.desa) : 'Desa ' + escapeHtml(item.desa)) : '-'}</td>
                     <td><button type="button" class="btn-focus-map"><i class="fa-solid fa-location-crosshairs"></i> Lihat Peta</button></td>
                 `;
                 row.addEventListener('click', () => focusSpatialItem(item));
@@ -1737,7 +1738,7 @@
 
             if (!tableBody.childElementCount) {
                 const emptyRow = document.createElement('tr');
-                emptyRow.innerHTML = '<td class="table-empty-row" colspan="6">Tidak ada data yang cocok dengan filter.</td>';
+                emptyRow.innerHTML = '<td class="table-empty-row" colspan="5">Tidak ada data yang cocok dengan filter.</td>';
                 tableBody.appendChild(emptyRow);
             }
 
@@ -1828,7 +1829,7 @@
                     name.textContent = item.name;
                     const meta = document.createElement('span');
                     meta.className = 'map-location-option-meta';
-                    meta.textContent = [item.desa, item.kec].filter(Boolean).join(' · ') || item.address;
+                    meta.textContent = [item.desa ? (item.desa.toLowerCase().startsWith('desa ') ? item.desa : 'Desa ' + item.desa) : '', item.kec ? 'Kec. ' + item.kec : ''].filter(Boolean).join(' · ') || item.address;
                     text.append(name, meta);
                     const type = document.createElement('span');
                     type.className = 'map-location-option-type';

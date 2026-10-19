@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Support\KecamatanSpatialResolver;
 use App\Support\LokasiAttributeTable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -84,6 +85,9 @@ class SpatialLocationController extends Controller
         if (Schema::hasColumn($category['table'], 'alamat')) {
             $columns[] = 'alamat';
         }
+        if (Schema::hasColumn($category['table'], 'desa')) {
+            $columns[] = 'desa';
+        }
 
         $rows = DB::table($category['table'])
             ->whereNotNull('latitude')
@@ -96,6 +100,10 @@ class SpatialLocationController extends Controller
             $properties = is_array($properties) ? $properties : [];
             $properties[$category['name_property']] = $row->nama_lokasi;
 
+            if (property_exists($row, 'desa') && !empty($row->desa) && empty($properties['desa'])) {
+                $properties['desa'] = $row->desa;
+            }
+
             $address = property_exists($row, 'alamat') ? trim((string) $row->alamat) : '';
             foreach (['alamat', 'Alamat', 'address', 'Address'] as $addressKey) {
                 if ($address !== '') {
@@ -105,6 +113,17 @@ class SpatialLocationController extends Controller
             }
 
             $properties['alamat'] = $address;
+
+            $kecamatan = KecamatanSpatialResolver::resolve(
+                $row->longitude,
+                $row->latitude,
+                $properties,
+                $row->nama_lokasi,
+                $address
+            );
+            if ($kecamatan) {
+                $properties['kecamatan'] = $kecamatan;
+            }
 
             return [
                 'type' => 'Feature',
@@ -159,6 +178,18 @@ class SpatialLocationController extends Controller
             $longitude = (float) $row->longitude;
             $properties = (array) $row;
             unset($properties['id'], $properties['tempat_id'], $properties['created_at'], $properties['updated_at']);
+
+            $address = $properties['alamat'] ?? $properties['Alamat'] ?? $properties['address'] ?? '';
+            $kecamatan = KecamatanSpatialResolver::resolve(
+                $longitude,
+                $latitude,
+                $properties,
+                $row->nama ?? null,
+                $address
+            );
+            if ($kecamatan) {
+                $properties['kecamatan'] = $kecamatan;
+            }
 
             return [
                 'type' => 'Feature',
