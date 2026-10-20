@@ -33,6 +33,7 @@
             --text-muted: #64748b;
             --header-height: 82px;
             --drawer-handle-height: 50px;
+            --spatial-info-width: 372px;
         }
 
         * {
@@ -216,8 +217,12 @@
         .category-chips-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
+            flex: 1 1 auto;
+            min-height: 0;
             gap: 6px;
             padding: 0 4px;
+            overflow-y: auto;
+            align-content: start;
             pointer-events: auto;
             order: 5;
         }
@@ -269,11 +274,96 @@
             box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.2);
             pointer-events: auto;
             flex-direction: column;
-            width: min(300px, calc(100vw - 24px));
+            width: 100%;
             max-height: min(60vh, 420px);
-            overflow-y: auto;
+            overflow: hidden;
         }
         .map-filter-panel.is-open { display: flex; }
+        .spatial-info-panel {
+            position: fixed;
+            top: var(--header-height);
+            bottom: 90px;
+            left: 0;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            width: var(--spatial-info-width);
+            max-height: none;
+            overflow: visible;
+            border: 1px solid var(--border-glass);
+            border-radius: 0;
+            background: #ffffff;
+            box-shadow: 0 14px 30px -6px rgba(15, 23, 42, 0.24);
+            pointer-events: auto;
+            transition: transform 0.25s ease;
+        }
+        .spatial-info-panel[hidden] { display: none; }
+        .spatial-info-panel.is-minimized {
+            transform: translateX(calc(-100% + 18px));
+        }
+        .spatial-info-toggle {
+            position: absolute;
+            top: 50%;
+            right: -36px;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 56px;
+            border: 1px solid #dbe3ea;
+            border-left: 0;
+            border-radius: 0 8px 8px 0;
+            background: #ffffff;
+            color: #475569;
+            box-shadow: 4px 2px 10px rgba(15, 23, 42, 0.12);
+            cursor: pointer;
+            transform: translateY(-50%);
+        }
+        .spatial-info-toggle:hover { color: var(--primary); }
+        .spatial-info-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 2;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 50%;
+            background: rgba(15, 23, 42, 0.62);
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .spatial-info-close:hover { background: rgba(15, 23, 42, 0.82); }
+        .spatial-info-panel.is-minimized .spatial-info-close { visibility: hidden; }
+        .spatial-info-content {
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+        .spatial-info-content .spatial-detail-photo-wrap { height: 132px; }
+        .spatial-info-content .spatial-detail-card {
+            width: 100%;
+            border: 0;
+            border-radius: 0;
+            background: #ffffff;
+            box-shadow: none;
+        }
+        .custom-modern-pin > div {
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            transform-origin: center;
+        }
+        .custom-modern-pin.is-selected > div {
+            transform: scale(1.7);
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.5), 0 0 14px 5px rgba(2, 132, 199, 0.7) !important;
+        }
+        body.has-spatial-info:not(.spatial-info-minimized) #map {
+            left: var(--spatial-info-width);
+        }
+        body.has-spatial-info:not(.spatial-info-minimized) .gmaps-floating-header {
+            left: calc(var(--spatial-info-width) + 16px);
+        }
         .filter-panel-close {
             display: grid;
             place-items: center;
@@ -288,6 +378,7 @@
 
         .location-filter-title {
             order: 1;
+            flex: 0 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -300,6 +391,7 @@
         }
 
         .location-section-title {
+            flex: 0 0 auto;
             padding: 10px 4px 6px;
             border-top: 1px solid #cbd5e1;
             color: #64748b;
@@ -328,6 +420,7 @@
         .location-filter-option input {
             width: 15px;
             height: 15px;
+            flex: 0 0 15px;
             accent-color: var(--primary);
             cursor: pointer;
         }
@@ -364,6 +457,7 @@
         .chip-dot {
             width: 9px;
             height: 9px;
+            flex: 0 0 9px;
             border-radius: 50%;
         }
 
@@ -398,6 +492,10 @@
             flex-direction: row;
             flex: 1;
             min-width: 0;
+        }
+
+        .map-tool-row .control-bubble-compact {
+            flex: 0 0 auto;
         }
 
         .map-tool-row .tool-btn {
@@ -474,6 +572,7 @@
         .layer-control-panel {
             width: 100%;
             order: 3;
+            flex: 0 0 auto;
             padding: 0 4px 5px;
             display: flex;
             flex-direction: column;
@@ -762,7 +861,7 @@
 
         .leaflet-popup-content {
             margin: 0;
-            width: min(390px, calc(100vw - 60px)) !important;
+            width: min(320px, calc(100vw - 40px)) !important;
         }
 
         .card-popup-banner {
@@ -805,13 +904,13 @@
             width: 100%;
             background: #0f172a;
             color: #ffffff !important;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 8px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.8rem;
+            gap: 6px;
+            font-size: 0.74rem;
             font-weight: 700;
             text-decoration: none;
         }
@@ -822,22 +921,22 @@
         .spatial-detail-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
+            gap: 7px;
+            padding: 9px 12px;
             background: linear-gradient(110deg, #1e40af, #3b82f6);
             color: #ffffff;
-            font-size: 0.82rem;
+            font-size: 0.76rem;
             font-weight: 800;
         }
         .spatial-detail-photo-wrap {
-            height: 156px;
+            height: 108px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             color: #ffffff;
-            font-size: 2rem;
+            font-size: 1.6rem;
             background: linear-gradient(135deg, var(--category-color, #0284c7), #172554);
         }
         .spatial-detail-photo {
@@ -847,41 +946,41 @@
             height: 100%;
             object-fit: cover;
         }
-        .spatial-detail-body { padding: 16px; }
+        .spatial-detail-body { padding: 12px; }
         .spatial-detail-title {
             margin: 0 0 4px;
-            font-size: 1.05rem;
+            font-size: 0.96rem;
             font-weight: 800;
             line-height: 1.35;
         }
         .spatial-detail-location {
-            margin-bottom: 14px;
+            margin-bottom: 9px;
             color: #64748b;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
         }
         .spatial-detail-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px 16px;
+            gap: 8px 12px;
         }
         .spatial-detail-field { min-width: 0; }
         .spatial-detail-label {
             margin-bottom: 3px;
             color: #64748b;
-            font-size: 0.61rem;
+            font-size: 0.58rem;
             font-weight: 800;
             text-transform: uppercase;
         }
         .spatial-detail-value {
             overflow-wrap: anywhere;
             color: #1e293b;
-            font-size: 0.76rem;
+            font-size: 0.7rem;
             font-weight: 700;
             line-height: 1.4;
         }
         .spatial-detail-description {
-            margin: 14px 0;
-            padding: 11px 12px;
+            margin: 10px 0;
+            padding: 9px 10px;
             border-radius: 8px;
             background: #f1f5f9;
         }
@@ -925,13 +1024,32 @@
             }
             .site-header.nav-open .nav-menu { display: flex; }
             .nav-menu a { display: block; padding: 11px 12px; font-size: 0.82rem; }
-            #map { position: fixed; inset: 0; }
+            #map,
+            body.has-spatial-info #map { position: fixed; inset: 0; }
             .gmaps-floating-header {
                 position: fixed;
                 top: calc(var(--header-height) + 10px);
                 left: 12px;
                 width: auto;
             }
+            body.has-spatial-info .gmaps-floating-header { left: 12px; }
+            .spatial-info-panel {
+                top: auto;
+                right: 12px;
+                bottom: calc(var(--drawer-handle-height) + 24px);
+                left: 12px;
+                width: auto;
+                max-height: min(42dvh, 360px);
+                border-radius: 14px;
+            }
+            .spatial-info-panel.is-minimized {
+                height: 48px;
+                max-height: 48px;
+                transform: none;
+            }
+            .spatial-info-panel.is-minimized .spatial-info-content { visibility: hidden; }
+            .spatial-info-panel.is-minimized .spatial-info-toggle { visibility: visible; }
+            .spatial-info-content .spatial-detail-photo-wrap { height: 96px; }
             .search-pill-box.is-open { width: min(360px, calc(100vw - 24px)); }
             .search-pill-box input { min-width: 0; font-size: 0.82rem; }
             .search-action-btn { width: 34px; height: 34px; flex-basis: 34px; }
@@ -942,7 +1060,7 @@
                 width: auto;
                 max-width: calc(100vw - 24px);
             }
-            .map-filter-panel { width: min(300px, calc(100vw - 24px)); max-height: min(56vh, 420px); max-height: min(56dvh, 420px); }
+            .map-filter-panel { max-height: min(56vh, 420px); max-height: min(56dvh, 420px); }
             .bottom-table-drawer {
                 position: fixed;
                 bottom: 10px;
@@ -1030,6 +1148,16 @@
     <!-- MAP CONTAINER -->
     <div id="map"></div>
 
+    <aside class="spatial-info-panel" id="spatialInfoPanel" aria-label="Informasi titik lokasi" hidden>
+        <button class="spatial-info-toggle" id="spatialInfoToggle" type="button" onclick="toggleSpatialInfoPanel()" aria-label="Minimalkan panel informasi" aria-expanded="true" aria-controls="spatialInfoContent" title="Minimalkan panel">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button class="spatial-info-close" type="button" onclick="closeSpatialInfo()" aria-label="Tutup informasi lokasi" title="Tutup informasi">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+        <div class="spatial-info-content" id="spatialInfoContent"></div>
+    </aside>
+
     <!-- FLOATING CONTROLS (KANAN) -->
     <div class="gmaps-controls-right">
         <div class="map-tool-row">
@@ -1056,7 +1184,7 @@
                     <i class="fa-solid fa-list-check"></i>
                 </button>
             </div>
-            <div class="control-bubble">
+            <div class="control-bubble control-bubble-compact">
                 <button class="tool-btn" id="btnMapFilters" type="button" onclick="toggleMapFilters()" title="Buka filter peta" aria-label="Buka filter peta" aria-expanded="false" aria-controls="mapFilters">
                     <i class="fa-solid fa-sliders" aria-hidden="true"></i>
                 </button>
@@ -1098,32 +1226,32 @@
             <div class="category-chips-row">
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-wifi" onchange="filterOnlyCategory('wifi', this)">
-                    <span class="chip-dot" style="background: var(--primary-vivid);"></span> WiFi Desa
+                    <span class="chip-dot" style="background: #b61616;"></span> WiFi Desa
                 </label>
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-kantor" onchange="filterOnlyCategory('kantor', this)">
-                    <span class="chip-dot" style="background: var(--amber);"></span> Kantor Desa
+                    <span class="chip-dot" style="background: #b6a916;"></span> Kantor Desa
                 </label>
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-pasar" onchange="filterOnlyCategory('pasar', this)">
-                    <span class="chip-dot" style="background: var(--emerald);"></span> Pasar Desa
+                    <span class="chip-dot" style="background: #2fb616;"></span> Pasar Desa
                 </label>
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-wisata" onchange="filterOnlyCategory('wisata', this)">
-                    <span class="chip-dot" style="background: var(--cyan);"></span> Wisata Desa
+                    <span class="chip-dot" style="background: #16b6b6;"></span> Wisata Desa
                 </label>
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-bumdes" onchange="filterOnlyCategory('bumdes', this)">
-                    <span class="chip-dot" style="background: var(--violet);"></span> BUMDes
+                    <span class="chip-dot" style="background: #1623b6;"></span> BUMDes
                 </label>
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-kkdmp" onchange="filterOnlyCategory('kkdmp', this)">
-                    <span class="chip-dot" style="background: var(--rose);"></span> KKDMP
+                    <span class="chip-dot" style="background: #b616a9;"></span> KKDMP
                 </label>
                 @foreach($spatialCategories as $category)
                 <label class="location-filter-option">
                     <input type="checkbox" id="chip-{{ $category['slug'] }}" onchange="filterOnlyCategory('{{ $category['slug'] }}', this)">
-                    <span class="chip-dot" style="background: #0f766e;"></span> {{ $category['label'] }}
+                    <span class="chip-dot" style="background: {{ $customSpatialMeta[$category['slug']]['color'] ?? '#64748b' }};"></span> {{ $category['label'] }}
                 </label>
                 @endforeach
             </div>
@@ -1591,6 +1719,7 @@
         }
 
         let activeMarkers = [];
+        let selectedSpatialId = null;
         let currentFilterTypes = [];
         let currentMapSearchQuery = '';
         let currentTableSearch = '';
@@ -1606,12 +1735,12 @@
 
         function getCategoryMeta(type) {
             switch(type) {
-                case 'wifi': return { label: 'WiFi Publik', color: '#0ea5e9', bg: '#e0f2fe', icon: 'fa-wifi' };
-                case 'kantor': return { label: 'Kantor Dinas', color: '#f59e0b', bg: '#fef3c7', icon: 'fa-landmark' };
-                case 'pasar': return { label: 'Pasar & UMKM', color: '#10b981', bg: '#d1fae5', icon: 'fa-store' };
-                case 'wisata': return { label: 'Pariwisata', color: '#06b6d4', bg: '#cffafe', icon: 'fa-mountain-sun' };
-                case 'bumdes': return { label: 'Unit BUMDes', color: '#8b5cf6', bg: '#ede9fe', icon: 'fa-briefcase' };
-                case 'kkdmp': return { label: 'KKDMP', color: '#f43f5e', bg: '#ffe4e6', icon: 'fa-people-group' };
+                case 'wifi': return { label: 'WiFi Publik', color: '#b61616', bg: '#e0f2fe', icon: 'fa-wifi' };
+                case 'kantor': return { label: 'Kantor Dinas', color: '#b6a916', bg: '#fef3c7', icon: 'fa-landmark' };
+                case 'pasar': return { label: 'Pasar & UMKM', color: '#2fb616', bg: '#d1fae5', icon: 'fa-store' };
+                case 'wisata': return { label: 'Pariwisata', color: '#16b6b6', bg: '#cffafe', icon: 'fa-mountain-sun' };
+                case 'bumdes': return { label: 'Unit BUMDes', color: '#1623b6', bg: '#ede9fe', icon: 'fa-briefcase' };
+                case 'kkdmp': return { label: 'KKDMP', color: '#b616a9', bg: '#ffe4e6', icon: 'fa-people-group' };
                 default: return customSpatialMeta[type] || { label: 'Fasilitas', color: '#64748b', bg: '#f1f5f9', icon: 'fa-location-dot' };
             }
         }
@@ -1656,7 +1785,81 @@
             `;
         }
 
-        function renderMapMarkers(openPopupSpatialId = null) {
+        function keepSpatialPointVisible(item) {
+            const isMobileLayout = window.matchMedia('(max-width: 900px)').matches;
+            map.panInside([item.lat, item.lng], {
+                paddingTopLeft: isMobileLayout ? [24, 132] : [24, 24],
+                paddingBottomRight: isMobileLayout
+                    ? [24, document.getElementById('spatialInfoPanel').offsetHeight + 124]
+                    : [24, 24]
+            });
+        }
+
+        function showSpatialInfo(item) {
+            const panel = document.getElementById('spatialInfoPanel');
+            const wasHidden = panel.hidden;
+            selectedSpatialId = item.id;
+            updateSelectedSpatialMarker();
+            document.getElementById('spatialInfoContent').innerHTML = buildSpatialPopup(item);
+            panel.hidden = false;
+            panel.classList.remove('is-minimized');
+            document.body.classList.remove('spatial-info-minimized');
+            updateSpatialInfoToggle(false);
+
+            if (document.getElementById('mapFilters').classList.contains('is-open')) {
+                toggleMapFilters(false);
+            }
+            if (document.getElementById('bottomDrawer').classList.contains('open')) {
+                toggleDrawer();
+            }
+
+            document.body.classList.add('has-spatial-info');
+            window.requestAnimationFrame(() => {
+                if (wasHidden) map.invalidateSize({ pan: false });
+                keepSpatialPointVisible(item);
+            });
+        }
+
+        function closeSpatialInfo() {
+            const panel = document.getElementById('spatialInfoPanel');
+            if (panel.hidden) return;
+
+            panel.hidden = true;
+            panel.classList.remove('is-minimized');
+            selectedSpatialId = null;
+            updateSelectedSpatialMarker();
+            document.body.classList.remove('has-spatial-info');
+            document.body.classList.remove('spatial-info-minimized');
+            window.requestAnimationFrame(() => map.invalidateSize({ pan: false }));
+        }
+
+        function toggleSpatialInfoPanel() {
+            const panel = document.getElementById('spatialInfoPanel');
+            if (panel.hidden) return;
+
+            const isMinimized = panel.classList.toggle('is-minimized');
+            document.body.classList.toggle('spatial-info-minimized', isMinimized);
+            updateSpatialInfoToggle(isMinimized);
+            window.requestAnimationFrame(() => map.invalidateSize({ pan: false }));
+        }
+
+        function updateSpatialInfoToggle(isMinimized) {
+            const button = document.getElementById('spatialInfoToggle');
+            button.setAttribute('aria-expanded', String(!isMinimized));
+            button.setAttribute('aria-label', isMinimized ? 'Buka panel informasi' : 'Minimalkan panel informasi');
+            button.title = isMinimized ? 'Buka panel informasi' : 'Minimalkan panel';
+            button.querySelector('i').className = `fa-solid ${isMinimized ? 'fa-chevron-right' : 'fa-chevron-left'}`;
+        }
+
+        function updateSelectedSpatialMarker() {
+            activeMarkers.forEach(marker => {
+                const isSelected = marker.spatialId === selectedSpatialId;
+                marker.getElement()?.classList.toggle('is-selected', isSelected);
+                marker.setZIndexOffset(isSelected ? 1000 : 0);
+            });
+        }
+
+        function renderMapMarkers() {
             activeMarkers.forEach(m => map.removeLayer(m));
             activeMarkers = [];
 
@@ -1671,30 +1874,28 @@
                 const meta = getCategoryMeta(item.type);
 
                 const customIcon = L.divIcon({
-                    className: 'custom-modern-pin',
+                    className: `custom-modern-pin${item.id === selectedSpatialId ? ' is-selected' : ''}`,
                     html: `
                         <div style="
-                            width: 38px; height: 38px;
+                            width: 14px; height: 14px;
                             background: ${meta.color};
-                            border: 3px solid #ffffff;
+                            border: 2px solid #ffffff;
                             border-radius: 50%;
-                            display: flex; align-items: center; justify-content: center;
-                            color: white; font-size: 15px;
-                            box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.35);
                             cursor: pointer;
                         ">
-                            <i class="fa-solid ${meta.icon}"></i>
                         </div>
                     `,
-                    iconSize: [38, 38],
-                    iconAnchor: [19, 19],
-                    popupAnchor: [0, -20]
+                    iconSize: [14, 14],
+                    iconAnchor: [7, 7],
+                    popupAnchor: [0, -8]
                 });
 
-                const marker = L.marker([item.lat, item.lng], { icon: customIcon }).bindPopup(buildSpatialPopup(item));
+                const marker = L.marker([item.lat, item.lng], { icon: customIcon });
                 marker.spatialId = item.id;
+                if (item.id === selectedSpatialId) marker.setZIndexOffset(1000);
+                marker.on('click', () => showSpatialInfo(item));
                 marker.addTo(map);
-                if (item.id === openPopupSpatialId) marker.openPopup();
                 activeMarkers.push(marker);
             });
 
@@ -1769,11 +1970,19 @@
                 const hasChanged = await loadSpatialData();
                 if (!hasChanged) return;
 
-                const openPopupSpatialId = activeMarkers.find(marker => marker.isPopupOpen())?.spatialId ?? null;
                 populateKecamatanFilter();
-                renderMapMarkers(openPopupSpatialId);
+                renderMapMarkers();
                 renderDataTable();
                 renderMapSearchSuggestions(document.getElementById('liveSearchInput').value);
+
+                if (selectedSpatialId) {
+                    const selectedItem = databaseSpasial.find(item => item.id === selectedSpatialId);
+                    if (selectedItem) {
+                        document.getElementById('spatialInfoContent').innerHTML = buildSpatialPopup(selectedItem);
+                    } else {
+                        closeSpatialInfo();
+                    }
+                }
             } catch (error) {
                 console.error('Gagal memperbarui data spasial dari backend:', error);
             } finally {
@@ -1880,15 +2089,7 @@
         }
 
         function focusSpatialItem(item) {
-            const marker = activeMarkers.find(activeMarker => activeMarker.spatialId === item.id);
-            if (marker) {
-                flyToPoint(item.lat, item.lng, marker);
-                return;
-            }
-
-            map.flyTo([item.lat, item.lng], 15, { duration: 1.2 });
-            L.popup().setLatLng([item.lat, item.lng]).setContent(buildSpatialPopup(item)).openOn(map);
-            if (document.getElementById('bottomDrawer').classList.contains('open')) toggleDrawer();
+            showSpatialInfo(item);
         }
 
         function applyTableSearch(value) {
@@ -1925,16 +2126,6 @@
             currentKecFilter = kec;
             currentTablePage = 1;
             renderDataTable();
-        }
-
-        function flyToPoint(lat, lng, markerInstance) {
-            map.flyTo([lat, lng], 15, { duration: 1.2 });
-            setTimeout(() => {
-                if (markerInstance) markerInstance.openPopup();
-            }, 1200);
-
-            const drawer = document.getElementById('bottomDrawer');
-            if (drawer.classList.contains('open')) toggleDrawer();
         }
 
         function toggleMapFilters(forceOpen) {

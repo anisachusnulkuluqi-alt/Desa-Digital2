@@ -11,6 +11,29 @@ use Illuminate\Support\Str;
 
 class SpatialLocationController extends Controller
 {
+    private const CUSTOM_CATEGORY_PALETTE = [
+        ['#b63b16', '#f6e7e3'],
+        ['#16b647', '#e3f6e9'],
+        ['#5416b6', '#eae3f6'],
+        ['#b66016', '#f6ece3'],
+        ['#16b66c', '#e3f6ed'],
+        ['#7816b6', '#efe3f6'],
+        ['#b68516', '#f6f0e3'],
+        ['#16b691', '#e3f6f2'],
+        ['#9d16b6', '#f3e3f6'],
+        ['#9db616', '#f3f6e3'],
+        ['#1691b6', '#e3f2f6'],
+        ['#b61685', '#f6e3f0'],
+        ['#78b616', '#eff6e3'],
+        ['#166cb6', '#e3edf6'],
+        ['#b61660', '#f6e3ec'],
+        ['#54b616', '#eaf6e3'],
+        ['#1647b6', '#e3e9f6'],
+        ['#b6163b', '#f6e3e7'],
+        ['#16b623', '#e3f6e5'],
+        ['#2f16b6', '#e6e3f6'],
+    ];
+
     private const CATEGORIES = [
         'wifi' => ['table' => 'lokasi_wifi', 'name_property' => 'nama_ssid'],
         'kantor' => ['table' => 'lokasi_kantor', 'name_property' => 'nama_ssid'],
@@ -27,14 +50,6 @@ class SpatialLocationController extends Controller
         $spatialCategories = [];
         $customSpatialSources = [];
         $customSpatialMeta = [];
-        $palette = [
-            ['#0f766e', '#ccfbf1'],
-            ['#7c3aed', '#ede9fe'],
-            ['#be123c', '#ffe4e6'],
-            ['#a16207', '#fef3c7'],
-            ['#0369a1', '#e0f2fe'],
-            ['#4d7c0f', '#ecfccb'],
-        ];
 
         foreach ($categories as $category) {
             $slug = Str::slug($category->nama, '_');
@@ -54,7 +69,8 @@ class SpatialLocationController extends Controller
                 'label' => ucfirst($category->nama),
             ];
             $customSpatialSources[$slug] = route('data.spasial.locations', ['kategori' => $slug]);
-            [$color, $background] = $palette[count($spatialCategories) % count($palette)];
+            $paletteIndex = (count($spatialCategories) - 1) % count(self::CUSTOM_CATEGORY_PALETTE);
+            [$color, $background] = self::CUSTOM_CATEGORY_PALETTE[$paletteIndex];
             $customSpatialMeta[$slug] = [
                 'label' => ucfirst($category->nama),
                 'color' => $color,
