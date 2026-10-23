@@ -23,17 +23,42 @@ class TrackWebsiteVisits
             return $response;
         }
 
-        $visitorId = $request->cookie('website_visitor_id') ?: Str::random(64);
-            $visitHash = hash('sha256', $visitorId.'|'.Str::uuid());
+        $visitorId = $request->cookie('website_visitor_id');
+        $isNewCookie = false;
 
-        DB::table('website_visits')->insert([
-                'visitor_hash' => $visitHash,
-            'visited_on' => now()->toDateString(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        if (!$visitorId) {
+            $visitorId = Str::random(64);
+            $isNewCookie = true;
+        }
 
-        if (!$request->cookie('website_visitor_id')) {
+        $today = now()->toDateString();
+        $visitorHash = hash('sha256', $visitorId);
+        $sessionKey = 'tracked_visit_' . $visitorHash . '_' . $today;
+
+        // Jika dalam sesi yang sama pengunjung ini sudah tercatat hari ini, lewati tanpa query ulang
+        if ($request->hasSession() && $request->session()->get($sessionKey)) {
+            if ($isNewCookie) {
+                $response->withCookie(cookie('website_visitor_id', $visitorId, 525600));
+            }
+            return $response;
+        }
+
+        try {
+            DB::table('website_visits')->insertOrIgnore([
+                'visitor_hash' => $visitorHash,
+                'visited_on' => $today,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            if ($request->hasSession()) {
+                $request->session()->put($sessionKey, true);
+            }
+        } catch (\Throwable) {
+            // Abaikan jika tabel belum siap atau record sudah ada
+        }
+
+        if ($isNewCookie) {
             $response->withCookie(cookie('website_visitor_id', $visitorId, 525600));
         }
 

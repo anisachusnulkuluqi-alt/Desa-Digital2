@@ -15,6 +15,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="<?= asset('css/global-search.css'); ?>">
 
+    <script>
+        (function() {
+            try {
+                var s = JSON.parse(localStorage.getItem('desa_digital_accessibility') || '{}');
+                var cl = document.documentElement.classList;
+                if (s.fontSize && s.fontSize !== 'normal') cl.add('access-font-' + s.fontSize);
+                if (s.contrast && s.contrast !== 'normal') cl.add('access-contrast-' + s.contrast);
+                if (s.colorBlind && s.colorBlind !== 'normal') cl.add('access-cb-' + s.colorBlind);
+                if (s.dyslexic) cl.add('access-dyslexic');
+                if (s.underlineLinks) cl.add('access-links-underline');
+            } catch (e) {}
+        })();
+    </script>
+
     <style>
         :root {
             --bg-body: #eaf2fa;
@@ -1148,6 +1162,8 @@
         .floating-tool-feedback { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
         .floating-tool-feedback.is-submitted { background: #fef9c3; border-color: #fde047; color: #eab308; }
         .floating-tool-stats { background: #dbeafe; border-color: #93c5fd; color: #1d4ed8; }
+        .floating-tool-accessibility { background: #f5f3ff; border-color: #ddd6fe; color: #7c3aed; }
+        .floating-tool-accessibility:hover { background: #ede9fe; color: #6d28d9; }
 
         .website-tool-control { position: relative; display: flex; align-items: center; }
         .feedback-submitted-notice { position: absolute; right: 0; bottom: calc(100% + 10px); width: max-content; max-width: min(240px, calc(100vw - 40px)); padding: 9px 12px; border: 1px solid #fde68a; border-radius: 10px; background: #fffbeb; color: #854d0e; font-size: 0.75rem; font-weight: 700; line-height: 1.4; text-align: center; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.15); }
@@ -1236,6 +1252,272 @@
         .visitor-stats-number { display: block; color: #2563eb; font-size: 1.2rem; font-weight: 900; line-height: 1.2; font-variant-numeric: tabular-nums; }
         .visitor-stats-label { display: block; margin-top: 3px; font-size: 0.76rem; }
         .visitor-stats-divider { height: 1px; margin: 10px 0; border: 0; background: rgba(37, 99, 235, 0.2); }
+
+        .accessibility-tool-control {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .accessibility-panel {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            right: calc(100% + 12px);
+            width: min(252px, calc(100vw - 76px));
+            max-height: calc(100vh - 28px);
+            overflow-y: auto;
+            padding: 12px 13px 10px;
+            border: 1px solid #ddd6fe;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.98);
+            color: var(--text-dark);
+            text-align: left;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.16);
+        }
+
+        .accessibility-panel[hidden] { display: none; }
+
+        .accessibility-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .accessibility-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            font-weight: 850;
+            color: #1e1b4b;
+        }
+
+        .accessibility-title-wrap i {
+            color: #7c3aed;
+            font-size: 0.92rem;
+        }
+
+        .accessibility-close-btn {
+            display: grid;
+            place-items: center;
+            width: 22px;
+            height: 22px;
+            border: 0;
+            background: transparent;
+            color: #64748b;
+            font-size: 1.15rem;
+            line-height: 1;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .accessibility-close-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .accessibility-section {
+            margin-bottom: 7px;
+        }
+
+        .accessibility-section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .accessibility-cb-hint {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #7c3aed;
+            background: #f5f3ff;
+            border: 1px solid #ddd6fe;
+            padding: 1px 5px;
+            border-radius: 4px;
+            line-height: 1.2;
+        }
+
+        .accessibility-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.68rem;
+            font-weight: 750;
+            color: #64748b;
+            letter-spacing: -0.01em;
+            margin-bottom: 3px;
+        }
+
+        .accessibility-label i {
+            font-size: 0.66rem;
+            color: #8b5cf6;
+        }
+
+        .accessibility-btn-group {
+            display: flex;
+            gap: 3px;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        .accessibility-opt-btn {
+            flex: 1;
+            min-width: 0;
+            padding: 4px 2px;
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            color: #475569;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .accessibility-opt-btn:hover {
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        .accessibility-opt-btn.is-active {
+            background: #7c3aed;
+            color: #ffffff;
+            box-shadow: 0 1px 4px rgba(124, 58, 237, 0.28);
+        }
+
+        .accessibility-chips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+
+        .accessibility-chip-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            padding: 5px 4px;
+            border: 1px solid #e2e8f0;
+            border-radius: 7px;
+            background: #f8fafc;
+            color: #475569;
+            font-size: 0.68rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .accessibility-chip-btn:hover {
+            background: #ffffff;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .accessibility-chip-btn.is-active {
+            border-color: #8b5cf6;
+            background: #f5f3ff;
+            color: #6d28d9;
+            font-weight: 800;
+        }
+
+        .accessibility-chip-btn.is-active i {
+            color: #7c3aed;
+        }
+
+        .accessibility-reset-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            margin-top: 5px;
+            padding: 5px 8px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 7px;
+            background: #ffffff;
+            color: #64748b;
+            font-size: 0.68rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .accessibility-reset-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+            background: #fef2f2;
+        }
+
+        /* Accessibility Root Modifiers */
+        html.access-font-sm { font-size: 88%; }
+        html.access-font-lg { font-size: 112%; }
+        html.access-font-xl { font-size: 125%; }
+
+        html.access-contrast-high {
+            filter: contrast(135%);
+        }
+
+        html.access-contrast-grayscale {
+            filter: grayscale(100%) !important;
+        }
+
+        /* Color Blind Mode Filters (feColorMatrix) */
+        html.access-cb-protanopia {
+            filter: url('#access-filter-protanopia');
+        }
+        html.access-cb-deuteranopia {
+            filter: url('#access-filter-deuteranopia');
+        }
+        html.access-cb-tritanopia {
+            filter: url('#access-filter-tritanopia');
+        }
+
+        /* Kombinasi dengan kontras tinggi */
+        html.access-contrast-high.access-cb-protanopia {
+            filter: url('#access-filter-protanopia') contrast(135%);
+        }
+        html.access-contrast-high.access-cb-deuteranopia {
+            filter: url('#access-filter-deuteranopia') contrast(135%);
+        }
+        html.access-contrast-high.access-cb-tritanopia {
+            filter: url('#access-filter-tritanopia') contrast(135%);
+        }
+
+        html.access-dyslexic,
+        html.access-dyslexic body,
+        html.access-dyslexic p,
+        html.access-dyslexic h1,
+        html.access-dyslexic h2,
+        html.access-dyslexic h3,
+        html.access-dyslexic h4,
+        html.access-dyslexic span,
+        html.access-dyslexic a,
+        html.access-dyslexic button,
+        html.access-dyslexic input,
+        html.access-dyslexic textarea {
+            font-family: Arial, Helvetica, sans-serif !important;
+            letter-spacing: 0.035em !important;
+            word-spacing: 0.05em !important;
+        }
+
+        html.access-links-underline a {
+            text-decoration: underline !important;
+            text-underline-offset: 3px !important;
+        }
 
         .back-to-top-button {
             width: 50px;
@@ -1349,6 +1631,7 @@
             .floating-tool-button { width: 44px; height: 44px; font-size: 1.05rem; }
             .visitor-stats-popover { right: calc(100% + 10px); width: min(164px, calc(100vw - 88px)); }
             .website-tool-panel { right: calc(100% + 10px); width: min(290px, calc(100vw - 88px)); }
+            .accessibility-panel { right: calc(100% + 8px); width: min(242px, calc(100vw - 76px)); }
             .back-to-top-button { width: 48px; height: 48px; margin-top: 16px; }
         }
 
@@ -1397,6 +1680,36 @@
     <link rel="stylesheet" href="<?= asset('css/public-header.css'); ?>">
 </head>
 <body>
+
+    <!-- SVG Filters untuk Aksesibilitas Buta Warna (Color Vision Deficiency) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+        <defs>
+            <!-- Protanopia (Sulit membedakan warna merah) -->
+            <filter id="access-filter-protanopia" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values="
+                    0.567, 0.433, 0.000, 0, 0
+                    0.558, 0.442, 0.000, 0, 0
+                    0.000, 0.242, 0.758, 0, 0
+                    0.000, 0.000, 0.000, 1, 0" />
+            </filter>
+            <!-- Deuteranopia (Sulit membedakan warna hijau) -->
+            <filter id="access-filter-deuteranopia" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values="
+                    0.625, 0.375, 0.000, 0, 0
+                    0.700, 0.300, 0.000, 0, 0
+                    0.000, 0.300, 0.700, 0, 0
+                    0.000, 0.000, 0.000, 1, 0" />
+            </filter>
+            <!-- Tritanopia (Sulit membedakan warna biru-kuning) -->
+            <filter id="access-filter-tritanopia" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values="
+                    0.950, 0.050, 0.000, 0, 0
+                    0.000, 0.433, 0.567, 0, 0
+                    0.000, 0.475, 0.525, 0, 0
+                    0.000, 0.000, 0.000, 1, 0" />
+            </filter>
+        </defs>
+    </svg>
 
     @include('partials.public-header', ['activePage' => 'home', 'showSpacer' => true])
 
@@ -1705,6 +2018,76 @@
                 <hr class="visitor-stats-divider">
                 <span class="visitor-stats-number" id="visitors-total">{{ number_format($statistics['totalKunjungan'] ?? 0, 0, ',', '.') }}</span>
                 <span class="visitor-stats-label">Total Kunjungan</span>
+            </section>
+        </div>
+        <div class="accessibility-tool-control">
+            <button type="button" class="floating-tool-button floating-tool-accessibility" id="accessibility-toggle" aria-label="Menu aksesibilitas website" aria-expanded="false" aria-controls="accessibility-panel" title="Menu aksesibilitas website">
+                <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+            </button>
+            <section class="accessibility-panel" id="accessibility-panel" aria-label="Pengaturan aksesibilitas website" hidden>
+                <div class="accessibility-header">
+                    <div class="accessibility-title-wrap">
+                        <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+                        <span>Aksesibilitas</span>
+                    </div>
+                    <button type="button" class="accessibility-close-btn" id="accessibility-close" aria-label="Tutup menu aksesibilitas">&times;</button>
+                </div>
+
+                <!-- Ukuran Huruf -->
+                <div class="accessibility-section">
+                    <span class="accessibility-label"><i class="fa-solid fa-font" aria-hidden="true"></i> Ukuran Teks</span>
+                    <div class="accessibility-btn-group" role="group" aria-label="Pengaturan ukuran teks">
+                        <button type="button" class="accessibility-opt-btn" data-access-font="sm" aria-label="Ukuran font kecil" title="Kecil">A-</button>
+                        <button type="button" class="accessibility-opt-btn is-active" data-access-font="normal" aria-label="Ukuran font normal" title="Normal">Normal</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-font="lg" aria-label="Ukuran font besar" title="Besar">A+</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-font="xl" aria-label="Ukuran font sangat besar" title="Sangat Besar">A++</button>
+                    </div>
+                </div>
+
+                <!-- Kontras Tampilan -->
+                <div class="accessibility-section">
+                    <span class="accessibility-label"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Kontras Layar</span>
+                    <div class="accessibility-btn-group" role="group" aria-label="Pengaturan kontras">
+                        <button type="button" class="accessibility-opt-btn is-active" data-access-contrast="normal" aria-label="Kontras standar" title="Standar">Standar</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-contrast="high" aria-label="Kontras tinggi" title="Kontras Tinggi">Kontras</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-contrast="grayscale" aria-label="Tampilan monokrom" title="Monokrom">Monokrom</button>
+                    </div>
+                </div>
+
+                <!-- Filter Buta Warna -->
+                <div class="accessibility-section">
+                    <div class="accessibility-section-head">
+                        <span class="accessibility-label"><i class="fa-solid fa-palette" aria-hidden="true"></i> Buta Warna</span>
+                        <span class="accessibility-cb-hint" id="access-cb-hint">Off</span>
+                    </div>
+                    <div class="accessibility-btn-group" role="group" aria-label="Filter buta warna">
+                        <button type="button" class="accessibility-opt-btn is-active" data-access-cb="normal" title="Normal (Tanpa filter)">Normal</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-cb="deuteranopia" title="Deuteranopia: Buta warna hijau">Deuter</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-cb="protanopia" title="Protanopia: Buta warna merah">Protan</button>
+                        <button type="button" class="accessibility-opt-btn" data-access-cb="tritanopia" title="Tritanopia: Buta warna biru">Tritan</button>
+                    </div>
+                </div>
+
+                <!-- Keterbacaan Tambahan -->
+                <div class="accessibility-section">
+                    <span class="accessibility-label"><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> Keterbacaan</span>
+                    <div class="accessibility-chips-grid">
+                        <button type="button" class="accessibility-chip-btn" id="access-toggle-dyslexic" aria-pressed="false" title="Aktifkan font ramah disleksia">
+                            <i class="fa-solid fa-spell-check" aria-hidden="true"></i>
+                            <span>Disleksia</span>
+                        </button>
+                        <button type="button" class="accessibility-chip-btn" id="access-toggle-underline" aria-pressed="false" title="Garis bawahi semua tautan">
+                            <i class="fa-solid fa-underline" aria-hidden="true"></i>
+                            <span>Garis Link</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reset Pengaturan -->
+                <button type="button" class="accessibility-reset-btn" id="accessibility-reset" title="Kembalikan semua pengaturan ke awal">
+                    <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                    <span>Reset Pengaturan</span>
+                </button>
             </section>
         </div>
         <button type="button" class="floating-tool-button back-to-top-button" id="back-to-top" aria-label="Kembali ke bagian paling atas" title="Kembali ke atas">
@@ -2051,6 +2434,16 @@
         const feedbackRatingOptions = [...document.querySelectorAll('.feedback-rating-option')];
         const visitorStatsButton = document.getElementById('visitor-stats-toggle');
         const visitorStatsPanel = document.getElementById('visitor-stats-panel');
+        const accessibilityButton = document.getElementById('accessibility-toggle');
+        const accessibilityPanel = document.getElementById('accessibility-panel');
+        const accessibilityCloseButton = document.getElementById('accessibility-close');
+        const accessibilityResetButton = document.getElementById('accessibility-reset');
+        const accessFontButtons = [...document.querySelectorAll('[data-access-font]')];
+        const accessContrastButtons = [...document.querySelectorAll('[data-access-contrast]')];
+        const accessDyslexicToggle = document.getElementById('access-toggle-dyslexic');
+        const accessUnderlineToggle = document.getElementById('access-toggle-underline');
+        const accessCbButtons = [...document.querySelectorAll('[data-access-cb]')];
+        const accessCbHint = document.getElementById('access-cb-hint');
         const backToTopButton = document.getElementById('back-to-top');
         let selectedFeedbackRating = null;
         let feedbackRequestPending = false;
@@ -2089,10 +2482,19 @@
             visitorStatsButton.title = isVisible ? 'Sembunyikan statistik pengunjung' : 'Tampilkan statistik pengunjung';
         };
 
+        const setAccessibilityVisible = isVisible => {
+            if (!accessibilityButton || !accessibilityPanel) return;
+            accessibilityPanel.hidden = !isVisible;
+            accessibilityButton.setAttribute('aria-expanded', String(isVisible));
+            accessibilityButton.setAttribute('aria-label', isVisible ? 'Tutup menu aksesibilitas' : 'Menu aksesibilitas website');
+            accessibilityButton.title = isVisible ? 'Tutup menu aksesibilitas' : 'Menu aksesibilitas website';
+        };
+
         feedbackButton?.addEventListener('click', () => {
             if (hasSubmittedFeedback) {
                 setFeedbackVisible(false);
                 setVisitorStatsVisible(false);
+                setAccessibilityVisible(false);
                 showFeedbackSubmittedNotice();
                 return;
             }
@@ -2100,6 +2502,7 @@
             setFeedbackVisible(isVisible);
             if (isVisible) {
                 setVisitorStatsVisible(false);
+                setAccessibilityVisible(false);
                 feedbackSubmittedNotice.hidden = true;
             }
         });
@@ -2109,7 +2512,22 @@
             setVisitorStatsVisible(isVisible);
             if (isVisible) {
                 setFeedbackVisible(false);
+                setAccessibilityVisible(false);
             }
+        });
+
+        accessibilityButton?.addEventListener('click', () => {
+            const isVisible = accessibilityPanel?.hidden ?? false;
+            setAccessibilityVisible(isVisible);
+            if (isVisible) {
+                setFeedbackVisible(false);
+                setVisitorStatsVisible(false);
+            }
+        });
+
+        accessibilityCloseButton?.addEventListener('click', () => {
+            setAccessibilityVisible(false);
+            accessibilityButton?.focus();
         });
 
         document.addEventListener('click', event => {
@@ -2119,6 +2537,9 @@
             }
             if (visitorStatsPanel && !event.target.closest('.visitor-stats-control')) {
                 setVisitorStatsVisible(false);
+            }
+            if (accessibilityPanel && !event.target.closest('.accessibility-tool-control')) {
+                setAccessibilityVisible(false);
             }
         });
 
@@ -2131,6 +2552,139 @@
                 setVisitorStatsVisible(false);
                 visitorStatsButton?.focus();
             }
+            if (event.key === 'Escape' && accessibilityPanel && !accessibilityPanel.hidden) {
+                setAccessibilityVisible(false);
+                accessibilityButton?.focus();
+            }
+        });
+
+        // Accessibility Settings Management
+        const ACCESS_STORAGE_KEY = 'desa_digital_accessibility';
+        const defaultAccessSettings = {
+            fontSize: 'normal',
+            contrast: 'normal',
+            colorBlind: 'normal',
+            dyslexic: false,
+            underlineLinks: false
+        };
+
+        const loadAccessSettings = () => {
+            try {
+                return Object.assign({}, defaultAccessSettings, JSON.parse(localStorage.getItem(ACCESS_STORAGE_KEY) || '{}'));
+            } catch {
+                return Object.assign({}, defaultAccessSettings);
+            }
+        };
+
+        const saveAccessSettings = settings => {
+            try {
+                localStorage.setItem(ACCESS_STORAGE_KEY, JSON.stringify(settings));
+            } catch {}
+        };
+
+        let currentAccessSettings = loadAccessSettings();
+
+        const applyAccessSettings = (settings, persist = true) => {
+            const root = document.documentElement;
+
+            // Font size
+            root.classList.remove('access-font-sm', 'access-font-lg', 'access-font-xl');
+            if (settings.fontSize && settings.fontSize !== 'normal') {
+                root.classList.add(`access-font-${settings.fontSize}`);
+            }
+            accessFontButtons.forEach(btn => {
+                btn.classList.toggle('is-active', btn.dataset.accessFont === settings.fontSize);
+            });
+
+            // Contrast
+            root.classList.remove('access-contrast-high', 'access-contrast-grayscale');
+            if (settings.contrast && settings.contrast !== 'normal') {
+                root.classList.add(`access-contrast-${settings.contrast}`);
+            }
+            accessContrastButtons.forEach(btn => {
+                btn.classList.toggle('is-active', btn.dataset.accessContrast === settings.contrast);
+            });
+
+            // Color blind filter
+            root.classList.remove('access-cb-protanopia', 'access-cb-deuteranopia', 'access-cb-tritanopia');
+            if (settings.colorBlind && settings.colorBlind !== 'normal') {
+                root.classList.add(`access-cb-${settings.colorBlind}`);
+            }
+            accessCbButtons.forEach(btn => {
+                btn.classList.toggle('is-active', btn.dataset.accessCb === settings.colorBlind);
+            });
+
+            if (accessCbHint) {
+                const cbLabels = {
+                    normal: 'Off',
+                    deuteranopia: 'Deuter (Hijau)',
+                    protanopia: 'Protan (Merah)',
+                    tritanopia: 'Tritan (Biru)'
+                };
+                accessCbHint.textContent = cbLabels[settings.colorBlind] || 'Off';
+            }
+
+            // Dyslexic font
+            root.classList.toggle('access-dyslexic', Boolean(settings.dyslexic));
+            if (accessDyslexicToggle) {
+                accessDyslexicToggle.classList.toggle('is-active', Boolean(settings.dyslexic));
+                accessDyslexicToggle.setAttribute('aria-pressed', String(Boolean(settings.dyslexic)));
+            }
+
+            // Underline links
+            root.classList.toggle('access-links-underline', Boolean(settings.underlineLinks));
+            if (accessUnderlineToggle) {
+                accessUnderlineToggle.classList.toggle('is-active', Boolean(settings.underlineLinks));
+                accessUnderlineToggle.setAttribute('aria-pressed', String(Boolean(settings.underlineLinks)));
+            }
+
+            if (persist) {
+                saveAccessSettings(settings);
+            }
+        };
+
+        applyAccessSettings(currentAccessSettings, false);
+
+        accessFontButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentAccessSettings.fontSize = btn.dataset.accessFont;
+                applyAccessSettings(currentAccessSettings);
+            });
+        });
+
+        accessContrastButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentAccessSettings.contrast = btn.dataset.accessContrast;
+                if (currentAccessSettings.contrast === 'grayscale') {
+                    currentAccessSettings.colorBlind = 'normal';
+                }
+                applyAccessSettings(currentAccessSettings);
+            });
+        });
+
+        accessCbButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentAccessSettings.colorBlind = btn.dataset.accessCb;
+                if (currentAccessSettings.colorBlind !== 'normal' && currentAccessSettings.contrast === 'grayscale') {
+                    currentAccessSettings.contrast = 'normal';
+                }
+                applyAccessSettings(currentAccessSettings);
+            });
+        });
+
+        accessDyslexicToggle?.addEventListener('click', () => {
+            currentAccessSettings.dyslexic = !currentAccessSettings.dyslexic;
+            applyAccessSettings(currentAccessSettings);
+        });
+
+        accessUnderlineToggle?.addEventListener('click', () => {
+            currentAccessSettings.underlineLinks = !currentAccessSettings.underlineLinks;
+            applyAccessSettings(currentAccessSettings);
+        });
+
+        accessibilityResetButton?.addEventListener('click', () => {
+            currentAccessSettings = Object.assign({}, defaultAccessSettings);
+            applyAccessSettings(currentAccessSettings);
         });
 
         feedbackRatingOptions.forEach(option => {
